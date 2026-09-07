@@ -13,12 +13,20 @@ nederst forklarer termerne.
 | Mærkat | Maskine | Kører | Resultatmappe |
 |---|---|---|---|
 | `arch` | Leos laptop, Arch Linux | måling 1, 2, 3 | `~/Dev/Speciale2026/data/2026-09-08-empty-class/leo` |
-| `mac` | Peters laptop, macOS | måling 1, 3 | `~/Dev/Speciale2026/data/2026-09-08-empty-class/peter` |
-| `vm` | delt Ubuntu 24.04, DigitalOcean | måling 1, 2, 3 | `~/empty-class` |
+| `mac` | Peters laptop, macOS | ikke med i første kørsel | `~/Dev/Speciale2026/data/2026-09-08-empty-class/peter` |
+| `vm` | delt Ubuntu 24.04, DigitalOcean | måling 1, 2, 3 | `.../data/2026-09-08-empty-class/vm-ubuntu` |
+
+**Første kørsel:** Leo tager `arch`, Peter tager `vm`. `mac` gemmer vi til
+senere; kommandoerne står stadig i teksten, så den kan køres uden at protokollen
+skal skrives om.
+
+Repoet er klonet på alle tre maskiner, så hver maskine skriver direkte i sin
+egen undermappe under `data/2026-09-08-empty-class/`. Ingen filer flyttes
+bagefter.
 
 Kommandoerne herunder gælder **Linux (`arch` og `vm`)**. Hvor macOS afviger, står
-en `mac`-variant under. Resultaterne fra `vm` hentes hjem med `scp` til sidst, så
-der ikke skal ligge git-adgang på en maskine vi deler.
+en `mac`-variant under. Resultatmappen hedder `$UD` i alle kommandoer; den sættes
+i trin 1.
 
 ## Tre målinger
 
@@ -81,8 +89,12 @@ version af instrumentet**. To reprotest-versioner er to måleapparater, og så k
 tabellerne ikke lægges ved siden af hinanden:
 
 ```bash
-pipx install reprotest && pipx ensurepath
+pipx install reprotest==0.7.32 && pipx ensurepath
 ```
+
+0.7.32 er den version `arch` målte med (verificeret 7/9 2026). `pipx install
+reprotest` uden version giver den nyeste, og så er de to tabeller ikke fra samme
+instrument.
 
 SDK'en i præcis den version `global.json` kræver — apt giver en anden patch:
 
@@ -102,11 +114,22 @@ skelnes fra hinanden.
 
 **`mac`** — intet at installere ud over `dotnet` (version 9.0.120) og `git`.
 
-**Alle tre** — resultatmappen fra tabellen ovenfor:
+**Alle tre** — sæt resultatmappen som `$UD`, så resten af kommandoerne er ens.
+Ret `leo` til `peter` eller `vm-ubuntu` efter hvilken maskine du sidder ved.
+I bash og zsh:
 
 ```bash
-mkdir -p ~/empty-class
+export UD=~/Dev/Speciale2026/data/2026-09-08-empty-class/leo && mkdir -p $UD
 ```
+
+I fish:
+
+```bash
+set -gx UD ~/Dev/Speciale2026/data/2026-09-08-empty-class/leo; mkdir -p $UD
+```
+
+Variablen forsvinder når du åbner en ny fane. Sæt den igen, eller læg linjen i
+din shell-profil så længe eksperimentet kører.
 
 ## Trin 2: projektet, tre filer skrevet i hånden
 
@@ -141,7 +164,30 @@ SDK-låsen:
 printf '{\n  "sdk": {\n    "version": "9.0.120",\n    "rollForward": "disable"\n  }\n}\n' > /private/tmp/rb1/global.json
 ```
 
-Kontrollér at vi har præcis de samme bytes, før vi måler noget:
+Kontrollér at pinnet virker, før du bygger noget. `dotnet --version` slår
+`global.json` op fra den mappe du står i:
+
+```bash
+cd /private/tmp/rb1 && dotnet --version
+```
+
+Der skal stå `9.0.120`. Står du uden for mappen, får du din nyeste SDK i stedet —
+på Leos maskine 10.0.111. Det er hele forskellen, og den er nem at overse.
+
+Bekræft at det er den rigtige fil der bliver fundet:
+
+```bash
+cd /private/tmp/rb1 && dotnet --info | grep -A 1 'global.json file'
+```
+
+Der skal stå `/private/tmp/rb1/global.json`. Står der `Not found`, ligger filen
+forkert, og så bygger du med en anden oversætter uden at få det at vide.
+
+Med `rollForward: disable` fejler byggeriet i øvrigt tydeligt hvis 9.0.120 ikke er
+installeret — det er meningen. Et byg der lykkes er derfor i sig selv et bevis på
+at pinnet blev respekteret.
+
+Kontrollér til sidst at vi har præcis de samme bytes:
 
 ```bash
 cd /private/tmp/rb1 && sha256sum minlib.csproj Beregning.cs global.json
@@ -171,35 +217,51 @@ styresystem, sprogindstillinger, filrettigheder, versionen af måleværktøjet. 
 skal skrives ned *før* vi måler. Viser måling 3 en forskel, er det den her blok
 der siger hvorfor.
 
-Stil dig i resultatmappen (se tabellen), og:
+`dotnet --info` skal køres **fra projektmappen**, ikke fra resultatmappen. Uden
+for `/private/tmp/rb1` gælder `global.json` ikke, og så beskriver blokken en anden
+SDK end den der bygger:
 
 ```bash
-dotnet --info | head -12 > environment.txt; uname -srm >> environment.txt; umask >> environment.txt; locale | head -1 >> environment.txt; diffoscope --version >> environment.txt 2>&1; pipx list >> environment.txt 2>&1
+cd /private/tmp/rb1 && dotnet --info > $UD/environment.txt
+```
+
+Maskinen selv:
+
+```bash
+uname -srm >> $UD/environment.txt; umask >> $UD/environment.txt; locale | head -1 >> $UD/environment.txt; diffoscope --version >> $UD/environment.txt 2>&1; pipx list >> $UD/environment.txt 2>&1
+```
+
+Og oversætteren, som filer og ikke som versionsnummer:
+
+```bash
+cd /private/tmp/rb1 && sha256sum "$(dotnet --info | awk '/Base Path/ {print $3}')Roslyn/bincore/csc.dll" >> $UD/environment.txt
 ```
 
 `umask` og `locale` er to af de akser reprotest varierer i måling 2, så de skal
 stå i blokken for at tabellen kan læses bagefter. `pipx list` fanger
-reprotest-versionen.
+reprotest-versionen. Og `csc.dll` er selve C#-oversætteren: hashen af den er det
+eneste der faktisk identificerer hvad der byggede — versionsnummeret er en
+streng.
 
 ## Trin 4: måling 1, to builds på samme maskine
 
-Den kedelige kontrol. Byg, og skriv hashen ned. Ret stien til din resultatmappe:
+Den kedelige kontrol. Byg, og skriv hashen ned:
 
 ```bash
-cd /private/tmp/rb1; dotnet build -c Release; sha256sum bin/Release/net9.0/minlib.dll | tee -a ~/empty-class/hashes.txt
+cd /private/tmp/rb1; dotnet build -c Release; sha256sum bin/Release/net9.0/minlib.dll | tee -a $UD/hashes.txt
 ```
 
 `mac`:
 
 ```bash
-cd /private/tmp/rb1; dotnet build -c Release; shasum -a 256 bin/Release/net9.0/minlib.dll | tee -a ~/Dev/Speciale2026/data/2026-09-08-empty-class/peter/hashes.txt
+cd /private/tmp/rb1; dotnet build -c Release; shasum -a 256 bin/Release/net9.0/minlib.dll | tee -a $UD/hashes.txt
 ```
 
 Og igen, med `rm -rf bin obj` foran, så det er et rent byg og ikke genbrug af
 sidste gang:
 
 ```bash
-cd /private/tmp/rb1; rm -rf bin obj; dotnet build -c Release; sha256sum bin/Release/net9.0/minlib.dll | tee -a ~/empty-class/hashes.txt
+cd /private/tmp/rb1; rm -rf bin obj; dotnet build -c Release; sha256sum bin/Release/net9.0/minlib.dll | tee -a $UD/hashes.txt
 ```
 
 **Forventet:** to ens hashes. Oversætteren vakler ikke af sig selv.
@@ -234,7 +296,7 @@ Stil dig i resultatmappen, så logfilerne lander rigtigt. reprotest bygger i sin
 egen midlertidige mappe, så byggeriet foregår ikke her:
 
 ```bash
-cd ~/empty-class
+cd $UD
 ```
 
 `--vary=-all` betyder "variér ingenting". `--vary=-all,+umask` betyder "variér
@@ -326,22 +388,49 @@ anden arm64. Om det holder, ved vi ikke. Det er derfor det er værd at måle.
   der afviger. Så er næste kørsel den samme opskrift med den ene forskel lukket
   — én variabel ad gangen, intet andet.
 
-`arch` mod `vm` er to Linux-maskiner med samme SDK: er de forskellige, ligger
-forklaringen i distributionen eller i noget vi ikke har beskrevet endnu, og det
-er i sig selv et fund.
+**Målt på `arch` 7. september 2026:**
 
-## Trin 7: hent VM'ens resultater hjem og gem det
+| Hvad | sha256 |
+|---|---|
+| `minlib.dll`, to rene builds | `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113` (ens begge gange) |
+| `csc.dll` fra SDK 9.0.120 | `1b7543aa709363b6f05273134f8c501b392ebb7480689008a1cc880ae8c38212` |
 
-Fra laptoppen, ikke fra VM'en:
+SDK'en var Arch-pakken `dotnet-sdk-9.0 9.0.19.sdk120-1`, reprotest 0.7.32,
+diffoscope 329, `LANG=da_DK.UTF-8`, `umask 0022`, kernel 7.1.8-arch1-3.
+Fuld blok i `data/2026-09-08-empty-class/leo/environment.txt`.
+
+`arch` mod `vm` er første kørsels egentlige sammenligning: to Linux-maskiner,
+samme arkitektur, samme SDK-versionsnummer. Og her er der en god chance for at
+hashene afviger, af en grund der er værd at forstå.
+
+**Samme versionsnummer er ikke samme oversætter.** Arch bygger .NET fra kilde;
+Leos SDK kommer fra pakken `dotnet-sdk-9.0 9.0.19.sdk120-1` og ligger i
+`/usr/share/dotnet`. Peters kommer fra Microsofts `dotnet-install.sh` og er
+Microsofts egen binære udgivelse. Begge kalder sig 9.0.120.
+
+Afviger DLL'erne, er `csc.dll`-hashen fra miljøblokken det første sted at se: er
+den forskellig, har vi målt to forskellige oversættere, ikke to forskellige
+miljøer. Det er i øvrigt præcis det gab specialet handler om — en version er en
+selvdeklareret streng, ikke en binding til en binær — dukket op i vores eget
+måleapparat.
+
+## Trin 7: gem det, fra hver maskine
+
+Hver maskine committer sin egen mappe. Tre maskiner på samme branch betyder at
+`git pull --rebase` skal køres før push, hver gang:
 
 ```bash
-scp -r root@134.122.65.10:~/empty-class/ ~/Dev/Speciale2026/data/2026-09-08-empty-class/vm-ubuntu
+cd ~/Dev/Speciale2026 && git add data notes && git commit -m "Experiment 1: empty class, arch run" && git pull --rebase && git push
 ```
 
-Så alt tre steder i samme commit:
+Ret beskeden til `mac run` eller `vm run` efter hvilken maskine du sidder ved.
+
+På VM'en: sæt `user.name` og `user.email` for din egen bruger, ellers står der
+`root@ubuntu-...` i historikken på et offentligt repo, og så kan man ikke se hvem
+der kørte hvad:
 
 ```bash
-cd ~/Dev/Speciale2026 && git add -A && git commit -m "Experiment 1: empty class on Arch, macOS and Ubuntu" && git pull --rebase && git push
+git config --global user.name "Dit Navn" && git config --global user.email "din@mail.dk"
 ```
 
 ---
@@ -352,7 +441,7 @@ Udfyldes mens vi kører. Det er de her tal notatet skal indeholde.
 
 | Måling | Varierer | Forventet | `arch` | `mac` | `vm` |
 |---|---|---|---|---|---|
-| 1 — to builds | ingenting | samme hash | | | |
+| 1 — to builds | ingenting | samme hash | samme | | |
 | 2 — rt-1-none | ingenting | successful | | n/a | |
 | 2 — rt-2-umask | filrettigheder | successful | | n/a | |
 | 2 — rt-3-locales | sprog, tegnsæt | successful | | n/a | |
@@ -360,7 +449,7 @@ Udfyldes mens vi kører. Det er de her tal notatet skal indeholde.
 | 2 — rt-5-build_path | byggemappen | failed | | n/a | |
 | 2 — rt-6-time | klokken | successful | | n/a | |
 | 2 — rt-7-fileordering | filrækkefølge | ukendt | n/a | n/a | |
-| 3 — DLL-hash | OS, CPU, distro | ukendt | | | |
+| 3 — DLL-hash | OS, CPU, distro | ukendt | `541bed82…` | | |
 
 ## Hvad vi ikke måler
 
