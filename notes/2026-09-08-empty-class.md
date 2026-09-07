@@ -266,8 +266,23 @@ uname -srm >> $UD/environment.txt; umask >> $UD/environment.txt; locale | head -
 Og oversætteren, som filer og ikke som versionsnummer:
 
 ```bash
-cd /private/tmp/rb1 && sha256sum "$(dotnet --info | awk '/Base Path/ {print $3}')Roslyn/bincore/csc.dll" >> $UD/environment.txt
+cd /private/tmp/rb1 && sha256sum "$(dotnet --info | sed -n 's/^ *Base Path: *//p')Roslyn/bincore/csc.dll" | tee -a $UD/environment.txt
 ```
+
+`tee` i stedet for `>>`, så du ser resultatet med det samme i stedet for at
+opdage en tom linje senere. Fejler den, er der tre ting at tjekke, i den
+rækkefølge: `command -v dotnet` (er den installeret i `~/.dotnet` uden at ligge
+på PATH?), `pwd` (står du i projektmappen?) og `echo $UD`.
+
+Virker udtrykket stadig ikke, så find filen direkte i stedet for at udlede stien:
+
+```bash
+find ~/.dotnet /usr/share/dotnet -path '*9.0.120/Roslyn/bincore/csc.dll' 2>/dev/null
+```
+
+og kør `sha256sum` på den sti. Linjen er dokumentation, ikke en måling — den
+skal først bruges når måling 3 skal forklares, så den må ikke blokere
+reprotest-kørslerne.
 
 `umask` og `locale` er to af de akser reprotest varierer i måling 2, så de skal
 stå i blokken for at tabellen kan læses bagefter. `pipx list` fanger
