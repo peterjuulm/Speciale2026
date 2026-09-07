@@ -14,7 +14,7 @@ nederst forklarer termerne.
 |---|---|---|---|
 | `arch` | Leos laptop, Arch Linux | måling 1, 2, 3 | `~/Dev/Speciale2026/data/2026-09-08-empty-class/leo` |
 | `mac` | Peters laptop, macOS | ikke med i første kørsel | `~/Dev/Speciale2026/data/2026-09-08-empty-class/peter` |
-| `vm` | delt Ubuntu 24.04, DigitalOcean | måling 1, 2, 3 | `.../data/2026-09-08-empty-class/vm-ubuntu` |
+| `vm` | delt Ubuntu 24.04, DigitalOcean | måling 1, 2, 3 | `~/Speciale2026/data/2026-09-08-empty-class/vm-ubuntu` |
 
 **Første kørsel:** Leo tager `arch`, Peter tager `vm`. `mac` gemmer vi til
 senere; kommandoerne står stadig i teksten, så den kan køres uden at protokollen
@@ -81,7 +81,7 @@ sudo apt update && sudo apt upgrade -y && sudo reboot
 Så hjælpeværktøjerne. `disorderfs` er den vi ikke har på Arch:
 
 ```bash
-sudo apt install -y diffoscope disorderfs faketime pipx
+sudo apt install -y disorderfs faketime pipx
 ```
 
 reprotest installeres med pipx og ikke med apt, så `vm` og `arch` kører **samme
@@ -95,6 +95,26 @@ pipx install reprotest==0.7.32 && pipx ensurepath
 0.7.32 er den version `arch` målte med (verificeret 7/9 2026). `pipx install
 reprotest` uden version giver den nyeste, og så er de to tabeller ikke fra samme
 instrument.
+
+Samme grund til diffoscope. Ubuntus apt-pakke er 259, `arch` har 329, og det er
+mange års forskel i hvor godt den kan forklare en forskel:
+
+```bash
+pipx install diffoscope==329
+```
+
+Tjek at det er den der bliver fundet, ikke apt-udgaven — `~/.local/bin` skal ligge
+før `/usr/bin` i PATH:
+
+```bash
+diffoscope --version
+```
+
+Verdikten `successful`/`failed` afhænger ikke af hvilken diffoscope man har: to
+forskellige filer bliver fanget af begge. Det der ændrer sig er forklaringen. 259
+kan nøjes med at sige at de binære filer er forskellige, hvor 329 pakker PE-filen
+ud og viser den indlejrede PDB-sti. Har man kun den gamle, kan man i stedet læse
+stien direkte ud af DLL'en med `grep`-kommandoen i trin 4.
 
 SDK'en i præcis den version `global.json` kræver — apt giver en anden patch:
 
@@ -115,21 +135,33 @@ skelnes fra hinanden.
 **`mac`** — intet at installere ud over `dotnet` (version 9.0.120) og `git`.
 
 **Alle tre** — sæt resultatmappen som `$UD`, så resten af kommandoerne er ens.
-Ret `leo` til `peter` eller `vm-ubuntu` efter hvilken maskine du sidder ved.
-I bash og zsh:
+To ting er forskellige per maskine: hvor repoet er klonet, og hvad mappen hedder
+(`leo`, `peter`, `vm-ubuntu`). På laptops ligger klonen i `~/Dev/Speciale2026`, på
+VM'en i `~/Speciale2026`.
+
+bash og zsh (Peters mac, VM'en):
 
 ```bash
-export UD=~/Dev/Speciale2026/data/2026-09-08-empty-class/leo && mkdir -p $UD
+export UD=$HOME/Speciale2026/data/2026-09-08-empty-class/vm-ubuntu && mkdir -p "$UD"
 ```
 
-I fish:
+fish (Leos maskine):
 
 ```bash
-set -gx UD ~/Dev/Speciale2026/data/2026-09-08-empty-class/leo; mkdir -p $UD
+set -gx UD $HOME/Dev/Speciale2026/data/2026-09-08-empty-class/leo; mkdir -p $UD
 ```
 
-Variablen forsvinder når du åbner en ny fane. Sæt den igen, eller læg linjen i
-din shell-profil så længe eksperimentet kører.
+**Syntaksen er ikke den samme.** `set -gx` findes kun i fish; i bash fejler den
+med `set: -g: invalid option`, og `$UD` bliver tom. Er `$UD` tom, bliver
+`tee -a $UD/hashes.txt` til `tee -a /hashes.txt` og fejler med
+`Permission denied`. Tjek altid først:
+
+```bash
+echo $UD && ls -d "$UD"
+```
+
+Variablen forsvinder ved ny fane eller ny ssh-session. Læg linjen i `~/.bashrc`
+eller `~/.config/fish/config.fish` så længe eksperimentet kører.
 
 ## Trin 2: projektet, tre filer skrevet i hånden
 
