@@ -16,9 +16,10 @@ undervejs.
 
 ## Forventning, skrevet før kørslen
 
-| Miljø | `minlib.dll` |
-| --- | --- |
-| `arch` | `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113` |
+
+| Miljø      | `minlib.dll`                                                       |
+| ------------- | -------------------------------------------------------------------- |
+| `arch`      | `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113` |
 | `ubuntu-vm` | `4b3808d1cc1d642577f60a054905f5f065aab8b9aea1765b407fc583cef70d33` |
 
 Kildehashene skal være `2a766d57…`, `079f65f3…`, `8628a3a4…` begge steder, og
@@ -85,12 +86,13 @@ og den fejler mod pinnet.
 
 ## Resultat
 
-| Hvad | Forventet | `arch` | `ubuntu-vm` |
-| --- | --- | --- | --- |
-| `sources.txt`, tre filer | `2a766d57…` `079f65f3…` `8628a3a4…` | verificeret | |
-| `csc.dll` | `1b7543aa…` / `644a4d33…` | `1b7543aa…` | |
-| `minlib.dll`, build 1 | som i går | `541bed82…` | |
-| `minlib.dll`, build 2 | som build 1 | `541bed82…` | |
+
+| Hvad                     | Forventet                              | `arch`       | `ubuntu-vm`   |
+| -------------------------- | ---------------------------------------- | -------------- | --------------- |
+| `sources.txt`, tre filer | `2a766d57…` `079f65f3…` `8628a3a4…` | verificeret  | verificeret   |
+| `csc.dll`                | `1b7543aa…` / `644a4d33…`            | `1b7543aa…` | `644a4d33...` |
+| `minlib.dll`, build 1    | som i går                             | `541bed82…` | `4b38...`     |
+| `minlib.dll`, build 2    | som build 1                            | `541bed82…` | `4b38...`     |
 
 ## Fortolkning
 
