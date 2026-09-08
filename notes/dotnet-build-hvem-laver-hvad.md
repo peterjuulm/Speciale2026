@@ -135,3 +135,63 @@ find . -type f -print0 | xargs -0 file | sed 's/.*: //' | cut -c1-45 | sort | un
   og metadata men uden assembly-manifest — den rene "ikke en assembly". CoreCLR
   kan ikke indlæse den, så den optræder ikke i praksis.
 - Antallet af native filer afhænger af hvilke pakker projektet trækker ind.
+
+## Hvad der ligger inde i en assembly
+
+Målt på `bin/Release/net9.0/minlib.dll` fra laboratoriet, 8. september 2026.
+Filen er 4096 bytes i alt — en tom klasse med én metode.
+
+```mermaid
+flowchart TB
+    subgraph FIL["minlib.dll, 4096 bytes, PE32"]
+        subgraph W["Windows-arven: PE-strukturen"]
+            DOS["DOS-stub og PE-header"]
+            DD["Data directories<br>nr. 14 peger på CLI-headeren"]
+            DBG["Debug directory, nr. 6, 84 bytes<br>indlejret sti: /private/tmp/rb1/obj/Release/net9.0/minlib.pdb<br>plus PDB-id og checksum"]
+            RSRC[".rsrc, 776 bytes<br>Win32 VERSIONINFO, lavet ud fra assembly-attributterne"]
+            RELOC[".reloc, 12 bytes"]
+        end
+        subgraph M["Det managed: .text, 1588 bytes"]
+            COR["CLI-header, COR20, 72 bytes"]
+            subgraph MD["Metadata-tabeller"]
+                ASM["Assembly: navn, version, culture, public key<br>selvdeklareret, uden binding til bytes"]
+                MOD["Module: MVID<br>hash af indholdet i deterministisk tilstand"]
+                TD["TypeDef, MethodDef, FieldDef"]
+                AR["AssemblyRef, TypeRef, MemberRef"]
+                HP["Heaps: Strings, Blob, GUID, UserString"]
+            end
+            IL["IL-metodekroppe<br>Beregning.Tal returnerer 42"]
+        end
+    end
+
+    classDef flytter fill:#fee2e2,stroke:#991b1b,color:#1f0505
+    classDef stabil fill:#dbeafe,stroke:#1e40af,color:#0b1a33
+    classDef win fill:#e5e7eb,stroke:#374151,color:#111827
+    class DBG,MOD flytter
+    class IL,TD,AR,HP,ASM,COR stabil
+    class DOS,DD,RSRC,RELOC win
+```
+
+Rødt er det der flyttede sig i vores målinger. Blåt er det der stod stille.
+
+Det er værd at se hvor lidt af filen der er kode. `.text` er 1588 bytes og
+rummer både CLI-header, alle metadata-tabeller og IL'en. `.rsrc` er 776 bytes
+Windows-ressource — en VERSIONINFO-blok genereret ud af de samme
+assembly-attributter MSBuild skrev i `AssemblyInfo.cs`. Versionsnummeret står
+altså to steder i filen: som metadata i Assembly-tabellen, og som en Windows-
+ressource. Ingen af dem er bundet til indholdet.
+
+To ting i diagrammet forklarer alt hvad vi har målt:
+
+**Debug directory, 84 bytes.** Her står en absolut sti til PDB-filen — og
+bemærk at DLL'en i `bin/` peger på en PDB i `obj/`. Det er den streng
+`+build_path` ændrer, og derfor den akse vi forventer falder. Samme sted ligger
+PDB-id og checksum, som følger med når PDB'en ændrer sig.
+
+**MVID i Module-tabellen.** I deterministisk tilstand er den en hash af det
+oversatte indhold. Den er derfor afledt: ændrer noget som helst sig, ændrer
+MVID'et sig med. Det er grunden til at én årsag — en sti — gav 189 afvigende
+byte-positioner den 19. august. Én kilde, mange spor.
+
+Resten — IL, typer, referencer, heaps — er indhold, der kun ændrer sig hvis
+kildekoden eller oversætteren gør.

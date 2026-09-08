@@ -13,13 +13,31 @@ den 7. september?**
 Eksperiment 1 gav to forskellige binærer fra samme kilde, samme sti og samme
 pinnede SDK-version:
 
-| Miljø | `minlib.dll` | `csc.dll` | SDK'ens oprindelse |
-| --- | --- | --- | --- |
-| `arch` | `541bed823d12e42b…` | `1b7543aa709363b6…` | Arch-pakken `dotnet-sdk-9.0 9.0.19.sdk120-1`, kildebygget af distributionen |
-| `ubuntu-vm` | `4b3808d1cc1d6425…` | `644a4d336dcd11a7…` | Microsofts binære udgivelse via `dotnet-install.sh` |
+| | `arch` | `ubuntu-vm` |
+| --- | --- | --- |
+| `minlib.dll` | `541bed823d12e42b…` | `4b3808d1cc1d6425…` |
+| `csc.dll` | `1b7543aa709363b6…` | `644a4d336dcd11a7…` |
+| SDK Version | 9.0.120 | 9.0.120 |
+| SDK Commit | `d0558bff3d` | `3f97250e38` |
+| MSBuild | `17.12.57+d0558bff3` | `17.12.57+07da1b9a8` |
+| Host Version | 10.0.11 | 9.0.19 |
+| RID | `arch-x64` | `linux-x64` |
+| `LANG` | `da_DK.UTF-8` | `C.UTF-8` |
+| SDK'ens oprindelse | Arch-pakken `dotnet-sdk-9.0 9.0.19.sdk120-1` | Microsofts binære udgivelse via `dotnet-install.sh` |
 
-Begge kalder sig 9.0.120. Oversætterfilerne er forskellige. Det er
-hovedmistænkt, men det er ikke bevist: `LANG` og RID afveg også.
+Begge kalder sig 9.0.120, men `dotnet --info` afslører at de er bygget fra
+**forskellige kilderevisioner**. På `arch` er MSBuilds commit-suffiks identisk med
+SDK'ens commit; på `ubuntu-vm` er de forskellige. Det er signaturen på et samlet
+kildebyg mod komponenter bygget hver for sig.
+
+Formuleringen skal derfor ikke være "samme kilde, forskellig binær" — det er
+forkert. Den skal være: **versionsnummeret 9.0.120 identificerer hverken
+kilderevisionen eller binæren.** Det dækker mindst to commits og to
+oversætterbinærer.
+
+Og commit-feltet løser det ikke. Det er stadig en streng stemplet ind under
+byggeriet, som intet kontrollerer mod bytes. Commit er proveniens, hash er
+identitet.
 
 ## Metoden
 
@@ -73,16 +91,23 @@ uname -srm >> "$UD/environment.txt"; umask >> "$UD/environment.txt"; locale | he
 
 | Hvad | Forventet | Målt |
 | --- | --- | --- |
+| SDK Commit, Microsofts SDK på `arch` | `3f97250e38` (samme som VM'en) | |
 | `csc.dll`, Microsofts SDK på `arch` | `644a4d336dcd11a7…` (samme som VM'en) | |
 | `csc.dll`, Arch-pakken | `1b7543aa709363b6…` | |
 | `minlib.dll` bygget med Microsofts SDK | `4b3808d1cc1d6425…` (samme som VM'en) | |
 
+De to første rækker er kontrollen: rammer Microsofts SDK på Arch samme commit
+**og** samme `csc.dll`-hash som på VM'en, er værktøjet bevisligt det samme, og
+kun maskinen er forskellig.
+
 ## Sådan læses udfaldet
 
 **Hashen bliver `4b3808d1…`.** Sagen er lukket: samme kilde, samme sti, samme
-versionsnummer — forskellen var oversætterens bytes. Og fordi `LANG` stadig er
-`da_DK.UTF-8` her, mens VM'en havde `C.UTF-8`, viser den samme kørsel at
-sprogindstillingen ikke påvirker resultatet. Én build, to svar.
+oversætterbinær — og så samme output. Den kørsel afgør tre ting på én gang, fordi
+`arch` beholder sine egne værdier for resten: `LANG` er stadig `da_DK.UTF-8` mod
+VM'ens `C.UTF-8`, RID'en er stadig `arch-x64`, og `dotnet`-værten er stadig
+10.0.11 mod VM'ens 9.0.19. Rammer hashen alligevel, er alle tre udelukket som
+årsag. Én build, fire svar.
 
 **Hashen bliver noget tredje.** Så er der mere end oversætteren i spil. Næste
 kørsel lægger `env LANG=C.UTF-8` oven i, og derefter er RID og
