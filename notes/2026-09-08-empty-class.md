@@ -87,14 +87,27 @@ og den fejler mod pinnet.
 
 | Hvad | Forventet | `arch` | `ubuntu-vm` |
 | --- | --- | --- | --- |
-| `sources.txt`, tre filer | `2a766d57…` `079f65f3…` `8628a3a4…` | | |
-| `csc.dll` | `1b7543aa…` / `644a4d33…` | | |
-| `minlib.dll`, build 1 | som i går | | |
-| `minlib.dll`, build 2 | som build 1 | | |
+| `sources.txt`, tre filer | `2a766d57…` `079f65f3…` `8628a3a4…` | verificeret | |
+| `csc.dll` | `1b7543aa…` / `644a4d33…` | `1b7543aa…` | |
+| `minlib.dll`, build 1 | som i går | `541bed82…` | |
+| `minlib.dll`, build 2 | som build 1 | `541bed82…` | |
 
 ## Fortolkning
 
-Udfyldes efter kørslen.
+**`arch`: protokollen holder over tid.** Kørt 8. september 14:14, et døgn efter
+den første kørsel. Samme tre kildehashes, samme `csc.dll`, og samme DLL-hash to
+gange — `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113`,
+identisk med 7. september.
+
+Miljøblokken fra i dag er linje for linje identisk med gårsdagens, bortset fra at
+`pipx list` er erstattet af `command -v`. SDK-version, commit `d0558bff3d`,
+kerne, `umask`, `locale` og diffoscope-version er uændrede. Der er altså ikke
+drevet noget i miljøet mellem de to kørsler, og det er derfor det samme tal kom ud.
+
+Det er den svageste form for reproducerbarhed — samme maskine, senere tidspunkt —
+og den skulle holde før noget andet betyder noget. Den holder.
+
+`ubuntu-vm` mangler.
 
 ## Forbehold
 
