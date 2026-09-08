@@ -1,8 +1,10 @@
-# Eksperiment 1: tom klasse, tre miljøer
+# Eksperiment 1: baseline experiment - tom klasse dotnet
 
 Dato: 8. september 2026.
 
-Spørgsmålet: samme kildekode, oversat to gange — kommer de samme bytes ud?
+Spørgsmålet: samme kildekode, oversat to gange - kommer de samme bytes ud?
+
+Undersøger om Roslyn compileren er deterministisk.
 
 Vi bruger en tom klasse med vilje. Én fil, ingen pakker, intet der kan gå galt
 af andre grunde. Er den ikke reproducerbar, er intet større det. Ordlisten
@@ -10,11 +12,12 @@ nederst forklarer termerne.
 
 ## Tre miljøer
 
-| Mærkat | Maskine | Kører | Resultatmappe |
-|---|---|---|---|
-| `arch` | Leos laptop, Arch Linux | måling 1, 2, 3 | `~/Dev/Speciale2026/data/2026-09-08-empty-class/leo` |
-| `mac` | Peters laptop, macOS | ikke med i første kørsel | `~/Dev/Speciale2026/data/2026-09-08-empty-class/peter` |
-| `vm` | delt Ubuntu 24.04, DigitalOcean | måling 1, 2, 3 | `~/Speciale2026/data/2026-09-08-empty-class/vm-ubuntu` |
+
+| Mærkat | Maskine                         | Kører                     | Resultatmappe                                          |
+| --------- | --------------------------------- | ---------------------------- | -------------------------------------------------------- |
+| `arch`  | Leos laptop, Arch Linux         | måling 1, 2, 3            | `~/Dev/Speciale2026/data/2026-09-08-empty-class/leo`   |
+| `mac`   | Peters laptop, macOS            | ikke med i første kørsel | `~/Dev/Speciale2026/data/2026-09-08-empty-class/peter` |
+| `vm`    | delt Ubuntu 24.04, DigitalOcean | måling 1, 2, 3            | `~/Speciale2026/data/2026-09-08-empty-class/vm-ubuntu` |
 
 **Første kørsel:** Leo tager `arch`, Peter tager `vm`. `mac` gemmer vi til
 senere; kommandoerne står stadig i teksten, så den kan køres uden at protokollen
@@ -30,15 +33,15 @@ i trin 1.
 
 ## Tre målinger
 
-1. **To builds på samme maskine** — siger om apparatet virker. Alle tre miljøer.
-2. **Miljøvariationer med reprotest** — hvilke forskelle kan byggeriet tåle?
+1. **To builds på samme maskine** - siger om apparatet virker. Alle tre miljøer.
+2. **Miljøvariationer med reprotest** - hvilke forskelle kan byggeriet tåle?
    `arch` og `vm`; reprotest er Linux-værktøj og kører ikke på mac. `vm` kan én
    akse mere end `arch`, fordi `disorderfs` findes i apt.
-3. **Hashene sammenlignet på tværs** — er resultatet ens i tre miljøer?
+3. **Hashene sammenlignet på tværs** - er resultatet ens i tre miljøer?
 
 `arch` mod `mac` er den interessante sammenligning: to styresystemer, to
 CPU-arkitekturer, ukontrolleret variation. `vm` er det kontrollerede miljø og et
-tredje datapunkt — den erstatter ikke laptop-sammenligningen. Kører vi alt på
+tredje datapunkt - den erstatter ikke laptop-sammenligningen. Kører vi alt på
 VM'en, måler vi ét miljø tre gange, og spørgsmålet forsvinder.
 
 ---
@@ -64,14 +67,14 @@ sudo mkdir -p /private/tmp && sudo chmod 1777 /private/tmp
 
 ## Trin 1: opsætning, én gang per maskine
 
-**`arch`** — reprotest og diffoscope er installeret. `dpkg` findes ikke, og
+**`arch`** - reprotest og diffoscope er installeret. `dpkg` findes ikke, og
 reprotest dør uden, fordi den spørger om maskinens arkitektur:
 
 ```bash
 mkdir -p ~/.local/bin; printf '#!/bin/sh\ncase "$1" in --print-architecture) echo amd64 ;; esac\nexit 0\n' > ~/.local/bin/dpkg; chmod +x ~/.local/bin/dpkg
 ```
 
-**`vm`** — opdatér først, ellers beskriver miljøblokken en maskine der ikke
+**`vm`** - opdatér først, ellers beskriver miljøblokken en maskine der ikke
 længere findes:
 
 ```bash
@@ -92,8 +95,7 @@ tabellerne ikke lægges ved siden af hinanden:
 pipx install reprotest==0.7.32 && pipx ensurepath
 ```
 
-0.7.32 er den version `arch` målte med (verificeret 7/9 2026). `pipx install
-reprotest` uden version giver den nyeste, og så er de to tabeller ikke fra samme
+0.7.32 er den version `arch` målte med (verificeret 7/9 2026). `pipx install reprotest` uden version giver den nyeste, og så er de to tabeller ikke fra samme
 instrument.
 
 Samme grund til diffoscope. Ubuntus apt-pakke er 259, `arch` har 329, og det er
@@ -103,7 +105,7 @@ mange års forskel i hvor godt den kan forklare en forskel:
 pipx install diffoscope==329
 ```
 
-Tjek at det er den der bliver fundet, ikke apt-udgaven — `~/.local/bin` skal ligge
+Tjek at det er den der bliver fundet, ikke apt-udgaven - `~/.local/bin` skal ligge
 før `/usr/bin` i PATH:
 
 ```bash
@@ -116,7 +118,7 @@ kan nøjes med at sige at de binære filer er forskellige, hvor 329 pakker PE-fi
 ud og viser den indlejrede PDB-sti. Har man kun den gamle, kan man i stedet læse
 stien direkte ud af DLL'en med `grep`-kommandoen i trin 4.
 
-SDK'en i præcis den version `global.json` kræver — apt giver en anden patch:
+SDK'en i præcis den version `global.json` kræver - apt giver en anden patch:
 
 ```bash
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --version 9.0.120
@@ -132,9 +134,9 @@ export PATH="$HOME/.dotnet:$PATH"
 Lav en almindelig bruger hver i stedet for at dele `root`, så kørslerne kan
 skelnes fra hinanden.
 
-**`mac`** — intet at installere ud over `dotnet` (version 9.0.120) og `git`.
+**`mac`** - intet at installere ud over `dotnet` (version 9.0.120) og `git`.
 
-**Alle tre** — sæt resultatmappen som `$UD`, så resten af kommandoerne er ens.
+**Alle tre** - sæt resultatmappen som `$UD`, så resten af kommandoerne er ens.
 To ting er forskellige per maskine: hvor repoet er klonet, og hvad mappen hedder
 (`leo`, `peter`, `vm-ubuntu`). På laptops ligger klonen i `~/Dev/Speciale2026`, på
 VM'en i `~/Speciale2026`.
@@ -166,7 +168,7 @@ eller `~/.config/fish/config.fish` så længe eksperimentet kører.
 ## Trin 2: projektet, tre filer skrevet i hånden
 
 Vi bruger ikke `dotnet new`. Den skabelon følger SDK-versionen, så to forskellige
-SDK'er kan lave forskellig kildekode — og så måler vi skabelonen i stedet for
+SDK'er kan lave forskellig kildekode - og så måler vi skabelonen i stedet for
 oversætteren.
 
 Mappen, og en kontrol af at det er den samme *fysiske* sti. `pwd -P` følger
@@ -203,7 +205,7 @@ Kontrollér at pinnet virker, før du bygger noget. `dotnet --version` slår
 cd /private/tmp/rb1 && dotnet --version
 ```
 
-Der skal stå `9.0.120`. Står du uden for mappen, får du din nyeste SDK i stedet —
+Der skal stå `9.0.120`. Står du uden for mappen, får du din nyeste SDK i stedet -
 på Leos maskine 10.0.111. Det er hele forskellen, og den er nem at overse.
 
 Bekræft at det er den rigtige fil der bliver fundet:
@@ -216,7 +218,7 @@ Der skal stå `/private/tmp/rb1/global.json`. Står der `Not found`, ligger file
 forkert, og så bygger du med en anden oversætter uden at få det at vide.
 
 Med `rollForward: disable` fejler byggeriet i øvrigt tydeligt hvis 9.0.120 ikke er
-installeret — det er meningen. Et byg der lykkes er derfor i sig selv et bevis på
+installeret - det er meningen. Et byg der lykkes er derfor i sig selv et bevis på
 at pinnet blev respekteret.
 
 Kontrollér til sidst at vi har præcis de samme bytes:
@@ -225,7 +227,7 @@ Kontrollér til sidst at vi har præcis de samme bytes:
 cd /private/tmp/rb1 && sha256sum minlib.csproj Beregning.cs global.json
 ```
 
-`mac` — samme algoritme, andet kommandonavn:
+`mac` - samme algoritme, andet kommandonavn:
 
 ```bash
 cd /private/tmp/rb1 && shasum -a 256 minlib.csproj Beregning.cs global.json
@@ -233,14 +235,15 @@ cd /private/tmp/rb1 && shasum -a 256 minlib.csproj Beregning.cs global.json
 
 Forventet:
 
-| Fil | sha256 |
-|---|---|
+
+| Fil             | sha256                                 |
+| ----------------- | ---------------------------------------- |
 | `minlib.csproj` | `2a766d57249ab657b48234557ff2c6a76...` |
-| `Beregning.cs` | `079f65f3d3a0c041bb61817e68762b5a6...` |
-| `global.json` | `8628a3a4483b68445847707e60dd11611...` |
+| `Beregning.cs`  | `079f65f3d3a0c041bb61817e68762b5a6...` |
+| `global.json`   | `8628a3a4483b68445847707e60dd11611...` |
 
 Hashen på `global.json` gælder version 9.0.120. Vælger vi en anden, ændrer den
-sig — men de tre tal skal være ens i alle tre miljøer. Det er den egentlige kontrol.
+sig - men de tre tal skal være ens i alle tre miljøer. Det er den egentlige kontrol.
 
 ## Trin 3: miljøblokken, før målingen
 
@@ -280,14 +283,14 @@ Virker udtrykket stadig ikke, så find filen direkte i stedet for at udlede stie
 find ~/.dotnet /usr/share/dotnet -path '*9.0.120/Roslyn/bincore/csc.dll' 2>/dev/null
 ```
 
-og kør `sha256sum` på den sti. Linjen er dokumentation, ikke en måling — den
+og kør `sha256sum` på den sti. Linjen er dokumentation, ikke en måling - den
 skal først bruges når måling 3 skal forklares, så den må ikke blokere
 reprotest-kørslerne.
 
 `umask` og `locale` er to af de akser reprotest varierer i måling 2, så de skal
 stå i blokken for at tabellen kan læses bagefter. `pipx list` fanger
 reprotest-versionen. Og `csc.dll` er selve C#-oversætteren: hashen af den er det
-eneste der faktisk identificerer hvad der byggede — versionsnummeret er en
+eneste der faktisk identificerer hvad der byggede - versionsnummeret er en
 streng.
 
 ## Trin 4: måling 1, to builds på samme maskine
@@ -324,7 +327,7 @@ handler om:
 cd /private/tmp/rb1 && env LC_ALL=C grep -ao '/[A-Za-z0-9_/.-]*rb1[A-Za-z0-9_/.-]*' bin/Release/net9.0/minlib.dll | sort -u
 ```
 
-Der står den absolutte sti skrevet ind i den oversatte fil — en henvisning til
+Der står den absolutte sti skrevet ind i den oversatte fil - en henvisning til
 PDB-filen. Det er derfor to mapper giver to forskellige DLL'er, selvom koden er ens.
 
 ## Trin 5: måling 2, miljøvariationer (`arch` og `vm`)
@@ -389,7 +392,7 @@ Klokken:
 reprotest --vary=-all,+time -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-6-time.log 2>&1
 ```
 
-**Kun `vm`** — filrækkefølge på disken. Aksen kræver `disorderfs`, som ikke
+**Kun `vm`** - filrækkefølge på disken. Aksen kræver `disorderfs`, som ikke
 findes på Arch. Det er den akse der hidtil har stået som "ikke testet":
 
 ```bash
@@ -424,7 +427,7 @@ Ingen nye kommandoer. Vi sammenligner `hashes.txt` og `environment.txt` fra de
 tre maskiner.
 
 Hypotesen er at styresystemet ikke betyder noget: en DLL fra et klassebibliotek
-indeholder IL — den mellemkode .NET oversætter til, som er uafhængig af
+indeholder IL - den mellemkode .NET oversætter til, som er uafhængig af
 processortype. Med samme oversætter og samme sti *bør* resultatet være
 bit-identisk på tværs af Linux og macOS, også når den ene maskine er x64 og den
 anden arm64. Om det holder, ved vi ikke. Det er derfor det er værd at måle.
@@ -433,14 +436,15 @@ anden arm64. Om det holder, ved vi ikke. Det er derfor det er værd at måle.
   der kan citeres, og grundlaget for at gå videre til det rigtige artefakt.
 - **Forskellige hashes:** sammenlign miljøblokkene linje for linje og find den
   der afviger. Så er næste kørsel den samme opskrift med den ene forskel lukket
-  — én variabel ad gangen, intet andet.
+  - én variabel ad gangen, intet andet.
 
 **Målt på `arch` 7. september 2026:**
 
-| Hvad | sha256 |
-|---|---|
+
+| Hvad                         | sha256                                                                               |
+| ------------------------------ | -------------------------------------------------------------------------------------- |
 | `minlib.dll`, to rene builds | `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113` (ens begge gange) |
-| `csc.dll` fra SDK 9.0.120 | `1b7543aa709363b6f05273134f8c501b392ebb7480689008a1cc880ae8c38212` |
+| `csc.dll` fra SDK 9.0.120    | `1b7543aa709363b6f05273134f8c501b392ebb7480689008a1cc880ae8c38212`                   |
 
 SDK'en var Arch-pakken `dotnet-sdk-9.0 9.0.19.sdk120-1`, reprotest 0.7.32,
 diffoscope 329, `LANG=da_DK.UTF-8`, `umask 0022`, kernel 7.1.8-arch1-3.
@@ -457,8 +461,8 @@ Microsofts egen binære udgivelse. Begge kalder sig 9.0.120.
 
 Afviger DLL'erne, er `csc.dll`-hashen fra miljøblokken det første sted at se: er
 den forskellig, har vi målt to forskellige oversættere, ikke to forskellige
-miljøer. Det er i øvrigt præcis det gab specialet handler om — en version er en
-selvdeklareret streng, ikke en binding til en binær — dukket op i vores eget
+miljøer. Det er i øvrigt præcis det gab specialet handler om - en version er en
+selvdeklareret streng, ikke en binding til en binær - dukket op i vores eget
 måleapparat.
 
 ## Trin 7: gem det, fra hver maskine
@@ -486,17 +490,18 @@ git config --global user.name "Dit Navn" && git config --global user.email "din@
 
 Udfyldes mens vi kører. Det er de her tal notatet skal indeholde.
 
-| Måling | Varierer | Forventet | `arch` | `mac` | `vm` |
-|---|---|---|---|---|---|
-| 1 — to builds | ingenting | samme hash | samme | | |
-| 2 — rt-1-none | ingenting | successful | | n/a | |
-| 2 — rt-2-umask | filrettigheder | successful | | n/a | |
-| 2 — rt-3-locales | sprog, tegnsæt | successful | | n/a | |
-| 2 — rt-4-exec_path | PATH | successful | | n/a | |
-| 2 — rt-5-build_path | byggemappen | failed | | n/a | |
-| 2 — rt-6-time | klokken | successful | | n/a | |
-| 2 — rt-7-fileordering | filrækkefølge | ukendt | n/a | n/a | |
-| 3 — DLL-hash | OS, CPU, distro | ukendt | `541bed82…` | | |
+
+| Måling               | Varierer        | Forventet  | `arch`       | `mac` | `vm` |
+| ----------------------- | ----------------- | ------------ | -------------- | ------- | ------ |
+| 1 - to builds         | ingenting       | samme hash | samme        |       |      |
+| 2 - rt-1-none         | ingenting       | successful |              | n/a   |      |
+| 2 - rt-2-umask        | filrettigheder  | successful |              | n/a   |      |
+| 2 - rt-3-locales      | sprog, tegnsæt | successful |              | n/a   |      |
+| 2 - rt-4-exec_path    | PATH            | successful |              | n/a   |      |
+| 2 - rt-5-build_path   | byggemappen     | failed     |              | n/a   |      |
+| 2 - rt-6-time         | klokken         | successful |              | n/a   |      |
+| 2 - rt-7-fileordering | filrækkefølge | ukendt     | n/a          | n/a   |      |
+| 3 - DLL-hash          | OS, CPU, distro | ukendt     | `541bed82…` |       |      |
 
 ## Hvad vi ikke måler
 
@@ -511,30 +516,30 @@ Udfyldes mens vi kører. Det er de her tal notatet skal indeholde.
 
 ## Ordliste
 
-- **bit-identisk** — to filer er ens ned til hver enkelt byte, ikke bare "samme
+- **bit-identisk** - to filer er ens ned til hver enkelt byte, ikke bare "samme
   indhold".
-- **hash, sha256** — et fingeraftryk af bytes. Samme bytes giver altid samme
+- **hash, sha256** - et fingeraftryk af bytes. Samme bytes giver altid samme
   fingeraftryk; én byte forskel giver et helt andet. Derfor sammenligner vi
   hashes i stedet for filer.
-- **DLL** — den oversatte kode, det egentlige resultat af byggeriet.
-- **IL** — Intermediate Language. Den mellemkode .NET oversætter kildekoden til.
+- **DLL** - den oversatte kode, det egentlige resultat af byggeriet.
+- **IL** - Intermediate Language. Den mellemkode .NET oversætter kildekoden til.
   Uafhængig af processortype; oversættelsen til maskinkode sker først ved kørsel.
-- **PDB** — fejlsøgningsfilen, der oversætter fra maskinkode tilbage til linjer i
+- **PDB** - fejlsøgningsfilen, der oversætter fra maskinkode tilbage til linjer i
   kildekoden. DLL'en indeholder en henvisning til den, og henvisningen er en
   absolut sti.
-- **byggemiljø** — alt uden om kildekoden der kan påvirke resultatet:
+- **byggemiljø** - alt uden om kildekoden der kan påvirke resultatet:
   SDK-version, styresystem, sprogindstillinger, filrettigheder, klokken, byggestien.
-- **variation, akse** — den ene ting reprotest ændrer mellem sine to builds.
-- **reprotest** — værktøj der bygger to gange med én kontrolleret forskel og
+- **variation, akse** - den ene ting reprotest ændrer mellem sine to builds.
+- **reprotest** - værktøj der bygger to gange med én kontrolleret forskel og
   sammenligner resultatet. Skrevet til Debian; kører kun på Linux.
-- **diffoscope** — værktøj der pakker to filer ud og forklarer hvad der adskiller
+- **diffoscope** - værktøj der pakker to filer ud og forklarer hvad der adskiller
   dem, i læsbar form. reprotest kalder den automatisk ved forskel.
-- **disorderfs** — filsystem der med vilje leverer filer i tilfældig rækkefølge.
+- **disorderfs** - filsystem der med vilje leverer filer i tilfældig rækkefølge.
   Det er dét reprotest bruger til `+fileordering`. Findes i apt, ikke på Arch.
-- **umask** — masken der bestemmer hvilke rettigheder nye filer får.
-- **locale** — sprog- og tegnsætsindstillingen, f.eks. `da_DK.UTF-8`.
-- **rollForward: disable** — linjen i `global.json` der forbyder `dotnet` at
+- **umask** - masken der bestemmer hvilke rettigheder nye filer får.
+- **locale** - sprog- og tegnsætsindstillingen, f.eks. `da_DK.UTF-8`.
+- **rollForward: disable** - linjen i `global.json` der forbyder `dotnet` at
   bruge en anden SDK-version end den angivne. Mangler versionen, fejler
   byggeriet tydeligt i stedet for stilfærdigt at bruge en anden oversætter.
-- **PathMap** — indstillingen der senere kan erstatte den absolutte byggesti med
+- **PathMap** - indstillingen der senere kan erstatte den absolutte byggesti med
   en fast streng. Vi bruger den ikke her; først skal vi se problemet.
