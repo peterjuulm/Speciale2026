@@ -224,14 +224,18 @@ at pinnet blev respekteret.
 Kontrollér til sidst at vi har præcis de samme bytes:
 
 ```bash
-cd /private/tmp/rb1 && sha256sum minlib.csproj Beregning.cs global.json
+cd /private/tmp/rb1 && sha256sum minlib.csproj Beregning.cs global.json | tee "$UD/sources.txt"
 ```
 
 `mac` - samme algoritme, andet kommandonavn:
 
 ```bash
-cd /private/tmp/rb1 && shasum -a 256 minlib.csproj Beregning.cs global.json
+cd /private/tmp/rb1 && shasum -a 256 minlib.csproj Beregning.cs global.json | tee "$UD/sources.txt"
 ```
+
+`tee` og ikke bare skærmen: de tre tal er beviset for at maskinerne målte
+samme kilde. Uden filen er "vi havde samme input" en påstand ingen kan
+efterprøve bagefter.
 
 Forventet:
 
@@ -265,6 +269,18 @@ Maskinen selv:
 ```bash
 uname -srm >> $UD/environment.txt; umask >> $UD/environment.txt; locale | head -1 >> $UD/environment.txt; diffoscope --version >> $UD/environment.txt 2>&1; pipx list >> $UD/environment.txt 2>&1
 ```
+
+Og hvilke binærer der faktisk bliver fundet - ikke hvilke der er installeret:
+
+```bash
+command -v dotnet reprotest diffoscope >> $UD/environment.txt
+```
+
+Den linje er ikke pynt. På VM'en ligger der to udgaver af alle tre værktøjer:
+apt har `dotnet` med SDK 10.0.111, `reprotest` 0.7.26 og `diffoscope` 259 i
+`/usr/bin`, mens de versioner eksperimentet kræver ligger i `~/.dotnet` og
+`~/.local/bin`. `pipx list` viser 0.7.32 uanset hvilken der kører. Uden
+`command -v` står der i evidensen hvad der var installeret, ikke hvad der målte.
 
 Og oversætteren, som filer og ikke som versionsnummer:
 
@@ -355,6 +371,27 @@ kun umask". Én akse ad gangen, så et udfald altid har præcis én forklaring.
 Omdirigér altid til fil. Piper du outputtet, ser det ud som om reprotest hænger i
 mange minutter, fordi den efterlader en barneproces der holder forbindelsen åben
 efter at den selv er stoppet.
+
+**På `vm` skal binærerne navngives med fuld sti.** `~/.local/bin` og
+`~/.dotnet` ligger kun forrest i PATH fordi `~/.bashrc` sætter dem der, og
+`~/.bashrc` læses ikke af ikke-interaktive shells - som er dem reprotest bygger
+i. Rammer byggekommandoen `/usr/bin/dotnet`, fejler den med "SDK 9.0.120 not
+found", og fejlen ser ud som et reprotest-problem. `+exec_path`-aksen manipulerer
+desuden PATH med vilje. Så på VM'en bliver hver kørsel:
+
+```bash
+/root/.local/bin/reprotest --vary=-all -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-1-none.log 2>&1
+```
+
+Tjek inden, fra en almindelig terminal i projektmappen - der skal stå
+`/root/.dotnet/dotnet`, `/root/.local/bin/...`, `9.0.120` og `329`:
+
+```bash
+command -v dotnet reprotest diffoscope; dotnet --version; diffoscope --version
+```
+
+Kommandoerne herunder er skrevet for `arch`, hvor `dotnet` i `/usr/bin` er den
+rigtige. På `vm` sættes de fulde stier ind som ovenfor.
 
 Ingen variation:
 
