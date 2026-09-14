@@ -618,7 +618,7 @@ en selvdeklareret streng, ikke en binding til en binær. Om det faktisk er
 forklaringen, afgøres i [compiler-identity](2026-09-08-compiler-identity.md).
 
 Miljøvariationerne (trin 5 ovenfor) blev ikke kørt den 7.; de ligger i
-[environment-axes](2026-09-08-environment-axes.md).
+[environment-axes](2026-09-14-environment-axes.md).
 
 ### Mangler i evidensen
 

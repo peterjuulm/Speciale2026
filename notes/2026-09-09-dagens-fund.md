@@ -8,7 +8,7 @@ Alt måles på `arch`. Grundlaget er egne kørsler mod filer på maskinen plus t
 arkiver hentet direkte fra Microsoft og verificeret mod deres publicerede
 SHA-512.
 
-- [environment-axes](2026-09-09-environment-axes.md) — stadig ikke kørt
+- [environment-axes](2026-09-14-environment-axes.md) — stadig ikke kørt
 
 ## Resultater
 
@@ -198,7 +198,7 @@ macOS holder, men begrundelsen er en anden: det er den erklærede identitet der
 er fælles, ikke binæren.
 
 Gårsdagens note linker til `2026-09-08-empty-class.md` og
-`2026-09-08-environment-axes.md`. Begge filer er siden omdøbt, så de to
+`2026-09-14-environment-axes.md`. Begge filer er siden omdøbt, så de to
 henvisninger peger ingen steder. Ikke rettet i selve notatet — en note der
 optager en kørsel skrives ikke om.
 

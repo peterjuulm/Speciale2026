@@ -7,7 +7,7 @@ Kørt i dag på `arch` (Leos maskine). `ubuntu-vm` er ikke kørt i dag.
 
 - [empty-class, gentaget](2026-09-08-empty-class.md)
 - [compiler-identity](2026-09-08-compiler-identity.md)
-- [environment-axes](2026-09-08-environment-axes.md) — ikke kørt endnu
+- [environment-axes](2026-09-14-environment-axes.md) — ikke kørt endnu
 
 ## Resultater
 

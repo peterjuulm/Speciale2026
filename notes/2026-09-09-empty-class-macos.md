@@ -342,7 +342,7 @@ adskilt: den ene siger noget om SDK-udgivelse, den anden intet om OS.
 ## Hvad vi ikke måler her
 
 - **Miljøakserne.** reprotest kører ikke på macOS. `mac` bidrager med måling 1 og
-  3; akserne ligger i [environment-axes](2026-09-09-environment-axes.md).
+  3; akserne ligger i [environment-axes](2026-09-14-environment-axes.md).
 - **Systemets egen 9.0.102.** Den bliver stående og bliver ikke målt. Havde vi
   bygget med den, ville vi måle en fjerde oversætter.
 - Samme afgrænsninger som 7. september: kun `dotnet build`, ingen pakning, ingen

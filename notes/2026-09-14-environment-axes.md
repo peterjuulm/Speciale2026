@@ -1,11 +1,12 @@
 # Eksperiment 2: miljøvariationer
 
-Planlagt 8. september 2026, kørt 14. september 2026 på `arch` (Leos laptop) og
-`ubuntu-vm` (delt droplet).
+Kørt 14. september 2026 på `arch` (Leos laptop, 14:13-14:15 CEST) og
+`ubuntu-vm` (delt droplet, 14:14-14:16 CEST). Protokollen blev skrevet 8.-9.
+september og lå to dage før den blev kørt.
 Bygger videre på [empty-class](2026-09-07-empty-class.md) — samme laboratorium,
 samme tre filer, samme pinnede SDK. Termerne står i ordlisten dér.
 
-Data: `data/2026-09-09-environment-axes/arch/` og `.../ubuntu-vm/`.
+Data: `data/2026-09-14-environment-axes/arch/` og `.../ubuntu-vm/`.
 
 Spørgsmålet: **hvilke forskelle i byggemiljøet tåler byggeriet?**
 
@@ -43,13 +44,13 @@ Resultatmappen. Klonen ligger i `~/Dev/Speciale2026` på laptops og i
 `~/Speciale2026` på VM'en:
 
 ```bash
-export UD=$HOME/Speciale2026/data/2026-09-09-environment-axes/ubuntu-vm && mkdir -p "$UD"
+export UD=$HOME/Speciale2026/data/2026-09-14-environment-axes/ubuntu-vm && mkdir -p "$UD"
 ```
 
 `arch` bruger fish:
 
 ```bash
-set -gx UD $HOME/Dev/Speciale2026/data/2026-09-09-environment-axes/arch; mkdir -p $UD
+set -gx UD $HOME/Dev/Speciale2026/data/2026-09-14-environment-axes/arch; mkdir -p $UD
 ```
 
 Miljøblokken optages igen — det er en ny dag og et nyt eksperiment, og på
@@ -252,9 +253,10 @@ lukbar med `PathMap` eller uden PDB — og det er næste eksperiment, ikke dette
   `pedump` (sektionstabel, imphash), på `ubuntu-vm` Monos `pedump` (COFF/PE
   Header-format). Diffoscope 329 på begge, men forklaringens layout er
   forskellig. Verdikten og de fire bytes er de samme.
-- **Kørt 14/9, ikke 8/9.** Filnavne og protokol er fra 9/9-udgaven af notatet;
-  laboratoriet og de tre kildefiler er uændrede siden 7/9 (samme
-  `sources.txt`-hashes). Tidspunkterne står i `environment.txt`.
+- **Protokol fra 8.-9. september, kørsel 14. september.** Laboratoriet og
+  de tre kildefiler er uændrede siden 7/9 (samme `sources.txt`-hashes).
+  Notat og datamappe er navngivet efter kørselsdagen; tidligere henvisninger
+  til `2026-09-08-…` og `2026-09-09-environment-axes` er rettet til.
 - **`+fileordering` med én kildefil** siger lidt om reel følsomhed; se
   fortolkningen.
 - **Ikke testet:** `user_group`, `domain_host`, `num_cpus`, `aslr`, `kernel`,

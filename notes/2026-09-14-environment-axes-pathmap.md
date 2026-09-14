@@ -1,7 +1,7 @@
 # Eksperiment 2b: miljøvariationer med PathMap
 
-Kørt 14. september 2026 på `arch` (Leos laptop) og `ubuntu-vm` (delt droplet),
-umiddelbart efter [environment-axes](2026-09-09-environment-axes.md). Samme
+Kørt 14. september 2026 på `arch` (Leos laptop, Arch-SDK 14:38, Microsoft-SDK
+14:43 CEST) og `ubuntu-vm` (delt droplet, 14:38 CEST), umiddelbart efter [environment-axes](2026-09-14-environment-axes.md). Samme
 laboratorium `/private/tmp/rb1`, samme tre kildefiler, samme pinnede SDK
 9.0.120. Ordlisten står i [empty-class](2026-09-07-empty-class.md).
 
