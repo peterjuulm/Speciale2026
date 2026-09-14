@@ -1,0 +1,136 @@
+DEBUG:reprotest:Namespace(artifact_pattern='bin/Release/net9.0/minlib.dll', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release', store_dir=None, variations='+all', vary=['-all,+fileordering'], extra_build=[], auto_build=False, env_build=False, min_cpus=None, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '/private/tmp/rb1'})
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+DEBUG:reprotest:artifact_pattern sanitized to: ./bin/Release/net9.0/minlib.dll
+DEBUG:reprotest:virtual_server_args: ['null']
+DEBUG:reprotest:source_root: /private/tmp/rb1
+INFO:reprotest:STARTING VIRTUAL SERVER ['/root/.local/share/pipx/venvs/reprotest/lib/python3.12/site-packages/reprotest/virt/autopkgtest-virt-null']
+reprotest [12:17:20]: Tried distro auto-detection, got 'ubuntu'
+reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+reprotest [12:17:20]: version @version@
+reprotest [12:17:20]: host LeoOgPetersDroplet; command line: /root/.local/bin/reprotest --verbosity 2 --vary=-all,+fileordering -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release' /private/tmp/rb1 bin/Release/net9.0/minlib.dll
+reprotest [12:17:20]: testbed package architecture: amd64
+reprotest [12:17:20]: testbed running kernel: Linux 6.8.0-139-generic #139-Ubuntu SMP PREEMPT_DYNAMIC Sat Aug  1 03:52:05 UTC 2026
+INFO:reprotest:build "control": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.ddEnCR/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying /private/tmp/rb1 over to virtual server's /tmp/reprotest.ddEnCR/build-control/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.ddEnCR/build-control/, artifact pattern: ./bin/Release/net9.0/minlib.dll
+INFO:reprotest:executing build in /tmp/reprotest.ddEnCR/const_build_path/
+DEBUG:reprotest:#### REPROTEST BUILD ENVVARS ###################################################
++HOME=/tmp/reprotest.ddEnCR/const_build_path/
+DEBUG:reprotest:#### BEGIN REPROTEST BUILD SCRIPT ##############################################
+run_build() {
+    mkdir -p /tmp/reprotest.ddEnCR/build-control-aux && \
+    mv /tmp/reprotest.ddEnCR/build-control/ /tmp/reprotest.ddEnCR/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.ddEnCR/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.ddEnCR/const_build_path /tmp/reprotest.ddEnCR/build-control/ || __c=$?; \
+    rm -rf /tmp/reprotest.ddEnCR/build-control-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi
+DEBUG:reprotest:#### END REPROTEST BUILD SCRIPT ################################################
+INFO:reprotest:su to user 'root' to run the build
+  Determining projects to restore...
+  Restored /tmp/reprotest.ddEnCR/const_build_path/minlib.csproj (in 149 ms).
+  minlib -> /tmp/reprotest.ddEnCR/const_build_path/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.57
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.ddEnCR/artifacts-control/ back from virtual server's /tmp/tmpfwskc2ll/control
+INFO:reprotest:build "experiment-1": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, vary fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.ddEnCR/const_build_path
+INFO:reprotest.build:DISORDERFS variation: --shuffle-dirents=yes
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying /private/tmp/rb1 over to virtual server's /tmp/reprotest.ddEnCR/build-experiment-1/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.ddEnCR/build-experiment-1/, artifact pattern: ./bin/Release/net9.0/minlib.dll
+INFO:reprotest:executing build in /tmp/reprotest.ddEnCR/const_build_path/
+DEBUG:reprotest:#### REPROTEST BUILD ENVVARS ###################################################
++HOME=/tmp/reprotest.ddEnCR/const_build_path/
+DEBUG:reprotest:#### BEGIN REPROTEST BUILD SCRIPT ##############################################
+run_build() {
+    mkdir -p /tmp/reprotest.ddEnCR/build-experiment-1-aux && \
+    mv /tmp/reprotest.ddEnCR/build-experiment-1/ /tmp/reprotest.ddEnCR/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    mv /tmp/reprotest.ddEnCR/const_build_path/ /tmp/reprotest.ddEnCR/const_build_path-before-disorderfs/ && \
+    mkdir -p /tmp/reprotest.ddEnCR/const_build_path/ && \
+    disorderfs >&2 --shuffle-dirents=yes /tmp/reprotest.ddEnCR/const_build_path-before-disorderfs/ /tmp/reprotest.ddEnCR/const_build_path/ && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.ddEnCR/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release'
+}
+
+cleanup() {
+    __c=0; \
+    export PATH="/tmp/reprotest.ddEnCR/bin:$PATH" || __c=$?; \
+    fusermount -u /tmp/reprotest.ddEnCR/const_build_path/ || __c=$?; \
+    rmdir /tmp/reprotest.ddEnCR/const_build_path/ || __c=$?; \
+    mv /tmp/reprotest.ddEnCR/const_build_path-before-disorderfs/ /tmp/reprotest.ddEnCR/const_build_path/ || __c=$?; \
+    mv /tmp/reprotest.ddEnCR/const_build_path /tmp/reprotest.ddEnCR/build-experiment-1/ || __c=$?; \
+    rm -rf /tmp/reprotest.ddEnCR/build-experiment-1-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi
+DEBUG:reprotest:#### END REPROTEST BUILD SCRIPT ################################################
+INFO:reprotest:su to user 'root' to run the build
+disorderfs: shuffling directory entries
+disorderfs: reversing directory entries
+  Determining projects to restore...
+  Restored /tmp/reprotest.ddEnCR/const_build_path/minlib.csproj (in 147 ms).
+  minlib -> /tmp/reprotest.ddEnCR/const_build_path/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.19
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.ddEnCR/artifacts-experiment-1/ back from virtual server's /tmp/tmpfwskc2ll/experiment-1
+INFO:reprotest:Running diffoscope: ['diffoscope', '--exclude-directory-metadata=yes', '/tmp/tmpfwskc2ll/control', '/tmp/tmpfwskc2ll/experiment-1']
+INFO:reprotest:No differences between /tmp/tmpfwskc2ll/control, /tmp/tmpfwskc2ll/experiment-1
+=======================
+Reproduction successful
+=======================
+No differences in ./bin/Release/net9.0/minlib.dll
+037857785ea7f8fca0ec7c07db600622e8e83b21af498c5e03d985127401fef2  ./bin/Release/net9.0/minlib.dll
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.

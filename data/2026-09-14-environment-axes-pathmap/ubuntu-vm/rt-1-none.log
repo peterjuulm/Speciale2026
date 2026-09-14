@@ -1,0 +1,25 @@
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+  Determining projects to restore...
+  Restored /tmp/reprotest.DEyAYL/const_build_path/minlib.csproj (in 161 ms).
+  minlib -> /tmp/reprotest.DEyAYL/const_build_path/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.99
+  Determining projects to restore...
+  Restored /tmp/reprotest.DEyAYL/const_build_path/minlib.csproj (in 200 ms).
+  minlib -> /tmp/reprotest.DEyAYL/const_build_path/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.11
+=======================
+Reproduction successful
+=======================
+No differences in ./bin/Release/net9.0/minlib.dll
+535a56fc682f62a718333a5c3a7fc4a31e7d2e744efc3577b1dec9dd3dab67ce  ./bin/Release/net9.0/minlib.dll
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.

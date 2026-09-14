@@ -1,0 +1,111 @@
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin:/home/leos/.config/Claude/local-agent-mode-sessions/ab428242-2b25-423c-a58d-e7fe90f0ff85/cca2c243-1125-4f9f-9f6c-71ad148453bf/rpm/plugin_017AyoY3nwaQKmbgohn4XMkZ/bin:/home/leos/.config/Claude/local-agent-mode-sessions/ab428242-2b25-423c-a58d-e7fe90f0ff85/cca2c243-1125-4f9f-9f6c-71ad148453bf/rpm/plugin_01CXXbvrffFNZ9F4NsHtyj6X/bin:/home/leos/.config/Claude/local-agent-mode-sessions/skills-plugin/cca2c243-1125-4f9f-9f6c-71ad148453bf/ab428242-2b25-423c-a58d-e7fe90f0ff85/bin)
+  Determining projects to restore...
+  Restored /tmp/reprotest.nuZ1wu/const_build_path/minlib.csproj (in 155 ms).
+  minlib -> /tmp/reprotest.nuZ1wu/const_build_path/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.87
+  Determining projects to restore...
+  Restored /tmp/reprotest.nuZ1wu/build-experiment-1/minlib.csproj (in 202 ms).
+  minlib -> /tmp/reprotest.nuZ1wu/build-experiment-1/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.34
+--- /tmp/tmpinuzycb9/control
++++ /tmp/tmpinuzycb9/experiment-1
+│   --- /tmp/tmpinuzycb9/control/source-root
+├── +++ /tmp/tmpinuzycb9/experiment-1/source-root
+│ │   --- /tmp/tmpinuzycb9/control/source-root/bin
+│ ├── +++ /tmp/tmpinuzycb9/experiment-1/source-root/bin
+│ │ │   --- /tmp/tmpinuzycb9/control/source-root/bin/Release
+│ │ ├── +++ /tmp/tmpinuzycb9/experiment-1/source-root/bin/Release
+│ │ │ │   --- /tmp/tmpinuzycb9/control/source-root/bin/Release/net9.0
+│ │ │ ├── +++ /tmp/tmpinuzycb9/experiment-1/source-root/bin/Release/net9.0
+│ │ │ │ │   --- /tmp/tmpinuzycb9/control/source-root/bin/Release/net9.0/minlib.dll
+│ │ │ │ ├── +++ /tmp/tmpinuzycb9/experiment-1/source-root/bin/Release/net9.0/minlib.dll
+│ │ │ │ │ ├── pedump {}
+│ │ │ │ │ │ @@ -35,27 +35,27 @@
+│ │ │ │ │ │  === PE Header ===
+│ │ │ │ │ │  
+│ │ │ │ │ │                       signature:             "PE\x00\x00"
+│ │ │ │ │ │  
+│ │ │ │ │ │  # IMAGE_FILE_HEADER:
+│ │ │ │ │ │                         Machine:        332           14c  x86
+│ │ │ │ │ │                NumberOfSections:                        3
+│ │ │ │ │ │ -                 TimeDateStamp:    "2043-07-08 15:09:31"
+│ │ │ │ │ │ +                 TimeDateStamp:    "2084-05-09 04:39:19"
+│ │ │ │ │ │            PointerToSymbolTable:                        0
+│ │ │ │ │ │                 NumberOfSymbols:                        0
+│ │ │ │ │ │            SizeOfOptionalHeader:        224            e0
+│ │ │ │ │ │                 Characteristics:       8226          2022  EXECUTABLE_IMAGE, LARGE_ADDRESS_AWARE, DLL
+│ │ │ │ │ │  
+│ │ │ │ │ │  # IMAGE_OPTIONAL_HEADER32:
+│ │ │ │ │ │                           Magic:        267           10b  32-bit executable
+│ │ │ │ │ │                   LinkerVersion:                     48.0
+│ │ │ │ │ │                      SizeOfCode:       2048           800
+│ │ │ │ │ │           SizeOfInitializedData:       1536           600
+│ │ │ │ │ │         SizeOfUninitializedData:                        0
+│ │ │ │ │ │ -           AddressOfEntryPoint:       9794          2642
+│ │ │ │ │ │ +           AddressOfEntryPoint:       9798          2646
+│ │ │ │ │ │                      BaseOfCode:       8192          2000
+│ │ │ │ │ │                      BaseOfData:      16384          4000
+│ │ │ │ │ │                       ImageBase:  268435456      10000000
+│ │ │ │ │ │                SectionAlignment:       8192          2000
+│ │ │ │ │ │                   FileAlignment:        512           200
+│ │ │ │ │ │          OperatingSystemVersion:                      4.0
+│ │ │ │ │ │                    ImageVersion:                      0.0
+│ │ │ │ │ │ @@ -72,15 +72,15 @@
+│ │ │ │ │ │                SizeOfHeapCommit:       4096          1000
+│ │ │ │ │ │                     LoaderFlags:                        0
+│ │ │ │ │ │             NumberOfRvaAndSizes:         16            10
+│ │ │ │ │ │  
+│ │ │ │ │ │  === DATA DIRECTORY ===
+│ │ │ │ │ │  
+│ │ │ │ │ │    EXPORT        rva:0x       0   size:0x        0
+│ │ │ │ │ │ -  IMPORT        rva:0x    25f0   size:0x       4f
+│ │ │ │ │ │ +  IMPORT        rva:0x    25f2   size:0x       4f
+│ │ │ │ │ │    RESOURCE      rva:0x    4000   size:0x      308
+│ │ │ │ │ │    EXCEPTION     rva:0x       0   size:0x        0
+│ │ │ │ │ │    SECURITY      rva:0x       0   size:0x        0
+│ │ │ │ │ │    BASERELOC     rva:0x    6000   size:0x        c
+│ │ │ │ │ │    DEBUG         rva:0x    2518   size:0x       54
+│ │ │ │ │ │    ARCHITECTURE  rva:0x       0   size:0x        0
+│ │ │ │ │ │    GLOBALPTR     rva:0x       0   size:0x        0
+│ │ │ │ │ │ @@ -164,15 +164,15 @@
+│ │ │ │ │ │       1ba: "System.Runtime.CompilerServices"
+│ │ │ │ │ │       1da: "DebuggingModes"
+│ │ │ │ │ │       1e9: "Object"
+│ │ │ │ │ │  
+│ │ │ │ │ │  === SECTIONS ===
+│ │ │ │ │ │  
+│ │ │ │ │ │    NAME          RVA      VSZ   RAW_SZ  RAW_PTR  nREL  REL_PTR nLINE LINE_PTR     FLAGS
+│ │ │ │ │ │ -  .text        2000      648      800      200     0        0     0        0  60000020  R-X CODE
+│ │ │ │ │ │ +  .text        2000      64c      800      200     0        0     0        0  60000020  R-X CODE
+│ │ │ │ │ │    .rsrc        4000      308      400      a00     0        0     0        0  40000040  R-- IDATA
+│ │ │ │ │ │    .reloc       6000        c      200      e00     0        0     0        0  42000040  R-- IDATA DISCARDABLE
+│ │ │ │ │ │  
+│ │ │ │ │ │  === RESOURCES ===
+│ │ │ │ │ │  
+│ │ │ │ │ │  FILE_OFFSET    CP  LANG     SIZE  TYPE          NAME
+│ │ │ │ │ │        0xa58     0     0      684  VERSION       #1
+│ │ │ │ │ │ @@ -205,12 +205,12 @@
+│ │ │ │ │ │    OriginalFilename    :  "minlib.dll"
+│ │ │ │ │ │    ProductName         :  "minlib"
+│ │ │ │ │ │    ProductVersion      :  "1.0.0"
+│ │ │ │ │ │    Assembly Version    :  "1.0.0.0"
+│ │ │ │ │ │  
+│ │ │ │ │ │  === imphash ===
+│ │ │ │ │ │  
+│ │ │ │ │ │ -dae02f32a21e03ce65412f6e56942daa /tmp/tmpinuzycb9/control/source-root/bin/Release/net9.0/minlib.dll
+│ │ │ │ │ │ +dae02f32a21e03ce65412f6e56942daa /tmp/tmpinuzycb9/experiment-1/source-root/bin/Release/net9.0/minlib.dll
+│ │ │ │ │ │  
+│ │ │ │ │ │  === Packer / Compiler ===
+│ │ │ │ │ │  
+│ │ │ │ │ │    MS Visual C# / Basic .NET

@@ -1,0 +1,94 @@
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+  Determining projects to restore...
+  Restored /tmp/reprotest.wK46Dk/const_build_path/minlib.csproj (in 166 ms).
+  minlib -> /tmp/reprotest.wK46Dk/const_build_path/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.71
+  Determining projects to restore...
+  Restored /tmp/reprotest.wK46Dk/build-experiment-1/minlib.csproj (in 170 ms).
+  minlib -> /tmp/reprotest.wK46Dk/build-experiment-1/bin/Release/net9.0/minlib.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.94
+--- /tmp/tmppw_imhyh/control
++++ /tmp/tmppw_imhyh/experiment-1
+│   --- /tmp/tmppw_imhyh/control/source-root
+├── +++ /tmp/tmppw_imhyh/experiment-1/source-root
+│ │   --- /tmp/tmppw_imhyh/control/source-root/bin
+│ ├── +++ /tmp/tmppw_imhyh/experiment-1/source-root/bin
+│ │ │   --- /tmp/tmppw_imhyh/control/source-root/bin/Release
+│ │ ├── +++ /tmp/tmppw_imhyh/experiment-1/source-root/bin/Release
+│ │ │ │   --- /tmp/tmppw_imhyh/control/source-root/bin/Release/net9.0
+│ │ │ ├── +++ /tmp/tmppw_imhyh/experiment-1/source-root/bin/Release/net9.0
+│ │ │ │ │   --- /tmp/tmppw_imhyh/control/source-root/bin/Release/net9.0/minlib.dll
+│ │ │ │ ├── +++ /tmp/tmppw_imhyh/experiment-1/source-root/bin/Release/net9.0/minlib.dll
+│ │ │ │ │ ├── pedump {}
+│ │ │ │ │ │ @@ -1,25 +1,25 @@
+│ │ │ │ │ │  
+│ │ │ │ │ │  COFF Header:
+│ │ │ │ │ │  	                Machine: 0x014c
+│ │ │ │ │ │  	               Sections: 0x0003
+│ │ │ │ │ │ -	             Time stamp: 0xfe88bba3
+│ │ │ │ │ │ +	             Time stamp: 0xcbb3abaf
+│ │ │ │ │ │  	Pointer to Symbol Table: 0x00000000
+│ │ │ │ │ │  	   	   Symbol Count: 0x00000000
+│ │ │ │ │ │  	   Optional Header Size: 0x00e0
+│ │ │ │ │ │  	   	Characteristics: 0x2022
+│ │ │ │ │ │  
+│ │ │ │ │ │  PE Header:
+│ │ │ │ │ │  	         Magic (0x010b): 0x010b
+│ │ │ │ │ │  	             LMajor (6): 0x30
+│ │ │ │ │ │  	             LMinor (0): 0x00
+│ │ │ │ │ │  	              Code Size: 0x00000800
+│ │ │ │ │ │  	  Initialized Data Size: 0x00000600
+│ │ │ │ │ │  	Uninitialized Data Size: 0x00000000
+│ │ │ │ │ │ -	        Entry Point RVA: 0x00002642
+│ │ │ │ │ │ +	        Entry Point RVA: 0x00002646
+│ │ │ │ │ │  	 	  Code Base RVA: 0x00002000
+│ │ │ │ │ │  		  Data Base RVA: 0x00004000
+│ │ │ │ │ │  
+│ │ │ │ │ │  
+│ │ │ │ │ │  NT Header:
+│ │ │ │ │ │  	   Image Base (0x400000): 0x10000000
+│ │ │ │ │ │  	Section Alignment (8192): 0x00002000
+│ │ │ │ │ │ @@ -41,15 +41,15 @@
+│ │ │ │ │ │  	  Heap Reserve Size (1M): 0x00100000
+│ │ │ │ │ │  	 Heap Commit Size (4096): 0x00001000
+│ │ │ │ │ │  	      Loader flags (0x1): 0x00000000
+│ │ │ │ │ │  	   Data Directories (16): 0x00000010
+│ │ │ │ │ │  
+│ │ │ │ │ │  Data directories:
+│ │ │ │ │ │  	     Export Table: 0x00000000 [0x00000000]
+│ │ │ │ │ │ -	     Import Table: 0x000025f0 [0x0000004f]
+│ │ │ │ │ │ +	     Import Table: 0x000025f2 [0x0000004f]
+│ │ │ │ │ │  	   Resource Table: 0x00004000 [0x00000308]
+│ │ │ │ │ │  	  Exception Table: 0x00000000 [0x00000000]
+│ │ │ │ │ │  	Certificate Table: 0x00000000 [0x00000000]
+│ │ │ │ │ │  	      Reloc Table: 0x00006000 [0x0000000c]
+│ │ │ │ │ │  	            Debug: 0x00002518 [0x00000054]
+│ │ │ │ │ │  	        Copyright: 0x00000000 [0x00000000]
+│ │ │ │ │ │  	       Global Ptr: 0x00000000 [0x00000000]
+│ │ │ │ │ │ @@ -57,15 +57,15 @@
+│ │ │ │ │ │  	Load Config Table: 0x00000000 [0x00000000]
+│ │ │ │ │ │  	     Bound Import: 0x00000000 [0x00000000]
+│ │ │ │ │ │  	              IAT: 0x00002000 [0x00000008]
+│ │ │ │ │ │  	Delay Import Desc: 0x00000000 [0x00000000]
+│ │ │ │ │ │  	       CLI Header: 0x00002008 [0x00000048]
+│ │ │ │ │ │  
+│ │ │ │ │ │  	Name: .text
+│ │ │ │ │ │ -	   Virtual Size: 0x00000648
+│ │ │ │ │ │ +	   Virtual Size: 0x0000064c
+│ │ │ │ │ │  	Virtual Address: 0x00002000
+│ │ │ │ │ │  	  Raw Data Size: 0x00000800
+│ │ │ │ │ │  	   Raw Data Ptr: 0x00000200
+│ │ │ │ │ │  	      Reloc Ptr: 0x00000000
+│ │ │ │ │ │  	     LineNo Ptr: 0x00000000
+│ │ │ │ │ │  	    Reloc Count: 0x0000
+│ │ │ │ │ │  	     Line Count: 0x0000

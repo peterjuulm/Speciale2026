@@ -1,10 +1,11 @@
 # Eksperiment 2: miljøvariationer
 
-Køres 8. september 2026 på `arch` (Leos laptop) og `ubuntu-vm` (delt droplet).
+Planlagt 8. september 2026, kørt 14. september 2026 på `arch` (Leos laptop) og
+`ubuntu-vm` (delt droplet).
 Bygger videre på [empty-class](2026-09-07-empty-class.md) — samme laboratorium,
 samme tre filer, samme pinnede SDK. Termerne står i ordlisten dér.
 
-Data: `data/2026-09-08-environment-axes/arch/` og `.../ubuntu-vm/`.
+Data: `data/2026-09-09-environment-axes/arch/` og `.../ubuntu-vm/`.
 
 Spørgsmålet: **hvilke forskelle i byggemiljøet tåler byggeriet?**
 
@@ -42,13 +43,13 @@ Resultatmappen. Klonen ligger i `~/Dev/Speciale2026` på laptops og i
 `~/Speciale2026` på VM'en:
 
 ```bash
-export UD=$HOME/Speciale2026/data/2026-09-08-environment-axes/ubuntu-vm && mkdir -p "$UD"
+export UD=$HOME/Speciale2026/data/2026-09-09-environment-axes/ubuntu-vm && mkdir -p "$UD"
 ```
 
 `arch` bruger fish:
 
 ```bash
-set -gx UD $HOME/Dev/Speciale2026/data/2026-09-08-environment-axes/arch; mkdir -p $UD
+set -gx UD $HOME/Dev/Speciale2026/data/2026-09-09-environment-axes/arch; mkdir -p $UD
 ```
 
 Miljøblokken optages igen — det er en ny dag og et nyt eksperiment, og på
@@ -172,13 +173,18 @@ grep -B 3 -A 12 'pdb' rt-5-build_path.log
 
 | Akse | Varierer | Forventet | `arch` | `ubuntu-vm` |
 | --- | --- | --- | --- | --- |
-| `rt-1-none` | ingenting | successful | | |
-| `rt-2-umask` | filrettigheder | successful | | |
-| `rt-3-locales` | sprog, tegnsæt | successful | | |
-| `rt-4-exec_path` | PATH | successful | | |
-| `rt-5-build_path` | byggemappen | failed | | |
-| `rt-6-time` | klokken | successful | | |
-| `rt-7-fileordering` | filrækkefølge | ukendt | n/a | |
+| `rt-1-none` | ingenting | successful | successful | successful |
+| `rt-2-umask` | filrettigheder | successful | successful | successful |
+| `rt-3-locales` | sprog, tegnsæt | successful | successful | successful |
+| `rt-4-exec_path` | PATH | successful | successful | successful |
+| `rt-5-build_path` | byggemappen | failed | **failed** | **failed** |
+| `rt-6-time` | klokken | successful | successful | successful |
+| `rt-7-fileordering` | filrækkefølge | ukendt | n/a | successful |
+
+Tretten kørsler, tretten udfald som forudsagt. `[V]` — verdikterne står som
+`Reproduction successful`/`failed` i `rt-*.log` under `data/`. Varighed 5-12
+sekunder per kørsel på `arch`, 10-19 på `ubuntu-vm`; ikke de 60-90 sekunder
+25/8-notatet regnede med, fordi projektet ingen pakker skal hente.
 
 Fejler en akse vi ikke ventede, er logfilen svaret. Fejler
 `rt-7-fileordering` med en mount-fejl frem for en byggefejl, er det FUSE og
@@ -186,7 +192,45 @@ ikke et fund.
 
 ## Fortolkning
 
-Udfyldes efter kørslen.
+**`+build_path` falder af præcis den grund forventningen gav, og kun den.**
+Kontrolbygget står i `…/const_build_path`, eksperimentet i
+`…/build-experiment-1`: to tegn længere. Diffoscope viser via pedump at
+`.text` vokser fra `0x648` til `0x64c` — fire bytes, fordi stien ligger i
+debug directory (CodeView-posten peger på PDB'ens absolutte sti) og strengen
+rundes op til fire-byte-grænse. Alt efter strengen skubbes fire bytes:
+entry point `0x2642` → `0x2646`, import table `0x25f0` → `0x25f2`.
+`TimeDateStamp` skifter også, som den skal når den er en indholdshash og ikke
+et ur. Ingen andre forskelle. Samme fire bytes på begge maskiner. `[V]`
+(`rt-5-build_path.log`, begge mapper)
+
+**Bifund: "successful" gælder kun inden for kørslen.** reprotest laver en ny
+`/tmp/reprotest.XXXXXX/` per kørsel, og kontrol og eksperiment bygger begge i
+`const_build_path` under den. Det seks tilfældige tegn i mappenavnet er nok:
+de seks grønne kørsler på `arch` gav seks forskellige DLL-hashes, de syv på
+`ubuntu-vm` syv forskellige, og ingen af dem er `541bed82…`/`4b3808d1…` fra
+eksperiment 1, som blev bygget i `/private/tmp/rb1`. `[V]` (sidste linje i
+hver `rt-*.log`). Verdikten "reproducerbar" fra reprotest betyder altså
+"identisk med et kontrolbyg i samme mappe" — og eksperimentet viser selv
+hvorfor det ikke rækker. Uden `PathMap` eller `DebugType=none` er hashen bundet
+til byggemappen, og stiens *længde* er nok til at ændre binæren.
+
+**De fem grønne akser er grønne på egne betingelser.** `+umask` og
+`+fileordering` er grønne fordi der ikke er et arkivtrin (se forventningen);
+`+time` er grøn fordi `TimeDateStamp` ikke er et tidsstempel — det er samme
+mekanisme som forklarede 8/9's 70 bytes. `+locales` og `+exec_path` siger at
+hverken sprogindstilling eller PATH-rækkefølge lækker ind i en IL-only DLL.
+Det er det managede lag der bærer, ikke værktøjskæden som helhed.
+
+**`+fileordering` er reelt målt.** En ekstra kørsel med `--verbosity 2`
+(`rt-7-fileordering-verbose.log`) viser at disorderfs blev monteret med
+`--shuffle-dirents=yes` og loggede "shuffling directory entries" og
+"reversing directory entries". `[V]` Men projektet har én kildefil, så der er
+kun `obj/`-indholdet og projektmappen at bytte rundt på. Med flere `.cs`-filer
+er det MSBuilds glob-sortering der afgør udfaldet; det er ikke testet.
+
+Samlet: **byggeriet tåler alt det reprotest kan variere, undtagen sin egen
+placering.** Det er en snæver kanal (én streng i debug directory) og den er
+lukbar med `PathMap` eller uden PDB — og det er næste eksperiment, ikke dette.
 
 ## Forbehold
 
@@ -204,5 +248,16 @@ Udfyldes efter kørslen.
 - **`+time`-aksen kan køre her** fordi projektet ikke har afhængigheder. Med
   pakker vælter det forskudte ur TLS-håndtrykket mod NuGet, og aksen bliver
   utestbar uden en offline-cache.
+- **pedump er to forskellige programmer.** På `arch` er det Ruby-gem'en
+  `pedump` (sektionstabel, imphash), på `ubuntu-vm` Monos `pedump` (COFF/PE
+  Header-format). Diffoscope 329 på begge, men forklaringens layout er
+  forskellig. Verdikten og de fire bytes er de samme.
+- **Kørt 14/9, ikke 8/9.** Filnavne og protokol er fra 9/9-udgaven af notatet;
+  laboratoriet og de tre kildefiler er uændrede siden 7/9 (samme
+  `sources.txt`-hashes). Tidspunkterne står i `environment.txt`.
+- **`+fileordering` med én kildefil** siger lidt om reel følsomhed; se
+  fortolkningen.
 - **Ikke testet:** `user_group`, `domain_host`, `num_cpus`, `aslr`, `kernel`,
-  `timezone`.
+  `timezone`. `PathMap` mod `+build_path` er kørt samme dag:
+  [environment-axes-pathmap](2026-09-14-environment-axes-pathmap.md).
+  `DebugType=none` er stadig ikke testet.
