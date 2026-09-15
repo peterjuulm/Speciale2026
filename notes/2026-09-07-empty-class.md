@@ -1,14 +1,14 @@
 # Experiment 1: baseline experiment - empty class, dotnet
 
-Run 7 September 2026. (The note was originally dated 8 September; the files in `data/` have mtime 7 September, and the date was corrected on 8/9 together with the directory names `leo`/`peter` → `arch`/`ubuntu-vm`. Nothing else in the text was changed after the run.)
+Run 7 September 2026. (The note was first dated 8 September; the files in `data/` have mtime 7 September. The date was corrected on 8/9 together with the directory names `leo`/`peter` → `arch`/`ubuntu-vm`. Nothing else in the text was changed after the run.)
 
-The question: the same source, compiled twice, do the same bytes come out?
+The question: if we compile the same source twice, do we get the same bytes?
 
 This checks whether the Roslyn compiler is deterministic.
 
-We use an empty class on purpose. One file, no packages, nothing that can go
-wrong for other reasons. If that is not reproducible, nothing larger is. The
-glossary at the bottom explains the terms.
+We use an empty class on purpose. One file, no packages, nothing else that can
+go wrong. If this is not reproducible, nothing larger is. The glossary at the
+bottom explains the terms.
 
 ## Three environments
 
@@ -18,11 +18,11 @@ glossary at the bottom explains the terms.
 | `mac` | Peter's laptop, macOS | not in the first run | `~/Dev/Speciale2026/data/2026-09-07-empty-class/macos` |
 | `vm` | shared Ubuntu 24.04, DigitalOcean | measurement 1, 2, 3 | `~/Speciale2026/data/2026-09-07-empty-class/ubuntu-vm` |
 
-**First run:** Leo takes `arch`, Peter takes `vm`. `mac` is saved for later; the
-commands are still in the text, so it can be run without rewriting the protocol.
+**First run:** Leo takes `arch`, Peter takes `vm`. `mac` is saved for later. The
+commands are still in the text, so it can be run without changing the protocol.
 
-The repo is cloned on all three machines, so each machine writes directly into
-its own subdirectory under `data/2026-09-07-empty-class/`. No files are moved
+The repo is cloned on all three machines. Each machine writes directly into its
+own subdirectory under `data/2026-09-07-empty-class/`. No files are moved
 afterwards.
 
 The commands below are for **Linux (`arch` and `vm`)**. Where macOS differs, a
@@ -32,12 +32,11 @@ in step 1.
 ## Three measurements
 
 1. **Two builds on the same machine**, which says whether the apparatus works.
-   All three environments.
-2. **Environment variations with reprotest**, which differences can the build
-   take? `arch` and `vm`; reprotest is a Linux tool and does not run on mac.
-   `vm` can do one axis more than `arch`, because `disorderfs` is in apt.
-3. **The hashes compared across machines**, is the result the same in three
-   environments?
+   All three environments. 2. **Environment variations with reprotest**, which
+   says which differences the build can take. `arch` and `vm`; reprotest is a
+   Linux tool and does not run on mac. `vm` can do one axis more than `arch`,
+   because `disorderfs` is in apt. 3. **The hashes compared across machines**,
+   which says whether the result is the same in three environments.
 
 `arch` against `mac` is the interesting comparison: two operating systems, two
 CPU architectures, uncontrolled variation. `vm` is the controlled environment and
@@ -69,7 +68,7 @@ sudo mkdir -p /private/tmp && sudo chmod 1777 /private/tmp
 ## Step 1: setup, once per machine
 
 **`arch`** - reprotest and diffoscope are installed. `dpkg` does not exist, and
-reprotest dies without it, because it asks for the machine's architecture:
+reprotest dies without it because it asks for the machine's architecture:
 
 ```bash
 mkdir -p ~/.local/bin; printf '#!/bin/sh\ncase "$1" in --print-architecture) echo amd64 ;; esac\nexit 0\n' > ~/.local/bin/dpkg; chmod +x ~/.local/bin/dpkg
@@ -88,9 +87,9 @@ Then the helper tools. `disorderfs` is the one we do not have on Arch:
 sudo apt install -y disorderfs faketime pipx
 ```
 
-reprotest is installed with pipx and not with apt, so `vm` and `arch` run **the
-same version of the instrument**. Two reprotest versions are two measuring
-devices, and then the tables cannot be put side by side:
+Install reprotest with pipx, not apt, so `vm` and `arch` run **the same version
+of the instrument**. Two reprotest versions are two measuring devices, and then
+the tables cannot be put side by side:
 
 ```bash
 pipx install reprotest==0.7.32 && pipx ensurepath
@@ -115,12 +114,12 @@ diffoscope --version
 
 The verdict `successful`/`failed` does not depend on which diffoscope you have:
 two different files are caught by both. What changes is the explanation. 259 can
-settle for saying that the binaries differ, where 329 unpacks the PE file and
-shows the embedded PDB path. With only the old one, you can instead read the path
+stop at saying that the binaries differ, while 329 unpacks the PE file and shows
+the embedded PDB path. With only the old one, you can instead read the path
 straight out of the DLL with the `grep` command in step 4.
 
-The SDK in exactly the version `global.json` requires; apt gives a different
-patch:
+Install the SDK in exactly the version `global.json` requires; apt gives a
+different patch:
 
 ```bash
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --version 9.0.120
@@ -133,7 +132,7 @@ so it holds next time too:
 export PATH="$HOME/.dotnet:$PATH"
 ```
 
-Make an ordinary user each instead of sharing `root`, so the runs can be told
+Make one ordinary user each instead of sharing `root`, so the runs can be told
 apart.
 
 **`mac`** - nothing to install beyond `dotnet` (version 9.0.120) and `git`.
@@ -155,10 +154,10 @@ fish (Leo's machine):
 set -gx UD $HOME/Dev/Speciale2026/data/2026-09-07-empty-class/arch; mkdir -p $UD
 ```
 
-**The syntax is not the same.** `set -gx` exists only in fish; in bash it fails
-with `set: -g: invalid option`, and `$UD` ends up empty. If `$UD` is empty,
-`tee -a $UD/hashes.txt` becomes `tee -a /hashes.txt` and fails with
-`Permission denied`. Always check first:
+**The syntax is not the same.** `set -gx` exists only in fish. In bash it fails
+with `set: -g: invalid option`, and `$UD` ends up empty. If `$UD` is empty, `tee
+-a $UD/hashes.txt` becomes `tee -a /hashes.txt` and fails with `Permission
+denied`. Always check first:
 
 ```bash
 echo $UD && ls -d "$UD"
@@ -236,9 +235,9 @@ cd /private/tmp/rb1 && sha256sum minlib.csproj Beregning.cs global.json | tee "$
 cd /private/tmp/rb1 && shasum -a 256 minlib.csproj Beregning.cs global.json | tee "$UD/sources.txt"
 ```
 
-`tee` and not just the screen: the three numbers are the proof that the machines
-measured the same source. Without the file, "we had the same input" is a claim
-nobody can check afterwards.
+Use `tee`, not just the screen: the three numbers are the proof that the
+machines measured the same source. Without the file, "we had the same input" is
+a claim nobody can check afterwards.
 
 Expected:
 
@@ -255,9 +254,9 @@ actual check.
 ## Step 3: the environment block, before the measurement
 
 The build environment is everything outside the source that can affect the
-result: SDK version, operating system, language settings, file permissions, the
-version of the measuring tool. It must be written down *before* we measure. If
-measurement 3 shows a difference, this block is what says why.
+result: SDK version, operating system, language settings, file permissions, and
+the version of the measuring tool. It must be written down *before* we measure.
+If measurement 3 shows a difference, this block is what says why.
 
 `dotnet --info` must be run **from the project directory**, not from the result
 directory. Outside `/private/tmp/rb1` the `global.json` does not apply, and then
@@ -279,8 +278,8 @@ And which binaries are actually found, not which are installed:
 command -v dotnet reprotest diffoscope >> $UD/environment.txt
 ```
 
-That line is not decoration. On the VM there are two builds of all three tools:
-apt has `dotnet` with SDK 10.0.111, `reprotest` 0.7.26 and `diffoscope` 259 in
+That line matters. On the VM there are two builds of all three tools: apt has
+`dotnet` with SDK 10.0.111, `reprotest` 0.7.26 and `diffoscope` 259 in
 `/usr/bin`, while the versions the experiment requires live in `~/.dotnet` and
 `~/.local/bin`. `pipx list` shows 0.7.32 regardless of which one runs. Without
 `command -v` the evidence records what was installed, not what measured.
@@ -291,8 +290,8 @@ And the compiler, as files and not as a version number:
 cd /private/tmp/rb1 && sha256sum "$(dotnet --info | sed -n 's/^ *Base Path: *//p')Roslyn/bincore/csc.dll" | tee -a $UD/environment.txt
 ```
 
-`tee` instead of `>>`, so you see the result immediately instead of discovering
-an empty line later. If it fails, there are three things to check, in this order:
+Use `tee` instead of `>>`, so you see the result immediately instead of
+discovering an empty line later. If it fails, check three things, in this order:
 `command -v dotnet` (is it installed in `~/.dotnet` without being on PATH?),
 `pwd` (are you in the project directory?) and `echo $UD`.
 
@@ -336,13 +335,13 @@ cd /private/tmp/rb1; rm -rf bin obj; dotnet build -c Release; sha256sum bin/Rele
 
 **Expected:** two identical hashes. The compiler does not waver on its own.
 
-If they differ: stop. Then something is wrong in the setup, and measurement 2
-will only show noise.
+If they differ: stop. Something is wrong in the setup, and measurement 2 will
+only show noise.
 
 ### Seeing the build path inside the binary
 
-Worth doing in all three environments. It shows with your own eyes the mechanism
-measurement 2 is about:
+Worth doing in all three environments. It shows the mechanism measurement 2 is
+about:
 
 ```bash
 cd /private/tmp/rb1 && env LC_ALL=C grep -ao '/[A-Za-z0-9_/.-]*rb1[A-Za-z0-9_/.-]*' bin/Release/net9.0/minlib.dll | sort -u
@@ -505,9 +504,9 @@ and is Microsoft's own binary release. Both call themselves 9.0.120.
 
 If the DLLs differ, the `csc.dll` hash from the environment block is the first
 place to look: if it differs, we measured two different compilers, not two
-different environments. That is precisely the gap the thesis is about, a version
-being a self-declared string rather than a binding to a binary, showing up in our
-own measuring apparatus.
+different environments. That is precisely the gap the thesis is about: a version
+is a self-declared string rather than a binding to a binary, and it shows up in
+our own measuring apparatus.
 
 ## Step 7: save it, from each machine
 
@@ -620,7 +619,7 @@ same string. That leaves four differences:
 | `LANG` | `da_DK.UTF-8` | `C.UTF-8` |
 
 The prime suspect is the first: two different compilers, both called 9.0.120.
-That is the thesis' own claim showing up in the measuring apparatus, the version
+That is the thesis' own claim showing up in the measuring apparatus: the version
 number is a self-declared string, not a binding to a binary. Whether it is
 actually the explanation is settled in
 [compiler-identity](2026-09-08-compiler-identity.md).

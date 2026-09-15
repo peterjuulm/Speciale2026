@@ -11,40 +11,36 @@ with Leo until it is settled what may live here.
 
 ## Question
 
-Do two clean `dotnet build -c Release` of Phoenix on the same path, the same
-machine and the same pinned SDK give bit-identical output for everything under
-`src/*/bin/Release/`?
+Do two clean `dotnet build -c Release` runs of Phoenix on the same path, the
+same machine, and the same pinned SDK produce bit-identical output for
+everything under `src/*/bin/Release/`?
 
 ## Setup
 
-- Source: worktree `WS.Phoenix-repro`, branch `thesis/reproducible-builds`,
-  HEAD `d850ccf8` (main `a2dc1d5b` + the dependency-graph tool).
-- Lab: `/private/tmp/rb1-phoenix`, an rsync of the worktree without `.git`,
+- Source: worktree `WS.Phoenix-repro`, branch `thesis/reproducible-builds`, HEAD
+  `d850ccf8` (main `a2dc1d5b` + the dependency-graph tool). - Lab:
+  `/private/tmp/rb1-phoenix`, an rsync of the worktree without `.git`,
   `node_modules`, `bin`, `obj`, `.claude`, `.next`, `out`. 4304 files without
-  ClientApp; tree hash `31b4bb11…` (`source-tree.sha256`).
-- `global.json` in the lab overwritten to `9.0.120` + `rollForward: disable`.
-  The same day, after the run, committed on `thesis/reproducible-builds` as
-  `6b7a3254`, so the lab is from now on a plain rsync of the worktree.
-- SDK: Microsoft's 9.0.120 in `~/.dotnet` (`DOTNET_ROOT`), not the Arch package.
-  `csc.dll` `644a4d33…`, the same binary as Microsoft's linux-x64 archive in the
-  9/9 table. `[V]` `environment.txt`.
-- The frontend is skipped: `-p:SkipSpaBuild=true`. Layer 3 measures it
-  separately.
-- One run = `rm -rf */bin */obj` + `dotnet restore` + `dotnet build
-  --no-restore`. One build at a time on the machine.
+  ClientApp; tree hash `31b4bb11…` (`source-tree.sha256`). - `global.json` in
+  the lab overwritten to `9.0.120` + `rollForward: disable`. The same day, after
+  the run, committed on `thesis/reproducible-builds` as `6b7a3254`, so from now
+  on the lab is a plain rsync of the worktree. - SDK: Microsoft's 9.0.120 in
+  `~/.dotnet` (`DOTNET_ROOT`), not the Arch package. `csc.dll` `644a4d33…`, the
+  same binary as Microsoft's linux-x64 archive in the 9/9 table. `[V]`
+  `environment.txt`. - The frontend is skipped: `-p:SkipSpaBuild=true`. Layer 3
+  measures it separately. - One run = `rm -rf */bin */obj` + `dotnet restore` +
+  `dotnet build --no-restore`. One build at a time on the machine.
 
 ## Expectation, written before the run
 
 1. The four own assemblies (`ApplicationCore`, `Infrastructure`, `WebAPI`,
    `BackgroundJobExecutor`) and their PDBs: identical. Same path, same compiler,
-   and the 19/8 probe gave the same for one of them.
-2. Copied dependencies: identical trivially (same bytes from the same package
-   cache).
-3. Unknown: the generated files alongside, `*.deps.json`,
+   and the 19/8 probe gave the same result for one of them. 2. Copied
+   dependencies: identical trivially (same bytes from the same package cache).
+   3. Unknown: the generated files alongside them, `*.deps.json`,
    `*.runtimeconfig.json`, `staticwebassets.*`, possibly an EF migration bundle.
-   If something fails, it is here.
-4. The test projects are built along if the solution file is used. They count in
-   the table but are not the question.
+   If something fails, it is here. 4. The test projects are built too if the
+   solution file is used. They count in the table but are not the question.
 
 ## Commands
 
@@ -62,17 +58,17 @@ All four own assemblies and their PDBs are in the list and identical, for exampl
 `ApplicationCore.dll` `4c5341e2…`, `Infrastructure.dll` `20d96acb…`,
 `BackgroundJobExecutor.dll` `679fe797…`. `[V]` `build1.sha256` (local).
 
-The first attempt failed: the protocol was "restore once, build twice", but
-`rm -rf obj` deletes `project.assets.json`, which is restore output. Build 1 and
-2 both failed with NETSDK1004. The protocol was corrected to clean + restore +
+The first attempt failed. The protocol was "restore once, build twice", but `rm
+-rf obj` deletes `project.assets.json`, which is restore output. Build 1 and 2
+both failed with NETSDK1004. The protocol was corrected to clean + restore +
 build per run, and `kommando.txt` is the corrected one.
 
 ## Interpretation
 
-Expectations 1-3 held: on the same path, the same machine and the same SDK
+Expectations 1-3 held. On the same path, the same machine, and the same SDK
 binary, the whole `dotnet build` output for Phoenix is bit-identical, including
 the generated `deps.json`/`runtimeconfig.json`. That matches the 19/8 probe and
-empty-class, now on 1610 files instead of 2.
+empty-class experiments, now on 1610 files instead of 2.
 
 A lesson about the apparatus: restore is part of the build. `obj/` holds both
 restore output and compiler output, so "clean" always means "restore again". It

@@ -7,33 +7,29 @@ Data: `data/2026-09-15-phoenix-reprotest/arch/`.
 
 ## Question
 
-Which changes in the build environment can Phoenix' own assemblies take? One axis
-per run, as in [environment-axes](2026-09-14-environment-axes.md).
+Which changes in the build environment can Phoenix' own assemblies tolerate? One
+axis per run, as in [environment-axes](2026-09-14-environment-axes.md).
 
 ## Setup
 
 - Lab `/private/tmp/rb1-phoenix`, an rsync of the worktree
   `thesis/reproducible-builds` at `6b7a3254` (global.json pinned), cleared of
-  `bin`/`obj` before the run.
-- reprotest 0.7.x from `~/.local/bin`, diffoscope from `arch`.
-- The build command sets `DOTNET_ROOT` and `PATH` explicitly to `~/.dotnet`, so
-  it is Microsoft's 9.0.120 that is hit inside reprotest's environment, not the
-  Arch package in `/usr/bin`. The 14/9 note describes the mix-up.
-- Only the two root projects are built, not the `.sln`, so the test project is
-  out.
-- Artefact pattern: our own DLLs and PDBs plus the generated json files in
-  `WebAPI/bin`, and `BackgroundJobExecutor.*`. The ~1600 copied package files
-  were shown identical in layer 1 and are left out to keep the diffoscope time
-  down.
-- Restore happens inside each reprotest build, from a warm cache in
-  `~/.nuget/packages`.
+  `bin`/`obj` before the run. - reprotest 0.7.x from `~/.local/bin`, diffoscope
+  from `arch`. - The build command sets `DOTNET_ROOT` and `PATH` explicitly to
+  `~/.dotnet`, so reprotest uses Microsoft's 9.0.120, not the Arch package in
+  `/usr/bin`. The 14/9 note describes the mix-up. - Only the two root projects
+  are built, not the `.sln`, so the test project is out. - Artefact pattern: our
+  own DLLs and PDBs plus the generated json files in `WebAPI/bin`, and
+  `BackgroundJobExecutor.*`. The ~1600 copied package files were identical in
+  layer 1 and are left out to keep diffoscope time down. - Restore happens
+  inside each reprotest build, from a warm cache in `~/.nuget/packages`.
 
 ## Expectation, written before the run
 
 `+build_path`: **red**. The PDBs for all four own assemblies differ on the
 absolute source paths. The DLLs differ on PDB checksum and MVID in the debug
 directory, the same five fields as in empty-class 8/9. `deps.json` and
-`runtimeconfig.json` are identical, they contain no paths. Everything else
+`runtimeconfig.json` are identical; they contain no paths. Everything else
 identical.
 
 If red as expected: `PathMap`/`ContinuousIntegrationBuild` are committed on the
@@ -47,13 +43,13 @@ as on empty-class 14/9. Run after the path axis, one at a time.
 
 Verbatim in `kommando.txt`. The reprotest logs `rt-N-<axis>.log` contain
 diffoscope dumps of Phoenix assemblies and MSBuild output quoting WS source
-paths, so they are kept in Leo's private repo. `logs.md` in the data folder
-lists each log with line count, verdict and sha256.
+paths, so they stay in Leo's private repo. `logs.md` in the data folder lists
+each log with line count, verdict and sha256.
 
 ## Result
 
 `+build_path`: **red**, reprotest exit 1. Log file `rt-1-build_path.log`,
-453,927 lines, most of it diffoscope's PDB dump.
+453,927 lines, mostly diffoscope's PDB dump.
 
 The first attempt failed with MSB1008: `dotnet build` takes one project at a
 time. Corrected to two calls chained with `&&`; `rt-0-failed-msb1008.log` is
@@ -71,23 +67,22 @@ kept.
 Three things I had not predicted:
 
 1. **The RVAs move.** `AddressOfEntryPoint` and the import table's address are
-   shifted 2-4 bytes in all DLLs. Explanation: the DLL's debug directory contains
-   the PDB's full path as a string, and reprotest's two paths have different
-   lengths (`const_build_path` against `build-experiment-1`, 16 against 18
-   characters). Everything after the string moves. That is why the 19/8 probe saw
-   189 byte positions and not 70: the path sits *in* the DLL, not only in the
-   PDB. `[V]` pedump hunks in the log.
-2. **A source generator writes the path into type names.** In
-   `ApplicationCore.dll` four generated types are called
-   `<RegexGenerator_g>F<64 hex>__ImoPrefixPattern_0` and so on, and the 64 hex
-   characters differ between the two builds. That is Roslyn's naming of
-   file-local types: `F` + a hash of the source file's path. The regex generator
-   (`[GeneratedRegex]`) uses it. The path is therefore not only debug metadata,
-   it is part of the program's type system. `[V]` four `#Strings` entries.
-3. **Two json files carry the build path.** `spa.proxy.json` from the SpaProxy
-   package and `staticwebassets.runtime.json` from the SDK. Both are development
-   artefacts and probably do not travel into publish, but they sit in `bin/` and
-   would fail a naive comparison.
+   shifted 2-4 bytes in all DLLs. Explanation: the DLL's debug directory
+   contains the PDB's full path as a string, and reprotest's two paths have
+   different lengths (`const_build_path` against `build-experiment-1`, 16
+   against 18 characters). Everything after the string moves. That is why the
+   19/8 probe saw 189 byte positions and not 70: the path sits *in* the DLL, not
+   only in the PDB. `[V]` pedump hunks in the log. 2. **A source generator
+   writes the path into type names.** In `ApplicationCore.dll` four generated
+   types are called `<RegexGenerator_g>F<64 hex>__ImoPrefixPattern_0` and so on,
+   and the 64 hex characters differ between the two builds. That is Roslyn's
+   naming of file-local types: `F` + a hash of the source file's path. The regex
+   generator (`[GeneratedRegex]`) uses it. The path is therefore not only debug
+   metadata; it is part of the program's type system. `[V]` four `#Strings`
+   entries. 3. **Two json files carry the build path.** `spa.proxy.json` from
+   the SpaProxy package and `staticwebassets.runtime.json` from the SDK. Both
+   are development artefacts and probably do not travel into publish, but they
+   sit in `bin/` and would fail a naive comparison.
 
 ### Run 2: `ContinuousIntegrationBuild=true` in `Directory.Build.props`
 
@@ -140,19 +135,18 @@ The dump of the two PDBs is identical across 987 lines except three:
 | document `.../RazorSourceGenerator/Pages__ViewImports_cshtml.g.cs`, content hash | `47f43c1c…` | `1081a178…` |
 | EmbeddedSource for the `_ViewImports` document | 775 bytes | 777 bytes |
 
-The embedded source files extracted and diffed: the Razor source generator writes
-the **absolute** path to the `.cshtml` file into the C# code it generates, in
-`#pragma checksum "..."` and in every `#line (...) "..."`:
+The embedded source files were extracted and diffed. The Razor source generator
+writes the **absolute** path to the `.cshtml` file into the C# code it
+generates, in `#pragma checksum "..."` and in every `#line (...) "..."`:
 
     #pragma checksum "/private/tmp/rb1-phoenix/src/WebAPI/Pages/_ViewImports.cshtml" "{8829d00f-…}" "9a53bf9f…"
     #line (1,2)-(1,11) "/private/tmp/rb1-phoenix/src/WebAPI/Pages/_ViewImports.cshtml"
 
 Roslyn embeds generated source files in the PDB as text, and hashes them.
-`PathMap` maps what the compiler itself writes: the document names, including
+`PathMap` maps what the compiler writes itself: the document names, including
 those originating from `#line`, appear correctly as
-`/_/src/WebAPI/Pages/Error.cshtml` in the table. But the text *inside* the
-generated file the compiler does not touch. `[V]` `pdbdump` diff, `src-*/`
-locally.
+`/_/src/WebAPI/Pages/Error.cshtml` in the table. But the compiler does not touch
+the text *inside* the generated file. `[V]` `pdbdump` diff, `src-*/` locally.
 
 The generator gets `MSBuildProjectDirectory` as a compiler-visible property and
 could have written relative paths. There is no setting in the Razor SDK's targets
@@ -190,8 +184,8 @@ Run after run 4, same lab, HEAD `e6e92423`. One axis per run.
 | `+exec_path` | exit 0 | none | `rt-8-exec_path.log` |
 
 All green, as on empty-class 14/9. The two json files were identical on these
-axes too: they carry the path, but not time, locale or permissions. Each run took
-4-5 minutes, two restores and four builds.
+axes too: they carry the path, but not time, locale or permissions. Each run
+took 4-5 minutes, with two restores and four builds.
 
 Note what `+time` green means: MSBuild and csc write no clock readings into
 anything we measured, `deps.json` included. The PE timestamp is a hash, as the
@@ -216,10 +210,9 @@ because the json files are written by MSBuild targets after compilation.
 Whether the two json files are part of publish at all is decided in layer 2.
 
 Two generators from the same vendor, two different answers on whether PathMap
-applies. For reproducibility it means every source generator in the dependency
-tree is a potential source of path leakage, and the compiler flag does not
-cover them. That is an unexpected connection between layer 1 and the
-dependency part.
+applies. For reproducibility, every source generator in the dependency tree is a
+potential source of path leakage, and the compiler flag does not cover them.
+That is an unexpected connection between layer 1 and the dependency part.
 
 Run 2 gave a finding we were not looking for: the setting Microsoft recommends
 for reproducible builds only works when the build tree is a git checkout. A build
@@ -227,9 +220,9 @@ from a tarball or a copied directory, which is what an auditor or a customer
 would typically have, leaks the path anyway. Reproducibility depends on a file,
 `.git`, that is not part of the source.
 
-Finding 2 is the most interesting one for the thesis: a build path that ends up
-as the identity of a type in the delivered binary. That is not "metadata about
-the build", that is the program itself being different.
+Finding 2 is the most interesting one for the thesis: a build path ends up as
+the identity of a type in the delivered binary. That is not "metadata about the
+build"; that is the program itself being different.
 
 ## Caveats and not tested
 

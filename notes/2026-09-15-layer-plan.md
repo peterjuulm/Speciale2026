@@ -4,10 +4,10 @@ Planning note, 15 September 2026. Not an experiment. Each experiment gets its
 own note, named after the day it is run.
 
 The idea: a release is built in layers. Each layer adds its own sources of
-non-determinism, and each layer is measured on its own with the same method as
+non-determinism, and we measure each layer with the same method as
 [empty-class](2026-09-07-empty-class.md): build twice, hash everything, diff,
-classify the cause, fix, build again, write it down. The goal per layer is a row
-in the table at the bottom.
+classify the cause, fix, build again, write it down. The goal for each layer is
+one row in the table at the bottom.
 
 ## The layers
 
@@ -19,14 +19,13 @@ in the table at the bottom.
 | 4 | Release zip | The archive's bytes | Red | File mtimes and order in the archive. Fix: normalised packing, `SOURCE_DATE_EPOCH` |
 | 5 | Container image | OCI layers, image digest | Red | apt and NodeSource are fetched at build time, layer timestamps. Fix: digests, `rewrite-timestamp` |
 
-Layers 1-3 are loose files. Layers 4-5 are archives, and only there do file
-permissions, order and timestamps bite, because that is exactly what an archive
-stores.
+Layers 1-3 are loose files. Layers 4-5 are archives. File permissions, order and
+timestamps only bite there, because that is what an archive stores.
 
 ## Axes per layer
 
-Each layer is run first on the same path and the same machine (determinism).
-Then one thing is varied at a time (reproducibility from the description):
+Each layer is first run on the same path and the same machine (determinism).
+Then we vary one thing at a time (reproducibility from the description):
 
 | Axis | How | Status |
 | --- | --- | --- |
@@ -40,13 +39,12 @@ Then one thing is varied at a time (reproducibility from the description):
 ## The dependency tree (runs in parallel with layer 2)
 
 - Count direct and transitive packages per project. The dependency-graph tool
-  from 15/9 gives 94 direct and 408 transitive NuGet packages, max depth 7.
-- Generate `packages.lock.json`, build with `--locked-mode`. Does the resolved
-  graph change between machines or over time?
-- Re-check the `.deps.json` finding: the packages' sha512 are in the file, but
-  are not checked at load. Compare against the actual `.nupkg` hashes.
-- How many of the copied assemblies can be traced to a source revision, and how
-  many are sealed vendor bytes?
+  from 15/9 gives 94 direct and 408 transitive NuGet packages, max depth 7. -
+  Generate `packages.lock.json`, build with `--locked-mode`. Does the resolved
+  graph change between machines or over time? - Re-check the `.deps.json`
+  finding: the packages' sha512 are in the file, but are not checked at load.
+  Compare them with the actual `.nupkg` hashes. - How many copied assemblies can
+  be traced to a source revision, and how many are sealed vendor bytes?
 
 ## Result table (filled in as we go)
 
@@ -64,14 +62,12 @@ Then one thing is varied at a time (reproducibility from the description):
 
 ## Rules that apply to every layer
 
-- The note with the expectation is written before the run.
-- Environment block first, including the hash of `csc.dll`. Two SDKs can carry
-  the same name.
-- One run = clean + restore + build. See
-  [phoenix-layer1](2026-09-15-phoenix-layer1.md) for why.
-- One build at a time on the machine. Never parallel builds in the same lab.
-- Build outside git. The lab is an rsync without `.git`.
-- Fixes are committed on `thesis/reproducible-builds` in Phoenix, never in the
-  lab.
-- Phoenix source and build output do not land in this repo. Hash lists and logs
-  stay with Leo until agreed otherwise.
+- Write the note with the expectation before the run. - Put the environment
+  block first, including the hash of `csc.dll`. Two SDKs can carry the same
+  name. - One run = clean + restore + build. See
+  [phoenix-layer1](2026-09-15-phoenix-layer1.md) for why. - One build at a time
+  on the machine. Never parallel builds in the same lab. - Build outside git.
+  The lab is an rsync without `.git`. - Commit fixes on
+  `thesis/reproducible-builds` in Phoenix, never in the lab. - Phoenix source
+  and build output do not land in this repo. Hash lists and logs stay with Leo
+  until agreed otherwise.

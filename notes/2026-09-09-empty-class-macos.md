@@ -2,8 +2,7 @@
 
 Run 9 September 2026 on `mac` (Peter's laptop, Apple Silicon). Same lab and the
 same three files as [7 September](2026-09-07-empty-class.md); the glossary is
-there. The protocol below is the macOS-specific version and can be read on its
-own.
+there. The protocol below is the macOS-specific version and can stand alone.
 
 Data: `data/2026-09-09-empty-class/macos/`.
 
@@ -13,12 +12,12 @@ different CPU architecture?**
 ## Why it is worth running now
 
 [Compiler-identity](2026-09-08-compiler-identity.md) showed that the output is
-determined by the SDK and not by the machine: Microsoft's 9.0.120 on Leo's Arch
+determined by the SDK, not the machine: Microsoft's 9.0.120 on Leo's Arch
 machine gave Peter's exact bytes, while kernel, distribution, glibc and `LANG`
-stayed Leo's. But both existing environments are **Linux on x64**. The hypothesis
-from 7 September, that the managed layer carries across operating systems because
-a class library DLL contains only IL, has therefore still not been tested against
-anything but Linux.
+stayed Leo's. But both existing environments are **Linux on x64**. The
+hypothesis from 7 September, that the managed layer carries across operating
+systems because a class library DLL contains only IL, has still only been tested
+on Linux.
 
 `mac` is that test. Two things change at once compared to `ubuntu-vm`:
 
@@ -30,8 +29,8 @@ anything but Linux.
 
 Two axes at once is normally a bad idea. Here it is defensible, because the
 outcome has only two interesting values: if the hash lands, both axes are ruled
-out in the same run. If it does not, the run is not the conclusion but the
-starting shot, and then they have to be separated.
+out in the same run. If it does not, the run is not the conclusion. It is the
+starting shot, and then the axes have to be separated.
 
 ## The control that decides whether the measurement answers at all
 
@@ -39,10 +38,10 @@ starting shot, and then they have to be separated.
 the same file Microsoft's SDK gave on `arch`.
 
 The Roslyn compiler in `Roslyn/bincore` is a managed assembly and should
-therefore be the same bytes in all of Microsoft's SDKs regardless of RID. Should.
-If it is not, we have measured a third compiler, and then the run says nothing
-about OS and CPU; it just repeats the finding from 8 September in a new variant.
-The hash is therefore taken **before** the build, not after.
+therefore be the same bytes in all of Microsoft's SDKs, regardless of RID.
+Should. If it is not, we have measured a third compiler. Then the run says
+nothing about OS and CPU; it just repeats the finding from 8 September in a new
+variant. The hash is therefore taken **before** the build, not after.
 
 ## Expectation, written before the run
 
@@ -53,39 +52,38 @@ The hash is therefore taken **before** the build, not after.
 | `minlib.dll`, build 1 | `4b3808d1cc1d642577f60a054905f5f065aab8b9aea1765b407fc583cef70d33` |
 | `minlib.dll`, build 2 | as build 1 |
 
-If other numbers come out, that is a finding and not an error. The section **How
-to read the outcome** at the bottom says what each of them means.
+If other numbers come out, that is a finding, not an error. The section **How to
+read the outcome** at the bottom says what each result means.
 
 ## Four places where macOS differs from the Linux protocol
 
 1. **`shasum -a 256` instead of `sha256sum`.** Same algorithm, same output
    format, different command name. The format is the same, so `shasum -a 256 -c`
-   can read Leo's and the VM's evidence files directly.
-2. **No reprotest and no diffoscope.** Measurement 2 (the environment axes) does
-   not run here; it is a Linux tool. `mac` contributes measurement 1 and 3.
-3. **`/private/tmp` already exists.** No `sudo mkdir`. On the other hand it is
-   macOS' own `/tmp`, and it is cleared by the `periodic` job for files untouched
-   for three days. The lab may therefore be gone next week: check the source
-   hashes again before a later run instead of assuming the directory is as you
-   left it.
-4. **Two `dotnet` on the machine.** The system one is in
-   `/usr/local/share/dotnet` (SDK 9.0.102, host 9.0.1, verified 9/9). The pinned
-   9.0.120 lands in `~/.dotnet`, which is not on PATH. Same problem as on the VM,
-   where apt had its own, and the same solution: name it explicitly in every
-   command.
+   can read Leo's and the VM's evidence files directly. 2. **No reprotest and no
+   diffoscope.** Measurement 2 (the environment axes) does not run here; it is a
+   Linux tool. `mac` contributes measurement 1 and 3. 3. **`/private/tmp`
+   already exists.** No `sudo mkdir`. On the other hand it is macOS' own `/tmp`,
+   and it is cleared by the `periodic` job for files untouched for three days.
+   The lab may therefore be gone next week. Check the source hashes again before
+   a later run instead of assuming the directory is as you left it. 4. **Two
+   `dotnet` on the machine.** The system one is in `/usr/local/share/dotnet`
+   (SDK 9.0.102, host 9.0.1, verified 9/9). The pinned 9.0.120 lands in
+   `~/.dotnet`, which is not on PATH. Same problem as on the VM, where apt had
+   its own, and the same solution: name it explicitly in every command.
 
 ## Step 1: the SDK, side by side
 
-The Arch run on 8 September put Microsoft's SDK beside the distribution's instead
-of replacing it. The same is done here, for the same reason: the experiment adds
-an SDK and removes none, so the machine can be used for other things afterwards.
+The Arch run on 8 September put Microsoft's SDK beside the distribution's
+instead of replacing it. The same is done here, for the same reason: the
+experiment adds an SDK and removes none, so the machine can still be used for
+other things.
 
 ```bash
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --version 9.0.120
 ```
 
-The script picks `osx-arm64` on its own on Apple Silicon. **Let it.** That is the
-whole point of the run; `--architecture x64` would give a Rosetta compiler and
+The script picks `osx-arm64` on its own on Apple Silicon. **Let it.** That is
+the point of the run; `--architecture x64` would give a Rosetta compiler and
 measure something else.
 
 Check that it is picked when you point at it. `Base Path` must say
@@ -95,8 +93,8 @@ Check that it is picked when you point at it. `Base Path` must say
 cd /private/tmp/rb1 && env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet --info | grep -E 'Version:|Base Path|RID'
 ```
 
-If it says `9.0.102` or `/usr/local/share/dotnet`, `PATH` did not take effect, and
-everything after this measures the wrong compiler. Stop and find out why before
+If it says `9.0.102` or `/usr/local/share/dotnet`, `PATH` did not take effect.
+Everything after this measures the wrong compiler. Stop and find out why before
 you build.
 
 ## Step 2: the result directory
@@ -119,7 +117,7 @@ files are in `/private/tmp/rb1` with the hashes `2a766d57…`, `079f65f3…`,
 `shasum -a 256 -c`. The check is saved in
 `data/2026-09-09-empty-class/macos/sources.txt`.
 
-If the lab has to be recreated, because macOS has cleared `/private/tmp`, or
+If the lab has to be recreated because macOS has cleared `/private/tmp`, or
 because the run is repeated on another machine, these are the four commands:
 
 ```bash
@@ -152,8 +150,8 @@ Three times `OK`. Otherwise: stop.
 
 ## Step 4: the environment block, before the measurement
 
-From the project directory, so `global.json` applies. Outside `/private/tmp/rb1`
-the block describes a different SDK from the one that builds:
+Run this from the project directory, so `global.json` applies. Outside
+`/private/tmp/rb1` the block describes a different SDK from the one that builds:
 
 ```bash
 cd /private/tmp/rb1 && env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet --info > "$UD/environment.txt"
@@ -166,8 +164,8 @@ belongs here, because that is the axis the run tests:
 uname -srm >> "$UD/environment.txt"; sw_vers >> "$UD/environment.txt"; umask >> "$UD/environment.txt"; locale | head -1 >> "$UD/environment.txt"; command -v dotnet >> "$UD/environment.txt"; echo "$HOME/.dotnet/dotnet" >> "$UD/environment.txt"
 ```
 
-And the compiler, as files and not as a version number, the control from the
-section above:
+And the compiler, as files and not as a version number. This is the control from
+the section above:
 
 ```bash
 shasum -a 256 "$HOME/.dotnet/sdk/9.0.120/Roslyn/bincore/csc.dll" | tee -a "$UD/environment.txt"
@@ -229,9 +227,9 @@ The SDK resolved to `Base Path: /Users/peterjuulmoller/.dotnet/sdk/9.0.120/`,
 **Both at once: the control failed, and the hash landed anyway.**
 
 That outcome was in none of the three columns above. The expectation was that a
-differing `csc.dll` would mean we were measuring a third compiler and therefore
-could not answer the OS question. That inference was wrong, and that is the run's
-real finding.
+different `csc.dll` would mean we were measuring a third compiler and therefore
+could not answer the OS question. That inference was wrong, and that is the
+run's real finding.
 
 **1. Operating system and CPU are ruled out.** Three environments, two operating
 systems, two CPU architectures, one number. `minlib.dll` came out `4b3808d1…` on
@@ -249,31 +247,31 @@ There are now three `csc.dll` behind the string `9.0.120`:
 | Microsoft osx-arm64 | `1824569732a63f5d…` | `3f97250e38` | `+07da1b9a8` | `+fc52718e…` (`dotnet/roslyn`) | `4b3808d1…` |
 
 The bottom two are **different files with identical declared identity**. Every
-single string is the same: SDK commit, MSBuild commit, Roslyn version, commit
-hash and host (`9.0.19` / `8381bdb01f`), and they gave the same output. The top
-one has different strings and gave different output. It is the identity strings
-that travel out into the artefact, not the file's hash.
+string is the same: SDK commit, MSBuild commit, Roslyn version, commit hash and
+host (`9.0.19` / `8381bdb01f`), and they gave the same output. The top one has
+different strings and gave different output. It is the identity strings that
+travel out into the artefact, not the file's hash.
 
 That is the counterfactual case 8 September could not deliver.
 
 Compiler-identity made the right intervention: Microsoft's 9.0.120 downloaded
-beside the Arch package, same pin, same path, same machine. That run settled that
-**the SDK** decides the output and not the machine. But it could not settle
-*which property of the SDK* does it, and the reason is in its own
-`compilers.txt`: Microsoft's `csc.dll` on `arch` was `644a4d33…`,
-**byte-identical** with the VM's. Bytes and strings travelled together and both
-fitted. Two explanations, "the compiler's bytes decide" and "the compiler's
-declared identity decides", therefore both predict `4b3808d1…` for that run. It
-confirms both and separates neither.
+beside the Arch package, same pin, same path, same machine. That run settled
+that **the SDK** decides the output and not the machine. But it could not settle
+*which property of the SDK* does it. The reason is in its own `compilers.txt`:
+Microsoft's `csc.dll` on `arch` was `644a4d33…`, **byte-identical** with the
+VM's. Bytes and strings travelled together and both fitted. Two explanations,
+"the compiler's bytes decide" and "the compiler's declared identity decides",
+therefore both predict `4b3808d1…` for that run. It confirms both and separates
+neither.
 
-`osx-arm64` is the first case where the two explanations predict something
-different: same strings, different bytes. The byte explanation predicts a new
+`osx-arm64` is the first case where the two explanations predict different
+outcomes: same strings, different bytes. The byte explanation predicts a new
 hash, the identity explanation predicts `4b3808d1…`. `4b3808d1…` came out.
 
 The expectation section in this note followed the byte explanation: the run was
 gated on `csc.dll` being `644a4d33…`, and a deviation had been written down in
 advance as "then we are measuring a third compiler and cannot answer the OS
-question". That was wrong, and it stands up there as it was written.
+question". That was wrong, and it stays up there as it was written.
 
 The mechanism behind the byte difference is probably ReadyToRun: `csc.dll` on
 `mac` contains an `RTR` signature, that is AOT-compiled native code, and it is
@@ -301,9 +299,9 @@ wording has to be tightened:
   sharpened on another.** It was correct that Roslyn's deterministic hash takes
   in the compiler's identity. It was wrong to read "identity" as "bytes".
 
-It is still an observation and not a reading of Roslyn's source. But it now rests
-on three compilers and three runs instead of two, and one of the three is exactly
-the counterfactual case that separates the two explanations.
+It is still an observation, not a reading of Roslyn's source. But it now rests
+on three compilers and three runs instead of two, and one of the three is
+exactly the counterfactual case that separates the two explanations.
 
 ### Caveats
 
@@ -321,11 +319,11 @@ the counterfactual case that separates the two explanations.
 
 ## How to read the outcome
 
-**`csc.dll` lands, and `minlib.dll` comes out `4b3808d1…`.** The strongest result
-in the project so far: three environments, two operating systems, two CPU
-architectures, one number. Then the hypothesis from 7 September is confirmed, the
-managed layer carries across when the compiler binary is the same, and the
-wording gets sharp: the artefact's identity follows the compiler, not the
+**`csc.dll` lands, and `minlib.dll` comes out `4b3808d1…`.** The strongest
+result in the project so far: three environments, two operating systems, two CPU
+architectures, one number. Then the hypothesis from 7 September is confirmed:
+the managed layer carries across when the compiler binary is the same, and the
+wording gets sharp. The artefact's identity follows the compiler, not the
 machine. That is also the argument that has to carry on to the real artefact,
 because it is exactly the property a vendor-independent verification would rest
 on.

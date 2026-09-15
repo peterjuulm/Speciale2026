@@ -16,10 +16,10 @@ once it is closed?**
 ## Background
 
 Experiment 2 gave 13 verdicts as predicted: everything green except
-`+build_path`. But the twelve green runs gave twelve different DLL hashes,
-because reprotest builds in a new `/tmp/reprotest.XXXXXX/` per run, and the
-directory name appears in the DLL via the path to the PDB file. "Successful"
-only meant "build 1 and build 2 in the same directory are equal".
+`+build_path`. But the twelve green runs still gave twelve different DLL hashes.
+reprotest builds in a new `/tmp/reprotest.XXXXXX/` per run, and that directory
+name appears in the DLL through the path to the PDB file. "Successful" only
+meant "build 1 and build 2 in the same directory are equal".
 
 ## Expectation, written before the run
 
@@ -43,13 +43,13 @@ The only change from experiment 2 is the last parameter to `dotnet build`:
 reprotest --vary=-all,+build_path -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet build -c Release -p:PathMap=$PWD/=/_/' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll'
 ```
 
-`$PWD` is expanded by the shell reprotest starts the build in, that is with the
+`$PWD` is expanded by the shell reprotest starts the build in, so it is the
 directory actually being built in. The compiler then writes `/_/` where it would
 otherwise write the directory. The first attempt used
 `$(MSBuildProjectDirectory)`; that does not work from the command line, because
 MSBuild does not expand property expressions in global properties. The parameter
-was ignored, and the path was still in the DLL. `[V]`
-Check that the mapping took effect:
+was ignored, and the path was still in the DLL. `[V]` Check that the mapping
+took effect:
 
 ```bash
 strings -n 6 bin/Release/net9.0/minlib.dll | grep pdb
@@ -62,10 +62,9 @@ In a csproj the parameter corresponds to:
 <PathMap>$(MSBuildProjectDirectory)=/_/</PathMap>
 ```
 
-The third setup, `arch-ms-sdk`, additionally puts
-`PATH=/home/leos/.dotnet:$PATH DOTNET_ROOT=/home/leos/.dotnet` in front, so it is
-Microsoft's 9.0.120 that builds. `environment.txt` shows
-`Base Path: /home/leos/.dotnet/sdk/9.0.120/`.
+The third setup, `arch-ms-sdk`, also puts `PATH=/home/leos/.dotnet:$PATH
+DOTNET_ROOT=/home/leos/.dotnet` in front, so Microsoft's 9.0.120 does the build.
+`environment.txt` shows `Base Path: /home/leos/.dotnet/sdk/9.0.120/`.
 
 ## Result
 
@@ -94,22 +93,22 @@ All four expectations held.
 ## Interpretation
 
 **`PathMap` closes the path, and only the path.** `+build_path` goes from red to
-green with one parameter. No other axis changes, which is expected, since they
-were green already.
+green with one parameter. No other axis changes, as expected, since they were
+green already.
 
-**The hash column collapses from twelve numbers to one per machine.** That is the
-real result. reprotest's verdict says "build 1 equals build 2"; the identical
-hash across six independent runs in six random directories says "any build equals
-any build". The `arch` hash is also identical to a build made by hand in a fourth
-directory outside reprotest. `[V]`
+**The hash column collapses from twelve numbers to one per machine.** This is
+the real result. reprotest's verdict says "build 1 equals build 2"; the
+identical hash across six independent runs in six random directories says "any
+build equals any build". The `arch` hash is also identical to a build made by
+hand in a fourth directory outside reprotest. `[V]`
 
 **What is left between the machines is the compiler's identity.** With the path
-gone there is one difference left between `arch` and `ubuntu-vm`: which `csc.dll`
-builds. Swap the Arch package's for Microsoft's, and the numbers are the same
-across Arch Linux and Ubuntu. That is the 8/9 finding again, but now without path
-noise and measured through every axis: two compilers with the same version number
-give two different binaries; two installations of Microsoft's compiler on two
-operating systems give one.
+gone, there is one difference left between `arch` and `ubuntu-vm`: which
+`csc.dll` builds. Swap the Arch package for Microsoft's, and the numbers are the
+same across Arch Linux and Ubuntu. That is the 8/9 finding again, now without
+path noise and measured through every axis: two compilers with the same version
+number give two different binaries; two installations of Microsoft's compiler on
+two operating systems give one.
 
 Together with experiment 2: **a .NET classlib build is sensitive to exactly two
 things reprotest can reach, the build directory and the compiler.** The first is
@@ -119,16 +118,15 @@ fetching the compiler from the same source.
 ## Caveats
 
 - **`PathMap` is not free.** Debuggers now have to be told that `/_/` means the
-  source directory (Source Link or a manual mapping). Not investigated here.
-- **Only the DLL is measured.** The PDB still contains source paths, mapped to
-  `/_/`, and the compiler's identity. Whether two PDBs are identical across runs
-  has not been measured.
-- **`+fileordering` with one source file** still says little; see experiment 2.
-- **Not tested:** Peter's Mac. The prediction is `535a56fc682f…` with his
-  `dotnet-install.sh` SDK and the same `PathMap`, even though his `csc.dll` is a
-  different file (`1824569732a63f5d…`, osx-arm64), because the declared Roslyn
-  commit is the same. `[I]`
-- **Not tested:** `DebugType=none` as an alternative closure, and whether the
-  compiler channel then also disappears from the DLL.
-- `pedump` is still two different programs on the two machines; irrelevant here,
-  since no run failed.
+  source directory, either through Source Link or a manual mapping. Not
+  investigated here. - **Only the DLL is measured.** The PDB still contains
+  source paths, mapped to `/_/`, and the compiler's identity. Whether two PDBs
+  are identical across runs has not been measured. - **`+fileordering` with one
+  source file** still says little; see experiment 2. - **Not tested:** Peter's
+  Mac. The prediction is `535a56fc682f…` with his `dotnet-install.sh` SDK and
+  the same `PathMap`, even though his `csc.dll` is a different file
+  (`1824569732a63f5d…`, osx-arm64), because the declared Roslyn commit is the
+  same. `[I]` - **Not tested:** `DebugType=none` as an alternative closure, and
+  whether the compiler channel then also disappears from the DLL. - `pedump` is
+  still two different programs on the two machines; irrelevant here, since no
+  run failed.

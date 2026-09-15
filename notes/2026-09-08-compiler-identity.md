@@ -25,19 +25,17 @@ the same pinned SDK version:
 | `LANG` | `da_DK.UTF-8` | `C.UTF-8` |
 | The SDK's origin | The Arch package `dotnet-sdk-9.0 9.0.19.sdk120-1` | Microsoft's binary release via `dotnet-install.sh` |
 
-Both call themselves 9.0.120, but `dotnet --info` reveals that they are built
-from **different source revisions**. On `arch` MSBuild's commit suffix is
-identical to the SDK's commit; on `ubuntu-vm` they differ. That is the signature
-of a unified source build against components built separately.
+Both call themselves 9.0.120, but `dotnet --info` shows that they are built from
+**different source revisions**. On `arch`, MSBuild's commit suffix is identical
+to the SDK's commit. On `ubuntu-vm`, they differ. That is the signature of a
+unified source build against components built separately.
 
-The wording should therefore not be "same source, different binary", which is
-wrong. It should be: **the version number 9.0.120 identifies neither the source
-revision nor the binary.** It covers at least two commits and two compiler
-binaries.
+So the wording should not be "same source, different binary". That is wrong. It
+should be: **the version number 9.0.120 identifies neither the source revision
+nor the binary.** It covers at least two commits and two compiler binaries.
 
-And the commit field does not solve it. It is still a string stamped in during
-the build, which nothing checks against bytes. Commit is provenance, hash is
-identity.
+The commit field does not solve this. It is still a string stamped in during the
+build, with no check against the bytes. Commit is provenance. Hash is identity.
 
 ## Why `arch` only
 
@@ -53,16 +51,16 @@ not change a byte.
 
 The mirror image, Arch's SDK on Ubuntu, is effectively blocked. Arch runs glibc
 2.44, the VM 2.39 (measured 8/9), and the SDK's native parts are linked against
-the newer one on Arch. You could unpack the pacman package and try, but then you
-measure a transplant and not a distribution. It is not needed either: if the
+the newer one on Arch. We could unpack the pacman package and try, but then we
+would measure a transplant, not a distribution. It is not needed either: if the
 output is determined by the compiler and not by the machine, one direction is
 enough to show it.
 
 ## The method
 
-One variable is changed. Microsoft's 9.0.120 is downloaded **alongside** the Arch
-package, and the same source is built again on the same path on the same machine.
-Everything else is held fixed, `LANG=da_DK.UTF-8` included.
+One variable is changed. Microsoft's 9.0.120 is downloaded **alongside** the
+Arch package, and the same source is built again on the same path on the same
+machine. Everything else is held fixed, including `LANG=da_DK.UTF-8`.
 
 ```bash
 export UD=$HOME/Dev/Speciale2026/data/2026-09-08-compiler-identity/arch && mkdir -p "$UD"
@@ -82,7 +80,7 @@ picked when you point at it. `Base Path` must say
 cd /private/tmp/rb1 && env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet --info | grep -E 'Version:|Base Path'
 ```
 
-Record both compilers as files. That is the control: if Microsoft's `csc.dll` on
+Record both compilers as files. This is the control: if Microsoft's `csc.dll` on
 Arch is identical to Microsoft's `csc.dll` on the VM, the tool is the same and
 only the machine differs:
 
@@ -125,7 +123,7 @@ Investigated 8 September after the run, with `pedump` (via diffoscope) and
 `ilspycmd`.
 
 **The compilers are the same code.** Decompiled, both `csc.dll` are 1672 lines,
-and only 12 lines differ, every one of them metadata:
+and only 12 lines differ. All of them are metadata:
 
 | | Arch | Microsoft |
 | --- | --- | --- |
@@ -143,11 +141,11 @@ Both embedded PDB paths start with `/_/`, so **both Microsoft and Arch use
 `PathMap` on their own releases.** The fix WS.Phoenix lacks, the tool vendors
 apply to themselves.
 
-**And they emit identical code.** The same source built on the same path with
-each of the two compilers gave `e793b11f1e74ab42…` against `4ede5f519b3e2eef…`,
-but decompiled the two results are **0 lines different**.
+**They emit identical code.** The same source built on the same path with each
+of the two compilers gave `e793b11f1e74ab42…` against `4ede5f519b3e2eef…`, but
+decompiled the two results are **0 lines different**.
 
-The difference is 70 bytes out of 4096, sitting in five clumps:
+The difference is 70 bytes out of 4096, in five clumps:
 
 | Byte (1-indexed) | Size | Field |
 | --- | --- | --- |
@@ -174,8 +172,8 @@ artefacts still differed, because .NET's deterministic build deliberately binds
 the artefact's identity to the compiler's identity.
 
 The consequence is hard: a distribution that builds the compiler from source can
-**never** hit the vendor's artefacts, no matter that the code is the same. To
-verify a release bit for bit, you need the vendor's own compiler binary. Pinning
+**never** hit the vendor's artefacts, even when the code is the same. To verify
+a release bit for bit, you need the vendor's own compiler binary. Pinning
 "9.0.120" is not enough, and pinning the source revision is not enough either.
 
 The mechanism, that Roslyn's deterministic hash takes in the compiler's own
@@ -202,10 +200,10 @@ environment block before interpreting the result.
 ## Why it matters beyond the experiment
 
 The thesis' claim is that a version is a self-declared string with no binding to
-a binary. Here it is demonstrated on our own machine, in miniature: two
-compilers, one version number, two results. It is also a warning about the
-method. A reproducible build requires the toolchain to be identified by content,
-not by name. `global.json` pins a version number, and that is not enough.
+a binary. Here it is shown on our own machine, in miniature: two compilers, one
+version number, two results. It is also a warning about the method. A
+reproducible build requires the toolchain to be identified by content, not by
+name. `global.json` pins a version number, and that is not enough.
 
 ## Caveats
 
