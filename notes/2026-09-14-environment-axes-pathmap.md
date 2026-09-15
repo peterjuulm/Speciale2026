@@ -1,73 +1,75 @@
-# Eksperiment 2b: miljøvariationer med PathMap
+# Experiment 2b: environment variations with PathMap
 
-Kørt 14. september 2026 på `arch` (Leos laptop, Arch-SDK 14:38, Microsoft-SDK
-14:43 CEST) og `ubuntu-vm` (delt droplet, 14:38 CEST), umiddelbart efter [environment-axes](2026-09-14-environment-axes.md). Samme
-laboratorium `/private/tmp/rb1`, samme tre kildefiler, samme pinnede SDK
-9.0.120. Ordlisten står i [empty-class](2026-09-07-empty-class.md).
+Run 14 September 2026 on `arch` (Leo's laptop, Arch SDK 14:38, Microsoft SDK
+14:43 CEST) and `ubuntu-vm` (shared droplet, 14:38 CEST), right after
+[environment-axes](2026-09-14-environment-axes.md). Same lab
+`/private/tmp/rb1`, same three source files, same pinned SDK 9.0.120. The
+glossary is in [empty-class](2026-09-07-empty-class.md).
 
-Data: `data/2026-09-14-environment-axes-pathmap/arch/`, `.../ubuntu-vm/` og
-`.../arch-ms-sdk/`. Den ordrette byggekommando står i `kommando.txt` i hver
-mappe.
+Data: `data/2026-09-14-environment-axes-pathmap/arch/`, `.../ubuntu-vm/` and
+`.../arch-ms-sdk/`. The verbatim build command is in `kommando.txt` in each
+directory.
 
-Spørgsmålet: **lukker `PathMap` den ene akse der faldt, og hvad står tilbage
-når den er lukket?**
+The question: **does `PathMap` close the one axis that failed, and what is left
+once it is closed?**
 
-## Baggrund
+## Background
 
-Eksperiment 2 gav 13 verdikter som forudsagt: alt grønt undtagen
-`+build_path`. Men de tolv grønne kørsler gav tolv forskellige DLL-hashes,
-fordi reprotest bygger i en ny `/tmp/reprotest.XXXXXX/` per kørsel, og
-mappenavnet står i DLL'en via stien til PDB-filen. "Successful" betød kun
-"byg 1 og byg 2 i samme mappe er ens".
+Experiment 2 gave 13 verdicts as predicted: everything green except
+`+build_path`. But the twelve green runs gave twelve different DLL hashes,
+because reprotest builds in a new `/tmp/reprotest.XXXXXX/` per run, and the
+directory name appears in the DLL via the path to the PDB file. "Successful"
+only meant "build 1 and build 2 in the same directory are equal".
 
-## Forventning, skrevet før kørslen
+## Expectation, written before the run
 
-1. `+build_path` bliver grøn.
-2. Alle kørsler på én maskine giver **samme** hash, fordi det tilfældige
-   mappenavn ikke længere skrives ind.
-3. De to maskiner giver **forskellige** hashes, selv om begge kører 9.0.120.
-   Arch-pakkens `csc.dll` er bygget fra en anden Roslyn-commit end Microsofts,
-   jf. [compiler-identity](2026-09-08-compiler-identity.md).
-4. Bygges `arch` med Microsofts SDK fra `dotnet-install.sh` (ligger i
-   `~/.dotnet` siden 8/9), rammer den VM'ens tal.
+1. `+build_path` turns green.
+2. All runs on one machine give the **same** hash, because the random directory
+   name is no longer written in.
+3. The two machines give **different** hashes, even though both run 9.0.120. The
+   Arch package's `csc.dll` is built from a different Roslyn commit than
+   Microsoft's, see [compiler-identity](2026-09-08-compiler-identity.md).
+4. If `arch` is built with Microsoft's SDK from `dotnet-install.sh` (in
+   `~/.dotnet` since 8/9), it hits the VM's number.
 
-Hashen bliver ikke `4b3808d1…` fra eksperiment 1; det byg havde ingen `PathMap`
-og indeholder stien `/private/tmp/rb1`.
+The hash will not be `4b3808d1…` from experiment 1; that build had no `PathMap`
+and contains the path `/private/tmp/rb1`.
 
-## Kørslerne
+## The runs
 
-Eneste ændring fra eksperiment 2 er den sidste parameter til `dotnet build`:
+The only change from experiment 2 is the last parameter to `dotnet build`:
 
 ```bash
 reprotest --vary=-all,+build_path -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet build -c Release -p:PathMap=$PWD/=/_/' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll'
 ```
 
-`$PWD` udfyldes af den shell reprotest starter byggeriet i, altså med den
-mappe der faktisk bygges i. Compileren skriver så `/_/` hvor den ellers ville
-skrive mappen. Første forsøg brugte `$(MSBuildProjectDirectory)`; det virker
-ikke fra kommandolinjen, fordi MSBuild ikke udfylder egenskabsudtryk i globale
-egenskaber. Parameteren blev ignoreret, og stien stod stadig i DLL'en. `[V]`
-Kontrol af at afbildningen slog igennem:
+`$PWD` is expanded by the shell reprotest starts the build in, that is with the
+directory actually being built in. The compiler then writes `/_/` where it would
+otherwise write the directory. The first attempt used
+`$(MSBuildProjectDirectory)`; that does not work from the command line, because
+MSBuild does not expand property expressions in global properties. The parameter
+was ignored, and the path was still in the DLL. `[V]`
+Check that the mapping took effect:
 
 ```bash
 strings -n 6 bin/Release/net9.0/minlib.dll | grep pdb
 # /_/obj/Release/net9.0/minlib.pdb
 ```
 
-I en csproj svarer parameteren til:
+In a csproj the parameter corresponds to:
 
 ```xml
 <PathMap>$(MSBuildProjectDirectory)=/_/</PathMap>
 ```
 
-Tredje opsætning, `arch-ms-sdk`, sætter desuden
-`PATH=/home/leos/.dotnet:$PATH DOTNET_ROOT=/home/leos/.dotnet` foran, så det
-er Microsofts 9.0.120 der bygger. `environment.txt` viser
+The third setup, `arch-ms-sdk`, additionally puts
+`PATH=/home/leos/.dotnet:$PATH DOTNET_ROOT=/home/leos/.dotnet` in front, so it is
+Microsoft's 9.0.120 that builds. `environment.txt` shows
 `Base Path: /home/leos/.dotnet/sdk/9.0.120/`.
 
-## Resultat
+## Result
 
-| Akse | `arch`, Arch-SDK | `arch`, Microsoft-SDK | `ubuntu-vm` |
+| Axis | `arch`, Arch SDK | `arch`, Microsoft SDK | `ubuntu-vm` |
 | --- | --- | --- | --- |
 | `rt-1-none` | successful | successful | successful |
 | `rt-2-umask` | successful | successful | successful |
@@ -76,57 +78,57 @@ er Microsofts 9.0.120 der bygger. `environment.txt` viser
 | `rt-5-build_path` | **successful** | **successful** | **successful** |
 | `rt-6-time` | successful | successful | successful |
 | `rt-7-fileordering` | n/a | n/a | successful |
-| DLL-hash, alle kørsler | `0b8f72d28cfd…` | `535a56fc682f…` | `535a56fc682f…` |
+| DLL hash, all runs | `0b8f72d28cfd…` | `535a56fc682f…` | `535a56fc682f…` |
 
-19 kørsler, 19 grønne, og tre hash-kolonner med ét tal i hver. `[V]`
-(sidste linje i hver `rt-*.log`)
+19 runs, 19 green, and three hash columns with one number in each. `[V]`
+(last line in each `rt-*.log`)
 
-| Opsætning | `csc.dll` sha256 | Roslyn-commit | Hash |
+| Setup | `csc.dll` sha256 | Roslyn commit | Hash |
 | --- | --- | --- | --- |
-| `arch`, Arch-pakken | `1b7543aa709363b6…` | `d0558bff…` | `0b8f72d28cfd…` |
+| `arch`, the Arch package | `1b7543aa709363b6…` | `d0558bff…` | `0b8f72d28cfd…` |
 | `arch`, Microsoft | `644a4d336dcd11a7…` | `fc52718e…` | `535a56fc682f…` |
 | `ubuntu-vm`, Microsoft | `644a4d336dcd11a7…` | `fc52718e…` | `535a56fc682f…` |
 
-Alle fire forventninger holdt.
+All four expectations held.
 
-## Fortolkning
+## Interpretation
 
-**`PathMap` lukker stien, og kun stien.** `+build_path` går fra rød til grøn
-med én parameter. Ingen anden akse ændrer sig, hvilket er ventet, for de var
-grønne i forvejen.
+**`PathMap` closes the path, and only the path.** `+build_path` goes from red to
+green with one parameter. No other axis changes, which is expected, since they
+were green already.
 
-**Hash-kolonnen kollapser fra tolv tal til ét per maskine.** Det er det
-egentlige resultat. reprotests verdikt siger "byg 1 lig byg 2"; den ens hash
-på tværs af seks uafhængige kørsler i seks tilfældige mapper siger "ethvert
-byg lig ethvert byg". `arch`-hashen er desuden identisk med et byg lavet i
-hånden i en fjerde mappe uden for reprotest. `[V]`
+**The hash column collapses from twelve numbers to one per machine.** That is the
+real result. reprotest's verdict says "build 1 equals build 2"; the identical
+hash across six independent runs in six random directories says "any build equals
+any build". The `arch` hash is also identical to a build made by hand in a fourth
+directory outside reprotest. `[V]`
 
-**Det der står tilbage mellem maskinerne, er oversætterens identitet.** Med
-stien væk er der én forskel tilbage mellem `arch` og `ubuntu-vm`: hvilken
-`csc.dll` der bygger. Skiftes Arch-pakkens til Microsofts, er tallene ens på
-tværs af Arch Linux og Ubuntu. Det er 8/9-fundet igen, men nu uden sti-støj
-og målt gennem alle akser: to compilere med samme versionsnummer giver to
-forskellige binærer; to installationer af Microsofts compiler på to
-styresystemer giver én.
+**What is left between the machines is the compiler's identity.** With the path
+gone there is one difference left between `arch` and `ubuntu-vm`: which `csc.dll`
+builds. Swap the Arch package's for Microsoft's, and the numbers are the same
+across Arch Linux and Ubuntu. That is the 8/9 finding again, but now without path
+noise and measured through every axis: two compilers with the same version number
+give two different binaries; two installations of Microsoft's compiler on two
+operating systems give one.
 
-Sammen med eksperiment 2: **et .NET-classlib-byg er følsomt over for præcis to
-ting reprotest kan nå, byggemappen og oversætteren.** Den første lukkes med
-`PathMap`. Den anden lukkes ikke af et versionsnummer, men af at hente
-oversætteren fra samme kilde.
+Together with experiment 2: **a .NET classlib build is sensitive to exactly two
+things reprotest can reach, the build directory and the compiler.** The first is
+closed with `PathMap`. The second is not closed by a version number, but by
+fetching the compiler from the same source.
 
-## Forbehold
+## Caveats
 
-- **`PathMap` er ikke gratis.** Fejlsøgere skal nu have fortalt at `/_/` betyder
-  kildemappen (Source Link eller manuel afbildning). Ikke undersøgt her.
-- **Kun DLL'en måles.** PDB'en indeholder stadig kildestier, afbildet til
-  `/_/`, og compilerens identitet. Om to PDB'er er identiske på tværs af
-  kørsler er ikke målt.
-- **`+fileordering` med én kildefil** siger stadig lidt; se eksperiment 2.
-- **Ikke testet:** Peters Mac. Forudsigelsen er `535a56fc682f…` med hans
-  `dotnet-install.sh`-SDK og samme `PathMap`, selv om hans `csc.dll` er en anden
-  fil (`1824569732a63f5d…`, osx-arm64), fordi den erklærede Roslyn-commit er
-  den samme. `[I]`
-- **Ikke testet:** `DebugType=none` som alternativ lukning, og om
-  compiler-kanalen så også forsvinder fra DLL'en.
-- `pedump` er stadig to forskellige programmer på de to maskiner; irrelevant
-  her, da ingen kørsel faldt.
+- **`PathMap` is not free.** Debuggers now have to be told that `/_/` means the
+  source directory (Source Link or a manual mapping). Not investigated here.
+- **Only the DLL is measured.** The PDB still contains source paths, mapped to
+  `/_/`, and the compiler's identity. Whether two PDBs are identical across runs
+  has not been measured.
+- **`+fileordering` with one source file** still says little; see experiment 2.
+- **Not tested:** Peter's Mac. The prediction is `535a56fc682f…` with his
+  `dotnet-install.sh` SDK and the same `PathMap`, even though his `csc.dll` is a
+  different file (`1824569732a63f5d…`, osx-arm64), because the declared Roslyn
+  commit is the same. `[I]`
+- **Not tested:** `DebugType=none` as an alternative closure, and whether the
+  compiler channel then also disappears from the DLL.
+- `pedump` is still two different programs on the two machines; irrelevant here,
+  since no run failed.

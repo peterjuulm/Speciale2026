@@ -1,0 +1,11 @@
+# En kørsel = clean + restore + build. obj/ rummer restore-output (project.assets.json),
+# så restore kan ikke adskilles fra build når obj/ slettes imellem.
+cd /private/tmp/rb1-phoenix
+export DOTNET_ROOT=$HOME/.dotnet PATH=$HOME/.dotnet:$PATH DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1
+for n in 1 2; do
+  rm -rf src/*/bin src/*/obj tests/*/bin tests/*/obj
+  dotnet restore WS.Phoenix.sln
+  dotnet build WS.Phoenix.sln -c Release --no-restore -p:SkipSpaBuild=true
+  find src tests -path '*/bin/Release/*' -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > build$n.sha256
+done
+diff build1.sha256 build2.sha256

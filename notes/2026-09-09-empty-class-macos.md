@@ -1,103 +1,105 @@
-# Eksperiment 1 på macOS: det tredje miljø
+# Experiment 1 on macOS: the third environment
 
-Køres 9. september 2026 på `mac` (Peters laptop, Apple Silicon). Samme
-laboratorium og samme tre filer som [7. september](2026-09-07-empty-class.md);
-ordlisten står dér. Protokollen herunder er den macOS-specifikke udgave og kan
-læses alene.
+Run 9 September 2026 on `mac` (Peter's laptop, Apple Silicon). Same lab and the
+same three files as [7 September](2026-09-07-empty-class.md); the glossary is
+there. The protocol below is the macOS-specific version and can be read on its
+own.
 
 Data: `data/2026-09-09-empty-class/macos/`.
 
-Spørgsmålet: **kommer `4b3808d1…` ud på et tredje styresystem og en anden
-CPU-arkitektur?**
+The question: **does `4b3808d1…` come out on a third operating system and a
+different CPU architecture?**
 
-## Hvorfor det er værd at køre nu
+## Why it is worth running now
 
-[Compiler-identity](2026-09-08-compiler-identity.md) viste at outputtet bestemmes
-af SDK'en og ikke af maskinen: Microsofts 9.0.120 på Leos Arch-maskine gav Peters
-præcise bytes, mens kerne, distribution, glibc og `LANG` forblev Leos. Men begge
-de to hidtidige miljøer er **Linux på x64**. Hypotesen fra 7. september — at det
-managede lag bærer på tværs af styresystemer, fordi en klassebiblioteks-DLL kun
-indeholder IL — er dermed stadig ikke prøvet mod noget andet end Linux.
+[Compiler-identity](2026-09-08-compiler-identity.md) showed that the output is
+determined by the SDK and not by the machine: Microsoft's 9.0.120 on Leo's Arch
+machine gave Peter's exact bytes, while kernel, distribution, glibc and `LANG`
+stayed Leo's. But both existing environments are **Linux on x64**. The hypothesis
+from 7 September, that the managed layer carries across operating systems because
+a class library DLL contains only IL, has therefore still not been tested against
+anything but Linux.
 
-`mac` er den prøve. To ting ændrer sig på én gang i forhold til `ubuntu-vm`:
+`mac` is that test. Two things change at once compared to `ubuntu-vm`:
 
 | | `ubuntu-vm` | `mac` |
 | --- | --- | --- |
-| Styresystem | Ubuntu 24.04 | macOS 14.6 (Darwin 23.6.0) |
+| Operating system | Ubuntu 24.04 | macOS 14.6 (Darwin 23.6.0) |
 | CPU | x86-64 | arm64 (Apple Silicon) |
 | RID | `linux-x64` | `osx-arm64` |
 
-To akser ad gangen er normalt en dårlig idé. Her er det forsvarligt, fordi
-udfaldet kun har to interessante værdier: rammer hashen, er begge akser udelukket
-i samme kørsel. Rammer den ikke, er kørslen ikke konklusionen men startskuddet —
-så skal de skilles ad.
+Two axes at once is normally a bad idea. Here it is defensible, because the
+outcome has only two interesting values: if the hash lands, both axes are ruled
+out in the same run. If it does not, the run is not the conclusion but the
+starting shot, and then they have to be separated.
 
-## Kontrollen der afgør om målingen overhovedet svarer
+## The control that decides whether the measurement answers at all
 
-`csc.dll` **skal** være `644a4d336dcd11a7…` — samme fil som på `ubuntu-vm` og
-samme fil som Microsofts SDK gav på `arch`.
+`csc.dll` **must** be `644a4d336dcd11a7…`, the same file as on `ubuntu-vm` and
+the same file Microsoft's SDK gave on `arch`.
 
-Roslyn-oversætteren i `Roslyn/bincore` er en manageret assembly og bør derfor
-være de samme bytes i alle Microsofts SDK'er uanset RID. Bør. Er den det ikke,
-har vi målt en tredje oversætter, og så siger kørslen intet om OS og CPU — den
-gentager bare fundet fra 8. september i en ny variant. Hashen tages derfor
-**før** byggeriet, ikke efter.
+The Roslyn compiler in `Roslyn/bincore` is a managed assembly and should
+therefore be the same bytes in all of Microsoft's SDKs regardless of RID. Should.
+If it is not, we have measured a third compiler, and then the run says nothing
+about OS and CPU; it just repeats the finding from 8 September in a new variant.
+The hash is therefore taken **before** the build, not after.
 
-## Forventning, skrevet før kørslen
+## Expectation, written before the run
 
-| Hvad | Forventet |
+| What | Expected |
 | --- | --- |
-| `sources.txt`, tre filer | `2a766d57…` `079f65f3…` `8628a3a4…` |
-| `csc.dll` | `644a4d336dcd11a7…` (som `ubuntu-vm`) |
+| `sources.txt`, three files | `2a766d57…` `079f65f3…` `8628a3a4…` |
+| `csc.dll` | `644a4d336dcd11a7…` (as on `ubuntu-vm`) |
 | `minlib.dll`, build 1 | `4b3808d1cc1d642577f60a054905f5f065aab8b9aea1765b407fc583cef70d33` |
-| `minlib.dll`, build 2 | som build 1 |
+| `minlib.dll`, build 2 | as build 1 |
 
-Kommer der andre tal ud, er det et fund og ikke en fejl. Afsnittet **Sådan læses
-udfaldet** nederst siger hvad hvert af dem betyder.
+If other numbers come out, that is a finding and not an error. The section **How
+to read the outcome** at the bottom says what each of them means.
 
-## Fire ting hvor macOS afviger fra Linux-protokollen
+## Four places where macOS differs from the Linux protocol
 
-1. **`shasum -a 256` i stedet for `sha256sum`.** Samme algoritme, samme
-   udskriftsformat, andet kommandonavn. Formatet er det samme, så
-   `shasum -a 256 -c` kan læse Leos og VM'ens evidensfiler direkte.
-2. **Ingen reprotest og ingen diffoscope.** Måling 2 (miljøakserne) kører ikke
-   her; det er Linux-værktøj. `mac` bidrager med måling 1 og 3.
-3. **`/private/tmp` findes allerede.** Ingen `sudo mkdir`. Til gengæld er det
-   macOS' egen `/tmp`, og den ryddes af `periodic`-jobbet for filer der ikke er
-   rørt i tre døgn. Laboratoriet kan altså være væk næste uge — kontrollér
-   kildehashene igen inden en senere kørsel i stedet for at gå ud fra at mappen
-   står som du forlod den.
-4. **To `dotnet` på maskinen.** Systemets ligger i `/usr/local/share/dotnet`
-   (SDK 9.0.102, host 9.0.1, verificeret 9/9). Den pinnede 9.0.120 lander i
-   `~/.dotnet`, som ikke er på PATH. Samme problem som på VM'en, hvor apt havde
-   sin egen — og samme løsning: navngiv den eksplicit i hver kommando.
+1. **`shasum -a 256` instead of `sha256sum`.** Same algorithm, same output
+   format, different command name. The format is the same, so `shasum -a 256 -c`
+   can read Leo's and the VM's evidence files directly.
+2. **No reprotest and no diffoscope.** Measurement 2 (the environment axes) does
+   not run here; it is a Linux tool. `mac` contributes measurement 1 and 3.
+3. **`/private/tmp` already exists.** No `sudo mkdir`. On the other hand it is
+   macOS' own `/tmp`, and it is cleared by the `periodic` job for files untouched
+   for three days. The lab may therefore be gone next week: check the source
+   hashes again before a later run instead of assuming the directory is as you
+   left it.
+4. **Two `dotnet` on the machine.** The system one is in
+   `/usr/local/share/dotnet` (SDK 9.0.102, host 9.0.1, verified 9/9). The pinned
+   9.0.120 lands in `~/.dotnet`, which is not on PATH. Same problem as on the VM,
+   where apt had its own, and the same solution: name it explicitly in every
+   command.
 
-## Trin 1: SDK'en, side om side
+## Step 1: the SDK, side by side
 
-Arch-kørslen 8. september lagde Microsofts SDK ved siden af distributionens i
-stedet for at erstatte den. Her gøres det samme, af samme grund: eksperimentet
-tilføjer en SDK og fjerner ingen, så maskinen kan bruges til andet bagefter.
+The Arch run on 8 September put Microsoft's SDK beside the distribution's instead
+of replacing it. The same is done here, for the same reason: the experiment adds
+an SDK and removes none, so the machine can be used for other things afterwards.
 
 ```bash
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --version 9.0.120
 ```
 
-Scriptet vælger `osx-arm64` af sig selv på Apple Silicon. **Lad det gøre det.**
-Det er hele pointen med kørslen; `--architecture x64` ville give en
-Rosetta-oversætter og måle noget andet.
+The script picks `osx-arm64` on its own on Apple Silicon. **Let it.** That is the
+whole point of the run; `--architecture x64` would give a Rosetta compiler and
+measure something else.
 
-Kontrollér at den bliver valgt når man peger på den. `Base Path` skal sige
-`/Users/peterjuulmoller/.dotnet/sdk/9.0.120/`, og `Version:` skal sige `9.0.120`:
+Check that it is picked when you point at it. `Base Path` must say
+`/Users/peterjuulmoller/.dotnet/sdk/9.0.120/`, and `Version:` must say `9.0.120`:
 
 ```bash
 cd /private/tmp/rb1 && env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet --info | grep -E 'Version:|Base Path|RID'
 ```
 
-Står der `9.0.102` eller `/usr/local/share/dotnet`, slog `PATH` ikke igennem, og
-alt herefter måler den forkerte oversætter. Stop og find ud af hvorfor, før du
-bygger.
+If it says `9.0.102` or `/usr/local/share/dotnet`, `PATH` did not take effect, and
+everything after this measures the wrong compiler. Stop and find out why before
+you build.
 
-## Trin 2: resultatmappen
+## Step 2: the result directory
 
 zsh:
 
@@ -105,27 +107,28 @@ zsh:
 export UD=$HOME/Speciale2026/data/2026-09-09-empty-class/macos && mkdir -p "$UD" && echo $UD && ls -d "$UD"
 ```
 
-Variablen forsvinder ved ny fane. Læg linjen i `~/.zshrc` så længe eksperimentet
-kører. Er `$UD` tom, bliver `tee -a "$UD/hashes.txt"` til `tee -a /hashes.txt`
-og fejler med `Permission denied`.
+The variable disappears with a new tab. Put the line in `~/.zshrc` for as long as
+the experiment runs. If `$UD` is empty, `tee -a "$UD/hashes.txt"` becomes
+`tee -a /hashes.txt` and fails with `Permission denied`.
 
-## Trin 3: laboratoriet
+## Step 3: the lab
 
-**Allerede oprettet og verificeret 9. september 2026, før kørslen.** De tre filer
-står i `/private/tmp/rb1` med hashene `2a766d57…`, `079f65f3…`, `8628a3a4…`,
-kontrolleret mod `arch`' egen evidensfil fra 8. september med `shasum -a 256 -c`.
-Kontrollen er gemt i `data/2026-09-09-empty-class/macos/sources.txt`.
+**Already created and verified 9 September 2026, before the run.** The three
+files are in `/private/tmp/rb1` with the hashes `2a766d57…`, `079f65f3…`,
+`8628a3a4…`, checked against `arch`'s own evidence file from 8 September with
+`shasum -a 256 -c`. The check is saved in
+`data/2026-09-09-empty-class/macos/sources.txt`.
 
-Skal laboratoriet genskabes — fordi macOS har ryddet `/private/tmp`, eller fordi
-kørslen gentages på en anden maskine — er det de her fire kommandoer:
+If the lab has to be recreated, because macOS has cleared `/private/tmp`, or
+because the run is repeated on another machine, these are the four commands:
 
 ```bash
 mkdir -p /private/tmp/rb1 && cd /private/tmp/rb1 && pwd -P
 ```
 
-Der skal stå `/private/tmp/rb1`, ikke `/tmp/rb1`. Byggestien skrives ind i den
-færdige DLL, så den skal være den samme fysiske streng som på de to andre
-maskiner. `pwd -P` følger symlinket til ende.
+It must say `/private/tmp/rb1`, not `/tmp/rb1`. The build path is written into
+the finished DLL, so it has to be the same physical string as on the two other
+machines. `pwd -P` follows the symlink all the way.
 
 ```bash
 printf '<Project Sdk="Microsoft.NET.Sdk">\n  <PropertyGroup>\n    <TargetFramework>net9.0</TargetFramework>\n  </PropertyGroup>\n</Project>\n' > /private/tmp/rb1/minlib.csproj
@@ -139,211 +142,216 @@ printf 'namespace Minlib;\n\npublic class Beregning\n{\n    public int Tal() => 
 printf '{\n  "sdk": {\n    "version": "9.0.120",\n    "rollForward": "disable"\n  }\n}\n' > /private/tmp/rb1/global.json
 ```
 
-Og kontrollen, hvor gårsdagens evidensfil er dagens test:
+And the check, where yesterday's evidence file is today's test:
 
 ```bash
 cd /private/tmp/rb1 && shasum -a 256 -c "$HOME/Speciale2026/data/2026-09-08-empty-class-v2/arch/sources.txt"
 ```
 
-Tre gange `OK`. Ellers: stop.
+Three times `OK`. Otherwise: stop.
 
-## Trin 4: miljøblokken, før målingen
+## Step 4: the environment block, before the measurement
 
-Fra projektmappen, så `global.json` gælder — uden for `/private/tmp/rb1` beskriver
-blokken en anden SDK end den der bygger:
+From the project directory, so `global.json` applies. Outside `/private/tmp/rb1`
+the block describes a different SDK from the one that builds:
 
 ```bash
 cd /private/tmp/rb1 && env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet --info > "$UD/environment.txt"
 ```
 
-Maskinen selv. `sw_vers` er macOS' svar på distributionsfilen og hører med, fordi
-det er den akse kørslen prøver:
+The machine itself. `sw_vers` is macOS' answer to the distribution file and
+belongs here, because that is the axis the run tests:
 
 ```bash
 uname -srm >> "$UD/environment.txt"; sw_vers >> "$UD/environment.txt"; umask >> "$UD/environment.txt"; locale | head -1 >> "$UD/environment.txt"; command -v dotnet >> "$UD/environment.txt"; echo "$HOME/.dotnet/dotnet" >> "$UD/environment.txt"
 ```
 
-Og oversætteren, som filer og ikke som versionsnummer — kontrollen fra afsnittet
-ovenfor:
+And the compiler, as files and not as a version number, the control from the
+section above:
 
 ```bash
 shasum -a 256 "$HOME/.dotnet/sdk/9.0.120/Roslyn/bincore/csc.dll" | tee -a "$UD/environment.txt"
 ```
 
-Der skal stå `644a4d336dcd11a7…`. Gør der ikke det, så skriv tallet ned og læs
-**Sådan læses udfaldet** før du bygger videre.
+It must say `644a4d336dcd11a7…`. If it does not, write the number down and read
+**How to read the outcome** before building further.
 
-## Trin 5: måling 1, to rene builds
-
-```bash
-cd /private/tmp/rb1; rm -rf bin obj; env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet build -c Release; shasum -a 256 bin/Release/net9.0/minlib.dll | tee -a "$UD/hashes.txt"
-```
+## Step 5: measurement 1, two clean builds
 
 ```bash
 cd /private/tmp/rb1; rm -rf bin obj; env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet build -c Release; shasum -a 256 bin/Release/net9.0/minlib.dll | tee -a "$UD/hashes.txt"
 ```
 
-`rm -rf bin obj` og ikke bare `bin`: `bin/`-DLL'en er en kopi af `obj/`-DLL'en,
-så uden `obj` med i oprydningen genbruger man forrige byg og måler ingenting.
+```bash
+cd /private/tmp/rb1; rm -rf bin obj; env PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" dotnet build -c Release; shasum -a 256 bin/Release/net9.0/minlib.dll | tee -a "$UD/hashes.txt"
+```
 
-Fejler byggeriet med `SDK 9.0.120 not found`, ramte kommandoen
-`/usr/local/share/dotnet/dotnet`. Det er `rollForward: disable` der gør sit
-arbejde, og fejlen er dermed en god nyhed: pinnet virker. Ret PATH og kør igen.
+`rm -rf bin obj` and not just `bin`: the `bin/` DLL is a copy of the `obj/` DLL,
+so without `obj` in the cleanup you reuse the previous build and measure nothing.
 
-### Byggestien inde i binæren
+If the build fails with `SDK 9.0.120 not found`, the command hit
+`/usr/local/share/dotnet/dotnet`. That is `rollForward: disable` doing its job,
+and the error is therefore good news: the pin works. Fix PATH and run again.
+
+### The build path inside the binary
 
 ```bash
 cd /private/tmp/rb1 && env LC_ALL=C grep -ao '/[A-Za-z0-9_/.-]*rb1[A-Za-z0-9_/.-]*' bin/Release/net9.0/minlib.dll | sort -u
 ```
 
-Der skal stå `/private/tmp/rb1/obj/Release/net9.0/minlib.pdb`. Står der
-`/tmp/rb1/…`, blev der bygget gennem symlinket, og så kan hashen ikke ramme.
+It must say `/private/tmp/rb1/obj/Release/net9.0/minlib.pdb`. If it says
+`/tmp/rb1/…`, the build went through the symlink, and then the hash cannot land.
 
-## Trin 6: gem det
+## Step 6: save it
 
 ```bash
 cd ~/Speciale2026 && git add data notes && git commit -m "Experiment 1: empty class, macOS run" && git pull --rebase && git push
 ```
 
-## Resultat
+## Result
 
-Kørt 9. september 2026.
+Run 9 September 2026.
 
-| Hvad | Forventet | Målt på `mac` |
+| What | Expected | Measured on `mac` |
 | --- | --- | --- |
-| `sources.txt`, tre filer | `2a766d57…` `079f65f3…` `8628a3a4…` | verificeret |
-| `csc.dll` | `644a4d336dcd11a7…` | **`1824569732a63f5d…`** — afveg |
+| `sources.txt`, three files | `2a766d57…` `079f65f3…` `8628a3a4…` | verified |
+| `csc.dll` | `644a4d336dcd11a7…` | **`1824569732a63f5d…`**, differed |
 | `minlib.dll`, build 1 | `4b3808d1…` | `4b3808d1…` |
-| `minlib.dll`, build 2 | som build 1 | `4b3808d1…` |
-| Indlejret PDB-sti | `/private/tmp/rb1/obj/…` | `/private/tmp/rb1/obj/Release/net9.0/minlib.pdb` |
+| `minlib.dll`, build 2 | as build 1 | `4b3808d1…` |
+| Embedded PDB path | `/private/tmp/rb1/obj/…` | `/private/tmp/rb1/obj/Release/net9.0/minlib.pdb` |
 
-SDK'en løste til `Base Path: /Users/peterjuulmoller/.dotnet/sdk/9.0.120/`,
-`RID: osx-arm64`, host 9.0.19 — samme host som `ubuntu-vm`. Fuld blok i
+The SDK resolved to `Base Path: /Users/peterjuulmoller/.dotnet/sdk/9.0.120/`,
+`RID: osx-arm64`, host 9.0.19, the same host as `ubuntu-vm`. Full block in
 `data/2026-09-09-empty-class/macos/environment.txt`.
 
-## Fortolkning
+## Interpretation
 
-**Begge dele på én gang: kontrollen faldt, og hashen ramte alligevel.**
+**Both at once: the control failed, and the hash landed anyway.**
 
-Det udfald stod ikke i nogen af de tre kolonner ovenfor. Forventningen var at en
-afvigende `csc.dll` ville betyde at vi målte en tredje oversætter og derfor ikke
-kunne svare på OS-spørgsmålet. Den slutning var forkert, og det er kørslens
-egentlige fund.
+That outcome was in none of the three columns above. The expectation was that a
+differing `csc.dll` would mean we were measuring a third compiler and therefore
+could not answer the OS question. That inference was wrong, and that is the run's
+real finding.
 
-**1. Styresystem og CPU er udelukket.** Tre miljøer, to styresystemer, to
-CPU-arkitekturer, ét tal. `minlib.dll` blev `4b3808d1…` på macOS 14.6 arm64 —
-byte for byte det samme som på Ubuntu x86-64. Hypotesen fra 7. september holder:
-det managede lag bærer på tværs. Det er det stærkeste resultat i projektet
-indtil nu.
+**1. Operating system and CPU are ruled out.** Three environments, two operating
+systems, two CPU architectures, one number. `minlib.dll` came out `4b3808d1…` on
+macOS 14.6 arm64, byte for byte the same as on Ubuntu x86-64. The hypothesis from
+7 September holds: the managed layer carries across. It is the strongest result
+in the project so far.
 
-**2. Oversætterens bytes bestemmer ikke outputtet — dens erklærede identitet
-gør.** Der findes nu tre `csc.dll` bag strengen `9.0.120`:
+**2. The compiler's bytes do not decide the output, its declared identity does.**
+There are now three `csc.dll` behind the string `9.0.120`:
 
 | | `csc.dll` | SDK Commit | MSBuild | Roslyn | `minlib.dll` |
 | --- | --- | --- | --- | --- | --- |
-| Arch-pakken | `1b7543aa…` | `d0558bff3d` | `+d0558bff3` | `+d0558bff…` (`dotnet/dotnet`) | `541bed82…` |
+| The Arch package | `1b7543aa…` | `d0558bff3d` | `+d0558bff3` | `+d0558bff…` (`dotnet/dotnet`) | `541bed82…` |
 | Microsoft linux-x64 | `644a4d33…` | `3f97250e38` | `+07da1b9a8` | `+fc52718e…` (`dotnet/roslyn`) | `4b3808d1…` |
 | Microsoft osx-arm64 | `1824569732a63f5d…` | `3f97250e38` | `+07da1b9a8` | `+fc52718e…` (`dotnet/roslyn`) | `4b3808d1…` |
 
-De to nederste er **forskellige filer med identisk erklæret identitet** — hver
-eneste streng er den samme, SDK-commit, MSBuild-commit, Roslyn-version,
-commit-hash og host (`9.0.19` / `8381bdb01f`) — og de gav samme output. Den
-øverste har andre strenge og gav et andet output. Det er identitetsstrengene der
-følger med ud i artefaktet, ikke filens hash.
+The bottom two are **different files with identical declared identity**. Every
+single string is the same: SDK commit, MSBuild commit, Roslyn version, commit
+hash and host (`9.0.19` / `8381bdb01f`), and they gave the same output. The top
+one has different strings and gave different output. It is the identity strings
+that travel out into the artefact, not the file's hash.
 
-Det er den kontrafaktiske sag 8. september ikke kunne levere.
+That is the counterfactual case 8 September could not deliver.
 
-Compiler-identity gjorde det rigtige indgreb: Microsofts 9.0.120 hentet ned ved
-siden af Arch-pakken, samme pin, samme sti, samme maskine. Den kørsel afgjorde at
-**SDK'en** bestemmer outputtet og ikke maskinen. Men den kunne ikke afgøre
-*hvilken egenskab ved SDK'en* der gør det, og grunden står i dens egen
-`compilers.txt`: Microsofts `csc.dll` på `arch` var `644a4d33…` — **byte-identisk**
-med VM'ens. Bytes og strenge fulgtes ad og passede begge. To forklaringer —
-"oversætterens bytes bestemmer" og "oversætterens erklærede identitet bestemmer"
-— forudsiger derfor begge `4b3808d1…` for den kørsel. Den bekræfter dem begge og
-adskiller dem ikke.
+Compiler-identity made the right intervention: Microsoft's 9.0.120 downloaded
+beside the Arch package, same pin, same path, same machine. That run settled that
+**the SDK** decides the output and not the machine. But it could not settle
+*which property of the SDK* does it, and the reason is in its own
+`compilers.txt`: Microsoft's `csc.dll` on `arch` was `644a4d33…`,
+**byte-identical** with the VM's. Bytes and strings travelled together and both
+fitted. Two explanations, "the compiler's bytes decide" and "the compiler's
+declared identity decides", therefore both predict `4b3808d1…` for that run. It
+confirms both and separates neither.
 
-`osx-arm64` er det første tilfælde hvor de to forklaringer forudsiger noget
-forskelligt: samme strenge, andre bytes. Byte-forklaringen forudsiger en ny hash,
-identitetsforklaringen forudsiger `4b3808d1…`. Der kom `4b3808d1…`.
+`osx-arm64` is the first case where the two explanations predict something
+different: same strings, different bytes. The byte explanation predicts a new
+hash, the identity explanation predicts `4b3808d1…`. `4b3808d1…` came out.
 
-Forventningsafsnittet i dette notat fulgte i øvrigt byte-forklaringen — kørslen
-var gated på at `csc.dll` skulle være `644a4d33…`, og et afvig var på forhånd
-skrevet ned som "så måler vi en tredje oversætter og kan ikke svare på
-OS-spørgsmålet". Det var forkert, og det står deroppe som det blev skrevet.
+The expectation section in this note followed the byte explanation: the run was
+gated on `csc.dll` being `644a4d33…`, and a deviation had been written down in
+advance as "then we are measuring a third compiler and cannot answer the OS
+question". That was wrong, and it stands up there as it was written.
 
-Mekanismen bag byteforskellen er sandsynligvis ReadyToRun: `csc.dll` på `mac`
-indeholder en `RTR`-signatur, altså AOT-oversat native kode, og den er
-arkitekturspecifik. Samme IL og samme metadata, forskelligt native lag. Det
-forklarer hvorfor filerne kan afvige uden at outputtet gør.
+The mechanism behind the byte difference is probably ReadyToRun: `csc.dll` on
+`mac` contains an `RTR` signature, that is AOT-compiled native code, and it is
+architecture-specific. Same IL and same metadata, different native layer. That
+explains how the files can differ without the output differing.
 
-### Hvad det retter i konklusionen fra 8. september
+### What this corrects in the conclusion from 8 September
 
-[Compiler-identity](2026-09-08-compiler-identity.md) og
-[dagens fund](2026-09-08-dagens-fund.md) konkluderede at "bit-identitet er
-strengere end kode-identitet", og at .NET's deterministiske byg binder
-artefaktets identitet til **oversætterens identitet** forstået som dens bytes.
-Formuleringen skal strammes:
+[Compiler-identity](2026-09-08-compiler-identity.md) and
+[the day's findings](2026-09-08-findings.md) concluded that "bit identity is
+stricter than code identity", and that .NET's deterministic build binds the
+artefact's identity to **the compiler's identity** understood as its bytes. The
+wording has to be tightened:
 
-- **Kravet er ikke bit-identisk oversætterbinær.** Det er demonstreret her: en
-  anden binær ramte samme artefakt. Kravet er samme Roslyn-version **og** samme
-  commit-hash, som er de strenge der skrives ind i PDB'en.
-- **Konsekvensen for en distribution står ved magt, men af en anden grund.** Arch
-  kan ikke ramme Microsofts artefakter — ikke fordi de byggede en anden binær,
-  men fordi de byggede fra et andet kildetræ og derfor stempler en anden
-  commit-streng ind. Byggede de fra `dotnet/roslyn` på samme commit, tyder
-  resultatet her på at de kunne ramme, uanset at binæren ville afvige.
-- **Forbeholdet fra 8/9 om mekanismen er dermed indfriet på ét punkt og skærpet
-  på et andet.** Det var korrekt at Roslyns deterministiske hash inddrager
-  oversætterens identitet. Det var forkert at læse "identitet" som "bytes".
+- **The requirement is not a bit-identical compiler binary.** That is
+  demonstrated here: a different binary hit the same artefact. The requirement is
+  the same Roslyn version **and** the same commit hash, which are the strings
+  written into the PDB.
+- **The consequence for a distribution stands, but for a different reason.** Arch
+  cannot hit Microsoft's artefacts, not because they built a different binary,
+  but because they built from a different source tree and therefore stamp in a
+  different commit string. If they built from `dotnet/roslyn` at the same commit,
+  the result here suggests they could hit, even though the binary would differ.
+- **The caveat from 8/9 about the mechanism is therefore met on one point and
+  sharpened on another.** It was correct that Roslyn's deterministic hash takes
+  in the compiler's identity. It was wrong to read "identity" as "bytes".
 
-Det er stadig en observation og ikke en aflæsning af Roslyns kilde. Men den
-hviler nu på tre oversættere og tre kørsler i stedet for to, og den ene af de tre
-er netop det kontrafaktiske tilfælde der skiller de to forklaringer ad.
+It is still an observation and not a reading of Roslyn's source. But it now rests
+on three compilers and three runs instead of two, and one of the three is exactly
+the counterfactual case that separates the two explanations.
 
-### Forbehold
+### Caveats
 
-- **R2R er sluttet, ikke verificeret mod Linux-filen.** `RTR`-signaturen er målt i
-  `mac`-udgaven; at Linux-udgaven har den samme med x64-kode i stedet, er
-  antaget. Det afgøres ved at hashe IL-delen af begge filer, ikke hele filen.
-- **Kun én commit prøvet.** At samme commit giver samme output, er vist for
-  `fc52718e…` på to platforme. Om det generaliserer, er ikke prøvet.
-- **Host og RID fulgtes ad med SDK'en igen.** `Host: 9.0.19` er tilfældigvis den
-  samme som `ubuntu-vm`, så host-versionen er stadig ikke uafhængigt udelukket —
-  den er bare ikke længere mistænkt, da alt andet varierede omkring den.
-- Samme afgrænsninger som 7. september: kun `dotnet build`, ingen pakning, ingen
-  arkiver, ingen afhængigheder, én tom klasse.
+- **R2R is inferred, not verified against the Linux file.** The `RTR` signature
+  is measured in the `mac` build; that the Linux build has the same with x64 code
+  instead is assumed. It is settled by hashing the IL part of both files, not the
+  whole file.
+- **Only one commit tested.** That the same commit gives the same output is shown
+  for `fc52718e…` on two platforms. Whether it generalises has not been tested.
+- **Host and RID travelled with the SDK again.** `Host: 9.0.19` happens to be the
+  same as `ubuntu-vm`, so the host version is still not independently ruled out;
+  it is just no longer a suspect, since everything else varied around it.
+- Same boundaries as 7 September: only `dotnet build`, no packing, no archives,
+  no dependencies, one empty class.
 
-## Sådan læses udfaldet
+## How to read the outcome
 
-**`csc.dll` rammer, og `minlib.dll` bliver `4b3808d1…`.** Det stærkeste resultat
-i projektet indtil nu: tre miljøer, to styresystemer, to CPU-arkitekturer, ét
-tal. Så er hypotesen fra 7. september bekræftet — det managede lag bærer på
-tværs, når oversætterbinæren er den samme — og formuleringen bliver skarp:
-artefaktets identitet følger oversætteren, ikke maskinen. Det er også det
-argument der skal bære videre til det rigtige artefakt, for det er præcis den
-egenskab en leverandør-uafhængig verifikation ville hvile på.
+**`csc.dll` lands, and `minlib.dll` comes out `4b3808d1…`.** The strongest result
+in the project so far: three environments, two operating systems, two CPU
+architectures, one number. Then the hypothesis from 7 September is confirmed, the
+managed layer carries across when the compiler binary is the same, and the
+wording gets sharp: the artefact's identity follows the compiler, not the
+machine. That is also the argument that has to carry on to the real artefact,
+because it is exactly the property a vendor-independent verification would rest
+on.
 
-**`csc.dll` rammer, men `minlib.dll` bliver noget tredje.** Så er OS eller CPU i
-spil alligevel, og kørslen har to akser i sig. Næste skridt er at skille dem ad,
-og det billigste sted er CPU'en: installér `--architecture x64` ved siden af og
-byg igen på samme sti. Rammer *den* `4b3808d1…`, var det arkitekturen; gør den
-ikke, er det styresystemet. Sammenlign i begge tilfælde miljøblokkene linje for
-linje — `Host Version` er en kendt kandidat, fordi den aldrig er blevet
-uafhængigt udelukket (se forbeholdene i
+**`csc.dll` lands, but `minlib.dll` comes out something third.** Then OS or CPU
+is in play after all, and the run has two axes in it. The next step is to
+separate them, and the cheapest place is the CPU: install `--architecture x64`
+beside it and build again on the same path. If *that* hits `4b3808d1…`, it was
+the architecture; if it does not, it is the operating system. Either way compare
+the environment blocks line by line. `Host Version` is a known candidate, because
+it has never been independently ruled out (see the caveats in
 [compiler-identity](2026-09-08-compiler-identity.md)).
 
-**`csc.dll` rammer ikke.** Så er kørslen ikke en OS-test. Microsoft udgiver i så
-fald forskellige oversætterbytes per RID under samme versionsnummer, og *det* er
-i sig selv et fund — en tredje binær bag strengen `9.0.120`, oven i de to vi
-allerede har. Skriv hashen ned, kør byggeriet alligevel, og hold de to resultater
-adskilt: den ene siger noget om SDK-udgivelse, den anden intet om OS.
+**`csc.dll` does not land.** Then the run is not an OS test. Microsoft then
+publishes different compiler bytes per RID under the same version number, and
+*that* is itself a finding, a third binary behind the string `9.0.120` on top of
+the two we already have. Write the hash down, run the build anyway, and keep the
+two results apart: one says something about SDK publishing, the other nothing
+about OS.
 
-## Hvad vi ikke måler her
+## What we do not measure here
 
-- **Miljøakserne.** reprotest kører ikke på macOS. `mac` bidrager med måling 1 og
-  3; akserne ligger i [environment-axes](2026-09-14-environment-axes.md).
-- **Systemets egen 9.0.102.** Den bliver stående og bliver ikke målt. Havde vi
-  bygget med den, ville vi måle en fjerde oversætter.
-- Samme afgrænsninger som 7. september: kun `dotnet build`, ingen pakning, ingen
-  arkiver, ingen afhængigheder, én tom klasse.
+- **The environment axes.** reprotest does not run on macOS. `mac` contributes
+  measurement 1 and 3; the axes are in
+  [environment-axes](2026-09-14-environment-axes.md).
+- **The system's own 9.0.102.** It stays and is not measured. Had we built with
+  it, we would be measuring a fourth compiler.
+- Same boundaries as 7 September: only `dotnet build`, no packing, no archives,
+  no dependencies, one empty class.

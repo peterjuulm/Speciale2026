@@ -1,60 +1,60 @@
-# Eksperiment 2: miljøvariationer
+# Experiment 2: environment variations
 
-Kørt 14. september 2026 på `arch` (Leos laptop, 14:13-14:15 CEST) og
-`ubuntu-vm` (delt droplet, 14:14-14:16 CEST). Protokollen blev skrevet 8.-9.
-september og lå to dage før den blev kørt.
-Bygger videre på [empty-class](2026-09-07-empty-class.md) — samme laboratorium,
-samme tre filer, samme pinnede SDK. Termerne står i ordlisten dér.
+Run 14 September 2026 on `arch` (Leo's laptop, 14:13-14:15 CEST) and
+`ubuntu-vm` (shared droplet, 14:14-14:16 CEST). The protocol was written 8-9
+September and sat for two days before it was run.
+Builds on [empty-class](2026-09-07-empty-class.md): same lab, same three files,
+same pinned SDK. The terms are in the glossary there.
 
-Data: `data/2026-09-14-environment-axes/arch/` og `.../ubuntu-vm/`.
+Data: `data/2026-09-14-environment-axes/arch/` and `.../ubuntu-vm/`.
 
-Spørgsmålet: **hvilke forskelle i byggemiljøet tåler byggeriet?**
+The question: **which differences in the build environment can the build take?**
 
-Eksperiment 1 viste at to builds i det samme miljø giver samme bytes. Det siger
-intet om hvad der sker når miljøet ændrer sig. reprotest bygger to gange og
-ændrer præcis én ting imellem — filrettigheder, sprog, PATH, byggemappe, klokken,
-filrækkefølge — og sammenligner resultatet. Én akse per kørsel, så et udfald
-altid har præcis én forklaring.
+Experiment 1 showed that two builds in the same environment give the same bytes.
+That says nothing about what happens when the environment changes. reprotest
+builds twice and changes exactly one thing in between, file permissions,
+language, PATH, build directory, the clock, file order, and compares the result.
+One axis per run, so an outcome always has exactly one explanation.
 
-## Forventning, skrevet før kørslen
+## Expectation, written before the run
 
-Alt `successful` undtagen `+build_path`, som falder. DLL'en indeholder en
-henvisning til sin PDB-fil, og den henvisning er en absolut sti; bygger man i en
-anden mappe, står der en anden streng inde i binæren.
+Everything `successful` except `+build_path`, which fails. The DLL contains a
+reference to its PDB file, and that reference is an absolute path; build in a
+different directory and a different string sits inside the binary.
 
-`+fileordering` er ukendt: den kræver `disorderfs` og kan kun køre på
-`ubuntu-vm`, så den er aldrig målt.
+`+fileordering` is unknown: it requires `disorderfs` and can only run on
+`ubuntu-vm`, so it has never been measured.
 
-`+umask` og `+locales` forventes grønne — men bemærk hvorfor. Rettigheder og
-filrækkefølge er præcis det zip- og tar-arkiver gemmer, og her produceres ingen
-arkiver, kun løse filer. En DLL gemmer hverken rettigheder eller rækkefølge. De
-grønne felter er altså betingede af at der ikke er et pakketrin, og det skal
-stå i konklusionen.
+`+umask` and `+locales` are expected green, but note why. Permissions and file
+order are exactly what zip and tar archives store, and here no archives are
+produced, only loose files. A DLL stores neither permissions nor order. The green
+cells are therefore conditional on there being no packaging step, and that has to
+go in the conclusion.
 
-## Før kørslen
+## Before the run
 
-Laboratoriet fra 7/9 skal stå, og byggeoutput fra i går skal væk — ellers
-kopierer reprotest det med ind i sin testmappe:
+The lab from 7/9 must be in place, and yesterday's build output has to go, or
+reprotest copies it into its test directory:
 
 ```bash
 rm -rf /private/tmp/rb1/bin /private/tmp/rb1/obj
 ```
 
-Resultatmappen. Klonen ligger i `~/Dev/Speciale2026` på laptops og i
-`~/Speciale2026` på VM'en:
+The result directory. The clone is in `~/Dev/Speciale2026` on laptops and in
+`~/Speciale2026` on the VM:
 
 ```bash
 export UD=$HOME/Speciale2026/data/2026-09-14-environment-axes/ubuntu-vm && mkdir -p "$UD"
 ```
 
-`arch` bruger fish:
+`arch` uses fish:
 
 ```bash
 set -gx UD $HOME/Dev/Speciale2026/data/2026-09-14-environment-axes/arch; mkdir -p $UD
 ```
 
-Miljøblokken optages igen — det er en ny dag og et nyt eksperiment, og på
-`ubuntu-vm` er der tilføjet 2 GB swap siden i går:
+The environment block is recorded again. It is a new day and a new experiment,
+and on `ubuntu-vm` 2 GB of swap has been added since yesterday:
 
 ```bash
 cd /private/tmp/rb1 && dotnet --info > "$UD/environment.txt"
@@ -64,37 +64,36 @@ cd /private/tmp/rb1 && dotnet --info > "$UD/environment.txt"
 uname -srm >> "$UD/environment.txt"; umask >> "$UD/environment.txt"; locale | head -1 >> "$UD/environment.txt"; diffoscope --version >> "$UD/environment.txt" 2>&1; command -v dotnet reprotest diffoscope >> "$UD/environment.txt"
 ```
 
-Og kontrollen af at det er de rigtige binærer der bliver fundet:
+And the check that the right binaries are being found:
 
 ```bash
 cd /private/tmp/rb1 && command -v dotnet reprotest diffoscope; dotnet --version; diffoscope --version
 ```
 
-Forventet på `arch`: `/usr/bin/dotnet`, `9.0.120`, `diffoscope 329`, reprotest fra
-`~/.local/bin`. Forventet på `ubuntu-vm`: `/root/.dotnet/dotnet`,
+Expected on `arch`: `/usr/bin/dotnet`, `9.0.120`, `diffoscope 329`, reprotest from
+`~/.local/bin`. Expected on `ubuntu-vm`: `/root/.dotnet/dotnet`,
 `/root/.local/bin/reprotest`, `/root/.local/bin/diffoscope`, `9.0.120`, `329`.
 
-**På `ubuntu-vm` navngives binærerne med fuld sti i selve kørslen.** apt har sine
-egne udgaver i `/usr/bin` — `dotnet` med SDK 10.0.111, reprotest 0.7.26,
-diffoscope 259 — og de rigtige findes kun forrest i PATH fordi `~/.bashrc`
-sætter dem der. `~/.bashrc` læses ikke af ikke-interaktive shells, og det er dem
-reprotest bygger i. Rammer byggekommandoen `/usr/bin/dotnet`, fejler den med
-"SDK 9.0.120 not found", og fejlen ser ud som et reprotest-problem.
-`+exec_path`-aksen manipulerer desuden PATH med vilje.
+**On `ubuntu-vm` the binaries are named with full paths in the run itself.** apt
+has its own builds in `/usr/bin`, `dotnet` with SDK 10.0.111, reprotest 0.7.26,
+diffoscope 259, and the right ones are only first in PATH because `~/.bashrc`
+puts them there. `~/.bashrc` is not read by non-interactive shells, and those are
+the ones reprotest builds in. If the build command hits `/usr/bin/dotnet`, it
+fails with "SDK 9.0.120 not found", and the error looks like a reprotest problem.
+The `+exec_path` axis also manipulates PATH on purpose.
 
-## Kørslerne
+## The runs
 
-Stil dig i resultatmappen, så logfilerne lander rigtigt. reprotest bygger i sin
-egen midlertidige mappe, så byggeriet foregår ikke her:
+Stand in the result directory so the log files land in the right place. reprotest
+builds in its own temporary directory, so the build does not happen here:
 
 ```bash
 cd "$UD"
 ```
 
-Omdirigér altid til fil. Piper man outputtet, ser det ud som om reprotest hænger
-i mange minutter: den efterlader en barneproces der holder forbindelsen åben
-efter at den selv er stoppet. Regn med 60-90 sekunder per kørsel, længere på
-VM'en.
+Always redirect to a file. If you pipe the output, reprotest looks like it hangs
+for many minutes: it leaves a child process holding the connection open after it
+has stopped itself. Expect 60-90 seconds per run, longer on the VM.
 
 `arch`:
 
@@ -102,13 +101,13 @@ VM'en.
 reprotest --vary=-all -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-1-none.log 2>&1
 ```
 
-`ubuntu-vm` — samme kørsel, fulde stier:
+`ubuntu-vm`, same run, full paths:
 
 ```bash
 /root/.local/bin/reprotest --vary=-all -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-1-none.log 2>&1
 ```
 
-De øvrige akser, `arch`:
+The other axes, `arch`:
 
 ```bash
 reprotest --vary=-all,+umask -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-2-umask.log 2>&1
@@ -130,7 +129,7 @@ reprotest --vary=-all,+build_path -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO
 reprotest --vary=-all,+time -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-6-time.log 2>&1
 ```
 
-Og `ubuntu-vm`, hvor `+fileordering` kommer til:
+And `ubuntu-vm`, where `+fileordering` is added:
 
 ```bash
 /root/.local/bin/reprotest --vary=-all,+umask -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-2-umask.log 2>&1
@@ -156,110 +155,111 @@ Og `ubuntu-vm`, hvor `+fileordering` kommer til:
 /root/.local/bin/reprotest --vary=-all,+fileordering -c 'env DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 /root/.dotnet/dotnet build -c Release' /private/tmp/rb1 'bin/Release/net9.0/minlib.dll' > rt-7-fileordering.log 2>&1
 ```
 
-`+fileordering` kan kun køre der, fordi den kræver `disorderfs`.
+`+fileordering` can only run there, because it requires `disorderfs`.
 
-Hele tabellen på én linje:
+The whole table on one line:
 
 ```bash
 grep -H -E 'Reproduction (successful|failed)' rt-*.log
 ```
 
-Diffoscopes forklaring på den der falder:
+diffoscope's explanation for the one that fails:
 
 ```bash
 grep -B 3 -A 12 'pdb' rt-5-build_path.log
 ```
 
-## Resultat
+## Result
 
-| Akse | Varierer | Forventet | `arch` | `ubuntu-vm` |
+| Axis | Varies | Expected | `arch` | `ubuntu-vm` |
 | --- | --- | --- | --- | --- |
-| `rt-1-none` | ingenting | successful | successful | successful |
-| `rt-2-umask` | filrettigheder | successful | successful | successful |
-| `rt-3-locales` | sprog, tegnsæt | successful | successful | successful |
+| `rt-1-none` | nothing | successful | successful | successful |
+| `rt-2-umask` | file permissions | successful | successful | successful |
+| `rt-3-locales` | language, character set | successful | successful | successful |
 | `rt-4-exec_path` | PATH | successful | successful | successful |
-| `rt-5-build_path` | byggemappen | failed | **failed** | **failed** |
-| `rt-6-time` | klokken | successful | successful | successful |
-| `rt-7-fileordering` | filrækkefølge | ukendt | n/a | successful |
+| `rt-5-build_path` | the build directory | failed | **failed** | **failed** |
+| `rt-6-time` | the clock | successful | successful | successful |
+| `rt-7-fileordering` | file order | unknown | n/a | successful |
 
-Tretten kørsler, tretten udfald som forudsagt. `[V]` — verdikterne står som
-`Reproduction successful`/`failed` i `rt-*.log` under `data/`. Varighed 5-12
-sekunder per kørsel på `arch`, 10-19 på `ubuntu-vm`; ikke de 60-90 sekunder
-25/8-notatet regnede med, fordi projektet ingen pakker skal hente.
+Thirteen runs, thirteen outcomes as predicted. `[V]`, the verdicts appear as
+`Reproduction successful`/`failed` in `rt-*.log` under `data/`. Duration 5-12
+seconds per run on `arch`, 10-19 on `ubuntu-vm`; not the 60-90 seconds the 25/8
+note reckoned with, because the project has no packages to fetch.
 
-Fejler en akse vi ikke ventede, er logfilen svaret. Fejler
-`rt-7-fileordering` med en mount-fejl frem for en byggefejl, er det FUSE og
-ikke et fund.
+If an axis fails that we did not expect, the log file is the answer. If
+`rt-7-fileordering` fails with a mount error rather than a build error, it is
+FUSE and not a finding.
 
-## Fortolkning
+## Interpretation
 
-**`+build_path` falder af præcis den grund forventningen gav, og kun den.**
-Kontrolbygget står i `…/const_build_path`, eksperimentet i
-`…/build-experiment-1`: to tegn længere. Diffoscope viser via pedump at
-`.text` vokser fra `0x648` til `0x64c` — fire bytes, fordi stien ligger i
-debug directory (CodeView-posten peger på PDB'ens absolutte sti) og strengen
-rundes op til fire-byte-grænse. Alt efter strengen skubbes fire bytes:
-entry point `0x2642` → `0x2646`, import table `0x25f0` → `0x25f2`.
-`TimeDateStamp` skifter også, som den skal når den er en indholdshash og ikke
-et ur. Ingen andre forskelle. Samme fire bytes på begge maskiner. `[V]`
-(`rt-5-build_path.log`, begge mapper)
+**`+build_path` fails for exactly the reason the expectation gave, and only
+that.** The control build sits in `…/const_build_path`, the experiment in
+`…/build-experiment-1`: two characters longer. diffoscope shows via pedump that
+`.text` grows from `0x648` to `0x64c`, four bytes, because the path sits in the
+debug directory (the CodeView entry points at the PDB's absolute path) and the
+string is rounded up to a four-byte boundary. Everything after the string shifts
+four bytes: entry point `0x2642` → `0x2646`, import table `0x25f0` → `0x25f2`.
+`TimeDateStamp` also changes, as it must when it is a content hash and not a
+clock. No other differences. The same four bytes on both machines. `[V]`
+(`rt-5-build_path.log`, both directories)
 
-**Bifund: "successful" gælder kun inden for kørslen.** reprotest laver en ny
-`/tmp/reprotest.XXXXXX/` per kørsel, og kontrol og eksperiment bygger begge i
-`const_build_path` under den. Det seks tilfældige tegn i mappenavnet er nok:
-de seks grønne kørsler på `arch` gav seks forskellige DLL-hashes, de syv på
-`ubuntu-vm` syv forskellige, og ingen af dem er `541bed82…`/`4b3808d1…` fra
-eksperiment 1, som blev bygget i `/private/tmp/rb1`. `[V]` (sidste linje i
-hver `rt-*.log`). Verdikten "reproducerbar" fra reprotest betyder altså
-"identisk med et kontrolbyg i samme mappe" — og eksperimentet viser selv
-hvorfor det ikke rækker. Uden `PathMap` eller `DebugType=none` er hashen bundet
-til byggemappen, og stiens *længde* er nok til at ændre binæren.
+**Side finding: "successful" holds only within the run.** reprotest makes a new
+`/tmp/reprotest.XXXXXX/` per run, and control and experiment both build in
+`const_build_path` under it. The six random characters in the directory name are
+enough: the six green runs on `arch` gave six different DLL hashes, the seven on
+`ubuntu-vm` seven different ones, and none of them is `541bed82…`/`4b3808d1…`
+from experiment 1, which was built in `/private/tmp/rb1`. `[V]` (last line in
+each `rt-*.log`). reprotest's verdict "reproducible" therefore means "identical
+to a control build in the same directory", and the experiment itself shows why
+that is not enough. Without `PathMap` or `DebugType=none` the hash is bound to
+the build directory, and the *length* of the path is enough to change the binary.
 
-**De fem grønne akser er grønne på egne betingelser.** `+umask` og
-`+fileordering` er grønne fordi der ikke er et arkivtrin (se forventningen);
-`+time` er grøn fordi `TimeDateStamp` ikke er et tidsstempel — det er samme
-mekanisme som forklarede 8/9's 70 bytes. `+locales` og `+exec_path` siger at
-hverken sprogindstilling eller PATH-rækkefølge lækker ind i en IL-only DLL.
-Det er det managede lag der bærer, ikke værktøjskæden som helhed.
+**The five green axes are green on their own terms.** `+umask` and
+`+fileordering` are green because there is no archive step (see the
+expectation); `+time` is green because `TimeDateStamp` is not a timestamp, the
+same mechanism that explained 8/9's 70 bytes. `+locales` and `+exec_path` say
+that neither language setting nor PATH order leaks into an IL-only DLL. It is the
+managed layer that carries, not the toolchain as a whole.
 
-**`+fileordering` er reelt målt.** En ekstra kørsel med `--verbosity 2`
-(`rt-7-fileordering-verbose.log`) viser at disorderfs blev monteret med
-`--shuffle-dirents=yes` og loggede "shuffling directory entries" og
-"reversing directory entries". `[V]` Men projektet har én kildefil, så der er
-kun `obj/`-indholdet og projektmappen at bytte rundt på. Med flere `.cs`-filer
-er det MSBuilds glob-sortering der afgør udfaldet; det er ikke testet.
+**`+fileordering` really was measured.** An extra run with `--verbosity 2`
+(`rt-7-fileordering-verbose.log`) shows that disorderfs was mounted with
+`--shuffle-dirents=yes` and logged "shuffling directory entries" and "reversing
+directory entries". `[V]` But the project has one source file, so there is only
+the `obj/` content and the project directory to shuffle. With more `.cs` files it
+is MSBuild's glob sorting that decides the outcome; that is not tested.
 
-Samlet: **byggeriet tåler alt det reprotest kan variere, undtagen sin egen
-placering.** Det er en snæver kanal (én streng i debug directory) og den er
-lukbar med `PathMap` eller uden PDB — og det er næste eksperiment, ikke dette.
+Overall: **the build takes everything reprotest can vary, except its own
+location.** It is a narrow channel (one string in the debug directory) and it is
+closable with `PathMap` or without a PDB, and that is the next experiment, not
+this one.
 
-## Forbehold
+## Caveats
 
-- **reprotest simulerer variation på én maskine.** Den svarer på "er byggeriet
-  følsomt over for de akser vi kender", ikke "er den identisk når alt det vi
-  ikke tænkte på også ændrer sig". Det andet spørgsmål er eksperiment 1's, og det
-  faldt.
-- **De to Linux-miljøer kører samme reprotest-version (0.7.32, pipx), men
-  forskellig diffoscope** hvis PATH på VM'en peger på apt-udgaven. Verdikten er
-  robust — to forskellige filer fanges af begge — men forklaringen bliver
-  ringere med 259 end med 329.
-- **Ingen arkiver.** Se forventningen ovenfor: de grønne felter for `+umask` og
-  `+fileordering` betyder ikke at kilderne ikke findes, kun at intet skriver dem
-  ned.
-- **`+time`-aksen kan køre her** fordi projektet ikke har afhængigheder. Med
-  pakker vælter det forskudte ur TLS-håndtrykket mod NuGet, og aksen bliver
-  utestbar uden en offline-cache.
-- **pedump er to forskellige programmer.** På `arch` er det Ruby-gem'en
-  `pedump` (sektionstabel, imphash), på `ubuntu-vm` Monos `pedump` (COFF/PE
-  Header-format). Diffoscope 329 på begge, men forklaringens layout er
-  forskellig. Verdikten og de fire bytes er de samme.
-- **Protokol fra 8.-9. september, kørsel 14. september.** Laboratoriet og
-  de tre kildefiler er uændrede siden 7/9 (samme `sources.txt`-hashes).
-  Notat og datamappe er navngivet efter kørselsdagen; tidligere henvisninger
-  til `2026-09-08-…` og `2026-09-09-environment-axes` er rettet til.
-- **`+fileordering` med én kildefil** siger lidt om reel følsomhed; se
-  fortolkningen.
-- **Ikke testet:** `user_group`, `domain_host`, `num_cpus`, `aslr`, `kernel`,
-  `timezone`. `PathMap` mod `+build_path` er kørt samme dag:
+- **reprotest simulates variation on one machine.** It answers "is the build
+  sensitive to the axes we know about", not "is it identical when everything we
+  did not think of also changes". The second question is experiment 1's, and that
+  one failed.
+- **The two Linux environments run the same reprotest version (0.7.32, pipx), but
+  a different diffoscope** if PATH on the VM points at the apt build. The verdict
+  is robust, two different files are caught by both, but the explanation is worse
+  with 259 than with 329.
+- **No archives.** See the expectation above: the green cells for `+umask` and
+  `+fileordering` do not mean the sources are absent, only that nothing writes
+  them down.
+- **The `+time` axis can run here** because the project has no dependencies. With
+  packages the shifted clock topples the TLS handshake against NuGet, and the
+  axis becomes untestable without an offline cache.
+- **pedump is two different programs.** On `arch` it is the Ruby gem `pedump`
+  (section table, imphash), on `ubuntu-vm` Mono's `pedump` (COFF/PE Header
+  format). diffoscope 329 on both, but the explanation's layout differs. The
+  verdict and the four bytes are the same.
+- **Protocol from 8-9 September, run 14 September.** The lab and the three source
+  files are unchanged since 7/9 (same `sources.txt` hashes). Note and data
+  directory are named after the day of the run; earlier references to
+  `2026-09-08-…` and `2026-09-09-environment-axes` have been corrected.
+- **`+fileordering` with one source file** says little about real sensitivity;
+  see the interpretation.
+- **Not tested:** `user_group`, `domain_host`, `num_cpus`, `aslr`, `kernel`,
+  `timezone`. `PathMap` against `+build_path` was run the same day:
   [environment-axes-pathmap](2026-09-14-environment-axes-pathmap.md).
-  `DebugType=none` er stadig ikke testet.
+  `DebugType=none` is still not tested.

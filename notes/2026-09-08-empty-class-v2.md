@@ -1,37 +1,36 @@
-# Eksperiment 1, gentaget
+# Experiment 1, repeated
 
-Køres 8. september 2026 på `arch` og `ubuntu-vm`. Samme protokol som
-[7. september](2026-09-07-empty-class.md) — samme laboratorium, samme tre
-filer, samme pinnede SDK. Fremgangsmåden står dér og gentages ikke her.
+Run 8 September 2026 on `arch` and `ubuntu-vm`. Same protocol as
+[7 September](2026-09-07-empty-class.md): same lab, same three files, same
+pinned SDK. The procedure is written there and is not repeated here.
 
-Data: `data/2026-09-08-empty-class/arch/` og `.../ubuntu-vm/`.
+Data: `data/2026-09-08-empty-class/arch/` and `.../ubuntu-vm/`.
 
-Spørgsmålet: **kommer gårsdagens tal ud igen?**
+The question: **do yesterday's numbers come out again?**
 
-Det er ikke en gentagelse for gentagelsens skyld. Det er den første prøve på om
-protokollen virker som protokol — om en beskrivelse er nok til at ramme det samme
-tal en anden dag. Og miljøet har flyttet sig en smule siden i går: `ubuntu-vm`
-har fået 2 GB swap, og begge maskiner har været genstartet eller lukket ned
-undervejs.
+This is not repetition for its own sake. It is the first test of whether the
+protocol works as a protocol, whether a description is enough to hit the same
+number on another day. And the environment has shifted slightly since yesterday:
+`ubuntu-vm` has been given 2 GB of swap, and both machines have been rebooted or
+shut down along the way.
 
-## Forventning, skrevet før kørslen
+## Expectation, written before the run
 
-
-| Miljø      | `minlib.dll`                                                       |
-| ------------- | -------------------------------------------------------------------- |
-| `arch`      | `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113` |
+| Environment | `minlib.dll` |
+| --- | --- |
+| `arch` | `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113` |
 | `ubuntu-vm` | `4b3808d1cc1d642577f60a054905f5f065aab8b9aea1765b407fc583cef70d33` |
 
-Kildehashene skal være `2a766d57…`, `079f65f3…`, `8628a3a4…` begge steder, og
-`csc.dll` skal være `1b7543aa…` på `arch` og `644a4d33…` på `ubuntu-vm`.
+The source hashes must be `2a766d57…`, `079f65f3…`, `8628a3a4…` in both places,
+and `csc.dll` must be `1b7543aa…` on `arch` and `644a4d33…` on `ubuntu-vm`.
 
-Kommer der andre tal ud, er det et fund og ikke en fejl: så har noget i miljøet
-ændret sig som vi ikke har beskrevet, og miljøblokkene fra i dag mod i går siger
-hvad.
+If other numbers come out, that is a finding and not an error: then something in
+the environment has changed that we have not described, and today's environment
+blocks against yesterday's say what.
 
-## Kørslen
+## The run
 
-Resultatmappen først. `arch` (fish):
+The result directory first. `arch` (fish):
 
 ```bash
 set -gx UD $HOME/Dev/Speciale2026/data/2026-09-08-empty-class/arch; mkdir -p $UD
@@ -43,20 +42,20 @@ set -gx UD $HOME/Dev/Speciale2026/data/2026-09-08-empty-class/arch; mkdir -p $UD
 export UD=$HOME/Speciale2026/data/2026-09-08-empty-class/ubuntu-vm && mkdir -p "$UD"
 ```
 
-Kilden er den samme som i går og skal ikke skrives igen — men kontrollen gemmes
-denne gang:
+The source is the same as yesterday and is not written again, but this time the
+check is saved:
 
 ```bash
 cd /private/tmp/rb1 && sha256sum minlib.csproj Beregning.cs global.json | tee "$UD/sources.txt"
 ```
 
-Pinnet, fra projektmappen:
+The pin, from the project directory:
 
 ```bash
 cd /private/tmp/rb1 && dotnet --version
 ```
 
-Miljøblokken:
+The environment block:
 
 ```bash
 cd /private/tmp/rb1 && dotnet --info > "$UD/environment.txt"
@@ -70,7 +69,7 @@ uname -srm >> "$UD/environment.txt"; umask >> "$UD/environment.txt"; locale | he
 cd /private/tmp/rb1 && sha256sum "$(dotnet --info | sed -n 's/^ *Base Path: *//p')Roslyn/bincore/csc.dll" | tee -a "$UD/environment.txt"
 ```
 
-To rene builds:
+Two clean builds:
 
 ```bash
 cd /private/tmp/rb1; rm -rf bin obj; dotnet build -c Release; sha256sum bin/Release/net9.0/minlib.dll | tee -a "$UD/hashes.txt"
@@ -80,44 +79,43 @@ cd /private/tmp/rb1; rm -rf bin obj; dotnet build -c Release; sha256sum bin/Rele
 cd /private/tmp/rb1; rm -rf bin obj; dotnet build -c Release; sha256sum bin/Release/net9.0/minlib.dll | tee -a "$UD/hashes.txt"
 ```
 
-På `ubuntu-vm` navngives `dotnet` med fuld sti — `/root/.dotnet/dotnet` — i alle
-kommandoerne ovenfor. apt har sin egen `dotnet` med SDK 10.0.111 i `/usr/bin`,
-og den fejler mod pinnet.
+On `ubuntu-vm`, `dotnet` is named with its full path, `/root/.dotnet/dotnet`, in
+all the commands above. apt has its own `dotnet` with SDK 10.0.111 in `/usr/bin`,
+and it fails against the pin.
 
-## Resultat
+## Result
 
+| What | Expected | `arch` | `ubuntu-vm` |
+| --- | --- | --- | --- |
+| `sources.txt`, three files | `2a766d57…` `079f65f3…` `8628a3a4…` | verified | verified |
+| `csc.dll` | `1b7543aa…` / `644a4d33…` | `1b7543aa…` | `644a4d33...` |
+| `minlib.dll`, build 1 | as yesterday | `541bed82…` | `4b38...` |
+| `minlib.dll`, build 2 | as build 1 | `541bed82…` | `4b38...` |
 
-| Hvad                     | Forventet                              | `arch`       | `ubuntu-vm`   |
-| -------------------------- | ---------------------------------------- | -------------- | --------------- |
-| `sources.txt`, tre filer | `2a766d57…` `079f65f3…` `8628a3a4…` | verificeret  | verificeret   |
-| `csc.dll`                | `1b7543aa…` / `644a4d33…`            | `1b7543aa…` | `644a4d33...` |
-| `minlib.dll`, build 1    | som i går                             | `541bed82…` | `4b38...`     |
-| `minlib.dll`, build 2    | som build 1                            | `541bed82…` | `4b38...`     |
+## Interpretation
 
-## Fortolkning
+**`arch`: the protocol holds over time.** Run 8 September 14:14, a day after the
+first run. Same three source hashes, same `csc.dll`, and the same DLL hash twice,
+`541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113`, identical to
+7 September.
 
-**`arch`: protokollen holder over tid.** Kørt 8. september 14:14, et døgn efter
-den første kørsel. Samme tre kildehashes, samme `csc.dll`, og samme DLL-hash to
-gange — `541bed823d12e42b5e9e6087c9c32a9d6fbaa9a116aae61fc00c808231e74113`,
-identisk med 7. september.
+Today's environment block is line for line identical to yesterday's, except that
+`pipx list` has been replaced by `command -v`. SDK version, commit `d0558bff3d`,
+kernel, `umask`, `locale` and diffoscope version are unchanged. Nothing has
+drifted in the environment between the two runs, and that is why the same number
+came out.
 
-Miljøblokken fra i dag er linje for linje identisk med gårsdagens, bortset fra at
-`pipx list` er erstattet af `command -v`. SDK-version, commit `d0558bff3d`,
-kerne, `umask`, `locale` og diffoscope-version er uændrede. Der er altså ikke
-drevet noget i miljøet mellem de to kørsler, og det er derfor det samme tal kom ud.
+This is the weakest form of reproducibility, same machine, later point in time,
+and it had to hold before anything else means anything. It holds.
 
-Det er den svageste form for reproducerbarhed — samme maskine, senere tidspunkt —
-og den skulle holde før noget andet betyder noget. Den holder.
+`ubuntu-vm` is missing.
 
-`ubuntu-vm` mangler.
+## Caveats
 
-## Forbehold
-
-- **Samme laboratorium som i går.** Kildefilerne er ikke skrevet om, kun
-  verificeret. Det er en styrke for sammenligningen og en svaghed for
-  protokollen: at `printf`-linjerne stadig giver de samme bytes, bliver ikke
-  prøvet her.
-- **Samme maskiner.** Gentagelsen prøver protokollen over tid, ikke over flere
-  miljøer.
-- Samme afgrænsninger som 7. september: kun `dotnet build`, ingen pakning, ingen
-  arkiver, ingen afhængigheder, kun x64 Linux.
+- **Same lab as yesterday.** The source files were not rewritten, only verified.
+  That is a strength for the comparison and a weakness for the protocol: whether
+  the `printf` lines still produce the same bytes is not tested here.
+- **Same machines.** The repetition tests the protocol over time, not across
+  environments.
+- Same boundaries as 7 September: only `dotnet build`, no packing, no archives,
+  no dependencies, only x64 Linux.
