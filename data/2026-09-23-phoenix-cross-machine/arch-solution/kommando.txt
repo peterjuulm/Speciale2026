@@ -1,0 +1,72 @@
+# phoenix-cross-machine, arch, 23 September 2026
+# The lab was re-synced from the worktree earlier the same day (after the
+# stray csproj edit was reverted), with:
+rsync -a --exclude=.git --exclude=node_modules --exclude=bin --exclude=obj --exclude=.claude --exclude=.next --exclude=out /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro/ /private/tmp/rb1-phoenix/
+# Then the run script below, the same file on both machines:
+bash run.sh arch /home/leos/Dev/speciale-2026/data/phoenix-cross-machine/arch
+
+# ---- run.sh ----
+#!/usr/bin/env bash
+# phoenix-cross-machine, 23 September 2026. The same script on both machines.
+# Usage: bash run.sh <machine> <out-dir>
+# One run = clean + restore + build of WS.Phoenix.sln, twice. Output goes
+# outside the lab, so the lab holds nothing but source.
+set -u
+MACHINE=$1
+OUT=$2
+LAB=/private/tmp/rb1-phoenix
+export DOTNET_ROOT=$HOME/.dotnet PATH=$HOME/.dotnet:$PATH DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1
+DOTNET=$DOTNET_ROOT/dotnet
+mkdir -p "$OUT/assets"
+cd "$LAB" || exit 1
+{
+  echo "# $(date -Is) $MACHINE"
+  echo "## source"
+  echo "branch thesis/reproducible-builds, HEAD e6e92423"
+  echo "lab: $LAB (rsync, no .git)"
+  echo "## host"
+  uname -srm
+  echo "cpus: $(nproc)"
+  free -m | sed -n '1,3p'
+  echo "lab filesystem: $(stat -f -c %T "$LAB")"
+  echo "user: $(id -un), HOME=$HOME"
+  echo "umask $(umask)"
+  echo "LANG=${LANG:-} LC_ALL=${LC_ALL:-} TZ=${TZ:-}"
+  echo "dotnet used: $DOTNET; command -v dotnet: $(command -v dotnet)"
+  echo "csc.dll: $(sha256sum "$DOTNET_ROOT/sdk/9.0.120/Roslyn/bincore/csc.dll")"
+  echo "NuGet cache: $HOME/.nuget/packages, $(ls "$HOME/.nuget/packages" 2>/dev/null | wc -l) package ids before the run"
+  echo "## dotnet --info"
+  "$DOTNET" --info
+} > "$OUT/environment.txt" 2>&1
+
+clean() { rm -rf bin obj src/*/bin src/*/obj tests/bin tests/obj; }
+clean
+find . \( -name .git -o -name node_modules -o -name bin -o -name obj -o -name .claude -o -name .next -o -name out \) -prune \
+  -o -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$OUT/source-tree.sha256"
+
+for n in 1 2; do
+  clean
+  echo "run $n start $(date -Is)" >> "$OUT/timing.txt"
+  "$DOTNET" restore WS.Phoenix.sln > "$OUT/restore$n.log" 2>&1
+  echo "restore $n exit $? $(date -Is)" >> "$OUT/timing.txt"
+  "$DOTNET" build WS.Phoenix.sln -c Release --no-restore -p:SkipSpaBuild=true > "$OUT/build$n.log" 2>&1
+  echo "build $n exit $? $(date -Is)" >> "$OUT/timing.txt"
+  find src tests -path '*/bin/Release/*' -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > "$OUT/build$n.sha256"
+  for p in src/*/obj tests/obj; do
+    cp "$p/project.assets.json" "$OUT/assets/$(basename "$(dirname "$p")")-$n.json"
+  done
+done
+diff "$OUT/build1.sha256" "$OUT/build2.sha256" > "$OUT/diff-1-2.txt"
+echo "diff build1 build2 exit $?" >> "$OUT/timing.txt"
+
+# Probe 1: the raw order in which the filesystem lists three large directories.
+for d in src/Infrastructure/Data/Migrations src/ApplicationCore/ReportingAPI/Interfaces src/WebAPI/Dtos/ReportApi; do
+  echo "== $d"; ls -U "$d"
+done > "$OUT/probe-readdir.txt"
+# Probe 2: the order of the Compile items MSBuild evaluates.
+for p in ApplicationCore Infrastructure; do
+  "$DOTNET" msbuild "src/$p/$p.csproj" -getItem:Compile -p:Configuration=Release > "$OUT/probe-compile-$p.json" 2>&1
+done
+free -m > "$OUT/free-after.txt"
+dmesg 2>/dev/null | grep -i -E 'out of memory|killed process' > "$OUT/oom.txt"
+echo "done $(date -Is)" >> "$OUT/timing.txt"

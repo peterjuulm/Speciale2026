@@ -240,3 +240,17 @@ build"; that is the program itself being different.
 - `dotnet build`, not publish. The publish axes are layer 2.
 - Frontend out via `SkipSpaBuild`.
 - Restore from a warm cache both times. Cold cache is the dependency part's test.
+- Added 23/9: runs 2-8 measured a tree that differs from the branch by one
+  character. At 10:57 on 15/9, between run 1 and run 2, a stray keystroke
+  renamed `SpaProxyLaunchCommand` to `SpaProxyLaunchCommAand` in
+  `WebAPI.csproj`. It was never committed, but the rsync before run 2 carried
+  it into the lab. The only effect is an empty `LaunchCommand` in
+  `spa.proxy.json`: rt-1 shows `"npm run dev"`, rt-2 to rt-4 show `""`. `[V]`
+  logs. The SpaProxy package's targets are the only reader of the property in
+  `~/.dotnet` and `~/.nuget/packages`, so no DLL or PDB depends on it. `[V]`
+  grep. No verdict changes: in runs 1-4, `WorkingDirectory` is the only
+  differing line in `spa.proxy.json`. `[V]` logs. `LaunchCommand` is a
+  constant from the project file, so runs 5-8 would be green with the
+  committed tree too. `[I]` Reverted in the worktree and the lab re-synced
+  23/9; the lab now matches `e6e92423` except `.claude/` (excluded) and
+  Rider's `.idea/`.

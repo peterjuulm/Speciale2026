@@ -93,9 +93,15 @@ to 9.0.120 via `global.json` with `rollForward: disable`:
 `notes/findings-table.md` is the running index of every cause found, its fix and
 its status; keep it current. `notes/2026-09-15-layer-plan.md` is the plan: five
 layers (build, publish, frontend, zip, container) measured one at a time.
-Layer 1 is closed on `arch` as of 15/9: Phoenix's four own assemblies are
-bit-identical across build path, time, locale, umask and PATH after
-`PathMap` and removal of two unused Razor pages. See
-`notes/2026-09-15-findings.md`. Open questions are under "Caveats" in
-the newest experiment note. Fixes to Phoenix live on the branch
-`thesis/reproducible-builds` in the WS.Phoenix repo, never in this one.
+As of 23/9: layer 1 is closed on `arch`; layer 2 is green on `arch` for the
+release's own publish commands, on one path and across paths, with NuGet lock
+files in place. Cross-machine runs are paused: the shared droplet is too small
+to compile Phoenix. See `notes/2026-09-23-findings.md`. Open questions are under
+"Caveats" in the newest experiment notes and under "Open" in the findings note.
+Fixes to Phoenix live on the branch `thesis/reproducible-builds` in the
+WS.Phoenix repo, never in this one.
+
+For Phoenix, the lab `/private/tmp/rb1-phoenix` is an export of the commit being
+measured, not a copy of the worktree: empty it, then
+`git archive <commit> -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix`,
+and check it file by file against the commit. Name the commit in every note.
