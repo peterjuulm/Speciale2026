@@ -27,7 +27,8 @@ levels.
 ## Table
 
 Each experiment has one table. Row ids use the experiment prefix (`E` for
-empty-class, `W` for ws-pems), so rows can be cited independently.
+empty-class, `W` for ws-pems, `T` for toolchains), so rows can be cited
+independently.
 
 ### empty-class: baseline on a one-file library, 7 to 14 September 2026
 
@@ -43,7 +44,7 @@ three machines: `arch`, `ubuntu-vm` and Peter's `mac`. See notes
 | E4 | 1 | Tool identity | Microsoft's `csc.dll` is ReadyToRun and platform-specific: osx-arm64 `18245697…`, linux-x64 `644a4d33…`. Peter's Mac still produced the VM's `4b3808d1…` because both compilers carry the same Roslyn commit `fc52718e…`. Output identity follows the compiler's declared commit, not its bytes | `csc.dll`, `minlib.dll` | Microsoft | none needed for cross-platform; record platform + commit | | green | 9/9 empty-class-macos, 9/9 findings |
 | E5 | 1 | Timestamp | PE `TimeDateStamp` contains four bytes of a content hash in a field labelled as seconds since 1970. Two thirds of values point into the future. The value changes only when the content changes | DLL, PE header | csc | none needed | The artefact contains no build time; an attestation must provide it | green | 8/9 findings |
 | E6 | 1 | Build path | reprotest `+build_path` was red on `arch` and `ubuntu-vm`. The DLL's debug directory contained an absolute PDB path, and the PDB contained absolute source paths | `minlib.dll`, `minlib.pdb` | csc | fix build | `PathMap` | green | 14/9 environment-axes (red), environment-axes-pathmap (19 runs, all green, one hash per SDK) `[V]` |
-| E7 | 1 | Environment | `+umask`, `+locales`, `+exec_path` and `+time` were green on both Linux machines. `+fileordering` was green on `ubuntu-vm` with `disorderfs` | all build output | | none needed | | green `[V]` | 14/9 environment-axes, -pathmap |
+| E7 | 1 | Environment | `+umask`, `+locales`, `+exec_path` and `+time` were green on both Linux machines. `+fileordering` was green on `ubuntu-vm` with `disorderfs` | all build output | | none needed | | green `[V]` | 14/9 environment-axes, -pathmap. Added 24/9: the compiler was most likely not varied (W27) `[I]`; `minlib` has no generated types for W26 to reorder |
 | E8 | M | Method | Command-line `PathMap` must use the shell's `$PWD`. `$(MSBuildProjectDirectory)` is not expanded in global properties and is silently ignored | csc `/pathmap` | MSBuild | fix rebuild | `-p:PathMap=$PWD/=/_/`; check with `strings minlib.dll \| grep pdb` | green | 14/9 environment-axes-pathmap |
 | E9 | M | Method | Sorting the same file list under `da_DK.UTF-8` and `C.UTF-8` produces different manifest hashes | our own hash lists | os | fix rebuild | `LC_ALL=C` in everything that sorts | green | 8/9 findings |
 | E10 | M | Method | `bin/` copies `obj/`. Deleting only `bin` makes MSBuild copy the files again without calling csc | `bin/*.dll` | MSBuild | fix rebuild | `rm -rf bin obj` | green | 8/9 findings |
@@ -52,7 +53,7 @@ three machines: `arch`, `ubuntu-vm` and Peter's `mac`. See notes
 
 The experiment builds four own assemblies and ~300 copied dependencies from
 the `thesis/reproducible-builds` worktree, in a lab without `.git`. See
-notes `2026-09-15-*` and `2026-09-23-*`. From 23/9 the lab is a `git archive`
+notes `2026-09-15-*`, `2026-09-23-*` and `2026-09-24-*`. From 23/9 the lab is a `git archive`
 export of the measured commit.
 
 | # | Layer | Root cause | Fine-grained cause | Where | Written by | Mitigation | Fix | Status | Measured |
@@ -66,7 +67,7 @@ export of the measured commit.
 | W7 | 1 | Build path | The Razor source generator writes the absolute `.cshtml` path into generated C# `#pragma checksum` and `#line` lines. Roslyn embeds and hashes this text in the PDB. PathMap does not affect it. Two paths differing by 2 characters produced PDBs differing by 4 bytes, both in the two generated Razor documents | `WebAPI.pdb`, EmbeddedSource and document hash for `Pages_Error_cshtml.g.cs`, `Pages__ViewImports_cshtml.g.cs` | Razor source generator | fix build (Phoenix); open (any project using Razor) | Deleted `src/WebAPI/Pages/`, two template leftovers never registered in `Program.cs` | green for Phoenix, open in general | 15/9 run 3 (red), pdbdump, run 4 (green) |
 | W8 | 1 | Build path | `WorkingDirectory` contains the plain-text path to `ClientApp/` | `spa.proxy.json` in `bin/` | MSBuild target from `Microsoft.AspNetCore.SpaProxy` | open | Dev-only file, read only when `launchSettings.json` sets `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`. Layer 2 determines whether publish includes it | red | 15/9 runs 1 to 4; not in the release, W17 |
 | W9 | 1 | Build path | Plain-text paths point to `obj/…/compressed/` and the NuGet cache | `WebAPI.staticwebassets.runtime.json` in `bin/` | MSBuild target from the SDK | open | Dev-only static-asset map. Layer 2 determines whether publish includes it | red | 15/9 runs 1 to 4; not in the release, W17 |
-| W10 | 1 | Environment | `+time`, `+locales`, `+umask` and `+exec_path` were green on Phoenix after the path fixes. The two json files were also identical across these axes | all four assemblies, PDBs, json | | none needed | | green | 15/9 runs 5 to 8 |
+| W10 | 1 | Environment | `+time`, `+locales`, `+umask` and `+exec_path` were green on Phoenix after the path fixes. The two json files were also identical across these axes | all four assemblies, PDBs, json | | none needed | | rejected 24/9: the runs did not vary the compiler (W27), and `+locales` is red once they do (W26) | 15/9 runs 5 to 8 |
 | W11 | M | Method | The 15/9 clean step `tests/*/bin tests/*/obj` missed the single test project in `tests/`. It still recompiled in 15/9's build 2, with 4660 warnings in both logs, so W1 holds | `tests/bin`, `tests/obj` | our script | fix rebuild | Clean `tests/bin tests/obj` | green | 23/9 cross-machine |
 | W12 | 1 | File order | MSBuild sorts wildcard results with `StringComparer.OrdinalIgnoreCase` before the compiler sees them. ApplicationCore's 1567 and Infrastructure's 674 `Compile` items follow that order, not the directory order | csc source order | MSBuild, `EngineFileUtilities.cs` 337-341 | none needed | | green on `arch`; across machines and under disorderfs not measured | 23/9 cross-machine probes |
 | W13 | 1 | Build invocation | Building the two programs with `UseSharedCompilation=false` gave the same 639 files as the solution build with the compiler server | `src/*/bin/Release` | MSBuild, csc | none needed | | green | 23/9 cross-machine, `arch` |
@@ -82,16 +83,36 @@ export of the measured commit.
 | W23 | 2 | Build configuration | `RuntimeIdentifiers` on every project made the libraries platform-specific: they built into `…/linux-x64/`, 14 files changed, and the win-x64 `onnxruntime.dll` and `onnxruntime_providers_shared.dll` shipped in the Linux release | libraries, publish folder | SDK | fix build | `RuntimeIdentifiers` on the two programs only, `d0a817c9` | green | 23/9 layer2 run 3 (red), 5-6 (green) |
 | W24 | 2 | Restore order | A separate restore without the version properties left both `deps.json` listing the libraries as `1.0.0` while their DLLs carried the release version | both `deps.json` | NuGet, SDK | fix build | The restore gets `/p:Version` and `/p:InformationalVersion`, `2570034b` | green | 23/9 layer2 runs 5-6 (red), 7-8 (green) |
 | W25 | 2 | Build path | reprotest `+build_path` on the final tree: reproduction successful, and both reprotest builds match run 7 from the lab | whole release | | none needed | | green | 23/9 layer2 reprotest |
+| W26 | 2 | Locale | Under `et_EE.UTF-8` the compiler emits the types it generates for collection expressions (`<>y__InlineArrayN`1`, `<>z__ReadOnly…`1`) in another order. 10 of 1237 files differ: our four assemblies. Roslyn 4.12 orders them with a culture-sensitive `OrderBy`; Roslyn `main` sorts them ordinally. Of eleven cultures only Estonian changes the order of these names | TypeDef order and the rows that follow it, in `ApplicationCore`, `Infrastructure`, `WebAPI`; `BackgroundJobExecutor` through its references | csc, `PrivateImplementationDetails.Freeze` | fix build; upstream | `LC_ALL=C.UTF-8` or `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1` on the dotnet commands; both reproduce the release unchanged. Not yet in the release workflow | green in reprotest; the release job does not set it yet | 24/9 layer2-reprotest run 2 (red), runs 5-6 (green); roslyn-locale-repro |
+| W27 | M | Method | reprotest's experiment build reuses the compiler server the control build started, so the varied environment does not reach the compiler. `dotnet build-server shutdown` at the start of each build makes every process start inside its variation | `VBCSCompiler` | .NET build servers | fix rebuild | `dotnet build-server shutdown` first in every build command | green | 24/9 layer2-reprotest run 0 (reuse), runs 1-4 (fixed) |
+| W28 | M | Method | reprotest fixes more than it varies: both builds run on one CPU, with `TZ=GMT+12`, `LANG=C.UTF-8`, `HOME` in the build directory and, through `DOTNET_CLI_HOME`, the NuGet cache in `/tmp/dch`. The lab's builds with 16 cores, Europe/Copenhagen and `da_DK.UTF-8` matched reprotest's | reprotest defaults | reprotest | none needed; record them | | green | 24/9 reprotest source, 23/9 cross-run check |
+| W29 | 2 | Environment | `+time` (clock +398 days), `+umask` (contents) and `+exec_path` were green with the variation inside every build process, the compiler included | whole release | | none needed | | green | 24/9 layer2-reprotest runs 1, 3, 4 |
+| W30 | 2 | Permissions | A file's mode in the release folder follows the umask of the process that writes it. Under umask 0002, 142 files are 0664 instead of 0644; files from the NuGet cache stay 0744, the launchers 0755. With reused build servers one build mixes two umasks. reprotest compares contents only; the release job's `zip -r` stores modes | release folder modes | csc, MSBuild, SDK tasks, NuGet | open; layer 4 decides | | red | 24/9 layer2-reprotest runs 0, 3 |
+| W31 | 2 | Timestamp | The release carries 311 `Last-Modified` headers, all 29 Oct 2024 13:06:48 GMT: the Identity UI package's zip entry time, which NuGet writes as the cached files' mtime, read as UTC. The build clock does not reach them, and two extractions under different time zones gave the same file times | `WebAPI.staticwebassets.endpoints.json` | SDK static web assets, NuGet | none needed | | green | 24/9 layer2-reprotest run 1, cache check |
+
+### toolchains: how far reprotest reaches on other toolchains, 24 September 2026
+
+A method check outside .NET. Minimal projects built with the commands of
+Benedetti et al.'s reprotest wrapper, plus Go and a .NET control, under
+`+umask` and `+time`, with a process sampler. See note `2026-09-24-toolchain-servers`.
+
+| # | Layer | Root cause | Fine-grained cause | Where | Written by | Mitigation | Fix | Status | Measured |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| T1 | M | Method | With `npm pack`, `pip3 wheel`, `gem build`, `mvn clean install` and `go build`, no process of reprotest's control build survives into the experiment build. .NET's compiler server does (W27) | process tree | | none needed | | green | 24/9 toolchain-servers |
+| T2 | M | Method | `+time` sets `FAKETIME` but cannot shift the clock of a statically linked program: Go's `go` and `compile` never load libfaketime, so both Go builds read the real clock | Go toolchain | libfaketime via `LD_PRELOAD` | open | Vary the clock by other means, e.g. a VM with a shifted clock | red | 24/9 toolchain-servers |
+| T3 | M | Method | Under `+time`, pip's isolated build fails the TLS check against PyPI, "certificate has expired", and the build fails. Benedetti et al. report the same and narrowed the time shift | pip build isolation | pip, TLS | fix rebuild | No network in the build, or a smaller shift | red | 24/9 toolchain-servers |
+| T4 | M | Method | reprotest's `HOME` in the build tree does not reach Java: Maven uses the real `~/.m2` in both builds, and `install` writes the artefact there. A user-installed pip is swapped for the system pip | `~/.m2`, pip | Java, Python | none needed; record it | | green | 24/9 toolchain-servers |
 
 ## Counts
 
 Updated by hand when the table changes.
 
-| | empty-class (E) | ws-pems (W) | total |
-| --- | --- | --- | --- |
-| rows | 10 | 25 | 35 |
-| green | 10 | 22 | 32 |
-| red | 0 | 3 | 3 |
+| | empty-class (E) | ws-pems (W) | toolchains (T) | total |
+| --- | --- | --- | --- | --- |
+| rows | 10 | 31 | 4 | 45 |
+| green | 10 | 26 | 2 | 38 |
+| red | 0 | 4 | 2 | 6 |
+| rejected | 0 | 1 | 0 | 1 |
 
 ## How the table is used
 

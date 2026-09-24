@@ -1,0 +1,68 @@
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+INFO:reprotest:STARTING VIRTUAL SERVER ['/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/virt/autopkgtest-virt-null']
+reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+which: no dpkg-query in (/usr/local/bin:/usr/bin:/home/leos/.local/bin:/home/leos/.local/opt/apache-maven-3.9.16/bin)
+INFO:reprotest:build "control": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.Guiv1R/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.Guiv1R/build-control/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.Guiv1R/build-control/, artifact pattern: ./dist/*.whl
+INFO:reprotest:executing build in /tmp/reprotest.Guiv1R/const_build_path/
+Processing ./.
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: rb1min
+  Building wheel for rb1min (pyproject.toml): started
+  Building wheel for rb1min (pyproject.toml): finished with status 'done'
+  Created wheel for rb1min: filename=rb1min-1.0.0-py3-none-any.whl size=1136 sha256=77239b34e74b3d5177ee932e47db3e69d47874d3073498df93233d90f17f6e9c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-amu2pffh/wheels/22/67/a5/3bea1ceda065809a95bbf06a63644956b19de52f80fe068322
+Successfully built rb1min
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.Guiv1R/artifacts-control/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/control
+INFO:reprotest:build "experiment-1": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, vary umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.Guiv1R/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest.build:UMASK variation: umask 0002
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.Guiv1R/build-experiment-1/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.Guiv1R/build-experiment-1/, artifact pattern: ./dist/*.whl
+INFO:reprotest:executing build in /tmp/reprotest.Guiv1R/const_build_path/
+Processing ./.
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: rb1min
+  Building wheel for rb1min (pyproject.toml): started
+  Building wheel for rb1min (pyproject.toml): finished with status 'done'
+  Created wheel for rb1min: filename=rb1min-1.0.0-py3-none-any.whl size=1136 sha256=37c3210d39a39ac1a159bf36db9ab4d1ba577ea842aa5a9a14c6fd2ee87f7a99
+  Stored in directory: /tmp/pip-ephem-wheel-cache-q66w34u8/wheels/22/67/a5/3bea1ceda065809a95bbf06a63644956b19de52f80fe068322
+Successfully built rb1min
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.Guiv1R/artifacts-experiment-1/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/experiment-1
+INFO:reprotest:Running diffoscope: ['diffoscope', '--exclude-directory-metadata=yes', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/control', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/experiment-1']
+--- /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/control
++++ /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/experiment-1
+│   --- /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/control/source-root
+├── +++ /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/experiment-1/source-root
+│ │   --- /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/control/source-root/dist
+│ ├── +++ /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/experiment-1/source-root/dist
+│ │ │   --- /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/control/source-root/dist/rb1min-1.0.0-py3-none-any.whl
+│ │ ├── +++ /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-pip-umask-store/experiment-1/source-root/dist/rb1min-1.0.0-py3-none-any.whl
+│ │ │ ├── zipinfo {}
+│ │ │ │ @@ -1,7 +1,7 @@
+│ │ │ │  Zip file size: 1136 bytes, number of entries: 5
+│ │ │ │ --rw-r--r--  2.0 unx       10 b- defN 24-Mar-01 16:42 rb1min/__init__.py
+│ │ │ │ +-rw-rw-r--  2.0 unx       10 b- defN 24-Mar-01 16:42 rb1min/__init__.py
+│ │ │ │  -rw-r--r--  2.0 unx       97 b- defN 24-Mar-01 16:42 rb1min-1.0.0.dist-info/METADATA
+│ │ │ │ --rw-r--r--  2.0 unx       91 b- defN 24-Mar-01 16:42 rb1min-1.0.0.dist-info/WHEEL
+│ │ │ │ --rw-r--r--  2.0 unx        7 b- defN 24-Mar-01 16:42 rb1min-1.0.0.dist-info/top_level.txt
+│ │ │ │ +-rw-rw-r--  2.0 unx       91 b- defN 24-Mar-01 16:42 rb1min-1.0.0.dist-info/WHEEL
+│ │ │ │ +-rw-rw-r--  2.0 unx        7 b- defN 24-Mar-01 16:42 rb1min-1.0.0.dist-info/top_level.txt
+│ │ │ │  -rw-rw-r--  2.0 unx      364 b- defN 24-Mar-01 16:42 rb1min-1.0.0.dist-info/RECORD
+│ │ │ │  5 files, 569 bytes uncompressed, 450 bytes compressed:  20.9%

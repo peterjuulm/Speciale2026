@@ -1,0 +1,49 @@
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+INFO:reprotest:STARTING VIRTUAL SERVER ['/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/virt/autopkgtest-virt-null']
+reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+which: no dpkg-query in (/usr/local/bin:/usr/bin:/home/leos/.local/bin:/home/leos/.local/opt/apache-maven-3.9.16/bin)
+INFO:reprotest:build "control": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.rRdOum/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.rRdOum/build-control/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.rRdOum/build-control/, artifact pattern: ./bin/Release/net9.0/*
+INFO:reprotest:executing build in /tmp/reprotest.rRdOum/const_build_path/
+  Determining projects to restore...
+  Restored /tmp/reprotest.rRdOum/const_build_path/rb1min.csproj (in 176 ms).
+  rb1min -> /tmp/reprotest.rRdOum/const_build_path/bin/Release/net9.0/rb1min.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.25
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.rRdOum/artifacts-control/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-dotnet-umask-store/control
+INFO:reprotest:build "experiment-1": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, vary umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.rRdOum/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest.build:UMASK variation: umask 0002
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.rRdOum/build-experiment-1/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.rRdOum/build-experiment-1/, artifact pattern: ./bin/Release/net9.0/*
+INFO:reprotest:executing build in /tmp/reprotest.rRdOum/const_build_path/
+  Determining projects to restore...
+  Restored /tmp/reprotest.rRdOum/const_build_path/rb1min.csproj (in 126 ms).
+  rb1min -> /tmp/reprotest.rRdOum/const_build_path/bin/Release/net9.0/rb1min.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.20
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.rRdOum/artifacts-experiment-1/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-dotnet-umask-store/experiment-1
+INFO:reprotest:Running diffoscope: ['diffoscope', '--exclude-directory-metadata=yes', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-dotnet-umask-store/control', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-dotnet-umask-store/experiment-1']
+INFO:reprotest:No differences between /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-dotnet-umask-store/control, /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-dotnet-umask-store/experiment-1
+=======================
+Reproduction successful
+=======================
+No differences in ./bin/Release/net9.0/*
+a66c47360f0e74a47ba59cc58d17e74f3f9846550e11773b789c0e3741a55af9  ./bin/Release/net9.0/rb1min.deps.json
+af120295666aa64e24711add0fae50f5b0b462cda5e818f4dc00e6044904ba6d  ./bin/Release/net9.0/rb1min.dll
+c673912034af5f9629e65ca84a4b635497b6dbf22a9616f907ce239a4d7c2820  ./bin/Release/net9.0/rb1min.pdb
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.

@@ -254,3 +254,16 @@ build"; that is the program itself being different.
   committed tree too. `[I]` Reverted in the worktree and the lab re-synced
   23/9; the lab now matches `e6e92423` except `.claude/` (excluded) and
   Rider's `.idea/`.
+- Added 24/9: runs 5-8 most likely did not vary the compiler. reprotest's
+  experiment build reuses the compiler server the control build started, so
+  the varied clock, locale, umask and `PATH` reached MSBuild but not csc
+  `[I]`, measured on layer 2 in
+  [phoenix-layer2-reprotest](2026-09-24-phoenix-layer2-reprotest.md), run 0.
+  With the compiler inside the variation, `+locales` is red on the same code:
+  the compiler orders its collection-expression types by culture. So the
+  `+locales` verdict above does not hold (W10 rejected, W26). `+time`, `+umask`
+  and `+exec_path` are green there with the compiler varied.
+- Added 24/9: the NuGet cache in these runs was `/tmp/dch/.nuget/packages`,
+  not `~/.nuget/packages` as Setup says. `DOTNET_CLI_HOME=/tmp/dch` moves
+  NuGet's global packages folder too `[V]`. reprotest also ran both builds on
+  one CPU, with `TZ=GMT+12` and `LANG=C.UTF-8` (W28).

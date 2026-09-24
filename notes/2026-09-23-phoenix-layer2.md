@@ -295,6 +295,11 @@ source; that is the dependency part.
   linux-x64 publish is not established `[I]`.
 - Only `+build_path` on layer 2. Time, locale, umask, exec_path and file order
   were not run on publish.
+  Added 24/9: time, locale, umask and exec_path ran in
+  [phoenix-layer2-reprotest](2026-09-24-phoenix-layer2-reprotest.md). Locale is
+  red (W26). The same note shows that reprotest's builds run on one CPU with
+  `TZ=GMT+12` and `LANG=C.UTF-8`, and restore from `/tmp/dch/.nuget/packages`
+  (W28), which also held for the `+build_path` run here.
 - No frontend (layer 3), no zip (layer 4). The `win-x64` publish runs on a
   Windows runner with Authenticode signing and is not measured. The release
   also ships an EF migration bundle, a self-contained single-file executable,

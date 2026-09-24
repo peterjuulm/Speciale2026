@@ -1,0 +1,61 @@
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+INFO:reprotest:STARTING VIRTUAL SERVER ['/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/virt/autopkgtest-virt-null']
+reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+which: no dpkg-query in (/usr/local/bin:/usr/bin:/home/leos/.local/bin:/home/leos/.local/opt/apache-maven-3.9.16/bin)
+INFO:reprotest:build "control": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.zo0jus/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.zo0jus/build-control/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.zo0jus/build-control/, artifact pattern: ./dest/*.tgz
+INFO:reprotest:executing build in /tmp/reprotest.zo0jus/const_build_path/
+npm notice
+npm notice 📦  rb1min@1.0.0
+npm notice Tarball Contents
+npm notice 20B index.js
+npm notice 145B package.json
+npm notice Tarball Details
+npm notice name: rb1min
+npm notice version: 1.0.0
+npm notice filename: rb1min-1.0.0.tgz
+npm notice package size: 244 B
+npm notice unpacked size: 165 B
+npm notice shasum: 62eeaf5f3e903d01741b87d25a9ea9412cb790cc
+npm notice integrity: sha512-oR9RzqbdW9FAZ[...]hdYc1P8J2vdYg==
+npm notice total files: 2
+npm notice
+rb1min-1.0.0.tgz
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.zo0jus/artifacts-control/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-npm-time-store/control
+INFO:reprotest:build "experiment-1": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, vary time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.zo0jus/const_build_path
+INFO:reprotest.build:FAKETIME variation: faketime = +398days+12hours+0minutes
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.zo0jus/build-experiment-1/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.zo0jus/build-experiment-1/, artifact pattern: ./dest/*.tgz
+INFO:reprotest:executing build in /tmp/reprotest.zo0jus/const_build_path/
+npm notice
+npm notice 📦  rb1min@1.0.0
+npm notice Tarball Contents
+npm notice 20B index.js
+npm notice 145B package.json
+npm notice Tarball Details
+npm notice name: rb1min
+npm notice version: 1.0.0
+npm notice filename: rb1min-1.0.0.tgz
+npm notice package size: 244 B
+npm notice unpacked size: 165 B
+npm notice shasum: 62eeaf5f3e903d01741b87d25a9ea9412cb790cc
+npm notice integrity: sha512-oR9RzqbdW9FAZ[...]hdYc1P8J2vdYg==
+npm notice total files: 2
+npm notice
+rb1min-1.0.0.tgz
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.zo0jus/artifacts-experiment-1/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-npm-time-store/experiment-1
+INFO:reprotest:Running diffoscope: ['diffoscope', '--exclude-directory-metadata=yes', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-npm-time-store/control', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-npm-time-store/experiment-1']
+INFO:reprotest:No differences between /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-npm-time-store/control, /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-npm-time-store/experiment-1
+=======================
+Reproduction successful
+=======================
+No differences in ./dest/*.tgz
+e9561367ce8b95bdc48a17cf29a40036e1cf4b7e37917e9d988272012d326f59  ./dest/rb1min-1.0.0.tgz
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.

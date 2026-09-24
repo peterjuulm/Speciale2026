@@ -1,0 +1,48 @@
+# phoenix-layer2-reprotest, arch, 24 September 2026. Run by Claude at Leo's
+# request, in bash. Verbatim.
+
+# Lab check before run 0: the lab is the export of 2570034b from 23/9.
+python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro 2570034b /private/tmp/rb1-phoenix
+#   5478 files in commit, 5478 in lab: 0 missing, 0 differing, 0 extra
+
+# One run = run-axis.sh N AXIS yes|no, below verbatim. "yes" starts every
+# build with dotnet build-server shutdown. The sampler runs for the whole run.
+#!/bin/bash
+# One reprotest run on Phoenix layer 2, 24 September 2026.
+# Usage: run-axis.sh N AXIS yes|no   (yes = dotnet build-server shutdown first)
+set -u
+N=$1 AXIS=$2 SHUTDOWN=$3
+OUT=/home/leos/Dev/speciale-2026/data/phoenix-layer2-reprotest/arch
+ENV='env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1'
+VER='/p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis'
+CMD="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore $VER && find release -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > release.sha256 && find release -type f -printf '%m %P\n' | LC_ALL=C sort > $OUT/modes/rt-$N-\$(umask)-\$\$.txt"
+if [ "$SHUTDOWN" = yes ]; then CMD="$ENV dotnet build-server shutdown && $CMD"; fi
+ART='release.sha256 release/*/ApplicationCore.* release/*/Infrastructure.* release/*/WebAPI.* release/*/BackgroundJobExecutor.* release/*/WebAPI release/*/BackgroundJobExecutor'
+cd /private/tmp/rb1-phoenix || exit 1
+printf '%s\n' "$CMD" > $OUT/rt-$N-$AXIS.cmd
+python3 /home/leos/Dev/Speciale2026/experiments/sample-dotnet.py $OUT/samples-$N-$AXIS.txt &
+SAMPLER=$!
+echo "start $(date -Is)" > $OUT/rt-$N-$AXIS.time
+/home/leos/.local/bin/reprotest -v --store-dir $OUT/rt-$N-store --vary=-all,+$AXIS -c "$CMD" /private/tmp/rb1-phoenix "$ART" > $OUT/rt-$N-$AXIS.log 2>&1
+RC=$?
+echo "end $(date -Is) exit $RC" >> $OUT/rt-$N-$AXIS.time
+sleep 2
+kill $SAMPLER
+echo "run $N $AXIS exit $RC"
+
+# Run 0 (10:32-10:39), the 23/9 protocol on +umask:
+./run-axis.sh 0 umask no
+# Runs 1-4 (from 10:49), one after the other, then the servers shut down:
+for r in "1 time" "2 locales" "3 umask" "4 exec_path"; do ./run-axis.sh $r yes; done; env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_NOLOGO=1 dotnet build-server shutdown > build-server-shutdown-after.log 2>&1
+
+# The build command each run passed to reprotest -c, as the script wrote it
+# to rt-N-AXIS.cmd. Run 0:
+env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet restore ./WS.Phoenix.sln --locked-mode /p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis && env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true /p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis && env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore /p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis && find release -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > release.sha256 && find release -type f -printf '%m %P\n' | LC_ALL=C sort > /home/leos/Dev/speciale-2026/data/phoenix-layer2-reprotest/arch/modes/rt-0-$(umask)-$$.txt
+
+# Runs 1-4 (identical apart from the run number in the mode-list name):
+env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet build-server shutdown && env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet restore ./WS.Phoenix.sln --locked-mode /p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis && env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true /p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis && env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore /p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis && find release -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > release.sha256 && find release -type f -printf '%m %P\n' | LC_ALL=C sort > /home/leos/Dev/speciale-2026/data/phoenix-layer2-reprotest/arch/modes/rt-1-$(umask)-$$.txt
+
+# Runs 5-6 (13:54-14:15), +locales with a fix on every dotnet command. run-axis.sh
+# got an optional fourth argument, FIXENV, appended to the env of each dotnet
+# command (the script above is the version before that change):
+./run-axis.sh 5 locales yes LC_ALL=C.UTF-8 && ./run-axis.sh 6 locales yes DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1

@@ -73,6 +73,14 @@ to 9.0.120 via `global.json` with `rollForward: disable`:
   still differs after PathMap.
 - **Clear `bin/` and `obj/` before reprotest**, or old output is copied into
   the test directory along with everything else.
+- **reprotest's variation does not reach .NET's build servers.** The
+  experiment build hands its compiling to the compiler server the control
+  build started, which keeps the control's clock, locale, umask and `PATH`
+  (measured 24/9). Start every build command with `dotnet build-server
+  shutdown`.
+- **reprotest fixes what it does not vary**: one CPU unless `--min-cpus` is
+  given, `TZ=GMT+12`, `LANG=C.UTF-8`, and `HOME` inside the build directory.
+  The `DOTNET_CLI_HOME` we set for that also moves the NuGet cache.
 - The version number `9.0.120` does not identify the compiler. The Roslyn
   commit in `csc.dll` does. Always record the `csc.dll` hash in the
   environment block.
@@ -93,10 +101,16 @@ to 9.0.120 via `global.json` with `rollForward: disable`:
 `notes/findings-table.md` is the running index of every cause found, its fix and
 its status; keep it current. `notes/2026-09-15-layer-plan.md` is the plan: five
 layers (build, publish, frontend, zip, container) measured one at a time.
-As of 23/9: layer 1 is closed on `arch`; layer 2 is green on `arch` for the
+As of 24/9: layer 1 is closed on `arch`. Layer 2 is green on `arch` for the
 release's own publish commands, on one path and across paths, with NuGet lock
-files in place. Cross-machine runs are paused: the shared droplet is too small
-to compile Phoenix. See `notes/2026-09-23-findings.md`. Open questions are under
+files in place, and under a shifted clock, umask 0002 and an extra `PATH`
+entry. Locale was red: under `et_EE.UTF-8` the compiler orders the types it
+generates for collection expressions differently, a Roslyn defect (W26).
+Pinning `LC_ALL=C.UTF-8` or invariant globalization on the dotnet commands
+fixes it without changing a byte; the release workflow does not set it yet.
+Cross-machine runs are paused: the shared droplet is too small to compile
+Phoenix. See `notes/2026-09-24-phoenix-layer2-reprotest.md`,
+`notes/2026-09-24-roslyn-locale-repro.md` and `notes/2026-09-23-findings.md`. Open questions are under
 "Caveats" in the newest experiment notes and under "Open" in the findings note.
 Fixes to Phoenix live on the branch `thesis/reproducible-builds` in the
 WS.Phoenix repo, never in this one.

@@ -1,0 +1,14 @@
+# toolchain-servers, arch, 24 September 2026. Run by Claude at Leo's request,
+# in bash. Verbatim.
+
+# Maven 3.9.16, downloaded for this run (Leo agreed), checked against Apache's SHA-512:
+cd ~/.local/opt && curl -sSL -o apache-maven-3.9.16-bin.tar.gz https://dlcdn.apache.org/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz && curl -sSL -o apache-maven-3.9.16-bin.tar.gz.sha512 https://downloads.apache.org/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz.sha512 && echo "$(cut -d' ' -f1 apache-maven-3.9.16-bin.tar.gz.sha512)  apache-maven-3.9.16-bin.tar.gz" | sha512sum -c - && tar -xzf apache-maven-3.9.16-bin.tar.gz
+
+# The eleven runs, one after the other (13:34-13:37). run.sh is in
+# experiments/toolchain-servers/; it writes rt-<toolchain>-<axis>.{cmd,log,time}
+# and samples-<toolchain>-<axis>.txt here, the reprotest stores to Leo's
+# private data folder.
+R=/home/leos/Dev/Speciale2026/experiments/toolchain-servers/run.sh; for r in "dotnet umask" "npm umask" "npm time" "pip umask" "pip time" "gem umask" "gem time" "go umask" "go time" "maven umask" "maven time"; do $R $r; done
+
+# Analysis, per run:
+python3 /home/leos/Dev/Speciale2026/experiments/analyze-tree.py samples-<toolchain>-<axis>.txt <axis>

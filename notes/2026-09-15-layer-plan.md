@@ -32,8 +32,8 @@ Then we vary one thing at a time (reproducibility from the description):
 | Build path | reprotest `+build_path` | Measured on Phoenix 15/9: red, closed with PathMap + deletion of the Razor pages |
 | Machine | `arch`, `ubuntu-vm`, Peter's `mac`, same declared environment | Not measured on Phoenix. 23/9: `ubuntu-vm` too small (W14), paused |
 | SDK binary | Microsoft's versus the Arch package's 9.0.120 | Measured on empty-class 8/9, not on Phoenix |
-| Time | reprotest `+time` | Phoenix 15/9: green |
-| Locale, umask, exec_path | reprotest | Phoenix 15/9: green. File order requires `ubuntu-vm` |
+| Time | reprotest `+time` | Phoenix 15/9: green, but the compiler was not varied (W27). 24/9 layer 2: green with the compiler under faketime (W29) |
+| Locale, umask, exec_path | reprotest | Phoenix 15/9: green, but the compiler was not varied (W27). 24/9 layer 2: locale red (W26), umask and exec_path green (W29), modes follow the umask (W30). File order requires `ubuntu-vm` |
 | Network | Restore from a pinned cache, build with `--unshare-net` | Not measured. The dependency part's test. 23/9: NuGet lock files on the branch (W22) |
 
 ## The dependency tree (runs in parallel with layer 2)
@@ -53,10 +53,12 @@ Then we vary one thing at a time (reproducibility from the description):
 | 1, same path, `arch` | 0 / 1610 | 0 | | none needed | 15/9, one run |
 | 1, different path, without fix | 10 / 10 | PDBs entirely, DLLs 70-190 | path in PDB, PDB path in DLL, regex type names, Razor text, 2 json | | 15/9 |
 | 1, different path, with fix | 2 / 10 | 2 json | `spa.proxy.json`, `staticwebassets.runtime.json` | PathMap + delete `Pages/` | 15/9, one project left for layer 2 |
-| 1, time / locale / umask / exec_path | 0 | 0 | | none needed | 15/9 |
+| 1, time / locale / umask / exec_path | 0 | 0 | | none needed | 15/9; rejected 24/9, the compiler was not varied (W10, W27) |
 | 1, `ubuntu-vm` | not measured | | VM too small to compile Phoenix (W14) | | 23/9, paused |
 | 2, same path, `e6e92423` | 0 / 1238 | 0 | stray `package-lock.json` ships (W18) | deleted, `b0a21823` | 23/9, runs 1-2 and dry run |
 | 2, same path and `+build_path`, `2570034b` | 0 / 1237 | 0 | lock files (W22) first shipped win-x64 files (W23) and wrong `deps.json` versions (W24) | `d0a817c9`, `2570034b` | 23/9, runs 7-8, reprotest |
+| 2, time / umask / exec_path, `2570034b` | 0 / 1237 | 0 | umask changes 142 file modes, not contents (W30) | none needed | 24/9, runs 1, 3, 4 |
+| 2, locale `et_EE.UTF-8`, `2570034b` | 10 / 1237 | 40-497 per file | the compiler orders its collection-expression types by culture (W26) | `LC_ALL=C.UTF-8` or invariant globalization on the dotnet commands: 0 / 1237 | 24/9, run 2 (red), runs 5-6 (green) |
 | 3 | | | | | |
 | 4 | | | | | |
 | 5 | | | | | |

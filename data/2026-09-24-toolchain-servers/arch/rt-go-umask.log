@@ -1,0 +1,29 @@
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+INFO:reprotest:STARTING VIRTUAL SERVER ['/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/virt/autopkgtest-virt-null']
+reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+which: no dpkg-query in (/usr/local/bin:/usr/bin:/home/leos/.local/bin:/home/leos/.local/opt/apache-maven-3.9.16/bin)
+INFO:reprotest:build "control": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.SR236U/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.SR236U/build-control/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.SR236U/build-control/, artifact pattern: ./out/*
+INFO:reprotest:executing build in /tmp/reprotest.SR236U/const_build_path/
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.SR236U/artifacts-control/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-go-umask-store/control
+INFO:reprotest:build "experiment-1": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, vary umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.SR236U/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest.build:UMASK variation: umask 0002
+INFO:reprotest:copying . over to virtual server's /tmp/reprotest.SR236U/build-experiment-1/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.SR236U/build-experiment-1/, artifact pattern: ./out/*
+INFO:reprotest:executing build in /tmp/reprotest.SR236U/const_build_path/
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.SR236U/artifacts-experiment-1/ back from virtual server's /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-go-umask-store/experiment-1
+INFO:reprotest:Running diffoscope: ['diffoscope', '--exclude-directory-metadata=yes', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-go-umask-store/control', '/home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-go-umask-store/experiment-1']
+INFO:reprotest:No differences between /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-go-umask-store/control, /home/leos/Dev/speciale-2026/data/toolchain-servers/arch/rt-go-umask-store/experiment-1
+=======================
+Reproduction successful
+=======================
+No differences in ./out/*
+2ae358063277746436a460af009e6324c77cc9473306569c2b9f6ff5c8da375e  ./out/rb1min
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
