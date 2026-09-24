@@ -1,0 +1,24 @@
+# phoenix-rerun, arch, 24 September 2026. Run by Claude at Leo's request, in bash. Verbatim.
+
+# The fix commit on thesis/reproducible-builds (Leo asked Claude to commit and push it):
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro apply /home/leos/Dev/speciale-2026/data/phoenix-layer2-reprotest/lc_all-pin.patch
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro commit -a -F /home/leos/Dev/speciale-2026/data/phoenix-layer2-reprotest/lc_all-pin.msg
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro push origin thesis/reproducible-builds
+#   -> 4e5237a33b5737f6f781bb3ee85cec540309833f
+
+# The lab, an export of that commit, checked file by file:
+find /private/tmp/rb1-phoenix -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro archive 4e5237a33b5737f6f781bb3ee85cec540309833f -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix
+python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro 4e5237a33b5737f6f781bb3ee85cec540309833f /private/tmp/rb1-phoenix
+#   5478 files in commit, 5478 in lab: 0 missing, 0 differing, 0 extra
+
+# The runs: experiments/phoenix-rt/rerun-all.sh (15 runs per layer, layer 2 first),
+# which calls experiments/phoenix-rt/run.sh; an idle-sleep inhibitor holds the machine awake.
+systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix reprotest reruns" /home/leos/Dev/Speciale2026/experiments/phoenix-rt/rerun-all.sh
+
+# The exact reprotest arguments and build command of each run are in
+# rt-<label>.cmd in Leo's private data folder (speciale-2026/data/phoenix-rerun/arch/).
+
+# Stopped at 15:28 at Leo's request after L2-exec_path (6 of 30 runs): the loop
+# (rerun-all.sh) was killed between runs, then the two leftover MSBuild nodes of
+# the runs (HOME in /tmp/reprotest.*) were stopped by hand.
