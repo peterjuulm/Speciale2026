@@ -1,0 +1,32 @@
+# phoenix-rerun, arch, 5 October 2026. Run by Claude at Leo's request, in bash. Verbatim.
+
+# The lab, still the export of 4e5237a3 from 24/9, checked file by file:
+python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro 4e5237a33b5737f6f781bb3ee85cec540309833f /private/tmp/rb1-phoenix
+#   5478 files in commit, 5479 in lab: 0 missing, 0 differing, 1 extra
+#   extra .idea/.idea.WS.Phoenix/.idea/workspace.xml
+rm /private/tmp/rb1-phoenix/.idea/.idea.WS.Phoenix/.idea/workspace.xml
+python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro 4e5237a33b5737f6f781bb3ee85cec540309833f /private/tmp/rb1-phoenix
+#   5478 files in commit, 5478 in lab: 0 missing, 0 differing, 0 extra
+
+# The NuGet cache in /tmp/dch, emptied by the reboot, filled again by one
+# locked restore in a copy of the lab ($PATH expanded by the shell):
+cp -a /private/tmp/rb1-phoenix /private/tmp/rb1-warm
+cd /private/tmp/rb1-warm
+env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1 dotnet restore ./WS.Phoenix.sln --locked-mode /p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis
+env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1 dotnet build-server shutdown
+cd / && rm -rf /private/tmp/rb1-warm
+chmod 644 /tmp/dch/.nuget/NuGet/NuGet.Config
+#   4.3G /tmp/dch/.nuget/packages, restore 49 s
+
+# The runs. Layer 2's user_group first and alone, then the whole batch, which
+# skips it. An idle-sleep inhibitor holds the machine awake.
+OUT=/home/leos/Dev/speciale-2026/data/phoenix-rerun/arch-2026-10-05 MIN_CPUS=2 systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix reprotest user_group check" /home/leos/Dev/Speciale2026/experiments/phoenix-rt/run.sh 2 user_group
+#   L2-user_group exit 0 control 9283b29e2f8ce154 experiment 9283b29e2f8ce154 leftover 0
+#   Its "pkill: killing pid 59402 failed" was the root-owned sudo wrapper of
+#   rb1b's sampler, matched by the pattern; the sampler itself stopped.
+#   run.sh then got "pkill -u rb1b", before the batch.
+OUT=/home/leos/Dev/speciale-2026/data/phoenix-rerun/arch-2026-10-05 systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix reprotest reruns" /home/leos/Dev/Speciale2026/experiments/phoenix-rt/rerun-all.sh > /home/leos/Dev/speciale-2026/data/phoenix-rerun/arch-2026-10-05/rerun-all.out 2>&1
+
+# The exact reprotest arguments and build command of each run are in
+# rt-<label>.cmd in Leo's private data folder
+# (speciale-2026/data/phoenix-rerun/arch-2026-10-05/).

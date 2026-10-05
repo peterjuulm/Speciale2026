@@ -11,6 +11,7 @@ variation.
 Usage: python3 analyze-samples.py SAMPLES AXIS
 AXIS is a reprotest variation, or "all" (marked by umask 0002). For
 num_cpus, MIN_CPUS in the environment gives the control build's CPU count.
+For user_group, give the two samplers' files joined into one.
 The time marker is FAKETIME in the environment; libfaketime mapped is
 reported separately.
 
@@ -38,6 +39,8 @@ MARKER = {
     'aslr': lambda s: s.get('aslr') == 'on',
     'build_path': lambda s: s.get('cwd', '').startswith('build-experiment'),
     'domain_host': lambda s: s.get('utsns', '') != HOST_UTS,
+    # the experiment build runs as the other user
+    'user_group': lambda s: s.get('uid') != str(os.getuid()),
     'all': lambda s: s['umask'] == '0002',
 }
 
@@ -89,7 +92,7 @@ def main():
         start = int(before[-1]['cpu']) if before else 0
         return int(inside[-1]['cpu']) - start
 
-    print(f'\n{"role":13} {"pid":>8} {"started":>8} {"umask":5} {"varied":6} '
+    print(f'\n{"role":13} {"pid":>8} {"started":>8} {"last seen":>9} {"umask":5} {"varied":6} '
           f'{"cpu control":>11} {"cpu experiment":>14}   (cpu in 1/{tick} s)')
     for (pid, start), ss in sorted(samples.items(), key=lambda kv: int(kv[0][1])):
         r = ss[0]['role']
@@ -98,8 +101,9 @@ def main():
         started = clock(btime + int(start) / tick)
         c = cpu_in(ss, *span['control']) if 'control' in span else 0
         e = cpu_in(ss, *span['experiment']) if 'experiment' in span else 0
-        print(f'{r:13} {pid:>8} {started:>8} {ss[0]["umask"]:5} {str(varied(ss[0])):6} '
-              f'{c:>11} {e:>14}   {ss[0].get("cmd", "")}')
+        extra = ss[0].get('cmd', '') or (f'reuse={ss[0]["reuse"]}' if 'reuse' in ss[0] else '')
+        print(f'{r:13} {pid:>8} {started:>8} {clock(ss[-1]["t"]):>9} {ss[0]["umask"]:5} '
+              f'{str(varied(ss[0])):6} {c:>11} {e:>14}   {extra}')
 
 
 if __name__ == '__main__':

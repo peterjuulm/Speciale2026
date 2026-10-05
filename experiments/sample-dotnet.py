@@ -11,7 +11,8 @@ Usage: python3 sample-dotnet.py OUTFILE    (stop it with kill)
 DOTNET_EXE in the environment overrides the dotnet executable to follow.
 
 Written 24 September 2026 for phoenix-layer2-reprotest; markers for the
-remaining axes added the same afternoon.
+remaining axes added the same afternoon. 5 October 2026: whether an MSBuild
+node was started for reuse.
 """
 import os
 import sys
@@ -70,6 +71,8 @@ def sample(pid):
             f'ncpus={ncpus} pers={personality} aslr={aslr} utsns={utsns} cwd={cwd.replace(" ", "_")}')
     if r == 'other':  # name it, so unrelated dotnet tools can be told apart
         line += ' cmd=' + '|'.join(cmd.split()[:3])[:120]
+    if r == 'msbuild-node':
+        line += f' reuse={int("nodereuse:true" in cmd.lower())}'
     return line
 
 

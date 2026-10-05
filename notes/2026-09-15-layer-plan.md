@@ -1,6 +1,7 @@
 # Layer plan: what we test, and in what order
 
-Planning note, 15 September 2026. Not an experiment. Each experiment gets its
+Planning note, 15 September 2026. Not an experiment. The current state per
+layer and axis is in [status.md](status.md). Each experiment gets its
 own note, named after the day it is run.
 
 The idea: a release is built in layers. Each layer adds its own sources of
@@ -45,6 +46,23 @@ Then we vary one thing at a time (reproducibility from the description):
   finding: the packages' sha512 are in the file, but are not checked at load.
   Compare them with the actual `.nupkg` hashes. - How many copied assemblies can
   be traced to a source revision, and how many are sealed vendor bytes?
+
+## Windows (decided 5 October 2026)
+
+Phoenix's release also builds Windows binaries, in a job of its own. Leo and
+Peter decided on 5/10: later work in the thesis if time allows, but part of
+the delivery to Weel-Sandvig. Open points:
+
+- `LC_ALL` does nothing on Windows: .NET there takes the culture from the
+  user's region settings `[V]` `CultureInfo.Windows.cs`, dotnet/runtime
+  `release/9.0`. The Windows fix would be invariant globalization, which has
+  not been measured on Windows.
+- The branch's locked restore and `--no-restore` in the Windows job have never
+  run on Windows. It needs one run of the release workflow before delivery.
+- Signed binaries can never equal a rebuild byte for byte. A comparison has
+  to strip the signature first.
+- Line endings at checkout, and whether a Linux machine can rebuild the
+  Windows release.
 
 ## Result table (filled in as we go)
 

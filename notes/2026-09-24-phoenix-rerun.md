@@ -1,5 +1,8 @@
 # Phoenix layers 1 and 2 again: every reprotest axis, the new protocol
 
+Replaced on 5 October 2026 by [the full rerun](2026-10-05-phoenix-rerun.md),
+which ran all 30 runs again after a system update, plus `user_group`.
+
 Run 24 September 2026 on `arch`, after
 [phoenix-layer2-reprotest](2026-09-24-phoenix-layer2-reprotest.md) and
 [toolchain-servers](2026-09-24-toolchain-servers.md) changed how we run

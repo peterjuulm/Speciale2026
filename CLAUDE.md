@@ -98,8 +98,9 @@ to 9.0.120 via `global.json` with `rollForward: disable`:
 
 ## Where we stand
 
-`notes/findings-table.md` is the running index of every cause found, its fix and
-its status; keep it current. `notes/2026-09-15-layer-plan.md` is the plan: five
+`notes/status.md` is the one-screen board: layer by axis, what is open and what
+runs next; update it when a run lands. `notes/findings-table.md` is the running
+index of every cause found, its fix and its status; keep it current. `notes/2026-09-15-layer-plan.md` is the plan: five
 layers (build, publish, frontend, zip, container) measured one at a time.
 As of 24/9: layer 1 is closed on `arch`. Layer 2 is green on `arch` for the
 release's own publish commands, on one path and across paths, with NuGet lock
