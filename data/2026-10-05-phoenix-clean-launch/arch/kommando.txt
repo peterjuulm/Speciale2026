@@ -1,0 +1,12 @@
+# phoenix-clean-launch, arch, 5 October 2026. Run by Claude at Leo's request, in bash. Verbatim.
+# run.sh now starts reprotest under env -i (the change after commit 9f66d25).
+
+python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro 4e5237a33b5737f6f781bb3ee85cec540309833f /private/tmp/rb1-phoenix
+#   5478 files in commit, 5478 in lab: 0 missing, 0 differing, 0 extra
+
+export OUT=/home/leos/Dev/speciale-2026/data/phoenix-clean-launch/arch-2026-10-05 MIN_CPUS=2
+systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix clean-launch runs" sh -c 'FIXENV= /home/leos/Dev/Speciale2026/experiments/phoenix-rt/run.sh 2 none; FIXENV=LC_ALL=C.UTF-8 /home/leos/Dev/Speciale2026/experiments/phoenix-rt/run.sh 2 all L2-all-fixed' > /home/leos/Dev/speciale-2026/data/phoenix-clean-launch/arch-2026-10-05/runs.out 2>&1
+
+# The exact launch environment, reprotest arguments and build command of each
+# run are in rt-<label>.cmd in Leo's private data folder
+# (speciale-2026/data/phoenix-clean-launch/arch-2026-10-05/).

@@ -113,14 +113,15 @@ Benedetti et al.'s reprotest wrapper, plus Go and a .NET control, under
 A method check of reprotest 0.7.32. A "build" of shell commands writes down
 what it sees, once per axis, launched as the Phoenix runs are and under
 `env -i`. See note `2026-10-05-reprotest-probe`. The Phoenix samples of
-`2026-10-05-phoenix-rerun` confirm R1, R2 and R4 on the real build.
+`2026-10-05-phoenix-rerun` confirm R1, R2 and R4 on the real build, and
+`2026-10-05-phoenix-clean-launch` closes R4.
 
 | # | Layer | Root cause | Fine-grained cause | Where | Written by | Mitigation | Fix | Status | Measured |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | R1 | M | Method | The `aslr` axis alone changes nothing: both builds run with ASLR on. reprotest's fixed setting, ASLR off, is a `-R` for `setarch`, and only the `kernel` axis puts `setarch` in front of the build | process personality, stack address | reprotest | open | Read `aslr` results as no-ops; ASLR alone needs a run outside reprotest | red | 5/10 reprotest-probe `inherited-aslr`; Phoenix: ASLR on in all 3541 samples of L2-none, -timezone, -user_group |
 | R2 | M | Method | The `kernel` axis varies two things: the kernel version `uname` reports (2.6.62 on 7.2.8) and ASLR, which it switches off. `setarch`'s architecture is picked at random, `uname26` or `linux64` | personality `00060000` | reprotest, setarch | none needed; record it | | green | 5/10 reprotest-probe `inherited-kernel`; Phoenix L2-kernel: the experiment's processes ASLR off in 668 samples, the control's on in 659 |
 | R3 | M | Method | Axes change more than their names say. `build_path` moves `HOME` with the folder. `user_group` changes `USER` and `LOGNAME`, replaces `PATH` with sudo's `/usr/local/sbin:/usr/local/bin:/usr/bin`, and adds `SUDO_HOME` and `TERM`. `time` adds `FAKETIME`, `FAKETIME_SHARED`, `LD_PRELOAD` and `NO_FAKE_STAT`. `all` leaves ASLR on in both builds. With the CPU count fixed, each build still gets its own random CPU set | build environment | reprotest, sudo, faketime | none needed; record it | A red result on these axes names a group of changes, not one | green | 5/10 reprotest-probe, all runs |
-| R4 | M | Method | The builds inherit the whole environment reprotest is started from; reprotest sets only `LANG`, `LANGUAGE`, `TZ`, `HOME` and the varied axis. Started from Claude Code's shell: 105 variables, among them nine `LC_*` set to `da_DK.UTF-8`, the desktop session's, 27 `CLAUDE*` and our own scripts' variables. Under `env -i`: 14. MSBuild makes each one a property | build environment | reprotest | fix rebuild | Start reprotest under `env -i` with a listed environment | red | 5/10 reprotest-probe `inherited-none`, `clean-none`; `/proc/<pid>/environ` of a running Phoenix build |
+| R4 | M | Method | The builds inherit the whole environment reprotest is started from; reprotest sets only `LANG`, `LANGUAGE`, `TZ`, `HOME` and the varied axis. Started from Claude Code's shell: 105 variables, among them nine `LC_*` set to `da_DK.UTF-8`, the desktop session's, 27 `CLAUDE*` and our own scripts' variables. Under `env -i`: 14. MSBuild makes each one a property | build environment | reprotest | fix rebuild | `run.sh` starts reprotest under `env -i` with `HOME`, `USER`, `LOGNAME`, `SHELL` and `PATH` | green | 5/10 reprotest-probe `inherited-none`, `clean-none`; `/proc/<pid>/environ` of a running Phoenix build; 5/10 phoenix-clean-launch: L2-none and L2-all-fixed give the release `9283b29e…` with 18-33 variables per process |
 | R5 | M | Method | ICU's default locale in reprotest's fixed setting is `en_US_POSIX`, with the caller's `LC_TIME`, `LC_NUMERIC` and the rest still Danish. Only `LC_ALL`, `LC_MESSAGES` and `LANG` decide it | ICU default locale | ICU | none needed | | green | 5/10 reprotest-probe `icu.txt`; `icuinfo` under four environments. That .NET maps it to the invariant culture is not measured |
 | R6 | M | Method | On a green run reprotest replaces the experiment's store with a link to the control's, sets the stored artefacts' mtimes to 1970, and runs diffoscope with `--exclude-directory-metadata=yes`. A green run's experiment hash is diffoscope's verdict, not a second reading, and timestamps and modes cannot show | `--store-dir`, artefacts | reprotest | none needed; record it | Our own mode lists (W30) | green | 5/10 reprotest code; `store-L2-none/experiment-1 -> control` |
 | R7 | M | Method | The `time` axis skips its shift, with one INFO line, when the newest file in the source tree is more than 398 days old. An export of an old release keeps its commit's mtimes and would not be shifted | `faketime()` in `build.py` | reprotest | fix rebuild | Check the log for "FAKETIME variation: faketime = +398days…" | green | 5/10 reprotest code; Phoenix L2-time log |
@@ -133,8 +134,8 @@ Updated by hand when the table changes.
 | | empty-class (E) | ws-pems (W) | toolchains (T) | reprotest-probe (R) | total |
 | --- | --- | --- | --- | --- | --- |
 | rows | 10 | 36 | 4 | 8 | 58 |
-| green | 10 | 31 | 2 | 6 | 49 |
-| red | 0 | 4 | 2 | 2 | 8 |
+| green | 10 | 31 | 2 | 7 | 50 |
+| red | 0 | 4 | 2 | 1 | 7 |
 | rejected | 0 | 1 | 0 | 0 | 1 |
 
 ## How the table is used

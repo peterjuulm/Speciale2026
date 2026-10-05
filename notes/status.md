@@ -5,13 +5,17 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 5 October 2026, the full rerun. Last edit: 5 October 2026, 16:10.
+Last run: 5 October 2026, the clean-launch check. Last edit: 5 October 2026,
+16:45.
 
 ## Last batch
 
 The full rerun on `arch`, 5/10 11:41-15:55: every reprotest axis on layers 1
 and 2, 32 runs, all as expected. Expectations and results are in
-[phoenix-rerun of 5/10](2026-10-05-phoenix-rerun.md); findings W32-W36.
+[phoenix-rerun of 5/10](2026-10-05-phoenix-rerun.md); findings W32-W36. Then
+L2 `none` and L2 `all` with the fix again, with reprotest started under
+`env -i`: the same release ([clean launch](2026-10-05-phoenix-clean-launch.md)),
+so the inherited environment changed no result (R4).
 
 ## How we measure
 
@@ -25,8 +29,9 @@ and 2, 32 runs, all as expected. Expectations and results are in
   `/opt/rb1-dotnet`. Set up once with `setup-user-group.sh`.
 - reprotest checked against itself on 5/10 ([probe](2026-10-05-reprotest-probe.md),
   R1-R8): `aslr` alone changes nothing, `kernel` also switches ASLR off,
-  `build_path` moves `HOME`, `user_group` replaces `PATH`. The builds inherit
-  the environment of the shell that starts reprotest (R4).
+  `build_path` moves `HOME`, `user_group` replaces `PATH`.
+- reprotest starts under `env -i` with five listed variables, since the
+  builds inherit whatever it starts with (R4, from 5/10 after the rerun).
 - Not possible on `arch`: `domain_host` (no `domainname`), `fileordering` (no
   `disorderfs`), and a second machine.
 
@@ -77,20 +82,16 @@ the measurement. All on `arch` with Microsoft's SDK unless stated. Layers 3
   exists (W14). Peter's Azure VM is the candidate.
 - Dependency tree: lock files done (W22). Rebuilding packages from their
   declared commits not started.
-- Method: ASLR alone is untested; reprotest cannot vary it (R1). The builds'
-  base environment depends on who starts reprotest (R4). Why no later build
-  used the MSBuild nodes left over on 24/9 is not established.
+- Method: ASLR alone is untested; reprotest cannot vary it (R1). Why no
+  later build used the MSBuild nodes left over on 24/9 is not established.
 
 ## Next up
 
-1. Start reprotest under `env -i` (R4), then two confirmation runs: L2 `none`
-   and L2 `all` with the fix. The same release means the inherited
-   environment changed no result.
-2. Draft the dotnet/roslyn issue for W26. Brief Magnus: the locale defect, the
+1. Draft the dotnet/roslyn issue for W26. Brief Magnus: the locale defect, the
    dependency warnings, the SDK pin.
-3. Layer 4, the zip. Then layer 3.
-4. Cross-machine and file order once the VM exists.
-5. For the WS delivery: one run of the release workflow on a test tag, since
+2. Layer 4, the zip. Then layer 3.
+3. Cross-machine and file order once the VM exists.
+4. For the WS delivery: one run of the release workflow on a test tag, since
    the branch also changes the Windows job.
 
 ## Keeping this file

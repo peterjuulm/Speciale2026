@@ -9,7 +9,10 @@
 # - each build writes a mode list of its output;
 # - the control build gets MIN_CPUS CPUs (reprotest's default is one);
 # - after the run, any compiler server or MSBuild node still alive is listed
-#   in leftover-LABEL.txt and counted in summary.tsv.
+#   in leftover-LABEL.txt and counted in summary.tsv;
+# - reprotest starts under env -i with HOME, USER, LOGNAME, SHELL and PATH
+#   only: the builds inherit whatever environment it starts with
+#   (reprotest-probe R4). Added 5 October 2026, after the full rerun.
 #
 # Usage: run.sh LAYER AXIS [LABEL]
 #   LAYER  1  dotnet build of the two programs
@@ -49,6 +52,8 @@ case $AXIS in
   *)    VARY=("--vary=-all,+$AXIS") ;;
 esac
 
+LAUNCH=(env -i HOME="$HOME" USER="$USER" LOGNAME="$LOGNAME" SHELL=/bin/bash
+        PATH=/home/leos/.local/bin:/usr/local/bin:/usr/bin)
 ENV="env DOTNET_ROOT=$DN PATH=$DN:\$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1"
 if [ -n "$FIXENV" ]; then ENV="$ENV $FIXENV"; fi
 STOP="$ENV dotnet build-server shutdown > /dev/null"
@@ -73,7 +78,7 @@ if [ -e "$OUT/store-$LABEL" ]; then echo "$OUT/store-$LABEL exists" >&2; exit 2;
 # reprotest runs this under sh -e; "|| rc=$?" keeps a failed build from
 # skipping the last shutdown, and the build's exit code is kept.
 CMD="$STOP; rc=0; ( $BUILD && find $HASHED -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > $HASHFILE && find $HASHED -type f -printf '%m %p\n' | LC_ALL=C sort > $MODES/$LABEL-\$(umask)-\$\$.txt ) || rc=\$?; $STOP; exit \$rc"
-printf '%s\n%s\n%s\n' "${VARY[*]} --min-cpus $MIN_CPUS" "$CMD" "$ART" > "$OUT/rt-$LABEL.cmd"
+printf '%s\n%s\n%s\n%s\n' "${LAUNCH[*]}" "${VARY[*]} --min-cpus $MIN_CPUS" "$CMD" "$ART" > "$OUT/rt-$LABEL.cmd"
 
 eval "$STOP"
 DOTNET_EXE=$DN/dotnet python3 "$EXP/sample-dotnet.py" "$OUT/samples-$LABEL.txt" &
@@ -87,7 +92,7 @@ if [ "$AXIS" = user_group ]; then
 fi
 START=$(date -Is)
 cd "$LAB" || exit 1
-timeout 3600 /home/leos/.local/bin/reprotest -v --min-cpus "$MIN_CPUS" --store-dir "$OUT/store-$LABEL" \
+timeout 3600 "${LAUNCH[@]}" /home/leos/.local/bin/reprotest -v --min-cpus "$MIN_CPUS" --store-dir "$OUT/store-$LABEL" \
   "${VARY[@]}" -c "$CMD" "$LAB" "$ART" > "$OUT/rt-$LABEL.log" 2>&1
 RC=$?
 sleep 2

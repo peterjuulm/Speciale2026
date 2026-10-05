@@ -12,7 +12,8 @@ DOTNET_EXE in the environment overrides the dotnet executable to follow.
 
 Written 24 September 2026 for phoenix-layer2-reprotest; markers for the
 remaining axes added the same afternoon. 5 October 2026: whether an MSBuild
-node was started for reuse.
+node was started for reuse, and the number of environment variables and of
+LC_* variables in each process.
 """
 import os
 import sys
@@ -68,7 +69,8 @@ def sample(pid):
             f'LANG={env.get("LANG", "")} LC_ALL={env.get("LC_ALL", "")} TZ={env.get("TZ", "")} '
             f'exec_path={int(env.get("PATH", "").endswith(":/i_capture_the_path"))} '
             f'home={env.get("HOME", "").replace(" ", "_")} capenv={int("REPROTEST_CAPTURE_ENVIRONMENT" in env)} '
-            f'ncpus={ncpus} pers={personality} aslr={aslr} utsns={utsns} cwd={cwd.replace(" ", "_")}')
+            f'ncpus={ncpus} pers={personality} aslr={aslr} utsns={utsns} cwd={cwd.replace(" ", "_")} '
+            f'nenv={len(env)} nlc={sum(1 for k in env if k.startswith("LC_"))}')
     if r == 'other':  # name it, so unrelated dotnet tools can be told apart
         line += ' cmd=' + '|'.join(cmd.split()[:3])[:120]
     if r == 'msbuild-node':
