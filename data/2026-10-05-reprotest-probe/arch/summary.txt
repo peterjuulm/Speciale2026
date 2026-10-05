@@ -1,0 +1,348 @@
+reprotest-probe: what differs between the control and the experiment build, per run.
+Written by summarize.py from the private stores and logs. Values are shown only for the
+variables in SHOW (see summarize.py); /tmp/reprotest.XXXXXX is shortened to /tmp/reprotest.X.
+
+inherited-none           exit 1    control varies: -     experiment varies: -
+                         differing probe files: cpus.txt env.txt
+inherited-build_path     exit 1    control varies: -     experiment varies: build_path
+                         differing probe files: cpus.txt env.txt pwd.txt
+inherited-time           exit 1    control varies: -     experiment varies: time
+                         differing probe files: cpus.txt date.txt env.txt faketime.txt
+inherited-locales        exit 1    control varies: -     experiment varies: locales
+                         differing probe files: env.txt icu.txt locale.txt
+inherited-umask          exit 1    control varies: -     experiment varies: umask
+                         differing probe files: cpus.txt env.txt mode.txt umask.txt
+inherited-exec_path      exit 1    control varies: -     experiment varies: exec_path
+                         differing probe files: cpus.txt env.txt
+inherited-timezone       exit 1    control varies: -     experiment varies: timezone
+                         differing probe files: cpus.txt env.txt icu.txt tz.txt
+inherited-environment    exit 1    control varies: -     experiment varies: environment
+                         differing probe files: cpus.txt env.txt
+inherited-home           exit 1    control varies: -     experiment varies: home
+                         differing probe files: cpus.txt env.txt
+inherited-kernel         exit 1    control varies: -     experiment varies: kernel
+                         differing probe files: aslr.txt cpus.txt env.txt personality.txt uname.txt
+inherited-aslr           exit 1    control varies: -     experiment varies: aslr
+                         differing probe files: cpus.txt env.txt
+inherited-num_cpus       exit 1    control varies: -     experiment varies: num_cpus
+                         differing probe files: cpus.txt env.txt
+inherited-user_group     exit 1    control varies: -     experiment varies: user_group
+                         differing probe files: cpus.txt env.txt id.txt
+inherited-all            exit 1    control varies: -     experiment varies: environment,build_path,kernel,aslr,num_cpus,time,home,locales,exec_path,timezone,umask
+                         differing probe files: cpus.txt date.txt env.txt faketime.txt icu.txt locale.txt mode.txt personality.txt pwd.txt tz.txt umask.txt uname.txt
+inherited-domain_host    exit 125  control varies: -     experiment varies: domain_host
+                         differing probe files: no store
+inherited-fileordering   exit 125  control varies: -     experiment varies: fileordering
+                         differing probe files: no store
+clean-none               exit 1    control varies: -     experiment varies: -
+                         differing probe files: cpus.txt env.txt
+clean-user_group         exit 1    control varies: -     experiment varies: user_group
+                         differing probe files: cpus.txt env.txt id.txt
+clean-all                exit 1    control varies: -     experiment varies: environment,build_path,kernel,aslr,num_cpus,time,home,locales,exec_path,timezone,umask
+                         differing probe files: cpus.txt date.txt env.txt faketime.txt icu.txt locale.txt mode.txt personality.txt pwd.txt tz.txt umask.txt uname.txt
+
+== inherited-none
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-none', variations='+all', vary=['-all'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	9,15  |  experiment: 2 / Cpus_allowed_list:	5,14
+  env.txt  CPU_LIST: 15,9 -> 5,14
+== inherited-build_path
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-build_path', variations='+all', vary=['-all,+build_path'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	0,5  |  experiment: 2 / Cpus_allowed_list:	1,4
+  env.txt  CPU_LIST: 5,0 -> 1,4
+  env.txt  HOME: /tmp/reprotest.X/const_build_path/ -> /tmp/reprotest.X/build-experiment-1/
+  env.txt  PWD: /tmp/reprotest.X/const_build_path -> /tmp/reprotest.X/build-experiment-1
+  pwd.txt  control: /tmp/reprotest.X/const_build_path  |  experiment: /tmp/reprotest.X/build-experiment-1
+== inherited-time
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: FAKETIME variation: faketime = +398days+4hours+44minutes
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-time', variations='+all', vary=['-all,+time'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	5,7  |  experiment: 2 / Cpus_allowed_list:	3-4
+  date.txt  control: 2026-10-05  |  experiment: 2027-11-07
+  env.txt  CPU_LIST: 7,5 -> 3,4
+  env.txt  FAKETIME: (unset) -> +34404240
+  env.txt  FAKETIME_SHARED: (unset) -> /faketime_sem_124710 /faketime_shm_124710
+  env.txt  LD_PRELOAD: (unset) -> /usr/lib/faketime/libfaketime.so.1
+  env.txt  NO_FAKE_STAT: (unset) -> 1
+  faketime.txt  control: 0  |  experiment: 5
+== inherited-locales
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: LOCALE variation: LC_ALL = et_EE.UTF-8 LANGUAGE = et_EE.UTF-8:fr
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory
+  log: │ │ │ +locale: Cannot set LC_CTYPE to default locale: No such file or directory
+  log: │ │ │ +locale: Cannot set LC_MESSAGES to default locale: No such file or directory
+  log: │ │ │ +locale: Cannot set LC_ALL to default locale: No such file or directory
+  env.txt  CPU_LIST: 12,5 -> 5,12
+  env.txt  LANG: C.UTF-8 -> et_EE.UTF-8
+  env.txt  LANGUAGE: en_US:en -> et_EE.UTF-8:fr
+  env.txt  LC_ALL: (unset) -> et_EE.UTF-8
+  icu.txt  control: locale.default=en_US_POSIX / tz.default=GMT+12  |  experiment: locale.default=et_EE / tz.default=GMT+12
+  locale.txt  control: LANG=C.UTF-8 / LC_CTYPE="C.UTF-8" / LC_NUMERIC=da_DK.UTF-8 / LC_TIME=da_DK.UTF-8 / LC_COLLATE="C.UTF-8" / LC_MONETARY=da_DK.UTF-8 / LC_MESSAGES="C.UTF-8" / LC_PAPER=da_DK.UTF-8 / LC_NAME=da_DK.UTF-8 / LC_ADDRESS=da_DK.UTF-8 / LC_TELEPHONE=da_DK.UTF-8 / LC_MEASUREMENT=da_DK.UTF-8 / LC_IDENTIFICATION=da_DK.UTF-8 / LC_ALL=  |  experiment: locale: Cannot set LC_CTYPE to default locale: No such file or directory / locale: Cannot set LC_MESSAGES to default locale: No such file or directory / locale: Cannot set LC_ALL to default locale: No such file or directory / LANG=et_EE.UTF-8 / LC_CTYPE="et_EE.UTF-8" / LC_NUMERIC="et_EE.UTF-8" / LC_TIME="et_EE.UTF-8" / LC_COLLATE="et_EE.UTF-8" / LC_MONETARY="et_EE.UTF-8" / LC_MESSAGES="et_EE.UTF-8" / LC_PAPER="et_EE.UTF-8" / LC_NAME="et_EE.UTF-8" / LC_ADDRESS="et_EE.UTF-8" / LC_TELEPHONE="et_EE.UTF-8" / LC_MEASUREMENT="et_EE.UTF-8" / LC_IDENTIFICATION="et_EE.UTF-8" / LC_ALL=et_EE.UTF-8
+== inherited-umask
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: UMASK variation: umask 0002
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-umask', variations='+all', vary=['-all,+umask'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	6,15  |  experiment: 2 / Cpus_allowed_list:	1,6
+  env.txt  CPU_LIST: 6,15 -> 1,6
+  mode.txt  control: 644  |  experiment: 664
+  umask.txt  control: 0022  |  experiment: 0002
+== inherited-exec_path
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: EXEC_PATH variation: PATH = /home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin:/i_capture_the_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-exec_path', variations='+all', vary=['-all,+exec_path'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	11,13  |  experiment: 2 / Cpus_allowed_list:	8-9
+  env.txt  CPU_LIST: 11,13 -> 8,9
+  env.txt  PATH: +/i_capture_the_path
+== inherited-timezone
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT-14
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-timezone', variations='+all', vary=['-all,+timezone'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	1,8  |  experiment: 2 / Cpus_allowed_list:	5,12
+  env.txt  CPU_LIST: 1,8 -> 5,12
+  env.txt  TZ: GMT+12 -> GMT-14
+  icu.txt  control: locale.default=en_US_POSIX / tz.default=GMT+12  |  experiment: locale.default=en_US_POSIX / tz.default=GMT-14
+  tz.txt  control: -1200  |  experiment: +1400
+== inherited-environment
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: ENVIRONMENT variation: added = (('REPROTEST_CAPTURE_ENVIRONMENT', 'i_capture_the_environment')) removed = 
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-environment', variations='+all', vary=['-all,+environment'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	2,14  |  experiment: 2 / Cpus_allowed_list:	10,14
+  env.txt  CPU_LIST: 14,2 -> 10,14
+  env.txt  REPROTEST_CAPTURE_ENVIRONMENT: (unset) -> i_capture_the_environment
+== inherited-home
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: HOME variation: HOME = /nonexistent/second-build
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-home', variations='+all', vary=['-all,+home'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	9,12  |  experiment: 2 / Cpus_allowed_list:	8,12
+  env.txt  CPU_LIST: 12,9 -> 8,12
+  env.txt  HOME: /tmp/reprotest.X/const_build_path/ -> /nonexistent/second-build
+== inherited-kernel
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: KERNEL variation: SETARCH_ARCH = 'uname26' SETARCH_OPTS = '--uname-2.6'
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-kernel', variations='+all', vary=['-all,+kernel'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  aslr.txt  control: aslr on  |  experiment: aslr off
+  cpus.txt  control: 2 / Cpus_allowed_list:	3,7  |  experiment: 2 / Cpus_allowed_list:	5,11
+  env.txt  CPU_LIST: 7,3 -> 5,11
+  personality.txt  control: 00000000  |  experiment: 00060000
+  uname.txt  control: Linux 7.2.8-arch1-2 x86_64  |  experiment: Linux 2.6.62-arch1-2 x86_64
+== inherited-aslr
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: ASLR variation: ASLR enabled
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-aslr', variations='+all', vary=['-all,+aslr'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	7,11  |  experiment: 2 / Cpus_allowed_list:	4,13
+  env.txt  CPU_LIST: 11,7 -> 13,4
+== inherited-num_cpus
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: NUM_CPUS variation: cpu_list = 4,15,0,12,6,13,7
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-num_cpus', variations='+all', vary=['-all,+num_cpus'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	2,10  |  experiment: 7 / Cpus_allowed_list:	0,4,6-7,12-13,15
+  env.txt  CPU_LIST: 10,2 -> 4,15,0,12,6,13,7
+== inherited-user_group
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-inherited-user_group', variations='+all', vary=['-all,+user_group', 'user_group.available+=rb1b:rb1b'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	7,15  |  experiment: 2 / Cpus_allowed_list:	1,8
+  env.txt  CPU_LIST: 15,7 -> 1,8
+  env.txt  LOGNAME: leos -> rb1b
+  env.txt  PATH: -/home/leos/.dotnet/tools -/home/leos/.local/share/gem/ruby/3.4.0/bin -/home/leos/.local/bin -/home/leos/.npm-global/bin -/usr/bin/site_perl -/usr/bin/vendor_perl -/usr/bin/core_perl -/home/leos/.local/bin -/home/leos/.local/bin -/home/leos/go/bin -/home/leos/bin +/usr/local/sbin
+  env.txt  SUDO_HOME: (unset) -> /home/leos
+  env.txt  TERM: added
+  env.txt  USER: leos -> rb1b
+  id.txt  control: 1000 / leos / 1000 / leos  |  experiment: 952 / rb1b / 952 / rb1b
+== inherited-all
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: ENVIRONMENT variation: added = (('REPROTEST_CAPTURE_ENVIRONMENT', 'i_capture_the_environment')) removed = 
+  reprotest: experiment-1: ASLR variation: ASLR enabled
+  reprotest: experiment-1: FAKETIME variation: faketime = +398days+23hours+21minutes
+  reprotest: experiment-1: HOME variation: HOME = /nonexistent/second-build
+  reprotest: experiment-1: LOCALE variation: LC_ALL = et_EE.UTF-8 LANGUAGE = et_EE.UTF-8:fr
+  reprotest: experiment-1: EXEC_PATH variation: PATH = /home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin:/i_capture_the_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT-14
+  reprotest: experiment-1: UMASK variation: umask 0002
+  reprotest: experiment-1: KERNEL variation: SETARCH_ARCH = 'linux64' SETARCH_OPTS = '--uname-2.6'
+  reprotest: experiment-1: NUM_CPUS variation: cpu_list = 13,4,14,3,11,7,6,0,8,1,2,10
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory
+  log: │ │ │ +locale: Cannot set LC_CTYPE to default locale: No such file or directory
+  log: │ │ │ +locale: Cannot set LC_MESSAGES to default locale: No such file or directory
+  log: │ │ │ +locale: Cannot set LC_ALL to default locale: No such file or directory
+  cpus.txt  control: 2 / Cpus_allowed_list:	6,14  |  experiment: 12 / Cpus_allowed_list:	0-4,6-8,10-11,13-14
+  date.txt  control: 2026-10-05  |  experiment: 2027-11-08
+  env.txt  CPU_LIST: 6,14 -> 13,4,14,3,11,7,6,0,8,1,2,10
+  env.txt  FAKETIME: (unset) -> +34471260
+  env.txt  FAKETIME_SHARED: (unset) -> /faketime_sem_126182 /faketime_shm_126182
+  env.txt  HOME: /tmp/reprotest.X/const_build_path/ -> /nonexistent/second-build
+  env.txt  LANG: C.UTF-8 -> et_EE.UTF-8
+  env.txt  LANGUAGE: en_US:en -> et_EE.UTF-8:fr
+  env.txt  LC_ALL: (unset) -> et_EE.UTF-8
+  env.txt  LD_PRELOAD: (unset) -> /usr/lib/faketime/libfaketime.so.1
+  env.txt  NO_FAKE_STAT: (unset) -> 1
+  env.txt  PATH: +/i_capture_the_path
+  env.txt  PWD: /tmp/reprotest.X/const_build_path -> /tmp/reprotest.X/build-experiment-1
+  env.txt  REPROTEST_CAPTURE_ENVIRONMENT: (unset) -> i_capture_the_environment
+  env.txt  TZ: GMT+12 -> GMT-14
+  faketime.txt  control: 0  |  experiment: 5
+  icu.txt  control: locale.default=en_US_POSIX / tz.default=GMT+12  |  experiment: locale.default=et_EE / tz.default=GMT-14
+  locale.txt  control: LANG=C.UTF-8 / LC_CTYPE="C.UTF-8" / LC_NUMERIC=da_DK.UTF-8 / LC_TIME=da_DK.UTF-8 / LC_COLLATE="C.UTF-8" / LC_MONETARY=da_DK.UTF-8 / LC_MESSAGES="C.UTF-8" / LC_PAPER=da_DK.UTF-8 / LC_NAME=da_DK.UTF-8 / LC_ADDRESS=da_DK.UTF-8 / LC_TELEPHONE=da_DK.UTF-8 / LC_MEASUREMENT=da_DK.UTF-8 / LC_IDENTIFICATION=da_DK.UTF-8 / LC_ALL=  |  experiment: locale: Cannot set LC_CTYPE to default locale: No such file or directory / locale: Cannot set LC_MESSAGES to default locale: No such file or directory / locale: Cannot set LC_ALL to default locale: No such file or directory / LANG=et_EE.UTF-8 / LC_CTYPE="et_EE.UTF-8" / LC_NUMERIC="et_EE.UTF-8" / LC_TIME="et_EE.UTF-8" / LC_COLLATE="et_EE.UTF-8" / LC_MONETARY="et_EE.UTF-8" / LC_MESSAGES="et_EE.UTF-8" / LC_PAPER="et_EE.UTF-8" / LC_NAME="et_EE.UTF-8" / LC_ADDRESS="et_EE.UTF-8" / LC_TELEPHONE="et_EE.UTF-8" / LC_MEASUREMENT="et_EE.UTF-8" / LC_IDENTIFICATION="et_EE.UTF-8" / LC_ALL=et_EE.UTF-8
+  mode.txt  control: 644  |  experiment: 664
+  personality.txt  control: 00000000  |  experiment: 00020000
+  pwd.txt  control: /tmp/reprotest.X/const_build_path  |  experiment: /tmp/reprotest.X/build-experiment-1
+  tz.txt  control: -1200  |  experiment: +1400
+  umask.txt  control: 0022  |  experiment: 0002
+  uname.txt  control: Linux 7.2.8-arch1-2 x86_64  |  experiment: Linux 2.6.62-arch1-2 x86_64
+== inherited-domain_host
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: DOMAIN_HOST variation: hostname = reprotest-capture-hostname domainname = reprotest-capture-domainname
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  WARNING:reprotest.build:Not using sudo for domain_host; your build may fail. See man page for other options.
+  WARNING:reprotest.build:Be sure to `echo 1 > /proc/sys/kernel/unprivileged_userns_clone` if on a Debian system.
+  log:               adtlog.AutopkgtestError)
+  log: reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+  log:         if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+  log: fi" failed with status 127
+== inherited-fileordering
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: DISORDERFS variation: --shuffle-dirents=yes
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  WARNING:reprotest:Varying 'fileordering' requires these program(s): disorderfs
+  WARNING:reprotest:Your build will probably fail, either install them or disable the variations.
+  WARNING:reprotest:(From a system package manager, simply install the 'optional' or 'recommended' dependencies of reprotest.)
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log:               adtlog.AutopkgtestError)
+  log: reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+  log:         if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+  log: fi" failed with status 127
+== clean-none
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-clean-none', variations='+all', vary=['-all'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	7,11  |  experiment: 2 / Cpus_allowed_list:	0,8
+  env.txt  CPU_LIST: 7,11 -> 8,0
+== clean-user_group
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT+12
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: DEBUG:reprotest:Namespace(artifact_pattern='probe/*', virtual_server_args=['null'], help=None, config_file=None, verbosity=2, host_distro=None, source_root=None, source_pattern=None, build_command='sh probe.sh', store_dir='/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05/store-clean-user_group', variations='+all', vary=['-all,+user_group', 'user_group.available+=rb1b:rb1b'], extra_build=[], auto_build=False, env_build=False, min_cpus=2, dont_vary=[], diffoscope_arg=['--exclude-directory-metadata=yes'], diffoscope='diffoscope', no_diffoscope=False, testbed_pre=None, testbed_init=None, testbed_build_pre=None, auto_preset_expr='_', no_clean_on_error=False, dry_run=False, print_sudoers=False, control_build=None, append_build_command=None, **{'source_root|build_command': '.'})
+  cpus.txt  control: 2 / Cpus_allowed_list:	11-12  |  experiment: 2 / Cpus_allowed_list:	6,15
+  env.txt  CPU_LIST: 12,11 -> 15,6
+  env.txt  LOGNAME: leos -> rb1b
+  env.txt  PATH: -/home/leos/.local/bin +/usr/local/sbin
+  env.txt  SUDO_HOME: (unset) -> /home/leos
+  env.txt  TERM: added
+  env.txt  USER: leos -> rb1b
+  id.txt  control: 1000 / leos / 1000 / leos  |  experiment: 952 / rb1b / 952 / rb1b
+== clean-all
+  reprotest: control: BUILD_PATH variation: const_path = /tmp/reprotest.X/const_build_path
+  reprotest: control: TIMEZONE variation: TZ=GMT+12
+  reprotest: experiment-1: ENVIRONMENT variation: added = (('REPROTEST_CAPTURE_ENVIRONMENT', 'i_capture_the_environment')) removed = 
+  reprotest: experiment-1: ASLR variation: ASLR enabled
+  reprotest: experiment-1: FAKETIME variation: faketime = +398days+19hours+39minutes
+  reprotest: experiment-1: HOME variation: HOME = /nonexistent/second-build
+  reprotest: experiment-1: LOCALE variation: LC_ALL = et_EE.UTF-8 LANGUAGE = et_EE.UTF-8:fr
+  reprotest: experiment-1: EXEC_PATH variation: PATH = /home/leos/.local/bin:/usr/local/bin:/usr/bin:/i_capture_the_path
+  reprotest: experiment-1: TIMEZONE variation: TZ=GMT-14
+  reprotest: experiment-1: UMASK variation: umask 0002
+  reprotest: experiment-1: KERNEL variation: SETARCH_ARCH = 'linux64' SETARCH_OPTS = '--uname-2.6'
+  reprotest: experiment-1: NUM_CPUS variation: cpu_list = 7,10,6,1,3,5,12,4,14
+  reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+  log: sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory
+  log: │ │ │ +locale: Cannot set LC_CTYPE to default locale: No such file or directory
+  log: │ │ │ +locale: Cannot set LC_MESSAGES to default locale: No such file or directory
+  log: │ │ │ +locale: Cannot set LC_ALL to default locale: No such file or directory
+  cpus.txt  control: 2 / Cpus_allowed_list:	2,6  |  experiment: 9 / Cpus_allowed_list:	1,3-7,10,12,14
+  date.txt  control: 2026-10-05  |  experiment: 2027-11-08
+  env.txt  CPU_LIST: 2,6 -> 7,10,6,1,3,5,12,4,14
+  env.txt  FAKETIME: (unset) -> +34457940
+  env.txt  FAKETIME_SHARED: (unset) -> /faketime_sem_126826 /faketime_shm_126826
+  env.txt  HOME: /tmp/reprotest.X/const_build_path/ -> /nonexistent/second-build
+  env.txt  LANG: C.UTF-8 -> et_EE.UTF-8
+  env.txt  LANGUAGE: en_US:en -> et_EE.UTF-8:fr
+  env.txt  LC_ALL: (unset) -> et_EE.UTF-8
+  env.txt  LD_PRELOAD: (unset) -> /usr/lib/faketime/libfaketime.so.1
+  env.txt  NO_FAKE_STAT: (unset) -> 1
+  env.txt  PATH: +/i_capture_the_path
+  env.txt  PWD: /tmp/reprotest.X/const_build_path -> /tmp/reprotest.X/build-experiment-1
+  env.txt  REPROTEST_CAPTURE_ENVIRONMENT: (unset) -> i_capture_the_environment
+  env.txt  TZ: GMT+12 -> GMT-14
+  faketime.txt  control: 0  |  experiment: 5
+  icu.txt  control: locale.default=en_US_POSIX / tz.default=GMT+12  |  experiment: locale.default=et_EE / tz.default=GMT-14
+  locale.txt  control: LANG=C.UTF-8 / LC_CTYPE=C.UTF-8 / LC_NUMERIC="C.UTF-8" / LC_TIME="C.UTF-8" / LC_COLLATE="C.UTF-8" / LC_MONETARY="C.UTF-8" / LC_MESSAGES="C.UTF-8" / LC_PAPER="C.UTF-8" / LC_NAME="C.UTF-8" / LC_ADDRESS="C.UTF-8" / LC_TELEPHONE="C.UTF-8" / LC_MEASUREMENT="C.UTF-8" / LC_IDENTIFICATION="C.UTF-8" / LC_ALL=  |  experiment: locale: Cannot set LC_CTYPE to default locale: No such file or directory / locale: Cannot set LC_MESSAGES to default locale: No such file or directory / locale: Cannot set LC_ALL to default locale: No such file or directory / LANG=et_EE.UTF-8 / LC_CTYPE="et_EE.UTF-8" / LC_NUMERIC="et_EE.UTF-8" / LC_TIME="et_EE.UTF-8" / LC_COLLATE="et_EE.UTF-8" / LC_MONETARY="et_EE.UTF-8" / LC_MESSAGES="et_EE.UTF-8" / LC_PAPER="et_EE.UTF-8" / LC_NAME="et_EE.UTF-8" / LC_ADDRESS="et_EE.UTF-8" / LC_TELEPHONE="et_EE.UTF-8" / LC_MEASUREMENT="et_EE.UTF-8" / LC_IDENTIFICATION="et_EE.UTF-8" / LC_ALL=et_EE.UTF-8
+  mode.txt  control: 644  |  experiment: 664
+  personality.txt  control: 00000000  |  experiment: 00020000
+  pwd.txt  control: /tmp/reprotest.X/const_build_path  |  experiment: /tmp/reprotest.X/build-experiment-1
+  tz.txt  control: -1200  |  experiment: +1400
+  umask.txt  control: 0022  |  experiment: 0002
+  uname.txt  control: Linux 7.2.8-arch1-2 x86_64  |  experiment: Linux 2.6.62-arch1-2 x86_64
+
+== Base environment of the control build
+inherited-none: 105 variables
+  with values: CPU_LIST=15,9 HOME=/tmp/reprotest.X/const_build_path/ LANG=C.UTF-8 LANGUAGE=en_US:en LC_ADDRESS=da_DK.UTF-8 LC_IDENTIFICATION=da_DK.UTF-8 LC_MEASUREMENT=da_DK.UTF-8 LC_MONETARY=da_DK.UTF-8 LC_NAME=da_DK.UTF-8 LC_NUMERIC=da_DK.UTF-8 LC_PAPER=da_DK.UTF-8 LC_TELEPHONE=da_DK.UTF-8 LC_TIME=da_DK.UTF-8 LOGNAME=leos MAIL=/var/spool/mail/leos OLDPWD=/private/tmp/rb1-probe OUT=/home/leos/Dev/speciale-2026/data/reprotest-probe/arch-2026-10-05 PWD=/tmp/reprotest.X/const_build_path SHELL=/bin/bash SHLVL=4 TZ=GMT+12 USER=leos USERNAME=leos _=/usr/bin/env
+  PATH: /home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin
+  by name only: AI_AGENT, ANTHROPIC_BASE_URL, API_TIMEOUT_MS, BAGGAGE, CHROME_DESKTOP, CLAUDE_* (26), CLAUDECODE, COREPACK_ENABLE_AUTO_PIN, DBUS_SESSION_BUS_ADDRESS, DESKTOP_SESSION, DISABLE_* (2), DISPLAY, EGL_PLATFORM, ELECTRON_PA_APP_NAME, FC_FONTATIONS, GDK_BACKEND, GDM_LANG, GDMSESSION, GIO_* (2), GIT_EDITOR, GJS_* (2), GNOME_SETUP_DISPLAY, INVOCATION_ID, JOURNAL_STREAM, MANAGERPID, MANAGERPIDFDID, MCP_* (2), MEMORY_* (2), MOTD_SHOWN, NO_AT_BRIDGE, NODE_USE_SYSTEM_CA, NoDefaultCurrentDirectoryInExePath, QT_* (2), SSH_AUTH_SOCK, SYSTEMD_EXEC_PID, USE_* (2), VSSCRIPT_PATH, WAYLAND_DISPLAY, XAUTHORITY, XDG_* (8), XMODIFIERS
+clean-none: 14 variables
+  with values: CPU_LIST=7,11 HOME=/tmp/reprotest.X/const_build_path/ LANG=C.UTF-8 LANGUAGE=en_US:en LC_CTYPE=C.UTF-8 LOGNAME=leos OLDPWD=/private/tmp/rb1-probe PWD=/tmp/reprotest.X/const_build_path SHELL=/bin/bash SHLVL=2 TZ=GMT+12 USER=leos _=/usr/bin/env
+  PATH: /home/leos/.local/bin:/usr/local/bin:/usr/bin
+  by name only: 
+  in inherited, not in clean: AI_AGENT, ANTHROPIC_BASE_URL, API_TIMEOUT_MS, BAGGAGE, CHROME_DESKTOP, CLAUDE_* (26), CLAUDECODE, COREPACK_ENABLE_AUTO_PIN, DBUS_SESSION_BUS_ADDRESS, DESKTOP_SESSION, DISABLE_* (2), DISPLAY, EGL_PLATFORM, ELECTRON_PA_APP_NAME, FC_FONTATIONS, GDK_BACKEND, GDM_LANG, GDMSESSION, GIO_* (2), GIT_EDITOR, GJS_* (2), GNOME_SETUP_DISPLAY, INVOCATION_ID, JOURNAL_STREAM, LC_* (9), MAIL, MANAGERPID, MANAGERPIDFDID, MCP_* (2), MEMORY_* (2), MOTD_SHOWN, NO_AT_BRIDGE, NODE_USE_SYSTEM_CA, NoDefaultCurrentDirectoryInExePath, OUT, QT_* (2), SSH_AUTH_SOCK, SYSTEMD_EXEC_PID, USE_* (2), USERNAME, VSSCRIPT_PATH, WAYLAND_DISPLAY, XAUTHORITY, XDG_* (8), XMODIFIERS
+  in clean, not in inherited: LC_CTYPE

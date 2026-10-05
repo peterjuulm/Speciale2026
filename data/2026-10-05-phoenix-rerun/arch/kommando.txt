@@ -26,6 +26,10 @@ OUT=/home/leos/Dev/speciale-2026/data/phoenix-rerun/arch-2026-10-05 MIN_CPUS=2 s
 #   rb1b's sampler, matched by the pattern; the sampler itself stopped.
 #   run.sh then got "pkill -u rb1b", before the batch.
 OUT=/home/leos/Dev/speciale-2026/data/phoenix-rerun/arch-2026-10-05 systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix reprotest reruns" /home/leos/Dev/Speciale2026/experiments/phoenix-rt/rerun-all.sh > /home/leos/Dev/speciale-2026/data/phoenix-rerun/arch-2026-10-05/rerun-all.out 2>&1
+#   rerun done 2026-10-05T15:55:06+02:00; 32 lines in summary.tsv (copied here).
+#   summary.tsv columns: label, layer, axis, start, end, reprotest's exit code,
+#   the first 16 hex digits of sha256 of the control's and the experiment's hash
+#   list, and the number of compiler servers and MSBuild nodes alive after the run.
 
 # The exact reprotest arguments and build command of each run are in
 # rt-<label>.cmd in Leo's private data folder

@@ -81,6 +81,12 @@ to 9.0.120 via `global.json` with `rollForward: disable`:
 - **reprotest fixes what it does not vary**: one CPU unless `--min-cpus` is
   given, `TZ=GMT+12`, `LANG=C.UTF-8`, and `HOME` inside the build directory.
   The `DOTNET_CLI_HOME` we set for that also moves the NuGet cache.
+- **It fixes nothing else** (reprotest-probe, 5/10, findings R1-R8). Every
+  other variable comes from the shell that starts it, so start it under
+  `env -i` with a listed environment. ASLR stays on in both builds: the
+  `aslr` axis alone is a no-op, and `kernel` also switches ASLR off.
+  `build_path` moves `HOME`, `user_group` replaces `PATH`, and a green run's
+  experiment store is only a link to the control's.
 - The version number `9.0.120` does not identify the compiler. The Roslyn
   commit in `csc.dll` does. Always record the `csc.dll` hash in the
   environment block.
@@ -102,17 +108,21 @@ to 9.0.120 via `global.json` with `rollForward: disable`:
 runs next; update it when a run lands. `notes/findings-table.md` is the running
 index of every cause found, its fix and its status; keep it current. `notes/2026-09-15-layer-plan.md` is the plan: five
 layers (build, publish, frontend, zip, container) measured one at a time.
-As of 24/9: layer 1 is closed on `arch`. Layer 2 is green on `arch` for the
-release's own publish commands, on one path and across paths, with NuGet lock
-files in place, and under a shifted clock, umask 0002 and an extra `PATH`
-entry. Locale was red: under `et_EE.UTF-8` the compiler orders the types it
-generates for collection expressions differently, a Roslyn defect (W26).
-Pinning `LC_ALL=C.UTF-8` or invariant globalization on the dotnet commands
-fixes it without changing a byte; the release workflow does not set it yet.
+As of 5/10, after the full rerun (32 runs, every reprotest axis that runs on
+`arch`): layer 2, the release, is green on every axis except the locale.
+Under `et_EE.UTF-8` the compiler orders the types it generates for
+collection expressions differently, a Roslyn defect (W26), and with all
+eleven axes varied at once the release is exactly the Estonian build (W33).
+Pinning `LC_ALL=C.UTF-8` fixes it without changing a byte; the WS branch
+sets it in the Linux release jobs (`4e5237a3`), not yet run in CI. Layer 1
+adds only two dev files that carry the build path and do not ship (W8, W9).
+reprotest itself was checked against a shell probe (R1-R8): `aslr` is a
+no-op, and the builds inherit the starting shell's environment.
 Cross-machine runs are paused: the shared droplet is too small to compile
-Phoenix. See `notes/2026-09-24-phoenix-layer2-reprotest.md`,
-`notes/2026-09-24-roslyn-locale-repro.md` and `notes/2026-09-23-findings.md`. Open questions are under
-"Caveats" in the newest experiment notes and under "Open" in the findings note.
+Phoenix. See `notes/2026-10-05-phoenix-rerun.md`,
+`notes/2026-10-05-reprotest-probe.md`, `notes/2026-09-24-roslyn-locale-repro.md`
+and `notes/status.md`. Open questions are under "Caveats" in the newest
+experiment notes and under "Open" on the status board.
 Fixes to Phoenix live on the branch `thesis/reproducible-builds` in the
 WS.Phoenix repo, never in this one.
 

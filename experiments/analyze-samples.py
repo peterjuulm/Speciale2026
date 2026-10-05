@@ -35,9 +35,18 @@ MARKER = {
     'environment': lambda s: s.get('capenv') == '1',
     'home': lambda s: s.get('home', '').startswith('/nonexistent'),
     'num_cpus': lambda s: int(s.get('ncpus', '0')) > MIN_CPUS,
-    'kernel': lambda s: s.get('pers', 'na') != 'na' and bool(int(s['pers'], 16) & UNAME26),
-    'aslr': lambda s: s.get('aslr') == 'on',
-    'build_path': lambda s: s.get('cwd', '').startswith('build-experiment'),
+    # reprotest-probe, 5 October 2026: the kernel axis also switches ASLR off,
+    # since the fixed -R reaches setarch only then, and the aslr axis alone
+    # changes nothing (ASLR is on in both builds). The personality is not
+    # readable here, so ASLR off marks the kernel axis, and no process can
+    # carry an aslr marker.
+    'kernel': lambda s: s.get('aslr') == 'off' or (s.get('pers', 'na') != 'na' and bool(int(s['pers'], 16) & UNAME26)),
+    'aslr': lambda s: s.get('aslr') == 'off',
+    # reprotest sets HOME to the build tree, and every child process inherits
+    # it. The working directory does not work as a marker: MSBuild moves into
+    # each project's folder, and the compiler server runs in its own (changed
+    # 5 October 2026).
+    'build_path': lambda s: 'build-experiment' in s.get('home', ''),
     'domain_host': lambda s: s.get('utsns', '') != HOST_UTS,
     # the experiment build runs as the other user
     'user_group': lambda s: s.get('uid') != str(os.getuid()),
