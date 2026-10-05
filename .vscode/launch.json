@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "reprotest: plan control and experiment",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/experiments/reprotest-plan.py",
+      "python": "${userHome}/Library/Application Support/pipx/venvs/reprotest/bin/python",
+      "args": ["${input:vary}"],
+      "justMyCode": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "vary",
+      "type": "promptString",
+      "description": "Value for --vary, e.g. -all,+umask",
+      "default": "-all,+build_path"
+    }
+  ]
+}
