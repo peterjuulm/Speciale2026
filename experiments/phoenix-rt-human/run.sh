@@ -13,8 +13,14 @@
 # VAR=VALUE that goes in front of every dotnet command, for example
 # FIXENV=LC_ALL=C.UTF-8.
 #
-# Every build starts and ends with "dotnet build-server shutdown", so no
-# compiler server lives on from one build into the next.
+# Every build starts and ends with "dotnet build-server shutdown", and
+# MSBuild's node reuse is off, so no compiler server or MSBuild node lives
+# on from one build into the next. Anything still running after the run is
+# listed in leftover-LABEL.txt.
+#
+# AXIS=user_group runs the experiment build as rb1b (see
+# setup-user-group.sh). rb1b can't read /home/leos, so both builds then use
+# the SDK copy in /opt/rb1-dotnet, and a second sampler runs as rb1b.
 
 set -u
 
@@ -52,10 +58,32 @@ LAB=${LAB:-/private/tmp/rb1-phoenix}
 experiments=$(cd "$(dirname "$0")/.." && pwd)
 reprotest=/home/leos/.local/bin/reprotest
 store=$OUT/store-$label
+shared=/private/tmp/rb1-shared
 
-# Goes in front of every dotnet command. Keep the single quotes: $PATH must
-# be expanded by the shell that runs the command, not here.
-dotnet_env='env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1'
+dotnet_root=/home/leos/.dotnet
+modes_dir=$OUT/modes
+
+case $axis in
+none)
+    vary=(--vary=-all)
+    ;;
+all)
+    # Leave out the ones that can't run here without extra setup.
+    vary=(--vary=+all,-user_group,-fileordering,-domain_host)
+    ;;
+user_group)
+    vary=(--vary=-all,+user_group --vary=user_group.available+=rb1b:rb1b)
+    dotnet_root=/opt/rb1-dotnet
+    modes_dir=$shared/modes
+    ;;
+*)
+    vary=("--vary=-all,+$axis")
+    ;;
+esac
+
+# Goes in front of every dotnet command. \$PATH is expanded later, by the
+# shell that runs the command, not here.
+dotnet_env="env DOTNET_ROOT=$dotnet_root PATH=$dotnet_root:\$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1"
 if [ -n "$FIXENV" ]; then
     dotnet_env="$dotnet_env $FIXENV"
 fi
@@ -90,20 +118,7 @@ case $layer in
     ;;
 esac
 
-case $axis in
-none)
-    vary='--vary=-all'
-    ;;
-all)
-    # Leave out the ones that can't run here without extra setup.
-    vary='--vary=+all,-user_group,-fileordering,-domain_host'
-    ;;
-*)
-    vary="--vary=-all,+$axis"
-    ;;
-esac
-
-mkdir -p "$OUT/modes"
+mkdir -p "$OUT/modes" "$modes_dir"
 
 for dir in "$LAB"/bin "$LAB"/obj "$LAB"/release "$LAB"/src/*/bin "$LAB"/src/*/obj "$LAB"/tests/bin "$LAB"/tests/obj; do
     if [ -e "$dir" ]; then
@@ -120,30 +135,48 @@ fi
 # keep the build's exit code ourselves and still shut the servers down when
 # the build fails. The \$ parts are expanded inside the build, not here.
 hashes="find $hash_dir -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > $hash_file"
-modes="find $hash_dir -type f -printf '%m %p\n' | LC_ALL=C sort > $OUT/modes/$label-\$(umask)-\$\$.txt"
+modes="find $hash_dir -type f -printf '%m %p\n' | LC_ALL=C sort > $modes_dir/$label-\$(umask)-\$\$.txt"
 cmd="$stop_servers; rc=0; ( $build && $hashes && $modes ) || rc=\$?; $stop_servers; exit \$rc"
 
-printf '%s\n' "$vary --min-cpus $MIN_CPUS" "$cmd" "$artifacts" > "$OUT/rt-$label.cmd"
+printf '%s\n' "${vary[*]} --min-cpus $MIN_CPUS" "$cmd" "$artifacts" > "$OUT/rt-$label.cmd"
 
 eval "$stop_servers"
 
 # Sample the dotnet processes while reprotest runs, so we can check
 # afterwards that the variation really reached them.
-python3 "$experiments/sample-dotnet.py" "$OUT/samples-$label.txt" &
+DOTNET_EXE=$dotnet_root/dotnet python3 "$experiments/sample-dotnet.py" "$OUT/samples-$label.txt" &
 sampler=$!
+
+if [ "$axis" = user_group ]; then
+    # NuGet creates its config with mode 0600, so rb1b couldn't read it.
+    # It only lists nuget.org.
+    chmod 644 /tmp/dch/.nuget/NuGet/NuGet.Config || exit 2
+    cp "$experiments/sample-dotnet.py" "$shared/sample-dotnet.py"
+    sudo -n -u rb1b env DOTNET_EXE=$dotnet_root/dotnet python3 "$shared/sample-dotnet.py" "$shared/samples-$label-rb1b.txt" &
+fi
 
 start=$(date -Is)
 cd "$LAB" || exit 1
 timeout 3600 "$reprotest" -v --min-cpus "$MIN_CPUS" --store-dir "$store" \
-    "$vary" -c "$cmd" "$LAB" "$artifacts" > "$OUT/rt-$label.log" 2>&1
+    "${vary[@]}" -c "$cmd" "$LAB" "$artifacts" > "$OUT/rt-$label.log" 2>&1
 status=$?
 sleep 2
 kill $sampler
 eval "$stop_servers"
 
+if [ "$axis" = user_group ]; then
+    sudo -n -u rb1b pkill -u rb1b -f "[s]amples-$label-rb1b"
+    cp "$shared/samples-$label-rb1b.txt" "$OUT/"
+    cp "$modes_dir/$label-"* "$OUT/modes/"
+fi
+
+# A compiler server or MSBuild node still running now survived the builds.
+pgrep -af -- 'nodemode:|VBCSCompiler' | grep -v JetBrains > "$OUT/leftover-$label.txt"
+leftover=$(wc -l < "$OUT/leftover-$label.txt")
+
 control=$(short_hash "$store/control/source-root/$hash_file")
 experiment=$(short_hash "$store/experiment-1/source-root/$hash_file")
 
-printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$label" "$layer" "$axis" "$start" "$(date -Is)" \
-    "$status" "$control" "$experiment" >> "$OUT/summary.tsv"
-echo "$label exit $status control $control experiment $experiment"
+printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$label" "$layer" "$axis" "$start" "$(date -Is)" \
+    "$status" "$control" "$experiment" "$leftover" >> "$OUT/summary.tsv"
+echo "$label exit $status control $control experiment $experiment leftover $leftover"
