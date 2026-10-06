@@ -52,9 +52,10 @@ three machines: `arch`, `ubuntu-vm` and Peter's `mac`. See notes
 ### ws-pems: the real Phoenix tree, from 15 September 2026
 
 The experiment builds four own assemblies and ~300 copied dependencies from
-the `thesis/reproducible-builds` worktree, in a lab without `.git`. See
-notes `2026-09-15-*`, `2026-09-23-*`, `2026-09-24-*` and `2026-10-05-*`. From 23/9 the lab is a `git archive`
-export of the measured commit.
+the `thesis/reproducible-builds` worktree, in a lab without `.git`, and from
+6/10 the frontend's static export. See notes `2026-09-15-*`, `2026-09-23-*`,
+`2026-09-24-*`, `2026-10-05-*` and `2026-10-06-*`. From 23/9 the lab is a
+`git archive` export of the measured commit.
 
 | # | Layer | Root cause | Fine-grained cause | Where | Written by | Mitigation | Fix | Status | Measured |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -94,6 +95,12 @@ export of the measured commit.
 | W34 | 1 | Environment | `dotnet build` with the compiler inside the variation: `time`, `umask`, `exec_path`, `timezone`, `environment`, `home`, `kernel`, `num_cpus` and `user_group` green; `locales` red in the four assemblies (W26) and green with the fix; `all` with the fix differs only in the two dev files that carry the build path (W8, W9). Replaces W10 | `src/*/bin` | | none needed | | green | 5/10 phoenix-rerun L1 runs |
 | W35 | M | Method | With node reuse off (`MSBUILDDISABLENODEREUSE=1`), every MSBuild node ran with `nodeReuse:false` and exited with its build. No compiler server or MSBuild node was alive after any of 32 runs | process tree | MSBuild | fix rebuild | `MSBUILDDISABLENODEREUSE=1` in `run.sh` | green | 5/10 phoenix-rerun, `leftover 0` in all 32 |
 | W36 | M | Method | The working directory does not mark a build: MSBuild moves into each project's folder, and the compiler server runs in its own. `HOME`, which reprotest sets to the build tree and every child inherits, does. The 24/9 build_path check used the directory; redone with `HOME`, it holds | sampler, `analyze-samples.py` | | fix rebuild | marker on `HOME` | green | 5/10 phoenix-rerun L2-build_path; 24/9 L2-build_path re-analysed |
+| W37 | 3 | Randomness | Without `generateBuildId` in `next.config.js`, Next.js draws a random 21-character build ID (`nanoid`) for every build. It names `_next/static/<id>/`, with `_buildManifest.js` and `_ssgManifest.js`, and an empty folder `_next/<id>/`, and stands three times in each of the 108 HTML pages. Nothing else differs (W38) | `out/`: 108 pages, 2 paths, 1 empty folder | Next.js | fix build | `generateBuildId` returning the release tag; not yet on the branch | red | 6/10 phoenix-layer3 pilot, builds 1-2 |
+| W38 | 3 | Baseline | Two clean builds of the frontend at the same path, six minutes apart, with Node 20.20.2 and an offline install from the same npm cache: with the build ID replaced, all 998 files of `out/` are identical, the 227 JS and 14 CSS files included. Path, date and CPUs were the same in both builds, so this says nothing yet about them | `out/` | Next.js, webpack, SWC | none needed | | green | 6/10 phoenix-layer3 pilot, `compare-out.py` |
+| W39 | 3 | Build inputs | The frontend's build reads code outside `ClientApp`. Its import closure holds 7 files: 4 in `mcp/`, and 3 in `src/WebAPI/utilities/api`, a second API client that differs from `ClientApp`'s own. Webpack bundles the 3 code files from `mcp/` into the browser bundle and the prerender; the API client is imported only for interfaces and is not bundled. Built from `ClientApp` alone, lint fails on 22 unresolved imports. PR validation builds the frontend only for changes under `ClientApp/**` | `mcp/shared`, `mcp/chat-server/src/shared`, `src/WebAPI/utilities/api` | webpack, ESLint, TypeScript | fix rebuild | Build from an export of the whole commit | green | 6/10 phoenix-layer3: attempt 1, `import-closure.py`, `trace-modules.py` on build 2's trace |
+| W40 | 3 | Tool identity | The release's frontend job asks for Node `20.x`, a major version only, and its logs have expired, so the Node that built v1.0.49 cannot be read back. Node 20 reached end of life on 30 April 2026; we build with its last release, v20.20.2 with npm 10.8.2. Four locked packages declare Node 22 or newer, which npm only warns about. The frontend's `.npmrc` sets `min-release-age`, which npm 10.8.2 does not know and ignores without a warning | `00-reusable-frontend-build.yml`, `.npmrc` | `actions/setup-node`, npm | fix build | Pin the full Node version in the workflow; not yet on the branch | red | 6/10 phoenix-layer3 setup |
+| W41 | 3 | Dependency pinning | 391 of the 1509 entries in the frontend's `package-lock.json` have neither `resolved` nor `integrity`: pinned by version, not by content, so npm asks the registry where each package is and what its hash should be. From a filled cache, `npm ci --offline` installed all 1452 packages without network | `package-lock.json` | npm | open | | red | 6/10 phoenix-layer3 setup |
+| W42 | M | Method | Layer 2's lab never had the frontend export in place, so with `/p:SkipSpaBuild=true` the publishes were measured without the `wwwroot/` that CI copies in from `out/` (`WebAPI.csproj` lines 139-141). The green release `9283b29e…` is the release without its frontend | publish `wwwroot/` | MSBuild | open | One layer 2 run with `out/` in place | red | 6/10, `WebAPI.csproj` at `4e5237a3`; no `out/` in the lab |
 
 ### toolchains: how far reprotest reaches on other toolchains, 24 September 2026
 
@@ -133,9 +140,9 @@ Updated by hand when the table changes.
 
 | | empty-class (E) | ws-pems (W) | toolchains (T) | reprotest-probe (R) | total |
 | --- | --- | --- | --- | --- | --- |
-| rows | 10 | 36 | 4 | 8 | 58 |
-| green | 10 | 31 | 2 | 7 | 50 |
-| red | 0 | 4 | 2 | 1 | 7 |
+| rows | 10 | 42 | 4 | 8 | 64 |
+| green | 10 | 33 | 2 | 7 | 52 |
+| red | 0 | 8 | 2 | 1 | 11 |
 | rejected | 0 | 1 | 0 | 0 | 1 |
 
 ## How the table is used

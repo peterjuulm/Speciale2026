@@ -1,0 +1,77 @@
+# phoenix-layer3, arch, 6 October 2026. Verbatim. Times from fish's history.
+
+# Looked up by Claude beforehand (bash): the last Node 20 release, its
+# checksum and the npm it bundles.
+curl -fsSL https://nodejs.org/dist/latest-v20.x/SHASUMS256.txt | grep -E 'linux-x64\.tar\.xz$'
+#   df770b2a6f130ed8627c9782c988fda9669fa23898329a61a871e32f965e007d  node-v20.20.2-linux-x64.tar.xz
+curl -fsSL https://nodejs.org/dist/index.json | python3 -c "import json,sys; v=[r for r in json.load(sys.stdin) if r['version'].startswith('v20.')][0]; print(v['version'], v['date'], 'npm', v['npm'])"
+#   v20.20.2 2026-03-24 npm 10.8.2
+
+# Typed by Leo (fish). Node 20 into /opt, 14:10-14:12.
+curl -fLO --output-dir /private/tmp https://nodejs.org/dist/v20.20.2/node-v20.20.2-linux-x64.tar.xz
+echo "df770b2a6f130ed8627c9782c988fda9669fa23898329a61a871e32f965e007d  /private/tmp/node-v20.20.2-linux-x64.tar.xz" | sha256sum -c
+#   /private/tmp/node-v20.20.2-linux-x64.tar.xz: OK
+sudo mkdir -p /opt/rb1-node
+sudo tar -C /opt/rb1-node --strip-components=1 --no-same-owner -xJf /private/tmp/node-v20.20.2-linux-x64.tar.xz
+env PATH=/opt/rb1-node/bin:/usr/bin sh -c 'node --version; npm --version'
+#   v20.20.2
+#   10.8.2
+
+# Typed by Leo (fish). The npm cache, 14:14-14:20.
+mkdir -p /private/tmp/rb1-warm /private/tmp/rb1-npm
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro archive 4e5237a3 src/WebAPI/ClientApp | tar -x -C /private/tmp/rb1-warm
+cd /private/tmp/rb1-warm/src/WebAPI/ClientApp
+time env PATH=/opt/rb1-node/bin:/usr/bin npm_config_cache=/private/tmp/rb1-npm npm ci
+#   added 1452 packages, and audited 1453 packages in 56s
+time env PATH=/opt/rb1-node/bin:/usr/bin npm_config_cache=/private/tmp/rb1-npm npm ci --offline
+#   added 1452 packages, and audited 1453 packages in 37s
+
+# Counts in the note, by Claude (bash).
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro show 4e5237a3:src/WebAPI/ClientApp/package-lock.json | python3 -c 'import json,sys; p=json.load(sys.stdin)["packages"]; print(len(p)-1, sum(1 for k,v in p.items() if k and not v.get("link") and "integrity" not in v and "resolved" not in v))'
+#   1509 391
+grep -rl min-release-age /opt/rb1-node/lib/node_modules/npm/ | wc -l
+#   0
+grep -rl min-release-age /usr/lib/node_modules/npm/node_modules/@npmcli/config/lib/definitions/ | wc -l
+#   1
+# The frontend job of the last release, v1.0.49 (run 36730592108, 30 September):
+gh run view -R Weel-Sandvig/WS.Phoenix --job 109962818615 --log
+#   failed to get run log: HTTP 410: Server Error (https://api.github.com/repos/Weel-Sandvig/WS.Phoenix/actions/runs/36730592108/logs)
+gh api repos/Weel-Sandvig/WS.Phoenix/actions/jobs/109962818615/logs
+#   {"message":"Server Error",...,"status":"410"}
+
+# Typed by Leo (fish). The pilot, attempt 1. pilot.sh then exported only the
+# frontend: git -C "$repo" archive "$commit" src/WebAPI/ClientApp | tar -x -C "$lab"
+env OUT=/home/leos/Dev/speciale-2026/data/phoenix-layer3/arch-2026-10-06 /home/leos/Dev/Speciale2026/experiments/phoenix-fe/pilot.sh
+#   build 1 started 2026-10-06T14:38:17+02:00
+#   build 1 exit 1 2026-10-06T14:39:50+02:00
+#   next build's lint step: 22 unresolved imports into mcp/ and src/WebAPI/utilities/.
+#   Log kept as attempt1-clientapp-only-build-1.log.
+# Then pilot.sh changed to export the whole commit:
+# git -C "$repo" archive "$commit" | tar -x -C "$lab"
+
+# Typed by Leo (fish). The pilot, attempt 2, with the whole commit exported.
+env OUT=/home/leos/Dev/speciale-2026/data/phoenix-layer3/arch-2026-10-06 /home/leos/Dev/Speciale2026/experiments/phoenix-fe/pilot.sh
+#   build 1 started 2026-10-06T14:51:55+02:00
+#   build 1 exit 0 2026-10-06T14:57:37+02:00
+#   build 2 started 2026-10-06T14:57:44+02:00
+#   build 2 exit 0 2026-10-06T15:03:10+02:00
+#   as built: 998 and 998 files, 2 only in the first, 2 only in the second, 108 differ
+#   build ID replaced: 998 and 998 files, 0 only in the first, 0 only in the second, 0 differ
+
+# Checks of the result, by Claude (bash). O is Leo's private data folder.
+O=/home/leos/Dev/speciale-2026/data/phoenix-layer3/arch-2026-10-06
+for n in 1 2; do id=$(cat $O/build-id-$n); find $O/out-$n -type d -empty; for f in $(find $O/out-$n -name '*.html'); do grep -o -F "$id" "$f" | wc -l; done | sort | uniq -c; done
+#   $O/out-1/_next/lTVqBUn0v8xesq55_elHE
+#       108 3
+#   $O/out-2/_next/urTNvpc80dd_35qqySlHy
+#       108 3
+cp /private/tmp/rb1-fe/src/WebAPI/ClientApp/.next/trace $O/next-trace-2
+python3 /home/leos/Dev/Speciale2026/experiments/phoenix-fe/trace-modules.py $O/next-trace-2 /private/tmp/rb1-fe
+#   modules outside ClientApp: 3, each in pages-dir-browser and pages-dir-node:
+#   2 in mcp/chat-server/src/shared, 1 in mcp/shared
+python3 /home/leos/Dev/Speciale2026/experiments/phoenix-fe/import-closure.py /private/tmp/rb1-phoenix
+#   ClientApp source files: 1083
+#   files outside ClientApp in the import closure: 7 (4 in mcp/, 3 in src/WebAPI/utilities/api)
+#   ClientApp files importing them: 34, 10 of them tests
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro diff --stat 4e5237a3:src/WebAPI/utilities/api 4e5237a3:src/WebAPI/ClientApp/utilities/api | tail -1
+#   3 files changed, 75962 insertions(+), 16208 deletions(-)

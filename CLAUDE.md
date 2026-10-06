@@ -118,10 +118,17 @@ sets it in the Linux release jobs (`4e5237a3`), not yet run in CI. Layer 1
 adds only two dev files that carry the build path and do not ship (W8, W9).
 reprotest itself was checked against a shell probe (R1-R8): `aslr` is a
 no-op, and the builds inherit the starting shell's environment.
+On 6/10 layer 3, the frontend's static export, had its pilot: two builds at
+the same path differ only by Next's random build ID (W37). The frontend
+imports code from `mcp/`, outside `ClientApp` (W39), so it is built from an
+export of the whole commit (`experiments/phoenix-fe/pilot.sh`, Node 20.20.2
+in `/opt/rb1-node`, npm cache in `/private/tmp/rb1-npm`). Layer 2's green
+release was measured without the frontend, which CI copies into `wwwroot/`
+(W42).
 Cross-machine runs are paused: the shared droplet is too small to compile
-Phoenix. See `notes/2026-10-05-phoenix-rerun.md`,
-`notes/2026-10-05-reprotest-probe.md`, `notes/2026-09-24-roslyn-locale-repro.md`
-and `notes/status.md`. Open questions are under "Caveats" in the newest
+Phoenix. See `notes/2026-10-06-phoenix-layer3.md`,
+`notes/2026-10-05-phoenix-rerun.md`, `notes/2026-10-05-reprotest-probe.md`,
+`notes/2026-09-24-roslyn-locale-repro.md` and `notes/status.md`. Open questions are under "Caveats" in the newest
 experiment notes and under "Open" on the status board.
 Fixes to Phoenix live on the branch `thesis/reproducible-builds` in the
 WS.Phoenix repo, never in this one.
