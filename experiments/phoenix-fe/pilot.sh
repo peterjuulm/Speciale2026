@@ -3,7 +3,11 @@
 # Layer 3 pilot: build Phoenix's frontend twice in the same folder and keep
 # both static exports.
 #
-#   OUT=<private folder> pilot.sh
+#   OUT=<private folder> [COMMIT=<commit>] [APP_VERSION=<tag>] pilot.sh
+#
+# COMMIT defaults to the branch commit below. APP_VERSION, when set, goes
+# into the build's environment; from 5031c5af on, next.config.js takes it as
+# the build ID ("dev" when unset). Before that commit it changes nothing.
 #
 # Each build starts from a fresh git archive of the whole commit, always at
 # the same path, installs from the filled npm cache without network, and runs
@@ -17,7 +21,7 @@
 set -uo pipefail
 
 repo=/home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro
-commit=4e5237a33b5737f6f781bb3ee85cec540309833f
+commit=${COMMIT:-6312948069221eb85dd1ac4aad2af7e4826323d3}
 lab=/private/tmp/rb1-fe
 app=$lab/src/WebAPI/ClientApp
 node_bin=/opt/rb1-node/bin
@@ -41,6 +45,9 @@ mkdir -p "$OUT"
 build_env=(env -i HOME="$HOME" PATH="$node_bin:/usr/bin" LANG=C.UTF-8 CI=true
     npm_config_cache="$cache" npm_config_update_notifier=false
     NEXT_TELEMETRY_DISABLED=1)
+if [ -n "${APP_VERSION:-}" ]; then
+    build_env+=(APP_VERSION="$APP_VERSION")
+fi
 build='npm ci --offline --no-audit --no-fund && npm run build'
 
 {

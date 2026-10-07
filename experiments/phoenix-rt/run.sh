@@ -32,9 +32,13 @@
 #   MIN_CPUS  CPUs for the control build, default 2
 #   FIXENV    VAR=VALUE added to every dotnet command, e.g. LC_ALL=C.UTF-8
 #   LAB       the lab, default /private/tmp/rb1-phoenix; must hold no build output
+#   VER       layer 2's version flags, default the release's two /p: flags
+#             for v0.0.0-thesis. From 5031c5af on, the release sets
+#             APP_VERSION instead: run with VER= and APP_VERSION in FIXENV.
 #
 # Written 24 September 2026. Replaces the run-axis.sh used that morning.
 # 5 October 2026: node reuse off, user_group, the leftover check.
+# 7 October 2026: VER can be overridden.
 set -u
 LAYER=${1:?LAYER} AXIS=${2:?AXIS}
 LABEL=${3:-L$LAYER-$AXIS}
@@ -57,7 +61,7 @@ LAUNCH=(env -i HOME="$HOME" USER="$USER" LOGNAME="$LOGNAME" SHELL=/bin/bash
 ENV="env DOTNET_ROOT=$DN PATH=$DN:\$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1"
 if [ -n "$FIXENV" ]; then ENV="$ENV $FIXENV"; fi
 STOP="$ENV dotnet build-server shutdown > /dev/null"
-VER='/p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis'
+VER=${VER-'/p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis'}
 case $LAYER in
   1) BUILD="$ENV dotnet build src/WebAPI/WebAPI.csproj -c Release -p:SkipSpaBuild=true && $ENV dotnet build src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release"
      HASHED='src/*/bin' HASHFILE=bin.sha256

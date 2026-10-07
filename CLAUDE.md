@@ -124,9 +124,15 @@ imports code from `mcp/`, outside `ClientApp` (W39), so it is built from an
 export of the whole commit (`experiments/phoenix-fe/pilot.sh`, Node 20.20.2
 in `/opt/rb1-node`, npm cache in `/private/tmp/rb1-npm`). Layer 2's green
 release was measured without the frontend, which CI copies into `wwwroot/`
-(W42).
+(W42). On 7/10 the frontend became identical at the same path: the WS branch
+reads one `APP_VERSION` in every build (the tag in a release, `dev`
+elsewhere), which Next also takes as its build ID (W37, W45), and all
+third-party CSS is imported in `_app`, since Next ordered shared CSS by
+build timing (W43). Layer 2 gives the same `9283b29e…` with the new version
+route.
 Cross-machine runs are paused: the shared droplet is too small to compile
-Phoenix. See `notes/2026-10-06-phoenix-layer3.md`,
+Phoenix. See `notes/2026-10-07-phoenix-app-version.md`,
+`notes/2026-10-06-phoenix-layer3.md`,
 `notes/2026-10-05-phoenix-rerun.md`, `notes/2026-10-05-reprotest-probe.md`,
 `notes/2026-09-24-roslyn-locale-repro.md` and `notes/status.md`. Open questions are under "Caveats" in the newest
 experiment notes and under "Open" on the status board.

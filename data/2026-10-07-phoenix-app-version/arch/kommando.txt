@@ -1,0 +1,157 @@
+# phoenix-app-version, arch, 7 October 2026. Run by Claude at Leo's request,
+# in bash. Verbatim, except where marked as abbreviated.
+
+# Before the run: the version logic of the WS commit 5031c5af, checked by
+# evaluation in a scratch folder outside git. t.csproj is an empty net9.0
+# project; Directory.Build.props holds a copy of the commit's version
+# PropertyGroup. For each value (abbreviated loop):
+env APP_VERSION="$v" ~/.dotnet/dotnet msbuild t.csproj -getProperty:Version -getProperty:InformationalVersion
+env -u APP_VERSION ~/.dotnet/dotnet msbuild t.csproj -getProperty:Version -getProperty:InformationalVersion
+#   unset         -> Version 1.0.0, InformationalVersion dev
+#   ""            -> 1.0.0, dev
+#   dev           -> 1.0.0, dev
+#   v1.0.49       -> 1.0.49, v1.0.49
+#   v1.0.50-rc.1  -> 1.0.50-rc.1, v1.0.50-rc.1
+#   main          -> 1.0.0, main
+# In a copy of the commit's ClientApp/next.config.js:
+env APP_VERSION="$v" node -e 'console.log(require("./next.config.js").generateBuildId())'
+#   unset -> dev, "" -> dev, v1.0.49 -> v1.0.49
+
+# The checksum the Node pin (63129480) puts in the WebAPI Dockerfile. The .xz
+# line matches the tarball checked on 6/10.
+curl -fsSL https://nodejs.org/dist/v20.20.2/SHASUMS256.txt | grep -E ' node-v20\.20\.2-linux-x64\.tar\.(gz|xz)$'
+#   19e56f0825510207dd904f087fe52faa0a4eb6b2aab5f0ea7a33830d04888b8b  node-v20.20.2-linux-x64.tar.gz
+#   df770b2a6f130ed8627c9782c988fda9669fa23898329a61a871e32f965e007d  node-v20.20.2-linux-x64.tar.xz
+
+# The branch, both commits by Leo's identity, not pushed before the checks:
+#   5031c5af Read one APP_VERSION in every build
+#   63129480 Pin the frontend's Node to 20.20.2 in one file
+
+# The lab, 11:37:
+rm -rf /private/tmp/rb1-phoenix && mkdir /private/tmp/rb1-phoenix && git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro archive 6312948069221eb85dd1ac4aad2af7e4826323d3 -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix && python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro 6312948069221eb85dd1ac4aad2af7e4826323d3 /private/tmp/rb1-phoenix
+#   5479 files in commit, 5479 in lab: 0 missing, 0 differing, 0 extra
+
+# The NuGet cache in /tmp/dch, gone since the last reboot, filled again by
+# one locked restore in a copy of the lab, 11:38-11:39 (restore warnings
+# omitted):
+cp -a /private/tmp/rb1-phoenix /private/tmp/rb1-nuget && cd /private/tmp/rb1-nuget && time env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1 dotnet restore ./WS.Phoenix.sln --locked-mode 2>&1 | tail -4; env DOTNET_ROOT=/home/leos/.dotnet PATH=/home/leos/.dotnet:$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1 dotnet build-server shutdown > /dev/null; cd / && rm -rf /private/tmp/rb1-nuget && chmod 644 /tmp/dch/.nuget/NuGet/NuGet.Config && du -sh /tmp/dch/.nuget/packages
+#   real 1m7,288s
+#   4,3G /tmp/dch/.nuget/packages
+
+# Rider and VS Code closed by Leo before the runs; no MSBuild, compiler
+# server or IDE process left (pgrep).
+
+# Check 1, layer 2, 11:40. O is Leo's private data folder.
+O=/home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07; mkdir -p $O && date -Is && OUT=$O VER= FIXENV='LC_ALL=C.UTF-8 APP_VERSION=v0.0.0-thesis' systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix layer 2 APP_VERSION check" /home/leos/Dev/Speciale2026/experiments/phoenix-rt/run.sh 2 none L2-appver > $O/run-L2-appver.out 2>&1; echo "exit $?"; date -Is; tail -5 $O/run-L2-appver.out
+#   2026-10-07T11:40:32+02:00
+#   exit 0
+#   2026-10-07T11:48:41+02:00
+#   L2-appver exit 0 control 9283b29e2f8ce154 experiment 9283b29e2f8ce154 leftover 0
+
+# That the version came through APP_VERSION and nothing else:
+grep -o -E '/p:Version[^ ]*|APP_VERSION=[^ ]*|LC_ALL=[^ ]*' $O/rt-L2-appver.cmd | sort | uniq -c
+#   5 APP_VERSION=v0.0.0-thesis
+#   2 LC_ALL=C
+#   5 LC_ALL=C.UTF-8
+#   (no /p:Version; the two LC_ALL=C are run.sh's own sort commands)
+f=$O/store-L2-appver/control/source-root/release/ws-pems-linux-x64/ApplicationCore.dll; strings -el "$f" | grep -E '^v?0\.0\.0' | sort -u; grep -o '"ApplicationCore/[^"]*"' $(dirname "$f")/WebAPI.deps.json | sort -u
+#   0.0.0.0
+#   v0.0.0-thesis
+#   "ApplicationCore/0.0.0-thesis"
+
+# Check 2, the frontend pilot, 11:49.
+O=/home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07; date -Is; OUT=$O/fe APP_VERSION=v0.0.0-thesis systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix frontend pilot" /home/leos/Dev/Speciale2026/experiments/phoenix-fe/pilot.sh > $O/pilot.out 2>&1; echo "exit $?"; date -Is; cat $O/pilot.out
+#   2026-10-07T11:49:03+02:00
+#   exit 1   (compare-out.py: differences remain)
+#   build 1 11:49:12-11:54:37, build 2 11:54:44-11:59:57, both exit 0
+#   as built: 998 and 998 files, 1 only in the first, 1 only in the second, 3 differ
+#     one CSS file under another name, _buildManifest.js, two pages
+#   build IDs: v0.0.0-thesis and v0.0.0-thesis
+
+# The two CSS files (abbreviated: sizes, the rule sets compared after
+# splitting at "}", and the moved block printed by a short Python script
+# that strips the equal prefix and suffix):
+#   24036 and 24036 bytes; the same rules, only the order differs
+#   254 pieces: 174 equal at the start, 1 at the end, 79 swapped as two
+#   blocks: allotment's 34 rules and react-day-picker's 45 rules
+#   6/10's builds 1 and 2 have the same name as today's build 1.
+
+# Check 3, today's build 1 against 6/10's build 1, IDs replaced:
+P=/home/leos/Dev/speciale-2026/data/phoenix-layer3/arch-2026-10-06; O=/home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07/fe; python3 /home/leos/Dev/Speciale2026/experiments/phoenix-fe/compare-out.py $P/out-1 $O/out-1 lTVqBUn0v8xesq55_elHE v0.0.0-thesis > $O/compare-0610.txt
+#   build ID replaced: 998 and 998 files, 1 only in the first, 1 only in
+#   the second, 108 differ: the webpack runtime chunk under another name,
+#   and all 108 pages.
+#   The two runtimes: 6872 bytes each; the same code with the minifier's
+#   short variable names assigned differently (abbreviated). One page with
+#   the runtime's name and the IDs normalised by sed: identical.
+
+# Next's CSS extraction:
+grep -rn -E 'ignoreOrder' /private/tmp/rb1-fe/src/WebAPI/ClientApp/node_modules/next/dist/build/webpack/config/blocks/css/*.js
+#   .../blocks/css/index.js:559: ignoreOrder: true,
+
+# Second round. Where the third-party CSS was imported (WS repo, read only):
+git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro grep -n -E "^\s*import\s+['\"][^.'\"][^'\"]*\.css['\"]" 6312948 -- src/WebAPI/ClientApp
+#   24 imports: 4 in pages/_app.tsx, 1 Tailwind in a file nothing imports,
+#   3 of reactflow/dist/style.css, and 16 more of twelve stylesheets in
+#   17 components and pages (counted again below: 20 lines removed).
+# Next's CSS chunking, in the installed Next 15.5.25:
+grep -n -E 'cssChunking' .../next/dist/server/config-shared.js
+#   139: cssChunking: true,
+#   (css-chunking-plugin.js read by Claude: lines 43-51 collect each chunk's
+#   CSS modules from chunkGraph.getChunkModulesIterable; line 45 skips
+#   chunks whose name starts with "pages/".)
+# The WS commit eed6c240, "Import all third-party CSS in _app", made in a
+# scratch copy by a short Python script that removed every import of a
+# node_modules stylesheet outside _app except reactflow/dist/style.css
+# (20 lines in 17 files), plus twelve imports added to _app by hand.
+#   18 files changed, 18 insertions(+), 20 deletions(-)
+
+# Four builds of eed6c240, 12:16-12:41 (two pilots in a row), and build 1 against
+# build 3:
+O=/home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07; date -Is; for r in 1 2; do OUT=$O/fe-css-$r COMMIT=eed6c24029875c454278f7659c2b6c65be9ec708 APP_VERSION=v0.0.0-thesis systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix frontend CSS check" /home/leos/Dev/Speciale2026/experiments/phoenix-fe/pilot.sh > $O/pilot-css-$r.out 2>&1; echo "pilot $r exit $?"; done; date -Is; python3 /home/leos/Dev/Speciale2026/experiments/phoenix-fe/compare-out.py $O/fe-css-1/out-1 $O/fe-css-2/out-1 > $O/compare-css-1v3.txt; echo "build 1 vs 3 exit $?"; cat $O/pilot-css-1.out $O/pilot-css-2.out $O/compare-css-1v3.txt
+#   2026-10-07T12:16:53+02:00
+#   pilot 1 exit 0, pilot 2 exit 0
+#   2026-10-07T12:41:43+02:00
+#   build 1 vs 3 exit 0
+#   pilot 1: builds 12:17:02-12:23:35 and 12:23:41-12:30:18; as built: 990
+#   and 990 files, 0 only in the first, 0 only in the second, 0 differ
+#   pilot 2: builds 12:30:25-12:36:09 and 12:36:15-12:41:42; the same
+#   build 1 against build 3: 990 and 990 files, 0 differ
+# The CSS files of build 1 and the pages that load each:
+#   379600 bytes, 108 pages; 7026 bytes, 3 pages
+
+# The visual check, 12:48-13:10 (setup abbreviated, since it touches WS's
+# configuration): the branch's WebAPI at eed6c240, published once with
+#   dotnet publish src/WebAPI/WebAPI.csproj -c Release -r linux-x64 --self-contained false /p:SkipSpaBuild=true /p:UseAppHost=false
+# run twice in Development with test login, emails disabled and no job
+# server, against a throwaway copy of the local dev database, with
+# --webroot set to the publish's own wwwroot plus one export:
+#   port 5081: 63129480's export (fe/out-1, before the CSS move)
+#   port 5082: eed6c240's export (fe-css-1/out-1, after)
+# Compared in Claude's browser pane, screenshots at 1440x900: dashboard map,
+# Data Explorer date picker, pipeline manager and an asset pipeline, a
+# process view template, facilities and a facility's map. One difference:
+# the Tremor calendar (selected days, month arrows).
+# Which components use a library without importing its stylesheet
+# (abbreviated loop over the twelve packages, git grep on eed6c240), and
+# which pages loaded allotment's CSS before:
+#   react-day-picker: TremorCalendar.tsx renders it without the CSS
+#   react-data-grid: 16 files import only column types and cell editors
+#   allotment: 3 components, on the 5 pages that already loaded its CSS
+#   leaflet: the facility map, identical in the browser
+
+# Third round: the calendar fix, WS commit a16eb506, built twice:
+O=/home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07; date -Is; OUT=$O/fe-cal COMMIT=a16eb506fc17d0b70b29397b01f1ce8f54d584db APP_VERSION=v0.0.0-thesis systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix frontend calendar fix" /home/leos/Dev/Speciale2026/experiments/phoenix-fe/pilot.sh > $O/pilot-cal.out 2>&1; echo "exit $?"; date -Is; cat $O/pilot-cal.out
+#   2026-10-07T12:58:21+02:00, exit 0, 2026-10-07T13:14:33+02:00
+#   build 1 12:58:29-13:06:07, build 2 13:06:13-13:14:32
+#   as built: 990 and 990 files, 0 only in the first, 0 only in the second, 0 differ
+# Port 5082 then served a16eb506's build 1 (fe-cal/out-1) with the same
+# backend; the Data Explorer date picker compared against 5081 at 1440x900:
+# the same.
+# Element-wide rules and :root variables that became global (short Python
+# scripts over the old and new global CSS, abbreviated):
+#   no selector for a bare element; :root gains allotment's --focus-border,
+#   --sash-hover-size, --sash-hover-transition-duration, --sash-size and
+#   --separator-border, set once each and used nowhere in the app's source
+# Packages in package-lock.json that depend on one of the moved libraries:
+#   @maplibre/maplibre-gl-leaflet -> leaflet, maplibre-gl
