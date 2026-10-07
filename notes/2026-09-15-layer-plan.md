@@ -77,6 +77,7 @@ the delivery to Weel-Sandvig. Open points:
 | 2, same path and `+build_path`, `2570034b` | 0 / 1237 | 0 | lock files (W22) first shipped win-x64 files (W23) and wrong `deps.json` versions (W24) | `d0a817c9`, `2570034b` | 23/9, runs 7-8, reprotest |
 | 2, time / umask / exec_path, `2570034b` | 0 / 1237 | 0 | umask changes 142 file modes, not contents (W30) | none needed | 24/9, runs 1, 3, 4 |
 | 2, locale `et_EE.UTF-8`, `2570034b` | 10 / 1237 | 40-497 per file | the compiler orders its collection-expression types by culture (W26) | `LC_ALL=C.UTF-8` or invariant globalization on the dotnet commands: 0 / 1237 | 24/9, run 2 (red), runs 5-6 (green) |
+| 2 with the frontend in `wwwroot/`, same path, `a16eb506` | 0 / 2227 | 0 | | none needed; the export's 990 files arrive byte-identical | 7/10, `2cd8c531…` |
 | 3, same path, `arch`, `4e5237a3` | 110 / 998: 2 paths, 108 pages | the 21-character build ID, three times per page | Next's random build ID (W37) | `generateBuildId`, not yet on the branch | 6/10, one pilot |
 | 3, same path, `arch`, `63129480` | 4 / 998 in 1 of 2 builds: 1 CSS file, its manifest, 2 pages | two stylesheets' rules in another order | Next's CSS chunking orders shared CSS by build timing (W43) | all third-party CSS in `_app` | 7/10, round 1 |
 | 3, same path, `arch`, `eed6c240` and `a16eb506` | 0 / 990 | 0 | | `APP_VERSION` as build ID (W37); CSS in `_app` (W43) | 7/10, six builds |

@@ -185,6 +185,35 @@ bare element became global; the only new `:root` variables are
 `allotment`'s five, which nothing else uses. Class names assembled at run
 time would escape the scan.
 
+## Fourth round: layer 2 with the frontend in place (W42)
+
+Layer 2's release so far was measured without `out/`, so without the
+`wwwroot/` that CI copies in (W42). This round puts build 1's export of
+`a16eb506` (`fe-cal/out-1`) at `src/WebAPI/ClientApp/out` in a fresh export
+of `a16eb506`, as the release job's download step does, and runs
+`run.sh 2 none` as in check 1.
+
+Expectation, written before the run: green, with a new `release.sha256`,
+since the WebAPI publish now carries the export `[I]`. The release grows by
+the export's 990 files, from 1237 to 2227, and each file under
+`ws-pems-linux-x64/wwwroot/` that came from `out/` is byte-identical to it
+`[I]`. The job worker's publish and the rest of the WebAPI publish keep
+their hashes from `9283b29e…` `[I]`. `out/`'s empty folder `_next/v0.0.0-thesis/`
+does not reach the publish, since MSBuild copies files, not folders `[I]`.
+
+Result, 13:29-13:37: green, and `release.sha256` is `2cd8c531…` in both
+builds, leftover 0 `[V]` `summary.tsv`. The release has 2227 files. All 990
+of the export's files are under `ws-pems-linux-x64/wwwroot/`, byte-identical
+to `out/`, and the other 1237 are `9283b29e…`'s, the same paths with the
+same hashes `[V]` hash lists compared. No file lies under
+`wwwroot/_next/v0.0.0-thesis/`; whether the empty folder itself is absent
+cannot be seen in a list of files, and stays `[I]`.
+
+So the Linux release's contents, frontend included, come out the same from
+two builds at the same path. The frontend adds nothing to layer 2 beyond
+its own files, and `9283b29e…` stays valid as the release without its
+frontend.
+
 ## Caveats and not tested
 
 - Not run: the Docker builds (build argument, then environment, then MSBuild

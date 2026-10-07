@@ -5,8 +5,8 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 7 October 2026, the version and CSS checks. Last edit: 7 October
-2026, 13:20.
+Last run: 7 October 2026, layer 2 with the frontend. Last edit: 7 October
+2026, 13:38.
 
 ## Last batch
 
@@ -18,7 +18,9 @@ Layer 2 gives the same `9283b29e…` with the version from that variable. The
 frontend then showed a second difference, two stylesheets swapping order in
 a shared CSS file (W43); with all third-party CSS in `_app`, six builds of
 two commits are identical as built. A browser check found one side effect,
-in the Tremor calendar, fixed in `a16eb506`. Before that, on 6/10, the
+in the Tremor calendar, fixed in `a16eb506`. With that export in place,
+layer 2 is green on the same path, 2227 files, `2cd8c531…` (W42). Before
+that, on 6/10, the
 layer 3 pilot ([phoenix-layer3](2026-10-06-phoenix-layer3.md), W37-W42).
 
 ## How we measure
@@ -57,7 +59,7 @@ the measurement. All on `arch` with Microsoft's SDK unless stated. Layer 3
 
 | Axis | Layer 1 build | Layer 2 publish | Layer 3 frontend |
 | --- | --- | --- | --- |
-| Same path (`none`) | green 5/10, 638 files | green 5/10, the release of 23/9 W16, without the frontend W42; 7/10 the same with the version from `APP_VERSION` W45 | fix 7/10, six builds identical as built, after the build ID W37 and the CSS order W43 |
+| Same path (`none`) | green 5/10, 638 files | green 7/10 with the frontend in `wwwroot/`: 2227 files, `2cd8c531…` W42; without it the same `9283b29e…` as on 5/10, now with the version from `APP_VERSION` W45 | fix 7/10, six builds identical as built, after the build ID W37 and the CSS order W43 |
 | `build_path` | red 5/10, the two dev json only W8 W9 | green 5/10 W25 | - |
 | `time` | green 5/10, replaces W10 | green 5/10 W29 | - |
 | `locales` | fix 5/10 W26 with `LC_ALL` | fix 5/10 W26 with `LC_ALL`, the pin not yet run in CI | - |
@@ -85,8 +87,8 @@ the measurement. All on `arch` with Microsoft's SDK unless stated. Layer 3
   runs, so layer 1 is compared within a run only.
 - Layer 2: file modes follow the umask (W30), decided in layer 4. The locale
   pin `LC_ALL=C.UTF-8` is on the WS branch (`4e5237a3`) but has not run in CI.
-  Measured without the frontend: the lab had no `out/`, so no `wwwroot/`
-  (W42). The EF migration bundle is not measured.
+  With the frontend in place it is measured on the same path only (W42);
+  the reprotest axes ran without it. The EF migration bundle is not measured.
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
   part of the WS delivery. Open points in the layer plan.
 - Layer 3: the build ID (W37) and the CSS order (W43) are fixed on the WS
@@ -109,7 +111,8 @@ the measurement. All on `arch` with Microsoft's SDK unless stated. Layer 3
 1. Layer 3: the reprotest axes for the frontend, `experiments/phoenix-fe/run.sh`,
    expectations first. Then fill in `resolved`/`integrity` in the lock file
    in a scratch copy, kept only if no version changes (W41).
-2. One layer 2 publish with `out/` in place (W42). Then layer 4, the zip.
+2. Layer 4, the zip. Layer 2 with `out/` in place is green on the same path
+   (W42).
 3. Upstream: the dotnet/roslyn issue for W26, and a Next.js issue for the CSS
    order's missing tie-break (W43). Brief Magnus: the locale defect, the
    dependency warnings, the SDK pin; Node 20's end of life and Node 23 in the

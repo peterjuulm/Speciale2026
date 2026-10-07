@@ -155,3 +155,23 @@ O=/home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07; date -I
 #   --separator-border, set once each and used nowhere in the app's source
 # Packages in package-lock.json that depend on one of the moved libraries:
 #   @maplibre/maplibre-gl-leaflet -> leaflet, maplibre-gl
+
+# Fourth round, W42: layer 2 with the frontend export in place, 13:27.
+ws=/home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro; C=a16eb506fc17d0b70b29397b01f1ce8f54d584db; rm -rf /private/tmp/rb1-phoenix && mkdir /private/tmp/rb1-phoenix && git -C $ws archive $C -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix && python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py $ws $C /private/tmp/rb1-phoenix && cp -a /home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07/fe-cal/out-1 /private/tmp/rb1-phoenix/src/WebAPI/ClientApp/out
+#   5479 files in commit, 5479 in lab: 0 missing, 0 differing, 0 extra
+#   990 files in out/
+# Rider, open again, closed by Claude at Leo's request (SIGTERM to the
+# frontend process; its backend and MSBuild host exited with it). No MSBuild,
+# compiler server or IDE process left (pgrep).
+O=/home/leos/Dev/speciale-2026/data/phoenix-app-version/arch-2026-10-07; date -Is; OUT=$O VER= FIXENV='LC_ALL=C.UTF-8 APP_VERSION=v0.0.0-thesis' systemd-inhibit --what=idle:sleep --who=rb1 --why="Phoenix layer 2 with the frontend" /home/leos/Dev/Speciale2026/experiments/phoenix-rt/run.sh 2 none L2-out > $O/run-L2-out.out 2>&1; echo "exit $?"; date -Is; tail -3 $O/run-L2-out.out
+#   2026-10-07T13:29:36+02:00
+#   exit 0
+#   2026-10-07T13:37:50+02:00
+#   L2-out exit 0 control 2cd8c53183486aac experiment 2cd8c53183486aac leftover 0
+# The new release against the export and against 9283b29e (a short Python
+# script over the three hash lists: store-L2-out's and store-L2-appver's
+# release.sha256 and fe-cal/out-1.sha256):
+#   files in the new release: 2227 | old: 1237 | export: 990
+#   export files found under wwwroot: 990 | byte-identical to out/: 990
+#   all other files: same set as 9283b29e: True | same hashes: True
+#   anything under wwwroot/_next/v0.0.0-thesis/: []

@@ -129,7 +129,8 @@ reads one `APP_VERSION` in every build (the tag in a release, `dev`
 elsewhere), which Next also takes as its build ID (W37, W45), and all
 third-party CSS is imported in `_app`, since Next ordered shared CSS by
 build timing (W43). Layer 2 gives the same `9283b29e…` with the new version
-route.
+route, and with the frontend's export in place it is green too: 2227 files,
+`2cd8c531…` (W42).
 Cross-machine runs are paused: the shared droplet is too small to compile
 Phoenix. See `notes/2026-10-07-phoenix-app-version.md`,
 `notes/2026-10-06-phoenix-layer3.md`,
