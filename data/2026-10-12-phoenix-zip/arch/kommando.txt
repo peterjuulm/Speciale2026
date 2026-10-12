@@ -1,0 +1,20 @@
+# phoenix-zip, arch, 12 October 2026. Run by Claude at Leo's request, in
+# bash. Verbatim, with O and E standing for the private data folder and
+# Speciale2026/experiments.
+
+# The zip binary, before the runs: Info-ZIP 3.0 from the Flatpak runtime
+# org.freedesktop.Platform 25.08 (arch has no zip package installed).
+cp /var/lib/flatpak/runtime/org.freedesktop.Platform/x86_64/25.08/<hash>/files/bin/zip /private/tmp/rb1-tools/zip
+#   2958697a454d5a23f6f12e1daa90a800becff19957f1e0d6b600b308ef8ff33e
+
+# The lab, before the runs: a fresh export of a16f9a91, checked file by file.
+rm -rf /private/tmp/rb1-phoenix && mkdir -p /private/tmp/rb1-phoenix && git -C <WS worktree> archive a16f9a91 -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix
+python3 $E/labcheck.py <WS worktree> a16f9a91 /private/tmp/rb1-phoenix
+#   5479 files in commit, 5479 in lab: 0 missing, 0 differing, 0 extra
+
+# The two runs, 14:21-14:51:
+for A in none all; do OUT=$O FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=1791802349 $E/phoenix-rt/run.sh Z $A Z-$A; done
+
+# The comparisons, for each run and zip:
+python3 $E/phoenix-zip/compare-zip.py store-Z-none/control/source-root/release/zip-ci/ws-pems-linux-x64-v0.0.0-thesis.zip store-Z-none/experiment-1/source-root/release/zip-ci/ws-pems-linux-x64-v0.0.0-thesis.zip
+zipinfo store-Z-none/control/source-root/release/zip-norm/ws-pems-linux-x64-v0.0.0-thesis.zip

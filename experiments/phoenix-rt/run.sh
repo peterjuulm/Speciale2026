@@ -23,6 +23,11 @@
 #             CI's publish job gets only out/, then layer 2's sequence,
 #             which copies out/ into wwwroot/. user_group is not set up
 #             for it
+#          Z  layer R, a hash list of release/, then the release zips twice:
+#             as CI makes them (zip -r) in release/zip-ci, and packed
+#             normalised in release/zip-norm: modes 755 or 644 by the owner's
+#             x bit, every mtime set to ZEPOCH, names sorted, no extra fields
+#             (zip -X), TZ=UTC. Hashes the zips
 #   AXIS   one reprotest variation: build_path, time, locales, umask,
 #          exec_path, timezone, environment, home, kernel, aslr, num_cpus,
 #          domain_host, user_group. Or "none": two builds, nothing varied. Or
@@ -37,6 +42,7 @@
 #   MIN_CPUS  CPUs for the control build, default 2
 #   FIXENV    VAR=VALUE added to every dotnet command, e.g. LC_ALL=C.UTF-8
 #   LAB       the lab, default /private/tmp/rb1-phoenix; must hold no build output
+#   ZEPOCH    layer Z: the time for the normalised zips, e.g. the commit's
 #   VER       layer 2's version flags, default the release's two /p: flags
 #             for v0.0.0-thesis. From 5031c5af on, the release sets
 #             APP_VERSION instead: run with VER= and APP_VERSION in FIXENV.
@@ -44,7 +50,7 @@
 # Written 24 September 2026. Replaces the run-axis.sh used that morning.
 # 5 October 2026: node reuse off, user_group, the leftover check.
 # 7 October 2026: VER can be overridden.
-# 12 October 2026: layer R.
+# 12 October 2026: layers R and Z.
 set -u
 LAYER=${1:?LAYER} AXIS=${2:?AXIS}
 LABEL=${3:-L$LAYER-$AXIS}
@@ -71,6 +77,8 @@ VER=${VER-'/p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis'}
 L2="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore $VER"
 NODEENV="env PATH=/opt/rb1-node/bin:\$PATH CI=true npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1"
 if [ -n "$FIXENV" ]; then NODEENV="$NODEENV $FIXENV"; fi
+RB="( cd src/WebAPI/ClientApp && $NODEENV npm ci --offline --no-audit --no-fund && $NODEENV npm run build && rm -rf node_modules .next ) && $L2"
+ZIP=/private/tmp/rb1-tools/zip TAG=v0.0.0-thesis DIRS='ws-pems-linux-x64 ws-pems-job-worker-linux-x64'
 case $LAYER in
   1) BUILD="$ENV dotnet build src/WebAPI/WebAPI.csproj -c Release -p:SkipSpaBuild=true && $ENV dotnet build src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release"
      HASHED='src/*/bin' HASHFILE=bin.sha256
@@ -78,17 +86,21 @@ case $LAYER in
   2) BUILD="$L2"
      HASHED=release HASHFILE=release.sha256
      ART='release.sha256 release/*/ApplicationCore.* release/*/Infrastructure.* release/*/WebAPI.* release/*/BackgroundJobExecutor.* release/*/WebAPI release/*/BackgroundJobExecutor' ;;
-  R) BUILD="( cd src/WebAPI/ClientApp && $NODEENV npm ci --offline --no-audit --no-fund && $NODEENV npm run build && rm -rf node_modules .next ) && $L2"
+  R) BUILD="$RB"
      HASHED=release HASHFILE=release.sha256
      ART='release.sha256 release/*/ApplicationCore.* release/*/Infrastructure.* release/*/WebAPI.* release/*/BackgroundJobExecutor.* release/*/WebAPI release/*/BackgroundJobExecutor release/ws-pems-linux-x64/wwwroot' ;;
-  *) echo "LAYER must be 1, 2 or R" >&2; exit 2 ;;
+  Z) ZEPOCH=${ZEPOCH:?layer Z needs ZEPOCH}
+     BUILD="$RB && find release -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > release.sha256 && cd release && mkdir zip-ci zip-norm && for d in $DIRS; do $ZIP -q -r zip-ci/\$d-$TAG.zip \$d/; done && for d in $DIRS; do find \$d -type d -exec chmod 755 {} + && find \$d -type f -perm -u+x -exec chmod 755 {} + && find \$d -type f ! -perm -u+x -exec chmod 644 {} + && find \$d -exec touch -h -d @$ZEPOCH {} + && find \$d | LC_ALL=C sort | TZ=UTC $ZIP -q -X -@ zip-norm/\$d-$TAG.zip; done && cd .."
+     HASHED='release/zip-ci release/zip-norm' HASHFILE=zips.sha256
+     ART='zips.sha256 release.sha256 release/zip-ci release/zip-norm' ;;
+  *) echo "LAYER must be 1, 2, R or Z" >&2; exit 2 ;;
 esac
 
 mkdir -p "$OUT/modes" "$MODES"
 if ls -d $LAB/bin $LAB/obj $LAB/release $LAB/src/*/bin $LAB/src/*/obj $LAB/tests/bin $LAB/tests/obj > /dev/null 2>&1; then
   echo "the lab holds build output; clean it first" >&2; exit 2
 fi
-if [ "$LAYER" = R ]; then
+if [ "$LAYER" = R ] || [ "$LAYER" = Z ]; then
   for d in node_modules .next out; do
     if [ -e "$LAB/src/WebAPI/ClientApp/$d" ]; then echo "the lab holds ClientApp/$d; export it again" >&2; exit 2; fi
   done

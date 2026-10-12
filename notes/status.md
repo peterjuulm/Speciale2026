@@ -5,8 +5,8 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 12 October 2026, the whole release in one build. Last edit: 12
-October 2026, 13:55. Also 12/10: the frontend lock's hashes filled
+Last run: 12 October 2026, the release zips. Last edit: 12 October 2026,
+14:52. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
@@ -37,7 +37,11 @@ Then, 12:53-13:55
 as a WS commit, `a16f9a91`, pushed after the checks: six frontend builds identical,
 and the whole release built end to end in one build, frontend included,
 2227 files, `b72bbc3b…`, identical under `none` and `all`. The 13 pages
-whose chunks changed behaved the same in a browser.
+whose chunks changed behaved the same in a browser. Then, 14:21-14:51
+([phoenix-zip](2026-10-12-phoenix-zip.md)), layer 4: the release zips as
+CI packs them differ in every build, though every file inside is the same,
+from times, entry order, modes and the owner; a normalised packing gave
+the same two zips in four builds under `none` and `all` (W48).
 
 ## How we measure
 
@@ -76,30 +80,30 @@ then closed with a fix, **no-op** run, but the axis changed nothing, **-** not r
 the measurement. All on `arch` with Microsoft's SDK unless stated. In layer
 3 every cell carries W47: the export comes out in one of two orders
 whatever the axis, so "green" there means the axis changed nothing else.
-Layers 4 (zip) and 5 (container) have no runs yet.
+Layer 5 (container) has no runs yet.
 
-| Axis | Layer 1 build | Layer 2 publish | Layer 3 frontend |
-| --- | --- | --- | --- |
-| Same path (`none`) | green 5/10, 638 files | green 7/10 with the frontend in `wwwroot/`: 2227 files, `2cd8c531…` W42; without it the same `9283b29e…` as on 5/10, now with the version from `APP_VERSION` W45; 12/10 built end to end with its frontend at `a16f9a91`: 2227 files, `b72bbc3b…`, also under `all` | fix 12/10 `a16f9a91`: the entries sorted W47; before it one of two exports, 12 and 14 of 26 builds |
-| `build_path` | red 5/10, the two dev json only W8 W9 | green 5/10 W25 | green 12/10 beyond W47 |
-| `time` | green 5/10, replaces W10 | green 5/10 W29 | green 12/10 beyond W47; no page carries a date |
-| `locales` | fix 5/10 W26 with `LC_ALL` | fix 5/10 W26 with `LC_ALL`, the pin not yet run in CI | green 12/10 beyond W47, `et_EE.UTF-8` reaches Node |
-| `umask` | green 5/10, 29 modes follow the umask W30 | green 5/10, 142 modes follow the umask W30 | green 12/10 beyond W47; 946 modes follow the umask, the 44 `public/` files keep the checkout's W30 |
-| `exec_path` | green 5/10, replaces W10 | green 5/10 W29 | green 12/10 beyond W47 |
-| `timezone` | green 5/10 | green 5/10 | green 12/10 beyond W47 |
-| `environment` | green 5/10 | green 5/10 | green 12/10 beyond W47 |
-| `home` | green 5/10 | green 5/10 | green 12/10 beyond W47 |
-| `kernel` | green 5/10, with ASLR off R2 | green 5/10, with ASLR off R2 | green 12/10 beyond W47, with ASLR off R2 |
-| `aslr` | no-op 5/10 R1 | no-op 5/10 R1 | - not run, no-op alone R1 |
-| `num_cpus` | green 5/10, 2 against 4 CPUs | green 5/10, 2 against 12 CPUs | green 12/10 beyond W47, 2 against 4 CPUs |
-| `user_group` | green 5/10, as `rb1b` | green 5/10, as `rb1b` | green 12/10 beyond W47, as `rb1b` |
-| `all` | red 5/10: locale and the two dev json; with `LC_ALL` the dev json only W8 W9 | fix 5/10: red from the locale alone, green with `LC_ALL` | green 12/10 beyond W47, both builds the same order |
-| `fileordering` | - needs a VM with `disorderfs` | - | - |
-| `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - |
-| Machine | - VM too small W14 | - | - |
-| SDK binary | - empty-class only, 8/9 | - | - Node pinned to 20.20.2 on the branch, not yet run in CI W40 |
-| Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46 |
-| Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases |
+| Axis | Layer 1 build | Layer 2 publish | Layer 3 frontend | Layer 4 zip |
+| --- | --- | --- | --- | --- |
+| Same path (`none`) | green 5/10, 638 files | green 7/10 with the frontend in `wwwroot/`: 2227 files, `2cd8c531…` W42; without it the same `9283b29e…` as on 5/10, now with the version from `APP_VERSION` W45; 12/10 built end to end with its frontend at `a16f9a91`: 2227 files, `b72bbc3b…`, also under `all` | fix 12/10 `a16f9a91`: the entries sorted W47; before it one of two exports, 12 and 14 of 26 builds | red 12/10 as CI packs: times, order, owner W48; normalised packing identical |
+| `build_path` | red 5/10, the two dev json only W8 W9 | green 5/10 W25 | green 12/10 beyond W47 | - |
+| `time` | green 5/10, replaces W10 | green 5/10 W29 | green 12/10 beyond W47; no page carries a date | - |
+| `locales` | fix 5/10 W26 with `LC_ALL` | fix 5/10 W26 with `LC_ALL`, the pin not yet run in CI | green 12/10 beyond W47, `et_EE.UTF-8` reaches Node | - |
+| `umask` | green 5/10, 29 modes follow the umask W30 | green 5/10, 142 modes follow the umask W30 | green 12/10 beyond W47; 946 modes follow the umask, the 44 `public/` files keep the checkout's W30 | covered by `all` 12/10: modes reach the CI zip W30; not the normalised one |
+| `exec_path` | green 5/10, replaces W10 | green 5/10 W29 | green 12/10 beyond W47 | - |
+| `timezone` | green 5/10 | green 5/10 | green 12/10 beyond W47 | - |
+| `environment` | green 5/10 | green 5/10 | green 12/10 beyond W47 | - |
+| `home` | green 5/10 | green 5/10 | green 12/10 beyond W47 | - |
+| `kernel` | green 5/10, with ASLR off R2 | green 5/10, with ASLR off R2 | green 12/10 beyond W47, with ASLR off R2 | - |
+| `aslr` | no-op 5/10 R1 | no-op 5/10 R1 | - not run, no-op alone R1 | - |
+| `num_cpus` | green 5/10, 2 against 4 CPUs | green 5/10, 2 against 12 CPUs | green 12/10 beyond W47, 2 against 4 CPUs | - |
+| `user_group` | green 5/10, as `rb1b` | green 5/10, as `rb1b` | green 12/10 beyond W47, as `rb1b` | - |
+| `all` | red 5/10: locale and the two dev json; with `LC_ALL` the dev json only W8 W9 | fix 5/10: red from the locale alone, green with `LC_ALL` | green 12/10 beyond W47, both builds the same order | red 12/10 as CI packs, also modes and time zone W48; normalised identical, across runs too |
+| `fileordering` | - needs a VM with `disorderfs` | - | - | - |
+| `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - | - |
+| Machine | - VM too small W14 | - | - | - |
+| SDK binary | - empty-class only, 8/9 | - | - Node pinned to 20.20.2 on the branch, not yet run in CI W40 | - |
+| Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46 | - |
+| Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases | - |
 
 ## Open, by layer
 
@@ -117,8 +121,9 @@ Layers 4 (zip) and 5 (container) have no runs yet.
   the runtime's minified names changed between commits (W44), the Node pin not yet run in CI (W40), and npm 10.8.2
   dropping `libc` from the lock (W46). The lock's 391 missing hashes are
   filled (W41, `e19ca414`).
-- Layer 4: nothing yet. Expected red on mtimes and order, plus W30 and the
-  empty folder named after the build ID, now the tag (W37).
+- Layer 4: the zips as CI packs them are red (W48); the normalised packing
+  is measured but not in the workflow. Windows' `Compress-Archive` zips are
+  not measured.
 - Layer 5: nothing yet. The images' version stamps (W45) and the Dockerfile's
   Node pin (W40) are on the branch, not built.
 - Cross-machine and file order: paused until a VM with several GB of RAM
@@ -130,8 +135,9 @@ Layers 4 (zip) and 5 (container) have no runs yet.
 
 ## Next up
 
-1. Layer 4, the zip, from the release built end to end. Its modes come from
-   three places: the umask, the NuGet cache (744) and the checkout.
+1. The normalised packing in the release workflow's archive step, as a WS
+   commit (Leo's call), then the test-tag run in CI. Then layer 5, the
+   images.
 2. Upstream: the dotnet/roslyn issue for W26, and Next.js issues for the CSS
    order's missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
    dependency warnings, the SDK pin; Node 20's end of life and Node 23 in the

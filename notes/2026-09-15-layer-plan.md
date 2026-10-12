@@ -84,7 +84,7 @@ the delivery to Weel-Sandvig. Open points:
 | 3, every reprotest axis on `arch`, `a16eb506` | 109 / 990 in 9 of 13 runs, 0 in 4 | one table's order in the runtime, then the 108 pages that name it | the same commit gives one of two exports; Next adds the pages to webpack's entries as their reads finish, and the runtime's map keeps that order (W47) `[I]` | not yet; candidate: sort the entries | 12/10, 13 runs, 26 builds |
 | 3, entry sort in the lab, `e19ca414` | 0 / 990 in 3 runs: `none`, `all`, `build_path` | 0 | Next's entry order (W47), logged: five orders in six builds | the client's entries sorted by name at `compilation.hooks.seal`; not yet on the branch | 12/10, 6 runs, 12 builds |
 | 2 + 3, the whole release in one build, `a16f9a91` | 0 / 2227 under `none` and `all` | 0 | | the entry sort (W47) | 12/10, `b72bbc3b…`, 2 runs |
-| 4 | | | | | |
+| 4, the release zips as CI packs them, `a16f9a91` | both zips, `none` and `all` | metadata only: times, entry order, modes, owner; no entry's bytes | DOS and `UT` times, readdir order, umask, `ux` uid and gid (W48) | normalised packing: fixed times, sorted names, `zip -X`, `TZ=UTC`, modes from the x bit; identical in four builds | 12/10, 2 runs |
 | 5 | | | | | |
 
 ## Rules that apply to every layer
