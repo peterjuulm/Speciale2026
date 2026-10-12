@@ -5,8 +5,8 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 12 October 2026, the whole release on .NET 10. Last edit:
-12 October 2026, 20:20. Also 12/10: the frontend lock's hashes filled
+Last run: 12 October 2026, the whole release on .NET 10 with the fix.
+Last edit: 12 October 2026, 21:05. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
@@ -18,8 +18,9 @@ every earlier hash on this board was made with SDK 9.0.120. The whole
 release with its zips (layer `Z`) under `none`, `all` and `locales`: the
 job worker's zip was the same in all six builds. The WebAPI differed in one
 file, the static assets' endpoints manifest, where SDK 10 dates the
-compressed copies with the build time (W50); turning compression off,
-`e6ce3549`, made two publishes identical. Under Estonian without the pin
+compressed copies with the build time (W50). With compression off,
+`e6ce3549`, 20:11-21:01, the whole release was the same in all six builds
+of the three axes: 2121 files, `00dad37d…`. Under Estonian without the pin
 every assembly was the same, so W26 is gone on SDK 10. `all` also showed a
 rarer frontend race: two identical chunks whose ids two pages swapped
 (W51), once in about 50 builds. The SDK 10 table below the grid has the
@@ -124,9 +125,9 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 | Axis | `332752b9` | `e6ce3549`, compression off |
 | --- | --- | --- |
-| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | running 12/10 |
-| `all` | red 12/10: the manifest W50 and five frontend files W51 | running 12/10 |
-| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | running 12/10 |
+| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical |
+| `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit |
+| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` |
 
 ## Open, by layer
 
@@ -136,8 +137,8 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 - Layer 2: file modes follow the umask (W30), decided in layer 4. The locale
   pin `LC_ALL=C.UTF-8` is on the WS branch (`4e5237a3`) but has not run in CI;
   on SDK 10 it is no longer needed for W26. On SDK 10 the endpoints manifest
-  dates compressed copies with the build time (W50); compression is off on
-  the branch (`e6ce3549`), the whole release with it is being measured.
+  dates compressed copies with the build time (W50); with compression off
+  (`e6ce3549`) the whole release is green under `none`, `all` and `locales`.
   With the frontend in place it is measured on the same path only (W42);
   the reprotest axes ran without it. The EF migration bundle is not measured.
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
@@ -163,10 +164,9 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. The whole release on `e6ce3549` (compression off, W50), running 12/10
-   evening. Then W51: perturb the module order on purpose, and sort it at
-   seal if that is the cause. Then the test-tag run in CI and layer 5, the
-   images.
+1. W51: perturb the module order on purpose, and sort it at seal if that
+   is the cause (running 12/10 evening). The EF migration bundle, never
+   measured. Then the test-tag run in CI and layer 5, the images.
 2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the

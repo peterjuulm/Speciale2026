@@ -163,8 +163,27 @@ layer 2's command without the frontend: 631 files each, the same hash list;
 the manifest has 63 endpoints, all with the package's date, and no `.gz` or
 `.br` is written. With it the Release build passes and so do the unit tier
 (4226 tests) and the functional tier (149), the one that hosts the WebAPI.
-The whole release on `e6ce3549` under `none`, `all` and `locales` started
-at 20:11.
+Then the whole release on `e6ce3549` (`ZEPOCH` 1791828694, the commit's
+time), the same three runs, labelled `Z2-`. `[V]`:
+
+| Run | Start-end | Exit | Release, both builds | Normalised zips |
+| --- | --- | --- | --- | --- |
+| `Z2-none` | 20:11-20:30 | 1 | `00dad37d13bb4e9b`, 2121 files | identical |
+| `Z2-all` | 20:30-20:45 | 1 | `00dad37d13bb4e9b` | identical |
+| `Z2-locales` | 20:45-21:01 | 1 | `00dad37d13bb4e9b` | identical |
+
+- All six builds give the same release: 2121 files, the 124 compressed
+  copies fewer. The normalised zips are the same in all six too: WebAPI
+  `0f49c3ad8a9085fa`, job worker `04b257ad5a11f16b` (another `ZEPOCH`, so
+  other bytes than on `332752b9`). The exit 1 is the CI zips alone (W48).
+- `Z2-locales`' experiment ran under `LANG` and `LC_ALL` `et_EE.UTF-8` (125
+  samples of the publish, 125 of its MSBuild nodes); no other process was
+  sampled this time.
+- In all six builds the two pages of W51 have the usual assignment.
+
+So the .NET 10 release is reproducible on this machine under `none`, `all`
+and `locales`, the last without the locale pin, apart from the CI zips and
+W51's rare race.
 
 The minimal project is in `experiments/swa-lastmodified/`, its manifests in
 `data/2026-10-12-phoenix-net10-release/arch/swa-repro/`.

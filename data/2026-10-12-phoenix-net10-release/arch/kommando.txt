@@ -33,3 +33,11 @@ R/run.sh $N/dotnet net10.0 sdk10 && R/run.sh $N/dotnet net10.0 sdk10-nocomp -p:C
 # layer 2's publish command, no frontend.
 #   631 files each, hash list 6114292644d37546 both; the manifest has 63
 #   endpoints, all dated Sat, 22 Aug 2026 13:49:22 GMT; no .gz or .br.
+
+# The whole release with the fix, 20:11-21:01, on e6ce3549 (pushed): the
+# same lab procedure, then the same three runs labelled Z2-.
+C=$(git -C $W rev-parse e6ce3549); Z=$(git -C $W log -1 --format=%ct $C)   # 1791828694
+rm -rf /private/tmp/rb1-phoenix && mkdir -p /private/tmp/rb1-phoenix && git -C $W archive $C -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix && python3 $E/labcheck.py $W $C /private/tmp/rb1-phoenix | tail -1
+#   5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
+for A in none all; do OUT=$O DOTNET_DIR=$N FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=$Z $E/phoenix-rt/run.sh Z $A Z2-$A; done
+OUT=$O DOTNET_DIR=$N FIXENV="APP_VERSION=v0.0.0-thesis" VER= ZEPOCH=$Z $E/phoenix-rt/run.sh Z locales Z2-locales
