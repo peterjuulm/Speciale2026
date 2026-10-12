@@ -5,8 +5,9 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 7 October 2026, layer 2 with the frontend. Last edit: 7 October
-2026, 13:38.
+Last run: 7 October 2026, layer 2 with the frontend. Last edit: 12 October
+2026, 10:20: the frontend lock's hashes filled
+([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
 
@@ -77,7 +78,7 @@ the measurement. All on `arch` with Microsoft's SDK unless stated. Layer 3
 | `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - |
 | Machine | - VM too small W14 | - | - |
 | SDK binary | - empty-class only, 8/9 | - | - Node pinned to 20.20.2 on the branch, not yet run in CI W40 |
-| Network | - | - lock files in place W22 | - offline from a filled cache; 391 lock entries without a hash W41 |
+| Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46 |
 | Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases |
 
 ## Open, by layer
@@ -93,8 +94,9 @@ the measurement. All on `arch` with Microsoft's SDK unless stated. Layer 3
   part of the WS delivery. Open points in the layer plan.
 - Layer 3: the build ID (W37) and the CSS order (W43) are fixed on the WS
   branch. Open: why the webpack runtime's minified names changed between
-  commits (W44), the Node pin not yet run in CI (W40), 391 lock entries
-  without a hash (W41), and every reprotest axis but the same path.
+  commits (W44), the Node pin not yet run in CI (W40), npm 10.8.2 dropping
+  `libc` from the lock (W46), and every reprotest axis but the same path.
+  The lock's 391 missing hashes are filled (W41, `e19ca414`).
 - Layer 4: nothing yet. Expected red on mtimes and order, plus W30 and the
   empty folder named after the build ID, now the tag (W37).
 - Layer 5: nothing yet. The images' version stamps (W45) and the Dockerfile's
@@ -109,8 +111,7 @@ the measurement. All on `arch` with Microsoft's SDK unless stated. Layer 3
 ## Next up
 
 1. Layer 3: the reprotest axes for the frontend, `experiments/phoenix-fe/run.sh`,
-   expectations first. Then fill in `resolved`/`integrity` in the lock file
-   in a scratch copy, kept only if no version changes (W41).
+   expectations first.
 2. Layer 4, the zip. Layer 2 with `out/` in place is green on the same path
    (W42).
 3. Upstream: the dotnet/roslyn issue for W26, and a Next.js issue for the CSS

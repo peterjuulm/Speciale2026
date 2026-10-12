@@ -1,0 +1,42 @@
+# phoenix-lock-fill, mac, 12 October 2026. Typed by Peter in zsh, written by
+# Claude. Verbatim, in order; results after each as comments.
+
+~/rb1-node/bin/node --version
+#   v20.20.2
+PATH="$HOME/rb1-node/bin:/usr/bin:/bin" npm --version
+#   10.8.2
+git -C /Users/peterjuulmoller/WS.Phoenix branch --show-current
+#   thesis/reproducible-builds
+git -C /Users/peterjuulmoller/WS.Phoenix status --short
+#   ?? .ai/  ?? .claude/launch.json
+
+# The count, run after each step below:
+~/rb1-node/bin/node -e 'const p=require("/Users/peterjuulmoller/WS.Phoenix/src/WebAPI/ClientApp/package-lock.json").packages; let n=0,r=0,i=0; for (const [k,v] of Object.entries(p)) { if (!k || v.link) continue; n++; if (!v.resolved) r++; if (!v.integrity) i++; } console.log(n+" entries, "+r+" without resolved, "+i+" without integrity")'
+#   1509 entries, 391 without resolved, 391 without integrity
+
+env -i HOME="$HOME" PATH="$HOME/rb1-node/bin:/usr/bin:/bin" npm_config_update_notifier=false npm --prefix /Users/peterjuulmoller/WS.Phoenix/src/WebAPI/ClientApp install --package-lock-only --ignore-scripts --no-audit --no-fund
+#   4 x EBADENGINE (Node >= 22); up to date in 812ms. Count: 391.
+
+env -i HOME="$HOME" PATH="$HOME/rb1-node/bin:/usr/bin:/bin" npm_config_update_notifier=false npm --prefix /Users/peterjuulmoller/WS.Phoenix/src/WebAPI/ClientApp install --ignore-scripts --no-audit --no-fund
+#   4 x EBADENGINE, 3 x deprecated glob@10.5.0;
+#   added 160 packages, removed 44 packages, and changed 94 packages in 5s. Count: 391.
+git -C /Users/peterjuulmoller/WS.Phoenix diff --numstat
+#   0  90  src/WebAPI/ClientApp/package-lock.json   (libc removed from 30 entries)
+
+git -C /Users/peterjuulmoller/WS.Phoenix checkout -- src/WebAPI/ClientApp/package-lock.json
+git -C /Users/peterjuulmoller/WS.Phoenix diff --numstat
+#   (empty)
+
+cd /Users/peterjuulmoller/WS.Phoenix/src/WebAPI/ClientApp && env -i HOME="$HOME" PATH="$HOME/rb1-node/bin:/usr/bin:/bin" npm_config_update_notifier=false node /Users/peterjuulmoller/Speciale2026/experiments/phoenix-fe/fill-lock.js package-lock.json
+#   npm 10.8.2, node v20.20.2
+#   1509 entries, 391 to fill, 20 controls
+#   controls matching the lock: 20 of 20
+#   filled 391; written to package-lock.json
+#   Count: 1509 entries, 0 without resolved, 0 without integrity
+
+git -C /Users/peterjuulmoller/WS.Phoenix show HEAD:src/WebAPI/ClientApp/package-lock.json | ~/rb1-node/bin/node -e 'const a=JSON.parse(require("fs").readFileSync(0)).packages, b=require("/Users/peterjuulmoller/WS.Phoenix/src/WebAPI/ClientApp/package-lock.json").packages; const add=Object.keys(b).filter(k=>!(k in a)), rem=Object.keys(a).filter(k=>!(k in b)), chg=Object.keys(a).filter(k=>k in b && a[k].version!==b[k].version); console.log("added "+add.length+", removed "+rem.length+", version changed "+chg.length); for (const k of [...add,...rem,...chg].slice(0,20)) console.log("  "+k+" "+(a[k]||{}).version+" -> "+(b[k]||{}).version)'
+#   added 0, removed 0, version changed 0
+git -C /Users/peterjuulmoller/WS.Phoenix diff --numstat
+#   782  0  src/WebAPI/ClientApp/package-lock.json
+
+# Committed and pushed by Claude: e19ca414 on thesis/reproducible-builds.
