@@ -246,8 +246,10 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   Node pin (W40) are on the branch, not built.
 - Cross-machine and file order: paused until a VM with several GB of RAM
   exists (W14). Peter's Azure VM is the candidate.
-- Dependency tree: lock files done (W22). Rebuilding packages from their
-  declared commits not started.
+- Dependency tree: lock files done (W22). Plan and census on 12/10
+  ([dependency-plan](2026-10-12-dependency-plan.md)): 54 of 391 release
+  packages declare both commit and compiler; 187 keep the PDB outside the
+  package. No rebuild yet.
 - Method: ASLR alone is untested; reprotest cannot vary it (R1). Why no
   later build used the MSBuild nodes left over on 24/9 is not established.
 
