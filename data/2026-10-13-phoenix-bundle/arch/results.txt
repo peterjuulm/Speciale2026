@@ -1,0 +1,28 @@
+== run 1, as the job: O/bundle-runs.out
+5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
+bundle-1 exit 1 00:14:50
+bundle-2 exit 1 00:14:53
+bundles differ
+<sdk>/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(266,5): error NETSDK1004: Assets file '/private/tmp/rb1-bundle/src/Infrastructure/obj/project.assets.json' not found. Run a NuGet package restore to generate this file. [/private/tmp/rb1-bundle/src/Infrastructure/Infrastructure.csproj]
+Unable to retrieve project metadata. Ensure it's an SDK-style project.
+== run 1 on b744ab91 with SDK 9.0.120 and dotnet-ef 9.0.0 (scratch): exit 0, log starts 'Build started...', ends 'Done. Migrations Bundle'
+== run 2, PRE_RESTORE=1, outputs named bundle-1 and bundle-2
+5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
+bundle-1 exit 0 00:22:30
+bundle-2 exit 0 00:25:33
+bundles differ
+cac64e98685ee88f5ef8c6f837c9cebbc84e4c5e3f11e487db17a835b868315e
+2afa9f62e235906f2c27fc730854767ab461d58b29712209116e92b4a01ed244
+== run 3, PRE_RESTORE=1, one output name
+5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
+bundle-1 exit 0 00:29:34
+bundle-2 exit 0 00:32:43
+bundles differ
+4c96a469428903a10e1cb1b257a36cb1e9f01106eb29ad92363d023b4e233957
+9629ff1fa2e774313fa4bb81d330afdde906f6328013c3970b474e28fb96ef4c
+header at 827634993 bundle id ve_BzlfR7604 files 734
+81 ws-pems-db-migrator.dll first 12016200
+12 bundle header first 827635006
+differing string in ws-pems-db-migrator.dll:
+< /tmp/edcd3bw0.pxw/obj/Release/net10.0/linux-x64/ws-pems-db-migrator.pdb
+> /tmp/mdzdnlcp.dff/obj/Release/net10.0/linux-x64/ws-pems-db-migrator.pdb

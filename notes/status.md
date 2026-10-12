@@ -5,11 +5,29 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 12 October 2026, the whole release on .NET 10 with the fix.
-Last edit: 12 October 2026, 21:05. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the EF migration bundle (W52, W53).
+Last edit: 13 October 2026, 00:45. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 00:14-00:33 ([phoenix-bundle](2026-10-13-phoenix-bundle.md);
+W52, W53): the release's Linux database migrator, built twice with the
+job's commands. On .NET 10 the job no longer builds it at all: dotnet-ef
+10 needs the projects restored first (W53, a side effect of the move to
+.NET 10; a one-step fix is prepared, not applied). With a restore first,
+the two bundles differ only in the bundle's own small assembly, which
+`dotnet ef` builds in a random folder under `/tmp`, and in the bundle ID
+(W52). Phoenix's assemblies and the runtime inside are identical.
+
+On `arch`, 12/10 21:01-23:16
+([phoenix-module-order](2026-10-12-phoenix-module-order.md); W51): plain
+frontend builds with delays added on purpose to module resolution. Five of
+six changed the export, in two ways: webpack's module order and the order
+of each module's links. Sorting both at seal, next to the entry sort,
+gave one export in 21 builds over nine timings and two paths, the same
+export as before; on the branch as `61870435`, with CI's frontend lint,
+tests and build passing. The whole release on it is running.
 
 On `arch`, 12/10 19:05-19:59
 ([phoenix-net10-release](2026-10-12-phoenix-net10-release.md); W26, W50,
@@ -140,16 +158,20 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   dates compressed copies with the build time (W50); with compression off
   (`e6ce3549`) the whole release is green under `none`, `all` and `locales`.
   With the frontend in place it is measured on the same path only (W42);
-  the reprotest axes ran without it. The EF migration bundle is not measured.
+  the reprotest axes ran without it. The EF migration bundle is red (W52):
+  `dotnet ef`'s temporary project puts a random `/tmp` path into the
+  bundle; the fix proposed is a migrator project in the repository. On
+  .NET 10 the release job cannot build the bundle until it restores first
+  (W53; a one-step fix is prepared).
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
   part of the WS delivery. Open points in the layer plan.
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
   the runtime's minified names changed between commits (W44), the Node pin not yet run in CI (W40), and npm 10.8.2
   dropping `libc` from the lock (W46). The lock's 391 missing hashes are
-  filled (W41, `e19ca414`). New on 12/10: two pages swap the ids of two
-  identical chunks, once in about 50 builds (W51); cause suspected, not
-  measured.
+  filled (W41, `e19ca414`). W51, the module and link order, is fixed on
+  the branch (`61870435`); the jitter test is the check to repeat after a
+  Next.js or webpack upgrade.
 - Layer 4: the zips as CI packs them are red (W48); the normalised packing
   is in the release workflow since `06cb5397` but has not run in CI.
   Windows' `Compress-Archive` zips are not measured.
@@ -164,9 +186,11 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. W51: perturb the module order on purpose, and sort it at seal if that
-   is the cause (running 12/10 evening). The EF migration bundle, never
-   measured. Then the test-tag run in CI and layer 5, the images.
+1. Leo's call on two prepared WS patches: the restore before the Linux
+   bundle step (W53, release-blocking on .NET 10), and Dependabot bumping
+   the SDK pin and the .NET images in one PR, with PR validation failing
+   when they differ. Then the migrator project for W52, the test-tag run
+   in CI, and layer 5, the images.
 2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the

@@ -1,0 +1,50 @@
+# phoenix-module-order, arch, 12 October 2026. Run by Claude at Leo's
+# request, in bash. Verbatim, with O for the private data folder and E for
+# Speciale2026/experiments. Each run first rebuilt the lab from the commit
+# with the plugin and run script of that moment; their SHA-256 heads every
+# run's log (builds.txt), since both grew during the evening.
+
+# 21:01-21:35, B0, J1-J6, S1-S4:
+cd $O && $E/phoenix-fe/module-lab.sh e6ce3549 > lab.out 2>&1; OUT=$O $E/phoenix-fe/module-runs.sh > module-runs.out 2>&1
+#   lab: 5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
+
+# 21:35-21:45, D1, D2, D2r (chunk log, export kept):
+$E/phoenix-fe/module-lab.sh e6ce3549; OUT=$O $E/phoenix-fe/module-runs.sh D1 D2 D2r      # > diag-runs.out
+python3 $E/phoenix-fe/compare-chunks.py module-log/D1-*-chunks.txt module-log/D2-*-chunks.txt
+
+# 21:46-21:52, R1, R2 (chunk log with root modules):
+$E/phoenix-fe/module-lab.sh e6ce3549; OUT=$O $E/phoenix-fe/module-runs.sh R1 R2          # > root-runs.out
+
+# 21:54-22:13, the two candidates, seed 0 meaning no jitter:
+$E/phoenix-fe/module-lab.sh e6ce3549; OUT=$O $E/phoenix-fe/module-runs.sh C0 C1 C2 I0 I1 I2   # > fix-cand-runs.out
+
+# 22:13-22:36, candidate C with more seeds, then seed 2 in a lab at another path:
+$E/phoenix-fe/module-lab.sh e6ce3549; OUT=$O $E/phoenix-fe/module-runs.sh C3 C4 C5 C6 C7 C8
+$E/phoenix-fe/module-lab.sh e6ce3549 /private/tmp/rb1-fe-module-alt/x; OUT=$O LAB=/private/tmp/rb1-fe-module-alt/x $E/phoenix-fe/module-runs.sh C2p   # > fix-a-runs.out
+
+# 22:36-, C with the outgoing connections only:
+$E/phoenix-fe/module-lab.sh e6ce3549; OUT=$O $E/phoenix-fe/module-runs.sh O0 O1 O2 O3   # > fix-out-runs.out
+
+# Kept private: the chunk logs (page names) and the root logs (local paths).
+
+# 22:53, CI's frontend steps on the WS change (next.config.js of c6b57330
+# over a copy of e6ce3549), offline, under env -i, in /private/tmp/rb1-fe-check:
+npm ci --offline --no-audit --no-fund; npm run lint; npm test; npm run build
+#   all exit 0; 123 suites, 1330 tests passed; export f0d03872b07a1140, 990 files
+
+# 22:54-23:16, the commit itself, jitter only (its own sort applies):
+O2=$O/commit-c6b57330; $E/phoenix-fe/module-lab.sh c6b57330; OUT=$O2 $E/phoenix-fe/module-runs.sh B0 J1 J2 J3 J4 J5 J6   # > commit-runs.out
+#   c6b57330 was amended (message only, same tree 475f6cde...) and pushed as 61870435.
+
+# 23:17-23:47, the whole release on the pushed fix, 61870435:
+C=$(git -C $W rev-parse 61870435); Z=$(git -C $W log -1 --format=%ct $C)   # 1791839809
+rm -rf /private/tmp/rb1-phoenix && mkdir -p /private/tmp/rb1-phoenix && git -C $W archive $C -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix && python3 $E/labcheck.py $W $C /private/tmp/rb1-phoenix | tail -1
+#   5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
+for A in none all; do OUT=$O DOTNET_DIR=/private/tmp/rb1-dotnet10/sdk FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=$Z $E/phoenix-rt/run.sh Z $A Z-$A; done   # > release-runs.out
+
+# 23:47, CI's frontend steps on the follow-up (acbea21c's next.config.js),
+# as at 22:53: all exit 0; 1330 tests passed; export f0d03872b07a1140.
+# 23:52-00:14, the follow-up commit, jitter only:
+O3=$O/commit-acbea21c; $E/phoenix-fe/module-lab.sh acbea21c; OUT=$O3 $E/phoenix-fe/module-runs.sh B0 J1 J2 J3 J4 J5 J6   # > commit-runs.out
+# 00:33-00:50 (13/10), the whole release on the branch head acbea21c, as at 23:17 with C=acbea21c:
+OUT=$O/head-acbea21c DOTNET_DIR=/private/tmp/rb1-dotnet10/sdk FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=1791841936 $E/phoenix-rt/run.sh Z none Z-none
