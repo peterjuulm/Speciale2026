@@ -1,0 +1,35 @@
+# phoenix-net10-release, arch, 12 October 2026. Run by Claude at Leo's
+# request, in bash. Verbatim, with O for the private data folder, E for
+# Speciale2026/experiments, W for the WS worktree and N for the SDK folder
+# /private/tmp/rb1-dotnet10/sdk.
+
+# The SDK, before the runs: Microsoft's dotnet-sdk-10.0.401-linux-x64.tar.gz,
+# its SHA-512 checked against Microsoft's release metadata, unpacked in N.
+# run.sh takes it through DOTNET_DIR (new today; default ~/.dotnet).
+
+# The lab and the three runs, 19:05-19:59:
+rm -rf /private/tmp/rb1-phoenix && mkdir -p /private/tmp/rb1-phoenix && git -C $W archive 332752b9 -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix && python3 $E/labcheck.py $W 332752b9 /private/tmp/rb1-phoenix | tail -1
+#   5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
+OUT=$O DOTNET_DIR=$N FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=1791824287 $E/phoenix-rt/run.sh Z none Z-none
+OUT=$O DOTNET_DIR=$N FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=1791824287 $E/phoenix-rt/run.sh Z all Z-all
+OUT=$O DOTNET_DIR=$N FIXENV="APP_VERSION=v0.0.0-thesis" VER= ZEPOCH=1791824287 $E/phoenix-rt/run.sh Z locales Z-locales
+
+# The comparisons, per run: the release hash lists, then the normalised zips
+# and the endpoints manifest read with Python (zipfile, json); ad hoc, not
+# kept as scripts.
+diff store-Z-none/control/source-root/release.sha256 store-Z-none/experiment-1/source-root/release.sha256
+
+# The minimal project, 19:51, in a scratch folder R outside git, holding
+# the files now in experiments/swa-lastmodified:
+mkdir -p R/src/wwwroot R/empty-feed R/out
+python3 -c "print('body { color: #123456; }\n' * 200, end='')" > R/src/wwwroot/site.css
+touch -d '2025-01-01 00:00:00 UTC' R/src/wwwroot/site.css R/src/Program.cs R/src/swa-repro.csproj
+R/run.sh $N/dotnet net10.0 sdk10 && R/run.sh $N/dotnet net10.0 sdk10-nocomp -p:CompressionEnabled=false && R/run.sh ~/.dotnet/dotnet net9.0 sdk9
+#   ~/.dotnet holds SDK 9.0.120. Kept here: each publish's endpoints
+#   manifest and file list (swa-repro/).
+
+# The fix, 19:59-20:02: two WebAPI publishes of 332752b9 with
+# CompressionEnabled=false in WebAPI.csproj, in a copy outside git, with
+# layer 2's publish command, no frontend.
+#   631 files each, hash list 6114292644d37546 both; the manifest has 63
+#   endpoints, all dated Sat, 22 Aug 2026 13:49:22 GMT; no .gz or .br.

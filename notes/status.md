@@ -5,11 +5,25 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 12 October 2026, the release zips. Last edit: 12 October 2026,
-14:52. Also 12/10: the frontend lock's hashes filled
+Last run: 12 October 2026, the whole release on .NET 10. Last edit:
+12 October 2026, 20:20. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 12/10 19:05-19:59
+([phoenix-net10-release](2026-10-12-phoenix-net10-release.md); W26, W50,
+W51): the WS branch moved to .NET 10 at `332752b9`, SDK 10.0.401 pinned, so
+every earlier hash on this board was made with SDK 9.0.120. The whole
+release with its zips (layer `Z`) under `none`, `all` and `locales`: the
+job worker's zip was the same in all six builds. The WebAPI differed in one
+file, the static assets' endpoints manifest, where SDK 10 dates the
+compressed copies with the build time (W50); turning compression off,
+`e6ce3549`, made two publishes identical. Under Estonian without the pin
+every assembly was the same, so W26 is gone on SDK 10. `all` also showed a
+rarer frontend race: two identical chunks whose ids two pages swapped
+(W51), once in about 50 builds. The SDK 10 table below the grid has the
+cells. Before the move, also on 12/10:
 
 On `arch`, 12/10 09:32-11:36
 ([phoenix-fe-reprotest](2026-10-12-phoenix-fe-reprotest.md); finding W47):
@@ -105,13 +119,25 @@ Layer 5 (container) has no runs yet.
 | Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46 | - |
 | Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases | - |
 
+On SDK 10.0.401, from `332752b9`: the whole release with its zips in one
+build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
+
+| Axis | `332752b9` | `e6ce3549`, compression off |
+| --- | --- | --- |
+| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | running 12/10 |
+| `all` | red 12/10: the manifest W50 and five frontend files W51 | running 12/10 |
+| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | running 12/10 |
+
 ## Open, by layer
 
 - Layer 1: W8 and W9, two dev-only json files that carry the build path,
   stay open. They also make layer 1's hash lists differ between reprotest
   runs, so layer 1 is compared within a run only.
 - Layer 2: file modes follow the umask (W30), decided in layer 4. The locale
-  pin `LC_ALL=C.UTF-8` is on the WS branch (`4e5237a3`) but has not run in CI.
+  pin `LC_ALL=C.UTF-8` is on the WS branch (`4e5237a3`) but has not run in CI;
+  on SDK 10 it is no longer needed for W26. On SDK 10 the endpoints manifest
+  dates compressed copies with the build time (W50); compression is off on
+  the branch (`e6ce3549`), the whole release with it is being measured.
   With the frontend in place it is measured on the same path only (W42);
   the reprotest axes ran without it. The EF migration bundle is not measured.
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
@@ -120,10 +146,12 @@ Layer 5 (container) has no runs yet.
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
   the runtime's minified names changed between commits (W44), the Node pin not yet run in CI (W40), and npm 10.8.2
   dropping `libc` from the lock (W46). The lock's 391 missing hashes are
-  filled (W41, `e19ca414`).
+  filled (W41, `e19ca414`). New on 12/10: two pages swap the ids of two
+  identical chunks, once in about 50 builds (W51); cause suspected, not
+  measured.
 - Layer 4: the zips as CI packs them are red (W48); the normalised packing
-  is measured but not in the workflow. Windows' `Compress-Archive` zips are
-  not measured.
+  is in the release workflow since `06cb5397` but has not run in CI.
+  Windows' `Compress-Archive` zips are not measured.
 - Layer 5: nothing yet. The images' version stamps (W45) and the Dockerfile's
   Node pin (W40) are on the branch, not built.
 - Cross-machine and file order: paused until a VM with several GB of RAM
@@ -135,11 +163,13 @@ Layer 5 (container) has no runs yet.
 
 ## Next up
 
-1. The normalised packing in the release workflow's archive step, as a WS
-   commit (Leo's call), then the test-tag run in CI. Then layer 5, the
+1. The whole release on `e6ce3549` (compression off, W50), running 12/10
+   evening. Then W51: perturb the module order on purpose, and sort it at
+   seal if that is the cause. Then the test-tag run in CI and layer 5, the
    images.
-2. Upstream: the dotnet/roslyn issue for W26, and Next.js issues for the CSS
-   order's missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
+2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
+   9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
+   missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
    dependency warnings, the SDK pin; Node 20's end of life and Node 23 in the
    Dockerfile (W40); the PR filter that misses `mcp/` (W39); from 7/10 the
    one version variable (W45) and the CSS move's cost, about 150 KB per page.

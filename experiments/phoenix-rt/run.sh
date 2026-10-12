@@ -43,6 +43,10 @@
 #   FIXENV    VAR=VALUE added to every dotnet command, e.g. LC_ALL=C.UTF-8
 #   LAB       the lab, default /private/tmp/rb1-phoenix; must hold no build output
 #   ZEPOCH    layer Z: the time for the normalised zips, e.g. the commit's
+#             time (git log -1 --format=%ct)
+#   DOTNET_DIR  the SDK folder, default /home/leos/.dotnet (SDK 9.0.120);
+#             for .NET 10, Microsoft's SDK 10.0.401 in /private/tmp/rb1-dotnet10/sdk.
+#             Not used by user_group, which always takes /opt/rb1-dotnet
 #   VER       layer 2's version flags, default the release's two /p: flags
 #             for v0.0.0-thesis. From 5031c5af on, the release sets
 #             APP_VERSION instead: run with VER= and APP_VERSION in FIXENV.
@@ -50,7 +54,7 @@
 # Written 24 September 2026. Replaces the run-axis.sh used that morning.
 # 5 October 2026: node reuse off, user_group, the leftover check.
 # 7 October 2026: VER can be overridden.
-# 12 October 2026: layers R and Z.
+# 12 October 2026: layers R and Z, DOTNET_DIR.
 set -u
 LAYER=${1:?LAYER} AXIS=${2:?AXIS}
 LABEL=${3:-L$LAYER-$AXIS}
@@ -58,7 +62,7 @@ OUT=${OUT:?set OUT to a private data folder}
 MIN_CPUS=${MIN_CPUS:-2} FIXENV=${FIXENV:-} LAB=${LAB:-/private/tmp/rb1-phoenix}
 EXP=$(cd "$(dirname "$0")/.." && pwd)
 
-DN=/home/leos/.dotnet MODES=$OUT/modes SHARED=/private/tmp/rb1-shared
+DN=${DOTNET_DIR:-/home/leos/.dotnet} MODES=$OUT/modes SHARED=/private/tmp/rb1-shared
 case $AXIS in
   none) VARY=(--vary=-all) ;;
   all)  VARY=(--vary=+all,-user_group,-fileordering,-domain_host) ;;

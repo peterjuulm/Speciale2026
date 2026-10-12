@@ -40,11 +40,12 @@ been measured.
 ## The machines
 
 Three environments, all with the lab in `/private/tmp/rb1` and the SDK pinned
-to 9.0.120 via `global.json` with `rollForward: disable`:
+via `global.json` with `rollForward: disable`: 9.0.120 until 12/10, 10.0.401
+from the WS branch's `332752b9`:
 
 | Name | What | Particulars |
 | --- | --- | --- |
-| `arch` | Leo's laptop, Arch Linux | Two SDK 9.0.120: the Arch package in `/usr/share/dotnet` (csc `1b7543aa…`) and Microsoft's in `~/.dotnet` (csc `644a4d33…`). They produce different bytes. Always say which one is used. |
+| `arch` | Leo's laptop, Arch Linux | Two SDK 9.0.120: the Arch package in `/usr/share/dotnet` (csc `1b7543aa…`) and Microsoft's in `~/.dotnet` (csc `644a4d33…`). They produce different bytes. Always say which one is used. For .NET 10, Microsoft's SDK 10.0.401 in `/private/tmp/rb1-dotnet10/sdk` (csc `28a84f96…`); `phoenix-rt/run.sh` takes it as `DOTNET_DIR`. The Arch package of SDK 10 lacks the ASP.NET Core targeting pack (NETSDK1226). |
 | `ubuntu-vm` | Shared droplet, Ubuntu 24.04 | apt has its own versions of everything in `/usr/bin`. The right ones are in `/root/.dotnet` and `/root/.local/bin` and are only on PATH in interactive shells. **Use full paths in anything that measures.** `disorderfs` exists only here. |
 | `mac` | Peter's laptop, Apple Silicon | Microsoft's SDK via `dotnet-install.sh`. reprotest cannot run on macOS. |
 
@@ -131,6 +132,12 @@ third-party CSS is imported in `_app`, since Next ordered shared CSS by
 build timing (W43). Layer 2 gives the same `9283b29e…` with the new version
 route, and with the frontend's export in place it is green too: 2227 files,
 `2cd8c531…` (W42).
+On 12/10 the branch moved to .NET 10 (`332752b9`). Every hash before that,
+`9283b29e…`, `2cd8c531…`, `b72bbc3b…` and the zips', was made with SDK
+9.0.120 and does not compare with later runs. On SDK 10 the locale defect
+W26 is gone, and the static assets' manifest dates compressed copies with
+the build time (W50), fixed on the branch by turning compression off
+(`e6ce3549`). See `notes/2026-10-12-phoenix-net10-release.md`.
 Cross-machine runs are paused: the shared droplet is too small to compile
 Phoenix. See `notes/2026-10-07-phoenix-app-version.md`,
 `notes/2026-10-06-phoenix-layer3.md`,
