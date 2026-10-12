@@ -18,6 +18,11 @@
 #   LAYER  1  dotnet build of the two programs
 #          2  the release job's sequence: locked restore, both publishes,
 #             a hash list of release/
+#          R  the whole release in one build: the frontend as in
+#             phoenix-fe/run.sh, then node_modules and .next removed, as
+#             CI's publish job gets only out/, then layer 2's sequence,
+#             which copies out/ into wwwroot/. user_group is not set up
+#             for it
 #   AXIS   one reprotest variation: build_path, time, locales, umask,
 #          exec_path, timezone, environment, home, kernel, aslr, num_cpus,
 #          domain_host, user_group. Or "none": two builds, nothing varied. Or
@@ -39,6 +44,7 @@
 # Written 24 September 2026. Replaces the run-axis.sh used that morning.
 # 5 October 2026: node reuse off, user_group, the leftover check.
 # 7 October 2026: VER can be overridden.
+# 12 October 2026: layer R.
 set -u
 LAYER=${1:?LAYER} AXIS=${2:?AXIS}
 LABEL=${3:-L$LAYER-$AXIS}
@@ -62,19 +68,30 @@ ENV="env DOTNET_ROOT=$DN PATH=$DN:\$PATH DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=
 if [ -n "$FIXENV" ]; then ENV="$ENV $FIXENV"; fi
 STOP="$ENV dotnet build-server shutdown > /dev/null"
 VER=${VER-'/p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis'}
+L2="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore $VER"
+NODEENV="env PATH=/opt/rb1-node/bin:\$PATH CI=true npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1"
+if [ -n "$FIXENV" ]; then NODEENV="$NODEENV $FIXENV"; fi
 case $LAYER in
   1) BUILD="$ENV dotnet build src/WebAPI/WebAPI.csproj -c Release -p:SkipSpaBuild=true && $ENV dotnet build src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release"
      HASHED='src/*/bin' HASHFILE=bin.sha256
      ART='bin.sha256 src/WebAPI/bin/Release/net9.0/*.dll src/WebAPI/bin/Release/net9.0/*.pdb src/WebAPI/bin/Release/net9.0/*.json src/BackgroundJobExecutor/bin/Release/net9.0/BackgroundJobExecutor.*' ;;
-  2) BUILD="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore $VER"
+  2) BUILD="$L2"
      HASHED=release HASHFILE=release.sha256
      ART='release.sha256 release/*/ApplicationCore.* release/*/Infrastructure.* release/*/WebAPI.* release/*/BackgroundJobExecutor.* release/*/WebAPI release/*/BackgroundJobExecutor' ;;
-  *) echo "LAYER must be 1 or 2" >&2; exit 2 ;;
+  R) BUILD="( cd src/WebAPI/ClientApp && $NODEENV npm ci --offline --no-audit --no-fund && $NODEENV npm run build && rm -rf node_modules .next ) && $L2"
+     HASHED=release HASHFILE=release.sha256
+     ART='release.sha256 release/*/ApplicationCore.* release/*/Infrastructure.* release/*/WebAPI.* release/*/BackgroundJobExecutor.* release/*/WebAPI release/*/BackgroundJobExecutor release/ws-pems-linux-x64/wwwroot' ;;
+  *) echo "LAYER must be 1, 2 or R" >&2; exit 2 ;;
 esac
 
 mkdir -p "$OUT/modes" "$MODES"
 if ls -d $LAB/bin $LAB/obj $LAB/release $LAB/src/*/bin $LAB/src/*/obj $LAB/tests/bin $LAB/tests/obj > /dev/null 2>&1; then
   echo "the lab holds build output; clean it first" >&2; exit 2
+fi
+if [ "$LAYER" = R ]; then
+  for d in node_modules .next out; do
+    if [ -e "$LAB/src/WebAPI/ClientApp/$d" ]; then echo "the lab holds ClientApp/$d; export it again" >&2; exit 2; fi
+  done
 fi
 if [ -e "$OUT/store-$LABEL" ]; then echo "$OUT/store-$LABEL exists" >&2; exit 2; fi
 

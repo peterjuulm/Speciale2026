@@ -5,8 +5,8 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 12 October 2026, layer 3's entry order. Last edit: 12 October
-2026, 12:37. Also 12/10: the frontend lock's hashes filled
+Last run: 12 October 2026, the whole release in one build. Last edit: 12
+October 2026, 13:55. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
@@ -32,6 +32,12 @@ in a lab with a logging plugin: the client's entry order varied in six
 builds, five orders, and the export followed it. With the entries sorted by
 name, six builds with six different orders gave one export, also under
 `all` and `build_path`. The sort also changes five shared chunks against A.
+Then, 12:53-13:55
+([phoenix-sorted-release](2026-10-12-phoenix-sorted-release.md)), the sort
+as a WS commit, `a16f9a91`, pushed after the checks: six frontend builds identical,
+and the whole release built end to end in one build, frontend included,
+2227 files, `b72bbc3b…`, identical under `none` and `all`. The 13 pages
+whose chunks changed behaved the same in a browser.
 
 ## How we measure
 
@@ -74,7 +80,7 @@ Layers 4 (zip) and 5 (container) have no runs yet.
 
 | Axis | Layer 1 build | Layer 2 publish | Layer 3 frontend |
 | --- | --- | --- | --- |
-| Same path (`none`) | green 5/10, 638 files | green 7/10 with the frontend in `wwwroot/`: 2227 files, `2cd8c531…` W42; without it the same `9283b29e…` as on 5/10, now with the version from `APP_VERSION` W45 | red 12/10: the same commit gives one of two exports, 12 and 14 of 26 builds W47; 7/10's six identical builds all fell one way |
+| Same path (`none`) | green 5/10, 638 files | green 7/10 with the frontend in `wwwroot/`: 2227 files, `2cd8c531…` W42; without it the same `9283b29e…` as on 5/10, now with the version from `APP_VERSION` W45; 12/10 built end to end with its frontend at `a16f9a91`: 2227 files, `b72bbc3b…`, also under `all` | fix 12/10 `a16f9a91`: the entries sorted W47; before it one of two exports, 12 and 14 of 26 builds |
 | `build_path` | red 5/10, the two dev json only W8 W9 | green 5/10 W25 | green 12/10 beyond W47 |
 | `time` | green 5/10, replaces W10 | green 5/10 W29 | green 12/10 beyond W47; no page carries a date |
 | `locales` | fix 5/10 W26 with `LC_ALL` | fix 5/10 W26 with `LC_ALL`, the pin not yet run in CI | green 12/10 beyond W47, `et_EE.UTF-8` reaches Node |
@@ -106,10 +112,9 @@ Layers 4 (zip) and 5 (container) have no runs yet.
   the reprotest axes ran without it. The EF migration bundle is not measured.
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
   part of the WS delivery. Open points in the layer plan.
-- Layer 3: the build ID (W37) and the CSS order (W43) are fixed on the WS
-  branch, and the CSS held on every axis. Open: the export comes out in one
-  of two orders (W47), why the runtime's minified names changed between
-  commits (W44), the Node pin not yet run in CI (W40), and npm 10.8.2
+- Layer 3: the build ID (W37), the CSS order (W43) and the entry order
+  (W47, `a16f9a91`) are fixed on the WS branch. Open: why
+  the runtime's minified names changed between commits (W44), the Node pin not yet run in CI (W40), and npm 10.8.2
   dropping `libc` from the lock (W46). The lock's 391 missing hashes are
   filled (W41, `e19ca414`).
 - Layer 4: nothing yet. Expected red on mtimes and order, plus W30 and the
@@ -125,18 +130,15 @@ Layers 4 (zip) and 5 (container) have no runs yet.
 
 ## Next up
 
-1. Layer 3, W47: the entry sort as a commit on the WS branch (Leo's call),
-   then measured as a commit, and the 13 pages whose chunks changed opened
-   in a browser.
-2. Layer 4, the zip. Layer 2 with `out/` in place is green on the same path
-   (W42).
-3. Upstream: the dotnet/roslyn issue for W26, and Next.js issues for the CSS
+1. Layer 4, the zip, from the release built end to end. Its modes come from
+   three places: the umask, the NuGet cache (744) and the checkout.
+2. Upstream: the dotnet/roslyn issue for W26, and Next.js issues for the CSS
    order's missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
    dependency warnings, the SDK pin; Node 20's end of life and Node 23 in the
    Dockerfile (W40); the PR filter that misses `mcp/` (W39); from 7/10 the
    one version variable (W45) and the CSS move's cost, about 150 KB per page.
-4. Cross-machine and file order once the VM exists.
-5. For the WS delivery: one run of the release workflow on a test tag. It
+3. Cross-machine and file order once the VM exists.
+4. For the WS delivery: one run of the release workflow on a test tag. It
    checks the Windows job, the version variable, the Node pin and the
    calendar fix together.
 

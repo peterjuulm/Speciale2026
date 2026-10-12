@@ -1,0 +1,25 @@
+# phoenix-sorted-release, arch, 12 October 2026. Run by Claude at Leo's
+# request, in bash. Verbatim, with O, E and W standing for the private data
+# folder, Speciale2026/experiments and the WS worktree.
+
+# The WS commit, 12:52, local: the entry sort in next.config.js.
+#   a16f9a91 Sort the client's webpack entries by name
+
+# The runs, 12:53-13:41, in one shell:
+rm -rf /private/tmp/rb1-fe && mkdir -p /private/tmp/rb1-fe && git -C $W archive a16f9a91 -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-fe && python3 $E/labcheck.py $W a16f9a91 /private/tmp/rb1-fe | tail -1
+for A in none all build_path; do OUT=$O $E/phoenix-fe/run.sh $A F-$A; done
+rm -rf /private/tmp/rb1-phoenix && mkdir -p /private/tmp/rb1-phoenix && git -C $W archive a16f9a91 -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-phoenix && python3 $E/labcheck.py $W a16f9a91 /private/tmp/rb1-phoenix | tail -1
+for A in none all; do OUT=$O FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= $E/phoenix-rt/run.sh R $A R-$A; done
+
+# The release split into the export and the rest (a short Python script in
+# the session): 990 files of export C in wwwroot/, byte for byte; the other
+# 1237 equal to the hash list 9283b29e of 7/10 (store-L2-appver).
+
+# The browser check, 13:42-13:55 (abbreviated): a copy of the local dev
+# database (create database wsphoenix_rbview template wsphoenix), the
+# WebAPI of a16f9a91 built with dotnet build -c Release -p:SkipSpaBuild=true
+# in a scratch export, run twice with ASPNETCORE_ENVIRONMENT=Development,
+# the connection string pointed at the copy, Email__Provider=disabled,
+# Runtime__IncludeBackgroundWorkers=false, Auth__Provider=test, and
+# --webroot set to export A (port 5081) and export C (port 5082). Each of the
+# 13 pages opened in both and compared by page text, screenshot and console.

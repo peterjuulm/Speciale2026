@@ -83,6 +83,7 @@ the delivery to Weel-Sandvig. Open points:
 | 3, same path, `arch`, `eed6c240` and `a16eb506` | 0 / 990 | 0 | | `APP_VERSION` as build ID (W37); CSS in `_app` (W43) | 7/10, six builds |
 | 3, every reprotest axis on `arch`, `a16eb506` | 109 / 990 in 9 of 13 runs, 0 in 4 | one table's order in the runtime, then the 108 pages that name it | the same commit gives one of two exports; Next adds the pages to webpack's entries as their reads finish, and the runtime's map keeps that order (W47) `[I]` | not yet; candidate: sort the entries | 12/10, 13 runs, 26 builds |
 | 3, entry sort in the lab, `e19ca414` | 0 / 990 in 3 runs: `none`, `all`, `build_path` | 0 | Next's entry order (W47), logged: five orders in six builds | the client's entries sorted by name at `compilation.hooks.seal`; not yet on the branch | 12/10, 6 runs, 12 builds |
+| 2 + 3, the whole release in one build, `a16f9a91` | 0 / 2227 under `none` and `all` | 0 | | the entry sort (W47) | 12/10, `b72bbc3b…`, 2 runs |
 | 4 | | | | | |
 | 5 | | | | | |
 
