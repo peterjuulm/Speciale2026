@@ -1,0 +1,20 @@
+# phoenix-fe-reprotest, arch, 12 October 2026. Run by Claude at Leo's
+# request, in bash. Verbatim. The WS repository is the worktree of the
+# branch thesis/reproducible-builds; the private data folder is Leo's.
+
+# The lab, 09:32: a fresh export of a16eb506, checked file by file.
+rm -rf /private/tmp/rb1-fe && mkdir -p /private/tmp/rb1-fe && git -C /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro archive a16eb506 -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-fe && python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro a16eb506 /private/tmp/rb1-fe
+#   5479 files in commit, 5479 in lab: 0 missing, 0 differing, 0 extra
+
+# The timing run, 09:32-09:41, from the private data folder:
+OUT=$PWD /home/leos/Dev/Speciale2026/experiments/phoenix-fe/run.sh none > run-L3-none.out 2>&1
+
+# The twelve other axes, 09:42-11:36, from the same folder:
+OUT=$PWD /home/leos/Dev/Speciale2026/experiments/phoenix-fe/all-axes.sh > all-axes.out 2>&1
+
+# The comparisons after each run (example for build_path; the same for the
+# other runs and for 7/10's export):
+diff store-L3-build_path/control/source-root/out.sha256 store-L3-build_path/experiment-1/source-root/out.sha256 | grep '^<' | cut -c68- | sed 's#.*\.##' | sort | uniq -c
+#   108 html, 1 js
+diff store-L3-none/control/source-root/out.sha256 ../../phoenix-app-version/arch-2026-10-07/fe-cal/out-1.sha256
+#   109 lines differ: the runtime webpack-<hash>.js and the 108 pages

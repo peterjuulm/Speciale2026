@@ -81,6 +81,8 @@ the delivery to Weel-Sandvig. Open points:
 | 3, same path, `arch`, `4e5237a3` | 110 / 998: 2 paths, 108 pages | the 21-character build ID, three times per page | Next's random build ID (W37) | `generateBuildId`, not yet on the branch | 6/10, one pilot |
 | 3, same path, `arch`, `63129480` | 4 / 998 in 1 of 2 builds: 1 CSS file, its manifest, 2 pages | two stylesheets' rules in another order | Next's CSS chunking orders shared CSS by build timing (W43) | all third-party CSS in `_app` | 7/10, round 1 |
 | 3, same path, `arch`, `eed6c240` and `a16eb506` | 0 / 990 | 0 | | `APP_VERSION` as build ID (W37); CSS in `_app` (W43) | 7/10, six builds |
+| 3, every reprotest axis on `arch`, `a16eb506` | 109 / 990 in 9 of 13 runs, 0 in 4 | one table's order in the runtime, then the 108 pages that name it | the same commit gives one of two exports; Next adds the pages to webpack's entries as their reads finish, and the runtime's map keeps that order (W47) `[I]` | not yet; candidate: sort the entries | 12/10, 13 runs, 26 builds |
+| 3, entry sort in the lab, `e19ca414` | 0 / 990 in 3 runs: `none`, `all`, `build_path` | 0 | Next's entry order (W47), logged: five orders in six builds | the client's entries sorted by name at `compilation.hooks.seal`; not yet on the branch | 12/10, 6 runs, 12 builds |
 | 4 | | | | | |
 | 5 | | | | | |
 

@@ -1,0 +1,22 @@
+# phoenix-entry-order, arch, 12 October 2026. Run by Claude at Leo's
+# request, in bash. Verbatim. The WS repository is the worktree of the
+# branch thesis/reproducible-builds; the private data folder is Leo's.
+
+# The lab, 11:43: an export of e19ca414 with the frontend's config wrapped.
+/home/leos/Dev/Speciale2026/experiments/phoenix-fe/entry-lab.sh e19ca414
+#   5479 files in commit, 5479 in lab: 0 missing, 0 differing, 0 extra
+python3 /home/leos/Dev/Speciale2026/experiments/labcheck.py /home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro e19ca414 /private/tmp/rb1-fe-entry
+#   5479 files in commit, 5481 in lab: 0 missing, 1 differing, 2 extra
+#   differs src/WebAPI/ClientApp/next.config.js
+#   extra src/WebAPI/ClientApp/entry-order-plugin.js
+#   extra src/WebAPI/ClientApp/next.config.orig.js
+
+# The six runs, 11:44-12:36, from the private data folder:
+OUT=$PWD /home/leos/Dev/Speciale2026/experiments/phoenix-fe/entry-runs.sh > entry-runs.out 2>&1
+
+# After the runs: each client log paired with its build by time (the
+# control's log is written first), and every pair of entries checked for
+# one that is in one order in all A builds and the other in all B builds
+# (a short Python script, in the session). Then the exports compared:
+diff store-E-sort-none/control/source-root/out.sha256 store-E-log-1/control/source-root/out.sha256
+#   21 files: 5 shared chunks and 2 page chunks, _buildManifest.js, 13 pages
