@@ -89,3 +89,7 @@ From the layer plan, plus what came up on 5/10:
   on `100e3912`, under `none` and `all`, and under `locales` without the
   locale pin: the same 4256 files and zips before signing
   (phoenix-windows-release).
+- 2026-10-13: the Windows job ran on GitHub's `ubuntu-latest` in the dry
+  run, unsigned, on `fa60ea97` (phoenix-ci-dry-run). Its zips and the
+  migrator equal a local rebuild once the compiler runs on the same
+  runtime patch (W58).

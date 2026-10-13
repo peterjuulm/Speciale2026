@@ -1,0 +1,31 @@
+# ci-compare.sh, 23:28, CI's artifacts against the local rebuild (runtime 10.0.12):
+same  frontend export (994 / 994 files)
+DIFF  ws-pems-linux-x64-v0.0.0-thesis.2.zip
+DIFF    ws-pems-linux-x64: entries' contents (1624 / 1624 files)
+DIFF    ws-pems-linux-x64: zipinfo -v
+DIFF  ws-pems-job-worker-linux-x64-v0.0.0-thesis.2.zip
+DIFF    ws-pems-job-worker-linux-x64: entries' contents (500 / 500 files)
+DIFF    ws-pems-job-worker-linux-x64: zipinfo -v
+DIFF  ws-pems-win-x64-v0.0.0-thesis.2.zip
+DIFF    ws-pems-win-x64: entries' contents (1628 / 1628 files)
+DIFF    ws-pems-win-x64: zipinfo -v
+DIFF  ws-pems-job-worker-win-x64-v0.0.0-thesis.2.zip
+DIFF    ws-pems-job-worker-win-x64: entries' contents (501 / 501 files)
+DIFF    ws-pems-job-worker-win-x64: zipinfo -v
+DIFF  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.2
+DIFF  ws-pems-db-migrator-win-x64-v0.0.0-thesis.2.exe
+image ws-pems: manifest same: sha256:79bc623e1f0d2d24a3fe7e91bcceeb7eff3e4792d0e08cac960328bb97bb1fbc
+image ws-pems-job-worker: manifest same: sha256:af5aa102b43615824e26df7877716eeb5a4516aac4012a557c588614f56738a9
+
+# Every differing PDB: the dumps differ in one line pair, the runtime-version
+# (CI 10.0.13-servicing.26504.104, local 10.0.12-servicing.26422.108);
+# compiler-version 5.9.0-1.26423.113+e34a38d2 on both. Every differing DLL:
+# PE TimeDateStamp, #GUID, debug directory, CodeView and PDB checksum entries only.
+
+# The runtime check, 23:35-23:39, with 10.0.13 next to the SDK: cmp against CI's
+same  ws-pems-linux-x64-v0.0.0-thesis.2.zip
+same  ws-pems-job-worker-linux-x64-v0.0.0-thesis.2.zip
+same  ws-pems-win-x64-v0.0.0-thesis.2.zip
+same  ws-pems-job-worker-win-x64-v0.0.0-thesis.2.zip
+same  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.2
+same  ws-pems-db-migrator-win-x64-v0.0.0-thesis.2.exe

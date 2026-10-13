@@ -5,11 +5,24 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the release's .NET images built twice.
-Last edit: 13 October 2026, 23:00. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the release workflow on GitHub against a local
+rebuild. Last edit: 13 October 2026, 23:50. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On GitHub and `arch`, 13/10 22:57-23:39
+([phoenix-ci-dry-run](2026-10-13-phoenix-ci-dry-run.md); W58): the
+release workflow as a dry run on a throwaway commit on `fa60ea97`, tag
+`v0.0.0-thesis.2`: no tests, release, pushes, signing or cache. All five
+jobs passed, the smoke test with 160 migrations. Against a local rebuild
+of each job, the release's first comparison across machines: the
+frontend export and both images identical; in the zips and migrators
+only our own assemblies differ, because their PDBs record the runtime the
+compiler ran on, 10.0.13 on GitHub (setup-dotnet installs the newest
+LTS runtime) and 10.0.12 here. With 10.0.13 added here, every output is
+CI's byte for byte. The fix is open. Run, artifacts and tag deleted, and
+the morning test tag's 3.1 GB of build caches.
 
 On `arch`, 13/10 22:17-22:49
 ([phoenix-images](2026-10-13-phoenix-images.md); W56, W57): layer 5,
@@ -241,7 +254,7 @@ Layer 5 (container) is below the SDK 10 table.
 | `all` | red 5/10: locale and the two dev json; with `LC_ALL` the dev json only W8 W9 | fix 5/10: red from the locale alone, green with `LC_ALL` | green 12/10 beyond W47, both builds the same order | red 12/10 as CI packs, also modes and time zone W48; normalised identical, across runs too |
 | `fileordering` | - needs a VM with `disorderfs` | - | - | - |
 | `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - | - |
-| Machine | - VM too small W14 | - | - | - |
+| Machine | - VM too small W14 | red 13/10 on SDK 10, GitHub against `arch`: the compiler's runtime patch only W58; identical with the same patch | green 13/10 on SDK 10: GitHub's export is `arch`'s, 994 files | red 13/10 on SDK 10 through W58 only; identical with the same patch |
 | SDK binary | - empty-class only, 8/9 | - | - Node pinned to 22.23.3 since the merge, ran in main's CI 13/10 W40 | - |
 | Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46, main's lock has none since 17/9 | - |
 | Windows | - | green 13/10 on SDK 10, built on Linux as the job builds it, unsigned: layer `W` below W55 | built once, on Linux, for both releases | green 13/10 on SDK 10: both Windows zips identical before signing, layer `W` below W55 |
@@ -312,8 +325,14 @@ WS branch since `fa60ea97`.
   images' assemblies carry `APP_VERSION` as their informational version
   (W45, read in `P2`'s WebAPI). The Dockerfile's Node pin (W40) is not
   built, as CI skips the SPA build.
-- Cross-machine and file order: paused until a VM with several GB of RAM
-  exists (W14). Peter's Azure VM is the candidate.
+- Cross-machine: GitHub's runner against `arch` on 13/10, identical but
+  for the compiler's runtime patch (W58). The fix is open: only the
+  `global.json` SDK in a folder of its own, or a pinned roll-forward on the
+  build steps; Leo's and Peter's choice. File order still needs a VM with
+  several GB of RAM (W14); Peter's Azure VM is the candidate.
+- Versions: the zips' assemblies carry the commit (`APP_VERSION+<sha>`,
+  the SDK's `SourceRevisionId` in a git checkout), the images' do not, as
+  `.dockerignore` keeps `.git` out (13/10, phoenix-ci-dry-run).
 - Dependency tree: lock files done (W22). Plan, census and repository lookup
   redone on 13/10 for `79cb67a7` (.NET 10, three programs, `dotnet-ef`)
   ([dependency-plan](2026-10-12-dependency-plan.md),
@@ -337,20 +356,19 @@ WS branch since `fa60ea97`.
 
 1. Peter: W54's fix on the Mac (`100e3912`, a locked restore of
    `src/DbMigrator`).
-2. Layer 5, the images ([phoenix-images](2026-10-13-phoenix-images.md),
-   expectations written 13/10), then CI's Windows job against a local
-   build.
-3. The merge (13/10, `79cb67a7`) is measured on `arch`, the whole release
-   under `none`, `all` and `locales`, and passed main's CI on GitHub. PR validation and the release workflow have not run on
-   it: a draft pull request or a second test tag (Leo's call) would check
-   the tag check and the migrator's smoke test both ways on GitHub.
+2. W58: choose how CI installs .NET, so that the compiler's runtime is
+   the SDK's own; then a release run with signing, to measure the signed
+   Windows outputs ([phoenix-ci-dry-run](2026-10-13-phoenix-ci-dry-run.md)).
+3. PR validation has not run on the merged branch; a draft pull request
+   would run it (Leo's call). The release workflow ran on it as the dry run
+   of 13/10, the version check and the migrator's smoke test included.
 4. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
    dependency warnings, the SDK pin; Node 20's end of life and Node 23 in the
    Dockerfile (W40); the PR filter that misses `mcp/` (W39); from 7/10 the
    one version variable (W45) and the CSS move's cost, about 150 KB per page.
-5. Cross-machine and file order once the VM exists.
+5. File order once the VM exists; across machines, GitHub against `arch` is done (W58).
 
 ## Keeping this file
 

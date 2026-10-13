@@ -61,3 +61,91 @@ All `[I]`.
 ## Commands
 
 Verbatim in `data/2026-10-13-phoenix-ci-dry-run/arch/kommando.txt`.
+
+## Result
+
+`[V]` (the run's logs and artifacts, and the local rebuild, in private
+data; `compare.txt` and `results.txt` beside `kommando.txt`). The run
+20:57-21:19 UTC, the local rebuild 22:57-23:08:
+
+1. Held. All five jobs passed. The migrator's smoke test applied all 160
+   migrations to each of its two databases, and refused to run without a
+   connection string. The images were rewritten to the commit's time in
+   CI too: the build log names the epoch.
+2. Held. CI's frontend export and the local one: the same 994 files.
+3. Failed. Every zip differs from its local twin, and both migrators do
+   too, in 225 and 226 bytes. In each zip 6 files differ, all ours: the
+   three assemblies of that program and their PDBs. The other entries are
+   the same, 1618 of 1624 in the WebAPI's Linux zip. Each PDB differs in
+   one field, the `runtime-version` its compilation options record:
+   `10.0.13` in CI, `10.0.12` here. Same compiler, `5.9.0-1.26423.113`.
+   The assemblies differ only in what is derived from the PDB and the
+   content: the MVID, the PE timestamp and the debug directory.
+4. Held. Both images have the same image manifest in CI and here: WebAPI
+   `79bc623e…`, job worker `af5aa102…`. CI's indexes, with provenance and
+   SBOM, are `e575f6fd…` and `d9ee4f61…`.
+
+Where `10.0.13` comes from `[V]`: `actions/setup-dotnet` v6 first
+installs the newest LTS runtime, then the SDK from `global.json`
+(`install-dotnet.sh --runtime dotnet --channel LTS` in the job log;
+`src/installer.ts` lines 418-425 at `v6`). Runtime 10.0.13 was the newest
+on 13 October. The SDK's compiler asks for runtime 10.0.12 and may roll
+forward (`csc.runtimeconfig.json`: `"version": "10.0.12"`,
+`"rollForward": "Major"`), so it ran on 10.0.13. Here the SDK folder holds
+only its own runtime.
+
+A check after the result, with no expectation written first, 23:35-23:39:
+Microsoft's runtime 10.0.13 (released 13 October, SHA-512 checked against
+the release metadata) added to a copy of the SDK folder, and the Linux,
+Windows and migrator jobs rebuilt with it. All six outputs are byte for
+byte CI's: both Linux zips, both Windows zips and both migrators.
+
+Cleanup, 21:32 UTC: the run with its artifacts deleted, the tag deleted,
+no cache or deployment created. While checking, 83 caches from the test
+tag of the morning turned up (3.1 GB of Docker build cache on
+`v0.0.0-thesis.1`), with the repository's caches at their 10 GB limit;
+they were deleted too. The morning run's deployment record in
+`release-signing` stays as its record.
+
+## Interpretation
+
+**Across machines, the release is the same but for one recorded
+fact.** `[V]` for GitHub's runner and `arch`: the frontend, every
+third-party file and both images are identical, and our assemblies
+differ only in the runtime patch the compiler ran on. With that patch
+installed here, every output of the run is reproduced byte for byte.
+
+**`global.json` pins the SDK, not the runtime its compiler runs on.**
+`[V]` for this run. The PDB records that runtime, so a build in CI
+differs from the one before it whenever setup-dotnet finds a new runtime
+patch, here the day it shipped `[I]`. A rebuild has to run its compiler
+on the same patch. Two fixes are possible, not made yet: install only
+the SDK from `global.json` in a folder of its own, as the SDK image and
+this lab have it, or pin the roll-forward of the build steps. Either is
+a change to how CI installs .NET, for Leo and Peter to choose.
+
+**The images are hermetic where the zips are not.** `[V]` The SDK image
+holds one runtime, so the compiler in it runs on the SDK's own. With the
+timestamp fix (`fa60ea97`) the images are reproducible across machines.
+
+**The two kinds of release output carry different versions.** `[V]`
+The zips' assemblies say `v0.0.0-thesis.2+2ec8e0ca…`: the SDK adds the
+commit in a git checkout. The images' say `v0.0.0-thesis.2`, as
+`.dockerignore` keeps `.git` out of the build context.
+
+## Caveats
+
+- One run, one runner image (`ubuntu-24.04`, `20261004.327.1`), one
+  day. The local side used the same SDK tarball and caches as the other
+  runs on `arch`.
+- The dry run is not the release: no tests, no signing, no MCP images,
+  no push, no cache. Signing would change every Windows binary anyway.
+- The migrators were compared as whole files. That their 225 bytes are
+  the same three assemblies' IDs is `[I]`.
+- buildx differed (0.37.2 in CI, 0.38.0 here); BuildKit was 0.33.1 on
+  both.
+
+## Not tested
+
+- Either fix for the runtime, and the release with signing and pushes.
+- The Windows outputs after signing.

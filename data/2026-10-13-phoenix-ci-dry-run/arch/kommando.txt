@@ -1,0 +1,53 @@
+# phoenix-ci-dry-run, arch and GitHub, 13 October 2026. Run by Claude at
+# Leo's request, in bash. Verbatim, with P for the private data folder, E
+# for Speciale2026/experiments and W for the WS worktree. The edit script
+# quotes WS's workflows, so it stays in P (dryrun-edit.py).
+
+# The throwaway commit, 22:56-22:57, in a scratch clone outside W:
+S=/private/tmp/rb1-ci/src; rm -rf $S; git clone -q --no-checkout file://$W $S
+git -C $S checkout -q --detach fa60ea97410c646a68005fe24b570144aee5e310
+python3 $P/dryrun-edit.py $S
+actionlint -shellcheck= .github/workflows/03-release.yml .github/workflows/00-reusable-windows-publish.yml .github/workflows/00-reusable-frontend-build.yml   # in $S; actionlint 1.7.12 from its GitHub release, checksum checked
+git -C $S add .github/workflows && git -C $S commit -q -m "Thesis dry run of the release workflow ..."
+git -C $S tag v0.0.0-thesis.2
+#   2ec8e0cad0637a97ab39aece0c01f62fac19b380, commit time 1791925041
+
+# The run, from 22:57:39 (20:57:39 UTC): only the tag is pushed.
+gh api repos/Weel-Sandvig/WS.Phoenix/git/matching-refs/tags/v0.0.0-thesis --jq '.[].ref'   # none before
+git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git refs/tags/v0.0.0-thesis.2
+#   run 38466935263, the only run the push started
+gh run watch 38466935263 --repo Weel-Sandvig/WS.Phoenix --exit-status --interval 60
+
+# The local rebuild, alongside the run:
+DOCKER_CONFIG=/private/tmp/rb1-docker REPO=/private/tmp/rb1-ci/src OUT=$P $E/phoenix-rt/ci-local.sh v0.0.0-thesis.2
+#   all jobs exit 0, 22:57-23:08
+
+# Afterwards, 23:20-23:27: the run's state, artifacts and logs, into P/ci:
+gh run view 38466935263 --repo Weel-Sandvig/WS.Phoenix --json conclusion,createdAt,updatedAt,headSha,event,displayTitle > $P/run.json
+for n in frontend-export release-zips-linux release-zips-windows db-migration-bundles-linux db-migration-bundles-windows image-ws-pems image-ws-pems-job-worker; do gh run download 38466935263 --repo Weel-Sandvig/WS.Phoenix -n $n -D $P/ci/$n; done
+gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/38466935263/logs > $P/run-logs.zip
+
+# The comparison, and the PDBs that differ, with pdbdump built outside the
+# repository (/private/tmp/rb1-pdbdump, retargeted to net10.0):
+$E/phoenix-rt/ci-compare.sh $P v0.0.0-thesis.2 > $P/compare.txt
+dotnet /private/tmp/rb1-pdbdump/out/pdbdump.dll <ci or local>/<zip>/ApplicationCore.pdb    # and every other differing PDB; diff of the two dumps
+python3 $E/pe-diff-regions.py <ci>/ApplicationCore.dll <local>/ApplicationCore.dll           # and every other differing DLL
+
+# Cleanup, 21:32 UTC: the run (with its artifacts) and the tag deleted;
+# the caches on the tag's ref checked (none):
+gh api "repos/Weel-Sandvig/WS.Phoenix/actions/caches?ref=refs/tags/v0.0.0-thesis.2" --jq '.total_count'
+gh api -X DELETE repos/Weel-Sandvig/WS.Phoenix/actions/runs/38466935263
+git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git :refs/tags/v0.0.0-thesis.2
+# and the morning test tag's 83 Docker build caches, listed first:
+gh api --paginate "repos/Weel-Sandvig/WS.Phoenix/actions/caches?per_page=100" --jq '.actions_caches[] | select(.ref == "refs/heads/refs/tags/v0.0.0-thesis.1") | "\(.id) \(.size_in_bytes) \(.key)"' > $P/thesis1-caches.txt
+while read id size key; do gh api -X DELETE "repos/Weel-Sandvig/WS.Phoenix/actions/caches/$id"; done < $P/thesis1-caches.txt
+
+# The runtime check, 23:35-23:39: Microsoft's runtime 10.0.13, its SHA-512
+# from the 10.0 release metadata, in a copy of the SDK folder:
+curl -fsSL -o releases-10.json https://builds.dotnet.microsoft.com/dotnet/release-metadata/10.0/releases.json
+curl -fsSL -o r13.tar.gz https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.13/dotnet-runtime-10.0.13-linux-x64.tar.gz   # sha512 9574d953…05afe, as listed
+R=/private/tmp/rb1-dotnet10-r13; cp -a /private/tmp/rb1-dotnet10/sdk $R && tar -xzf r13.tar.gz -C $R ./shared/Microsoft.NETCore.App/10.0.13 ./host/fxr/10.0.13
+mkdir -p $P/r13/local && cp -r $P/local/frontend-out $P/r13/local/
+DOTNET_DIR=$R REPO=/private/tmp/rb1-ci/src OUT=$P/r13 $E/phoenix-rt/ci-local.sh v0.0.0-thesis.2 linux
+DOTNET_DIR=$R REPO=/private/tmp/rb1-ci/src OUT=$P/r13 $E/phoenix-rt/ci-local.sh v0.0.0-thesis.2 "windows migrator"
+cmp <each of CI's six zips and migrators> <its twin in $P/r13/local>
