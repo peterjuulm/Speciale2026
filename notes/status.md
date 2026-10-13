@@ -5,29 +5,37 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the EF migration bundle (W52, W53).
-Last edit: 13 October 2026, 00:45. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, PR validation's migration guard (W53), after
+the EF migration bundle (W52, W53) and the whole release on `acbea21c`.
+Last edit: 13 October 2026, 07:41. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 07:36-07:38 ([phoenix-bundle](2026-10-13-phoenix-bundle.md),
+the follow-up; W53): PR validation's migration guard, run as its job runs
+it, fails like the bundle job, NETSDK1004; with a restore first it exits 0.
+Codex found it while reviewing the restore, before the push.
 
 On `arch`, 13/10 00:14-00:33 ([phoenix-bundle](2026-10-13-phoenix-bundle.md);
 W52, W53): the release's Linux database migrator, built twice with the
 job's commands. On .NET 10 the job no longer builds it at all: dotnet-ef
 10 needs the projects restored first (W53, a side effect of the move to
-.NET 10; a one-step fix is prepared, not applied). With a restore first,
-the two bundles differ only in the bundle's own small assembly, which
+.NET 10). The restore is in both workflows since `21360193`, not yet run
+in CI. With a restore first, the two bundles differ only in the bundle's own small assembly, which
 `dotnet ef` builds in a random folder under `/tmp`, and in the bundle ID
 (W52). Phoenix's assemblies and the runtime inside are identical.
 
-On `arch`, 12/10 21:01-23:16
+On `arch`, 12/10 21:01 to 13/10 00:50
 ([phoenix-module-order](2026-10-12-phoenix-module-order.md); W51): plain
 frontend builds with delays added on purpose to module resolution. Five of
 six changed the export, in two ways: webpack's module order and the order
 of each module's links. Sorting both at seal, next to the entry sort,
 gave one export in 21 builds over nine timings and two paths, the same
 export as before; on the branch as `61870435`, with CI's frontend lint,
-tests and build passing. The whole release on it is running.
+tests and build passing. After Codex's review, `acbea21c` refills the link
+sets and keys them by block position: seven more builds, the same export.
+The whole release is `00dad37d…` on both, as on `e6ce3549`.
 
 On `arch`, 12/10 19:05-19:59
 ([phoenix-net10-release](2026-10-12-phoenix-net10-release.md); W26, W50,
@@ -161,8 +169,9 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   the reprotest axes ran without it. The EF migration bundle is red (W52):
   `dotnet ef`'s temporary project puts a random `/tmp` path into the
   bundle; the fix proposed is a migrator project in the repository. On
-  .NET 10 the release job cannot build the bundle until it restores first
-  (W53; a one-step fix is prepared).
+  .NET 10 the release job and PR validation's migration guard need a
+  restore before `dotnet ef` (W53); it is in both since `21360193`, not
+  yet run in CI.
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
   part of the WS delivery. Open points in the layer plan.
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
@@ -186,11 +195,12 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. Leo's call on two prepared WS patches: the restore before the Linux
-   bundle step (W53, release-blocking on .NET 10), and Dependabot bumping
-   the SDK pin and the .NET images in one PR, with PR validation failing
-   when they differ. Then the migrator project for W52, the test-tag run
-   in CI, and layer 5, the images.
+1. The migrator project for W52 (Leo's and WS's call), the test-tag run
+   in CI, and layer 5, the images. On 13/10 the two prepared WS changes
+   went onto the branch: the restore before `dotnet ef` in the release
+   and in PR validation's migration guard (W53, `21360193`), and
+   Dependabot bumping the SDK pin and the .NET images in one PR, with PR
+   validation failing when they differ (`833e173a`).
 2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
@@ -199,8 +209,9 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
    one version variable (W45) and the CSS move's cost, about 150 KB per page.
 3. Cross-machine and file order once the VM exists.
 4. For the WS delivery: one run of the release workflow on a test tag. It
-   checks the Windows job, the version variable, the Node pin and the
-   calendar fix together.
+   checks the Windows job, the version variable, the Node pin, the
+   calendar fix, the zips' packing (W48) and the bundle's restore (W53)
+   together.
 
 ## Keeping this file
 

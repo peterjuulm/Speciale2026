@@ -86,8 +86,10 @@ metadata before it builds and so needs the projects restored, which the
 since it ran `dotnet ef` after a full restore and build. `publish-windows`
 restores the solution before its bundle step and is not affected; the
 migrations Dockerfile restores first too. A one-step fix, a locked restore
-before the bundle as in `publish-windows`, is prepared for the branch but
-not applied (Leo's call: it changes the release workflow).
+before the bundle as in `publish-windows`, was prepared for the branch and
+went onto it on 13/10 at Leo's request, as `21360193` together with the
+same restore for PR validation's migration guard (see the follow-up
+below); neither has run in CI.
 
 **A fix for the bundle itself.** `[I]` Not `dotnet ef`'s temporary project
 but a small migrator project in the repository, which applies the
@@ -105,3 +107,40 @@ for Leo and WS to decide.
 - Whether the bundle ID follows the content or is random is not known: it
   differed together with the assembly.
 - The idempotent SQL script the job also writes is not measured.
+
+## Follow-up after review: PR validation's migration guard
+
+Codex, reviewing the restore before it was pushed, pointed out that PR
+validation's `migration-guard` job runs `dotnet ef migrations
+has-pending-model-changes` after only `dotnet tool restore`, on a runner
+of its own. The NuGet cache it restores holds packages, not the projects'
+`obj/project.assets.json`.
+
+Expectation, written before the run `[I]`: on a fresh export of the branch
+with the restore (`2973ab8a`), SDK 10.0.401 and `GITHUB_ACTIONS=true` as on
+a runner, the job's two commands fail with NETSDK1004, as the bundle did.
+With `dotnet restore ./WS.Phoenix.sln` first, locked through
+`GITHUB_ACTIONS`, the check runs and exits 0: the branch's model matches
+its last migration.
+
+Commands: run by Claude at Leo's request, in bash, with
+`experiments/phoenix-rt/guard-probe.sh`; verbatim in `kommando.txt`. The
+connection string points at a closed local port, so nothing can reach a
+real database.
+
+Result `[V]` (the logs, 13/10 07:36-07:38):
+
+1. As the job runs it: exit 1 after 3 seconds, NETSDK1004 on
+   Infrastructure's `project.assets.json`, the same as the bundle.
+2. With `dotnet restore ./WS.Phoenix.sln` first: exit 0, and dotnet-ef
+   reports no changes to the model since the last migration.
+
+The expectation held.
+
+Interpretation `[V]`: the move to .NET 10 broke a second job the same
+way. PR validation's `migration-guard` would have failed every backend
+pull request. Before the push, its restore went into the branch's restore
+commit, which now covers both jobs: `21360193`, "Restore before dotnet ef
+on a fresh checkout". `2973ab8a`, measured here, is that commit before
+then; the two trees differ only in `01-pr-validation.yml`, which the
+commands do not read.

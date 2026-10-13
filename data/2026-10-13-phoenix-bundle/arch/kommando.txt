@@ -26,3 +26,10 @@ python3 $E/phoenix-rt/bundle-map.py $O/same-name/build-N/ws-pems-db-migrator /de
 diff <(strings -n 6 migrator-1.dll) <(strings -n 6 migrator-2.dll)
 
 # The bundles (827 MB each) stay in the private folder, not here.
+
+# 07:36-07:38, the follow-up after review: PR validation's migration guard,
+# on 2973ab8a (the restore commit before the guard's restore went into it,
+# as 21360193). Run from a scratch copy of phoenix-rt/guard-probe.sh that
+# had OUT fixed to $O/guard and no defaults; otherwise the same script.
+OUT=$O/guard $E/phoenix-rt/guard-probe.sh 2973ab8a 1 0   # as the job runs it
+OUT=$O/guard $E/phoenix-rt/guard-probe.sh 2973ab8a 2 1   # dotnet restore ./WS.Phoenix.sln first
