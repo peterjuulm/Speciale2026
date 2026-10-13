@@ -1,0 +1,13 @@
+# phoenix-release-run, 13 October 2026, run by Claude at Leo's request, in
+# bash, in the WS worktree W (thesis/reproducible-builds).
+git -C $W tag v0.0.0-thesis.1 82ea130a && git -C $W push origin v0.0.0-thesis.1
+gh run list -R Weel-Sandvig/WS.Phoenix --workflow 03-release.yml --limit 3      # run 38365577952
+gh run view 38365577952 -R Weel-Sandvig/WS.Phoenix --json status,conclusion,jobs   # polled every 60 s
+# job logs through the API, with the CLI's token:
+curl -s -L -H "Authorization: Bearer $(gh auth token)" https://api.github.com/repos/Weel-Sandvig/WS.Phoenix/actions/jobs/<job>/logs
+curl -s -L -H "Authorization: Bearer $(gh auth token)" https://api.github.com/repos/Weel-Sandvig/WS.Phoenix/actions/runs/38365577952/logs -o <private>/run-logs.zip
+# cleanup
+gh release view v0.0.0-thesis.1 -R Weel-Sandvig/WS.Phoenix      # release not found
+git -C $W push origin --delete v0.0.0-thesis.1 && git -C $W tag -d v0.0.0-thesis.1
+gh api -X DELETE /orgs/Weel-Sandvig/packages/container/<image>/versions/<id>   # 404 for all 15
+gh run delete 38365577952 -R Weel-Sandvig/WS.Phoenix

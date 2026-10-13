@@ -1,0 +1,9 @@
+run 38365577952, tag v0.0.0-thesis.1 on 82ea130a, 2026-10-13T07:53:24Z-08:21:23Z, conclusion failure
+build-and-test / build (ubuntu-latest): failure (Integration tests: 678 failed in fixtures, "No such image: postgres:15.1"; unit passed)
+build-and-test / build (windows-latest): success (builds, no Docker tiers)
+frontend-build / build: success
+migration-bundles: success (Restore (locked), Publish migrator, Smoke-test the migrator: 150 migrations, idempotent SQL script)
+docker-images: success
+publish-linux: success
+publish-windows: success (migrator --help; before signing NotSigned 178, Valid 871; migrator exe signed; Authenticode verified)
+release: skipped

@@ -5,12 +5,23 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the migrator project (W52), after PR
-validation's migration guard (W53) and the EF migration bundle.
-Last edit: 13 October 2026, 09:43. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the release workflow on a test tag, after the
+migrator project (W52).
+Last edit: 13 October 2026, 10:24. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On GitHub, 13/10 07:53-08:21 UTC
+([phoenix-release-run](2026-10-13-phoenix-release-run.md)): the release
+workflow on the test tag `v0.0.0-thesis.1` (`82ea130a`). Every job passed
+but the Linux tests: all 678 integration tests failed at setup, where
+Testcontainers found no `postgres:15.1` image on the GitHub-hosted runner;
+main runs those tests on WS's office runner since it reworked that workflow
+after the branch left it on 14/9. So no pre-release was made. The migrator's
+smoke test applied all 150 migrations, the Windows migrator was signed, the
+zips were packed the normalised way. Tag and run deleted afterwards; 15
+private image versions remain (deleting them needs more rights than Leo's).
 
 On `arch`, 13/10 08:31-09:41 ([phoenix-bundle](2026-10-13-phoenix-bundle.md),
 the fix; W52): the release's migrator as a project in the repository,
@@ -205,7 +216,9 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. The test-tag run in CI, then layer 5, the images. On 13/10 the branch
+1. Merge main into the branch (Leo, 13/10): 122 commits since 14/9, still
+   on .NET 9; then the key measurements again and a new test-tag run. Then
+   layer 5, the images. On 13/10 the branch
    got the restore before `dotnet ef` in the release and in PR
    validation's migration guard (W53, `21360193`), Dependabot bumping the
    SDK pin and the .NET images in one PR with PR validation failing when
