@@ -33,3 +33,30 @@ diff <(strings -n 6 migrator-1.dll) <(strings -n 6 migrator-2.dll)
 # had OUT fixed to $O/guard and no defaults; otherwise the same script.
 OUT=$O/guard $E/phoenix-rt/guard-probe.sh 2973ab8a 1 0   # as the job runs it
 OUT=$O/guard $E/phoenix-rt/guard-probe.sh 2973ab8a 2 1   # dotnet restore ./WS.Phoenix.sln first
+
+# 08:31-09:03, the fix: a migrator project in the repository (WS d1500897,
+# then 08cf0cf6/37dc477a, pushed as cd36f241 and 82ea130a). O2=$O/migrator.
+# L is a lab of 21360193; ENV as in bundle-probe.sh, without SkipLockedRestore.
+# Which factory EF uses (F1 from the root, F2 from src/WebAPI), offline:
+(cd $L && unshare -rn "${ENV[@]}" dotnet ef migrations list --no-connect --no-build --verbose --context DatabaseContext -p src/Infrastructure/Infrastructure.csproj -s src/WebAPI/WebAPI.csproj)
+(cd $L/src/WebAPI && unshare -rn "${ENV[@]}" dotnet ef migrations list --no-connect --no-build --verbose --context DatabaseContext -p ../Infrastructure/Infrastructure.csproj -s WebAPI.csproj)
+# The acbea21c bundle from an empty folder, with --connection (B1) and with
+# the environment only (B2), to a socket directory that does not exist:
+(cd <empty> && unshare -rn env -i HOME=$HOME PATH=/usr/bin LC_ALL=C.UTF-8 DOTNET_BUNDLE_EXTRACT_BASE_DIR=<x> $O/same-name/build-1/ws-pems-db-migrator --verbose --connection 'Host=/nonexistent-socket-dir;Database=none;Username=none')
+(cd <empty> && unshare -rn env -i ... ASPNETCORE_ENVIRONMENT=Production DatabaseOptions__Provider=postgres 'ConnectionStrings__CatalogConnection=Host=/nonexistent-socket-dir;Database=none;Username=none' $O/same-name/build-1/ws-pems-db-migrator --verbose)
+# The factory's unit tests in a lab of d1500897, with loopback only:
+unshare -rn "${ENV[@]}" sh -c 'ip link set lo up && dotnet test tests/tests.csproj --no-build --filter "FullyQualifiedName~DatabaseContextFactoryTests"'
+# Two builds each of 08cf0cf6 and 37dc477a:
+OUT=$O2/builds $E/phoenix-rt/migrator-probe.sh 08cf0cf6
+OUT=$O2/builds-final $E/phoenix-rt/migrator-probe.sh 37dc477a
+# The scratch database: no network, its socket in a host folder.
+docker run -d --name rb1-mig-pg --network none -e POSTGRES_HOST_AUTH_METHOD=trust -v /private/tmp/rb1-pgsock:/var/run/postgresql postgres:17-alpine
+# Old against new (MIGRATION: the tenth newest migration, in the private data):
+OUT=$O2/parity OLD=$O/same-name/build-1/ws-pems-db-migrator NEW=$O2/builds/build-1/ws-pems-db-migrator OLDCWD=$L/src/WebAPI MIGRATION=<id> $E/phoenix-rt/migrator-parity.sh
+# Then P6b (Host=/private/tmp/rb1-no-such-socket-dir, both tools) and P9
+# (each tool once more from empty), with the same run() as the script.
+# The variant with the program's own assembly as startup: Program.cs's third
+# argument typeof(Program).Assembly, then a line printed at entry, published
+# from the second lab and run against the scratch database.
+# The release's smoke-test step, against postgres:17-alpine on 127.0.0.1:55432
+# with the step's password, from a temporary folder, on the 37dc477a build.

@@ -5,12 +5,22 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, PR validation's migration guard (W53), after
-the EF migration bundle (W52, W53) and the whole release on `acbea21c`.
-Last edit: 13 October 2026, 07:41. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the migrator project (W52), after PR
+validation's migration guard (W53) and the EF migration bundle.
+Last edit: 13 October 2026, 09:43. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 08:31-09:41 ([phoenix-bundle](2026-10-13-phoenix-bundle.md),
+the fix; W52): the release's migrator as a project in the repository,
+`src/DbMigrator`. Two builds at two paths are identical for linux-x64 and
+win-x64; on scratch PostgreSQL databases it leaves the same history and
+rows as the old bundle; CI's .NET steps pass. On the way: since
+`c2a77964` (10 July) EF created the context with a second design-time
+factory that reads the WebAPI's development settings, so the migrator
+failed outside a checkout; there is one factory now (`d1500897`). Pushed
+with a smoke test in the release job (`82ea130a`).
 
 On `arch`, 13/10 07:36-07:38 ([phoenix-bundle](2026-10-13-phoenix-bundle.md),
 the follow-up; W53): PR validation's migration guard, run as its job runs
@@ -166,9 +176,9 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   dates compressed copies with the build time (W50); with compression off
   (`e6ce3549`) the whole release is green under `none`, `all` and `locales`.
   With the frontend in place it is measured on the same path only (W42);
-  the reprotest axes ran without it. The EF migration bundle is red (W52):
-  `dotnet ef`'s temporary project puts a random `/tmp` path into the
-  bundle; the fix proposed is a migrator project in the repository. On
+  the reprotest axes ran without it. The release's migrator is
+  reproducible as `src/DbMigrator` (W52, `cd36f241`), measured here, not
+  yet in CI. On
   .NET 10 the release job and PR validation's migration guard need a
   restore before `dotnet ef` (W53); it is in both since `21360193`, not
   yet run in CI.
@@ -195,12 +205,12 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. The migrator project for W52 (Leo's and WS's call), the test-tag run
-   in CI, and layer 5, the images. On 13/10 the two prepared WS changes
-   went onto the branch: the restore before `dotnet ef` in the release
-   and in PR validation's migration guard (W53, `21360193`), and
-   Dependabot bumping the SDK pin and the .NET images in one PR, with PR
-   validation failing when they differ (`833e173a`).
+1. The test-tag run in CI, then layer 5, the images. On 13/10 the branch
+   got the restore before `dotnet ef` in the release and in PR
+   validation's migration guard (W53, `21360193`), Dependabot bumping the
+   SDK pin and the .NET images in one PR with PR validation failing when
+   they differ (`833e173a`), and the migrator project with its smoke test
+   (W52, `d1500897`, `cd36f241`, `82ea130a`).
 2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
@@ -210,8 +220,8 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 3. Cross-machine and file order once the VM exists.
 4. For the WS delivery: one run of the release workflow on a test tag. It
    checks the Windows job, the version variable, the Node pin, the
-   calendar fix, the zips' packing (W48) and the bundle's restore (W53)
-   together.
+   calendar fix, the zips' packing (W48), the restores (W53) and the
+   migrator with its smoke test (W52) together.
 
 ## Keeping this file
 

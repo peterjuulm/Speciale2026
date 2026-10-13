@@ -34,3 +34,17 @@ Unable to retrieve project metadata. Ensure it's an SDK-style project.
 5480 files in commit, 5480 in lab: 0 missing, 0 differing, 0 extra
 guard-2 exit 0 07:37:59
 No changes have been made to the model since the last migration.
+== the fix: a migrator project (src/DbMigrator), 13/10 08:31-09:41
+factory: dotnet ef on 21360193 uses DatabaseContextDesignTimeFactory; on d1500897 DatabaseContextFactory
+acbea21c bundle from an empty folder: exit 1, DirectoryNotFoundException <folder>/../WebAPI/ before connecting (with --connection and env-only)
+d1500897 factory unit tests: 5 passed
+two builds of 37dc477a at two paths: linux-x64 a51039ce53e802c3c99c218ddd4c9552702cbc2897493ce9b3ba1163855442be (793328676 bytes) identical
+                                     win-x64   eca1c87473560278906af4a1bed497b108fde4d65e429936a65a1617f416f55b (528249265 bytes) identical
+old bundle 827679078 bytes
+old vs new, scratch PostgreSQL 17.9: history same and sorted dumps identical in every pair; byte-identical from an older migration to the latest;
+  one seed table's row order differs, also between two runs of the same tool
+up-to-date: both "No migrations were applied", exit 0; unreachable server: both exit 1 (NpgsqlException); --help identical, exit 0
+env-only connection and --connection over a wrong env value: same rows
+variant with the migrator's own assembly as startup: entry point ran once, migration ok
+release smoke-test step, postgres:17-alpine on 127.0.0.1, from a temp folder: exit 0, 150 migrations
+CI's .NET steps on 37dc477a: restore 0, build 0, unit 4231 passed, integration 678 passed, functional 149 passed, 0 failed; migration guard: no model changes
