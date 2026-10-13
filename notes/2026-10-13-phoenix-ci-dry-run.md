@@ -100,6 +100,16 @@ the release metadata) added to a copy of the SDK folder, and the Linux,
 Windows and migrator jobs rebuilt with it. All six outputs are byte for
 byte CI's: both Linux zips, both Windows zips and both migrators.
 
+A second check, 23:44-23:52, also without an expectation written first:
+does `DOTNET_ROLL_FORWARD=Disable` keep the compiler on the SDK's own
+runtime with 10.0.13 present? `ApplicationCore` built alone with
+`--no-incremental` in the Linux job's clone: with the variable its PDB
+says `10.0.12`, without it `10.0.13`. A first try without
+`--no-incremental` reused the first build's output and showed `10.0.13`
+both ways; it is discarded. The variable also reaches every other .NET
+program in a step, and `dotnet-ef` asks for runtime 8.0.0
+(`dotnet-ef.runtimeconfig.json`), which `Disable` would demand exactly.
+
 Cleanup, 21:32 UTC: the run with its artifacts deleted, the tag deleted,
 no cache or deployment created. While checking, 83 caches from the test
 tag of the morning turned up (3.1 GB of Docker build cache on
@@ -119,10 +129,14 @@ installed here, every output of the run is reproduced byte for byte.
 `[V]` for this run. The PDB records that runtime, so a build in CI
 differs from the one before it whenever setup-dotnet finds a new runtime
 patch, here the day it shipped `[I]`. A rebuild has to run its compiler
-on the same patch. Two fixes are possible, not made yet: install only
-the SDK from `global.json` in a folder of its own, as the SDK image and
-this lab have it, or pin the roll-forward of the build steps. Either is
-a change to how CI installs .NET, for Leo and Peter to choose.
+on the same patch. Two fixes would remove it; neither is made. Only the
+SDK from `global.json`, in a folder of its own, as in the SDK image and
+this lab: then the compiler can only run on the SDK's own runtime. Or
+`DOTNET_ROLL_FORWARD=Disable` on the build steps, which works for the
+compiler (the 23:44 check) but which Microsoft's documentation keeps for
+testing, and which would break `dotnet ef` in a step that runs both. The
+first is the sounder `[I]`. Either changes how CI installs or runs .NET,
+for Leo and Peter to choose.
 
 **The images are hermetic where the zips are not.** `[V]` The SDK image
 holds one runtime, so the compiler in it runs on the SDK's own. With the

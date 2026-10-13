@@ -51,3 +51,9 @@ mkdir -p $P/r13/local && cp -r $P/local/frontend-out $P/r13/local/
 DOTNET_DIR=$R REPO=/private/tmp/rb1-ci/src OUT=$P/r13 $E/phoenix-rt/ci-local.sh v0.0.0-thesis.2 linux
 DOTNET_DIR=$R REPO=/private/tmp/rb1-ci/src OUT=$P/r13 $E/phoenix-rt/ci-local.sh v0.0.0-thesis.2 "windows migrator"
 cmp <each of CI's six zips and migrators> <its twin in $P/r13/local>
+
+# The roll-forward check, 23:44-23:52, in the Linux job's clone C with the
+# SDK copy R (10.0.12 and 10.0.13), T=/private/tmp/rb1-rf-test. The first
+# try lacked --no-incremental, reused the first build and is discarded:
+for mode in disable default; do extra=""; [ $mode = disable ] && extra="DOTNET_ROLL_FORWARD=Disable"; ( cd $C && env -i HOME=/tmp/dch PATH=$R:/usr/bin DOTNET_ROOT=$R DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1 GITHUB_ACTIONS=true APP_VERSION=v0.0.0-thesis.2 LC_ALL=C.UTF-8 $extra dotnet build src/ApplicationCore/ApplicationCore.csproj -c Release --no-restore --no-dependencies --no-incremental -o $T/$mode -p:UseSharedCompilation=false ); dotnet /private/tmp/rb1-pdbdump/out/pdbdump.dll $T/$mode/ApplicationCore.pdb | grep -o 'runtime-version | [^ ]*'; done
+#   disable: 10.0.12-servicing.26422.108; default: 10.0.13-servicing.26504.104
