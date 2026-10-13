@@ -88,10 +88,11 @@ summaries in `results.txt` beside `kommando.txt`), 22:17-22:37:
    `2b8a8ff1…`, job worker `dfb87e07…`), and the tarballs are
    byte-identical. Against `P1` only times changed: the same entries and
    contents, the six base layers with their digests unchanged. Every time
-   later than the epoch became the epoch; earlier ones stayed, in 290 of
-   the WebAPI layer's 1408 entries and 162 of the job worker's 172. Each
-   rewritten layer carries the annotation `buildkit/rewritten-timestamp`
-   with the epoch.
+   later than the epoch became the epoch, and earlier ones stayed. Of the
+   WebAPI layer's 1408 entries, 1117 were later and became the epoch,
+   290 were earlier and kept their times, and one was the epoch already;
+   of the job worker's 172, 9, 162 and one. Each rewritten layer carries
+   the annotation `buildkit/rewritten-timestamp` with the epoch.
 
 A check at 22:30, on the minimal image: `SOURCE_DATE_EPOCH` only in
 buildx's environment, the way Docker's documentation passes it to
@@ -158,5 +159,8 @@ help.
   older time. In the 22:41 check a new epoch reran every step that adds
   a layer to these two images, so none came from the cache `[I]` for
   `gha`.
-- Pushing to a registry with `rewrite-timestamp`, and the job on GitHub.
-- A build on another machine, and the three MCP images.
+- Pushing to a registry with `rewrite-timestamp`. The job ran on GitHub
+  in the dry run later that night, with OCI output and no push, and gave
+  the same two image manifests as `arch`
+  ([phoenix-ci-dry-run](2026-10-13-phoenix-ci-dry-run.md)).
+- The three MCP images.

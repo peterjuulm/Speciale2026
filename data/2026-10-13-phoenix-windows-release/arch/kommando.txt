@@ -14,7 +14,34 @@ OUT=$O DOTNET_DIR=/private/tmp/rb1-dotnet10/sdk NODE_DIR=/private/tmp/rb1-node22
 OUT=$O DOTNET_DIR=/private/tmp/rb1-dotnet10/sdk NODE_DIR=/private/tmp/rb1-node22 FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=1791919869 $E/phoenix-rt/run.sh W all W-all
 OUT=$O DOTNET_DIR=/private/tmp/rb1-dotnet10/sdk NODE_DIR=/private/tmp/rb1-node22 FIXENV="APP_VERSION=v0.0.0-thesis" VER= ZEPOCH=1791919869 $E/phoenix-rt/run.sh W locales W-locales
 
-# The comparisons, in O:
-for m in none all locales; do cmp store-W-$m/control/source-root/release.sha256 store-W-$m/experiment-1/source-root/release.sha256 && echo "W-$m lists equal"; done
+# The comparisons, in O. Within a run the comparison is reprotest's own:
+# finding no differences, it replaces experiment-1 with a link to control
+# (R6), so the cmp of the two lists this file gave until Codex's check at
+# 23:47 compared the control's list with itself. reprotest's verdict:
+for m in none all locales; do grep -c 'No differences between' rt-W-$m.log; done
+#   1, 1, 1
 cmp store-W-none/control/source-root/release.sha256 store-W-all/control/source-root/release.sha256 && echo "none = all"
 cmp store-W-none/control/source-root/release.sha256 store-W-locales/control/source-root/release.sha256 && echo "none = locales"
+
+# The reruns, 23:54-00:33, after layer W in run.sh stopped publishing the
+# Linux release as well (Codex's check, 23:47). The lab as above, at 23:54:
+C=100e3912; L=/private/tmp/rb1-phoenix; rm -rf $L && mkdir -p $L && git -C $W archive $C -- . ':(exclude).claude' | tar -x -C $L && python3 $E/labcheck.py $W $C $L | tail -1; echo "ZEPOCH $(git -C $W log -1 --format=%ct $C)"; git -C $W rev-parse $C
+#   5764 files in commit, 5764 in lab: 0 missing, 0 differing, 0 extra
+#   ZEPOCH 1791919869
+#   100e39127a1561a2d50dd54a01f8209c8b62193a
+for m in none all locales; do pin=" LC_ALL=C.UTF-8"; [ $m = locales ] && pin=""; OUT=$O DOTNET_DIR=/private/tmp/rb1-dotnet10/sdk NODE_DIR=/private/tmp/rb1-node22 FIXENV="APP_VERSION=v0.0.0-thesis$pin" VER= ZEPOCH=1791919869 $E/phoenix-rt/run.sh W $m W2-$m > $O/W2-$m.out 2>&1; cat $O/W2-$m.out; done
+#   W2-none exit 0 control 04cc575958a3611a experiment link leftover 0
+#   W2-all exit 0 control 04cc575958a3611a experiment link leftover 0
+#   W2-locales exit 0 control 04cc575958a3611a experiment link leftover 0
+
+# The comparisons, in O:
+for m in none all locales; do grep -c 'No differences between' rt-W2-$m.log; done
+#   1, 1, 1
+for m in all locales; do cmp store-W2-none/control/source-root/release.sha256 store-W2-$m/control/source-root/release.sha256 && echo "W2 none = $m"; done
+wc -l < store-W2-none/control/source-root/release.sha256
+#   2132
+grep -v -e '  release/ws-pems-linux-x64/' -e '  release/ws-pems-job-worker-linux-x64/' store-W-none/control/source-root/release.sha256 | cmp - store-W2-none/control/source-root/release.sha256 && echo "W2 = W without its Linux lines"
+for m in none all locales; do printf "W2-$m: "; grep -o 'LC_ALL=[A-Za-z_.0-9-]*' samples-W2-$m.txt | sort | uniq -c | tr '\n' ' '; echo; done
+#   W2-none: 508 LC_ALL=C.UTF-8; W2-all: 469 LC_ALL=C.UTF-8;
+#   W2-locales: 283 LC_ALL= (the first build), 276 LC_ALL=et_EE.UTF-8
+

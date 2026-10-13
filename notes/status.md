@@ -5,8 +5,8 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the release workflow on GitHub against a local
-rebuild. Last edit: 13 October 2026, 23:50. Also 12/10: the frontend lock's hashes filled
+Last run: 14 October 2026, 00:33, the Windows release rerun without the
+Linux publishes. Last edit: 14 October 2026, 00:45. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
@@ -35,14 +35,18 @@ the same, and the base layers keep their digests. The release job does
 that since `fa60ea97` (pushed; Codex reviewed). One builder hides part of
 the difference: `WORKDIR` comes from its cache despite `--no-cache` (W57).
 
-On `arch`, 13/10 21:31-22:16
+On `arch`, 13/10 21:31-22:16, rerun 23:54-00:33
 ([phoenix-windows-release](2026-10-13-phoenix-windows-release.md); W55):
 the Windows release as the Windows job builds it since the merge, on
 Linux: the locked restore, three `win-x64` publishes and both zips with
-the packing script, on `100e3912`. Two builds gave the same 4256 files
+the packing script, on `100e3912`. Two builds gave the same 2132 files
 and zips under `none`, `all`, and `locales` without the locale pin, which
-the job does not set. Unsigned: signing, which the job does before
-packing, is what is left between two of its runs.
+the job does not set. The first three runs also published the Linux
+release first, through a mistake in `run.sh` that Codex's check found;
+the reruns without it gave the same Windows files. Unsigned: on one
+toolchain, signing, which the job does before packing, is what is left
+between two of its runs; across machines also the compiler's runtime
+patch (W58).
 
 On `arch`, 13/10 20:59-21:33
 ([phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md), follow-up;
@@ -74,7 +78,7 @@ On `arch`, 13/10 14:43-15:15
 release jobs now pack their zips with one script (`5ec085ac`, not pushed).
 It gives the Linux zips of the merge's release byte for byte, the Windows
 step packs the same way, and it refuses links, a zip inside the folder and
-names with a newline. Not yet run in CI.
+names with a newline. It ran in CI in the dry run that night.
 
 On `arch`, 13/10 13:50-14:32
 ([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), results 11 and 12):
@@ -241,7 +245,7 @@ Layer 5 (container) is below the SDK 10 table.
 | Same path (`none`) | green 5/10, 638 files | green 7/10 with the frontend in `wwwroot/`: 2227 files, `2cd8c531…` W42; without it the same `9283b29e…` as on 5/10, now with the version from `APP_VERSION` W45; 12/10 built end to end with its frontend at `a16f9a91`: 2227 files, `b72bbc3b…`, also under `all` | fix 12/10 `a16f9a91`: the entries sorted W47; before it one of two exports, 12 and 14 of 26 builds | red 12/10 as CI packs: times, order, owner W48; normalised packing identical |
 | `build_path` | red 5/10, the two dev json only W8 W9 | green 5/10 W25 | green 12/10 beyond W47 | - |
 | `time` | green 5/10, replaces W10 | green 5/10 W29 | green 12/10 beyond W47; no page carries a date | - |
-| `locales` | fix 5/10 W26 with `LC_ALL` | fix 5/10 W26 with `LC_ALL`, the pin not yet run in CI | green 12/10 beyond W47, `et_EE.UTF-8` reaches Node | - |
+| `locales` | fix 5/10 W26 with `LC_ALL` | fix 5/10 W26 with `LC_ALL`, the pin in CI since 13/10 | green 12/10 beyond W47, `et_EE.UTF-8` reaches Node | - |
 | `umask` | green 5/10, 29 modes follow the umask W30 | green 5/10, 142 modes follow the umask W30 | green 12/10 beyond W47; 946 modes follow the umask, the 44 `public/` files keep the checkout's W30 | covered by `all` 12/10: modes reach the CI zip W30; not the normalised one |
 | `exec_path` | green 5/10, replaces W10 | green 5/10 W29 | green 12/10 beyond W47 | - |
 | `timezone` | green 5/10 | green 5/10 | green 12/10 beyond W47 | - |
@@ -265,9 +269,9 @@ it on Linux (layer `W`), the cells of the grid above being SDK 9.0.120's.
 
 | Axis | `332752b9` | `e6ce3549`, compression off | `79cb67a7`, after the merge | `100e3912`, Windows (`W`) |
 | --- | --- | --- | --- | --- |
-| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical | green 13/10: 2124 files, `113c707d…`; normalised zips identical | green 13/10: 4256 files, `3f4539bc…`; both zips identical, unsigned W55 |
-| `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit | green 13/10: `113c707d…`, the same as `none`; W51 not hit | green 13/10: `3f4539bc…`, the same as `none` W55 |
-| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | green 13/10 without the pin: `113c707d…` | green 13/10 without the pin: `3f4539bc…` W55 |
+| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical | green 13/10: 2124 files, `113c707d…`; normalised zips identical | green 14/10: 2132 files, `04cc5759…`; both zips identical, unsigned W55 |
+| `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit | green 13/10: `113c707d…`, the same as `none`; W51 not hit | green 14/10: `04cc5759…`, the same as `none` W55 |
+| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | green 13/10 without the pin: `113c707d…` | green 14/10 without the pin: `04cc5759…` W55 |
 
 Layer 5, the WebAPI and job worker images on SDK 10.0.401, `100e3912`,
 under `none` only (13/10): red as the release job builds them, times only
@@ -280,8 +284,9 @@ WS branch since `fa60ea97`.
   stay open. They also make layer 1's hash lists differ between reprotest
   runs, so layer 1 is compared within a run only.
 - Layer 2: file modes follow the umask (W30), decided in layer 4. The locale
-  pin `LC_ALL=C.UTF-8` is on the WS branch (`4e5237a3`) but has not run in CI;
-  on SDK 10 it is no longer needed for W26. On SDK 10 the endpoints manifest
+  pin `LC_ALL=C.UTF-8` is on the WS branch (`4e5237a3`) and ran in CI's
+  Linux release jobs in the dry run (13/10, the job logs); on SDK 10 it is
+  no longer needed for W26. On SDK 10 the endpoints manifest
   dates compressed copies with the build time (W50); with compression off
   (`e6ce3549`) the whole release is green under `none`, `all` and `locales`.
   With the frontend in place it is measured on the same path only (W42);
@@ -297,9 +302,10 @@ WS branch since `fa60ea97`.
   there in main's CI. After the merge the whole release is identical in
   two builds under `none`, `all` and `locales` (`79cb67a7`).
 - Windows: the release as its job builds it on Linux is identical in two
-  builds before signing (13/10, W55). Open: signing, which makes two runs
-  differ by design, CI's Windows job against a local build, and a build on
-  Windows. Open points in [windows](windows.md).
+  builds before signing (13-14/10, W55), and CI's unsigned Windows job
+  equals a local build but for the compiler's runtime patch (W58). Open:
+  signing, which makes two runs differ by design, and a build on Windows.
+  Open points in [windows](windows.md).
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
   the runtime's minified names changed between commits (W44), the
@@ -315,11 +321,13 @@ WS branch since `fa60ea97`.
   test tag; after the merge its zips are identical in two builds here.
   The Windows publish that came with the merge packed with plain
   `zip -qr`; since `5ec085ac` both jobs pack with one script, tested here
-  on Linux trees. The Windows zips themselves, and `SHA256SUMS`, which
-  lists them with the Linux zips, are not measured.
+  on Linux trees. The Windows zips are identical in two builds (W55);
+  `SHA256SUMS`, which the release job writes over all the zips, is not
+  measured.
 - Layer 5: the WebAPI and job worker images differ in times only and are
-  identical with the fix (W56, `fa60ea97`), on `arch` with one builder.
-  Open: the fix in CI, the three MCP images (base images without digests),
+  identical with the fix (W56, `fa60ea97`), on `arch` with one builder,
+  and the same from GitHub's runner in the dry run (OCI output, no push).
+  Open: pushing with the fix, the three MCP images (base images without digests),
   the manual image script `scripts/docker-build-push.sh`, which pushes
   release images too, and the provenance attestation's times. The
   images' assemblies carry `APP_VERSION` as their informational version

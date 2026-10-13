@@ -64,8 +64,8 @@ Verbatim in `data/2026-10-13-phoenix-ci-dry-run/arch/kommando.txt`.
 
 ## Result
 
-`[V]` (the run's logs and artifacts, and the local rebuild, in private
-data; `compare.txt` and `results.txt` beside `kommando.txt`). The run
+`[V]` (the run's logs and artifacts, the local rebuild and
+`compare.txt`, in private data; `results.txt` beside `kommando.txt`). The run
 20:57-21:19 UTC, the local rebuild 22:57-23:08:
 
 1. Held. All five jobs passed. The migrator's smoke test applied all 160
@@ -138,9 +138,14 @@ testing, and which would break `dotnet ef` in a step that runs both. The
 first is the sounder `[I]`. Either changes how CI installs or runs .NET,
 for Leo and Peter to choose.
 
-**The images are hermetic where the zips are not.** `[V]` The SDK image
-holds one runtime, so the compiler in it runs on the SDK's own. With the
-timestamp fix (`fa60ea97`) the images are reproducible across machines.
+**The images do not take the runner's .NET; the zips do.** `[V]` The
+images' compiler runs in the SDK image, not on the runner's .NET: the
+WebAPI image's `ApplicationCore.pdb` is the same file from CI and from
+here, and records runtime `10.0.12` (checked after Codex's check of this
+note, at 00:09 on 14/10 with `oci-file.py`). With the timestamp fix
+(`fa60ea97`) both images were
+the same on the two machines. Their builds are not hermetic: they still
+download the base images and the NuGet packages.
 
 **The two kinds of release output carry different versions.** `[V]`
 The zips' assemblies say `v0.0.0-thesis.2+2ec8e0ca…`: the SDK adds the

@@ -24,7 +24,7 @@ section is kept as the reasoning of 5/10.
   `et_EE.UTF-8` four of Phoenix's assemblies change ([findings
   table](findings-table.md), W26; [roslyn-locale-repro](2026-09-24-roslyn-locale-repro.md)).
 - The Linux release jobs pin `LC_ALL: C.UTF-8` on `thesis/reproducible-builds`
-  (`4e5237a3`), not yet run in CI.
+  (`4e5237a3`); they ran with it on GitHub in the dry run of 13/10.
 - `LC_ALL` does nothing on Windows: .NET takes the culture from the user's
   region settings `[V]` `CultureInfo.Windows.cs`, dotnet/runtime `release/9.0`
   (layer plan).
@@ -87,8 +87,9 @@ From the layer plan, plus what came up on 5/10:
   with one script since `5ec085ac`.
 - 2026-10-13: the Windows release built twice on `arch`, the job's commands
   on `100e3912`, under `none` and `all`, and under `locales` without the
-  locale pin: the same 4256 files and zips before signing
-  (phoenix-windows-release).
+  locale pin: the same 2132 files and zips before signing
+  (phoenix-windows-release; rerun 14/10, as the first runs also
+  published the Linux release first).
 - 2026-10-13: the Windows job ran on GitHub's `ubuntu-latest` in the dry
   run, unsigned, on `fa60ea97` (phoenix-ci-dry-run). Its zips and the
   migrator equal a local rebuild once the compiler runs on the same

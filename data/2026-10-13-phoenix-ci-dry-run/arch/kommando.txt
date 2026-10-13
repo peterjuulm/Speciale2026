@@ -57,3 +57,19 @@ cmp <each of CI's six zips and migrators> <its twin in $P/r13/local>
 # try lacked --no-incremental, reused the first build and is discarded:
 for mode in disable default; do extra=""; [ $mode = disable ] && extra="DOTNET_ROLL_FORWARD=Disable"; ( cd $C && env -i HOME=/tmp/dch PATH=$R:/usr/bin DOTNET_ROOT=$R DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1 GITHUB_ACTIONS=true APP_VERSION=v0.0.0-thesis.2 LC_ALL=C.UTF-8 $extra dotnet build src/ApplicationCore/ApplicationCore.csproj -c Release --no-restore --no-dependencies --no-incremental -o $T/$mode -p:UseSharedCompilation=false ); dotnet /private/tmp/rb1-pdbdump/out/pdbdump.dll $T/$mode/ApplicationCore.pdb | grep -o 'runtime-version | [^ ]*'; done
 #   disable: 10.0.12-servicing.26422.108; default: 10.0.13-servicing.26504.104
+
+# The images' compiler runtime, 00:09 on 14/10, after Codex's check of
+# the note: the WebAPI image's ApplicationCore.pdb from CI's tarball and
+# from the local one, DN=/private/tmp/rb1-dotnet10/sdk:
+mkdir -p $P/compare/image-pdb; for side in ci local; do t=$P/ci/image-ws-pems/ws-pems.oci.tar; [ $side = local ] && t=$P/local/images/ws-pems.oci.tar; python3 $E/phoenix-rt/oci-file.py $t app/ApplicationCore.pdb $P/compare/image-pdb/ApplicationCore-$side.pdb; env DOTNET_ROOT=$DN $DN/dotnet /private/tmp/rb1-pdbdump/out/pdbdump.dll $P/compare/image-pdb/ApplicationCore-$side.pdb | grep -o 'runtime-version | [^ ]*'; done; cmp $P/compare/image-pdb/ApplicationCore-ci.pdb $P/compare/image-pdb/ApplicationCore-local.pdb && echo same
+#   both from layer sha256:26d06ecbac98…; both runtime-version 10.0.12-servicing.26422.108; same
+
+# The version in CI's outputs, 00:42 on 14/10: ApplicationCore.dll's
+# informational version in both WebAPI zips and in the WebAPI image, with
+# X for a scratch folder:
+for z in release-zips-linux/ws-pems-linux-x64 release-zips-windows/ws-pems-win-x64; do d=${z#*/}; printf "%s: " $d; unzip -p $P/ci/$z-v0.0.0-thesis.2.zip $d/ApplicationCore.dll | strings | grep -m2 'thesis' | tr '\n' ' '; echo; done
+python3 $E/phoenix-rt/oci-file.py $P/ci/image-ws-pems/ws-pems.oci.tar app/ApplicationCore.dll $X/img-ApplicationCore.dll > /dev/null && strings $X/img-ApplicationCore.dll | grep -m1 '^v0\.0\.0-thesis'
+#   ws-pems-linux-x64: 8v0.0.0-thesis.2+2ec8e0cad0637a97ab39aece0c01f62fac19b380
+#   ws-pems-win-x64: 8v0.0.0-thesis.2+2ec8e0cad0637a97ab39aece0c01f62fac19b380
+#   v0.0.0-thesis.2   (the image; "8" is the string's length byte)
+

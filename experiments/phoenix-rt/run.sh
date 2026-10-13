@@ -28,6 +28,12 @@
 #             normalised in release/zip-norm: modes 755 or 644 by the owner's
 #             x bit, every mtime set to ZEPOCH, names sorted, no extra fields
 #             (zip -X), TZ=UTC. Hashes the zips
+#          W  the Windows release as the reusable Windows job builds it, on
+#             Linux: the frontend as in R, the locked restore, the three
+#             win-x64 publishes, the migrator copied as the job copies it,
+#             and both zips packed with the commit's own
+#             scripts/pack-release-zip.sh. No Linux publish. Unsigned.
+#             Hashes release/
 #   AXIS   one reprotest variation: build_path, time, locales, umask,
 #          exec_path, timezone, environment, home, kernel, aslr, num_cpus,
 #          domain_host, user_group. Or "none": two builds, nothing varied. Or
@@ -42,12 +48,7 @@
 #   MIN_CPUS  CPUs for the control build, default 2
 #   FIXENV    VAR=VALUE added to every dotnet command, e.g. LC_ALL=C.UTF-8
 #   LAB       the lab, default /private/tmp/rb1-phoenix; must hold no build output
-#          W  the Windows release as the reusable Windows job builds it, on
-#             Linux: the frontend as in R, the locked restore, the three
-#             win-x64 publishes, the migrator copied as the job copies it,
-#             and both zips packed with the commit's own
-#             scripts/pack-release-zip.sh. Unsigned. Hashes release/
-#   ZEPOCH    layer Z: the time for the normalised zips, e.g. the commit's
+#   ZEPOCH    layers Z and W: the time for the zips, e.g. the commit's
 #             time (git log -1 --format=%ct)
 #   DOTNET_DIR  the SDK folder, default /home/leos/.dotnet (SDK 9.0.120);
 #             for .NET 10, Microsoft's SDK 10.0.401 in /private/tmp/rb1-dotnet10/sdk.
@@ -63,6 +64,13 @@
 # 7 October 2026: VER can be overridden.
 # 12 October 2026: layers R and Z, DOTNET_DIR.
 # 13 October 2026: NODE_DIR. Evening: layer W.
+# 14 October 2026: layer W without the Linux publishes. It cut "&& \$L2"
+#   off RB, which holds L2 already expanded, so nothing was cut and every
+#   W build published the Linux release before the Windows one; the
+#   frontend step is FRONT now. summary.tsv's experiment column says
+#   "link" where reprotest found no differences and replaced experiment-1
+#   with a link to control (R6); until now it hashed the control's list
+#   again.
 set -u
 LAYER=${1:?LAYER} AXIS=${2:?AXIS}
 LABEL=${3:-L$LAYER-$AXIS}
@@ -89,7 +97,8 @@ VER=${VER-'/p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis'}
 L2="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore $VER"
 NODEENV="env PATH=${NODE_DIR:-/opt/rb1-node}/bin:\$PATH CI=true npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1"
 if [ -n "$FIXENV" ]; then NODEENV="$NODEENV $FIXENV"; fi
-RB="( cd src/WebAPI/ClientApp && $NODEENV npm ci --offline --no-audit --no-fund && $NODEENV npm run build && rm -rf node_modules .next ) && $L2"
+FRONT="( cd src/WebAPI/ClientApp && $NODEENV npm ci --offline --no-audit --no-fund && $NODEENV npm run build && rm -rf node_modules .next )"
+RB="$FRONT && $L2"
 ZIP=/private/tmp/rb1-tools/zip TAG=v0.0.0-thesis DIRS='ws-pems-linux-x64 ws-pems-job-worker-linux-x64'
 WINPUB="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/win/ws-pems-win-x64 -r win-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/win/ws-pems-job-worker-win-x64 -r win-x64 --self-contained true --no-restore $VER && $ENV dotnet publish ./src/DbMigrator/DbMigrator.csproj -c Release -o ./publish/migrator-win -r win-x64 --self-contained true --no-restore $VER && cp publish/migrator-win/ws-pems-db-migrator.exe release/win/ws-pems-db-migrator-win-x64-$TAG.exe"
 case $LAYER in
@@ -107,8 +116,7 @@ case $LAYER in
      HASHED='release/zip-ci release/zip-norm' HASHFILE=zips.sha256
      ART='zips.sha256 release.sha256 release/zip-ci release/zip-norm' ;;
   W) ZEPOCH=${ZEPOCH:?layer W needs ZEPOCH}
-     BUILD="${RB%%&& \$L2}"
-     BUILD="${BUILD% } && $WINPUB && cd release/win && for d in ws-pems-win-x64 ws-pems-job-worker-win-x64; do env PATH=/private/tmp/rb1-tools:\$PATH SOURCE_DATE_EPOCH=$ZEPOCH ../../scripts/pack-release-zip.sh \$d ../\$d-$TAG.zip; done && cd ../.."
+     BUILD="$FRONT && $WINPUB && cd release/win && for d in ws-pems-win-x64 ws-pems-job-worker-win-x64; do env PATH=/private/tmp/rb1-tools:\$PATH SOURCE_DATE_EPOCH=$ZEPOCH ../../scripts/pack-release-zip.sh \$d ../\$d-$TAG.zip; done && cd ../.."
      HASHED=release HASHFILE=release.sha256
      ART="release.sha256 release/*.zip release/win/ws-pems-db-migrator-win-x64-$TAG.exe" ;;
   *) echo "LAYER must be 1, 2, R, Z or W" >&2; exit 2 ;;
@@ -160,6 +168,6 @@ LEFT=$(wc -l < "$OUT/leftover-$LABEL.txt")
 C="$OUT/store-$LABEL/control/source-root/$HASHFILE"
 E="$OUT/store-$LABEL/experiment-1/source-root/$HASHFILE"
 CM=$( [ -f "$C" ] && sha256sum < "$C" | cut -c1-16 || echo -)
-EM=$( [ -f "$E" ] && sha256sum < "$E" | cut -c1-16 || echo -)
+EM=$( [ -L "$OUT/store-$LABEL/experiment-1" ] && echo link || { [ -f "$E" ] && sha256sum < "$E" | cut -c1-16 || echo -; } )
 printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$LABEL" "$LAYER" "$AXIS" "$START" "$(date -Is)" "$RC" "$CM" "$EM" "$LEFT" >> "$OUT/summary.tsv"
 echo "$LABEL exit $RC control $CM experiment $EM leftover $LEFT"
