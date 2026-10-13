@@ -118,6 +118,12 @@ in Leo's private repository; `kommando.txt` writes out its steps.
    all 2124 files identical, and the normalised zips too (WebAPI
    `548f5fd3…`, job worker `dbd40cc6…`). The zips packed the old CI way
    differ, as in W48; the release no longer packs them so.
+10. Main's CI workflow on GitHub, started by hand on the branch after the
+    push (`02-main-ci.yml`, run 38387985880, 13:07-13:27, the backend on
+    WS's office runner): every job passed. The backend's 4681 unit, 807
+    integration and 153 functional tests, the counts of 7, and the EF
+    check; the frontend's 1610 tests; the Node services' tests; all five
+    images built, not pushed.
 
 ## Interpretation
 
@@ -138,15 +144,15 @@ measured fixes go into main's new structure instead of beside it.
 
 **The merged branch is as reproducible as the branch was.** `[V]` On the
 head the whole release and the migrator are identical in two builds, and
-CI's tests pass (7-9), with main's 122 commits, Node 22 and the new
-factories in. Measured under `none` only: the varied axes have not run on
+CI's tests pass, here and on WS's office runner (7-10), with main's 122
+commits, Node 22 and the new factories in. Measured under `none` only: the varied axes have not run on
 the merged code.
 
 ## Caveats and not tested
 
-- Nothing of the merged branch has run in GitHub Actions. Pushing the
+- On GitHub only main's CI ran on the merged branch (10). Pushing the
   branch starts no workflow: PR validation needs a pull request, the
-  release a tag.
+  release a tag, and neither has run on it.
 - The migrations image was not built: its base images and a NuGet restore
   inside the build need downloads.
 - The Windows publishes were not built here, and the Windows migrator was

@@ -128,3 +128,13 @@ S=$D/release-$C/store-Z-none
 cmp $S/control/source-root/release.sha256 $S/experiment-1/source-root/release.sha256
 diff $S/control/source-root/zips.sha256 $S/experiment-1/source-root/zips.sha256
 grep -oE 'experiment-1/source-root/release/[^ ]+' $S/experiment-1.diffoscope.out | sed -E 's#experiment-1/source-root/##' | awk -F/ '{print $1"/"$2"/"$3}' | sort | uniq -c
+
+# Result 10, 13:07-13:27, after the push of 79cb67a7 (Leo's go): main's CI
+# workflow started by hand on the branch, followed until it finished, its
+# logs saved to private data.
+R=Weel-Sandvig/WS.Phoenix; gh workflow run 02-main-ci.yml -R $R --ref thesis/reproducible-builds
+gh run list -R $R --workflow 02-main-ci.yml --branch thesis/reproducible-builds -L 2 --json databaseId,status,headSha,createdAt,event --jq '.[] | "\(.databaseId) \(.status) \(.headSha[:8]) \(.event) \(.createdAt)"'
+#   38387985880 queued 79cb67a7 workflow_dispatch 2026-10-13T11:06:55Z
+ID=38387985880; gh run watch $ID -R $R --exit-status --interval 60 > /dev/null 2>&1; gh run view $ID -R $R --json status,conclusion,jobs --jq '"\(.status) \(.conclusion)", (.jobs[] | "\(.name): \(.conclusion) \(.startedAt) \(.completedAt)")'
+curl -s -L -H "Authorization: Bearer $(gh auth token)" https://api.github.com/repos/$R/actions/runs/$ID/logs -o $D/main-ci-run/run-logs.zip
+grep -rh -E 'Total tests|Passed: +[0-9]+|Tests: +[0-9]+ passed|No changes have been made to the model|naming to docker.io/library/[a-z-]+:main-ci' logs

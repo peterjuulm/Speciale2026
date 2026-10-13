@@ -5,12 +5,18 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the merged branch on `arch`: CI's .NET steps,
-the migrator twice and the whole release twice.
-Last edit: 13 October 2026, 12:40. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, main's CI on GitHub on the merged branch.
+Last edit: 13 October 2026, 13:35. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On GitHub, 13/10 11:07-11:27 UTC
+([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), result 10):
+main's CI workflow started by hand on the merged branch (`79cb67a7`).
+Every job passed: the backend's tests on WS's office runner with the same
+counts as on `arch`, the frontend's 1610 tests, the Node services' tests,
+and all five images built, not pushed.
 
 On `arch`, 13/10 10:34-12:29
 ([phoenix-merge-main](2026-10-13-phoenix-merge-main.md); W40, W41, W52):
@@ -231,13 +237,11 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. A GitHub run of the merged branch (Leo's call): pushing starts no
-   workflow, so a draft pull request for PR validation or a second test
-   tag for the release workflow, which now runs the tests on WS's office
-   runner. It would check the Node 22 pin, the tag check and the
-   migrator's smoke test both ways on GitHub. Then layer 5, the images.
-   The merge (13/10, `79cb67a7`) is measured here: CI's .NET steps, the
-   migrator and the whole release twice.
+1. The merge (13/10, `79cb67a7`) is measured on `arch` and passed main's
+   CI on GitHub. PR validation and the release workflow have not run on
+   it: a draft pull request or a second test tag (Leo's call) would check
+   the tag check and the migrator's smoke test both ways on GitHub. Then
+   layer 5, the images.
 2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the

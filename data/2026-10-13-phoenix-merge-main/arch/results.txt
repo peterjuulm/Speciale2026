@@ -69,3 +69,17 @@
      dbd40cc6698b804a0eb0582bacebf9cf7be6e62f57fd4c3aeb90eb5e1f02cae3  ws-pems-job-worker-linux-x64-v0.0.0-thesis.zip
    zip-ci differ (both files), as in W48; diffoscope names no other file
    reprotest exit 1 for the zip-ci difference; leftover 0
+
+10. Main's CI on GitHub on 79cb67a7, run 38387985880 (workflow_dispatch),
+    11:06:59-11:26:57 UTC: completed, success
+      test-node-services                    success  11:06:59-11:10:15
+      build-backend / build (linux_ws-office) success  11:06:59-11:22:05
+      build-frontend / build                success  11:06:59-11:12:50
+      build-images                          success  11:22:07-11:26:57
+    backend: 4681 of 4738, 807 of 836, 153 of 165 passed (the rest
+    skipped), the test run successful; EF check "No changes have been
+    made to the model since the last migration."
+    frontend: 1610 tests in 164 suites passed
+    images built and named :main-ci, not pushed: ws-pems,
+    ws-pems-job-worker, wspems-mcp-server, wspems-chat-server,
+    wspems-mcp-auth-broker
