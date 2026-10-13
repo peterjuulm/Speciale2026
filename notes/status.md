@@ -5,17 +5,17 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the whole release under `all` on the merged branch.
-Last edit: 13 October 2026, 14:20. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the whole release under `locales` on the merged branch.
+Last edit: 13 October 2026, 14:35. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
 
-On `arch`, 13/10 13:50-14:07
-([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), result 11):
-the whole release built twice under `all` on the merged head `79cb67a7`.
-All 2124 files and the normalised zips identical, the hash list the same
-as under `none`. Read in the merged code: main's lock has lost its `libc`
+On `arch`, 13/10 13:50-14:32
+([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), results 11 and 12):
+the whole release built twice under `all`, and under `locales` without the
+`LC_ALL` pin, on the merged head `79cb67a7`. Both times all 2124 files and
+the normalised zips identical, the hash list the same as under `none`. Read in the merged code: main's lock has lost its `libc`
 fields (W46), the Windows zips are packed with plain `zip -qr` (W48),
 PR validation's migration guard runs in the reusable .NET build that
 passed in main's CI (W53), and main's CI set the frontend up with Node
@@ -201,7 +201,7 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 | --- | --- | --- | --- |
 | `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical | green 13/10: 2124 files, `113c707d…`; normalised zips identical |
 | `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit | green 13/10: `113c707d…`, the same as `none`; W51 not hit |
-| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | - |
+| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | green 13/10 without the pin: `113c707d…` |
 
 ## Open, by layer
 
@@ -223,7 +223,7 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   the test tag. Since the merge, PR validation's guard runs in the
   reusable .NET build after its restore and build (#787), and passed
   there in main's CI. After the merge the whole release is identical in
-  two builds under `none` and `all` (`79cb67a7`).
+  two builds under `none`, `all` and `locales` (`79cb67a7`).
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
   part of the WS delivery. Open points in the layer plan.
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
@@ -254,7 +254,7 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 ## Next up
 
 1. The merge (13/10, `79cb67a7`) is measured on `arch`, the whole release
-   under `none` and `all`, and passed main's CI on GitHub. PR validation and the release workflow have not run on
+   under `none`, `all` and `locales`, and passed main's CI on GitHub. PR validation and the release workflow have not run on
    it: a draft pull request or a second test tag (Leo's call) would check
    the tag check and the migrator's smoke test both ways on GitHub. Then
    layer 5, the images.

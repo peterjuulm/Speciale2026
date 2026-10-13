@@ -174,3 +174,27 @@ git -C $W log --oneline 82ea130a..79cb67a7 -- src/WebAPI/ClientApp/next.config.j
 #   15.5.25 (also on 82ea130a); no commit
 git -C $W show 79cb67a7:.github/workflows/00-reusable-windows-publish.yml | grep -n "zip -qr"
 git -C $W show 79cb67a7:.github/workflows/03-release.yml | grep -nE "release-zips-|sha256sum \*.zip"
+
+# Result 12, from 14:17, on 79cb67a7 (Leo's go): the whole release under reprotest's
+# locales, without the LC_ALL pin, alone on the machine, in a fresh lab:
+L=/private/tmp/rb1-phoenix; rm -rf $L && mkdir -p $L && git -C $W archive $C -- . ':(exclude).claude' | tar -x -C $L && python3 $E/labcheck.py $W $C $L | tail -1
+#   5763 files in commit, 5763 in lab: 0 missing, 0 differing, 0 extra
+OUT=$D/release-$C DOTNET_DIR=$DN NODE_DIR=/private/tmp/rb1-node22 FIXENV="APP_VERSION=v0.0.0-thesis" VER= ZEPOCH=1791883289 $E/phoenix-rt/run.sh Z locales Z-locales > $D/release-$C-Z-locales.out 2>&1
+# The comparisons, as for result 11 with S=$D/release-$C/store-Z-locales,
+# and the samples split by build:
+S=$D/release-$C/store-Z-locales
+cmp $S/control/source-root/release.sha256 $S/experiment-1/source-root/release.sha256
+cmp $S/control/source-root/release.sha256 $D/release-$C/store-Z-none/control/source-root/release.sha256
+diff $S/control/source-root/zips.sha256 $S/experiment-1/source-root/zips.sha256
+grep -oE 'experiment-1/source-root/release/[^ ]+' $S/experiment-1.diffoscope.out | sed -E 's#experiment-1/source-root/##' | awk -F/ '{print $1"/"$2"/"$3}' | sort | uniq -c
+python3 - <<'PY'
+import collections,re
+F='D/release-79cb67a7/samples-Z-locales.txt'   # D as above
+keys=['umask','libfaketime','LANG','LC_ALL','TZ','home','ncpus']
+g=collections.Counter()
+for l in open(F):
+    d=dict(re.findall(r'(\S+?)=(\S*)',l))
+    side='experiment' if 'experiment' in d.get('cwd','') or d.get('LANG','').startswith('et_') else 'control'
+    g[(side,)+tuple(f"{k}={d.get(k,'')}" for k in keys)]+=1
+for k,n in sorted(g.items()): print(n,' '.join(k))
+PY

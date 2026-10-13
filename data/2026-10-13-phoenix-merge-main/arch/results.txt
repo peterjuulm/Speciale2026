@@ -100,3 +100,14 @@
     FAKETIME=+34416420, LANG et_EE.UTF-8, TZ GMT-14, exec_path 1,
     home /nonexistent/second-build, environment varied, 11 CPUs, in
     build-experiment-1; LC_ALL C.UTF-8 in both; aslr on in both
+
+12. The whole release twice (run.sh Z, reprotest locales, FIXENV without
+    LC_ALL) on 79cb67a7, 14:17:10-14:32:32
+    release.sha256 identical, 2124 files, sha256 of the list
+    113c707dac8e5171, the same file as under none (9)
+    zip-norm identical, the same two hashes as in 9
+    zip-ci differ (both files), as in W48; diffoscope names no other file
+    reprotest exit 1 for the zip-ci difference; leftover 0
+    samples of the .NET processes: control 256, LANG C.UTF-8, LC_ALL
+    unset; experiment 255, LANG and LC_ALL et_EE.UTF-8; in both umask
+    0022, no faketime, TZ GMT+12, the same home and build folder, 2 CPUs

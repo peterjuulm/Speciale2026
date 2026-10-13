@@ -156,6 +156,14 @@ in Leo's private repository; `kommando.txt` writes out its steps.
     time zone GMT-14, `LANG` `et_EE.UTF-8`, another home folder and 11
     CPUs against the control's 2; `LC_ALL` was `C.UTF-8` in both, as the
     release sets it.
+12. The whole release built twice under reprotest's `locales`, without
+    the `LC_ALL` pin, 14:17-14:32: the expectation held. All 2124 files
+    identical, the hash list `113c707dac8e5171` again, the normalised zips
+    the same two hashes; only the zips packed the old CI way differ (W48).
+    No compiler server or MSBuild node was left over. The samples of the
+    .NET processes show `LANG` and `LC_ALL` `et_EE.UTF-8` in the
+    experiment build, `LANG` `C.UTF-8` and no `LC_ALL` in the control,
+    everything else the same.
 
 ## Interpretation
 
@@ -178,8 +186,9 @@ measured fixes go into main's new structure instead of beside it.
 head the whole release and the migrator are identical in two builds, and
 CI's tests pass, here and on WS's office runner (7-10), with main's 122
 commits, Node 22 and the new factories in. The whole release stays
-identical when the second build varies everything `all` varies here (11);
-the migrator was measured under `none` only.
+identical when the second build varies everything `all` varies here (11),
+and when only the locale changes, without the pin (12); the migrator was
+measured under `none` only.
 
 ## Caveats and not tested
 
@@ -194,8 +203,7 @@ the migrator was measured under `none` only.
   code in the merge commit's tree, built here.
 - `79cb67a7` differs from `805275c4` only in two workflow files and the
   gitleaks configuration, so results 4 and 5 hold for it `[I]`.
-- One machine. The whole release under `none` and `all`, the migrator
-  under `none` only. `all` keeps `LC_ALL` at `C.UTF-8`, as the release
-  does, so the locale varied in `LANG` alone; `locales` without the pin
-  has not run on the merged code. The samples cover the .NET processes,
-  not Node's.
+- One machine. The whole release under `none`, `all` and `locales`, the
+  migrator under `none` only. `all` keeps `LC_ALL` at `C.UTF-8`, as the
+  release does; `locales` (12) ran without it. The samples cover the .NET
+  processes, not Node's.
