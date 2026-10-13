@@ -255,7 +255,7 @@ The project gets `PathMap`, a lock file and `APP_VERSION` from
 
 **It behaves as the bundle did, where the bundle worked at all.** `[V]`
 The same EF program, so the same command line and the same databases, in
-every case measured. `[I]` The release's bundle could not have worked
+every case measured. `[I]` The branch's bundle could not have worked
 outside a checkout since `c2a77964`, which no step before a deployment
 exercised; the release job now runs the migrator against an empty
 PostgreSQL before it ships it.
@@ -273,8 +273,13 @@ Caveats and not tested:
   integration and 149 functional tests passed, none failed, and the
   migration guard reports no model changes. The run spans a suspend of
   the laptop.
-- No released migrator was run; that those built after `c2a77964` fail
-  outside a checkout is inferred from their source, which has both
-  factories.
+- No released migrator was run. Releases are built from main, which the
+  branch left on 14/9, and main rewrote both factories on 22/9 with a
+  guard that keeps design-time commands from remote hosts unless they are
+  allowed. What the July factory did to the branch therefore says little
+  about main's releases; how the guard meets the migrator is part of
+  merging main into the branch. Corrected 13/10: an earlier version of
+  this caveat inferred that every migrator built after `c2a77964` fails,
+  from the factory's file being present, not from its content.
 - The database comparisons ran against PostgreSQL 17.9 with trust
   authentication over a socket, one machine.

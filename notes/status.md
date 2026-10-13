@@ -29,8 +29,8 @@ the fix; W52): the release's migrator as a project in the repository,
 win-x64; on scratch PostgreSQL databases it leaves the same history and
 rows as the old bundle; CI's .NET steps pass. On the way: since
 `c2a77964` (10 July) EF created the context with a second design-time
-factory that reads the WebAPI's development settings, so the migrator
-failed outside a checkout; there is one factory now (`d1500897`). Pushed
+factory that reads the WebAPI's development settings, so the branch's
+migrator failed outside a checkout; there is one factory now (`d1500897`). Pushed
 with a smoke test in the release job (`82ea130a`).
 
 On `arch`, 13/10 07:36-07:38 ([phoenix-bundle](2026-10-13-phoenix-bundle.md),
