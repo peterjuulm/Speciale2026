@@ -5,11 +5,18 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the whole release under `locales` on the merged branch.
-Last edit: 13 October 2026, 14:35. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, one packing script for both release jobs, tested.
+Last edit: 13 October 2026, 15:25. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 14:43-15:15
+([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), result 13): both
+release jobs now pack their zips with one script (`5ec085ac`, not pushed).
+It gives the Linux zips of the merge's release byte for byte, the Windows
+step packs the same way, and it refuses links, a zip inside the folder and
+names with a newline. Not yet run in CI.
 
 On `arch`, 13/10 13:50-14:32
 ([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), results 11 and 12):
@@ -37,7 +44,7 @@ release, 2124 files, is identical in two builds under `none`, with the
 normalised zips. Main's design-time guard (#619) stops a migrator built
 main's way in both deployment paths; the branch's migrator now creates its
 context with its own factory (`805275c4`). Node 22.23.3 pinned (W40);
-main's lock filled again (W41). Nothing of the merge has run on GitHub.
+main's lock filled again (W41). Nothing of the merge had run on GitHub yet.
 
 On GitHub, 13/10 07:53-08:21 UTC
 ([phoenix-release-run](2026-10-13-phoenix-release-run.md)): the release
@@ -192,7 +199,7 @@ Layer 5 (container) has no runs yet.
 | Machine | - VM too small W14 | - | - | - |
 | SDK binary | - empty-class only, 8/9 | - | - Node pinned to 22.23.3 since the merge, ran in main's CI 13/10 W40 | - |
 | Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46, main's lock has none since 17/9 | - |
-| Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases | - packed with plain `zip -qr` since the merge W48 |
+| Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases | - one packing script with Linux since `5ec085ac`, tested on Linux trees W48 |
 
 On SDK 10.0.401, from `332752b9`: the whole release with its zips in one
 build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
@@ -239,9 +246,10 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 - Layer 4: the zips as CI packs them are red (W48); the normalised packing
   is in the release workflow since `06cb5397` and ran on GitHub on the
   test tag; after the merge its zips are identical in two builds here.
-  Since the merge the Windows zips are packed on Linux with plain
-  `zip -qr`, not normalised, and `SHA256SUMS` lists them with the Linux
-  zips; not measured.
+  The Windows publish that came with the merge packed with plain
+  `zip -qr`; since `5ec085ac` both jobs pack with one script, tested here
+  on Linux trees. The Windows zips themselves, and `SHA256SUMS`, which
+  lists them with the Linux zips, are not measured.
 - Layer 5: nothing yet. The images' version stamps (W45) and the Dockerfile's
   Node pin (W40) are on the branch, not built.
 - Cross-machine and file order: paused until a VM with several GB of RAM

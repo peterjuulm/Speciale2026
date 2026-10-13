@@ -111,3 +111,17 @@
     samples of the .NET processes: control 256, LANG C.UTF-8, LC_ALL
     unset; experiment 255, LANG and LC_ALL et_EE.UTF-8; in both umask
     0022, no faketime, TZ GMT+12, the same home and build folder, 2 CPUs
+
+13. pack-zip-test.sh 5ec085ac (before it 79cb67a7), 15:08:56-15:14:34,
+    reference zips 548f5fd3... and dbd40cc6... (result 9): 0 failures
+    T1 the script from scrambled trees: both zips byte for byte; T1b
+    trailing slash, stale zip at the target: the same
+    T2 the Linux step before and after, run with bash -e: both zips
+    byte for byte
+    T3 the new Windows step, two workspaces: equal zips, unzip -t clean;
+    T3b the old step's entry names the same (1737 and 501)
+    T4 no or bad SOURCE_DATE_EPOCH, missing folder, one argument: exit 2
+    T5 refused before any change, exit 2: zip inside the folder (two
+    depths), zip path starting with -, folder with a slash, folder .,
+    a symbolic link, a name with a newline, folder starting with -;
+    names with spaces packed; the same zip written elsewhere

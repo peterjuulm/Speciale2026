@@ -198,3 +198,12 @@ for l in open(F):
     g[(side,)+tuple(f"{k}={d.get(k,'')}" for k in keys)]+=1
 for k,n in sorted(g.items()): print(n,' '.join(k))
 PY
+
+# Result 13, 14:43-15:15: one packing script for both release jobs,
+# scripts/pack-release-zip.sh, committed as 5ec085ac (Leo's go) after a
+# Codex review of a first version. The test from Speciale2026, with the
+# normalised zips of result 9 as the reference:
+ZN=$D/release-79cb67a7/store-Z-none/control/source-root/release/zip-norm
+ZIPS=$ZN EPOCH=1791883289 $E/phoenix-rt/pack-zip-test.sh 5ec085ac > $D/pack-script/pack-zip-test-5ec085ac.log 2>&1
+#   Two earlier runs of the same tests from a scratch copy (14:43, on the
+#   first version; 15:01, on the reviewed one) are in $D/pack-script.

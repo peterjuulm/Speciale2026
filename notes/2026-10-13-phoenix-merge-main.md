@@ -47,6 +47,10 @@ reprotest's `locales`, without the `LC_ALL` pin, gives the same hash list
 `113c707dac8e5171` and the same normalised zips. On .NET 10 the locale no
 longer reaches the assemblies (W26 gone, `e6ce3549`).
 
+For result 13 none was written here: its test script holds the expected
+values (the zips of result 9, the two workspaces' zips equal, exit 2 for
+refused input), written before it ran.
+
 ## What the merge met
 
 Read in main's commits and code `[V]`:
@@ -164,6 +168,18 @@ in Leo's private repository; `kommando.txt` writes out its steps.
     .NET processes show `LANG` and `LC_ALL` `et_EE.UTF-8` in the
     experiment build, `LANG` `C.UTF-8` and no `LC_ALL` in the control,
     everything else the same.
+13. One packing script for both release jobs, `scripts/pack-release-zip.sh`,
+    committed as `5ec085ac` after Codex reviewed a first version (not
+    pushed). Tested with `experiments/phoenix-rt/pack-zip-test.sh`,
+    14:43-15:15: from folders with scrambled times and modes it gives the
+    two zips of result 9 byte for byte, and so do the Linux step before
+    and after the change, run as GitHub runs a step. The new Windows step
+    gives the same zips in two workspaces set up differently (disk
+    against tmpfs, umask, time zone, file order, times and modes), with
+    the entry names and paths of `zip -qr`. It refuses a zip inside the
+    folder, symbolic links, which zip would follow, and names with a
+    newline, before it changes anything; the review had found those
+    cases in the first version.
 
 ## Interpretation
 
@@ -190,6 +206,11 @@ identical when the second build varies everything `all` varies here (11),
 and when only the locale changes, without the pin (12); the migrator was
 measured under `none` only.
 
+**The Windows zips no longer add differences of their own.** `[V]` for
+the packing (13): the Linux zips keep their bytes, and the Windows step
+packs the same way. `[I]` Two builds of one tag will still give two
+Windows zips, because signing changes the binaries; not measured.
+
 ## Caveats and not tested
 
 - On GitHub only main's CI ran on the merged branch (10). Pushing the
@@ -198,7 +219,8 @@ measured under `none` only.
 - The migrations image was not built: its base images and a NuGet restore
   inside the build need downloads.
 - The Windows publishes were not built here, and the Windows migrator was
-  only cross-built, not signed (8).
+  only cross-built, not signed (8). The packing script ran on Linux trees
+  renamed as Windows ones (13); the Windows publish has not run with it.
 - The released migrators were not run; result 3 is a bundle from main's
   code in the merge commit's tree, built here.
 - `79cb67a7` differs from `805275c4` only in two workflow files and the
