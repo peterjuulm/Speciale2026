@@ -5,12 +5,23 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the release workflow on a test tag, after the
-migrator project (W52).
-Last edit: 13 October 2026, 10:24. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the merged branch on `arch`: CI's .NET steps,
+the migrator twice and the whole release twice.
+Last edit: 13 October 2026, 12:40. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 10:34-12:29
+([phoenix-merge-main](2026-10-13-phoenix-merge-main.md); W40, W41, W52):
+main merged into the branch, 122 commits (`459de87e`; pushed with three
+follow-ups as `79cb67a7`). On the head CI's .NET steps pass, the migrator
+is identical in two builds for linux-x64 and win-x64, and the whole
+release, 2124 files, is identical in two builds under `none`, with the
+normalised zips. Main's design-time guard (#619) stops a migrator built
+main's way in both deployment paths; the branch's migrator now creates its
+context with its own factory (`805275c4`). Node 22.23.3 pinned (W40);
+main's lock filled again (W41). Nothing of the merge has run on GitHub.
 
 On GitHub, 13/10 07:53-08:21 UTC
 ([phoenix-release-run](2026-10-13-phoenix-release-run.md)): the release
@@ -188,22 +199,26 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   (`e6ce3549`) the whole release is green under `none`, `all` and `locales`.
   With the frontend in place it is measured on the same path only (W42);
   the reprotest axes ran without it. The release's migrator is
-  reproducible as `src/DbMigrator` (W52, `cd36f241`), measured here, not
-  yet in CI. On
-  .NET 10 the release job and PR validation's migration guard need a
-  restore before `dotnet ef` (W53); it is in both since `21360193`, not
-  yet run in CI.
+  reproducible as `src/DbMigrator` (W52, `cd36f241`), measured here, also
+  after the merge with its own factory (`805275c4`); CI built and ran it
+  on the test tag but compared no builds. On .NET 10 the release job and
+  PR validation's migration guard need a restore before `dotnet ef`
+  (W53); it is in both since `21360193`, ran in the release job on the
+  test tag, not yet in PR validation. After the merge the whole release
+  is identical in two builds under `none` (`79cb67a7`).
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
   part of the WS delivery. Open points in the layer plan.
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
-  the runtime's minified names changed between commits (W44), the Node pin not yet run in CI (W40), and npm 10.8.2
+  the runtime's minified names changed between commits (W44), the Node pin, 22.23.3 since the merge, not yet run in CI (W40), and npm 10.8.2
   dropping `libc` from the lock (W46). The lock's 391 missing hashes are
-  filled (W41, `e19ca414`). W51, the module and link order, is fixed on
+  filled (W41, `e19ca414`), and main's 362 again after the merge
+  (`bc0c52f6`). W51, the module and link order, is fixed on
   the branch (`61870435`); the jitter test is the check to repeat after a
   Next.js or webpack upgrade.
 - Layer 4: the zips as CI packs them are red (W48); the normalised packing
-  is in the release workflow since `06cb5397` but has not run in CI.
+  is in the release workflow since `06cb5397` and ran on GitHub on the
+  test tag; after the merge its zips are identical in two builds here.
   Windows' `Compress-Archive` zips are not measured.
 - Layer 5: nothing yet. The images' version stamps (W45) and the Dockerfile's
   Node pin (W40) are on the branch, not built.
@@ -216,14 +231,13 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. Merge main into the branch (Leo, 13/10): 122 commits since 14/9, still
-   on .NET 9; then the key measurements again and a new test-tag run. Then
-   layer 5, the images. On 13/10 the branch
-   got the restore before `dotnet ef` in the release and in PR
-   validation's migration guard (W53, `21360193`), Dependabot bumping the
-   SDK pin and the .NET images in one PR with PR validation failing when
-   they differ (`833e173a`), and the migrator project with its smoke test
-   (W52, `d1500897`, `cd36f241`, `82ea130a`).
+1. A GitHub run of the merged branch (Leo's call): pushing starts no
+   workflow, so a draft pull request for PR validation or a second test
+   tag for the release workflow, which now runs the tests on WS's office
+   runner. It would check the Node 22 pin, the tag check and the
+   migrator's smoke test both ways on GitHub. Then layer 5, the images.
+   The merge (13/10, `79cb67a7`) is measured here: CI's .NET steps, the
+   migrator and the whole release twice.
 2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
@@ -231,10 +245,6 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
    Dockerfile (W40); the PR filter that misses `mcp/` (W39); from 7/10 the
    one version variable (W45) and the CSS move's cost, about 150 KB per page.
 3. Cross-machine and file order once the VM exists.
-4. For the WS delivery: one run of the release workflow on a test tag. It
-   checks the Windows job, the version variable, the Node pin, the
-   calendar fix, the zips' packing (W48), the restores (W53) and the
-   migrator with its smoke test (W52) together.
 
 ## Keeping this file
 

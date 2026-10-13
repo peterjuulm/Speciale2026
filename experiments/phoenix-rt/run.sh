@@ -47,6 +47,8 @@
 #   DOTNET_DIR  the SDK folder, default /home/leos/.dotnet (SDK 9.0.120);
 #             for .NET 10, Microsoft's SDK 10.0.401 in /private/tmp/rb1-dotnet10/sdk.
 #             Not used by user_group, which always takes /opt/rb1-dotnet
+#   NODE_DIR  layers R and Z: the Node folder, default /opt/rb1-node (20.20.2);
+#             from the merge of main (13/10) Node 22.23.3 in /private/tmp/rb1-node22.
 #   VER       layer 2's version flags, default the release's two /p: flags
 #             for v0.0.0-thesis. From 5031c5af on, the release sets
 #             APP_VERSION instead: run with VER= and APP_VERSION in FIXENV.
@@ -55,6 +57,7 @@
 # 5 October 2026: node reuse off, user_group, the leftover check.
 # 7 October 2026: VER can be overridden.
 # 12 October 2026: layers R and Z, DOTNET_DIR.
+# 13 October 2026: NODE_DIR.
 set -u
 LAYER=${1:?LAYER} AXIS=${2:?AXIS}
 LABEL=${3:-L$LAYER-$AXIS}
@@ -79,7 +82,7 @@ if [ -n "$FIXENV" ]; then ENV="$ENV $FIXENV"; fi
 STOP="$ENV dotnet build-server shutdown > /dev/null"
 VER=${VER-'/p:Version=0.0.0-thesis /p:InformationalVersion=v0.0.0-thesis'}
 L2="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore $VER"
-NODEENV="env PATH=/opt/rb1-node/bin:\$PATH CI=true npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1"
+NODEENV="env PATH=${NODE_DIR:-/opt/rb1-node}/bin:\$PATH CI=true npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1"
 if [ -n "$FIXENV" ]; then NODEENV="$NODEENV $FIXENV"; fi
 RB="( cd src/WebAPI/ClientApp && $NODEENV npm ci --offline --no-audit --no-fund && $NODEENV npm run build && rm -rf node_modules .next ) && $L2"
 ZIP=/private/tmp/rb1-tools/zip TAG=v0.0.0-thesis DIRS='ws-pems-linux-x64 ws-pems-job-worker-linux-x64'

@@ -1,0 +1,71 @@
+# phoenix-merge-main, arch, 13 October 2026: the numbers behind the
+# note's results, read from the runs' logs in private data.
+
+1. The merge commit 459de87e
+   CI's .NET steps, 10:42-11:03: restore 0, build 0
+     unit         4679 passed, 0 failed, 57 skipped
+     integration   807 passed, 0 failed, 29 skipped
+     functional    153 passed, 0 failed, 12 skipped
+     EF check     exit 1, "Build failed"; again at 11:07 with an empty
+                  home folder: exit 0, "No changes have been made to the
+                  model since the last migration."
+   Frontend, Node v22.23.3, npm 10.9.9: npm ci 0 (1343 packages), lint 0
+   (no warnings or errors), 1610 tests in 164 suites passed, next build 0
+
+2. The lock fill bc0c52f6
+   1406 entries, 362 to fill, 20 controls; controls matching the lock 20
+   of 20; filled 362; added 0, removed 0, version changed 0
+
+3. Main's migrator design, a bundle from 459de87e's tree (830,084,830 B)
+   With HOME=$HOME the bundle build failed (the guard refused the host in
+   the developer's user secrets); with an empty home folder it built.
+   O1  remote host in ConnectionStrings__CatalogConnection: exit 1,
+       '... which is not a local host'; 0 migrations applied
+   O2  --connection alone: exit 1, 'No database connection string';
+       0 migrations applied
+
+4. The branch's migrator on 805275c4 (linux-x64, 795,714,148 B)
+   N1  environment alone: 160 migrations applied, the verbose log names
+       MigratorContextFactory
+   N2  --connection alone: 160 applied
+   N3  neither, with the developer's own home folder: 'The
+       ConnectionString property has not been initialized', 0
+       connection attempts
+   N4  --connection over a wrong environment value: 160 applied
+   N5  a second run on N1's database: 'No migrations were applied'
+   N6  DatabaseOptions__Provider=sqlserver: refused, 'The migrator applies
+       the PostgreSQL migrations; DatabaseOptions__Provider is "sqlserver"'
+   N7  remote host in the environment: 'Opening connection to database
+       ... on server' that host; 0 'not a local host' lines
+
+5. The worktree before 805275c4: build 0 errors; the placement test and
+   main's guard tests 29 passed, 0 failed
+
+6. The smoke step as in 79cb67a7, the migrator from 805275c4: exit 0;
+   smoke_cli 160 rows in __EFMigrationsHistory, smoke_env 160; the run
+   with neither failed as the step expects
+   The release tag check: v1.0.51 accepted, v0.0.0-thesis.2 accepted,
+   1.0.51 refused, v1.0 refused, v1.0.51- refused
+
+7. The head 79cb67a7, CI's .NET steps, 11:49-12:08, empty home folder:
+   restore 0, build 0
+     unit         4681 passed, 0 failed, 57 skipped (the two more than in
+                  1 are the placement tests of 805275c4, by test name)
+     integration   807 passed, 0 failed, 29 skipped
+     functional    153 passed, 0 failed, 12 skipped
+     EF check     exit 0, "No changes have been made to the model since
+                  the last migration."
+
+8. The migrator built twice from 79cb67a7, at two paths, 12:09-12:11
+   labcheck 5763 files, 0 missing, 0 differing, 0 extra, both labs
+   062f730dcf6355d05ca36e5a0e9fb33ed6df671dacd8d1252cf3b251a7998092  ws-pems-db-migrator      795,714,148 B  both builds
+   9f6019669b6327342d973446db879b84ec271b2d09bf81e5b2e5cb57bf85a58d  ws-pems-db-migrator.exe  530,636,209 B  both builds
+
+9. The whole release twice (run.sh Z, reprotest none) on 79cb67a7,
+   12:11-12:29
+   release.sha256 identical, 2124 files, sha256 of the list 113c707dac8e5171
+   zip-norm identical:
+     548f5fd3672c625f4fbce9c8a5e20520b6f47cfc7bc0691aa660e1c6cedc1c9a  ws-pems-linux-x64-v0.0.0-thesis.zip
+     dbd40cc6698b804a0eb0582bacebf9cf7be6e62f57fd4c3aeb90eb5e1f02cae3  ws-pems-job-worker-linux-x64-v0.0.0-thesis.zip
+   zip-ci differ (both files), as in W48; diffoscope names no other file
+   reprotest exit 1 for the zip-ci difference; leftover 0

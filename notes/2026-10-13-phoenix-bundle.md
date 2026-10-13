@@ -169,7 +169,7 @@ Expectation, written before the runs `[I]`:
 1. EF creates the context with `DatabaseContextFactory`, the one that reads
    the connection string from the environment, not with
    `DatabaseContextDesignTimeFactory`, which reads
-   `../WebAPI/appsettings.Development.json`: the Hetzner tenant upgrade
+   `../WebAPI/appsettings.Development.json`: the deployment's tenant upgrade
    passes the connection only through the environment and would fail with
    the second.
 2. Two builds of the migrator from fresh exports at two different paths

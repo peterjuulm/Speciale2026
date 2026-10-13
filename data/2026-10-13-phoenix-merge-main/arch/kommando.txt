@@ -1,0 +1,130 @@
+# phoenix-merge-main, arch, 13 October 2026. Run by Claude at Leo's
+# request, in bash; local times (CEST). Verbatim, with W for the WS
+# worktree, E for Speciale2026/experiments, D for the private data folder,
+# DN for the SDK folder /private/tmp/rb1-dotnet10/sdk (Microsoft's
+# 10.0.401), N for Node 22.23.3's bin folder /private/tmp/rb1-node22/bin,
+# SH for the empty home folder /private/tmp/rb1-scratch-home, SCR for a
+# scratch folder, and REMOTE for a host name that is not local (its value
+# is in private data).
+
+# The merge, 10:34-10:41. Main's tip was ed2c6b29. Conflicts in nine
+# files, resolved by hand; the merge commit's message (459de87e) says how.
+git -C $W merge --no-commit --no-ff origin/main
+# The NuGet.* packages main added, fetched online (download approved by
+# Leo); the restore regenerated the five lock files:
+ENV=(env -i HOME="$HOME" PATH="$DN:/usr/bin" DOTNET_ROOT="$DN" DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8)
+(cd $W && "${ENV[@]}" dotnet restore WS.Phoenix.sln 2>&1) > SCR/restore-online.log
+# Node 22.23.3, the newest Node 22 LTS in https://nodejs.org/dist/index.json
+# (download approved by Leo):
+V=22.23.3; mkdir -p /private/tmp/rb1-node22-dl && cd /private/tmp/rb1-node22-dl && curl -fsSL -O https://nodejs.org/dist/v$V/SHASUMS256.txt && curl -fsSL -O https://nodejs.org/dist/v$V/node-v$V-linux-x64.tar.gz && grep " node-v$V-linux-x64.tar.gz$" SHASUMS256.txt | sha256sum -c - && rm -rf /private/tmp/rb1-node22 && mkdir -p /private/tmp/rb1-node22 && tar -xzf node-v$V-linux-x64.tar.gz -C /private/tmp/rb1-node22 --strip-components=1 && /private/tmp/rb1-node22/bin/node --version && /private/tmp/rb1-node22/bin/npm --version
+#   node-v22.23.3-linux-x64.tar.gz: OK
+#   (1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af)
+#   v22.23.3
+#   10.9.9
+
+# The CI-equivalent check used for results 1 and 7 is stage.sh in Leo's
+# private repository (12/10), started as below. Its steps, in the lab, with
+# DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1
+# MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8, each step's exit code and time
+# written to info.txt:
+#   dotnet build-server shutdown
+#   dotnet restore WS.Phoenix.sln
+#   dotnet build WS.Phoenix.sln -c Release --no-restore
+#   for tier in UnitTests IntegrationTests FunctionalTests; do
+#     env TESTCONTAINERS_RYUK_DISABLED=true TESTCONTAINERS_CHECKS_DISABLE=true \
+#       dotnet test WS.Phoenix.sln -c Release --no-build --filter "FullyQualifiedName~tests.$tier" \
+#       --logger "trx;LogFileName=$tier.trx" --results-directory "$OUT"
+#   done
+#   dotnet tool restore
+#   (cd src/WebAPI && dotnet ef migrations has-pending-model-changes --context DatabaseContext \
+#     -p ../Infrastructure/Infrastructure.csproj -s WebAPI.csproj)
+
+# Result 1, the merge commit. CI's .NET steps, 10:42-11:03:
+rm -rf /private/tmp/rb1-merge && mkdir -p /private/tmp/rb1-merge/x && git -C $W archive 459de87e -- . ':(exclude).claude' | tar -x -C /private/tmp/rb1-merge/x && python3 $E/labcheck.py $W 459de87e /private/tmp/rb1-merge/x | tail -1
+GITHUB_ACTIONS=true OUT=$D/ci-check bash stage.sh /private/tmp/rb1-merge/x $DN/dotnet merge-ci
+# The EF check again, 11:07, with an empty home folder (see result 3):
+(cd /private/tmp/rb1-merge/x/src/WebAPI && env -i HOME=$SH PATH=$DN:/usr/bin DOTNET_ROOT=$DN DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8 $DN/dotnet ef migrations has-pending-model-changes --context DatabaseContext -p ../Infrastructure/Infrastructure.csproj -s WebAPI.csproj) > $D/ci-check/ef-rerun.log 2>&1
+# The frontend on Node 22, 10:42-10:48, in a second lab; npm ci fetched
+# the packages main added (download approved by Leo):
+LF=/private/tmp/rb1-merge-fe/x; rm -rf /private/tmp/rb1-merge-fe && mkdir -p $LF && git -C $W archive 459de87e -- . ':(exclude).claude' | tar -x -C $LF && python3 $E/labcheck.py $W 459de87e $LF | tail -1
+(cd $LF/src/WebAPI/ClientApp && env -i HOME=$HOME PATH=$N:/usr/bin LC_ALL=C.UTF-8 npm_config_cache=/private/tmp/rb1-npm npm ci --no-audit --no-fund 2>&1 | tail -6) | tee $D/fe-npm-ci.log
+FENV=(env -i HOME=$HOME PATH=$N:/usr/bin LC_ALL=C.UTF-8 npm_config_cache=/private/tmp/rb1-npm NEXT_TELEMETRY_DISABLED=1); cd $LF/src/WebAPI/ClientApp && "${FENV[@]}" npm run lint > $D/fe-lint.log 2>&1; "${FENV[@]}" npm test -- --ci > $D/fe-test.log 2>&1; "${FENV[@]}" npm run build > $D/fe-build.log 2>&1
+
+# Result 2, the lock fill, 10:48, in the worktree, then committed as
+# bc0c52f6:
+cd $W/src/WebAPI/ClientApp && env -i HOME="$HOME" PATH="$N:/usr/bin:/bin" npm_config_update_notifier=false npm_config_cache=/private/tmp/rb1-npm node $E/phoenix-fe/fill-lock.js package-lock.json 2>&1 | tail -5 | tee $D/fill-lock.log
+$N/node -e 'const p=require("./package-lock.json").packages; let n=0,r=0,i=0; for (const [k,v] of Object.entries(p)) { if (!k || v.link) continue; n++; if (!v.resolved) r++; if (!v.integrity) i++; } console.log(n+" entries, "+r+" without resolved, "+i+" without integrity")'
+git -C $W show HEAD:src/WebAPI/ClientApp/package-lock.json | $N/node -e 'const a=JSON.parse(require("fs").readFileSync(0)).packages, b=require("./package-lock.json").packages; const add=Object.keys(b).filter(k=>!(k in a)), rem=Object.keys(a).filter(k=>!(k in b)), chg=Object.keys(a).filter(k=>k in b && a[k].version!==b[k].version); console.log("added "+add.length+", removed "+rem.length+", version changed "+chg.length)'
+
+# Result 5, 10:51-10:54, on the worktree's files before they were
+# committed as 805275c4: the build without network, then the placement
+# test and main's guard tests (vstest needs the loopback device):
+ENV=(env -i HOME="$HOME" PATH="$DN:/usr/bin" DOTNET_ROOT="$DN" DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8 SkipSpaBuild=true)
+(cd $W && unshare -rn "${ENV[@]}" dotnet build WS.Phoenix.sln -c Debug -v q -nologo 2>&1 | grep -E ' error |Error\(s\)|Warning\(s\)' | sort -u | head -12)
+ENV=(env -i HOME="$HOME" PATH="$DN:/usr/bin:/usr/sbin" DOTNET_ROOT="$DN" DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8)
+(cd $W && unshare -rn "${ENV[@]}" sh -c 'ip link set lo up && dotnet test tests/tests.csproj --no-build -c Debug --filter "FullyQualifiedName~DesignTimeFactoryPlacementTests|FullyQualifiedName~ConnectionStringSafetyTests" 2>&1 | tail -3')
+
+# Results 3 and 4, 10:54-11:01. A scratch PostgreSQL 17 without a network,
+# reached through its Unix socket, and a lab of 805275c4:
+S=/private/tmp/rb1-pgsock; mkdir -p $S && chmod 1777 $S && docker run -d --name rb1-mig-pg --network none -e POSTGRES_HOST_AUTH_METHOD=trust -v $S:/var/run/postgresql postgres:17-alpine > /dev/null && until docker exec rb1-mig-pg pg_isready -U postgres -q 2>/dev/null; do sleep 1; done
+LH=/private/tmp/rb1-head/x; rm -rf /private/tmp/rb1-head && mkdir -p $LH && git -C $W archive 805275c4 -- . ':(exclude).claude' | tar -x -C $LH && python3 $E/labcheck.py $W 805275c4 $LH | tail -1
+# The branch's migrator, published as the release job publishes it:
+ENV=(env -i HOME="$HOME" USER="$USER" LOGNAME="$LOGNAME" SHELL=/bin/bash PATH="$DN:/usr/local/bin:/usr/bin" DOTNET_ROOT="$DN" DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8 GITHUB_ACTIONS=true)
+(cd $LH && "${ENV[@]}" bash -c 'dotnet restore ./WS.Phoenix.sln > /dev/null && dotnet publish ./src/DbMigrator/DbMigrator.csproj -c Release -o ./publish/migrator -r linux-x64 --self-contained true --no-restore -v q -nologo 2>&1 | grep -E " error |rror\(s\)" | head -3')
+# Main's migrator design: a bundle built the release's old way from the
+# merge commit's tree, main's factories. With HOME=$HOME it failed (exit 1,
+# the guard refused the host in the developer's user secrets); with an
+# empty home folder it built:
+LM=/private/tmp/rb1-merge/x; rm -rf $SH && mkdir -p $SH; ENV=(env -i HOME="$SH" USER="$USER" LOGNAME="$LOGNAME" SHELL=/bin/bash PATH="$DN:/usr/local/bin:/usr/bin" DOTNET_ROOT="$DN" DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8)
+(cd $LM && "${ENV[@]}" SkipLockedRestore=true bash -c 'dotnet tool restore > /dev/null && dotnet ef migrations bundle --configuration Release --context DatabaseContext -p src/Infrastructure/Infrastructure.csproj -s src/WebAPI/WebAPI.csproj --self-contained -r linux-x64 --force -o "$0"' $D/main-bundle/ws-pems-db-migrator) > $D/main-bundle.log 2>&1
+# The deployment cases, each in an empty folder, without a network:
+O=$D/behaviour; mkdir -p $O/empty $O/extract; NEW=$LH/publish/migrator/ws-pems-db-migrator; OLD=$D/main-bundle/ws-pems-db-migrator
+psql_() { docker exec rb1-mig-pg psql -U postgres -v ON_ERROR_STOP=1 -qtA "$@"; }
+conn() { printf 'Host=%s;Port=5432;Database=%s;Username=postgres' "$S" "$1"; }
+run() { local tag=$1 home=$2; shift 2; ( cd $O/empty && unshare -rn env -i HOME="$home" PATH=/usr/bin LC_ALL=C.UTF-8 DOTNET_BUNDLE_EXTRACT_BASE_DIR=$O/extract "$@" ) > $O/$tag.log 2>&1; echo "$tag exit $?"; }
+for db in n1 n2 n4 o2; do psql_ -c "CREATE DATABASE $db"; done
+run N1 $SH DatabaseOptions__Provider=postgres "ConnectionStrings__CatalogConnection=$(conn n1)" $NEW --verbose
+grep -m1 -o "Using DbContext factory '[A-Za-z]*'" $O/N1.log; echo "N1 applied: $(grep -c 'Applying migration' $O/N1.log)"
+run N2 $SH $NEW --connection "$(conn n2)"; echo "N2 applied: $(grep -c 'Applying migration' $O/N2.log)"
+run N3 $HOME $NEW --verbose; echo "N3 connection attempts: $(grep -c 'Opening connection' $O/N3.log)"; grep -m1 -i -E 'connection ?string|ConnectionString' $O/N3.log | cut -c1-160
+run N4 $SH "ConnectionStrings__CatalogConnection=$(conn n4 | sed 's|/private/tmp/rb1-pgsock|/private/tmp/rb1-no-socket-here|')" $NEW --connection "$(conn n4)"; echo "N4 applied: $(grep -c 'Applying migration' $O/N4.log)"
+run N5 $SH "ConnectionStrings__CatalogConnection=$(conn n1)" $NEW; grep -c 'No migrations were applied' $O/N5.log
+run N6 $SH DatabaseOptions__Provider=sqlserver "ConnectionStrings__CatalogConnection=$(conn n1)" $NEW; grep -m1 -o 'The migrator applies the PostgreSQL migrations[^.]*' $O/N6.log
+run N7 $SH DatabaseOptions__Provider=postgres "ConnectionStrings__CatalogConnection=Host=$REMOTE;Port=5432;Database=tenant;Username=migrator" $NEW --verbose; grep -m1 -o -E "Opening connection to database 'tenant' on server '[^']*'" $O/N7.log; grep -c -i 'not a local host' $O/N7.log
+run O1 $SH DatabaseOptions__Provider=postgres "ConnectionStrings__CatalogConnection=Host=$REMOTE;Port=5432;Database=tenant;Username=migrator" ASPNETCORE_ENVIRONMENT=Production $OLD; grep -m1 -o -E 'points at the host "[^"]*", which is not a local host' $O/O1.log
+run O2 $SH $OLD --connection "$(conn o2)"; grep -m1 -o -E 'No database connection string[^.]*' $O/O2.log; echo "O2 applied: $(grep -c 'Applying migration' $O/O2.log)"
+
+# Result 6, 11:16-11:21. The release's smoke step, read from the
+# workflow, against postgres:17-alpine with trust authentication, the
+# migrator from 805275c4 copied where the job puts it (an earlier run at
+# 11:08 used a password-protected container, same counts):
+RT=$(mktemp -d /private/tmp/rb1-runner-temp.XXXX); docker rm -f rb1-smoke-pg > /dev/null 2>&1; docker run -d --name rb1-smoke-pg -p 127.0.0.1:55432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust postgres:17-alpine > /dev/null && until docker exec rb1-smoke-pg pg_isready -U postgres -q 2>/dev/null; do sleep 1; done; mkdir -p $RT/bundles $RT/tmp && cp $NEW $RT/bundles/ws-pems-db-migrator-linux-x64-v9.9.9; STEP=$(python3 -c "
+import yaml; d=yaml.safe_load(open('$W/.github/workflows/03-release.yml'))
+s=[x for x in d['jobs']['migration-bundles']['steps'] if x.get('name')=='Smoke-test the migrator'][0]; print(s['env']['SMOKE_DB']); open('$RT/step.sh','w').write(s['run'])"); echo "SMOKE_DB from the workflow: $STEP"
+(cd $RT && env -i HOME=$SH PATH=/usr/bin LC_ALL=C.UTF-8 REF_NAME=v9.9.9 RUNNER_TEMP=$RT/tmp DOTNET_BUNDLE_EXTRACT_BASE_DIR=$D/behaviour/extract SMOKE_DB="$(echo "$STEP" | sed 's/Port=5432/Port=55432/')" bash -e $RT/step.sh) > $D/smoke-local-3.log 2>&1; echo "smoke step exit $?"; for db in smoke_cli smoke_env; do printf '%s: ' $db; docker exec rb1-smoke-pg psql -U postgres -d $db -tAc 'select count(*) from "__EFMigrationsHistory"'; done; docker rm -f rb1-smoke-pg > /dev/null; rm -rf $RT
+# The release tag check in 79cb67a7's Windows publish, its test as run:
+for v in v1.0.51 v0.0.0-thesis.2 1.0.51 v1.0 v1.0.51-; do RELEASE_VERSION=$v bash -c 'if [[ ! "$RELEASE_VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then echo "$RELEASE_VERSION: refused"; else echo "$RELEASE_VERSION: accepted"; fi'; done
+
+# A first attempt at results 7 and 9, on 805275c4, ran both jobs at once:
+# the whole release from 11:02, CI's .NET steps from 11:19. At 11:23 the
+# kernel's out-of-memory killer stopped both (journalctl). Their partial
+# logs are in private data (release-805275c4-oom, ci-check-805275c4-oom).
+
+# Results 7-9, 11:49-12:29, on 79cb67a7, one job after the other. Two
+# fresh labs, then one background command:
+C=79cb67a7
+for L in /private/tmp/rb1-head/x /private/tmp/rb1-phoenix; do
+  rm -rf $L && mkdir -p $L && git -C $W archive $C -- . ':(exclude).claude' | tar -x -C $L
+  python3 $E/labcheck.py $W $C $L | tail -1
+done
+rm -rf $SH && mkdir $SH
+HOME=$SH GITHUB_ACTIONS=true OUT=$D/ci-check-$C bash stage.sh /private/tmp/rb1-head/x $DN/dotnet ci-$C > $D/ci-check-$C.out 2>&1
+OUT=$D/migrator-builds-$C $E/phoenix-rt/migrator-probe.sh $C > $D/migrator-builds-$C.out 2>&1
+mkdir -p $D/release-$C
+OUT=$D/release-$C DOTNET_DIR=$DN NODE_DIR=/private/tmp/rb1-node22 FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=1791883289 $E/phoenix-rt/run.sh Z none Z-none > $D/release-$C.out 2>&1
+#   ZEPOCH is 79cb67a7's commit time, git -C $W log -1 --format=%ct 79cb67a7.
+# The comparisons:
+S=$D/release-$C/store-Z-none
+cmp $S/control/source-root/release.sha256 $S/experiment-1/source-root/release.sha256
+diff $S/control/source-root/zips.sha256 $S/experiment-1/source-root/zips.sha256
+grep -oE 'experiment-1/source-root/release/[^ ]+' $S/experiment-1.diffoscope.out | sed -E 's#experiment-1/source-root/##' | awk -F/ '{print $1"/"$2"/"$3}' | sort | uniq -c
