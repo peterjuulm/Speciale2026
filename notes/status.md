@@ -246,10 +246,15 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   Node pin (W40) are on the branch, not built.
 - Cross-machine and file order: paused until a VM with several GB of RAM
   exists (W14). Peter's Azure VM is the candidate.
-- Dependency tree: lock files done (W22). Plan and census on 12/10
-  ([dependency-plan](2026-10-12-dependency-plan.md)): 54 of 391 release
-  packages declare both commit and compiler; 187 keep the PDB outside the
-  package. No rebuild yet.
+- Dependency tree: lock files done (W22). Plan, census and repository lookup
+  redone on 13/10 for `79cb67a7` (.NET 10, three programs, `dotnet-ef`)
+  ([dependency-plan](2026-10-12-dependency-plan.md),
+  [declared-env](2026-10-13-declared-env.md)): 341 packages in scope; 53
+  declare commit and compiler; 181 keep the PDB outside the package; 126 get
+  an exact SDK from the repository. On macOS `DbMigrator` fails a locked
+  restore (`NU1004`, host RID added). Symbol servers on 13/10
+  ([symbol-servers](2026-10-13-symbol-servers.md)): 474 of 493 missing PDBs
+  found; 198 packages now declare commit and compiler. No rebuild yet.
 - Method: ASLR alone is untested; reprotest cannot vary it (R1). Why no
   later build used the MSBuild nodes left over on 24/9 is not established.
 

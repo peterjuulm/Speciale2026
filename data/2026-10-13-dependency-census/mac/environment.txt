@@ -1,0 +1,17 @@
+date: 2026-10-13T14:22:30+0200
+uname: Darwin 23.6.0 arm64
+python: Python 3.14.7
+WS.Phoenix: branch thesis/reproducible-builds, commit 79cb67a7a745677f885776a6faa7a70f50892be8
+SDK for the restore: 10.0.401 in ~/.dotnet (installed 13/10 with dotnet-install.sh, sha256 of the script 082f7685e156738a1b2e2ed8381a621870d4ce8e8c59278034556f05c186eb2e)
+csc.dll sha256: 99148255a90b5a6a0a37b7be3a51e8753bcdbb52f3a7785eb8bb227e99e34414
+lab: git archive export of 79cb67a7 in the session's scratch directory, not the worktree
+restore: WebAPI and BackgroundJobExecutor locked; DbMigrator unlocked, because on macOS the SDK adds osx-arm64 to its runtime identifiers (NU1004 in locked mode). Its net10.0, linux-x64 and win-x64 lock sections stayed identical to the commit's; the added osx-arm64 section is ignored by the census.
+
+sha256 of the lock files at the commit:
+4dd7dde41cd2de999fc1e2dbc1bc760037771fdd2101d9ac39287551e41f2985  src/WebAPI/packages.lock.json
+b0859def52e7bcf353ab738d1915714bef56d65bbce87648282f8adca5542c7c  src/BackgroundJobExecutor/packages.lock.json
+56966e153e6105a2cf264314e01bdb5322744b22731428a95d85423407dea423  src/DbMigrator/packages.lock.json
+dceee833527b8dfad9681035a2fb955bd0108d2f73507b13411dc6ad4c2eaae0  src/ApplicationCore/packages.lock.json
+9fc54e608070b4be79d22f9f2f2459c17acc9480d3f551a696d008b678eb82b8  src/Infrastructure/packages.lock.json
+92b5e5b851e364370a414a805fc8d3a63753522b9840b186337702cbcea6f001  tests/packages.lock.json
+3178e27f97c4763481731cc260157805a36514dd4f44c45e5dd95e6d9960eb6a  .config/dotnet-tools.json

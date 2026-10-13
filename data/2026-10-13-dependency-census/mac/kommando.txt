@@ -1,0 +1,9 @@
+# On mac, 13 October 2026. X is an empty directory outside any git repository.
+bash dotnet-install.sh --version 10.0.401 --install-dir ~/.dotnet --no-path
+git -C ~/WS.Phoenix archive 79cb67a7 -- . ':(exclude).claude' | tar -x -C X
+cd X && ~/.dotnet/dotnet restore src/WebAPI/WebAPI.csproj --locked-mode
+cd X && ~/.dotnet/dotnet restore src/BackgroundJobExecutor/BackgroundJobExecutor.csproj --locked-mode
+cd X && ~/.dotnet/dotnet restore src/DbMigrator/DbMigrator.csproj
+cd ~/WS.Phoenix && ~/.dotnet/dotnet tool restore
+# From the root of Speciale2026:
+python3 -I experiments/dep-census/census.py X ~/.nuget/packages data/2026-10-13-dependency-census/mac linux-x64 WebAPI BackgroundJobExecutor DbMigrator --tool dotnet-ef

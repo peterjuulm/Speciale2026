@@ -6,9 +6,12 @@ SDK downloads for RID (they are not in the lock files). For each package it
 takes the files it ships (from project.assets.json) and opens them in the
 NuGet cache. No network, no builds.
 
+Each TOOL named with --tool (a local tool from .config/dotnet-tools.json whose
+output ships, such as dotnet-ef) is in scope too, with all its files.
+
 Everything else under REPO (the other src projects' lock files, tests/, the
-packs for other RIDs, the local tools in .config/dotnet-tools.json) is listed
-in scope.md with the reason it is left out.
+lock sections and packs for other RIDs, the other local tools) is listed in
+scope.md with the reason it is left out.
 
 For each package it records: the repository and commit from the .nuspec,
 whether the shipped files are IL or native, where the PDB is (embedded, in
@@ -16,18 +19,28 @@ the package, only referenced, none), the compiler record in the PDB, the
 Reproducible and PdbChecksum debug entries, Source Link, and signatures.
 Then it puts the package in one category (see CATEGORIES).
 
-Usage: python3 -I census.py REPO NUGET_CACHE OUTDIR RID PROGRAM...
-Writes OUTDIR/census.csv, OUTDIR/census.md and OUTDIR/scope.md.
+Usage: python3 -I census.py REPO NUGET_CACHE OUTDIR RID PROGRAM... [--tool NAME]...
+Writes OUTDIR/census.csv, OUTDIR/census.md, OUTDIR/scope.md, and
+OUTDIR/census.files.csv: one row per shipped managed DLL with its PDB identity
+(CodeView name, GUID, age, portable or not, PdbChecksum), for symbol servers.
 
 Written 12 October 2026. Same day: scope narrowed from all src projects to
-the programs, runtime packs added.
+the programs, runtime packs added. 13 October: the target framework is read
+from the assets file (.NET 10), only the lock sections for RID count as
+shipped, and --tool added.
 """
 import collections, csv, glob, json, os, re, struct, sys, zlib
 
 repo, cache, outdir, rid = sys.argv[1:5]
-programs = sys.argv[5:]
-tfm = 'net9.0'
+rest = sys.argv[5:]
+tools_in = [rest[i + 1] for i, a in enumerate(rest) if a == '--tool']
+programs = [a for i, a in enumerate(rest) if a != '--tool' and (i == 0 or rest[i - 1] != '--tool')]
+tfm = list(json.load(open(os.path.join(repo, 'src', programs[0], 'obj', 'project.assets.json')))['project']['frameworks'])[0]
 target = f'{tfm}/{rid}'
+# A Mac restore of a project with PublishSingleFile and no RuntimeIdentifier adds
+# the host RID to the lock file (NU1004 in locked mode). That section is not in
+# the commit and is not read.
+IGNORED_SECTIONS = {f'{tfm}/osx-arm64', f'{tfm}/osx-x64'}
 
 CATEGORIES = [
     ('N0', 'Ships no files', 'Nothing reaches the release: a meta package, or build-time only'),
@@ -63,7 +76,8 @@ def pe_info(data):
             if va <= rva < va + size: return rva - va + raw
         return None
     info = {'managed': False, 'authenticode': dirs[4][1] > 0, 'strongname': False,
-            'codeview': None, 'embedded': None, 'reproducible': False, 'pdbchecksum': False}
+            'codeview': None, 'embedded': None, 'reproducible': False, 'pdbchecksum': False,
+            'cv_guid': '', 'cv_age': 0, 'cv_portable': False, 'checksum': ''}
     clr_rva, clr_size = dirs[14]
     if clr_size:
         info['managed'] = True
@@ -74,9 +88,13 @@ def pe_info(data):
     dbg_rva, dbg_size = dirs[6]
     o = off(dbg_rva) if dbg_size else None
     for i in range((dbg_size // 28) if o is not None else 0):
-        _, _, _, _, typ, size, _, ptr = struct.unpack_from('<IIHHIIII', data, o + 28 * i)
+        _, _, major, minor, typ, size, _, ptr = struct.unpack_from('<IIHHIIII', data, o + 28 * i)
         if typ == 2 and data[ptr:ptr + 4] == b'RSDS':
             info['codeview'] = data[ptr + 24:ptr + size].split(b'\0')[0].decode('utf-8', 'replace')
+            d1, d2, d3 = struct.unpack_from('<IHH', data, ptr + 4)
+            info['cv_guid'] = f'{d1:08X}{d2:04X}{d3:04X}' + data[ptr + 12:ptr + 20].hex().upper()
+            info['cv_age'], = struct.unpack_from('<I', data, ptr + 20)
+            info['cv_portable'] = minor == 0x504D   # 'PM': a portable PDB
         elif typ == 16:
             info['reproducible'] = True
         elif typ == 17 and data[ptr:ptr + 4] == b'MPDB':
@@ -84,6 +102,8 @@ def pe_info(data):
             except zlib.error: info['embedded'] = b''
         elif typ == 19:
             info['pdbchecksum'] = True
+            alg, _, digest = data[ptr:ptr + size].partition(b'\0')
+            info['checksum'] = alg.decode() + ':' + digest.hex().upper()
     return info
 
 def pdb_info(pdb):
@@ -97,9 +117,10 @@ def pdb_info(pdb):
 
 # --- The package graph -----------------------------------------------------
 
-def lock_graph(path):
+def lock_graph(path, sections=None):
     out = {}
-    for _, deps in json.load(open(path))['dependencies'].items():
+    for section, deps in json.load(open(path))['dependencies'].items():
+        if section in IGNORED_SECTIONS or (sections is not None and section not in sections): continue
         for name, v in deps.items():
             if v['type'] != 'Project':
                 out.setdefault((name.lower(), v['resolved'].lower()), [name, v['resolved'], set()])[2].add(v['type'])
@@ -110,7 +131,7 @@ packages, kind, direct, shipped = {}, {}, set(), collections.defaultdict(set)
 declared = {k[0] for lock in glob.glob(os.path.join(repo, 'src', '*', 'packages.lock.json'))
             for k, (_, _, types) in lock_graph(lock).items() if 'Direct' in types}
 for prog in programs:
-    for k, (name, ver, types) in lock_graph(os.path.join(repo, 'src', prog, 'packages.lock.json')).items():
+    for k, (name, ver, types) in lock_graph(os.path.join(repo, 'src', prog, 'packages.lock.json'), {tfm, target}).items():
         packages[k] = (name, ver); kind[k] = 'lock file'
     assets = json.load(open(os.path.join(repo, 'src', prog, 'obj', 'project.assets.json')))
     for key, lib in assets['targets'][target].items():
@@ -132,11 +153,21 @@ for prog in programs:
                 for root, _, fs in os.walk(os.path.join(base, 'runtimes', rid, sub)):
                     shipped[k] |= {os.path.relpath(os.path.join(root, f), base) for f in fs}
 
+# Local tools whose output ships: all their files count.
+tool_manifest = json.load(open(os.path.join(repo, '.config', 'dotnet-tools.json')))['tools']
+for name in tools_in:
+    ver = tool_manifest[name]['version']
+    k = (name.lower(), ver.lower())
+    packages[k] = (name, ver); kind[k] = 'tool'
+    base = os.path.join(cache, k[0], k[1])
+    for root, _, fs in os.walk(os.path.join(base, 'tools')):
+        shipped[k] |= {os.path.relpath(os.path.join(root, f), base) for f in fs if f.endswith('.dll')}
+
 direct = {k for k in packages if k[0] in declared and kind[k] == 'lock file'}
 
 # --- One row per package ---------------------------------------------------
 
-rows = []
+rows, file_rows = [], []
 for (lid, lver), (name, ver) in sorted(packages.items()):
     pdir = os.path.join(cache, lid, lver)
     nuspec = open(glob.glob(os.path.join(pdir, '*.nuspec'))[0], encoding='utf-8', errors='replace').read()
@@ -155,6 +186,13 @@ for (lid, lver), (name, ver) in sorted(packages.items()):
         managed += 1
         for k in ('authenticode', 'strongname', 'reproducible', 'pdbchecksum'):
             flags[k] += pe[k]
+        file_rows.append({'package': name, 'version': ver, 'file': f,
+                          'pdb_name': os.path.basename(pe['codeview'].replace('\\', '/')) if pe['codeview'] else '',
+                          'guid': pe['cv_guid'], 'age': pe['cv_age'], 'portable': 'yes' if pe['cv_portable'] else 'no',
+                          'checksum': pe['checksum'],
+                          'pdb': 'embedded' if pe['embedded'] is not None else
+                                 'in package' if os.path.exists(path[:-4] + '.pdb') else
+                                 'not in package' if pe['codeview'] else 'none'})
         pdb = None
         if pe['embedded'] is not None:
             pdb_where.add('embedded'); pdb = pe['embedded']
@@ -197,6 +235,9 @@ rows.sort(key=lambda r: (order[r['category']], r['owner'], r['package'].lower())
 with open(os.path.join(outdir, 'census.csv'), 'w', newline='') as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0]))
     w.writeheader(); w.writerows(rows)
+with open(os.path.join(outdir, 'census.files.csv'), 'w', newline='') as f:
+    w = csv.DictWriter(f, fieldnames=list(file_rows[0]))
+    w.writeheader(); w.writerows(file_rows)
 
 missing_assets = [packages[k][0] for k in packages if k not in shipped]
 count = collections.Counter((r['category'], r['owner']) for r in rows)
@@ -209,8 +250,9 @@ with open(os.path.join(outdir, 'census.md'), 'w') as f:
     nlock = sum(1 for k in kind.values() if k == 'lock file')
     p(f'Programs: {", ".join(programs)}, published self-contained for `{rid}`. '
       f'{len(rows)} packages (id and version): {nlock} from the programs\' lock files '
-      f'({len(direct)} direct, {nlock - len(direct)} transitive) and {len(rows) - nlock} '
-      f'runtime packs. {len(builds)} distinct repository+commit pairs. '
+      f'({len(direct)} direct, {nlock - len(direct)} transitive), '
+      f'{sum(1 for k in kind.values() if k == "runtime pack")} runtime packs and '
+      f'{sum(1 for k in kind.values() if k == "tool")} tool(s) ({", ".join(tools_in) or "none"}). {len(builds)} distinct repository+commit pairs. '
       'What is left out, and why: [scope.md](scope.md).')
     if missing_assets:
         p(f'In a lock file, but not in the assets file for the target: {", ".join(sorted(missing_assets))}.')
@@ -234,7 +276,7 @@ with open(os.path.join(outdir, 'census.md'), 'w') as f:
         p('| Package | Version | Direct | Owner | Commit | IL/native | pdb | Compiler | det | sum | SL | AC | SN |')
         p('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |')
         for r in sel:
-            d = 'pack' if r['source'] == 'runtime pack' else r['direct']
+            d = {'runtime pack': 'pack', 'tool': 'tool'}.get(r['source'], r['direct'])
             p(f"| {r['package']} | {r['version']} | {d} | {r['owner']} | {r['commit'][:8]} "
               f"| {r['managed_files']}/{r['native_files']} | {r['pdb']} | {r['compiler'].split('+')[0]} "
               f"| {r['deterministic']} | {r['pdbchecksum']} | {r['sourcelink']} | {r['authenticode']} | {r['strongname']} |")
@@ -245,12 +287,23 @@ ship_versions = collections.defaultdict(set)
 for (lid, lver), (name, ver) in packages.items(): ship_versions[lid].add(ver)
 seen = collections.defaultdict(set)   # key -> where it occurs
 names = {}
+excluded = []
+other_rid = {}
+for prog in programs:
+    lock = os.path.join(repo, 'src', prog, 'packages.lock.json')
+    for section in json.load(open(lock))['dependencies']:
+        if section in (tfm, target) or section in IGNORED_SECTIONS: continue
+        for k, (name, ver, _) in lock_graph(lock, {section}).items():
+            if k not in packages: other_rid[k] = (name, ver, section)
+for k, (name, ver, section) in sorted(other_rid.items()):
+    excluded.append(('Other platform', name, ver, f'Only in the `{section}` part of a program\'s lock file. '
+                     'The Windows release is later work (decided 5/10).'))
 for lock in sorted(glob.glob(os.path.join(repo, 'src', '*', 'packages.lock.json'))) + [os.path.join(repo, 'tests', 'packages.lock.json')]:
     where = os.path.relpath(os.path.dirname(lock), repo)
+    if where in (os.path.join('src', p) for p in programs): continue
     for k, (name, ver, _) in lock_graph(lock).items():
         seen[k].add(where); names[k] = (name, ver)
-excluded = []
-for k in sorted(set(seen) - set(packages)):
+for k in sorted(set(seen) - set(packages) - set(other_rid)):
     name, ver = names[k]
     places = sorted(seen[k])
     other = ship_versions.get(k[0])
@@ -265,18 +318,19 @@ for prog in programs:
     assets = json.load(open(os.path.join(repo, 'src', prog, 'obj', 'project.assets.json')))
     for dd in assets['project']['frameworks'][tfm].get('downloadDependencies', []):
         name, ver = dd['name'], dd['version'].strip('[]').split(',')[0].strip()
+        if name.lower().endswith(('.osx-arm64', '.osx-x64')): continue   # host RID of a Mac restore, see IGNORED_SECTIONS
         if not name.lower().endswith('.' + rid) and ('Other platform', name, ver) not in [e[:3] for e in excluded]:
             excluded.append(('Other platform', name, ver, f'Runtime pack for another platform. The Windows release is later work (decided 5/10).'))
 tools = json.load(open(os.path.join(repo, '.config', 'dotnet-tools.json')))['tools']
 for name, t in sorted(tools.items()):
-    why = ('Local tool. Makes the EF migration bundle, which is not measured. In scope only if we measure that bundle.'
-           if name == 'dotnet-ef' else 'Local tool for code formatting. Never part of a build or the release.')
-    excluded.append(('Local tool', name, t['version'], why))
+    if name in tools_in: continue
+    excluded.append(('Local tool', name, t['version'], 'Local tool for code formatting. Never part of a build or the release.'))
 with open(os.path.join(outdir, 'scope.md'), 'w') as f:
     p = lambda *a: print(*a, file=f)
     p('# Dependency scope: what is in, what is out\n')
     p(f'Generated by `experiments/dep-census/census.py`. **In:** the {len(rows)} packages the self-contained '
-      f'`{rid}` publish of {" and ".join(programs)} ships; one row each in [census.md](census.md).\n')
+      f'`{rid}` publish of {", ".join(programs)} ships, and the tools whose output ships '
+      f'({", ".join(tools_in) or "none"}); one row each in [census.md](census.md).\n')
     p('**Out, not NuGet packages:** the frontend\'s npm packages (layer 3, measured separately), and the '
       '.NET SDK itself (the toolchain that builds everything; recorded by its `csc.dll` hash, not rebuilt).\n')
     groups = collections.Counter(e[0] for e in excluded)
