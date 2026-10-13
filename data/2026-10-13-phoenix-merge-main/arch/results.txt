@@ -83,3 +83,20 @@
     images built and named :main-ci, not pushed: ws-pems,
     ws-pems-job-worker, wspems-mcp-server, wspems-chat-server,
     wspems-mcp-auth-broker
+    setup-node: build-frontend node-version-file .nvmrc, downloaded
+    22.23.3; test-node-services node-version 22, the runner's cached
+    22.23.2
+
+11. The whole release twice (run.sh Z, reprotest all) on 79cb67a7,
+    13:50:13-14:07:01
+    release.sha256 identical, 2124 files, sha256 of the list
+    113c707dac8e5171, the same file as under none (9)
+    zip-norm identical, the same two hashes as in 9
+    zip-ci differ (both files), as in W48; diffoscope names no other file
+    reprotest exit 1 for the zip-ci difference; leftover 0
+    samples of the .NET processes: control 312, umask 0022, no faketime,
+    LANG C.UTF-8, TZ GMT+12, exec_path 0, environment not varied,
+    2 CPUs, in const_build_path; experiment 254, umask 0002,
+    FAKETIME=+34416420, LANG et_EE.UTF-8, TZ GMT-14, exec_path 1,
+    home /nonexistent/second-build, environment varied, 11 CPUs, in
+    build-experiment-1; LC_ALL C.UTF-8 in both; aslr on in both

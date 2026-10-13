@@ -5,11 +5,21 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, main's CI on GitHub on the merged branch.
-Last edit: 13 October 2026, 13:35. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the whole release under `all` on the merged branch.
+Last edit: 13 October 2026, 14:20. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 13:50-14:07
+([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), result 11):
+the whole release built twice under `all` on the merged head `79cb67a7`.
+All 2124 files and the normalised zips identical, the hash list the same
+as under `none`. Read in the merged code: main's lock has lost its `libc`
+fields (W46), the Windows zips are packed with plain `zip -qr` (W48),
+PR validation's migration guard runs in the reusable .NET build that
+passed in main's CI (W53), and main's CI set the frontend up with Node
+22.23.3 (W40).
 
 On GitHub, 13/10 11:07-11:27 UTC
 ([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), result 10):
@@ -180,18 +190,18 @@ Layer 5 (container) has no runs yet.
 | `fileordering` | - needs a VM with `disorderfs` | - | - | - |
 | `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - | - |
 | Machine | - VM too small W14 | - | - | - |
-| SDK binary | - empty-class only, 8/9 | - | - Node pinned to 20.20.2 on the branch, not yet run in CI W40 | - |
-| Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46 | - |
-| Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases | - |
+| SDK binary | - empty-class only, 8/9 | - | - Node pinned to 22.23.3 since the merge, ran in main's CI 13/10 W40 | - |
+| Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46, main's lock has none since 17/9 | - |
+| Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases | - packed with plain `zip -qr` since the merge W48 |
 
 On SDK 10.0.401, from `332752b9`: the whole release with its zips in one
 build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
-| Axis | `332752b9` | `e6ce3549`, compression off |
-| --- | --- | --- |
-| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical |
-| `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit |
-| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` |
+| Axis | `332752b9` | `e6ce3549`, compression off | `79cb67a7`, after the merge |
+| --- | --- | --- | --- |
+| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical | green 13/10: 2124 files, `113c707d…`; normalised zips identical |
+| `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit | green 13/10: `113c707d…`, the same as `none`; W51 not hit |
+| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | - |
 
 ## Open, by layer
 
@@ -209,23 +219,29 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   after the merge with its own factory (`805275c4`); CI built and ran it
   on the test tag but compared no builds. On .NET 10 the release job and
   PR validation's migration guard need a restore before `dotnet ef`
-  (W53); it is in both since `21360193`, ran in the release job on the
-  test tag, not yet in PR validation. After the merge the whole release
-  is identical in two builds under `none` (`79cb67a7`).
+  (W53); it is in both since `21360193` and ran in the release job on
+  the test tag. Since the merge, PR validation's guard runs in the
+  reusable .NET build after its restore and build (#787), and passed
+  there in main's CI. After the merge the whole release is identical in
+  two builds under `none` and `all` (`79cb67a7`).
 - Windows: the `win-x64` publish is not measured. Later work for the thesis,
   part of the WS delivery. Open points in the layer plan.
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
-  the runtime's minified names changed between commits (W44), the Node pin, 22.23.3 since the merge, not yet run in CI (W40), and npm 10.8.2
-  dropping `libc` from the lock (W46). The lock's 391 missing hashes are
-  filled (W41, `e19ca414`), and main's 362 again after the merge
-  (`bc0c52f6`). W51, the module and link order, is fixed on
-  the branch (`61870435`); the jitter test is the check to repeat after a
-  Next.js or webpack upgrade.
+  the runtime's minified names changed between commits (W44), the
+  Dockerfile's half of the Node pin (W40; 22.23.3 since the merge, which
+  main's CI ran), and npm dropping `libc` from the lock (W46): main's lock
+  has none since 17/9, so the merged branch's has none either. The lock's
+  391 missing hashes are filled (W41, `e19ca414`), and main's 362 again
+  after the merge (`bc0c52f6`). W51, the module and link order, is fixed
+  on the branch (`61870435`); the jitter test is the check to repeat after
+  a Next.js or webpack upgrade, and the merge kept Next.js 15.5.25.
 - Layer 4: the zips as CI packs them are red (W48); the normalised packing
   is in the release workflow since `06cb5397` and ran on GitHub on the
   test tag; after the merge its zips are identical in two builds here.
-  Windows' `Compress-Archive` zips are not measured.
+  Since the merge the Windows zips are packed on Linux with plain
+  `zip -qr`, not normalised, and `SHA256SUMS` lists them with the Linux
+  zips; not measured.
 - Layer 5: nothing yet. The images' version stamps (W45) and the Dockerfile's
   Node pin (W40) are on the branch, not built.
 - Cross-machine and file order: paused until a VM with several GB of RAM
@@ -237,8 +253,8 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 ## Next up
 
-1. The merge (13/10, `79cb67a7`) is measured on `arch` and passed main's
-   CI on GitHub. PR validation and the release workflow have not run on
+1. The merge (13/10, `79cb67a7`) is measured on `arch`, the whole release
+   under `none` and `all`, and passed main's CI on GitHub. PR validation and the release workflow have not run on
    it: a draft pull request or a second test tag (Leo's call) would check
    the tag check and the migrator's smoke test both ways on GitHub. Then
    layer 5, the images.

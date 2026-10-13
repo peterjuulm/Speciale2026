@@ -138,3 +138,39 @@ gh run list -R $R --workflow 02-main-ci.yml --branch thesis/reproducible-builds 
 ID=38387985880; gh run watch $ID -R $R --exit-status --interval 60 > /dev/null 2>&1; gh run view $ID -R $R --json status,conclusion,jobs --jq '"\(.status) \(.conclusion)", (.jobs[] | "\(.name): \(.conclusion) \(.startedAt) \(.completedAt)")'
 curl -s -L -H "Authorization: Bearer $(gh auth token)" https://api.github.com/repos/$R/actions/runs/$ID/logs -o $D/main-ci-run/run-logs.zip
 grep -rh -E 'Total tests|Passed: +[0-9]+|Tests: +[0-9]+ passed|No changes have been made to the model|naming to docker.io/library/[a-z-]+:main-ci' logs
+
+# Result 11, from 13:50, on 79cb67a7 (Leo's go): the whole release under
+# reprotest's all, alone on the machine, in a fresh lab:
+C=79cb67a7
+L=/private/tmp/rb1-phoenix; rm -rf $L && mkdir -p $L && git -C $W archive $C -- . ':(exclude).claude' | tar -x -C $L && python3 $E/labcheck.py $W $C $L | tail -1
+#   5763 files in commit, 5763 in lab: 0 missing, 0 differing, 0 extra
+OUT=$D/release-$C DOTNET_DIR=$DN NODE_DIR=/private/tmp/rb1-node22 FIXENV="APP_VERSION=v0.0.0-thesis LC_ALL=C.UTF-8" VER= ZEPOCH=1791883289 $E/phoenix-rt/run.sh Z all Z-all > $D/release-$C-Z-all.out 2>&1
+# The comparisons, as for result 9, and the samples grouped by build:
+S=$D/release-$C/store-Z-all
+cmp $S/control/source-root/release.sha256 $S/experiment-1/source-root/release.sha256
+cmp $S/control/source-root/release.sha256 $D/release-$C/store-Z-none/control/source-root/release.sha256
+diff $S/control/source-root/zips.sha256 $S/experiment-1/source-root/zips.sha256
+grep -oE 'experiment-1/source-root/release/[^ ]+' $S/experiment-1.diffoscope.out | sed -E 's#experiment-1/source-root/##' | awk -F/ '{print $1"/"$2"/"$3}' | sort | uniq -c
+python3 - <<'PY'
+import collections,re
+F='D/release-79cb67a7/samples-Z-all.txt'   # D as above
+keys=['uid','umask','libfaketime','FAKETIME','LANG','LC_ALL','TZ','exec_path','home','capenv','ncpus','pers','aslr','utsns','cwd']
+groups=collections.defaultdict(collections.Counter)
+for l in open(F):
+    d=dict(re.findall(r'(\S+?)=(\S*)',l))
+    groups[tuple((x,d.get(x,'')) for x in keys)][d.get('role','?')]+=1
+for k,roles in groups.items():
+    print(sum(roles.values()),'samples:',' '.join(f'{a}={b}' for a,b in k)); print('   roles:',dict(roles))
+PY
+
+# Reads added at 13:40-14:00, for result 10's Node versions and three
+# points of "What the merge met" (lock fields, Next.js, Windows zips):
+grep -rhoE "(Found in cache @ [^ ]+|Attempting to download [0-9.]+|v22\.[0-9]+\.[0-9]+)" $D/main-ci-run/logs | sort | uniq -c
+grep -rhE "node-version(-file)?:" $D/main-ci-run/logs | sort | uniq -c
+for c in $(git -C $W log --reverse --format=%h a2dc1d5b..ed2c6b29 -- src/WebAPI/ClientApp/package-lock.json); do printf "%s libc=%s\n" $c "$(git -C $W show $c:src/WebAPI/ClientApp/package-lock.json | grep -c '"libc"')"; done
+#   36 up to 9541e223a (16/9), 0 from b04ed0e4f (17/9) on
+git -C $W show 79cb67a7:src/WebAPI/ClientApp/package-lock.json | python3 -c 'import json,sys; print(json.load(sys.stdin)["packages"]["node_modules/next"]["version"])'
+git -C $W log --oneline 82ea130a..79cb67a7 -- src/WebAPI/ClientApp/next.config.js
+#   15.5.25 (also on 82ea130a); no commit
+git -C $W show 79cb67a7:.github/workflows/00-reusable-windows-publish.yml | grep -n "zip -qr"
+git -C $W show 79cb67a7:.github/workflows/03-release.yml | grep -nE "release-zips-|sha256sum \*.zip"

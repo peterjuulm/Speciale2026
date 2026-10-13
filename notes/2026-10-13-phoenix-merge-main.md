@@ -32,7 +32,20 @@ logs are kept in private data.
 
 ## Expectation
 
-None written down before these runs: they check a merge, not a claim.
+None written down before results 1-10: they check a merge, not a claim.
+
+For result 11, written before it ran `[I]`: the whole release built under
+reprotest's `all` on `79cb67a7` gives the same 2124 files as under `none`
+(result 9), its hash list the same `113c707dac8e5171`, and the normalised
+zips the same two hashes. The zips packed the old CI way differ, now also
+in modes and time zone (W48). W51 does not show: its fix, `61870435`, is
+in the merge, and Next.js is still 15.5.25. No compiler server or MSBuild
+node is left over.
+
+For result 12, written before it ran `[I]`: the whole release built under
+reprotest's `locales`, without the `LC_ALL` pin, gives the same hash list
+`113c707dac8e5171` and the same normalised zips. On .NET 10 the locale no
+longer reaches the assemblies (W26 gone, `e6ce3549`).
 
 ## What the merge met
 
@@ -43,11 +56,15 @@ Read in main's commits and code `[V]`:
   check that the Dockerfiles build in `global.json`'s SDK stays.
 - Main moved its release tests to an office runner behind a repository
   variable, moved the migration checks into the reusable backend build
-  (#787), and made the Windows publish a reusable workflow that builds on
-  Linux and signs through a Docker image. The merge keeps all of it and
-  ports the branch's changes into the new places: the SDK from
-  `global.json`, one locked restore and publishes without their own,
-  the version from `APP_VERSION`, the migrator from `src/DbMigrator`.
+  (#787), which PR validation and main's CI both call with
+  `migration-guard: true`, and made the Windows publish a reusable
+  workflow that builds on Linux and signs through a Docker image. The
+  merge keeps all of it and ports the branch's changes into the new
+  places: the SDK from `global.json`, one locked restore and publishes
+  without their own, the version from `APP_VERSION`, the migrator from
+  `src/DbMigrator`. The normalised packing (W48) stays in the Linux
+  publish only: the Windows publish packs its zips with plain `zip -qr`,
+  and the release's `SHA256SUMS` lists them beside the Linux zips.
 - Main sets the release version with `-p:` flags and hard-codes
   `InformationalVersion` in two project files. The merge keeps the
   branch's single `APP_VERSION`, read by `Directory.Build.props`, so
@@ -55,7 +72,9 @@ Read in main's commits and code `[V]`:
 - Main needs Node 22 for the frontend. `.nvmrc` and the WebAPI Dockerfile
   now pin 22.23.3 exactly, the tarball by SHA-256 (W40).
 - Main's new frontend lock again had 362 of 1406 entries without
-  `resolved` and `integrity` (W41).
+  `resolved` and `integrity` (W41), and no `libc` field at all: main's
+  `b04ed0e4f` (17/9) dropped all 36 (W46). Next.js stayed at 15.5.25,
+  and `next.config.js` is unchanged.
 - Main's #619 (22/9) added a guard: a design-time EF command refuses a
   connection string whose host is not local, unless
   `WS_EF_ALLOW_REMOTE=1`, and refuses a missing one. Both of main's
@@ -123,7 +142,20 @@ in Leo's private repository; `kommando.txt` writes out its steps.
     WS's office runner): every job passed. The backend's 4681 unit, 807
     integration and 153 functional tests, the counts of 7, and the EF
     check; the frontend's 1610 tests; the Node services' tests; all five
-    images built, not pushed.
+    images built, not pushed. The frontend job set Node up from `.nvmrc`,
+    22.23.3 (W40); the Node services' job asks for `22` only and took the
+    runner's cached 22.23.2. The EF check is the reusable .NET build's,
+    the one PR validation calls, after its locked restore and build.
+11. The whole release built twice under reprotest's `all` on the head,
+    13:50-14:07: the expectation held. All 2124 files identical, their
+    hash list the same `113c707dac8e5171` as under `none` (9), the
+    normalised zips the same two hashes; only the zips packed the old CI
+    way differ (W48). No compiler server or MSBuild node was left over.
+    The samples of the .NET processes show the experiment build under
+    another build folder, umask 0002, the clock about 398 days ahead,
+    time zone GMT-14, `LANG` `et_EE.UTF-8`, another home folder and 11
+    CPUs against the control's 2; `LC_ALL` was `C.UTF-8` in both, as the
+    release sets it.
 
 ## Interpretation
 
@@ -145,8 +177,9 @@ measured fixes go into main's new structure instead of beside it.
 **The merged branch is as reproducible as the branch was.** `[V]` On the
 head the whole release and the migrator are identical in two builds, and
 CI's tests pass, here and on WS's office runner (7-10), with main's 122
-commits, Node 22 and the new factories in. Measured under `none` only: the varied axes have not run on
-the merged code.
+commits, Node 22 and the new factories in. The whole release stays
+identical when the second build varies everything `all` varies here (11);
+the migrator was measured under `none` only.
 
 ## Caveats and not tested
 
@@ -161,4 +194,8 @@ the merged code.
   code in the merge commit's tree, built here.
 - `79cb67a7` differs from `805275c4` only in two workflow files and the
   gitleaks configuration, so results 4 and 5 hold for it `[I]`.
-- One machine, and reprotest's `none` only.
+- One machine. The whole release under `none` and `all`, the migrator
+  under `none` only. `all` keeps `LC_ALL` at `C.UTF-8`, as the release
+  does, so the locale varied in `LANG` alone; `locales` without the pin
+  has not run on the merged code. The samples cover the .NET processes,
+  not Node's.
