@@ -1,0 +1,67 @@
+== P1 webapi
+manifest differ: sha256:843cfaf33b5f1c966fcae1c66b3452fc44e82519ebd06e588059ebc16ebbee64 / sha256:05476ba829f8366b4af745d692c279379eb615535b2707480e4705abc6607ad5
+config differ: created, history[15].created, history[16].created, history[17].created, history[18].created, history[19].created, rootfs.diff_ids[7], rootfs.diff_ids[9]
+layers 10: same [0, 1, 2, 3, 4, 5, 6, 8], differ [7, 9]
+index.json differs
+layer 7: sha256:0cb9e53c29eb56a3466704c3a4476c4b02abc6395a5637ba3985f2082676cd9f / sha256:c1389c6089d43af73e6da6c8cd7d5850fc962604de73a4e5099701c4a41534b9, uncompressed differs, size 182 / 182
+  4 / 4 entries, only in A 0, only in B 0, order same
+  3 entries differ in mtime
+layer 9: sha256:565733f451fb62e0e4903974f77eb783b7624bb50c3c452d1f9af39da0f0d77b / sha256:096f855c01683d160a57e9402185268b89a5151c8b4c2a63e9f9f4164a3e3650, uncompressed differs, size 226535994 / 226535977
+  1408 / 1408 entries, only in A 0, only in B 0, order same
+  123 entries differ in mtime
+== P1 worker
+manifest differ: sha256:1ac9131906e1bf0e3cec9e53a30bb106713cd47292767b5c284b2ed096e21492 / sha256:88cf6157d0afea3c4ce53030b23efe8931787c565f319998aa7c79ad0cd293f6
+config differ: created, history[16].created, history[17].created, rootfs.diff_ids[8]
+layers 9: same [0, 1, 2, 3, 4, 5, 6, 7], differ [8]
+index.json differs
+layer 8: sha256:e91c345ad0d50db7df9ae989faaf3366909e777f8e7c335d4adbebb8196480fa / sha256:377de42a634e8a1304fd6541c6370664793332bc721f61e577b1c01ebfde2d8f, uncompressed differs, size 185295569 / 185295630
+  172 / 172 entries, only in A 0, only in B 0, order same
+  9 entries differ in mtime
+== P2 webapi
+manifest same: sha256:2b8a8ff111641ea79f0374cb34d0f814d7c75cdfd06c3ee74f1c634b336b71bf
+config same
+layers 10: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], differ []
+index.json same
+== P2 worker
+manifest same: sha256:dfb87e072f9b5a3a7304fb6ac210f236178d21d7e1d4da42d46d10f6f196044e
+config same
+layers 9: same [0, 1, 2, 3, 4, 5, 6, 7, 8], differ []
+index.json same
+== P1-P2 webapi
+manifest differ: sha256:843cfaf33b5f1c966fcae1c66b3452fc44e82519ebd06e588059ebc16ebbee64 / sha256:2b8a8ff111641ea79f0374cb34d0f814d7c75cdfd06c3ee74f1c634b336b71bf
+config differ: created, history[13].created, history[14].created, history[15].created, history[16].created, history[17].created, history[18].created, history[19].created, rootfs.diff_ids[6], rootfs.diff_ids[7], rootfs.diff_ids[9]
+layers 10: same [0, 1, 2, 3, 4, 5, 8], differ [6, 7, 9]
+index.json differs
+layer 6: sha256:4a37cf5f32973897ab93991fe88ddafc1c9a832be008c444f847cea2367bca53 / sha256:b8580f56dffb742a8f51bcdcb1ec5477d5ec31ee72d551b93d83697401148c77, uncompressed differs, size 93 / 93
+  1 / 1 entries, only in A 0, only in B 0, order same
+  1 entries differ in mtime
+layer 7: sha256:0cb9e53c29eb56a3466704c3a4476c4b02abc6395a5637ba3985f2082676cd9f / sha256:f39e7344ff52345a7b4a2c76e8b8d2223498535f8b9316a87fd704efc13a9baf, uncompressed differs, size 182 / 182
+  4 / 4 entries, only in A 0, only in B 0, order same
+  3 entries differ in mtime
+layer 9: sha256:565733f451fb62e0e4903974f77eb783b7624bb50c3c452d1f9af39da0f0d77b / sha256:96f80713681dc7f48c775790a6e523d98ded572bf2fd5ff4f9b1e1044ac4963e, uncompressed differs, size 226535994 / 226536136
+  1408 / 1408 entries, only in A 0, only in B 0, order same
+  1117 entries differ in mtime
+== P1-P2 worker
+manifest differ: sha256:1ac9131906e1bf0e3cec9e53a30bb106713cd47292767b5c284b2ed096e21492 / sha256:dfb87e072f9b5a3a7304fb6ac210f236178d21d7e1d4da42d46d10f6f196044e
+config differ: created, history[13].created, history[14].created, history[15].created, history[16].created, history[17].created, rootfs.diff_ids[6], rootfs.diff_ids[8]
+layers 9: same [0, 1, 2, 3, 4, 5, 7], differ [6, 8]
+index.json differs
+layer 6: sha256:6efca35da2e3b4ae435117df020104b9bfad04e43d55e34601f8c533fbd82f20 / sha256:227924541bc96fca687ba4fd7d00ebbd815b2a5594916a2fe73f5c4d74ef2e30, uncompressed differs, size 96 / 94
+  1 / 1 entries, only in A 0, only in B 0, order same
+  1 entries differ in mtime
+layer 8: sha256:e91c345ad0d50db7df9ae989faaf3366909e777f8e7c335d4adbebb8196480fa / sha256:4e3048e44c459e1858e42abb8112cb573053651b43a131a8f93371c7ba0e0638, uncompressed differs, size 185295569 / 185295663
+  172 / 172 entries, only in A 0, only in B 0, order same
+  9 entries differ in mtime
+== P2 tarballs
+webapi and worker: byte-identical (cmp)
+== the WORKDIR /app steps in P1's second builds, from the build logs
+webapi-2: [base 2/3] WORKDIR /app: CACHED
+webapi-2: [final 1/2] WORKDIR /app: ran
+worker-2: [base 2/2] WORKDIR /app: CACHED
+worker-2: [final 1/2] WORKDIR /app: CACHED
+== P2's rewritten layers carry the annotation buildkit/rewritten-timestamp: 1791919869
+== the cache check, C: warm and cold builds with epoch 1791924000
+manifest same: sha256:2a287f0f48c820e28c2a48ae72565464b26ae017b713ee05f666113d45b94c91
+warm: [base 2/3] WORKDIR /app ran, [base 3/3] RUN mkdir ran; CACHED only FROM aspnet, COPY .nvmrc and the RUN after it in the publish stage
+== the epoch from the environment, P3
+webapi-env.oci.tar byte-identical to P2/webapi-1.oci.tar (sha256:2b8a8ff111641ea79f0374cb34d0f814d7c75cdfd06c3ee74f1c634b336b71bf)

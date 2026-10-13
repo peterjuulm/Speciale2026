@@ -67,3 +67,96 @@ All `[I]`.
 ## Commands
 
 Verbatim in `data/2026-10-13-phoenix-images/arch/kommando.txt`.
+
+## Result
+
+`[V]` (the tarballs in the lab, the comparisons in private data, their
+summaries in `results.txt` beside `kommando.txt`), 22:17-22:37:
+
+1. Held, but for one layer. `P1`: the two builds of each image differ in
+   the config's `created` and history times and the index's `created`
+   annotation. The six layers from the `aspnet` base image are the same.
+   The WebAPI's `RUN mkdir` layer differs in its three folders' times,
+   and the `COPY --from=publish` layer in the times of 123 of its 1408
+   entries; the job worker's in 9 of 172. The exception: the layer
+   `WORKDIR /app` makes was the same in both builds. BuildKit took that
+   step from its cache in the second build despite `--no-cache` (the logs
+   say `CACHED`), so the folder kept the first build's time.
+2. Held. No entry differs in content, mode, owner or order, in either
+   image: only times.
+3. Held. `P2`: both builds of each image give one manifest (WebAPI
+   `2b8a8ff1…`, job worker `dfb87e07…`), and the tarballs are
+   byte-identical. Against `P1` only times changed: the same entries and
+   contents, the six base layers with their digests unchanged. Every time
+   later than the epoch became the epoch; earlier ones stayed, in 290 of
+   the WebAPI layer's 1408 entries and 162 of the job worker's 172. Each
+   rewritten layer carries the annotation `buildkit/rewritten-timestamp`
+   with the epoch.
+
+A check at 22:30, on the minimal image: `SOURCE_DATE_EPOCH` only in
+buildx's environment, the way Docker's documentation passes it to
+`docker/build-push-action`, fixes the config's times, but the folder
+`COPY` makes keeps the build's time.
+
+Two checks after the passes, with no expectation written first, on the
+WebAPI image:
+
+- 22:41-22:45, the cache. A build with a new epoch (`1791924000`), the
+  builder's cache filled at other epochs, against a `--no-cache` build
+  with that epoch: the same image (`2a287f0f…`). The cached build reran
+  `WORKDIR /app` and every step after it. In all earlier builds
+  `WORKDIR` came from the cache only under the same epoch, so the epoch
+  is part of that step's cache key `[V]` (the build logs).
+- 22:47-22:49, the epoch as the workflow would pass it: `SOURCE_DATE_EPOCH`
+  in buildx's environment instead of a build argument, with
+  `rewrite-timestamp=true`. Byte-identical to `P2`'s WebAPI.
+
+## Interpretation
+
+**The two images differ only in time.** `[V]` for these two images on
+`arch`: between two builds only the build's clock differs, in the config,
+the index, and the times of the files in the layers the build adds. The
+programs in them are the same bytes.
+
+**BuildKit's own settings remove it.** `[V]` for `arch`:
+`SOURCE_DATE_EPOCH` with `rewrite-timestamp=true` gives byte-identical
+images and leaves the base layers alone, so they stay shared with
+Microsoft's image. The epoch alone is not enough (the 22:30 check), and
+it can come from the environment (the 22:47 check). In the release job
+that is the commit's time in the job's environment and
+`rewrite-timestamp=true` on each image's output; on GitHub `[I]`.
+
+**One builder hides part of the difference.** `[V]` that `WORKDIR` came
+from the cache. CI starts each run with a new builder `[I]`, so there the
+folder would carry each run's time as well. With the fix it is rewritten
+like the rest (`P2`, the WebAPI's layer 6).
+
+The fix is in the release job since `fa60ea97` on the WS branch, after a
+review by Codex: the commit's time in `SOURCE_DATE_EPOCH`, and the image
+exporter with `push=true,rewrite-timestamp=true` instead of `push: true`
+for all five images. Codex's points: the provenance attestation keeps
+the build's own times, so the index around the image still differs; the
+three MCP images have base images without digests, which the fix cannot
+help.
+
+## Caveats
+
+- One machine and one builder, so not a cold rebuild everywhere, as the
+  `WORKDIR` layer shows. The base images were pulled once.
+- No provenance or SBOM. CI adds both as manifests of their own in the
+  index, which were not compared.
+- The frontend export was built after the commit, so its 990 files are
+  later than the epoch and `P2` rewrote their times too (1117 entries
+  against `P1`'s 123). CI downloads the export, which gives the files
+  later times as well `[I]`.
+- `APP_VERSION` is `v0.0.0-thesis`, not a tag's name.
+
+## Not tested
+
+- CI's cache itself (`type=gha`). The fix rewrites only times later
+  than the epoch, so a cached layer from an earlier run would keep an
+  older time. In the 22:41 check a new epoch reran every step that adds
+  a layer to these two images, so none came from the cache `[I]` for
+  `gha`.
+- Pushing to a registry with `rewrite-timestamp`, and the job on GitHub.
+- A build on another machine, and the three MCP images.

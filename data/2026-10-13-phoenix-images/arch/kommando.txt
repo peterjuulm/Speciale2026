@@ -1,0 +1,43 @@
+# phoenix-images, arch, 13 October 2026. Run by Claude at Leo's request, in
+# bash. Verbatim, with O for the private data folder and E for
+# Speciale2026/experiments.
+
+# buildx, 21:24: Docker's own release binary, its SHA-256 checked against
+# the release's checksums.txt, in a lab DOCKER_CONFIG; nothing installed
+# system-wide:
+V=$(gh api repos/docker/buildx/releases/latest --jq .tag_name); DC=/private/tmp/rb1-docker; mkdir -p $DC/cli-plugins; cd $DC && curl -fsSL -o buildx.bin "https://github.com/docker/buildx/releases/download/$V/buildx-$V.linux-amd64" && curl -fsSL -o checksums.txt "https://github.com/docker/buildx/releases/download/$V/checksums.txt" && want=$(grep " \*\?buildx-$V.linux-amd64$" checksums.txt | cut -d' ' -f1) && got=$(sha256sum buildx.bin | cut -d' ' -f1) && echo "want $want" && echo "got  $got" && [ "$want" = "$got" ] && mv buildx.bin cli-plugins/docker-buildx && chmod 755 cli-plugins/docker-buildx && DOCKER_CONFIG=$DC docker buildx version
+#   v0.38.0
+
+# The builder, 21:46, the kind setup-buildx-action makes: the
+# docker-container driver, which pulls moby/buildkit:buildx-stable-1:
+export DOCKER_CONFIG=/private/tmp/rb1-docker; docker buildx create --name rb1 --driver docker-container --bootstrap
+
+# A check of the method, 22:06-22:08, in a scratch folder: an image FROM
+# scratch with one COPY of two files, built as image-probe.sh builds.
+# Without the epoch two builds differ: the config's times and the time of
+# the folder COPY makes. With --build-arg SOURCE_DATE_EPOCH=1791919869 and
+# rewrite-timestamp=true the two tarballs are byte-identical.
+
+# The two passes, 22:17-22:37:
+DOCKER_CONFIG=/private/tmp/rb1-docker OUT=$O $E/phoenix-rt/image-probe.sh 100e39127a1561a2d50dd54a01f8209c8b62193a P1
+DOCKER_CONFIG=/private/tmp/rb1-docker OUT=$O EPOCH=1791919869 $E/phoenix-rt/image-probe.sh 100e39127a1561a2d50dd54a01f8209c8b62193a P2
+
+# A second check, 22:30, on the scratch image: SOURCE_DATE_EPOCH only in
+# buildx's environment, as docker/build-push-action is told to take it,
+# without rewrite-timestamp. buildx passes it on: the config's created is
+# the commit's time. The folder COPY makes keeps the build's time.
+for n in 6 7; do SOURCE_DATE_EPOCH=1791919869 docker buildx build --builder rb1 --no-cache --provenance=false -q --output type=oci,dest=$T/t$n.tar $T/c1; done
+
+# Afterwards, in /private/tmp/rb1-img-out, where the tarballs are:
+for i in webapi worker; do cmp P2/$i-1.oci.tar P2/$i-2.oci.tar && echo "$i P2 tarballs byte-identical"; done
+mkdir -p $O/P1-P2; for i in webapi worker; do python3 $E/phoenix-rt/oci-diff.py P1/$i-1.oci.tar P2/$i-1.oci.tar > $O/P1-P2/$i-diff.txt; done
+grep -E 'WORKDIR|CACHED' $O/P1/*.log
+
+# Two checks afterwards on the WebAPI image, 22:41-22:49, with L for the
+# lab /private/tmp/rb1-img/x and the tarballs in /private/tmp/rb1-img-out.
+# The cache: a new epoch, first with the builder's cache, then without:
+EP=1791924000; for k in warm cold; do nc=""; [ $k = cold ] && nc="--no-cache"; docker buildx build --builder rb1 $nc --provenance=false -f $L/src/WebAPI/Dockerfile --build-arg APP_VERSION=v0.0.0-thesis --build-arg SKIP_SPA_BUILD=true --build-arg SOURCE_DATE_EPOCH=$EP --output type=oci,dest=C/webapi-$k.oci.tar,rewrite-timestamp=true $L > $O/C/webapi-$k.log 2>&1; done
+python3 $E/phoenix-rt/oci-diff.py C/webapi-warm.oci.tar C/webapi-cold.oci.tar > $O/C/warm-cold-diff.txt
+# The epoch from the environment:
+SOURCE_DATE_EPOCH=1791919869 docker buildx build --builder rb1 --no-cache --provenance=false -f $L/src/WebAPI/Dockerfile --build-arg APP_VERSION=v0.0.0-thesis --build-arg SKIP_SPA_BUILD=true --output type=oci,dest=P3/webapi-env.oci.tar,rewrite-timestamp=true $L > $O/P3/webapi-env.log 2>&1
+cmp P2/webapi-1.oci.tar P3/webapi-env.oci.tar && echo "byte-identical to P2"

@@ -5,11 +5,22 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the Windows release built twice on Linux.
-Last edit: 13 October 2026, 22:25. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the release's .NET images built twice.
+Last edit: 13 October 2026, 23:00. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 22:17-22:49
+([phoenix-images](2026-10-13-phoenix-images.md); W56, W57): layer 5,
+the WebAPI and job worker images of `100e3912`, each built twice the way
+the release job builds them, without cache. They differ in times only:
+the config, the index, and the file times in the layers the build adds;
+every file's content is the same. With `SOURCE_DATE_EPOCH` at the
+commit's time and `rewrite-timestamp=true` both images are byte for byte
+the same, and the base layers keep their digests. The release job does
+that since `fa60ea97` (pushed; Codex reviewed). One builder hides part of
+the difference: `WORKDIR` comes from its cache despite `--no-cache` (W57).
 
 On `arch`, 13/10 21:31-22:16
 ([phoenix-windows-release](2026-10-13-phoenix-windows-release.md); W55):
@@ -210,7 +221,7 @@ then closed with a fix, **no-op** run, but the axis changed nothing, **-** not r
 the measurement. All on `arch` with Microsoft's SDK unless stated. In layer
 3 every cell carries W47: the export comes out in one of two orders
 whatever the axis, so "green" there means the axis changed nothing else.
-Layer 5 (container) has no runs yet.
+Layer 5 (container) is below the SDK 10 table.
 
 | Axis | Layer 1 build | Layer 2 publish | Layer 3 frontend | Layer 4 zip |
 | --- | --- | --- | --- | --- |
@@ -244,6 +255,11 @@ it on Linux (layer `W`), the cells of the grid above being SDK 9.0.120's.
 | `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical | green 13/10: 2124 files, `113c707d…`; normalised zips identical | green 13/10: 4256 files, `3f4539bc…`; both zips identical, unsigned W55 |
 | `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit | green 13/10: `113c707d…`, the same as `none`; W51 not hit | green 13/10: `3f4539bc…`, the same as `none` W55 |
 | `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | green 13/10 without the pin: `113c707d…` | green 13/10 without the pin: `3f4539bc…` W55 |
+
+Layer 5, the WebAPI and job worker images on SDK 10.0.401, `100e3912`,
+under `none` only (13/10): red as the release job builds them, times only
+(W56); identical with `SOURCE_DATE_EPOCH` and `rewrite-timestamp`, on the
+WS branch since `fa60ea97`.
 
 ## Open, by layer
 
@@ -288,8 +304,14 @@ it on Linux (layer `W`), the cells of the grid above being SDK 9.0.120's.
   `zip -qr`; since `5ec085ac` both jobs pack with one script, tested here
   on Linux trees. The Windows zips themselves, and `SHA256SUMS`, which
   lists them with the Linux zips, are not measured.
-- Layer 5: nothing yet. The images' version stamps (W45) and the Dockerfile's
-  Node pin (W40) are on the branch, not built.
+- Layer 5: the WebAPI and job worker images differ in times only and are
+  identical with the fix (W56, `fa60ea97`), on `arch` with one builder.
+  Open: the fix in CI, the three MCP images (base images without digests),
+  the manual image script `scripts/docker-build-push.sh`, which pushes
+  release images too, and the provenance attestation's times. The
+  images' assemblies carry `APP_VERSION` as their informational version
+  (W45, read in `P2`'s WebAPI). The Dockerfile's Node pin (W40) is not
+  built, as CI skips the SPA build.
 - Cross-machine and file order: paused until a VM with several GB of RAM
   exists (W14). Peter's Azure VM is the candidate.
 - Dependency tree: lock files done (W22). Plan, census and repository lookup
