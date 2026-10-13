@@ -66,3 +66,38 @@ git -C $L status --porcelain; git -C $L diff --stat; git -C $L diff -- src/Infra
 
 # 15:33, lab reset afterwards:
 L=/private/tmp/rb1-devflow/x; git -C $L checkout -q -- . && git -C $L clean -qfd -e node_modules && git -C $L status --porcelain | wc -l; rm -rf /private/tmp/rb1-nugetprobe; docker ps -a --format '{{.Names}}' | grep -c "^rb1-"
+
+# Evening, the branch's fixes. F=$D/fixes. After the reboot the lab's NuGet
+# cache (/tmp/dch) was refilled by copying the 436 package versions the six
+# lock files, the runtime packs and dotnet-ef name from Leo's own package
+# folder (~/.nuget/packages); no download.
+#
+# 20:59, W54 on 5ec085ac and on 6bc388c2, the first version of the W54
+# commit (it differs from 39ce4321 and 0b52e115 in the project's comment
+# only). B=/private/tmp/rb1-w54 holds an export of each:
+E2=(env -i HOME=$B/home USER=$(id -un) PATH=$DN:/usr/bin DOTNET_ROOT=$DN DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8)
+for c in 5ec085ac 6bc388c2; do for rid in linux-x64 osx-arm64; do
+  (cd $B/$c && unshare -rn "${E2[@]}" dotnet restore src/DbMigrator/DbMigrator.csproj --locked-mode -p:NETCoreSdkPortableRuntimeIdentifier=$rid) > $F/w54-$c-$rid.log 2>&1
+done; done
+(cd $B/6bc388c2 && unshare -rn "${E2[@]}" dotnet publish src/DbMigrator/DbMigrator.csproj -c Release --no-restore) > $F/w54-6bc388c2-publish-no-rid.log 2>&1
+
+# 21:01-21:03, the migrator on the fix, and run 3, 21:01-21:07:
+OUT=$F/migrator-builds-39ce4321 $E/phoenix-rt/migrator-probe.sh 39ce4321 > $F/migrator-builds-39ce4321.out 2>&1
+OUT=$D/run3 $E/phoenix-rt/dev-workflows.sh 39ce4321 > $D/run3/run.out 2>&1
+
+# 21:08, the HTTP cache filled online, in an export of 39ce4321 under
+# /private/tmp/rb1-nugetwarm, env as E2 with HOME there: dotnet tool
+# restore, then dotnet restore WS.Phoenix.sln with D6's reference added to
+# ApplicationCore. Then runs 4 and 5 (the script as it stands now; D0s was
+# added before run 5):
+OUT=$D/run4 $E/phoenix-rt/dev-workflows.sh 39ce4321 > $D/run4/run.out 2>&1
+OUT=$D/run5 $E/phoenix-rt/dev-workflows.sh b6d16f70 > $D/run5/run.out 2>&1
+
+# 21:16-21:21, the .local probes, in exports of 39ce4321 (N1-N5) and a clone
+# of the branch (N6) under /private/tmp/rb1-localprobe, each with its own
+# HOME: dotnet restore WS.Phoenix.sln under unshare -rnp --fork (N1),
+# unshare -rp --fork (N2) and no namespaces (N3), each inside
+# sh -c 'ip link set lo up; "$@"'; dotnet build WS.Phoenix.sln --no-restore
+# in N1 without (N4) and with (N5) the script's npm variables; a restore and
+# a build in the clone (N6). After each: is there a .local in the checkout,
+# and in HOME.

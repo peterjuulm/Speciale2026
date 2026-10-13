@@ -203,3 +203,106 @@ Leo's go.
   reading of its assembly.
 - `make setup` as a whole was not run, only its `db-migrate` step.
 - Only the add's change to the snapshot was diffed, not the remove's.
+
+## Follow-up: the fixes, 13/10 evening
+
+At Leo's go, four commits on the WS branch, one per problem above:
+
+- The Makefile names `WS.Phoenix.sln` in every `dotnet` command that takes
+  a project or solution: `build`, `clean`, `format` and `format-check`.
+- A `restore` target, a prerequisite of `db-migrate`, `db-migration-add`
+  and `db-migration-remove`.
+- `set -e` in `add_migration.sh` and `remove_migration.sh`.
+- `UseDefaultPublishRuntimeIdentifier=false` in `src/DbMigrator` (W54).
+
+### Expectation, written before the runs
+
+All `[I]`.
+
+1. Run 3 of `dev-workflows.sh`, on the new head. `make db-migrate` on the
+   fresh clone (D0) applies all 160 migrations, and `make build` exits 0.
+   Neither changes a tracked file. D2 to D6 give run 2's results.
+2. Two new failures, on purpose, show the scripts' exit codes. A second
+   `make db-migration-add name=ThesisProbe` fails, since the name is
+   taken. A second `make db-migration-remove` fails, since the last
+   migration left is applied to the database. Both exit non-zero and
+   print neither "Migration created!" nor "Migration removed!".
+3. `make clean` exits 0, and `make format-check` gets past choosing the
+   solution: no MSB1011 in either log. Whether the formatting check
+   itself passes is not part of the question.
+4. W54 on Linux, with the host's runtime set to `osx-arm64`
+   (`-p:NETCoreSdkPortableRuntimeIdentifier=osx-arm64`): the locked
+   restore of `src/DbMigrator` fails with NU1004 on `5ec085ac` and passes
+   on the fix.
+5. `migrator-probe.sh` on the fix: both builds identical, and the same
+   bytes as on `79cb67a7` (linux-x64 `062f730d…`, win-x64 `9f601966…`),
+   since the release publishes with `-r` and the property only matters
+   without one. A publish without `-r` stops with NETSDK1097.
+6. The `.local/share/NuGet/Migrations` folders appear again, as in run 2;
+   none of the fixes touches them.
+
+### Result
+
+`[V]` (`results.txt` and `kommando.txt` beside the first runs; the logs in
+private data), 13/10 21:01-21:33.
+
+- Run 3 (21:01-21:07, `39ce4321`) does not count for the EF steps.
+  `dotnet tool restore` wanted nuget.org: the reboot had wiped the lab's
+  NuGet cache, and the package folder copied back from Leo's own cache
+  lacks NuGet's HTTP cache, which an offline tool restore and D6's new
+  reference need. Its `make clean` (exit 0) and `make format-check` (no
+  MSB1011) stand. One online tool restore and one online restore with D6's
+  reference filled the HTTP cache.
+- Run 4 (21:08-21:14, `39ce4321`), expectations 1-3: `make db-migrate` on
+  the fresh clone applies all 160 migrations, `make build` exits 0. The
+  second add exits 2 ("is used by an existing migration"), the second
+  remove exits 2 ("has already been applied to the database"), and
+  neither prints its success message. `make clean` exits 0; `make
+  format-check` gets past choosing the solution and fails on the code's
+  own import order, about 2,400 findings. D2 to D6 as in run 2.
+- Expectation 4: with the host's runtime set to `osx-arm64`, the locked
+  restore of `src/DbMigrator` fails on `5ec085ac` with NU1004 ("Project's
+  runtime identifiers: linux-x64;osx-arm64;win-x64, lock file's runtime
+  identifiers linux-x64;win-x64") and passes on the fix. With `linux-x64`
+  both pass.
+- Expectation 5: both migrator builds on the fix are identical and the
+  same bytes as on `79cb67a7`, `062f730d…` and `9f601966…`. The publish
+  without `-r` did not stop with NETSDK1097, as expected and as the first
+  version of the project's comment said: it published for `linux-x64`. A
+  second rule in the same targets file, `UseCurrentRuntimeIdentifier`
+  (lines 103-123), picks the host's runtime while publishing. The comment
+  and the commit message were corrected before the push.
+- Expectation 6: the `.local` folders appeared again. Six probes beside
+  the runs (a restore and a build of an export or of a clone, with and
+  without the namespaces, with the script's whole environment) put NuGet's
+  Migrations folder under `HOME` every time, never in the checkout. Only
+  the script's own steps leave it there.
+- Codex reviewed the four commits: correct, but `dotnet format` stops with
+  an error of its own, not MSB1011; the scripts' `mkdir` made an unused
+  `src/WebAPI/Data/Migrations`; and the scripts called directly, and the
+  docs, still ran `dotnet ef` or bare `dotnet` commands without a restore
+  or a solution. The series became five commits: `3e4fbc48` (the
+  solution in the Makefile), `d547d192` (`set -e`, no `mkdir`),
+  `a853043f` (the `restore` target for `db-migrate`; the three bash
+  migration scripts restore the startup project themselves), `0b52e115`
+  (W54) and `100e3912` (docs). Codex's second look found one more
+  problem: the setup guide's `dotnet ef database update` had no
+  `--context`, though the WebAPI has two contexts. It was broken before
+  tonight; the guide runs `make db-migrate` now.
+- Run 5 (21:23-21:30, `b6d16f70`, the docs commit amended afterwards):
+  as run 4, and the scripts run directly on the untouched fresh clone
+  restore for themselves: the migration is created and removed, dotnet ef
+  says "Done." twice, no NETSDK1004.
+- The branch was pushed at 21:33, `79cb67a7..100e3912`. No workflow ran.
+
+### Interpretation
+
+`[I]`. On a fresh clone every Makefile target and bash script that runs
+`dotnet ef` now works, the bare `dotnet` commands name the solution, a
+failed `dotnet ef` fails its script, and W54 is fixed without changing the
+release's bytes. Left: the PowerShell scripts, not changed and not run
+here (no `pwsh`); EF snippets in `DEBUGGING.md` and `adding-features.md`
+that lack `--context`, as before; whether the fix works on a real Mac.
+
+A lesson for the harness: an offline lab needs NuGet's HTTP cache as well
+as its package folder.

@@ -5,11 +5,21 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the developers' commands on the WS branch, two runs.
-Last edit: 13 October 2026, 15:48. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the developers' commands after the branch's fixes.
+Last edit: 13 October 2026, 21:33. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 20:59-21:33
+([phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md), follow-up;
+W53, W54): five fixes on the WS branch, pushed as `100e3912`. The Makefile
+names the solution, `make db-migrate` restores first, the bash migration
+scripts restore for themselves and stop when `dotnet ef` fails, the docs
+follow, and the migrator keeps the host's runtime out of its restore.
+On a fresh clone every developer command passes; W54's NU1004 is
+reproduced on Linux and gone with the fix, and the release's migrator is
+byte for byte unchanged. Codex reviewed the series twice.
 
 On `arch`, 13/10 15:16-15:33
 ([phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md); W46, W53,
@@ -275,27 +285,24 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   ([dependency-plan](2026-10-12-dependency-plan.md),
   [declared-env](2026-10-13-declared-env.md)): 341 packages in scope; 53
   declare commit and compiler; 181 keep the PDB outside the package; 126 get
-  an exact SDK from the repository. On macOS `DbMigrator` fails a locked
-  restore (`NU1004`, host RID added; W54, fix not applied). Symbol servers on 13/10
+  an exact SDK from the repository. On macOS `DbMigrator` failed a locked
+  restore (`NU1004`, host RID added; W54, fixed in `0b52e115`). Symbol servers on 13/10
   ([symbol-servers](2026-10-13-symbol-servers.md)): 474 of 493 missing PDBs
   found; 198 packages now declare commit and compiler. No rebuild yet.
 - Developer path (13/10,
-  [phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md)): on a
-  fresh clone `make build` (MSB1011, main's too) and `make setup`
-  (NETSDK1004, W53) fail, and the migration scripts hide `dotnet ef`'s
-  failures (main's too). The candidate fixes, with W54's, wait for Leo's
-  go. Unexplained: the untracked `.local/share/NuGet/Migrations` folders
-  in the checkout.
+  [phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md)): fixed on
+  the branch (`3e4fbc48`..`100e3912`) and green on a fresh clone. Open:
+  the PowerShell migration scripts (not run here), EF snippets in two docs
+  without `--context` (as before), W54 on a real Mac, and the untracked
+  `.local/share/NuGet/Migrations` folders, which only the test script's
+  steps leave in the checkout.
 - Method: ASLR alone is untested; reprotest cannot vary it (R1). Why no
   later build used the MSBuild nodes left over on 24/9 is not established.
 
 ## Next up
 
-1. The developers' path on the WS branch (Leo's go): a restore before the
-   Makefile's EF targets, `make build` naming the solution, `set -e` in
-   the migration scripts, and `UseDefaultPublishRuntimeIdentifier=false`
-   for W54. Then the dev-workflow script again, the migrator's bytes with
-   the property, and a Codex review. Pushing `5ec085ac` is Leo's call too.
+1. Peter: W54's fix on the Mac (`100e3912`, a locked restore of
+   `src/DbMigrator`).
 2. Windows and Docker: the `win-x64` publish and the Windows zips (W48),
    then layer 5, the images.
 3. The merge (13/10, `79cb67a7`) is measured on `arch`, the whole release
