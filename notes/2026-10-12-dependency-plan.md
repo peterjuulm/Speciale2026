@@ -8,7 +8,7 @@ the thesis. Not an experiment; each run gets its own note. Phoenix commit
 The first version of this plan and its census measured the .NET 9 commit
 `e19ca414`. Phoenix moved to .NET 10 on 13/10 and only .NET 10 is tested, so
 that data was removed (decided 13/10, Peter); it is in git history, commit
-`3270bfa`.
+`a03fe66`.
 
 ## Phoenix on .NET 10
 
