@@ -5,11 +5,26 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, one packing script for both release jobs, tested.
-Last edit: 13 October 2026, 15:25. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the developers' commands on the WS branch, two runs.
+Last edit: 13 October 2026, 15:48. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 15:16-15:33
+([phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md); W46, W53,
+W54): the Makefile's targets on a fresh clone of `5ec085ac`, two runs.
+After a build of the solution the developers' path works: 160 migrations
+applied, a migration added and removed, the lock files as CI expects them,
+`npm install` leaving the lock alone, the dev server answering. A fresh
+clone fails three ways: `make setup` and `make db-migrate` with NETSDK1004
+(W53's cause, the branch's), `make build` with MSB1011 (main's too), and
+the migration scripts report success after a failure (main's too). Adding
+a migration changes only EF's version number in the snapshot, 9.0.0 to
+10.0.12. Two untracked `.local` folders appeared; the cause is unknown.
+Codex checked five claims and corrected two: W53's mechanism, also in the
+bundle note, and "npm 11 keeps `libc`" (11.6.2 does not). Peter's macOS
+lock failure is now W54. Nothing fixed yet.
 
 On `arch`, 13/10 14:43-15:15
 ([phoenix-merge-main](2026-10-13-phoenix-merge-main.md), result 13): both
@@ -227,7 +242,8 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   on the test tag but compared no builds. On .NET 10 the release job and
   PR validation's migration guard need a restore before `dotnet ef`
   (W53); it is in both since `21360193` and ran in the release job on
-  the test tag. Since the merge, PR validation's guard runs in the
+  the test tag. The Makefile's EF targets have none and fail on a fresh
+  clone (13/10). Since the merge, PR validation's guard runs in the
   reusable .NET build after its restore and build (#787), and passed
   there in main's CI. After the merge the whole release is identical in
   two builds under `none`, `all` and `locales` (`79cb67a7`).
@@ -260,26 +276,39 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   [declared-env](2026-10-13-declared-env.md)): 341 packages in scope; 53
   declare commit and compiler; 181 keep the PDB outside the package; 126 get
   an exact SDK from the repository. On macOS `DbMigrator` fails a locked
-  restore (`NU1004`, host RID added). Symbol servers on 13/10
+  restore (`NU1004`, host RID added; W54, fix not applied). Symbol servers on 13/10
   ([symbol-servers](2026-10-13-symbol-servers.md)): 474 of 493 missing PDBs
   found; 198 packages now declare commit and compiler. No rebuild yet.
+- Developer path (13/10,
+  [phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md)): on a
+  fresh clone `make build` (MSB1011, main's too) and `make setup`
+  (NETSDK1004, W53) fail, and the migration scripts hide `dotnet ef`'s
+  failures (main's too). The candidate fixes, with W54's, wait for Leo's
+  go. Unexplained: the untracked `.local/share/NuGet/Migrations` folders
+  in the checkout.
 - Method: ASLR alone is untested; reprotest cannot vary it (R1). Why no
   later build used the MSBuild nodes left over on 24/9 is not established.
 
 ## Next up
 
-1. The merge (13/10, `79cb67a7`) is measured on `arch`, the whole release
+1. The developers' path on the WS branch (Leo's go): a restore before the
+   Makefile's EF targets, `make build` naming the solution, `set -e` in
+   the migration scripts, and `UseDefaultPublishRuntimeIdentifier=false`
+   for W54. Then the dev-workflow script again, the migrator's bytes with
+   the property, and a Codex review. Pushing `5ec085ac` is Leo's call too.
+2. Windows and Docker: the `win-x64` publish and the Windows zips (W48),
+   then layer 5, the images.
+3. The merge (13/10, `79cb67a7`) is measured on `arch`, the whole release
    under `none`, `all` and `locales`, and passed main's CI on GitHub. PR validation and the release workflow have not run on
    it: a draft pull request or a second test tag (Leo's call) would check
-   the tag check and the migrator's smoke test both ways on GitHub. Then
-   layer 5, the images.
-2. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
+   the tag check and the migrator's smoke test both ways on GitHub.
+4. Upstream: the dotnet/roslyn issue for W26 (fixed in SDK 10, so only for
    9.0), a dotnet/sdk issue for W50, and Next.js issues for the CSS order's
    missing tie-break (W43) and the entry order (W47). Brief Magnus: the locale defect, the
    dependency warnings, the SDK pin; Node 20's end of life and Node 23 in the
    Dockerfile (W40); the PR filter that misses `mcp/` (W39); from 7/10 the
    one version variable (W45) and the CSS move's cost, about 150 KB per page.
-3. Cross-machine and file order once the VM exists.
+5. Cross-machine and file order once the VM exists.
 
 ## Keeping this file
 

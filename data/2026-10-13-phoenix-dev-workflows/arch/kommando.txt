@@ -2,5 +2,67 @@
 # request, in bash; local times (CEST). E for Speciale2026/experiments, D
 # for the private data folder phoenix-dev-workflows/arch-2026-10-13.
 # The script's header says what each step runs; its checks land in
-# $D/results.txt, copied to results.txt here.
+# results.txt in the run's folder, copied to results.txt here.
+
+# Run 1, 15:16-15:18, with the script as committed in d294061; its files
+# moved to $D/run1 afterwards:
 OUT=$D $E/phoenix-rt/dev-workflows.sh 5ec085ac > $D/run.out 2>&1
+
+# Run 2, from 15:20, with D0 and D1-sln added and D3 checking dotnet ef's
+# own "Done." (the script's history line):
+OUT=$D/run2 $E/phoenix-rt/dev-workflows.sh 5ec085ac > $D/run2/run.out 2>&1
+
+# Reads beside the runs: main's tool manifest and global.json, and the
+# package fields npm 10.9.9's lock keeps:
+git -C $W show origin/main:.config/dotnet-tools.json
+git -C $W show origin/main:global.json
+sed -n '85,104p' /private/tmp/rb1-node22/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/shrinkwrap.js
+
+# Probes beside the runs, 15:28-15:33, after run 2: where NuGet's
+# Migrations folder goes, the metadata target in the two dotnet-ef
+# versions, and the snapshot after one migrations add. Verbatim but for
+# SCR, Claude's scratch folder. The outputs are in $D/probes-after-run2.txt,
+# private, since the snapshot's diff prints a line of Phoenix's source.
+
+# 15:28, NuGet Migrations folder: plain restores of a one-line project, four set-ups:
+ls -d /tmp/dch/.local/share/NuGet/Migrations 2>&1; P=/private/tmp/rb1-nugetprobe; rm -rf $P; mkdir -p $P/proj; cd $P/proj && cat > p.csproj <<'EOF'
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>
+EOF
+DN=/private/tmp/rb1-dotnet10/sdk
+probe() { local tag=$1 ns=$2 clihome=$3; mkdir -p $P/home-$tag; rm -rf $P/proj/.local $P/proj/obj
+  local e=(env -i HOME=$P/home-$tag PATH=$DN:/usr/bin DOTNET_ROOT=$DN DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 $clihome)
+  if [ "$ns" = ns ]; then (cd $P/proj && unshare -rnp --fork "${e[@]}" dotnet restore -v q > /dev/null 2>&1); else (cd $P/proj && "${e[@]}" dotnet restore -v q > /dev/null 2>&1); fi
+  echo "$tag: exit $?; in cwd: $([ -d $P/proj/.local ] && echo yes || echo no); in HOME: $(find $P/home-$tag -path '*NuGet/Migrations*' | head -1 | sed "s|$P/||")"; }
+probe a ns DOTNET_CLI_HOME=$P/clihome-a
+probe b nons DOTNET_CLI_HOME=$P/clihome-b
+probe c ns ""
+probe d nons ""
+find $P -path '*Migrations' -type d | sed "s|$P/||"
+
+# 15:28, NuGet Migrations folder: restores in the lab after run 2:
+L=/private/tmp/rb1-devflow/x; SH=/private/tmp/rb1-devflow/home; DN=/private/tmp/rb1-dotnet10/sdk
+E=(env -i HOME=$SH USER=$(id -un) PATH=$DN:/private/tmp/rb1-node22/bin:/usr/bin DOTNET_ROOT=$DN DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8)
+t() { rm -rf $L/.local $L/src/WebAPI/.local $SH/.local; (cd $L && unshare -rnp --fork "${E[@]}" "$@" > $SCR/nuget-probe.log 2>&1); echo "$*: exit $?; root .local $([ -d $L/.local ] && echo yes || echo no); home .local $([ -d $SH/.local ] && echo yes || echo no)"; }
+t dotnet restore WS.Phoenix.sln
+t dotnet restore src/ApplicationCore/ApplicationCore.csproj --force
+t dotnet msbuild src/ApplicationCore/ApplicationCore.csproj -t:Restore -p:RestoreForce=true -v:q
+
+# 15:29, NuGet Migrations folder: incremental builds in the lab after run 2:
+L=/private/tmp/rb1-devflow/x; SH=/private/tmp/rb1-devflow/home; DN=/private/tmp/rb1-dotnet10/sdk
+E=(env -i HOME=$SH USER=$(id -un) PATH=$DN:/private/tmp/rb1-node22/bin:/usr/bin DOTNET_ROOT=$DN DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8)
+t() { rm -rf $L/.local $L/src/WebAPI/.local $SH/.local; (cd $L && unshare -rnp --fork "${E[@]}" "$@" > $SCR/nuget-probe.log 2>&1); echo "$*: exit $?; root .local $([ -d $L/.local ] && echo yes || echo no); WebAPI .local $([ -d $L/src/WebAPI/.local ] && echo yes || echo no); home .local $([ -d $SH/.local ] && echo yes || echo no)"; }
+t dotnet build WS.Phoenix.sln --no-restore -v q
+t dotnet build src/ApplicationCore/ApplicationCore.csproj --no-restore --no-dependencies -v q
+
+# 15:31, ResolvePackageAssets in the two dotnet-ef versions (UTF-16 / ASCII strings):
+for v in 9.0.0 10.0.12; do d=/tmp/dch/.nuget/packages/dotnet-ef/$v; f=$(find $d -name dotnet-ef.dll | head -1); printf "%s: %s, ResolvePackageAssets in dotnet-ef.dll: %s\n" $v "${f#$d/}" "$(strings -e l $f | grep -c ResolvePackageAssets)/$(strings $f | grep -c ResolvePackageAssets)"; done
+
+# 15:32, the snapshot after a migrations add in the lab, clean before it (first status empty):
+L=/private/tmp/rb1-devflow/x; SH=/private/tmp/rb1-devflow/home; DN=/private/tmp/rb1-dotnet10/sdk
+E=(env -i HOME=$SH USER=$(id -un) PATH=$DN:/usr/bin DOTNET_ROOT=$DN DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 MSBUILDDISABLENODEREUSE=1 LC_ALL=C.UTF-8 ConnectionStrings__CatalogConnection="Host=localhost;Port=5432;Database=devflow;Username=postgres")
+rm -rf $L/.local $L/src/WebAPI/.local; git -C $L status --porcelain | head -3
+(cd $L/src/WebAPI && unshare -rnp --fork "${E[@]}" dotnet tool run dotnet-ef migrations add ThesisProbe --context DatabaseContext -p ../Infrastructure/Infrastructure.csproj -s WebAPI.csproj -o Data/Migrations > $SCR/snap-add.log 2>&1); echo "add exit $?, $(grep -c '^Done' $SCR/snap-add.log) Done"
+git -C $L status --porcelain; git -C $L diff --stat; git -C $L diff -- src/Infrastructure/Data/Migrations/DatabaseContextModelSnapshot.cs | head -30
+
+# 15:33, lab reset afterwards:
+L=/private/tmp/rb1-devflow/x; git -C $L checkout -q -- . && git -C $L clean -qfd -e node_modules && git -C $L status --porcelain | wc -l; rm -rf /private/tmp/rb1-nugetprobe; docker ps -a --format '{{.Names}}' | grep -c "^rb1-"

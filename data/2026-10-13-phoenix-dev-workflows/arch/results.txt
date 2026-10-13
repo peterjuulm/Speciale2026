@@ -1,0 +1,59 @@
+# phoenix-dev-workflows, arch, 13 October 2026: the checks dev-workflows.sh
+# writes, copied unchanged from each run's results.txt. Run 1 with the
+# script as committed in d294061, run 2 with its revision (kommando.txt).
+
+## Run 1, 15:16-15:18
+lab at 5ec085a, asked for 5ec085ac
+D1-tools: exit 0, 0 paths changed in git status
+D1-build: exit 2, 0 paths changed in git status
+D2: exit 2, 0 paths changed in git status
+D2: migrations applied: 
+D2r: exit 2, 0 paths changed in git status
+D2r: guard message: 0
+D3-add: exit 0, 0 paths changed in git status
+D3: factory: 
+D3-remove: exit 0, 0 paths changed in git status
+D6: referenced Microsoft.Extensions.Caching.Abstractions 10.0.12 directly in ApplicationCore
+D6-locked-before: exit 1, 1 paths changed in git status
+D6: NU1004 before: 5
+D6-dev: exit 0, 6 paths changed in git status
+D6-locked-after: exit 0, 6 paths changed in git status
+D6: undone, 0 paths changed
+D4: exit 0, 0 paths changed in git status
+D4: lock unchanged
+D5: exit 0, 0 paths changed in git status
+D5: HTTP 200, 1281 bytes, 4.758379 s; server log: 0 lines with error, ready: 2
+done 15:18:24
+
+## Run 2, 15:20-15:26
+lab at 5ec085a, asked for 5ec085ac
+D1-tools: exit 0, 0 paths changed in git status
+D0-migrate-fresh: exit 2, 0 paths changed in git status
+D0: NETSDK1004: 1
+D1-build: exit 2, 0 paths changed in git status
+D1-build: MSB1011: 1
+D1-sln: exit 0, 1 paths changed in git status
+D2: exit 0, 2 paths changed in git status
+D2: migrations applied: 160
+D2r: exit 2, 2 paths changed in git status
+D2r: guard message: 1
+D3-add: exit 0, 5 paths changed in git status
+D3: dotnet ef Done.: 1; factory: Using DbContext factory 'DatabaseContextDesignTimeFactory' 
+D3: new .local/, 1 files
+D3: new src/Infrastructure/Data/Migrations/20261013132344_ThesisProbe.Designer.cs, 1 files
+D3: new src/Infrastructure/Data/Migrations/20261013132344_ThesisProbe.cs, 1 files
+D3: 20261013132344_ThesisProbe.cs: 0 operations
+D3: new src/WebAPI/.local/, 1 files
+D3-remove: exit 0, 3 paths changed in git status
+D3-remove: dotnet ef Done.: 1
+D6: referenced Microsoft.Extensions.Caching.Abstractions 10.0.12 directly in ApplicationCore
+D6-locked-before: exit 1, 4 paths changed in git status
+D6: NU1004 before: 5
+D6-dev: exit 0, 9 paths changed in git status
+D6-locked-after: exit 0, 9 paths changed in git status
+D6: undone, 2 paths changed
+D4: exit 0, 2 paths changed in git status
+D4: lock unchanged
+D5: exit 0, 2 paths changed in git status
+D5: HTTP 200, 1281 bytes, 3.697195 s; server log: 0 lines with error, ready: 2
+done 15:26:26

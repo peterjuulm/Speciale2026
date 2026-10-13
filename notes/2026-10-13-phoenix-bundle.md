@@ -49,8 +49,12 @@ Run by Claude at Leo's request, in bash. Verbatim in `kommando.txt`.
    metadata: `NETSDK1004: Assets file '…/src/Infrastructure/obj/
    project.assets.json' not found`. The same commands on `b744ab91`, the
    last commit on .NET 9 (SDK 9.0.120, dotnet-ef 9.0.0), build the bundle;
-   that log starts with "Build started...", so dotnet-ef 9 built, and
-   restored, first.
+   that log starts with "Build started...": dotnet-ef 9 got through its
+   metadata step, and its build restored. Corrected 13/10: an earlier
+   version said dotnet-ef 9 built first. It reads the metadata first too,
+   but only properties; version 10 adds the target
+   `ResolvePackageAssets`, which needs the restore
+   ([phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md)).
 2. With a locked restore of the solution first (`PRE_RESTORE=1`), both
    builds succeed, 827,679,012 bytes each, and differ in 111 bytes. This
    run named the two outputs `bundle-1` and `bundle-2`, and dotnet-ef names
@@ -81,7 +85,8 @@ repository's `PathMap` (W5) never reaches that project, since
 
 **The job is broken on .NET 10.** `[V]` dotnet-ef 10 reads project
 metadata before it builds and so needs the projects restored, which the
-`migration-bundles` job never does; dotnet-ef 9 built first. The move to
+`migration-bundles` job never does; dotnet-ef 9 read only properties
+there, and its build restored (corrected 13/10, see result 1). The move to
 .NET 10 (`332752b9`) broke the job, and the CI-equivalent check missed it,
 since it ran `dotnet ef` after a full restore and build. `publish-windows`
 restores the solution before its bundle step and is not affected; the

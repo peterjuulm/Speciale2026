@@ -16,17 +16,25 @@
 # Each step's output goes to OUT/<step>.log, its exit code to OUT/steps.tsv,
 # git status after it to OUT/<step>.status, and the checks to
 # OUT/results.txt.
-#   D1   make install-tools; make build (Debug)
+#   D1   make install-tools
+#   D0   make db-migrate on the fresh clone, as make setup runs it
+#   D1   make build (Debug); D1-sln dotnet build WS.Phoenix.sln, which is
+#        what make build means (the root also holds docker-compose.dcproj)
 #   D2   make db-migrate into the empty database devflow; the migrations
 #        applied. D2r the same with a remote host in the environment, which
 #        main's design-time guard must refuse
 #   D3   make db-migration-add name=ThesisProbe; the new migration's
-#        operations; make db-migration-remove
+#        operations; make db-migration-remove. add_migration.sh and
+#        remove_migration.sh exit 0 also when dotnet ef fails, so dotnet
+#        ef's own "Done." is checked
 #   D6   a package ApplicationCore gets transitively, referenced directly:
 #        the locked restore CI runs (GITHUB_ACTIONS=true) before and after a
 #        developer's restore; then the change is undone
 #   D4   make install-frontend (npm install, from the npm cache only)
 #   D5   make dev-frontend; the start page over HTTP; the server stopped
+#
+# 13 October 2026, after the first run: D0 and D1-sln added, D3 checks
+# dotnet ef's "Done.".
 #
 # DOTNET_DIR and NODE_DIR select the SDK and Node (defaults Microsoft's
 # 10.0.401 in /private/tmp/rb1-dotnet10/sdk and 22.23.3 in
@@ -75,18 +83,22 @@ echo "lab at $(git -C "$LAB" rev-parse --short HEAD), asked for $COMMIT" | tee -
 [[ $(git -C "$LAB" rev-parse HEAD) == $(git -C "$REPO" rev-parse "$COMMIT") ]] || { echo "the branch head is not $COMMIT" | tee -a "$R"; exit 1; }
 
 step D1-tools make install-tools
-step D1-build make build
 
 docker rm -f $PG > /dev/null 2>&1
 docker run -d --name $PG --network none -e POSTGRES_HOST_AUTH_METHOD=trust -v "$SOCK:/var/run/postgresql" postgres:17-alpine > /dev/null
 for i in $(seq 1 60); do docker exec $PG createdb -U postgres devflow 2> /dev/null && break; sleep 1; done
+dbstep D0-migrate-fresh env ConnectionStrings__CatalogConnection="$DB" make db-migrate
+echo "D0: NETSDK1004: $(grep -c NETSDK1004 "$OUT/D0-migrate-fresh.log")" | tee -a "$R"
+step D1-build make build
+echo "D1-build: MSB1011: $(grep -c MSB1011 "$OUT/D1-build.log")" | tee -a "$R"
+step D1-sln dotnet build WS.Phoenix.sln
 dbstep D2 env ConnectionStrings__CatalogConnection="$DB" make db-migrate
 echo "D2: migrations applied: $(docker exec $PG psql -U postgres -d devflow -tAc 'select count(*) from "__EFMigrationsHistory"')" | tee -a "$R"
 step D2r env ConnectionStrings__CatalogConnection="Host=db.example.invalid;Port=5432;Database=x;Username=x" make db-migrate
 echo "D2r: guard message: $(grep -c 'which is not a local host' "$OUT/D2r.log")" | tee -a "$R"
 
 dbstep D3-add env ConnectionStrings__CatalogConnection="$DB" make db-migration-add name=ThesisProbe
-echo "D3: factory: $(grep -oE "Using DbContext factory '[A-Za-z]+'" "$OUT/D3-add.log" | sort -u | tr '\n' ' ')" | tee -a "$R"
+echo "D3: dotnet ef Done.: $(grep -c '^Done\.' "$OUT/D3-add.log"); factory: $(grep -oE "Using DbContext factory '[A-Za-z]+'" "$OUT/D3-add.log" | sort -u | tr '\n' ' ')" | tee -a "$R"
 for f in $(sed -n 's/^?? //p' "$OUT/D3-add.status"); do
   echo "D3: new $f, $(find "$LAB/$f" -type f | wc -l) files" | tee -a "$R"
   for m in $(find "$LAB/$f" -type f -name '*_ThesisProbe.cs'); do
@@ -94,6 +106,7 @@ for f in $(sed -n 's/^?? //p' "$OUT/D3-add.status"); do
   done
 done
 dbstep D3-remove env ConnectionStrings__CatalogConnection="$DB" make db-migration-remove
+echo "D3-remove: dotnet ef Done.: $(grep -c '^Done\.' "$OUT/D3-remove.log")" | tee -a "$R"
 
 read -r PKG VER < <(python3 - "$LAB/src/ApplicationCore/packages.lock.json" <<'PY'
 import json,sys
