@@ -1,0 +1,13 @@
+# The three runs: summary.tsv. In each, release.sha256 lists 4256 files and
+# is the same file for both builds: 3f4539bc917dc3af6843a660956c50c10940ce81a909a7aff6f853040ceb88af.
+# What reprotest varied in the second build:
+W-none: FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+W-all: vary environment, vary build_path, vary kernel, vary aslr, vary num_cpus, vary time, FIX user_group, FIX fileordering, FIX domain_host, vary home, vary locales, vary exec_path, vary timezone, vary umask
+W-locales: FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, vary locales, FIX exec_path, FIX timezone, FIX umask
+W-locales: LOCALE variation: LC_ALL = et_EE.UTF-8 LANGUAGE = et_EE.UTF-8:fr
+# The zips, the migrator and the apphosts, from the list:
+367333f983a7f9d1cf6e06ca3bfd4be324a44c80a0d558503e91acd3840bff75  release/win/ws-pems-db-migrator-win-x64-v0.0.0-thesis.exe
+1113827c7ee5b59be794e1d4d2f3275b9f66b091ee178b0bd9ce8ecdce6e1336  release/win/ws-pems-job-worker-win-x64/BackgroundJobExecutor.exe
+b29ce3a4068f7089aa4728a3d0f88a50fd53cc01dec7e7835f150f6741795992  release/win/ws-pems-win-x64/WebAPI.exe
+d2333e88c0e6a959d7ac08744f45c664d968b9d1debbe6978b86a4d842a57526  release/ws-pems-job-worker-win-x64-v0.0.0-thesis.zip
+194bbb6a7492866f80b0123aa7ae076d4b0414ee0bc4cf30d8d4112f3440a9a8  release/ws-pems-win-x64-v0.0.0-thesis.zip

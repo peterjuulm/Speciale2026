@@ -42,6 +42,11 @@
 #   MIN_CPUS  CPUs for the control build, default 2
 #   FIXENV    VAR=VALUE added to every dotnet command, e.g. LC_ALL=C.UTF-8
 #   LAB       the lab, default /private/tmp/rb1-phoenix; must hold no build output
+#          W  the Windows release as the reusable Windows job builds it, on
+#             Linux: the frontend as in R, the locked restore, the three
+#             win-x64 publishes, the migrator copied as the job copies it,
+#             and both zips packed with the commit's own
+#             scripts/pack-release-zip.sh. Unsigned. Hashes release/
 #   ZEPOCH    layer Z: the time for the normalised zips, e.g. the commit's
 #             time (git log -1 --format=%ct)
 #   DOTNET_DIR  the SDK folder, default /home/leos/.dotnet (SDK 9.0.120);
@@ -57,7 +62,7 @@
 # 5 October 2026: node reuse off, user_group, the leftover check.
 # 7 October 2026: VER can be overridden.
 # 12 October 2026: layers R and Z, DOTNET_DIR.
-# 13 October 2026: NODE_DIR.
+# 13 October 2026: NODE_DIR. Evening: layer W.
 set -u
 LAYER=${1:?LAYER} AXIS=${2:?AXIS}
 LABEL=${3:-L$LAYER-$AXIS}
@@ -86,6 +91,7 @@ NODEENV="env PATH=${NODE_DIR:-/opt/rb1-node}/bin:\$PATH CI=true npm_config_cache
 if [ -n "$FIXENV" ]; then NODEENV="$NODEENV $FIXENV"; fi
 RB="( cd src/WebAPI/ClientApp && $NODEENV npm ci --offline --no-audit --no-fund && $NODEENV npm run build && rm -rf node_modules .next ) && $L2"
 ZIP=/private/tmp/rb1-tools/zip TAG=v0.0.0-thesis DIRS='ws-pems-linux-x64 ws-pems-job-worker-linux-x64'
+WINPUB="$ENV dotnet restore ./WS.Phoenix.sln --locked-mode $VER && $ENV dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/win/ws-pems-win-x64 -r win-x64 --self-contained true --no-restore /p:SkipSpaBuild=true $VER && $ENV dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/win/ws-pems-job-worker-win-x64 -r win-x64 --self-contained true --no-restore $VER && $ENV dotnet publish ./src/DbMigrator/DbMigrator.csproj -c Release -o ./publish/migrator-win -r win-x64 --self-contained true --no-restore $VER && cp publish/migrator-win/ws-pems-db-migrator.exe release/win/ws-pems-db-migrator-win-x64-$TAG.exe"
 case $LAYER in
   1) BUILD="$ENV dotnet build src/WebAPI/WebAPI.csproj -c Release -p:SkipSpaBuild=true && $ENV dotnet build src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release"
      HASHED='src/*/bin' HASHFILE=bin.sha256
@@ -100,14 +106,19 @@ case $LAYER in
      BUILD="$RB && find release -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > release.sha256 && cd release && mkdir zip-ci zip-norm && for d in $DIRS; do $ZIP -q -r zip-ci/\$d-$TAG.zip \$d/; done && for d in $DIRS; do find \$d -type d -exec chmod 755 {} + && find \$d -type f -perm -u+x -exec chmod 755 {} + && find \$d -type f ! -perm -u+x -exec chmod 644 {} + && find \$d -exec touch -h -d @$ZEPOCH {} + && find \$d | LC_ALL=C sort | TZ=UTC $ZIP -q -X -@ zip-norm/\$d-$TAG.zip; done && cd .."
      HASHED='release/zip-ci release/zip-norm' HASHFILE=zips.sha256
      ART='zips.sha256 release.sha256 release/zip-ci release/zip-norm' ;;
-  *) echo "LAYER must be 1, 2, R or Z" >&2; exit 2 ;;
+  W) ZEPOCH=${ZEPOCH:?layer W needs ZEPOCH}
+     BUILD="${RB%%&& \$L2}"
+     BUILD="${BUILD% } && $WINPUB && cd release/win && for d in ws-pems-win-x64 ws-pems-job-worker-win-x64; do env PATH=/private/tmp/rb1-tools:\$PATH SOURCE_DATE_EPOCH=$ZEPOCH ../../scripts/pack-release-zip.sh \$d ../\$d-$TAG.zip; done && cd ../.."
+     HASHED=release HASHFILE=release.sha256
+     ART="release.sha256 release/*.zip release/win/ws-pems-db-migrator-win-x64-$TAG.exe" ;;
+  *) echo "LAYER must be 1, 2, R, Z or W" >&2; exit 2 ;;
 esac
 
 mkdir -p "$OUT/modes" "$MODES"
 if ls -d $LAB/bin $LAB/obj $LAB/release $LAB/src/*/bin $LAB/src/*/obj $LAB/tests/bin $LAB/tests/obj > /dev/null 2>&1; then
   echo "the lab holds build output; clean it first" >&2; exit 2
 fi
-if [ "$LAYER" = R ] || [ "$LAYER" = Z ]; then
+if [ "$LAYER" = R ] || [ "$LAYER" = Z ] || [ "$LAYER" = W ]; then
   for d in node_modules .next out; do
     if [ -e "$LAB/src/WebAPI/ClientApp/$d" ]; then echo "the lab holds ClientApp/$d; export it again" >&2; exit 2; fi
   done

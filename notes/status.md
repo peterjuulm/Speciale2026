@@ -5,11 +5,20 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 13 October 2026, the developers' commands after the branch's fixes.
-Last edit: 13 October 2026, 21:33. Also 12/10: the frontend lock's hashes filled
+Last run: 13 October 2026, the Windows release built twice on Linux.
+Last edit: 13 October 2026, 22:25. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 13/10 21:31-22:16
+([phoenix-windows-release](2026-10-13-phoenix-windows-release.md); W55):
+the Windows release as the Windows job builds it since the merge, on
+Linux: the locked restore, three `win-x64` publishes and both zips with
+the packing script, on `100e3912`. Two builds gave the same 4256 files
+and zips under `none`, `all`, and `locales` without the locale pin, which
+the job does not set. Unsigned: signing, which the job does before
+packing, is what is left between two of its runs.
 
 On `arch`, 13/10 20:59-21:33
 ([phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md), follow-up;
@@ -224,16 +233,17 @@ Layer 5 (container) has no runs yet.
 | Machine | - VM too small W14 | - | - | - |
 | SDK binary | - empty-class only, 8/9 | - | - Node pinned to 22.23.3 since the merge, ran in main's CI 13/10 W40 | - |
 | Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46, main's lock has none since 17/9 | - |
-| Windows | - | - later work, part of the WS delivery | built once, on Linux, for both releases | - one packing script with Linux since `5ec085ac`, tested on Linux trees W48 |
+| Windows | - | green 13/10 on SDK 10, built on Linux as the job builds it, unsigned: layer `W` below W55 | built once, on Linux, for both releases | green 13/10 on SDK 10: both Windows zips identical before signing, layer `W` below W55 |
 
 On SDK 10.0.401, from `332752b9`: the whole release with its zips in one
-build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
+build (layer `Z`), and on `100e3912` the Windows release as its job builds
+it on Linux (layer `W`), the cells of the grid above being SDK 9.0.120's.
 
-| Axis | `332752b9` | `e6ce3549`, compression off | `79cb67a7`, after the merge |
-| --- | --- | --- | --- |
-| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical | green 13/10: 2124 files, `113c707d…`; normalised zips identical |
-| `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit | green 13/10: `113c707d…`, the same as `none`; W51 not hit |
-| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | green 13/10 without the pin: `113c707d…` |
+| Axis | `332752b9` | `e6ce3549`, compression off | `79cb67a7`, after the merge | `100e3912`, Windows (`W`) |
+| --- | --- | --- | --- | --- |
+| `none` | red 12/10: the endpoints manifest only W50; job worker zip identical | green 12/10: 2121 files, `00dad37d…`; normalised zips identical | green 13/10: 2124 files, `113c707d…`; normalised zips identical | green 13/10: 4256 files, `3f4539bc…`; both zips identical, unsigned W55 |
+| `all` | red 12/10: the manifest W50 and five frontend files W51 | green 12/10: `00dad37d…`, also across runs; W51 not hit | green 13/10: `113c707d…`, the same as `none`; W51 not hit | green 13/10: `3f4539bc…`, the same as `none` W55 |
+| `locales` | red 12/10: the manifest only; every assembly the same without the pin, W26 gone | green 12/10 without the pin: `00dad37d…` | green 13/10 without the pin: `113c707d…` | green 13/10 without the pin: `3f4539bc…` W55 |
 
 ## Open, by layer
 
@@ -257,8 +267,10 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
   reusable .NET build after its restore and build (#787), and passed
   there in main's CI. After the merge the whole release is identical in
   two builds under `none`, `all` and `locales` (`79cb67a7`).
-- Windows: the `win-x64` publish is not measured. Later work for the thesis,
-  part of the WS delivery. Open points in the layer plan.
+- Windows: the release as its job builds it on Linux is identical in two
+  builds before signing (13/10, W55). Open: signing, which makes two runs
+  differ by design, CI's Windows job against a local build, and a build on
+  Windows. Open points in [windows](windows.md).
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
   the runtime's minified names changed between commits (W44), the
@@ -303,8 +315,9 @@ build (layer `Z`), the cells of the grid above being SDK 9.0.120's.
 
 1. Peter: W54's fix on the Mac (`100e3912`, a locked restore of
    `src/DbMigrator`).
-2. Windows and Docker: the `win-x64` publish and the Windows zips (W48),
-   then layer 5, the images.
+2. Layer 5, the images ([phoenix-images](2026-10-13-phoenix-images.md),
+   expectations written 13/10), then CI's Windows job against a local
+   build.
 3. The merge (13/10, `79cb67a7`) is measured on `arch`, the whole release
    under `none`, `all` and `locales`, and passed main's CI on GitHub. PR validation and the release workflow have not run on
    it: a draft pull request or a second test tag (Leo's call) would check
