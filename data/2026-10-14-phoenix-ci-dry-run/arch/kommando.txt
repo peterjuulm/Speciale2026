@@ -1,0 +1,32 @@
+# phoenix-ci-dry-run, arch and GitHub, 14 October 2026. Run by Claude at
+# Leo's request, in bash. Verbatim, with P for the private data folder, E
+# for Speciale2026/experiments and W for the WS worktree; Leo's work
+# address is left out. The edit script quotes WS's workflows, so it stays
+# in P (dryrun-edit.py).
+
+# The throwaway commit, 07:15-07:19, in a scratch clone outside W. A first
+# commit (340c8732) was made and tagged locally, then replaced before any
+# push to bound every job to an hour:
+S=/private/tmp/rb1-ci/src; rm -rf $S; git clone -q --no-checkout file://$W $S
+git -C $S checkout -q --detach 3c3759380
+python3 $P/dryrun-edit.py $S
+actionlint -shellcheck= .github/workflows/03-release.yml .github/workflows/00-reusable-windows-publish.yml .github/workflows/00-reusable-frontend-build.yml   # in $S
+grep -n -E 'packages: write|id-token|contents: write|environment:|login-action|push=true|push: true|action-gh-release|secrets\.|imagetools create|cache-to|cache-from|AZURE' $S/.github/workflows/03-release.yml $S/.github/workflows/00-reusable-windows-publish.yml $S/.github/workflows/00-reusable-frontend-build.yml   # nothing
+git -C $S -c user.name="Leo Sakharoff" -c user.email=<Leo's WS address> commit -q -am "Thesis dry run of the release workflow, 14 Oct 2026
+
+Throwaway: no tests, no release, no image push; the Windows binaries
+signed with a throwaway certificate made in the job; every job bounded
+to an hour. Pushed only as the tag v0.0.0-thesis.3, and deleted with it."
+git -C $S tag v0.0.0-thesis.3
+#   e018c6432c8ca301e040d1098052d96bbbcb7751, commit time 1791955202
+
+# The run, from 07:20:08 (05:20:08 UTC): only the tag is pushed. gh could
+# not reach the API (the keyring was locked), so the check for earlier
+# tags went through git, and the run started unwatched:
+git ls-remote --tags git@github.com:Weel-Sandvig/WS.Phoenix.git 'refs/tags/v0.0.0-thesis*'   # none
+git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git refs/tags/v0.0.0-thesis.3
+
+# The local rebuild, alongside the run, with the SDK that
+# scripts/install-dotnet-sdk.py installed from its cache (runtime 10.0.12
+# only), 07:20-:
+DOCKER_CONFIG=/private/tmp/rb1-docker DOTNET_DIR=/private/tmp/rb1-sdk-tests/t6b REPO=/private/tmp/rb1-ci/src OUT=$P $E/phoenix-rt/ci-local.sh v0.0.0-thesis.3

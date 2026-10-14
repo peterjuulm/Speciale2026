@@ -5,11 +5,51 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 14 October 2026, 00:33, the Windows release rerun without the
-Linux publishes. Last edit: 14 October 2026, 00:45. Also 12/10: the frontend lock's hashes filled
+Last run: 14 October 2026, from 07:20, the second dry run on GitHub with
+its local rebuild. Last edit: 14 October 2026, 07:30. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On GitHub and `arch`, 14/10 from 07:20
+([phoenix-ci-dry-run, 14/10](2026-10-14-phoenix-ci-dry-run.md); W58): the
+second dry run, on the WS branch with today's fixes (`3c375938`), tag
+`v0.0.0-thesis.3`: all five images as tarballs, the Windows binaries
+signed with a throwaway certificate and the job's new paste check, a
+`windows-latest` job for the SDK action, SHA256SUMS. Started unattended:
+`gh` could not reach the API (locked keyring), so its artifacts, the
+comparison with the local rebuild, and deleting the run and the tag wait
+for Leo.
+
+On `arch`, 14/10 06:32-07:13
+([phoenix-shipped](2026-10-14-phoenix-shipped.md); W60-W63): the parts
+of the release never measured. The idempotent SQL script is one file
+from two exports (W61); the migrations image gives the same manifest
+twice with the image fix (W62); the SHA256SUMS glob order holds in three
+locales, now fixed with `LC_ALL=C` (W63). The three MCP images differed
+twice over in caches a step writes besides its product, fontconfig's,
+Node's compile cache that npm turns on, and vitest's results (W60);
+with those removed and the bases pinned, each gives the same manifest
+twice. Their Debian packages still come from the live archive.
+
+On `arch`, 14/10 06:30-06:47
+([phoenix-signing](2026-10-14-phoenix-signing.md); W59): the Windows
+release signed with a throwaway certificate through the WS signing
+image. Two signings differ in all 177 files signed and in both zips;
+stripping leaves the PE checksum and the migrator's padding. Pasting the
+signed copy's signatures onto an independent unsigned build gives every
+file, both zips and the migrator byte for byte, and one changed byte
+fails. The WS branch has the procedure as `paste-signatures.sh`, and
+the release job runs it on its own output (`66bf8458`).
+
+On the WS branch, 14/10 (W58, fix made, measured by the dry run): CI
+installs exactly the `global.json` SDK alone, from Microsoft's archive
+with its SHA-512 checked (`scripts/install-dotnet-sdk.py`, a composite
+action, all four jobs; `62ac787a`). Tested here: a build with it records
+runtime 10.0.12 with 10.0.13 on PATH; a corrupt cache is repaired, a
+corrupt download refused. Codex (Astra) reviewed the design and the diff;
+its five findings were fixed before the push, among them Windows
+Python's CRLF in the action. Pushed as `3c375938`.
 
 On GitHub and `arch`, 13/10 22:57-23:39
 ([phoenix-ci-dry-run](2026-10-13-phoenix-ci-dry-run.md); W58): the
@@ -303,9 +343,12 @@ WS branch since `fa60ea97`.
   two builds under `none`, `all` and `locales` (`79cb67a7`).
 - Windows: the release as its job builds it on Linux is identical in two
   builds before signing (13-14/10, W55), and CI's unsigned Windows job
-  equals a local build but for the compiler's runtime patch (W58). Open:
-  signing, which makes two runs differ by design, and a build on Windows.
-  Open points in [windows](windows.md).
+  equals a local build but for the compiler's runtime patch (W58).
+  Signing makes two runs differ by design (W59); a rebuild is checked by
+  pasting the release's signatures, byte for byte here with a test
+  certificate (14/10), and the release job checks that of each release
+  (`66bf8458`). Open: signing through Azure in a real release, and a
+  build on Windows. Open points in [windows](windows.md).
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
   the runtime's minified names changed between commits (W44), the
@@ -322,21 +365,25 @@ WS branch since `fa60ea97`.
   The Windows publish that came with the merge packed with plain
   `zip -qr`; since `5ec085ac` both jobs pack with one script, tested here
   on Linux trees. The Windows zips are identical in two builds (W55);
-  `SHA256SUMS`, which the release job writes over all the zips, is not
-  measured.
+  `SHA256SUMS` takes its order from the locale, the same in three locales,
+  and the job fixes `LC_ALL=C` since `97038d73` (W63).
 - Layer 5: the WebAPI and job worker images differ in times only and are
   identical with the fix (W56, `fa60ea97`), on `arch` with one builder,
   and the same from GitHub's runner in the dry run (OCI output, no push).
-  Open: pushing with the fix, the three MCP images (base images without digests),
-  the manual image script `scripts/docker-build-push.sh`, which pushes
-  release images too, and the provenance attestation's times. The
+  Since 14/10 the three MCP images give the same manifest twice, bases
+  pinned and caches removed (W60), and the migrations image too, with
+  the manual image script now dating its images by the commit (W62).
+  Open: pushing with the fix, the manual script run end to end, the MCP
+  images' Debian packages over time, and the provenance attestation's
+  times. The
   images' assemblies carry `APP_VERSION` as their informational version
   (W45, read in `P2`'s WebAPI). The Dockerfile's Node pin (W40) is not
   built, as CI skips the SPA build.
 - Cross-machine: GitHub's runner against `arch` on 13/10, identical but
-  for the compiler's runtime patch (W58). The fix is open: only the
-  `global.json` SDK in a folder of its own, or a pinned roll-forward on the
-  build steps; Leo's and Peter's choice. File order still needs a VM with
+  for the compiler's runtime patch (W58). Fixed on the branch on 14/10
+  (`62ac787a`): CI installs only the `global.json` SDK, in a folder of its
+  own, with a script that also sets up a rebuild; the second dry run
+  measures it. File order still needs a VM with
   several GB of RAM (W14); Peter's Azure VM is the candidate.
 - Versions: the zips' assemblies carry the commit (`APP_VERSION+<sha>`,
   the SDK's `SourceRevisionId` in a git checkout), the images' do not, as
@@ -364,9 +411,9 @@ WS branch since `fa60ea97`.
 
 1. Peter: W54's fix on the Mac (`100e3912`, a locked restore of
    `src/DbMigrator`).
-2. W58: choose how CI installs .NET, so that the compiler's runtime is
-   the SDK's own; then a release run with signing, to measure the signed
-   Windows outputs ([phoenix-ci-dry-run](2026-10-13-phoenix-ci-dry-run.md)).
+2. The second dry run (14/10): its artifacts against the local rebuild,
+   then the run and its tag deleted; it needs `gh`, which needs the
+   keyring unlocked. Later, a release with real signing through Azure.
 3. PR validation has not run on the merged branch; a draft pull request
    would run it (Leo's call). The release workflow ran on it as the dry run
    of 13/10, the version check and the migrator's smoke test included.

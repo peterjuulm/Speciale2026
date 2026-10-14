@@ -1,0 +1,29 @@
+# phoenix-shipped, arch, 14 October 2026. Run by Claude at Leo's request,
+# in bash. Verbatim, with O for the private data folder, E for
+# Speciale2026/experiments, W for the WS worktree and X for a scratch
+# folder.
+
+# Check 1, the SQL script, 06:33: two exports of fa60ea97, the second at
+# another path, locale and time zone; the SDK that the draft installer had
+# put in a folder of its own (DN), the offline NuGet cache, HOME=/tmp/dch:
+DN=/private/tmp/rb1-sdk-test; Q=/private/tmp/rb1-sql
+for d in $Q/a $Q/second-build-at-another-path/b; do git -C $W archive fa60ea97 -- . ':(exclude).claude' | tar -x -C $d && python3 $E/labcheck.py $W fa60ea97 $d | tail -1; done
+for run in a b; do d=$Q/a; loc=C.UTF-8; tz=UTC; [ $run = b ] && d=$Q/second-build-at-another-path/b && loc=et_EE.UTF-8 && tz=Pacific/Auckland; ( cd $d && net=(env -i HOME=/tmp/dch PATH=$DN:/usr/bin DOTNET_ROOT=$DN DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1 MSBUILDDISABLENODEREUSE=1 GITHUB_ACTIONS=true APP_VERSION=v0.0.0-thesis LC_ALL=$loc TZ=$tz) && "${net[@]}" dotnet restore ./WS.Phoenix.sln > $O/sql-$run-restore.log 2>&1 && "${net[@]}" dotnet tool restore > $O/sql-$run-tool.log 2>&1 && "${net[@]}" dotnet ef migrations script --idempotent --configuration Release --context DatabaseContext -p src/Infrastructure/Infrastructure.csproj -s src/WebAPI/WebAPI.csproj -o $O/bootstrap-$run.sql > $O/sql-$run-script.log 2>&1; echo "run $run exit $? $(date +%T)" ); done
+sha256sum $O/bootstrap-*.sql
+
+# Check 4, the glob order, 06:32: empty files with the release's names, for
+# two tags, under four locales:
+T=/private/tmp/rb1-globs; rm -rf $T && mkdir -p $T/db && cd $T && for v in v0.0.0-thesis.2 v1.0.50; do touch ws-pems-job-worker-linux-x64-$v.zip ws-pems-job-worker-win-x64-$v.zip ws-pems-linux-x64-$v.zip ws-pems-win-x64-$v.zip db/bootstrap-postgresql-$v.sql db/ws-pems-db-migrator-linux-x64-$v db/ws-pems-db-migrator-win-x64-$v.exe; done; touch upgrade.sh
+for loc in C.UTF-8 en_US.UTF-8 da_DK.UTF-8 et_EE.UTF-8; do printf '%-12s %s\n' $loc "$(LC_ALL=$loc bash -c 'echo *.zip db/* upgrade.sh' | sha256sum | cut -c1-16)"; done
+locale -a | grep -E '^(C.utf8|en_US.utf8|da_DK.utf8|et_EE.utf8)$'   # et_EE.utf8 missing
+
+# Checks 2 and 3b: each a commit object of the worktree's uncommitted
+# changes, on no branch, made with a temporary index, then the probe:
+export GIT_INDEX_FILE=$X/lab-index && git read-tree HEAD && git add -u && git add .github/actions/setup-dotnet-sdk/action.yml deployment/signing/paste-signatures.sh scripts/install-dotnet-sdk.py && tree=$(git write-tree) && c=$(git commit-tree "$tree" -p HEAD -m "thesis lab, 14 Oct: the uncommitted fixes") && echo "lab commit $c"; unset GIT_INDEX_FILE   # in W
+#   06:57: 9e460aaa9e9622af3670db7c515077271be065a2 (commit time 1791953849)
+DOCKER_CONFIG=/private/tmp/rb1-docker OUT=$O EPOCH=1791953849 TAG=v0.0.0-thesis IMAGES="migrations mcp chat broker" $E/phoenix-rt/image-probe.sh 9e460aaa9e9622af3670db7c515077271be065a2 I1
+#   07:07, after the MCP Dockerfiles' fix, the same with $X/lab-index2 and
+#   -m "thesis lab, 14 Oct: the fixes after Codex's review":
+#   5ddd88d594a5f23a6e4f5161a63d40ce7bb487d1 (1791954479); its tree is the
+#   WS branch's 3c375938
+DOCKER_CONFIG=/private/tmp/rb1-docker OUT=$O EPOCH=1791954479 TAG=v0.0.0-thesis IMAGES="mcp chat broker" $E/phoenix-rt/image-probe.sh 5ddd88d594a5f23a6e4f5161a63d40ce7bb487d1 I2

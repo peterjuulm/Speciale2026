@@ -1,0 +1,35 @@
+# phoenix-signing, arch, 14 October 2026. Run by Claude at Leo's request,
+# in bash. Verbatim, with O for the private data folder of this run, R for
+# that of the Windows release runs of 13-14/10, E for
+# Speciale2026/experiments and W for the WS worktree.
+
+# The WS signing image, as the release job builds it, 06:27:
+DOCKER_CONFIG=/private/tmp/rb1-docker docker buildx build --builder default --load -t ws-signing:rb-test $W/deployment/signing
+
+# A throwaway test CA and code-signing certificate, 06:30, in $O/keys (the
+# private keys and the keystore's password stay there):
+openssl rand -hex 16 > password.txt
+openssl req -x509 -newkey rsa:3072 -sha256 -days 3 -nodes -subj "/CN=RB1 throwaway test CA (thesis, 14 Oct 2026)" -keyout ca.key -out ca.pem -addext "basicConstraints=critical,CA:TRUE" -addext "keyUsage=critical,keyCertSign,cRLSign"
+openssl req -newkey rsa:3072 -sha256 -nodes -subj "/CN=RB1 throwaway test code signing (thesis, 14 Oct 2026)" -keyout cs.key -out cs.csr
+printf 'basicConstraints=CA:FALSE\nkeyUsage=critical,digitalSignature\nextendedKeyUsage=codeSigning\n' > cs.ext
+openssl x509 -req -in cs.csr -CA ca.pem -CAkey ca.key -CAcreateserial -days 3 -sha256 -extfile cs.ext -out cs.pem
+SIGN_KEYSTORE_PASSWORD=$(cat password.txt) openssl pkcs12 -export -inkey cs.key -in cs.pem -certfile ca.pem -name test -out test.p12 -passout env:SIGN_KEYSTORE_PASSWORD
+cat ca.pem $W/deployment/signing/microsoft-identity-verification-root-2020.pem > verify.pem
+
+# The probe, 06:30: A and B are the first builds of W2-none and W2-all.
+OUT=$O PACK=/private/tmp/rb1-phoenix/scripts/pack-release-zip.sh bash $E/phoenix-rt/signing-probe.sh $R/store-W2-none/control/source-root/release $R/store-W2-all/control/source-root/release 1791919869 v0.0.0-thesis > $O/probe.out 2>&1
+
+# Step 3b and its negative controls, 06:39-06:40, after the expectation
+# added at 06:38 (the script fixed for a quoting error first, run once):
+OUT=$O PACK=/private/tmp/rb1-phoenix/scripts/pack-release-zip.sh bash $E/phoenix-rt/signing-paste.sh 1791919869 v0.0.0-thesis > $O/paste2.out 2>&1
+
+# The WS branch's paste-signatures.sh, 06:45-06:47, in the signing image
+# rebuilt from the worktree with it (L=/private/tmp/rb1-sign, K=$O/keys):
+DOCKER_CONFIG=/private/tmp/rb1-docker docker buildx build --builder default --load -t ws-signing:rb-test2 $W/deployment/signing
+run() { docker run --rm --user "$(id -u):$(id -g)" -v "$L:$L" -v "$K:/keys:ro" -w "$L" -e VERIFY_CAFILE=/keys/verify.pem --entrypoint /opt/signing/paste-signatures.sh ws-signing:rb-test2 "$@"; }
+run A1/win B/win T/win                     # positive
+cp -a $L/B $L/Tbad-src && python3 -c "p='$L/Tbad-src/win/ws-pems-job-worker-win-x64/Infrastructure.dll'; d=bytearray(open(p,'rb').read()); d[len(d)//3]^=1; open(p,'wb').write(d)"
+run A1/win Tbad-src/win Tbad               # one changed byte in the rebuild
+cp -a $L/B $L/Textra-src && echo x > $L/Textra-src/win/ws-pems-win-x64/extra.txt
+run A1/win Textra-src/win Textra           # an extra file in the rebuild
+mkdir -p $L/zips-T && ( cd $L/T/win && for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do env PATH=/private/tmp/rb1-tools:/usr/bin SOURCE_DATE_EPOCH=1791919869 /private/tmp/rb1-phoenix/scripts/pack-release-zip.sh $z $L/zips-T/$z-v0.0.0-thesis.zip || exit 1; done ) && for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do cmp -s $L/zips-A1/$z-v0.0.0-thesis.zip $L/zips-T/$z-v0.0.0-thesis.zip && echo "same  $z zip, paste-signatures.sh's output packed, against A1" || echo "DIFF  $z"; done | tee -a $O/paste-tool-tests.txt; cmp -s $L/A1/win/ws-pems-db-migrator-win-x64-v0.0.0-thesis.exe $L/T/win/ws-pems-db-migrator-win-x64-v0.0.0-thesis.exe && echo "same  the migrator" | tee -a $O/paste-tool-tests.txt

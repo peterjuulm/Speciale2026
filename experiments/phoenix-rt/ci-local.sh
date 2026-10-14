@@ -19,13 +19,18 @@
 #              locked restore, three win-x64 publishes, the migrator copy,
 #              both zips; no locale, as the job sets none
 #   migrator   migration-bundles: the locked restore and the linux-x64
-#              migrator; LC_ALL=C.UTF-8. Not the smoke test or the SQL script
-#   images     the two .NET images from a clone plus the export, with
+#              migrator; LC_ALL=C.UTF-8. Not the smoke test
+#   sql        migration-bundles' idempotent SQL script: the locked restore,
+#              dotnet tool restore, dotnet ef migrations script (added
+#              14 October)
+#   images     the images from a clone plus the export, with
 #              SOURCE_DATE_EPOCH in buildx's environment and
 #              rewrite-timestamp=true on the OCI exporter, as in the dry run's
-#              docker-images job; no provenance or SBOM
+#              docker-images job; no provenance or SBOM. The two .NET images,
+#              and since 14 October the three MCP images, each from its own
+#              context as the job builds them
 #
-# JOBS defaults to all five, in that order; frontend runs first because the
+# JOBS defaults to all six, in that order; frontend runs first because the
 # others take its export. Every .NET job gets GITHUB_ACTIONS=true (the locked
 # restore in Directory.Build.props) and APP_VERSION=TAG, the SDK in
 # DOTNET_DIR, the NuGet cache in /tmp/dch, HOME there too, so no user
@@ -33,7 +38,7 @@
 # rb1. Outputs land in $OUT/local/.
 set -u
 OUT=${OUT:?set OUT to a private data folder}
-TAG=${1:?TAG} JOBS=${2:-frontend linux windows migrator images}
+TAG=${1:?TAG} JOBS=${2:-frontend linux windows migrator sql images}
 repo=${REPO:-/home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro}
 url=https://github.com/Weel-Sandvig/WS.Phoenix
 ci=/private/tmp/rb1-ci
@@ -85,15 +90,26 @@ for job in $JOBS; do
         && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
         && "${net[@]}" LC_ALL=C.UTF-8 dotnet publish ./src/DbMigrator/DbMigrator.csproj -c Release -o ./publish/migrator -r linux-x64 --self-contained true --no-restore ) > "$L/migrator.log" 2>&1 \
         && mkdir -p "$L/migrator" && cp "$ci/migrator/publish/migrator/ws-pems-db-migrator" "$L/migrator/ws-pems-db-migrator-linux-x64-$TAG" ;;
+    sql)
+      clone sql && ( cd "$ci/sql" \
+        && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
+        && "${net[@]}" LC_ALL=C.UTF-8 dotnet tool restore \
+        && "${net[@]}" LC_ALL=C.UTF-8 dotnet ef migrations script --idempotent --configuration Release --context DatabaseContext \
+             -p src/Infrastructure/Infrastructure.csproj -s src/WebAPI/WebAPI.csproj -o "bundles/bootstrap-postgresql-$TAG.sql" ) > "$L/sql.log" 2>&1 \
+        && mkdir -p "$L/migrator" && cp "$ci/sql/bundles/bootstrap-postgresql-$TAG.sql" "$L/migrator/" ;;
     images)
-      clone images && export_in images && mkdir -p "$L/images" && for img in webapi worker; do
+      clone images && export_in images && mkdir -p "$L/images" && for img in ${IMAGES:-webapi worker mcp chat broker}; do
+        ctx=$ci/images version=(--build-arg "APP_VERSION=$TAG")
         case $img in
-          webapi) file=src/WebAPI/Dockerfile; extra=(--build-arg SKIP_SPA_BUILD=true); name=ws-pems ;;
-          worker) file=src/BackgroundJobExecutor/Dockerfile; extra=(); name=ws-pems-job-worker ;;
+          webapi) file=src/WebAPI/Dockerfile; extra=("${version[@]}" --build-arg SKIP_SPA_BUILD=true); name=ws-pems ;;
+          worker) file=src/BackgroundJobExecutor/Dockerfile; extra=("${version[@]}"); name=ws-pems-job-worker ;;
+          mcp) file=mcp/Dockerfile; ctx=$ci/images/mcp; extra=(); name=wspems-mcp-server ;;
+          chat) file=mcp/chat-server/Dockerfile; ctx=$ci/images/mcp; extra=(); name=wspems-chat-server ;;
+          broker) file=mcp/auth-broker/Dockerfile; ctx=$ci/images/mcp/auth-broker; extra=(); name=wspems-mcp-auth-broker ;;
         esac
         env SOURCE_DATE_EPOCH="$(epoch images)" docker buildx build --builder rb1 --no-cache --provenance=false \
-          -f "$ci/images/$file" --build-arg "APP_VERSION=$TAG" "${extra[@]}" \
-          --output "type=oci,dest=$L/images/$name.oci.tar,rewrite-timestamp=true" "$ci/images" > "$L/images/$name.log" 2>&1 || break
+          -f "$ci/images/$file" "${extra[@]}" \
+          --output "type=oci,dest=$L/images/$name.oci.tar,rewrite-timestamp=true" "$ctx" > "$L/images/$name.log" 2>&1 || break
       done ;;
     *) echo "unknown job $job"; exit 2 ;;
   esac
