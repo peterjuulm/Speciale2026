@@ -1,0 +1,22 @@
+# phoenix-image-attestations, arch, 14 October 2026. Run by Claude at
+# Leo's request, in bash. Verbatim, with L for the lab, E for
+# Speciale2026/experiments, O for the private data folder (build logs)
+# and D for this folder.
+L=/private/tmp/rb1-attest
+E=/home/leos/Dev/Speciale2026/experiments
+O=/home/leos/Dev/speciale-2026/data/phoenix-image-attestations/arch-2026-10-14
+D=/home/leos/Dev/Speciale2026/data/2026-10-14-phoenix-image-attestations/arch
+
+# 1. A fresh clone of the source, outside every repo:
+rm -rf $L && mkdir -p $L && git clone -q --no-checkout file:///home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro $L/src && git -C $L/src checkout -q --detach 3c375938
+
+# 2. Two builds, as the release job builds the image, into image files:
+cd $L/src/mcp/auth-broker && for b in b1 b2; do SOURCE_DATE_EPOCH=1791955202 DOCKER_CONFIG=/private/tmp/rb1-docker docker buildx build --builder rb1 --no-cache --provenance=true --sbom=true --output type=oci,dest=$L/$b.oci.tar,rewrite-timestamp=true -f Dockerfile . > $O/$b.log 2>&1; echo "$b exit $? $(date +%T)"; done
+
+# 3. The two builds against each other, and the first against CI's:
+python3 $E/phoenix-rt/attest-compare.py $L/b1.oci.tar $L/b2.oci.tar > $D/compare-b1-b2.txt
+python3 $E/phoenix-rt/attest-compare.py /home/leos/Dev/speciale-2026/data/phoenix-ci-dry-run/arch-2026-10-14/ci/image-wspems-mcp-auth-broker/wspems-mcp-auth-broker.oci.tar $L/b1.oci.tar > $D/compare-ci-b1.txt
+
+# 4. The differing provenance fields grouped, and whether the layers the
+#    provenance names are the image's (added after step 3, 10:55):
+python3 $E/phoenix-rt/attest-layers.py $L/b1.oci.tar $L/b2.oci.tar > $D/attest-layers-b1-b2.txt

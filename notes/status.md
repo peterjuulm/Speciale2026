@@ -5,12 +5,21 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 14 October 2026, 09:04-09:24, the dry run's second run on
-GitHub, the Windows job alone, with its local rebuild. Last edit: 14
-October 2026, 09:59. Also 12/10: the frontend lock's hashes filled
+Last run: 14 October 2026, 10:52-10:53, the authorization broker image
+built twice with its attestations. Last edit: 14 October 2026, 10:55. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 14/10 10:52-10:53
+([phoenix-image-attestations](2026-10-14-phoenix-image-attestations.md);
+W65): what the release's image tags point at. Each tag points at an
+index of the image and an attestation, an SBOM and SLSA provenance. Two
+builds of the authorization broker give CI's image manifest but
+different attestations, so different indexes: the provenance holds the
+build's clock times, a random ID and the layers as built before
+`rewrite-timestamp`; the SBOM differs in its creation time and
+namespace only. A rebuild compares the image manifest, not the tag.
 
 On GitHub and `arch`, 14/10 07:20-09:24
 ([phoenix-ci-dry-run, 14/10](2026-10-14-phoenix-ci-dry-run.md); W58,
@@ -393,9 +402,10 @@ WS branch since `fa60ea97`.
   Since 14/10 the three MCP images give the same manifest twice, bases
   pinned and caches removed (W60), and the migrations image too, with
   the manual image script now dating its images by the commit (W62).
-  Open: pushing with the fix, the manual script run end to end, the MCP
-  images' Debian packages over time, and the provenance attestation's
-  times. The
+  The tags point at an index whose attestations differ in every build
+  (W65), so a rebuild compares the image manifest, not the tag. Open:
+  pushing with the fix, the manual script run end to end, and the MCP
+  images' Debian packages over time. The
   images' assemblies carry `APP_VERSION` as their informational version
   (W45, read in `P2`'s WebAPI). The Dockerfile's Node pin (W40) is not
   built, as CI skips the SPA build.
