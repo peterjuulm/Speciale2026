@@ -310,3 +310,5 @@ source; that is the dependency part.
   `[I]`, not measured.
 - Clock times in the expectation headings were corrected the same evening
   from the log files; the order of expectation and run is unchanged.
+- The lab `/private/tmp/rb1-phoenix` was removed from `arch` on 14 October
+  2026 to free disk space.

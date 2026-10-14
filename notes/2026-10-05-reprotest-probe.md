@@ -161,3 +161,5 @@ the C locale (PEP 538), since reprotest runs on Python `[I]`.
 - It ran while the Phoenix batch ran. They share only the CPUs.
 - The personality and ASLR are read by the probe's own processes, which
   inherit them from the build shell.
+- The lab `/private/tmp/rb1-probe` was removed from `arch` on 14 October
+  2026 to free disk space.

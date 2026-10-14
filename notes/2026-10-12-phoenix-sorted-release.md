@@ -146,3 +146,5 @@ mode. A zip stores all three.
   saved or generated. Composed reports and uncertainty workflows were seen
   only empty, since the database copy has none.
 - One machine, as all of today's runs.
+- The labs `/private/tmp/rb1-fe` and `/private/tmp/rb1-phoenix` were removed
+  from `arch` on 14 October 2026 to free disk space.

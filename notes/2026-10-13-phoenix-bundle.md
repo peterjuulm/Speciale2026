@@ -112,6 +112,9 @@ for Leo and WS to decide.
 - Whether the bundle ID follows the content or is random is not known: it
   differed together with the assembly.
 - The idempotent SQL script the job also writes is not measured.
+- The labs `/private/tmp/rb1-mig-a` and `/private/tmp/rb1-mig-bb` were
+  removed from `arch` on 14 October 2026 to free disk space;
+  `/private/tmp/rb1-bundle` was already gone.
 
 ## Follow-up after review: PR validation's migration guard
 

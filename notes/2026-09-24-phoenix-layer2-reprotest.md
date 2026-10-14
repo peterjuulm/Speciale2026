@@ -411,3 +411,5 @@ reprotest compares contents only. The release job zips the folders with
 - `ildasm` 10.0.12 and `ilspycmd` 11.0 were used to read the DLLs and the
   compiler. The collation check ran on .NET 10 with `arch`'s ICU. The build's
   compiler ran on .NET 9.0.19, which loads the same system ICU `[I]`.
+- The lab `/private/tmp/rb1-phoenix` was removed from `arch` on 14 October
+  2026 to free disk space.

@@ -250,3 +250,5 @@ the same release and, on layer 1, the same output apart from the path files.
   `faketime()` in `build.py`. The lab is an export of a 24/9 commit, and the
   log shows the shift applied. An export of an old release would not be
   shifted.
+- The lab `/private/tmp/rb1-phoenix` was removed from `arch` on 14 October
+  2026 to free disk space.

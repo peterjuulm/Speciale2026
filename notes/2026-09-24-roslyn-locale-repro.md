@@ -106,3 +106,5 @@ measured with a build. The three other culture-sensitive sorts in
   `Microsoft.Net.Compilers.Toolset`) is not tested: it would need a download.
 - Invariant globalization changes all culture handling in the build's .NET
   processes. Harmless here; on a larger project it has to be measured.
+- The lab `/private/tmp/rb1-locale` was removed from `arch` on 14 October
+  2026 to free disk space.

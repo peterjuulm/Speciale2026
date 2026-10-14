@@ -89,3 +89,5 @@ as expected.
 - Run once (two builds). To be repeated another day before `[V]` on the numbers.
 - Same path both times. The path axis (`+build_path`) has not been measured on
   Phoenix beyond the 19/8 probe on one project.
+- The lab `/private/tmp/rb1-phoenix` was removed from `arch` on 14 October
+  2026 to free disk space.

@@ -158,3 +158,5 @@ routes, "to make the result deterministic" `[V]`
 - Which pages' order decides the runtime's table is not established. In T2
   two pairs of pages separate A from B, and with 5995 pairs and six builds,
   that can be chance.
+- The lab `/private/tmp/rb1-fe-entry` was removed from `arch` on 14 October
+  2026 to free disk space.

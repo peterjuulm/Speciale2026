@@ -199,3 +199,5 @@ files in [phoenix-layer2](2026-09-23-phoenix-layer2.md).
   build never reads them `[I]`.
 - The branch has moved on since these runs, see phoenix-layer2. These results
   are for `e6e92423`.
+- The `arch` lab `/private/tmp/rb1-phoenix` was removed on 14 October 2026
+  to free disk space; the VM's copy was not checked.

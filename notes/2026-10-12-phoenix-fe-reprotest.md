@@ -242,3 +242,5 @@ stores modes.
 - The cause is read in the code, not measured. T1 and T4 come next.
 - Whether CPUs, load or the file system shift the odds between the two
   orders is not measured. 26 builds are too few to tell.
+- The lab `/private/tmp/rb1-fe` was removed from `arch` on 14 October 2026
+  to free disk space.

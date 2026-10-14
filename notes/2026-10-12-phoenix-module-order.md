@@ -236,6 +236,8 @@ reported.
   export only through the rendered HTML, which did not differ here.
 - The incoming links are left unsorted, since no build needed them sorted.
 - One machine.
+- The lab `/private/tmp/rb1-fe-module-alt` was no longer on `arch` by 14
+  October 2026.
 
 ## The whole release on the fix
 

@@ -6,7 +6,7 @@ in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
 Last run: 14 October 2026, 14:30-15:10, `SHA256SUMS` on a download and the
-rebuild scripts' exit status, on `arch` (W66). Last edit: 14 October 2026, 15:20. Also 12/10: the frontend lock's hashes filled
+rebuild scripts' exit status, on `arch` (W66). Last edit: 14 October 2026, 15:25. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
@@ -297,9 +297,11 @@ the same two zips in four builds under `none` and `all` (W48).
 
 ## How we measure
 
-- The lab is a `git archive` export of a branch commit, now `63129480` for
+- The lab is a `git archive` export of a branch commit, last `63129480` for
   layer 2 and `a16eb506` for layer 3, checked with `labcheck.py` before each
-  batch. Nothing is built inside git.
+  batch. Nothing is built inside git. Both labs were removed from `arch` on
+  14 October 2026 to free disk space, so the next batch starts from a fresh
+  export.
 - `experiments/phoenix-rt/run.sh` runs reprotest 0.7.32. Every build starts
   and ends with `dotnet build-server shutdown`, MSBuild node reuse is off,
   both builds get two CPUs, and a sampler checks that the variation reached

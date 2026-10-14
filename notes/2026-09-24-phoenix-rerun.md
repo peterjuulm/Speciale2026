@@ -162,3 +162,6 @@ for the six runs. The rest is not run yet.
 ## Interpretation
 
 ## Caveats and not tested
+
+- The lab `/private/tmp/rb1-phoenix` was removed from `arch` on 14 October
+  2026 to free disk space.

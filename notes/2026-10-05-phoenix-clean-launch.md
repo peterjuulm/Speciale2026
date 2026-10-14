@@ -86,3 +86,5 @@ session variables reach them. R4 closes as a protocol fix.
   coercion from the probe, not named here.
 - A clean launch still inherits reprotest's own fixed values and the NuGet
   cache in `/tmp/dch`; those are the same as in the full rerun.
+- The lab `/private/tmp/rb1-phoenix` was removed from `arch` on 14 October
+  2026 to free disk space.

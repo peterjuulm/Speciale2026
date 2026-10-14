@@ -267,3 +267,6 @@ build"; that is the program itself being different.
   not `~/.nuget/packages` as Setup says. `DOTNET_CLI_HOME=/tmp/dch` moves
   NuGet's global packages folder too `[V]`. reprotest also ran both builds on
   one CPU, with `TZ=GMT+12` and `LANG=C.UTF-8` (W28).
+- The labs `/private/tmp/rb1-phoenix` and `/private/tmp/rb1-phoenix-B` are
+  gone from `arch`: the first was removed on 14 October 2026 to free disk
+  space, the second before that.

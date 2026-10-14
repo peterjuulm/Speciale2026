@@ -176,3 +176,5 @@ name from the same ID, so the fix covers it too. That matters for the zip
   risk could still show when the number of CPUs or the load changes.
 - `node_modules` is not compared; it does not ship.
 - The lint step is left out.
+- The lab `/private/tmp/rb1-fe` was removed from `arch` on 14 October 2026
+  to free disk space.
