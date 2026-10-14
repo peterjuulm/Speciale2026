@@ -7,7 +7,7 @@ the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
 Last run: 14 October 2026, 09:04-09:24, the dry run's second run on
 GitHub, the Windows job alone, with its local rebuild. Last edit: 14
-October 2026, 09:33. Also 12/10: the frontend lock's hashes filled
+October 2026, 09:41. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch

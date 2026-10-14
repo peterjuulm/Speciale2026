@@ -131,6 +131,16 @@ The WS branch at `be5fc56e`, five commits after `3c375938`:
   the release's version. `[V]` v1.0.50's Windows and Linux WebAPI zips
   hold two frontend builds: 141 of 1188 files differ, among them the
   build ID (W64). On a hosted runner, as here, the step never ran.
+  Corrected at 09:41 `[V]`: the version made no difference. Neither
+  zip's frontend holds the string `1.0.50`, no JavaScript chunk
+  differs, and the 109 HTML pages that do are equal once Next.js's
+  random build ID is masked. The other 32 of the 141 are not the
+  frontend's but the backend's precompressed Identity UI files, equal
+  once decompressed: compressed differently, which points to another
+  SDK or runtime on the office runner, W58's mechanism `[I]`. That the
+  copy was Main CI's holds: the release and its rc.1 built their
+  exports on GitHub's runners, so Main CI's was the only build of that
+  commit on the office runner, and rc.1's export has a third build ID.
 - The SDK action keeps archives between jobs only on a self-hosted
   runner, the installer deletes those unused for 30 days, and the
   download goes to the job's temporary folder. Tested on `arch` first
@@ -217,6 +227,9 @@ v1.0.50: the Windows zip carries another frontend build than the Linux
 zip, because the Windows job on WS's office runner took a copy of the
 export that Main CI had left on the host for the same commit. The
 release job's inputs depended on what else had run on that machine.
+At that commit the two builds differed only by their random build ID,
+but the shortcut would have shipped any difference between the two
+workflows' builds `[I]`.
 The branch now takes the release's own export; that it does so on the
 office runner is not tested `[I]`.
 

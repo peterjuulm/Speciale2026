@@ -121,3 +121,18 @@ git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git :refs/tags/v0.0.0-thes
 git ls-remote --tags git@github.com:Weel-Sandvig/WS.Phoenix.git 'refs/tags/v0.0.0-thesis*'   # none
 gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/$R --jq .id   # 404
 gh api "repos/Weel-Sandvig/WS.Phoenix/actions/caches?per_page=1" --jq '"caches in the repo: \(.total_count)"'   # 96, as before the run
+
+# Which frontend build v1.0.50's Windows zip holds, 09:39-09:41, for the
+# correction at 09:41. Output in P2/v1050-frontend-2.txt (it names WS's
+# runners, so it stays private). The runs on the release's commit, and
+# where each run's frontend and Windows jobs ran:
+C=863bb9a47aa0fc5a361a376518adc89eefda70fc
+for r in $(gh run list --repo Weel-Sandvig/WS.Phoenix --commit $C --json databaseId --jq '.[].databaseId'); do gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/$r --jq '"\(.id) \(.name) \(.head_branch) \(.created_at)"'; gh api "repos/Weel-Sandvig/WS.Phoenix/actions/runs/$r/jobs?per_page=50" --jq '.jobs[] | select(.name | test("frontend|publish-windows")) | "  \(.name) | \(.runner_name) | \(.labels | join(",")) | \(.started_at) \(.completed_at)"'; done
+# rc.1's export, for its build ID:
+gh run download 37921622658 --repo Weel-Sandvig/WS.Phoenix -n frontend-export -D /private/tmp/rb1-v1050/rc1-export
+ls /private/tmp/rb1-v1050/rc1-export/_next/static/
+# Then, with Python's zipfile, the version string in every wwwroot file
+# of both zips, the differing files with the build ID masked, and the
+# .gz files decompressed: P2/v1050-frontend-2.py, as run. A first try of
+# the version search with unzip -p 'wwwroot/*' matched no entry and is
+# not counted.
