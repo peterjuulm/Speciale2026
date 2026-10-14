@@ -18,6 +18,10 @@
 # CI's. Also the SQL script, all five images, and SHA256SUMS, written here
 # over the local outputs with the release job's command. CLONE is a clone
 # of the tag (for the packing script, the signing root and upgrade.sh).
+#
+# Added 14 October, for the second dry run, which ran only the frontend
+# and Windows jobs: an output whose artifact the run did not make is
+# reported as "not in this run" instead of compared.
 set -u
 P=${1:?P} TAG=${2:?TAG}
 CLONE=${CLONE:-/private/tmp/rb1-ci/windows} SIGNING_IMAGE=${SIGNING_IMAGE:-ws-signing:rb-dry}
@@ -45,6 +49,7 @@ same "$R/frontend-ci.sha256" "$R/frontend-local.sha256" \
   || diff "$R/frontend-ci.sha256" "$R/frontend-local.sha256" | head -20
 
 for z in ws-pems-linux-x64 ws-pems-job-worker-linux-x64; do
+  [ -d "$C/release-zips-linux" ] || { echo "not in this run  $z-$TAG.zip"; continue; }
   same "$C/release-zips-linux/$z-$TAG.zip" "$L/linux/$z-$TAG.zip" "$z-$TAG.zip" \
     || zipdiff "$C/release-zips-linux/$z-$TAG.zip" "$L/linux/$z-$TAG.zip" "$z"
 done
@@ -73,10 +78,14 @@ for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do
     || zipdiff "$C/release-zips-windows/$z-$TAG.zip" "$win/$z-$TAG.zip" "$z"
 done
 
-same "$C/db-migration-bundles-linux/ws-pems-db-migrator-linux-x64-$TAG" \
-  "$L/migrator/ws-pems-db-migrator-linux-x64-$TAG" "ws-pems-db-migrator-linux-x64-$TAG"
+if [ -d "$C/db-migration-bundles-linux" ]; then
+  same "$C/db-migration-bundles-linux/ws-pems-db-migrator-linux-x64-$TAG" \
+    "$L/migrator/ws-pems-db-migrator-linux-x64-$TAG" "ws-pems-db-migrator-linux-x64-$TAG"
+else
+  echo "not in this run  ws-pems-db-migrator-linux-x64-$TAG and the SQL script"
+fi
 same "$C/db-migration-bundles-windows/$mig" "$win/$mig" "$mig"
-if [ -f "$L/migrator/bootstrap-postgresql-$TAG.sql" ]; then
+if [ -d "$C/db-migration-bundles-linux" ] && [ -f "$L/migrator/bootstrap-postgresql-$TAG.sql" ]; then
   same "$C/db-migration-bundles-linux/bootstrap-postgresql-$TAG.sql" "$L/migrator/bootstrap-postgresql-$TAG.sql" "bootstrap-postgresql-$TAG.sql"
 fi
 if [ -f "$C/sha256sums/SHA256SUMS" ]; then

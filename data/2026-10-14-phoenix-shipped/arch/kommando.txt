@@ -27,3 +27,19 @@ DOCKER_CONFIG=/private/tmp/rb1-docker OUT=$O EPOCH=1791953849 TAG=v0.0.0-thesis 
 #   5ddd88d594a5f23a6e4f5161a63d40ce7bb487d1 (1791954479); its tree is the
 #   WS branch's 3c375938
 DOCKER_CONFIG=/private/tmp/rb1-docker OUT=$O EPOCH=1791954479 TAG=v0.0.0-thesis IMAGES="mcp chat broker" $E/phoenix-rt/image-probe.sh 5ddd88d594a5f23a6e4f5161a63d40ce7bb487d1 I2
+
+# Check 5: the manual image script as a WS developer runs it, in W on its
+# head 3c375938, with the lab's buildx and no registry login. The first
+# try, 07:36, stopped with exit 255 after creating its builder
+# (script-run-1.log); the second, 07:38-07:47, ran with the BuildKit check
+# fixed in the worktree, not yet committed (script-run-2.log):
+(cd $W && env DOCKER_CONFIG=/private/tmp/rb1-docker scripts/docker-build-push.sh --dry-run v0.0.0-thesis.4) >> $O/script-run-2.log 2>&1
+# The probe's two builds of the migrations image, from an export of the
+# same commit with the same epoch and version, 08:39-08:44:
+DOCKER_CONFIG=/private/tmp/rb1-docker OUT=$O EPOCH=1791954819 TAG=v0.0.0-thesis.4 IMAGES=migrations $E/phoenix-rt/image-probe.sh 3c375938048a64f9de86f29a6fde654f4b633e94 I3
+# The script's loaded image against them, 08:45 (I3/compare-with-script.txt):
+docker image inspect ghcr.io/weel-sandvig/ws-pems-migrations:v0.0.0-thesis.4 --format '{{.Id}} created {{.Created}}'
+docker image inspect ghcr.io/weel-sandvig/ws-pems-migrations:v0.0.0-thesis.4 --format '{{json .RootFS.Layers}}'
+# Cleanup, 08:46: the script's builder and the three images it loaded:
+DOCKER_CONFIG=/private/tmp/rb1-docker docker buildx rm ws-phoenix-builder
+docker image rm ghcr.io/weel-sandvig/ws-pems-migrations:v0.0.0-thesis.4 ghcr.io/weel-sandvig/ws-pems:v0.0.0-thesis.4 ghcr.io/weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.4

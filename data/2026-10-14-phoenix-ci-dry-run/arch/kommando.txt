@@ -30,3 +30,94 @@ git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git refs/tags/v0.0.0-thesi
 # scripts/install-dotnet-sdk.py installed from its cache (runtime 10.0.12
 # only), 07:20-:
 DOCKER_CONFIG=/private/tmp/rb1-docker DOTNET_DIR=/private/tmp/rb1-sdk-tests/t6b REPO=/private/tmp/rb1-ci/src OUT=$P $E/phoenix-rt/ci-local.sh v0.0.0-thesis.3
+
+# The run's jobs and the Windows job's steps, once Leo had unlocked the
+# keyring (05:47 UTC); the job's log was gone, its annotation kept:
+gh run view 38516076453 --repo Weel-Sandvig/WS.Phoenix --json jobs --jq '.jobs[] | "\(.conclusion)\t\(.name)\t\(.startedAt)\t\(.completedAt)\t\([.steps[] | select(.conclusion == "failure") | .name] | join(", "))"'
+gh run view 38516076453 --repo Weel-Sandvig/WS.Phoenix --json jobs --jq '.jobs[] | select(.name | startswith("publish-windows")) | .databaseId as $id | "job \($id)", (.steps[] | "\(.number)\t\(.conclusion)\t\(.name)")'
+gh api repos/Weel-Sandvig/WS.Phoenix/check-runs/115696960271/annotations --jq '.[] | "\(.annotation_level): \(.message)"'
+gh run view 38516076453 --repo Weel-Sandvig/WS.Phoenix --job 115696960271 --log > $P/ci/publish-windows.log   # "log not found"
+
+# The artifacts and the logs, 05:50 UTC:
+R=38516076453; for n in frontend-export release-zips-linux db-migration-bundles-linux image-ws-pems image-ws-pems-job-worker image-wspems-mcp-server image-wspems-chat-server image-wspems-mcp-auth-broker thesis-test-ca; do gh run download $R --repo Weel-Sandvig/WS.Phoenix -n $n -D $P/ci/$n || echo "FAILED $n"; done
+gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/$R/logs > $P/run-logs.zip
+
+# The comparison, 05:57 UTC; the Windows parts found nothing to compare:
+CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-dry $E/phoenix-rt/ci-compare.sh $P v0.0.0-thesis.3 > $P/compare.txt 2>&1
+
+# Cleanup, 05:58 UTC:
+gh api "repos/Weel-Sandvig/WS.Phoenix/actions/caches?ref=refs/tags/v0.0.0-thesis.3" --jq '.total_count'   # 0
+gh api -X DELETE repos/Weel-Sandvig/WS.Phoenix/actions/runs/$R
+git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git :refs/tags/v0.0.0-thesis.3
+git ls-remote --tags git@github.com:Weel-Sandvig/WS.Phoenix.git 'refs/tags/v0.0.0-thesis*'   # none
+
+# Run 2, the Windows job after the disk fix. P2 is $P/run2. The edit
+# script quotes WS's workflows, so it stays in P2 (dryrun-edit-2.py).
+#
+# The SDK installer and action after the cache changes, 08:36-08:37, on
+# 3c375938 with the worktree's changes, the installer as later committed
+# in 4b1c71b9 (sha256 eeddfaffcc927eba). Expectations and the log's path
+# are in the script; it ran from a scratch copy, copied here unchanged at
+# 08:42:
+bash $E/phoenix-rt/installer-tests.sh
+#
+# Evidence for the frontend fix, 08:50-09:03 (P2/v1050-frontend.txt). The
+# two zips, 08:50:
+gh release download v1.0.50 --repo Weel-Sandvig/WS.Phoenix -p 'ws-pems-win-x64-v1.0.50.zip' -p 'ws-pems-linux-x64-v1.0.50.zip' -D /private/tmp/rb1-v1050
+# The check, 09:03, run inline; its commands were saved at 09:05 as
+# P2/v1050-frontend.sh, private with its output. It asks for the Windows
+# job's export steps and the runs on the release's commit:
+gh run view 37931796373 --repo Weel-Sandvig/WS.Phoenix --json jobs --jq '.jobs[] | select(.name | test("publish-windows")) | (.steps[] | select(.name | test("frontend export")) | "\(.number) \(.conclusion) \(.name)")'
+gh run list --repo Weel-Sandvig/WS.Phoenix --commit 863bb9a47aa0fc5a361a376518adc89eefda70fc --json workflowName,event,createdAt --jq '.[] | "\(.createdAt) \(.workflowName) \(.event)"'
+#   then lists the build-ID folders and compares the wwwroot entries'
+#   names and CRCs with the build ID masked; the output went to
+#   P2/v1050-frontend.txt.
+#
+# The throwaway commit, 09:03, in a scratch clone outside W, on the
+# branch head be5fc56e:
+S=/private/tmp/rb1-ci/src; rm -rf $S; git clone -q --no-checkout file://$W $S
+git -C $S checkout -q --detach be5fc56e7
+python3 $P2/dryrun-edit-2.py $S
+actionlint -shellcheck= .github/workflows/03-release.yml .github/workflows/00-reusable-windows-publish.yml .github/workflows/00-reusable-frontend-build.yml   # in $S
+grep -n -E 'packages: write|id-token|contents: write|environment:|login-action|push=true|push: true|action-gh-release|secrets\.|imagetools create|cache-to|cache-from|AZURE|CI_RUNNER' <the three files>   # nothing
+git -C $S commit -q -am "Thesis dry run of the release workflow, second run, 14 Oct 2026 ..."
+git -C $S tag v0.0.0-thesis.5
+#   7f5f59793a42c068003c3a1fa29baadaa4a8dda6, commit time 1791961435
+git ls-remote --tags git@github.com:Weel-Sandvig/WS.Phoenix.git 'refs/tags/v0.0.0-thesis*'   # none
+
+# The run, from 09:04:07 (07:04:07 UTC), run 38525986369; only the tag:
+git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git refs/tags/v0.0.0-thesis.5
+
+# The local rebuild alongside, with an SDK the branch's installer put in
+# a folder of its own (runtime 10.0.12 only):
+python3 $W/scripts/install-dotnet-sdk.py --global-json $W/global.json /private/tmp/rb1-sdk-run2
+DOTNET_DIR=/private/tmp/rb1-sdk-run2 REPO=/private/tmp/rb1-ci/src OUT=$P2 $E/phoenix-rt/ci-local.sh v0.0.0-thesis.5 "frontend windows"
+
+# The windows-latest job's log, asked for alone at 09:09 while the run
+# went on, was not served ("still in progress"); the logs zip below
+# holds it.
+#
+# After the run, 09:19-09:24, by a script kept as P2/run2-after.sh. Its
+# first try, 09:19:46, fetched nothing: the wrapper was
+# `timeout 600 command gh`, and timeout cannot run the shell builtin
+# `command`. The outputs were removed and it ran again at 09:19:54 with
+# the wrapper below; P2/after.out is the second try's output.
+gh() { timeout 600 /usr/bin/gh "$@"; }
+R=38525986369
+gh run view $R --repo Weel-Sandvig/WS.Phoenix --json conclusion,jobs --jq '"run: \(.conclusion)", (.jobs[] | "\(.conclusion)\t\(.name)\t\(.startedAt)\t\(.completedAt)")' | tee $P2/jobs.txt
+gh run view $R --repo Weel-Sandvig/WS.Phoenix --json jobs --jq '.jobs[] | select(.name | startswith("publish-windows")) | (.steps[] | "\(.number)\t\(.conclusion)\t\(.name)")' | tee $P2/windows-steps.txt
+for n in frontend-export release-zips-windows db-migration-bundles-windows thesis-test-ca; do gh run download $R --repo Weel-Sandvig/WS.Phoenix -n $n -D $P2/ci/$n || echo "FAILED $n"; done
+gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/$R/logs > $P2/run-logs.zip
+mkdir -p $P2/run-logs && (cd $P2/run-logs && unzip -o -q ../run-logs.zip)
+#   then the Windows job's log searched for the check's summary and the
+#   disk monitor's low point, and the windows-latest job's for the SDK,
+#   RUNNER_TEMP and the PDB's runtime (grep, in P2/run2-after.sh)
+CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-test4 $E/phoenix-rt/ci-compare.sh $P2 v0.0.0-thesis.5 > $P2/compare.txt 2>&1
+
+# Cleanup, 09:24:41-09:24:47:
+gh api "repos/Weel-Sandvig/WS.Phoenix/actions/caches?ref=refs/tags/v0.0.0-thesis.5" --jq '"caches on the tag: \(.total_count)"'   # 0
+gh api -X DELETE repos/Weel-Sandvig/WS.Phoenix/actions/runs/$R
+git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git :refs/tags/v0.0.0-thesis.5
+git ls-remote --tags git@github.com:Weel-Sandvig/WS.Phoenix.git 'refs/tags/v0.0.0-thesis*'   # none
+gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/$R --jq .id   # 404
+gh api "repos/Weel-Sandvig/WS.Phoenix/actions/caches?per_page=1" --jq '"caches in the repo: \(.total_count)"'   # 96, as before the run

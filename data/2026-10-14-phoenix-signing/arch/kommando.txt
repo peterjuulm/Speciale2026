@@ -33,3 +33,22 @@ run A1/win Tbad-src/win Tbad               # one changed byte in the rebuild
 cp -a $L/B $L/Textra-src && echo x > $L/Textra-src/win/ws-pems-win-x64/extra.txt
 run A1/win Textra-src/win Textra           # an extra file in the rebuild
 mkdir -p $L/zips-T && ( cd $L/T/win && for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do env PATH=/private/tmp/rb1-tools:/usr/bin SOURCE_DATE_EPOCH=1791919869 /private/tmp/rb1-phoenix/scripts/pack-release-zip.sh $z $L/zips-T/$z-v0.0.0-thesis.zip || exit 1; done ) && for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do cmp -s $L/zips-A1/$z-v0.0.0-thesis.zip $L/zips-T/$z-v0.0.0-thesis.zip && echo "same  $z zip, paste-signatures.sh's output packed, against A1" || echo "DIFF  $z"; done | tee -a $O/paste-tool-tests.txt; cmp -s $L/A1/win/ws-pems-db-migrator-win-x64-v0.0.0-thesis.exe $L/T/win/ws-pems-db-migrator-win-x64-v0.0.0-thesis.exe && echo "same  the migrator" | tee -a $O/paste-tool-tests.txt
+
+# paste-signatures.sh rewritten after the dry run's disk failure (the output
+# directory optional, folders listed), 08:30-08:36, in the signing image
+# rebuilt from the worktree (uncommitted then, on 3c375938). Twelve cases,
+# expectations in the script; the log is $O/paste-tool-tests-2.txt. The
+# script ran from a scratch copy, copied here unchanged at 08:42; the two
+# read-only cases were added at 08:55:
+bash $E/phoenix-rt/paste-tool-tests.sh
+
+# Again 08:56-09:02, the copy's folders now made writable (Codex's
+# review), with the tool as later committed in 5940c2ec (sha256
+# 7a77eae3bc62b201). Fourteen cases; the log is $O/paste-tool-tests-3.txt:
+IMAGE=ws-signing:rb-test4 LOG=$O/paste-tool-tests-3.txt bash $E/phoenix-rt/paste-tool-tests.sh
+
+# The control, 09:02: the read-only case with an output directory, in the
+# 08:30 image; exit 1, mv refused (L=/private/tmp/rb1-sign, K=$O/keys):
+chmod 555 $L/Tro/win/ws-pems-job-worker-win-x64 && rm -rf $L/T5 && mkdir $L/T5
+docker run --rm --user "$(id -u):$(id -g)" -v "$L:$L" -v "$K:/keys:ro" -w "$L" -e VERIFY_CAFILE=/keys/verify.pem --entrypoint /opt/signing/paste-signatures.sh ws-signing:rb-test3 A1/win Tro/win T5/win
+chmod 755 $L/Tro/win/ws-pems-job-worker-win-x64; chmod -R u+w $L/T5

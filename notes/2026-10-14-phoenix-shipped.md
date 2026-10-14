@@ -96,6 +96,26 @@ written. Instead:
     the same prebuilt download, and what is left of apt is its package
     database, which records no times.
 
+Added at 07:36, after checks 1-4, before check 5: the manual image
+script end to end, as a WS developer runs it, on the WS branch head
+`3c375938`: `scripts/docker-build-push.sh --dry-run v0.0.0-thesis.4`,
+with buildx from the lab and no registry login. Then the migrations
+image once more with `image-probe.sh`, from an export of the same
+commit with the same epoch and version, to compare with the script's.
+
+5. The script builds and loads all three images, after its BuildKit
+   check. Its migrations image has the probe build's layers (the same
+   `diff_ids`) and the commit's time as its creation time.
+
+Added at 07:38, after the first try of check 5: the script stopped right
+after creating its builder, with exit status 255 and no message (the
+wrapper's log said 0: it printed `date`'s status). Its new BuildKit
+check piped `docker buildx inspect` into an `awk` that quit at the first
+match; buildx, cut off, failed, and `pipefail` with `set -e` ended the
+script. The check was added after Codex's review, so no review saw it.
+With `awk` reading to the end, the check passes on BuildKit 0.33.1, and
+check 5 runs again on the fixed script, the same expectation.
+
 ## Commands
 
 Verbatim in `data/2026-10-14-phoenix-shipped/arch/kommando.txt`; the
@@ -138,6 +158,12 @@ check 2 06:57-07:02, check 3b 07:02-07:07 and again 07:08-07:13.
    the same order of the release's file names. `et_EE.UTF-8` is not
    installed as a C library locale on `arch`, so bash fell back to `C`
    there; that locale was not tested.
+5. Held, on the second try (the addendum at 07:38). The fixed script
+   built and loaded all three images, 07:43-07:47, after its BuildKit
+   check passed on 0.33.1. Its migrations image and both of the probe's
+   builds of it, 08:39-08:44, have one image manifest, `9b1efa1f…`, so
+   the same nine layers, and their creation time is the commit's,
+   05:13:39 UTC (`I3/compare-with-script.txt`).
 
 ## Interpretation
 

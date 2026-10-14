@@ -5,21 +5,40 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 14 October 2026, from 07:20, the second dry run on GitHub with
-its local rebuild. Last edit: 14 October 2026, 07:30. Also 12/10: the frontend lock's hashes filled
+Last run: 14 October 2026, 09:04-09:24, the dry run's second run on
+GitHub, the Windows job alone, with its local rebuild. Last edit: 14
+October 2026, 09:33. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
 
-On GitHub and `arch`, 14/10 from 07:20
-([phoenix-ci-dry-run, 14/10](2026-10-14-phoenix-ci-dry-run.md); W58): the
-second dry run, on the WS branch with today's fixes (`3c375938`), tag
-`v0.0.0-thesis.3`: all five images as tarballs, the Windows binaries
-signed with a throwaway certificate and the job's new paste check, a
-`windows-latest` job for the SDK action, SHA256SUMS. Started unattended:
-`gh` could not reach the API (locked keyring), so its artifacts, the
-comparison with the local rebuild, and deleting the run and the tag wait
-for Leo.
+On GitHub and `arch`, 14/10 07:20-09:24
+([phoenix-ci-dry-run, 14/10](2026-10-14-phoenix-ci-dry-run.md); W58,
+W64): the release workflow's second dry run, in two runs. Run 1 on
+`3c375938`: the frontend, both Linux zips, the Linux migrator, the SQL
+script and all five images equal the local rebuild, with no runtime
+added here, so W58 is gone; the Windows job died of disk in its new
+check, which wrote a second full copy of the build. Run 2 on `be5fc56e`,
+the Windows job alone after the fix: the check passed in CI with 2.1 GB
+free at its low point, and with CI's signatures pasted onto the local
+build both Windows zips and the migrator are CI's byte for byte. Found
+on the way: v1.0.50's Windows zip holds another frontend build than its
+Linux zip, as the Windows job on WS's office runner took a host copy of
+Main CI's export (W64); the branch now takes the release's own. Runs,
+artifacts and tags deleted; no cache made.
+
+On the WS branch, 14/10 08:30-09:02 (`3c375938..be5fc56e`, pushed):
+`paste-signatures.sh` needs no second copy and lists folders too; the
+Windows job frees its intermediate files before the check and takes the
+release's frontend export; the SDK action keeps archives only on a
+self-hosted runner, pruned after 30 days, and downloads into the job's
+temporary folder; PR validation runs the backend when the SDK setup
+changes; the manual image script's BuildKit check reads buildx to the
+end. Tested on `arch` first: 14 paste cases, the installer and the
+action's step on both kinds of runner, and the manual script against
+the probe (one manifest). Codex (Sol; Astra was at capacity) reviewed
+the diff: five findings, three applied; two edge cases in the
+installer's cache are not.
 
 On `arch`, 14/10 06:32-07:13
 ([phoenix-shipped](2026-10-14-phoenix-shipped.md); W60-W63): the parts

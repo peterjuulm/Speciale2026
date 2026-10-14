@@ -116,6 +116,33 @@ of `A1`'s zips byte for byte, and its migrator is `A1`'s. One changed
 byte in a rebuilt DLL: that signature fails, the file is named, exit 1.
 One extra file in the rebuild: named, exit 1.
 
+Added at 08:42, after the dry run's first run died of disk in the job's
+check ([phoenix-ci-dry-run](2026-10-14-phoenix-ci-dry-run.md)):
+`paste-signatures.sh` rewritten, with the output directory optional.
+Without it, each signature is pasted into a temporary file, verified,
+hashed and deleted, and the release is compared with a listing of the
+rebuild in which each pasted file's mode and hash replace its twin's. A
+listing now names every folder too: the zips store folders as entries.
+Tested 08:30-08:36 `[V]` (`paste-tool-tests-2.txt`), with each case's
+expected exit status in the script rather than here. A1 against B,
+without and with an output directory: 177 pasted, 2130 files and 114
+folders equal; the output packed gives A1's zips and migrator byte for
+byte. A1 against A: equal. Exit 1 for each of: one byte changed in a
+signed DLL, an extra file, an extra empty folder, mode 755 on a file
+that is pasted and on one that is not, one byte changed in a file that
+is not signed, a missing file, a folder that cannot be read, a name with
+a newline.
+
+Added at 09:33: run again 08:56-09:02 with the tool as committed in
+`5940c2ec` (`paste-tool-tests-3.txt`). Codex, reviewing the change,
+found that a read-only folder in the rebuild would pass the check
+without an output directory and fail it with one, since `cp -a` keeps
+the folder's mode; the tool now makes the copy's folders writable before
+pasting. The twelve cases, and a read-only folder holding pasted files,
+without and with an output directory: all fourteen as expected `[V]`.
+The same read-only case with an output directory, in the 08:30 image:
+exit 1, `mv` refused.
+
 ## Interpretation
 
 **A signed release can be rebuilt byte for byte: paste its signatures.**
@@ -146,6 +173,13 @@ keeps the unsigned tree before signing and runs the tool on its own
 output afterwards; a release whose signatures do not paste back fails
 before it is packed. This needs the job itself to run, with the real
 signing service: not tested.
+Added at 09:30: on GitHub's hosted runner, with a throwaway certificate,
+the job did run it in the dry run's second run
+([phoenix-ci-dry-run](2026-10-14-phoenix-ci-dry-run.md)) `[V]`: 177
+signatures pasted, 2130 files and 114 folders equal; and the same paste,
+of CI's signatures onto a build on `arch`, gave CI's zips and migrator
+byte for byte. The real signing service, and the office runner where
+WS's releases sign, are still not tested.
 
 ## Caveats
 
@@ -159,5 +193,6 @@ signing service: not tested.
 
 ## Not tested
 
-- The release job's new steps on a runner, and signing through Azure.
+- The release job's new steps on the office runner, and signing through
+  Azure. On a hosted runner they ran in the dry run's second run.
 - A verifier with another osslsigncode version.
