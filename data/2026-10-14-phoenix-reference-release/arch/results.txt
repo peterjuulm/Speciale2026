@@ -90,3 +90,17 @@ functional  total="165" executed="153" passed="153" failed="0"
 # refs/heads/refs/tags/v0.0.0-thesis.6, 4.94 GB: 42 BuildKit blobs, 5 image
 # indexes, NuGet for Linux and for Windows, npm. All deleted, none left.
 # The release, its tag and the image tags stay, as the reference.
+
+Afterwards, 14:30-15:10 (W66 and the scripts' exit status):
+- sha256sum -c SHA256SUMS in the folder of the downloaded assets: the four
+  zips and upgrade.sh OK; db/bootstrap-postgresql-v0.0.0-thesis.6.sql,
+  db/ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6 and
+  db/ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe "could not be read";
+  exit 1. v1.0.50's SHA256SUMS names the same three files under db/; its
+  nine assets are flat.
+- The fixed step's file: the same eight hashes, no db/ prefix; sha256sum -c
+  in the download folder: 8 OK, exit 0.
+- ci-local.sh, images job with no builder: unfixed "images exit 0", exit 0;
+  fixed "image ws-pems failed", "images exit 1", "failed: images", exit 1.
+- ci-compare-tests.sh: fixed script PASS, PASS, PASS (exit 0); unfixed
+  script FAIL, FAIL, FAIL (exit 1).

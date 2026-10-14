@@ -109,3 +109,30 @@ while read -r f; do
   printf "%s\n" "$out" | grep -q "Timestamp time:" || echo "NO TIMESTAMP $f"
 done < /tmp/unsigned.txt
 echo "verified: $ok, failed: $bad"; sort /tmp/subjects.txt | uniq -c | sed "s/,L=.*//"' | tee $O/signatures/all-177.txt
+
+# Afterwards, 14:30-15:10: SHA256SUMS on a download, and the rebuild
+# scripts' exit status (W66). T and SC are scratch folders.
+# SHA256SUMS on the folder of the release's nine downloaded assets:
+cd $O/release && sha256sum -c SHA256SUMS   # 5 OK, 3 unreadable (db/...), exit 1
+gh release download v1.0.50 --repo Weel-Sandvig/WS.Phoenix -p SHA256SUMS -O - | awk '{print $2}'
+gh release view v1.0.50 --repo Weel-Sandvig/WS.Phoenix --json assets --jq '.assets[].name'
+# The fixed step (WS branch 28371c9e) on the release's files, laid out as the
+# release job has them:
+mkdir -p $T/release/db && ln -s $O/release/*.zip $T/release/ && cp $O/release/upgrade.sh $T/release/ && ln -s $O/release/ws-pems-db-migrator-* $O/release/bootstrap-postgresql-*.sql $T/release/db/
+( export LC_ALL=C; cd $T/release && { sha256sum *.zip upgrade.sh; (cd db && sha256sum -- *); } > SHA256SUMS )
+diff <(sed 's|  db/|  |' $O/release/SHA256SUMS | sort -k2) <(sort -k2 $T/release/SHA256SUMS)   # no output
+( cd $O/release && sha256sum -c $T/release/SHA256SUMS )   # 8 OK, exit 0
+# ci-local.sh before (3c43561) and after the fix: the images job with a
+# dummy export and no rb1 builder; each copy's ci= points at SC/ci, so the
+# lab is not touched:
+mkdir -p $SC/out/local/frontend-out $SC/docker && echo x > $SC/out/local/frontend-out/index.html
+git -C $E/.. show 3c43561:experiments/phoenix-rt/ci-local.sh | sed "s|^ci=/private/tmp/rb1-ci\$|ci=$SC/ci|" > $SC/ci-local-old.sh
+sed "s|^ci=/private/tmp/rb1-ci\$|ci=$SC/ci|" $E/phoenix-rt/ci-local.sh > $SC/ci-local.sh
+OUT=$SC/out REPO=/private/tmp/rb1-ci/src IMAGES=webapi DOCKER_CONFIG=$SC/docker bash $SC/ci-local-old.sh v0.0.0-thesis.6 images   # "images exit 0", exit 0
+OUT=$SC/out REPO=/private/tmp/rb1-ci/src IMAGES=webapi DOCKER_CONFIG=$SC/docker bash $SC/ci-local.sh v0.0.0-thesis.6 images       # "images exit 1", "failed: images", exit 1
+# ci-compare.sh's tests, then the same tests against the unfixed script:
+$E/phoenix-rt/ci-compare-tests.sh   # 3 PASS, exit 0
+git -C $E/.. show 3c43561:experiments/phoenix-rt/ci-compare.sh > $SC/ci-compare.sh && cp $E/phoenix-rt/ci-compare-tests.sh $E/phoenix-rt/oci-diff.py $SC/ && bash $SC/ci-compare-tests.sh   # 3 FAIL, exit 1
+# A rerun of this release's comparison with the fixed ci-compare.sh, into a
+# scratch folder holding links to O/ci and O/local, was stopped at 14:52
+# after five lines, all "same", when the disk ran short; not evidence.

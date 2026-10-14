@@ -29,6 +29,14 @@
 # release, WS's certificate, trusted through Microsoft's root alone; none
 # compares the unsigned files as they are. The default follows
 # thesis-test-ca, as before.
+#
+# Changed 14 October, evening: the script counts every output that differs
+# and every step that fails, ends with a summary line, and exits 1 unless
+# the count is 0; it used to exit 0 whatever it found. SHA256SUMS is
+# rewritten in the form the release used: db/ paths before the release job
+# named every line by its asset name (WS branch 28371c9e), flat names
+# after. An image is the same only when oci-diff.py's first line says
+# "manifest same".
 set -u
 P=${1:?P} TAG=${2:?TAG}
 CLONE=${CLONE:-/private/tmp/rb1-ci/windows} SIGNING_IMAGE=${SIGNING_IMAGE:-ws-signing:rb-dry}
@@ -36,17 +44,20 @@ here=$(cd "$(dirname "$0")" && pwd)
 C=$P/ci L=$P/local R=$P/compare
 rm -rf "$R" && mkdir -p "$R"
 
+bad=0 skipped=0
 hashes() { ( cd "$1" && find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum ); }
-same() { if cmp -s "$1" "$2"; then echo "same  $3"; return 0; else echo "DIFF  $3"; return 1; fi; }
+report() { if cmp -s "$1" "$2"; then echo "same  $3"; return 0; else echo "DIFF  $3"; return 1; fi; }
+same() { report "$@" || { bad=$((bad + 1)); return 1; }; }  # one output, counted when it differs
+skip() { echo "not in this run  $1"; skipped=$((skipped + 1)); }
 zipdiff() {  # ci zip, local zip, label
   local u=$R/unzipped/$3
   mkdir -p "$u/ci" "$u/local"
   unzip -q "$1" -d "$u/ci" && unzip -q "$2" -d "$u/local"
   hashes "$u/ci" > "$u/ci.sha256"; hashes "$u/local" > "$u/local.sha256"
-  same "$u/ci.sha256" "$u/local.sha256" "  $3: entries' contents ($(wc -l < "$u/ci.sha256") / $(wc -l < "$u/local.sha256") files)" \
+  report "$u/ci.sha256" "$u/local.sha256" "  $3: entries' contents ($(wc -l < "$u/ci.sha256") / $(wc -l < "$u/local.sha256") files)" \
     || diff "$u/ci.sha256" "$u/local.sha256" | head -20
   zipinfo -v "$1" | tail -n +2 > "$u/ci.zipinfo"; zipinfo -v "$2" | tail -n +2 > "$u/local.zipinfo"
-  same "$u/ci.zipinfo" "$u/local.zipinfo" "  $3: zipinfo -v" || diff "$u/ci.zipinfo" "$u/local.zipinfo" | head -20
+  report "$u/ci.zipinfo" "$u/local.zipinfo" "  $3: zipinfo -v" || diff "$u/ci.zipinfo" "$u/local.zipinfo" | head -20
 }
 
 hashes "$C/frontend-export" > "$R/frontend-ci.sha256"
@@ -56,7 +67,7 @@ same "$R/frontend-ci.sha256" "$R/frontend-local.sha256" \
   || diff "$R/frontend-ci.sha256" "$R/frontend-local.sha256" | head -20
 
 for z in ws-pems-linux-x64 ws-pems-job-worker-linux-x64; do
-  [ -d "$C/release-zips-linux" ] || { echo "not in this run  $z-$TAG.zip"; continue; }
+  [ -d "$C/release-zips-linux" ] || { skip "$z-$TAG.zip"; continue; }
   same "$C/release-zips-linux/$z-$TAG.zip" "$L/linux/$z-$TAG.zip" "$z-$TAG.zip" \
     || zipdiff "$C/release-zips-linux/$z-$TAG.zip" "$L/linux/$z-$TAG.zip" "$z"
 done
@@ -78,11 +89,14 @@ if [ "$SIGNED" != none ]; then
   fi
   docker run --rm --user "$(id -u):$(id -g)" -v "$W:$W" -w "$W" -e VERIFY_CAFILE="$W/keys/verify.pem" \
     --entrypoint /opt/signing/paste-signatures.sh "$SIGNING_IMAGE" ci local pasted > "$R/paste.log" 2>&1
-  echo "paste-signatures.sh, CI's signatures onto the local build: exit $?, $(tail -1 "$R/paste.log")"
+  rc=$?
+  echo "paste-signatures.sh, CI's signatures onto the local build: exit $rc, $(tail -1 "$R/paste.log")"
+  [ "$rc" -eq 0 ] || bad=$((bad + 1))
   epoch=$(git -C "$CLONE" log -1 --format=%ct)
   ( cd "$W/pasted" && for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do
       env PATH=/private/tmp/rb1-tools:/usr/bin SOURCE_DATE_EPOCH="$epoch" "$CLONE/scripts/pack-release-zip.sh" "$z" "$win/$z-$TAG.zip" || exit 1
-    done ) > "$R/pack-pasted.log" 2>&1
+    done ) > "$R/pack-pasted.log" 2>&1 \
+    || { echo "FAIL  packing the pasted Windows zips, see $R/pack-pasted.log"; bad=$((bad + 1)); }
   cp "$W/pasted/$mig" "$win/"
 fi
 for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do
@@ -94,7 +108,7 @@ if [ -d "$C/db-migration-bundles-linux" ]; then
   same "$C/db-migration-bundles-linux/ws-pems-db-migrator-linux-x64-$TAG" \
     "$L/migrator/ws-pems-db-migrator-linux-x64-$TAG" "ws-pems-db-migrator-linux-x64-$TAG"
 else
-  echo "not in this run  ws-pems-db-migrator-linux-x64-$TAG and the SQL script"
+  skip "ws-pems-db-migrator-linux-x64-$TAG and the SQL script"
 fi
 same "$C/db-migration-bundles-windows/$mig" "$win/$mig" "$mig"
 if [ -d "$C/db-migration-bundles-linux" ] && [ -f "$L/migrator/bootstrap-postgresql-$TAG.sql" ]; then
@@ -103,13 +117,23 @@ fi
 if [ -f "$C/sha256sums/SHA256SUMS" ]; then
   S=$R/sums; mkdir -p "$S/db"
   cp "$L/linux/"*.zip "$win/"*.zip "$S/" && cp "$L/migrator/"* "$win/$mig" "$S/db/" && cp "$CLONE/scripts/upgrade.sh" "$S/"
-  ( cd "$S" && export LC_ALL=C && sha256sum *.zip db/* upgrade.sh > SHA256SUMS )
+  if grep -q '  db/' "$C/sha256sums/SHA256SUMS"; then  # the release job before 28371c9e
+    ( cd "$S" && export LC_ALL=C && sha256sum *.zip db/* upgrade.sh > SHA256SUMS )
+  else
+    ( cd "$S" && export LC_ALL=C && { sha256sum *.zip upgrade.sh; (cd db && sha256sum -- *); } > SHA256SUMS )
+  fi
   same "$C/sha256sums/SHA256SUMS" "$S/SHA256SUMS" "SHA256SUMS ($(wc -l < "$S/SHA256SUMS") lines)" \
     || diff "$C/sha256sums/SHA256SUMS" "$S/SHA256SUMS"
 fi
 
 for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do
-  [ -f "$C/image-$n/$n.oci.tar" ] || continue
+  # A pushed image has no artifact; ghcr-manifests.py compares it with the rebuild.
+  [ -f "$C/image-$n/$n.oci.tar" ] || { skip "image $n as an OCI artifact"; continue; }
   python3 "$here/oci-diff.py" "$C/image-$n/$n.oci.tar" "$L/images/$n.oci.tar" > "$R/$n-image-diff.txt" 2>&1
-  echo "image $n: $(head -1 "$R/$n-image-diff.txt")"
+  first=$(head -1 "$R/$n-image-diff.txt")
+  echo "image $n: $first"
+  case $first in "manifest same:"*) ;; *) bad=$((bad + 1)) ;; esac
 done
+
+echo "summary: $bad differ or failed, $skipped not in this run"
+[ "$bad" -eq 0 ]

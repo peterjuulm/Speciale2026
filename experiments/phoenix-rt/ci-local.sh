@@ -36,6 +36,12 @@
 # DOTNET_DIR, the NuGet cache in /tmp/dch, HOME there too, so no user
 # secrets. The images job needs DOCKER_CONFIG with buildx and the builder
 # rb1. Outputs land in $OUT/local/.
+#
+# Changed 14 October, evening: the script exits 1 when any job fails, and
+# a failed image build now fails the images job (the loop's break used to
+# report exit 0). The frontend job removes the previous export before it
+# builds, so a failed build cannot leave an older export for the jobs after
+# it; jobs run without frontend still reuse the export that is there.
 set -u
 OUT=${OUT:?set OUT to a private data folder}
 TAG=${1:?TAG} JOBS=${2:-frontend linux windows migrator sql images}
@@ -54,6 +60,24 @@ clone() {  # a fresh shallow clone of TAG for one job, as actions/checkout makes
 }
 export_in() { rm -rf "$ci/$1/src/WebAPI/ClientApp/out" && cp -r "$L/frontend-out" "$ci/$1/src/WebAPI/ClientApp/out"; }
 epoch() { git -C "$ci/$1" log -1 --format=%ct; }
+build_images() {  # the images job's builds, one per image; stops at the first failure
+  local img ctx file name extra version
+  for img in ${IMAGES:-webapi worker mcp chat broker}; do
+    ctx=$ci/images version=(--build-arg "APP_VERSION=$TAG")
+    case $img in
+      webapi) file=src/WebAPI/Dockerfile; extra=("${version[@]}" --build-arg SKIP_SPA_BUILD=true); name=ws-pems ;;
+      worker) file=src/BackgroundJobExecutor/Dockerfile; extra=("${version[@]}"); name=ws-pems-job-worker ;;
+      mcp) file=mcp/Dockerfile; ctx=$ci/images/mcp; extra=(); name=wspems-mcp-server ;;
+      chat) file=mcp/chat-server/Dockerfile; ctx=$ci/images/mcp; extra=(); name=wspems-chat-server ;;
+      broker) file=mcp/auth-broker/Dockerfile; ctx=$ci/images/mcp/auth-broker; extra=(); name=wspems-mcp-auth-broker ;;
+      *) echo "unknown image $img"; return 2 ;;
+    esac
+    env SOURCE_DATE_EPOCH="$(epoch images)" docker buildx build --builder rb1 --no-cache --provenance=false \
+      -f "$ci/images/$file" "${extra[@]}" \
+      --output "type=oci,dest=$L/images/$name.oci.tar,rewrite-timestamp=true" "$ctx" > "$L/images/$name.log" 2>&1 \
+      || { echo "image $name failed, see $L/images/$name.log"; return 1; }
+  done
+}
 pack() {  # job folder, release dir, zip suffix dirs...: the job's packing step
   local j=$1 dir=$2; shift 2
   ( cd "$ci/$j/$dir" && for d in "$@"; do
@@ -61,14 +85,15 @@ pack() {  # job folder, release dir, zip suffix dirs...: the job's packing step
     done )
 }
 
+failed=
 for job in $JOBS; do
   echo "$job start $(date +%T)"
   case $job in
     frontend)
-      clone frontend && ( cd "$ci/frontend/src/WebAPI/ClientApp" && "${base[@]}" PATH="$NODE/bin:/usr/bin" CI=true \
+      rm -rf "$L/frontend-out" && clone frontend && ( cd "$ci/frontend/src/WebAPI/ClientApp" && "${base[@]}" PATH="$NODE/bin:/usr/bin" CI=true \
           npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1 APP_VERSION="$TAG" \
           sh -c 'npm ci --offline --no-audit --no-fund && npm run build' ) > "$L/frontend.log" 2>&1 \
-        && rm -rf "$L/frontend-out" && cp -r "$ci/frontend/src/WebAPI/ClientApp/out" "$L/frontend-out" ;;
+        && cp -r "$ci/frontend/src/WebAPI/ClientApp/out" "$L/frontend-out" ;;
     linux)
       clone linux && export_in linux && ( cd "$ci/linux" \
         && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
@@ -98,20 +123,14 @@ for job in $JOBS; do
              -p src/Infrastructure/Infrastructure.csproj -s src/WebAPI/WebAPI.csproj -o "bundles/bootstrap-postgresql-$TAG.sql" ) > "$L/sql.log" 2>&1 \
         && mkdir -p "$L/migrator" && cp "$ci/sql/bundles/bootstrap-postgresql-$TAG.sql" "$L/migrator/" ;;
     images)
-      clone images && export_in images && mkdir -p "$L/images" && for img in ${IMAGES:-webapi worker mcp chat broker}; do
-        ctx=$ci/images version=(--build-arg "APP_VERSION=$TAG")
-        case $img in
-          webapi) file=src/WebAPI/Dockerfile; extra=("${version[@]}" --build-arg SKIP_SPA_BUILD=true); name=ws-pems ;;
-          worker) file=src/BackgroundJobExecutor/Dockerfile; extra=("${version[@]}"); name=ws-pems-job-worker ;;
-          mcp) file=mcp/Dockerfile; ctx=$ci/images/mcp; extra=(); name=wspems-mcp-server ;;
-          chat) file=mcp/chat-server/Dockerfile; ctx=$ci/images/mcp; extra=(); name=wspems-chat-server ;;
-          broker) file=mcp/auth-broker/Dockerfile; ctx=$ci/images/mcp/auth-broker; extra=(); name=wspems-mcp-auth-broker ;;
-        esac
-        env SOURCE_DATE_EPOCH="$(epoch images)" docker buildx build --builder rb1 --no-cache --provenance=false \
-          -f "$ci/images/$file" "${extra[@]}" \
-          --output "type=oci,dest=$L/images/$name.oci.tar,rewrite-timestamp=true" "$ctx" > "$L/images/$name.log" 2>&1 || break
-      done ;;
+      clone images && export_in images && mkdir -p "$L/images" && build_images ;;
     *) echo "unknown job $job"; exit 2 ;;
   esac
-  echo "$job exit $? $(date +%T)"
+  rc=$?
+  echo "$job exit $rc $(date +%T)"
+  [ "$rc" -eq 0 ] || failed="$failed $job"
 done
+if [ -n "$failed" ]; then
+  echo "failed:$failed"
+  exit 1
+fi

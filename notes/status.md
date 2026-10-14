@@ -5,11 +5,21 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 14 October 2026, 11:53-12:29, the reference release
-`v0.0.0-thesis.6` and its rebuild on `arch`. Last edit: 14 October 2026, 12:40. Also 12/10: the frontend lock's hashes filled
+Last run: 14 October 2026, 14:30-15:10, `SHA256SUMS` on a download and the
+rebuild scripts' exit status, on `arch` (W66). Last edit: 14 October 2026, 15:20. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 14/10 14:30-15:10
+([phoenix-reference-release](2026-10-14-phoenix-reference-release.md),
+afterwards; W66): the release's `SHA256SUMS` cannot check a download.
+Three lines name `db/…` while the assets are flat, so `sha256sum -c`
+exits 1; `v1.0.50` has the same paths. Fixed on the WS branch
+(`28371c9e`), not yet in a release. `ci-local.sh` and `ci-compare.sh`
+now exit 1 when a job fails or an output differs, and
+`ci-compare-tests.sh` covers the second; the results already recorded
+stand.
 
 On GitHub and `arch`, 14/10 11:20-12:29
 ([phoenix-reference-release](2026-10-14-phoenix-reference-release.md);
@@ -411,7 +421,9 @@ WS branch since `fa60ea97`.
   `zip -qr`; since `5ec085ac` both jobs pack with one script, tested here
   on Linux trees. The Windows zips are identical in two builds (W55);
   `SHA256SUMS` takes its order from the locale, the same in three locales,
-  and the job fixes `LC_ALL=C` since `97038d73` (W63).
+  and the job fixes `LC_ALL=C` since `97038d73` (W63). Its lines name every
+  file by its asset name since `28371c9e`, so it checks a download (W66);
+  not yet in a release.
 - Layer 5: the WebAPI and job worker images differ in times only and are
   identical with the fix (W56, `fa60ea97`), on `arch` with one builder,
   and the same from GitHub's runner in the dry run (OCI output, no push).
@@ -473,6 +485,18 @@ WS branch since `fa60ea97`.
    Dockerfile (W40); the PR filter that misses `mcp/` (W39); from 7/10 the
    one version variable (W45) and the CSS move's cost, about 150 KB per page.
 5. File order once the VM exists; across machines, GitHub against `arch` is done (W58).
+6. Release records for WS. A draft decision record proposes a signed
+   release manifest with `SHA256SUMS` derived from it, an SBOM per
+   deliverable, image metadata without personal data, an inputs archive
+   and a verifier; it waits for Codex's review. Four measurements come
+   before any code: a CMS signature through Artifact Signing checked on
+   clean Windows and Linux machines; image provenance with
+   `provenance: false` and with `mode=min`; SBOM coverage of one zip, one
+   migrator and one MCP image; a rebuild with empty caches from an
+   archive. Background:
+   [release-transparency-research](2026-10-14-release-transparency-research.md).
+7. Main, before WS's next release, Leo's call: W64's fix (the Windows
+   job's frontend) and W66's (`SHA256SUMS` names) as a small PR.
 
 ## Keeping this file
 
