@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <!-- The page makes no network requests. This policy keeps it that way. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:">
+  <link rel="icon" href="data:,">
+  <title>Findings journal</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff; --ink: #1a1a1a; --muted: #595959; --rule: #1a1a1a; --field: #6b6b6b;
+      --link: #1f4e79; --open: #8a1c17; --mark: #fff1a0; --mark-ink: #1a1a1a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #181818; --ink: #dedbd4; --muted: #a09d96; --rule: #bdbab3; --field: #8d8a84;
+        --link: #9fb9d6; --open: #e3a29a; --mark: #5a4a14; --mark-ink: #f3ecd4;
+      }
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; padding: 0 1.25rem; background: var(--bg); color: var(--ink); font: 1.0625rem/1.55 Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif; }
+    .page { max-width: 54rem; margin: 0 auto; }
+    main.page { padding-top: 2.25rem; }
+    h1 { margin: 0 0 .5rem; font-size: 1.75rem; line-height: 1.2; }
+    p { max-width: 70ch; margin: .6rem 0; }
+    a { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
+    code, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .86em; overflow-wrap: anywhere; }
+    kbd { padding: 0 .3em; border: 1px solid var(--field); border-radius: 2px; }
+    mark.hit { background: var(--mark); color: var(--mark-ink); }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+    .skip { position: absolute; top: -100px; left: 0; padding: .4rem .6rem; background: var(--bg); }
+    .skip:focus { top: 0; }
+    .notes { max-width: 70ch; margin: 1rem 0 0; }
+    .notes summary { cursor: pointer; }
+    .notes p { margin: .5rem 0; }
+    .note { padding: .6rem .8rem; border: 1px solid var(--field); border-radius: 2px; color: var(--muted); }
+
+    /* Controls: labels on the left, plain text toggles on the right. */
+    .controls { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .5rem 1.25rem; align-items: baseline; margin: 1.75rem 0 .75rem; }
+    .label { font-style: italic; color: var(--muted); }
+    input[type="search"] { display: block; width: 100%; max-width: 34rem; padding: .3rem .5rem; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--field); border-radius: 2px; -webkit-appearance: none; appearance: none; }
+    input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+    input::placeholder { color: var(--muted); opacity: 1; }
+    .hint { margin: .3rem 0 0; font-size: .85rem; color: var(--muted); }
+    .opts { line-height: 1.7; }
+    .opt { position: relative; display: inline-block; white-space: nowrap; }
+    .opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+    .opt-text { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; cursor: pointer; }
+    .opt input:checked + .opt-text { color: var(--ink); font-weight: 700; text-decoration: none; }
+    .opt.zero input:not(:checked) + .opt-text { color: var(--muted); }
+    .opt input:focus-visible + .opt-text { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .count { font-weight: 400; }
+    .item { white-space: nowrap; }
+    .sep { color: var(--muted); }
+    .caution { margin: .75rem 0 1rem; font-size: .9rem; color: var(--muted); }
+    .bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .25rem 1.5rem; margin: 1.5rem 0 .6rem; }
+    .bar:not([hidden]) + .booktab { margin-top: 0; }
+    .bar p { margin: 0; }
+    #result-count { font-weight: 700; }
+    button.link { padding: 0; font: inherit; color: var(--link); background: none; border: 0; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; cursor: pointer; }
+    button.link:disabled { color: var(--muted); text-decoration: none; cursor: default; }
+    .empty { margin: 1rem 0; }
+
+    /* The list is a table in the booktabs manner: three rules, no verticals, no fills. */
+    .booktab { margin-top: 1rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .thead, .finding summary { display: grid; grid-template-columns: 3.4rem 9rem 12.5rem minmax(0, 1fr) auto; column-gap: .75rem; }
+    .thead { padding: .3rem 0; border-bottom: 1px solid var(--rule); font-weight: 700; }
+    .finding:target .id { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+    .finding summary { grid-template-areas: "id layer cause state toggle" ". excerpt excerpt excerpt excerpt" ". note note note note" ". found found found found"; align-items: baseline; padding: .55rem 0; list-style: none; cursor: pointer; }
+    .finding summary::-webkit-details-marker { display: none; }
+    .finding summary:hover .cause { text-decoration: underline; }
+    .id { grid-area: id; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .9em; }
+    .layer { grid-area: layer; }
+    .cause { grid-area: cause; font-weight: 700; }
+    .state { grid-area: state; }
+    .finding[data-state="open"] .state { color: var(--open); }
+    .finding[data-state="rejected"] .state { color: var(--muted); font-style: italic; }
+    .excerpt, .status-note { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+    .excerpt { grid-area: excerpt; -webkit-line-clamp: 2; line-clamp: 2; margin-top: .1rem; }
+    .status-note { grid-area: note; -webkit-line-clamp: 1; line-clamp: 1; margin-top: .1rem; font-size: .92rem; color: var(--muted); }
+    .note-label { font-style: italic; }
+    .found-in { grid-area: found; margin-top: .1rem; font-size: .9rem; color: var(--muted); }
+    .toggle { grid-area: toggle; justify-self: end; font-size: .9rem; white-space: nowrap; color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
+    .toggle .hide, details[open] .toggle .show { display: none; }
+    details[open] .toggle .hide { display: inline; }
+    details[open] > summary .excerpt, details[open] > summary .status-note, details[open] > summary .found-in { display: none; }
+    .evidence { padding: 0 0 .9rem calc(3.4rem + .75rem); }
+    dl { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: .4rem 1rem; margin: 0; font-size: .95rem; }
+    dt { font-style: italic; color: var(--muted); }
+    dd { margin: 0; overflow-wrap: anywhere; }
+    dd.none { color: var(--muted); }
+    .related { margin: .9rem 0 0; font-size: .95rem; }
+    .related-title { margin: 0 0 .2rem; font-style: italic; color: var(--muted); }
+    .related ul { margin: 0; padding: 0; list-style: none; }
+    .related li { overflow-wrap: anywhere; }
+    .links { display: flex; flex-wrap: wrap; gap: .2rem 1.25rem; margin: .9rem 0 0; font-size: .95rem; }
+
+    footer { margin-top: 2.5rem; padding-bottom: 3rem; font-size: .9rem; color: var(--muted); }
+    footer p { margin: .4rem 0; overflow-wrap: anywhere; }
+    footer details { margin-top: .6rem; }
+    footer summary { cursor: pointer; }
+
+    @media (hover: none) { .kbd-hint { display: none; } }
+    @media (max-width: 640px) {
+      body { padding: 0 1rem; font-size: 1rem; }
+      main.page { padding-top: 1.5rem; }
+      .controls { column-gap: .9rem; }
+      .thead { display: none; }
+      .finding summary { grid-template-columns: 2.6rem minmax(0, 1fr) auto; grid-template-areas: "id cause state" ". layer layer" ". excerpt excerpt" ". note note" ". found found" ". toggle toggle"; }
+      .state { max-width: 6rem; text-align: right; }
+      .toggle { justify-self: start; margin-top: .2rem; }
+      .evidence { padding-left: 3.35rem; }
+      dl { grid-template-columns: minmax(0, 1fr); gap: 0; }
+      dd { margin-bottom: .6rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#results">Skip to findings</a>
+  <main class="page">
+    <h1>Findings journal</h1>
+    <p>Measured causes of non-reproducible .NET builds, from a minimal library to WS.PEMS,
+      generated from <a href="../notes/findings-table.md">notes/findings-table.md</a>
+      by <code>experiments/<wbr>findings-journal/<wbr>generate.py</code>.</p>
+    <details class="notes">
+      <summary>Reading notes</summary>
+      <p><i>Layer.</i> 1 is compiler output, 2 published files and migrators, 3 the frontend export,
+        4 archives and signing, 5 container images. M rows describe how we measured.
+        A finding that spans two layers is listed under both.</p>
+      <p><i>State.</i> Closed or stable means closed or stable in the recorded experiment,
+        and can still carry qualifications. Open means unresolved, and may concern development output
+        that never ships. Rejected means the result cannot support the original claim.
+        The table calls these green, red and rejected.</p>
+      <p><i>Evidence.</i> The table is an index. Open a finding for the full observation, fix and recorded run.
+        [V] marks a repeated measurement and [I] an inference. The experiment notes are the evidence.
+        The <a href="../notes/status.md">status board</a> says what runs next.</p>
+    </details>
+    <noscript><p class="note">Search and filters need JavaScript. All findings are listed below.</p></noscript>
+    <div class="controls" id="filters" hidden>
+      <label class="label" for="search">Search</label>
+      <div>
+        <input id="search" type="search" placeholder="W27, PathMap, compiler" autocomplete="off" spellcheck="false" aria-describedby="search-help">
+        <p class="hint" id="search-help">All words must match, in any field. An id such as W27 lists that finding first.<span class="kbd-hint"> Press <kbd>/</kbd> to search, <kbd>Esc</kbd> to clear.</span></p>
+      </div>
+      <span class="label" id="state-label">State</span>
+      <div class="opts" role="radiogroup" aria-labelledby="state-label">
+@@STATE_TOGGLES@@
+      </div>
+      <span class="label" id="layer-label">Layer</span>
+      <div class="opts" role="radiogroup" aria-labelledby="layer-label">
+@@LAYER_TOGGLES@@
+      </div>
+      <span class="label" id="group-label">Group</span>
+      <div class="opts" role="radiogroup" aria-labelledby="group-label">
+@@GROUP_TOGGLES@@
+      </div>
+      <span class="label" id="sort-label">Sort</span>
+      <div class="opts" role="radiogroup" aria-labelledby="sort-label">
+        <span class="item"><label class="opt"><input type="radio" name="sort" value="id" checked autocomplete="off"><span class="opt-text">id</span></label><span class="sep" aria-hidden="true">&nbsp;·</span></span>
+        <label class="opt"><input type="radio" name="sort" value="layer" autocomplete="off"><span class="opt-text">layer</span></label>
+      </div>
+    </div>
+    <p class="caution">Counts describe this journal, not the share of the release that is reproducible.
+      Older findings keep their original scope and caveats.</p>
+    <section id="results" aria-labelledby="results-title" tabindex="-1">
+      <h2 class="sr-only" id="results-title">The findings</h2>
+      <div class="bar" id="toolbar" hidden>
+        <p id="result-count" role="status">@@TOTAL@@ findings</p>
+        <p><span class="item"><button type="button" class="link" id="expand-all">Expand all</button><span class="sep" aria-hidden="true">&nbsp;·</span></span>
+          <span class="item"><button type="button" class="link" id="collapse-all">Collapse all</button><span class="sep" aria-hidden="true">&nbsp;·</span></span>
+          <button type="button" class="link" id="clear">Clear filters</button></p>
+      </div>
+      <div class="booktab" id="booktab">
+        <div class="thead" aria-hidden="true"><span>Id</span><span>Layer</span><span>Cause</span><span>State</span><span></span></div>
+        <div id="findings">
+@@FINDINGS@@
+        </div>
+      </div>
+      <p class="empty" id="empty" hidden>No findings match these filters. <button type="button" class="link" id="empty-clear">Clear filters</button></p>
+    </section>
+  </main>
+  <footer class="page">
+    <p>Generated from <a href="../notes/findings-table.md">notes/findings-table.md</a>.
+      The experiment notes remain the evidence. This page works offline.</p>
+    <details><summary>Source and regeneration</summary>
+      <p>After editing the table, run from the repository root:</p>
+      <p><code>python3 experiments/findings-journal/generate.py</code></p>
+      <p>Check the saved page with <code>python3 experiments/findings-journal/generate.py --check</code>.</p>
+      <p>Source SHA-256: <code>@@SOURCE_HASH@@</code></p>
+    </details>
+  </footer>
+
+  <script id="journal-logic">
+    // Filter, search and link logic. It never touches the page, so Node can run it.
+    // The tests in logic.test.js read this block straight from the template.
+    const JournalLogic = (() => {
+      'use strict';
+
+      const STATES = ['open', 'closed', 'rejected'];
+      const SORTS = ['id', 'layer'];
+      const KEYS = ['state', 'layer', 'group', 'q', 'sort'];
+      const DEFAULTS = Object.freeze({state: 'all', layer: 'all', group: 'all', q: '', sort: 'id'});
+
+      const squash = text => String(text).replace(/\s+/g, ' ').trim();
+      const escapeRegExp = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+      // A record is {id, group, layers: [...], state, fields: {name: text}}.
+      // A view is the choice of filters and sort order: {state, layer, group, q, sort}.
+      // The config lists the layers and groups in display order.
+
+      // Turn anything, such as a hand-edited link, into a view the page can use.
+      function normalizeView(input, config) {
+        const value = input || {};
+        const view = {...DEFAULTS};
+        const state = String(value.state).toLowerCase();
+        const layer = String(value.layer).toUpperCase();
+        const group = String(value.group).toUpperCase();
+        if (STATES.includes(state)) view.state = state;
+        if (config.layers.includes(layer)) view.layer = layer;
+        if (config.groups.includes(group)) view.group = group;
+        if (typeof value.q === 'string') view.q = squash(value.q);
+        if (SORTS.includes(value.sort)) view.sort = value.sort;
+        return view;
+      }
+
+      // The view as a link fragment. Defaults are left out: the plain page has no fragment.
+      function buildHash(view) {
+        const params = new URLSearchParams();
+        for (const key of KEYS) {
+          const value = key === 'q' ? squash(view.q) : view[key];
+          if (value !== DEFAULTS[key]) params.set(key, value);
+        }
+        const text = params.toString();
+        return text ? '#' + text : '';
+      }
+
+      // "#W27" names a finding. "#state=open&layer=1" holds a view. Anything else is ignored.
+      function parseHash(hash, config) {
+        const text = String(hash || '').replace(/^#/, '');
+        if (/^[A-Za-z]\d+$/.test(text)) return {finding: text.toUpperCase()};
+        if (!text.includes('=')) return {};
+        const params = new URLSearchParams(text);
+        const raw = {};
+        for (const key of KEYS) if (params.has(key)) raw[key] = params.get(key);
+        return {view: normalizeView(raw, config)};
+      }
+
+      // Every word must match. A word that is a finding id matches that id as a whole word,
+      // so W2 does not match W27. Other words match anywhere.
+      function queryTokens(query, records) {
+        const ids = new Set(records.map(record => record.id.toLowerCase()));
+        const seen = new Set();
+        const tokens = [];
+        for (const word of squash(query).toLowerCase().split(' ')) {
+          if (!word || seen.has(word)) continue;
+          seen.add(word);
+          const isId = ids.has(word);
+          const literal = escapeRegExp(word);
+          tokens.push({word, isId, source: isId ? '\\b' + literal + '\\b' : literal});
+        }
+        return tokens;
+      }
+
+      const testsFor = tokens => tokens.map(token => new RegExp(token.source, 'i'));
+
+      // Each word may match in a different field.
+      function matchesQuery(record, tests) {
+        const values = Object.values(record.fields);
+        return tests.every(test => values.some(value => test.test(value)));
+      }
+
+      // "skip" leaves one filter out. The counts use it.
+      function passes(record, view, tests, skip) {
+        return (skip === 'state' || view.state === 'all' || record.state === view.state)
+          && (skip === 'layer' || view.layer === 'all' || record.layers.includes(view.layer))
+          && (skip === 'group' || view.group === 'all' || record.group === view.group)
+          && matchesQuery(record, tests);
+      }
+
+      function sortRecords(records, sort, config) {
+        const rank = (list, value) => { const at = list.indexOf(value); return at < 0 ? list.length : at; };
+        const number = record => Number(record.id.replace(/^\D+/, ''));
+        const byId = (a, b) => rank(config.groups, a.group) - rank(config.groups, b.group)
+          || number(a) - number(b) || a.id.localeCompare(b.id);
+        const lowest = record => Math.min(...record.layers.map(layer => rank(config.layers, layer)));
+        const byLayer = (a, b) => lowest(a) - lowest(b) || byId(a, b);
+        return records.slice().sort(sort === 'layer' ? byLayer : byId);
+      }
+
+      // The records to show, in order.
+      function filterRecords(records, view, config) {
+        const tokens = queryTokens(view.q, records);
+        const tests = testsFor(tokens);
+        const found = sortRecords(records.filter(record => passes(record, view, tests, null)), view.sort, config);
+        // A query that is just one finding id puts that finding first.
+        if (tokens.length === 1 && tokens[0].isId) {
+          const at = found.findIndex(record => record.id.toLowerCase() === tokens[0].word);
+          if (at > 0) found.unshift(...found.splice(at, 1));
+        }
+        return found;
+      }
+
+      // Counts for the toggles. Each group is counted with the other filters applied,
+      // so a count shows what you would get by choosing it. A finding in two layers counts in both.
+      function facetCounts(records, view, config) {
+        const tests = testsFor(queryTokens(view.q, records));
+        const counts = {state: {all: 0}, layer: {all: 0}, group: {all: 0}};
+        for (const key of STATES) counts.state[key] = 0;
+        for (const key of config.layers) counts.layer[key] = 0;
+        for (const key of config.groups) counts.group[key] = 0;
+        const add = (bucket, key) => { bucket[key] = (bucket[key] || 0) + 1; };
+        for (const record of records) {
+          if (passes(record, view, tests, 'state')) { add(counts.state, 'all'); add(counts.state, record.state); }
+          if (passes(record, view, tests, 'layer')) { add(counts.layer, 'all'); new Set(record.layers).forEach(layer => add(counts.layer, layer)); }
+          if (passes(record, view, tests, 'group')) { add(counts.group, 'all'); add(counts.group, record.group); }
+        }
+        return counts;
+      }
+
+      // Where the words occur in a text, as [start, end) pairs. Overlaps are merged.
+      function highlightRanges(text, tokens) {
+        const found = [];
+        for (const token of tokens) {
+          for (const match of text.matchAll(new RegExp(token.source, 'gi'))) {
+            found.push([match.index, match.index + match[0].length]);
+          }
+        }
+        found.sort((a, b) => a[0] - b[0] || b[1] - a[1]);
+        const merged = [];
+        for (const [start, end] of found) {
+          const last = merged[merged.length - 1];
+          if (last && start <= last[1]) last[1] = Math.max(last[1], end);
+          else merged.push([start, end]);
+        }
+        return merged;
+      }
+
+      // The fields that contain at least one of the words.
+      function matchedFields(record, tokens) {
+        const tests = testsFor(tokens);
+        return Object.keys(record.fields).filter(name => tests.some(test => test.test(record.fields[name])));
+      }
+
+      const hasFilters = view => view.state !== 'all' || view.layer !== 'all'
+        || view.group !== 'all' || squash(view.q) !== '';
+
+      // Clearing keeps the sort order. That is a choice of view, not a filter.
+      const clearFilters = view => ({...DEFAULTS, sort: view.sort});
+
+      return {DEFAULTS, normalizeView, buildHash, parseHash, queryTokens, sortRecords,
+        filterRecords, facetCounts, highlightRanges, matchedFields, hasFilters, clearFilters};
+    })();
+  </script>
+  <script>
+    (() => {
+      'use strict';
+      const logic = JournalLogic;
+      const byId = id => document.getElementById(id);
+      const all = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+      const search = byId('search');
+      const list = byId('findings');
+      const clearButtons = [byId('clear'), byId('empty-clear')];
+      const toggles = {};
+      for (const name of ['state', 'layer', 'group']) {
+        toggles[name] = all('input[name="' + name + '"]').map(input =>
+          ({input, label: input.parentElement, count: input.parentElement.querySelector('.n')}));
+      }
+      const valuesOf = name => toggles[name].map(toggle => toggle.input.value).filter(value => value !== 'all');
+      const config = {layers: valuesOf('layer'), groups: valuesOf('group')};
+
+      // Read each finding once. The labels come from the evidence list.
+      const labels = {};
+      const records = all('.finding').map(card => {
+        const fields = {};
+        for (const element of all('[data-field]', card)) {
+          const name = element.dataset.field;
+          fields[name] = (name in fields ? fields[name] + ' ' : '') + element.textContent;
+          if (element.tagName === 'DD') labels[name] = element.previousElementSibling.textContent;
+        }
+        return {id: card.id, group: card.dataset.group, layers: card.dataset.layers.split(' '),
+          state: card.dataset.state, fields, card};
+      });
+      const recordById = new Map(records.map(record => [record.id, record]));
+
+      let view = {...logic.DEFAULTS};
+      let shown = [];
+
+      function removeMarks() {
+        for (const mark of all('mark.hit')) {
+          const parent = mark.parentNode;
+          mark.replaceWith(document.createTextNode(mark.textContent));
+          parent.normalize();
+        }
+      }
+
+      function markText(root, tokens) {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        for (const node of nodes) {
+          const text = node.nodeValue;
+          const ranges = logic.highlightRanges(text, tokens);
+          if (!ranges.length) continue;
+          const fragment = document.createDocumentFragment();
+          let at = 0;
+          for (const [start, end] of ranges) {
+            if (start > at) fragment.append(text.slice(at, start));
+            const mark = document.createElement('mark');
+            mark.className = 'hit';
+            mark.textContent = text.slice(start, end);
+            fragment.append(mark);
+            at = end;
+          }
+          if (at < text.length) fragment.append(text.slice(at));
+          node.replaceWith(fragment);
+        }
+      }
+
+      function markMatches() {
+        removeMarks();
+        for (const note of all('.found-in')) note.hidden = true;
+        const tokens = logic.queryTokens(view.q, records);
+        if (!tokens.length) return;
+        for (const record of shown) {
+          for (const element of all('[data-field], [data-hl]', record.card)) markText(element, tokens);
+          const names = logic.matchedFields(record, tokens).filter(name => labels[name]);
+          if (!names.length) continue;
+          const note = record.card.querySelector('.found-in');
+          note.textContent = 'Matches in: ' + names.map(name => labels[name]).join(', ');
+          note.hidden = false;
+        }
+      }
+
+      function render() {
+        shown = logic.filterRecords(records, view, config);
+        const counts = logic.facetCounts(records, view, config);
+        const visible = new Set(shown);
+        const order = shown.concat(records.filter(record => !visible.has(record)));
+        if (order.some((record, index) => list.children[index] !== record.card)) {
+          list.append(...order.map(record => record.card));
+        }
+        for (const record of records) record.card.hidden = !visible.has(record);
+        for (const name of ['state', 'layer', 'group']) {
+          for (const toggle of toggles[name]) {
+            const total = counts[name][toggle.input.value];
+            toggle.count.textContent = String(total);
+            toggle.label.classList.toggle('zero', total === 0);
+          }
+        }
+        byId('result-count').textContent = shown.length === records.length
+          ? records.length + ' findings'
+          : shown.length + ' of ' + records.length + ' findings';
+        byId('empty').hidden = shown.length > 0;
+        byId('booktab').hidden = shown.length === 0;
+        for (const button of clearButtons) button.disabled = !logic.hasFilters(view);
+        markMatches();
+      }
+
+      // Show the view in the controls. Typing in the search box does not need this.
+      function syncControls() {
+        for (const name of ['state', 'layer', 'group', 'sort']) {
+          for (const input of all('input[name="' + name + '"]')) input.checked = input.value === view[name];
+        }
+        search.value = view.q;
+      }
+
+      // The address bar follows the view. replaceState keeps the history short.
+      let hashTimer = 0;
+      function scheduleHash() {
+        clearTimeout(hashTimer);
+        hashTimer = setTimeout(() => {
+          const hash = logic.buildHash(view);
+          if (hash === location.hash) return;
+          try {
+            history.replaceState(null, '', location.href.split('#')[0] + hash);
+          } catch (error) {
+            // Some browsers limit this call. The filters still work.
+          }
+        }, 150);
+      }
+
+      function change(update) {
+        view = {...view, ...update};
+        render();
+        scheduleHash();
+      }
+
+      function showFinding(id) {
+        const record = recordById.get(id);
+        if (!record) return;
+        if (record.card.hidden) {
+          view = logic.clearFilters(view);
+          syncControls();
+          render();
+        }
+        const details = record.card.querySelector('details');
+        details.open = true;
+        const settle = () => {
+          record.card.scrollIntoView({block: 'start'});
+          details.querySelector('summary').focus({preventScroll: true});
+        };
+        // On first load the browser scrolls to the fragment after the scripts have run,
+        // and that step clears the focus. Wait for it.
+        if (document.readyState === 'complete') settle();
+        else window.addEventListener('load', settle, {once: true});
+      }
+
+      function applyLocation() {
+        clearTimeout(hashTimer); // The address bar was just changed by the reader. Do not undo it.
+        const target = logic.parseHash(location.hash, config);
+        if (target.finding) {
+          showFinding(target.finding);
+        } else if (target.view || !location.hash) {
+          view = target.view || logic.clearFilters(view);
+          syncControls();
+          render();
+        } else {
+          scheduleHash(); // An anchor such as #results: put the view back in the address bar.
+        }
+      }
+
+      for (const input of all('input[type="radio"]')) {
+        input.addEventListener('change', () => change({[input.name]: input.value}));
+      }
+      search.addEventListener('input', () => change({q: search.value}));
+      search.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        event.preventDefault();
+        if (search.value) { search.value = ''; change({q: ''}); } else { search.blur(); }
+      });
+      for (const button of clearButtons) {
+        button.addEventListener('click', () => {
+          view = logic.clearFilters(view);
+          syncControls();
+          render();
+          scheduleHash();
+          search.focus();
+        });
+      }
+      byId('expand-all').addEventListener('click', () => {
+        for (const record of shown) record.card.querySelector('details').open = true;
+      });
+      byId('collapse-all').addEventListener('click', () => {
+        for (const record of shown) record.card.querySelector('details').open = false;
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) return;
+        if (event.target.closest('textarea, select, [contenteditable], input:not([type="radio"])')) return;
+        event.preventDefault();
+        search.focus();
+        search.select();
+      });
+      window.addEventListener('hashchange', applyLocation);
+      document.addEventListener('click', event => {
+        // Clicking the link to the current hash fires no hashchange event.
+        const link = event.target.closest('a[href^="#"]');
+        if (link && link.getAttribute('href') === location.hash) applyLocation();
+      });
+
+      byId('filters').hidden = false;
+      byId('toolbar').hidden = false;
+      const first = logic.parseHash(location.hash, config);
+      if (first.view) view = first.view;
+      syncControls();
+      render();
+      if (first.finding) showFinding(first.finding);
+    })();
+  </script>
+</body>
+</html>

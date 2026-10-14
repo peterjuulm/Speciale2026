@@ -1,0 +1,29 @@
+name: Findings journal
+
+on:
+  push:
+    paths:
+      - notes/findings-table.md
+      - experiments/findings-journal/**
+      - journal/**
+  pull_request:
+    paths:
+      - notes/findings-table.md
+      - experiments/findings-journal/**
+      - journal/**
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Saved page matches its source
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check the saved page
+        run: python3 experiments/findings-journal/generate.py --check
