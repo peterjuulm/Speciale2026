@@ -1,45 +1,12 @@
 # Dependency plan: rebuilding Phoenix's NuGet packages
 
-Planning note, 12 October 2026, rewritten 13 October for .NET 10. Part 2 of
-the thesis. Not an experiment; each run gets its own note. Phoenix commit
-**`79cb67a7`** on `thesis/reproducible-builds` (.NET 10). The census:
-[data](../data/2026-10-13-dependency-census/mac/census.md).
+Planning note, 12 October 2026, rewritten 13 and 14 October. Part 2 of the
+thesis. Not an experiment; each run has its own note. Phoenix commit
+**`79cb67a7`** on `thesis/reproducible-builds` (.NET 10).
 
-The first version of this plan and its census measured the .NET 9 commit
-`e19ca414`. Phoenix moved to .NET 10 on 13/10 and only .NET 10 is tested, so
-that data was removed (decided 13/10, Peter); it is in git history, commit
+A first version measured the .NET 9 commit `e19ca414`. Only .NET 10 is tested,
+so that data was removed (decided 13/10, Peter); it is in git history, commit
 `a03fe66`.
-
-## Phoenix on .NET 10
-
-Leo merged main into the WS branch and moved it to .NET 10
-([phoenix-merge-main](2026-10-13-phoenix-merge-main.md),
-[phoenix-net10-release](2026-10-12-phoenix-net10-release.md)). What matters
-for this plan `[V]`:
-
-- **SDK `10.0.401`**, `rollForward: disable`. Every workflow installs it from
-  `global.json` (`deaf3090`).
-- **Three programs ship, not two.** The release also publishes the database
-  migrator, `src/DbMigrator`, self-contained for `linux-x64`
-  (`03-release.yml:106-108`).
-- **`dotnet-ef` 10.0.12 is in scope** (decided 13/10, Peter). It writes the
-  idempotent SQL script that ships in the release's `db/`
-  (`03-release.yml:137`).
-- **Many Microsoft packages come from `dotnet/dotnet`**, Microsoft's
-  combined repository for .NET 10: 62 packages, among them the runtime packs and
-  `dotnet-ef`, at two commits.
-
-How the census was run on `mac`, and one finding on the way (details in the
-run's `environment.txt`):
-
-- SDK 10.0.401 installed in `~/.dotnet` with Microsoft's `dotnet-install.sh`.
-- Restored in a `git archive` export of `79cb67a7`, not in the worktree.
-- **`DbMigrator` cannot restore in locked mode on macOS.** It sets
-  `PublishSingleFile` without a single runtime, so the SDK adds the host's
-  runtime (`osx-arm64`) and the lock file no longer matches (`NU1004`) `[V]`.
-  On Linux and in CI the host runtime is already in the list. In the export it
-  was restored unlocked; its `net10.0`, `linux-x64` and `win-x64` lock sections
-  stayed identical to the commit's `[V]`. For Leo: a candidate W finding.
 
 ## The question
 
@@ -47,130 +14,130 @@ Can we rebuild each NuGet package that Phoenix's release ships from the source
 it declares, in the environment it declares, and get the bytes that are on
 nuget.org?
 
-## Decisions
+## Which packages we test
 
-1. **Scope.** What the Linux release ships: 341 packages. The exact rule and
-   every package left out are in [Scope](#scope) below.
-2. **Two tests.**
-   - **Test B, the main test:** build the package from its declared commit and
-     compare with the package on nuget.org.
-   - **Test A, extra:** run reprotest on our own build of the package. This is
-     what Benedetti et al. did.
-3. **Environment.** We use only what the package declares. NuGet has no
-   buildinfo file. The `.nuspec` can declare the repository and commit; the
-   PDB can declare the compiler, its options and its references. Nothing
-   declares the SDK, MSBuild or the OS. If it is not declared, the package is
-   not reproducible.
-4. **No sample.** We try every package. A build is one GitHub project at one
-   exact commit, a "repository+commit pair". The 311 packages that declare a
-   commit come from 104 such pairs in 80 projects (one "project" is a package
-   with a commit but no repository URL; one pair's commit is not on GitHub), so
-   at most 102 builds. Microsoft's packages are included.
-5. **A failure is a result.** We mark the package "not reproducible" and record
-   where it stopped (category below) and who could fix it (Benedetti et al.'s
-   Fig. 3: as is, configuration, tool patch, external).
-6. **What we compare.** The DLLs and PDBs that the release ships, with
-   Authenticode and strong-name signatures removed. Not the `.nupkg`, which
-   nuget.org signs.
-7. **Machines.** The census runs on `mac`. Builds and reprotest run on `arch`.
-8. **Dropped.** Checking package hashes against the lock file. NuGet already
-   does it in locked mode, which Phoenix uses in CI
-   (`Directory.Build.props:43-44`).
-9. **Official build settings** (added 13/10, Peter; Leo to confirm). Some
-   values reach a DLL from the publisher's release pipeline, not from the
-   source: in Microsoft's Arcade builds, the official build ID that becomes the
-   file version. We take such a version stamp from the published DLL and give
-   it to the build; everything else comes from the source. Every package where
-   we do this is marked in its result. Debian's buildinfo files record values
-   that are not in the source in the same way, so that others can repeat the
-   build.
-
-## Scope
-
-**The rule:** a package is in if the release ships it, or if it is a tool
-whose output ships. The release is the self-contained `linux-x64` publish of
-the three programs `WebAPI`, `BackgroundJobExecutor` and `DbMigrator`
-(`03-release.yml:106,335,338`), plus the SQL script from `dotnet-ef`.
+**The rule:** a package is tested if the Linux release ships it, or if it is a
+tool whose output ships. The release is the self-contained `linux-x64` publish
+of `WebAPI`, `BackgroundJobExecutor` and `DbMigrator`
+(`03-release.yml:106,335,338`), plus the SQL script that `dotnet-ef` writes
+(`03-release.yml:137`).
 
 | | Packages | Why |
 | --- | ---: | --- |
-| **In:** the three programs' lock files, `net10.0` and `linux-x64` parts | 337 | The full graph of each program: 85 direct, 252 transitive |
-| **In:** runtime and host packs for `linux-x64` | 3 | A self-contained publish copies the .NET runtime into the release. The SDK downloads these packs; they are in no lock file |
-| **In:** `dotnet-ef` | 1 | A local tool, but its SQL script ships |
-| **In, total** | **341** | One row each in [census.md](../data/2026-10-13-dependency-census/mac/census.md) |
-| Out: only in a library's lock file | 17 | `ApplicationCore` and `Infrastructure` are compiled into the programs. The programs' graph decides the version that ships |
-| Out: only used by `tests/` | 76 | Tests never ship |
-| Out: packs for `win-x64` | 3 | The Windows release is later work (decided 5/10) |
-| Out: local tools | 2 | `csharpier`, `dotnet-format`: formatting only |
-| **Out, total** | **98** | One row each, with its reason, in [scope.md](../data/2026-10-13-dependency-census/mac/scope.md) |
-| Out, not NuGet | | The frontend's npm packages (layer 3), and the .NET SDK, which is the toolchain (recorded by its `csc.dll` hash) |
+| **Tested:** the three programs' lock files (`net10.0` and `linux-x64` parts) | 337 | Everything each program uses: 85 named in our `.csproj` files, 252 pulled in by other packages |
+| **Tested:** the .NET runtime packs for `linux-x64` | 3 | A self-contained release contains the .NET runtime. These packs are in no lock file |
+| **Tested:** `dotnet-ef` 10.0.12 | 1 | A tool, but its SQL script ships (decided 13/10, Peter) |
+| **Tested, total** | **341** | |
+| Left out: only in a library's lock file | 17 | The libraries are compiled into the programs; the programs' own versions ship |
+| Left out: only used by `tests/` | 76 | Tests do not ship |
+| Left out: runtime packs for `win-x64` | 3 | The Windows release is later work (decided 5/10) |
+| Left out: `csharpier`, `dotnet-format` | 2 | Formatting tools; never part of a build |
+| **Left out, total** | **98** | |
 
-**The lists are not in git.** `census.md`, `census.csv` and `scope.md` name
-every package and version Phoenix ships, and this repo is public (decided
-12/10). Make them again with the commands in
-[kommando.txt](../data/2026-10-13-dependency-census/mac/kommando.txt).
+Not NuGet packages, so not part of this test: the frontend's npm packages
+(layer 3) and the .NET SDK itself (the toolchain, recorded by its `csc.dll`
+hash).
 
-Notes on the counts:
+Every package, with its category, is listed in `census.md`; every package left
+out, with its reason, in `left-out.md`. Both are in
+`data/2026-10-13-dependency-census/mac/` but **not in git**: they name every
+package and version Phoenix ships, and this repo is public (decided 12/10).
+`kommando.txt` makes them again.
 
-- "Direct" means named in one of our own `.csproj` files, the libraries'
-  included: 82 names, 85 versions.
-- 29 packages are in scope but ship no file for `linux-x64` (category N0):
-  meta packages, packages for other platforms, build-time packages such as
-  analyzers and `Microsoft.EntityFrameworkCore.Tools`, and one package that
-  .NET 10 removes from the graph because the framework contains it
-  (`Microsoft.Extensions.DependencyInjection.Abstractions` 2.1.0, in WebAPI's
-  lock file but not in its restore output `[I]`).
-- Check: 337 + 17 + 76 = 430, the package versions in all six lock files `[V]`.
+## Where each package stands
 
-## Categories
+Steps 1 and 2 sorted the 341 packages by what they declare. Only a package
+that declares both its source and its compiler can be rebuilt by our rule
+(decision 3).
 
-A package goes in the first category that fits.
+| Category | Packages | What it means | Next |
+| --- | ---: | --- | --- |
+| **Ready to rebuild** | 196 | The `.nuspec` names the repository and commit; the PDB names the compiler and its options | Test B |
+| **No compiler declared** | 83 | The source is named, but no PDB records the compiler. 64 have no PDB anywhere (45 of them are Humanizer language packs); 19 have a PDB without that record (17 in the old Windows format) | Not reproducible: the environment is not declared |
+| **No source declared** | 24 | We cannot tell which code was built. 9 name no repository, 13 no commit, 2 a commit that GitHub does not have | Not reproducible |
+| **Native code only** | 9 | Only Linux machine code (`.so` files), compiled from C/C++ by the publisher, for example SQLite's `libe_sqlite3.so`. The .NET SDK only copies these files into the release, so rebuilding Phoenix says nothing about them; the .NET app host is the exception, which the SDK copies and stamps with the program's name `[I]` | Open: rebuild each library with its own C/C++ build, or not |
+| **Ships nothing** | 29 | No file reaches the Linux release: meta packages, build-time tools such as analyzers, files for other platforms | Nothing to compare |
 
-| Id | Category | Test B possible? |
-| --- | --- | --- |
-| N0 | Ships no files (meta package, build-time only) | Nothing to compare |
-| N1 | Native code only | Scope open |
-| C1a | No repository declared | No |
-| C1b | Repository, but no commit | No |
-| C2a | No PDB at all | No compiler declared |
-| C2b | PDB not in the package (maybe on a symbol server) | Unknown until we look |
-| C2c | PDB in the package, but no compiler record | No compiler declared |
-| R | Commit and compiler both declared | Yes |
-| C3 | Declared, but does not build | After a build |
-| C4 | Builds, but the bytes differ (say where) | After a build |
+After test B, each "ready" package gets one result: **reproducible** (same
+bytes once signatures are removed), **differs** (and where), or **does not
+build** (and why).
+
+The 196 ready packages come from **82 builds**: 61 repositories, some at
+several commits. One build is one repository at one commit; it can give many
+packages (`dotnet/runtime` at `9d5a6a9a` gives 25).
+
+How the categories were found: the census read each package's `.nuspec` and
+DLLs (step 1); the symbol servers supplied 474 of the 493 PDBs that were not in
+their packages, which moved 145 packages to "ready" (step 2). The census's own
+finer categories (`N0`…`C2c`, `R`) are in its note and data.
+
+## Decisions
+
+1. **Which packages:** the 341 above.
+2. **Two tests.** **Test B, the main test:** build the package from its
+   declared commit and compare with the package on nuget.org. **Test A,
+   extra:** run reprotest on our own build of the package, as Benedetti et al.
+   did.
+3. **Only what is declared.** The `.nuspec` can declare the repository and
+   commit; the PDB the compiler, its options and references; the repository's
+   `global.json` the SDK. If a part is not declared, the package is not
+   reproducible.
+4. **No sample.** Every ready package is tried. The 311 packages that declare a
+   commit come from 79 GitHub repositories at 103 commits, plus one package
+   that declares a commit but no repository; one of the 103 commits is not on
+   GitHub. So at most 102 builds can start; test B needs 82 of them.
+   Microsoft's packages are included.
+5. **A failure is a result.** It is recorded with where it stopped and who
+   could fix it (Benedetti et al.'s Fig. 3: as is, configuration, tool patch,
+   external).
+6. **What we compare:** the DLLs and PDBs inside the package, not the `.nupkg`,
+   which nuget.org signs. Before comparing, both files lose what needs the
+   publisher's private key: the Authenticode certificate table, the
+   strong-name signature (set to zeros) and the PE checksum.
+7. **Machines.** Census on `mac`; builds and reprotest on `arch`.
+8. **Dropped:** checking package hashes against the lock file. NuGet already
+   does it in locked mode, which Phoenix uses in CI
+   (`Directory.Build.props:43-44`).
+9. **Official build settings** (added 13/10, Peter; Leo to confirm). A value
+   that reaches the DLL from the publisher's release pipeline, not from the
+   source, such as Microsoft's official build ID in the file version, is taken
+   from the published DLL and given to our build. Every package where we do
+   this is marked. Debian's buildinfo files record such values in the same
+   way.
 
 ## Steps
 
-1. **Census: what each package declares** (done 13/10, `mac`, on
-   `79cb67a7`). Reads every package's `.nuspec` and DLLs in the NuGet cache.
-   No build, no network; the restore before it downloads.
+1. **Census: what each package declares** (done 13/10, `mac`). Reads every
+   package's `.nuspec` and DLLs in the NuGet cache, after a restore with SDK
+   10.0.401 in a `git archive` export of `79cb67a7`.
+   **1b. What the repository declares** (done 13/10;
+   [declared-env](2026-10-13-declared-env.md)): `global.json` and CI files at
+   each declared commit. 126 packages get an exact SDK; only 4 also a fixed OS
+   image.
+2. **Symbol servers** (done 13/10; [symbol-servers](2026-10-13-symbol-servers.md)):
+   474 of 493 missing PDBs found, 145 packages moved to "ready".
+3. **Test B on the 196 ready packages:** 82 builds, on `arch`. Next.
+4. **Test A** on every package that builds, on `arch`.
 
-   | | N0 | N1 | C1a | C1b | C2a | C2b | C2c | R | Total |
-   | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-   | Microsoft | 23 | 7 | 2 | 2 | 0 | 141 | 0 | 21 | 196 |
-   | Third-party | 6 | 2 | 7 | 11 | 45 | 40 | 2 | 32 | 145 |
+## Phoenix on .NET 10: what matters for this plan
 
-   **1b. The repositories at the declared commits** (done 13/10, `mac`, on
-   the census above; [declared-env](2026-10-13-declared-env.md)). Reads
-   `global.json` and the CI files through GitHub's API. 122 packages get an
-   exact SDK but no fixed OS image (E4), 4 get both (E5). 13 of these 126 are
-   among the 53 R packages.
-2. **Symbol servers** (done 13/10, `mac`;
-   [symbol-servers](2026-10-13-symbol-servers.md)). For the 181 C2b packages,
-   474 of 493 PDBs were found on Microsoft's or nuget.org's symbol server
-   (37 MB). 145 packages move to R; 17 have only Windows-format PDBs, which
-   record no compiler; 19 have no PDB on either server.
-
-   **Ready to rebuild (R) after step 2: 198 of 341 packages** (53 from the
-   census, 145 from the symbol servers). Their compiler records name 39
-   different Roslyn builds.
-3. **Test B on the 198 R packages**, on `arch`.
-4. **Test B on the rest** that have a commit.
-5. **Test A** on every package that builds, on `arch`.
+- **SDK `10.0.401`**, `rollForward: disable`; every workflow installs it from
+  `global.json` (`deaf3090`) `[V]`.
+- **`dotnet/dotnet`.** 62 packages, among them the runtime packs and
+  `dotnet-ef`, come from Microsoft's combined repository for .NET 10 `[V]`.
+- **`DbMigrator` fails a locked restore on macOS.** The restore stops with
+  `NU1004`: the project asks for `linux-x64;osx-arm64;win-x64`, the lock file
+  holds `linux-x64;win-x64` `[V]`. The project sets `PublishSingleFile` without
+  naming one runtime, and I think the SDK then adds the machine's own runtime,
+  `osx-arm64` on a Mac `[I]`. On Linux and in CI that runtime is already in
+  the list. For the census it was restored unlocked in the export; its
+  `net10.0`, `linux-x64` and `win-x64` lock sections stayed identical to the
+  commit's `[V]`. A candidate W finding for Leo.
 
 ## Expectations (draft, Leo and Peter confirm before the first build)
 
-Written before any build. `[I]` until measured.
+Written before any build. `[I]` until measured. They use the census's codes:
+R = ready to rebuild, C2b = PDB not in the package, C3 = does not build.
 
 - After step 2, most C2b packages move to R. Microsoft and the large projects
   publish `.snupkg` files.
@@ -181,25 +148,23 @@ Written before any build. `[I]` until measured.
 - Test A is green wherever test B is green. A package that matches nuget.org
   was already built deterministically once.
 
+The first point was checked in step 2: 145 of 181 moved.
+
 ## Open
 
-- **Native code (N1, 9 packages).** In scope or "vendor bytes"? SQLite is
-  small enough to be one native example.
+- **Native code (9 packages).** Test them, or call them vendor bytes? SQLite
+  is small enough to be one native example.
+- **The 45 Humanizer language packs** hold only translated resources, no code.
+  Are they really "no compiler declared", or "ships nothing"?
+- **17 packages give a redirect as their repository**
+  (`go.microsoft.com/fwlink`, for example SkiaSharp). A redirect is not a
+  repository.
+- **`dotnet/dotnet`.** Its build is far larger than one repository's; how much
+  of it test B needs is not known.
 - **`mac` as a second machine for test B.** Line endings and the
-  case-insensitive file system could show up here.
+  case-insensitive file system could show up.
 - **BuildValidator.** Use it to test the compile step alone?
-- **17 packages give a redirect as their repository** (`go.microsoft.com/fwlink`,
-  for example SkiaSharp). Five of them are R. A redirect is not a repository.
-- **A declared commit that is not on GitHub.** `Microsoft.IdentityModel.Protocols`
-  and `…Protocols.OpenIdConnect` 8.19.2 declare commit `25d90ed3`, and GitHub
-  answers "No commit found" `[V]`. Built from a private copy? Category E0 for
-  now.
-- **`dotnet/dotnet`.** 62 packages, the runtime packs among them, now come
-  from Microsoft's combined repository. Its build is far larger than one
-  project's; how much of it test B needs is not known.
-- **The 45 Humanizer language packs are C2a.** They hold only resources, no
-  code. Does C2a fit them, or are they N0?
-- **Analyzers** (N0) run inside Phoenix's own compile but do not ship.
+- **Analyzers** run inside Phoenix's own compile but do not ship.
 
 ## Issues considered
 
@@ -284,7 +249,7 @@ graph ships, so the census reads only the programs' lock files.
 
 **A self-contained release ships the runtime.** The runtime packs come from
 NuGet but are in no lock file. Layer 2 found that 323 of WebAPI's 746 files are
-copies from them (W21). Without them, the scope would miss the largest part of
+copies from them (W21). Without them, the test would miss the largest part of
 the release.
 
 ## Terms
@@ -293,6 +258,9 @@ the release.
 
 - **Test A / test B:** determinism under variation / rebuild matches nuget.org.
 - **Census:** reading what each package declares, before any build.
+- **Repository / commit / package:** the source code on GitHub / one exact
+  version of it, which is one build / what a build gives, compared with
+  nuget.org. 61 repositories → 82 commits → 196 packages for test B.
 - **Stratified sample:** a few items from each group, so the sample represents
   the whole. Not used: we test everything.
 - **Declared environment:** what a package itself says about how it was built.
@@ -329,8 +297,6 @@ the release.
 - **Meta package:** a package with no files of its own, only dependencies.
 - **Analyzer:** a DLL that runs inside the compiler during a build and does not
   ship.
-- **Repository+commit pair:** one GitHub project at one exact commit. One pair
-  is one build; one build can give many packages.
 - **Windows-format PDB:** the older PDB format. It records no compiler, so a
   package with only such PDBs has no declared compiler.
 - **SSQP key:** how a symbol server finds a PDB: `<pdb>/<GUID><age>/<pdb>`, with

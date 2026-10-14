@@ -137,4 +137,5 @@ their PDBs are public.
   include Microsoft.
 - **The lists and the PDBs are not in git.** `symbols.md` and `symbols.csv`
   name packages and versions; the PDBs are bytes. Make them again with
-  `kommando.txt`.
+  `kommando.txt`. The 474 PDBs were kept in the session's scratch directory,
+  which was emptied by 14/10; test B downloads them again.
