@@ -5,11 +5,27 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 14 October 2026, 10:52-10:53, the authorization broker image
-built twice with its attestations. Last edit: 14 October 2026, 10:55. Also 12/10: the frontend lock's hashes filled
+Last run: 14 October 2026, 11:53-12:29, the reference release
+`v0.0.0-thesis.6` and its rebuild on `arch`. Last edit: 14 October 2026, 12:40. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On GitHub and `arch`, 14/10 11:20-12:29
+([phoenix-reference-release](2026-10-14-phoenix-reference-release.md);
+W59, W63, W64, W65): a real prerelease of the branch, `v0.0.0-thesis.6`
+on `be5fc56e`, by the unmodified release workflow, and an independent
+rebuild on `arch`. First a tests-only preflight on GitHub's runners: 0
+of 5641 tests failed. Then all eight jobs passed; the Windows job ran on
+WS's office runner, where the branch's SDK installer set up the SDK for
+the first time, and signed 177 files through Azure in one attempt. Every
+output equals the rebuild: both Linux zips, the migrators, the SQL
+script, `upgrade.sh`, `SHA256SUMS`, all five images by their
+`linux/amd64` manifest, and both Windows zips once the release's
+signatures are pasted. All 177 signatures name WS's certificate and
+carry a timestamp; `:latest` did not move. W64 turned green. The
+release and its image tags stay as the reference; the run's 50 caches
+(4.9 GB) and the preflight are deleted.
 
 On `arch`, 14/10 10:52-10:53
 ([phoenix-image-attestations](2026-10-14-phoenix-image-attestations.md);
@@ -326,7 +342,7 @@ Layer 5 (container) is below the SDK 10 table.
 | `all` | red 5/10: locale and the two dev json; with `LC_ALL` the dev json only W8 W9 | fix 5/10: red from the locale alone, green with `LC_ALL` | green 12/10 beyond W47, both builds the same order | red 12/10 as CI packs, also modes and time zone W48; normalised identical, across runs too |
 | `fileordering` | - needs a VM with `disorderfs` | - | - | - |
 | `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - | - |
-| Machine | - VM too small W14 | fix 14/10 W58: GitHub's build is `arch`'s, the SDK installed alone on both (13/10 red from the compiler's runtime patch only) | green 13/10 on SDK 10: GitHub's export is `arch`'s, 994 files; again 14/10 | fix 14/10 W58: GitHub's Linux and Windows zips are `arch`'s, the Windows ones with CI's signatures pasted |
+| Machine | - VM too small W14 | fix 14/10 W58: GitHub's build is `arch`'s, the SDK installed alone on both (13/10 red from the compiler's runtime patch only) | green 13/10 on SDK 10: GitHub's export is `arch`'s, 994 files; again 14/10 | fix 14/10 W58: GitHub's Linux and Windows zips are `arch`'s, the Windows ones with CI's signatures pasted; again in the reference release 14/10, the Windows zips built and signed through Azure on the office runner |
 | SDK binary | - empty-class only, 8/9 | - | - Node pinned to 22.23.3 since the merge, ran in main's CI 13/10 W40 | - |
 | Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46, main's lock has none since 17/9 | - |
 | Windows | - | green 13/10 on SDK 10, built on Linux as the job builds it, unsigned: layer `W` below W55 | built once, on Linux, for both releases | green 13/10 on SDK 10: both Windows zips identical before signing, layer `W` below W55 |
@@ -403,9 +419,11 @@ WS branch since `fa60ea97`.
   pinned and caches removed (W60), and the migrations image too, with
   the manual image script now dating its images by the commit (W62).
   The tags point at an index whose attestations differ in every build
-  (W65), so a rebuild compares the image manifest, not the tag. Open:
-  pushing with the fix, the manual script run end to end, and the MCP
-  images' Debian packages over time. The
+  (W65), so a rebuild compares the image manifest, not the tag. The
+  reference release (14/10) pushed all five with the fix: each pushed
+  manifest is the rebuild's, and the promotion keeps the index. Open:
+  the manual script's push, and the MCP images' Debian packages over
+  time. The
   images' assemblies carry `APP_VERSION` as their informational version
   (W45, read in `P2`'s WebAPI). The Dockerfile's Node pin (W40) is not
   built, as CI skips the SPA build.
@@ -442,9 +460,9 @@ WS branch since `fa60ea97`.
 
 1. Peter: W54's fix on the Mac (`100e3912`, a locked restore of
    `src/DbMigrator`).
-2. The branch on the office runner: neither the SDK installer nor the
-   Windows job has run there; both dry runs used GitHub's runners. Later,
-   a release with real signing through Azure.
+2. The office runner: the Windows job and the SDK installer ran there in
+   the reference release (14/10). A release with the Linux jobs there
+   waits for the pipeline-map change; then rebuild it the same way.
 3. PR validation has not run on the merged branch; a draft pull request
    would run it (Leo's call). The release workflow ran on it as the dry run
    of 13/10, the version check and the migrator's smoke test included.

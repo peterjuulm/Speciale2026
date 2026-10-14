@@ -1,0 +1,92 @@
+# ci-compare.sh, 12:23-12:25, the run's artifacts and the published
+# SHA256SUMS against the local rebuild. SIGNED=azure: the release's
+# signatures pasted onto the rebuild with paste-signatures.sh, then packed
+# with the tag's pack-release-zip.sh:
+same  frontend export (994 / 994 files)
+same  ws-pems-linux-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+paste-signatures.sh, CI's signatures onto the local build: exit 0, The rebuild with the release's signatures equals the release: 2130 file(s), 114 folder(s)
+same  ws-pems-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+same  ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe
+same  bootstrap-postgresql-v0.0.0-thesis.6.sql
+same  SHA256SUMS (8 lines)
+
+# The release's assets (gh release download, 12:22) against the run's
+# artifacts, by sha256. The downloads' hashes equal GitHub's asset digests.
+same bootstrap-postgresql-v0.0.0-thesis.6.sql
+same ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+same ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe
+same ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+same ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip
+same ws-pems-linux-x64-v0.0.0-thesis.6.zip
+same ws-pems-win-x64-v0.0.0-thesis.6.zip
+same upgrade.sh (the asset against the tag's scripts/upgrade.sh)
+
+# The published SHA256SUMS, checked with sha256sum -c against the
+# downloaded assets laid out as it names them (db/ for the bundles):
+ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip: OK
+ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip: OK
+ws-pems-linux-x64-v0.0.0-thesis.6.zip: OK
+ws-pems-win-x64-v0.0.0-thesis.6.zip: OK
+db/bootstrap-postgresql-v0.0.0-thesis.6.sql: OK
+db/ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6: OK
+db/ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe: OK
+upgrade.sh: OK
+
+# The images, 12:25 (ghcr-manifests.py): the -build tag and the release
+# tag; their linux/amd64 image manifest against the local OCI file:
+weel-sandvig/ws-pems:v0.0.0-thesis.6-build  index sha256:e638c82a20d4bc444e092b6836f868f468b5bdc3994d9ac67c61c9998b782023  image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e  attestation sha256:f70bb2443f69eb9cbdedcebf325192c3eebb7021c556e11968620ce7688c9846
+  local image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e  same
+weel-sandvig/ws-pems:v0.0.0-thesis.6  index sha256:e638c82a20d4bc444e092b6836f868f468b5bdc3994d9ac67c61c9998b782023  image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e  attestation sha256:f70bb2443f69eb9cbdedcebf325192c3eebb7021c556e11968620ce7688c9846
+  local image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e  same
+weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.6-build  index sha256:38e75e43540dbf1c91636bddb9539def749f5e1b2d5b6d6604d66b2737c19d83  image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  attestation sha256:1f68742b792fe4a8978d38e96e4cdee1569abe971551a03ebafbaa451212c9d1
+  local image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  same
+weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.6  index sha256:38e75e43540dbf1c91636bddb9539def749f5e1b2d5b6d6604d66b2737c19d83  image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  attestation sha256:1f68742b792fe4a8978d38e96e4cdee1569abe971551a03ebafbaa451212c9d1
+  local image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  same
+weel-sandvig/wspems-mcp-server:v0.0.0-thesis.6-build  index sha256:5b95393e9637b8bc06e96b99abff5d7753c7a323811bf00ce5bff35923f7acf0  image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4  attestation sha256:51bb2bceea29bda38bd9fb66ad312731e9a8cca5f013a938383a12bdc2ace3d7
+  local image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4  same
+weel-sandvig/wspems-mcp-server:v0.0.0-thesis.6  index sha256:5b95393e9637b8bc06e96b99abff5d7753c7a323811bf00ce5bff35923f7acf0  image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4  attestation sha256:51bb2bceea29bda38bd9fb66ad312731e9a8cca5f013a938383a12bdc2ace3d7
+  local image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4  same
+weel-sandvig/wspems-chat-server:v0.0.0-thesis.6-build  index sha256:dbeda2cba720e7a57f3a0830714529c2a2256938d1724030ce8d75a1f22bf77e  image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5  attestation sha256:bd70131282d4bd011697705aa8cbe930ea486cd62e9cddc27e2528ce3f2d6cf3
+  local image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5  same
+weel-sandvig/wspems-chat-server:v0.0.0-thesis.6  index sha256:dbeda2cba720e7a57f3a0830714529c2a2256938d1724030ce8d75a1f22bf77e  image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5  attestation sha256:bd70131282d4bd011697705aa8cbe930ea486cd62e9cddc27e2528ce3f2d6cf3
+  local image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5  same
+weel-sandvig/wspems-mcp-auth-broker:v0.0.0-thesis.6-build  index sha256:93cf5a774a5df28628a493587a51a28d08a5bd803811aff0f38c7c895849c930  image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1  attestation sha256:eac799318ec1f0bb83baacf68524539459782392354fd93e13336a808517c163
+  local image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1  same
+weel-sandvig/wspems-mcp-auth-broker:v0.0.0-thesis.6  index sha256:93cf5a774a5df28628a493587a51a28d08a5bd803811aff0f38c7c895849c930  image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1  attestation sha256:eac799318ec1f0bb83baacf68524539459782392354fd93e13336a808517c163
+  local image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1  same
+
+# :latest, 11:19 and 12:25: unchanged for all five (latest-before.txt,
+# latest-after.txt).
+
+# Signing, from the run's log (publish-windows, on the office runner):
+Windows binaries: 1048; already signed: 871; to sign: 177
+Signing attempt 1: 177 file(s)
+The rebuild with the release's signatures equals the release: 2130 file(s), 114 folder(s)
+# osslsigncode 2.13 verify (in ws-signing:rb-ref6) on WebAPI.exe, WebAPI.dll
+# and the Windows migrator from the release, 12:18: exit 0 for each; SHA256;
+# RFC 3161 timestamps by Microsoft Public RSA Time Stamping Authority at
+# 10:02:58, 10:02:58 and 10:01:34 UTC, chained to Microsoft Identity
+# Verification Root Certificate Authority 2020; the TSA's CRL checked ok.
+# Then, 12:29, on every file the rebuild leaves unsigned (pe-signed.py), in
+# the release's tree, with -ignore-crl:
+unsigned in the rebuild: 177
+verified: 177, failed: 0
+    177 Subject: <WS's company name, as CN and O>
+# Each of the 177 carries a timestamp. Full output in private data.
+
+# The preflight's tests (the trx files' counters): 0 failed.
+unit        total="4738" executed="4681" passed="4681" failed="0" 
+integration total="836" executed="807" passed="807" failed="0" 
+functional  total="165" executed="153" passed="153" failed="0" 
+
+# Release notes: the summary lists direct commits since v1.0.50, an
+# ancestor of be5fc56e; GitHub's generated notes end with
+# "Full Changelog: v1.0.50...v0.0.0-thesis.6".
+
+# Cleanup, 12:26: the run left 50 caches under the ref
+# refs/heads/refs/tags/v0.0.0-thesis.6, 4.94 GB: 42 BuildKit blobs, 5 image
+# indexes, NuGet for Linux and for Windows, npm. All deleted, none left.
+# The release, its tag and the image tags stay, as the reference.

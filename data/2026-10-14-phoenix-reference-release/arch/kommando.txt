@@ -1,0 +1,111 @@
+# phoenix-reference-release, arch and GitHub, 14 October 2026. Run by
+# Claude at Leo's request ("go for it", 11:16), in bash. Verbatim, with W
+# for the WS worktree, E for Speciale2026/experiments, O for the private
+# data folder and D for this folder; Leo's work address is left out.
+
+# :latest before the tag, 11:19 (D/latest-before.txt):
+for p in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do echo "$p $(gh api "orgs/Weel-Sandvig/packages/container/$p/versions?per_page=100" --jq '.[] | select(.metadata.container.tags | index("latest")) | "\(.name) \(.metadata.container.tags | join(","))"' | head -1)"; done
+
+# Preflight, 11:20: the release's build-and-test job alone, on GitHub's
+# hosted runners, from a throwaway commit in a scratch clone outside W:
+T=/private/tmp/rb1-ci/tests-src; rm -rf $T; git clone -q --no-checkout file://$W $T; git -C $T checkout -q --detach be5fc56e
+python3 - "$T/.github/workflows/03-release.yml" <<'PY'
+import sys
+p = sys.argv[1]; s = open(p).read()
+cut = "  # The SPA static export ships inside the publish zips, so a frontend that\n"
+assert s.count(cut) == 1
+s = s[:s.index(cut)].rstrip("\n") + "\n"
+open(p, "w").write(s)
+PY
+(cd $T && actionlint -shellcheck= .github/workflows/03-release.yml)   # ok; jobs left: build-and-test only
+grep -n -E 'packages: write|id-token|contents: write|environment:|login-action|push=true|push: true|action-gh-release|imagetools create|AZURE|CI_RUNNER' $T/.github/workflows/03-release.yml   # none
+git -C $T commit -q -am "Thesis preflight of the release's test job, 14 Oct 2026 ..."
+git -C $T tag v0.0.0-tests.1
+#   6d3a7e46eccb0f9d157fb3d44373c52ad5eb7ea9, commit time 1791969641
+git ls-remote --tags git@github.com:Weel-Sandvig/WS.Phoenix.git 'refs/tags/v0.0.0-tests*' 'refs/tags/v0.0.0-thesis*'   # none
+git -C $T push git@github.com:Weel-Sandvig/WS.Phoenix.git refs/tags/v0.0.0-tests.1   # 11:20:43, run 38541666048
+
+# Preflight result, 11:51: both legs success (Linux 09:20:51-09:51:32Z,
+# Windows 09:20:51-09:45:18Z). Kept in O/preflight before deleting:
+gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/38541666048/logs > $O/preflight/run-logs.zip
+gh run download 38541666048 --repo Weel-Sandvig/WS.Phoenix -n test-results-6d3a7e46eccb0f9d157fb3d44373c52ad5eb7ea9 -D $O/preflight/test-results
+for f in unit integration functional; do grep -o '<Counters [^>]*>' $O/preflight/test-results/$f.trx; done
+# Cleanup, 11:52. The job's NuGet caches are stored under the ref
+# "refs/heads/refs/tags/v0.0.0-tests.1", so a filter on refs/tags/... finds
+# none; listed unfiltered instead (Linux 1.96 GB, Windows 2.03 GB):
+gh api "repos/Weel-Sandvig/WS.Phoenix/actions/caches?per_page=10&sort=created_at&direction=desc" --jq '.actions_caches[] | select(.ref == "refs/heads/refs/tags/v0.0.0-tests.1") | .id'
+for c in 8930780697 8930516383; do gh api -X DELETE repos/Weel-Sandvig/WS.Phoenix/actions/caches/$c; done
+gh api -X DELETE repos/Weel-Sandvig/WS.Phoenix/actions/runs/38541666048
+git -C $T push git@github.com:Weel-Sandvig/WS.Phoenix.git :refs/tags/v0.0.0-tests.1
+git ls-remote git@github.com:Weel-Sandvig/WS.Phoenix.git 'refs/tags/v0.0.0-*'   # none; the run 404, no caches left
+
+# The release, 11:53. Leo had raised moving the Linux jobs to the office
+# runner first and asked for Claude's view; Claude and Codex advised
+# tagging unchanged. Annotated tag as WS tags releases, from a fresh clone made
+# at 11:23:
+S=/private/tmp/rb1-ci/src; rm -rf $S && git clone -q --no-checkout file://$W $S && git -C $S checkout -q --detach be5fc56e
+git -C $S -c user.name="Leo Sakharoff" -c user.email=<work address> tag -a v0.0.0-thesis.6 be5fc56e76c5fc7b01e9f25cdc4117ce5783dce0 -F - <<'MSG'
+v0.0.0-thesis.6
+
+Reproducibility reference for an MSc thesis, cut from the unmerged
+branch thesis/reproducible-builds. A prerelease: not for customers,
+installs or deployments.
+MSG
+git -C $S push git@github.com:Weel-Sandvig/WS.Phoenix.git refs/tags/v0.0.0-thesis.6   # 11:53:25, run 38545655622
+
+# The independent rebuild, started 11:53 alongside the run (all six jobs):
+OUT=$O DOTNET_DIR=/private/tmp/rb1-sdk-run2 REPO=$S DOCKER_CONFIG=/private/tmp/rb1-docker $E/phoenix-rt/ci-local.sh v0.0.0-thesis.6 > $O/ci-local.log 2>&1
+
+# The signing image for the checks, built 11:26 from the tag's
+# deployment/signing, as the workflow builds it:
+cd /private/tmp/rb1-ci/src && DOCKER_CONFIG=/private/tmp/rb1-docker docker build -q -t ws-signing:rb-ref6 deployment/signing
+
+# The run's artifacts, 12:13-12:16, while the image job still ran:
+for a in frontend-export release-zips-linux release-zips-windows db-migration-bundles-linux db-migration-bundles-windows; do gh run download 38545655622 --repo Weel-Sandvig/WS.Phoenix -n $a -D $O/ci/$a; done
+
+# First comparison, 12:16-12:18, before the release job (no SHA256SUMS yet):
+SIGNED=azure CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-ref6 DOCKER_CONFIG=/private/tmp/rb1-docker $E/phoenix-rt/ci-compare.sh $O v0.0.0-thesis.6 | tee $O/compare-1.txt
+
+# The signer and timestamps, 12:18, on three files of the release:
+W=$O/compare/windows/ci; for f in ws-pems-win-x64/WebAPI.exe ws-pems-win-x64/WebAPI.dll ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe; do DOCKER_CONFIG=/private/tmp/rb1-docker docker run --rm --user "$(id -u):$(id -g)" -v "$W:/w:ro" --entrypoint osslsigncode ws-signing:rb-ref6 verify -CAfile /opt/signing/microsoft-identity-verification-root-2020.pem -TSA-CAfile /opt/signing/microsoft-identity-verification-root-2020.pem -in "/w/$f" > $O/signatures/$(basename $f).verify.txt 2>&1; echo "exit $?"; done
+
+# The four images pushed so far, 12:19, then all five tags after the run,
+# 12:25 (D/../results.txt):
+for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do for t in v0.0.0-thesis.6-build v0.0.0-thesis.6; do GH_TOKEN=$(gh auth token) python3 $E/phoenix-rt/ghcr-manifests.py weel-sandvig/$n $t $O/local/images/$n.oci.tar; done; done | tee $O/images-ghcr.txt
+
+# The published release, 12:22:
+gh release view v0.0.0-thesis.6 --repo Weel-Sandvig/WS.Phoenix --json tagName,name,isPrerelease,isDraft,createdAt,publishedAt,assets
+gh api repos/Weel-Sandvig/WS.Phoenix/releases/tags/v0.0.0-thesis.6 --jq '.assets[] | "\(.digest)\t\(.name)"'
+gh release download v0.0.0-thesis.6 --repo Weel-Sandvig/WS.Phoenix -D $O/release
+(cd $O/release && sha256sum * | grep -v release-view.json) > $O/release-assets.sha256
+(cd $O/ci && find release-zips-* db-migration-bundles-* -type f -exec sha256sum {} + | sed 's|  [^ ]*/|  |' | sort -k2) > $O/run-artifacts.sha256
+join -1 2 -2 2 <(sort -k2 $O/run-artifacts.sha256) <(sort -k2 $O/release-assets.sha256) | awk '{print ($2==$3 ? "same" : "DIFF"), $1}'
+K=$O/release-check; rm -rf $K; mkdir -p $K/db; for f in $O/release/*.zip; do ln -s "$(realpath $f)" $K/; done; for f in $O/release/ws-pems-db-migrator-* $O/release/bootstrap-postgresql-*; do ln -s "$(realpath $f)" $K/db/; done; ln -s "$(realpath $O/release/upgrade.sh)" $K/; (cd $K && sha256sum -c "$(realpath ../release/SHA256SUMS)")
+cmp $O/release/upgrade.sh /private/tmp/rb1-ci/windows/scripts/upgrade.sh
+
+# Second comparison, 12:23-12:25, with the published SHA256SUMS:
+mkdir -p $O/ci/sha256sums && cp $O/release/SHA256SUMS $O/ci/sha256sums/SHA256SUMS
+SIGNED=azure CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-ref6 DOCKER_CONFIG=/private/tmp/rb1-docker $E/phoenix-rt/ci-compare.sh $O v0.0.0-thesis.6 | tee $O/compare-2.txt
+
+# :latest after, 12:25 (D/latest-after.txt), by the command at the top, then:
+diff <(grep -v '^#' $D/latest-before.txt) $D/latest-after.txt   # no difference
+
+# The run's logs, the release notes' baseline, and the cleanup, 12:25-12:26:
+gh api repos/Weel-Sandvig/WS.Phoenix/actions/runs/38545655622/logs > $O/run-logs.zip
+git -C $S merge-base --is-ancestor 863bb9a47aa0fc5a361a376518adc89eefda70fc be5fc56e   # v1.0.50 is an ancestor
+gh api --paginate "repos/Weel-Sandvig/WS.Phoenix/actions/caches?per_page=100" --jq '.actions_caches[] | select(.ref == "refs/heads/refs/tags/v0.0.0-thesis.6") | "\(.id)\t\(.size_in_bytes)\t\(.key)"' > $O/run-caches.txt   # 50, 4.94 GB
+while IFS=$'\t' read -r id size key; do gh api -X DELETE "repos/Weel-Sandvig/WS.Phoenix/actions/caches/$id"; done < $O/run-caches.txt   # 50 deleted, none left
+
+# The signer on every file WS signed, 12:29: the files the rebuild leaves
+# unsigned, checked in the release's tree (W=$O/compare/windows, left by the
+# second comparison):
+docker run --rm --user "$(id -u):$(id -g)" -v "$W:/w:ro" -w /w --entrypoint bash ws-signing:rb-ref6 -c '
+cd /w/local && find . -type f \( -iname "*.dll" -o -iname "*.exe" \) | LC_ALL=C sort | python3 /opt/signing/pe-signed.py | awk "\$1==\"unsigned\" {print \$2}" > /tmp/unsigned.txt
+echo "unsigned in the rebuild: $(wc -l < /tmp/unsigned.txt)"
+ok=0; bad=0; : > /tmp/subjects.txt
+while read -r f; do
+  out=$(osslsigncode verify -CAfile /opt/signing/microsoft-identity-verification-root-2020.pem -TSA-CAfile /opt/signing/microsoft-identity-verification-root-2020.pem -ignore-crl -in "/w/ci/$f" 2>&1) && ok=$((ok+1)) || { bad=$((bad+1)); echo "FAILED $f"; }
+  printf "%s\n" "$out" | grep -m1 -A3 "Signer.s certificate" | grep -m1 "Subject:" | sed "s/^[[:space:]]*//" >> /tmp/subjects.txt
+  printf "%s\n" "$out" | grep -q "Timestamp time:" || echo "NO TIMESTAMP $f"
+done < /tmp/unsigned.txt
+echo "verified: $ok, failed: $bad"; sort /tmp/subjects.txt | uniq -c | sed "s/,L=.*//"' | tee $O/signatures/all-177.txt

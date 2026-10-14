@@ -22,6 +22,13 @@
 # Added 14 October, for the second dry run, which ran only the frontend
 # and Windows jobs: an output whose artifact the run did not make is
 # reported as "not in this run" instead of compared.
+#
+# Added 14 October, for the reference release: SIGNED says how CI signed
+# the Windows binaries. test is the dry runs' throwaway certificate (the
+# artifact thesis-test-ca, trusted with Microsoft's root); azure is a real
+# release, WS's certificate, trusted through Microsoft's root alone; none
+# compares the unsigned files as they are. The default follows
+# thesis-test-ca, as before.
 set -u
 P=${1:?P} TAG=${2:?TAG}
 CLONE=${CLONE:-/private/tmp/rb1-ci/windows} SIGNING_IMAGE=${SIGNING_IMAGE:-ws-signing:rb-dry}
@@ -55,7 +62,8 @@ for z in ws-pems-linux-x64 ws-pems-job-worker-linux-x64; do
 done
 mig=ws-pems-db-migrator-win-x64-$TAG.exe
 win=$L/windows
-if [ -f "$C/thesis-test-ca/ca.pem" ]; then
+SIGNED=${SIGNED:-$([ -f "$C/thesis-test-ca/ca.pem" ] && echo test || echo none)}
+if [ "$SIGNED" != none ]; then
   W=$R/windows; win=$W/zips
   mkdir -p "$W/ci" "$W/local" "$W/keys" "$win"
   for z in ws-pems-win-x64 ws-pems-job-worker-win-x64; do
@@ -63,7 +71,11 @@ if [ -f "$C/thesis-test-ca/ca.pem" ]; then
   done
   # A downloaded migrator has no mode; both get 0644, as the README says.
   cp "$C/db-migration-bundles-windows/$mig" "$W/ci/" && cp "$L/windows/$mig" "$W/local/" && chmod 644 "$W/ci/$mig" "$W/local/$mig"
-  cat "$C/thesis-test-ca/ca.pem" "$CLONE/deployment/signing/microsoft-identity-verification-root-2020.pem" > "$W/keys/verify.pem"
+  if [ "$SIGNED" = test ]; then
+    cat "$C/thesis-test-ca/ca.pem" "$CLONE/deployment/signing/microsoft-identity-verification-root-2020.pem" > "$W/keys/verify.pem"
+  else
+    cp "$CLONE/deployment/signing/microsoft-identity-verification-root-2020.pem" "$W/keys/verify.pem"
+  fi
   docker run --rm --user "$(id -u):$(id -g)" -v "$W:$W" -w "$W" -e VERIFY_CAFILE="$W/keys/verify.pem" \
     --entrypoint /opt/signing/paste-signatures.sh "$SIGNING_IMAGE" ci local pasted > "$R/paste.log" 2>&1
   echo "paste-signatures.sh, CI's signatures onto the local build: exit $?, $(tail -1 "$R/paste.log")"
