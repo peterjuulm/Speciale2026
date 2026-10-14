@@ -7,7 +7,7 @@ the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
 Last run: 14 October 2026, 09:04-09:24, the dry run's second run on
 GitHub, the Windows job alone, with its local rebuild. Last edit: 14
-October 2026, 09:41. Also 12/10: the frontend lock's hashes filled
+October 2026, 09:59. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
@@ -317,7 +317,7 @@ Layer 5 (container) is below the SDK 10 table.
 | `all` | red 5/10: locale and the two dev json; with `LC_ALL` the dev json only W8 W9 | fix 5/10: red from the locale alone, green with `LC_ALL` | green 12/10 beyond W47, both builds the same order | red 12/10 as CI packs, also modes and time zone W48; normalised identical, across runs too |
 | `fileordering` | - needs a VM with `disorderfs` | - | - | - |
 | `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - | - |
-| Machine | - VM too small W14 | red 13/10 on SDK 10, GitHub against `arch`: the compiler's runtime patch only W58; identical with the same patch | green 13/10 on SDK 10: GitHub's export is `arch`'s, 994 files | red 13/10 on SDK 10 through W58 only; identical with the same patch |
+| Machine | - VM too small W14 | fix 14/10 W58: GitHub's build is `arch`'s, the SDK installed alone on both (13/10 red from the compiler's runtime patch only) | green 13/10 on SDK 10: GitHub's export is `arch`'s, 994 files; again 14/10 | fix 14/10 W58: GitHub's Linux and Windows zips are `arch`'s, the Windows ones with CI's signatures pasted |
 | SDK binary | - empty-class only, 8/9 | - | - Node pinned to 22.23.3 since the merge, ran in main's CI 13/10 W40 | - |
 | Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46, main's lock has none since 17/9 | - |
 | Windows | - | green 13/10 on SDK 10, built on Linux as the job builds it, unsigned: layer `W` below W55 | built once, on Linux, for both releases | green 13/10 on SDK 10: both Windows zips identical before signing, layer `W` below W55 |
@@ -366,8 +366,9 @@ WS branch since `fa60ea97`.
   Signing makes two runs differ by design (W59); a rebuild is checked by
   pasting the release's signatures, byte for byte here with a test
   certificate (14/10), and the release job checks that of each release
-  (`66bf8458`). Open: signing through Azure in a real release, and a
-  build on Windows. Open points in [windows](windows.md).
+  (`66bf8458`); in CI that check passed on 14/10, on GitHub's runner
+  with a test certificate. Open: signing through Azure in a real
+  release, the job on the office runner, and a build on Windows. Open points in [windows](windows.md).
 - Layer 3: the build ID (W37), the CSS order (W43) and the entry order
   (W47, `a16f9a91`) are fixed on the WS branch. Open: why
   the runtime's minified names changed between commits (W44), the
@@ -401,8 +402,9 @@ WS branch since `fa60ea97`.
 - Cross-machine: GitHub's runner against `arch` on 13/10, identical but
   for the compiler's runtime patch (W58). Fixed on the branch on 14/10
   (`62ac787a`): CI installs only the `global.json` SDK, in a folder of its
-  own, with a script that also sets up a rebuild; the second dry run
-  measures it. File order still needs a VM with
+  own, with a script that also sets up a rebuild. The dry run of 14/10
+  measured it: every output GitHub built equals the local rebuild. File
+  order still needs a VM with
   several GB of RAM (W14); Peter's Azure VM is the candidate.
 - Versions: the zips' assemblies carry the commit (`APP_VERSION+<sha>`,
   the SDK's `SourceRevisionId` in a git checkout), the images' do not, as
@@ -430,9 +432,9 @@ WS branch since `fa60ea97`.
 
 1. Peter: W54's fix on the Mac (`100e3912`, a locked restore of
    `src/DbMigrator`).
-2. The second dry run (14/10): its artifacts against the local rebuild,
-   then the run and its tag deleted; it needs `gh`, which needs the
-   keyring unlocked. Later, a release with real signing through Azure.
+2. The branch on the office runner: neither the SDK installer nor the
+   Windows job has run there; both dry runs used GitHub's runners. Later,
+   a release with real signing through Azure.
 3. PR validation has not run on the merged branch; a draft pull request
    would run it (Leo's call). The release workflow ran on it as the dry run
    of 13/10, the version check and the migrator's smoke test included.
