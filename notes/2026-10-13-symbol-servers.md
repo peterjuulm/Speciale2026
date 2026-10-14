@@ -116,7 +116,7 @@ package.
 its DLL, so it belongs to exactly that DLL; nuget.org also checks the DLL's
 PdbChecksum before it serves the file `[I]`.
 
-**Test B needs many compilers, but one does most of the work.** 39 Roslyn
+**The nupkg test needs many compilers, but one does most of the work.** 39 Roslyn
 builds are named, yet 367 of the 457 DLLs need the same one, Microsoft's .NET
 10.0.12 compiler `[I]`.
 
@@ -138,4 +138,4 @@ their PDBs are public.
 - **The lists and the PDBs are not in git.** `symbols.md` and `symbols.csv`
   name packages and versions; the PDBs are bytes. Make them again with
   `kommando.txt`. The 474 PDBs were kept in the session's scratch directory,
-  which was emptied by 14/10; test B downloads them again.
+  which was emptied by 14/10; the nupkg test downloads them again.

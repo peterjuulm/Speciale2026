@@ -52,13 +52,13 @@ that declares both its source and its compiler can be rebuilt by our rule
 
 | Category | Packages | What it means | Next |
 | --- | ---: | --- | --- |
-| **Ready to rebuild** | 196 | The `.nuspec` names the repository and commit; the PDB names the compiler and its options | Test B |
+| **Ready to rebuild** | 196 | The `.nuspec` names the repository and commit; the PDB names the compiler and its options | Nupkg test |
 | **No compiler declared** | 83 | The source is named, but no PDB records the compiler. 64 have no PDB anywhere (45 of them are Humanizer language packs); 19 have a PDB without that record (17 in the old Windows format) | Not reproducible: the environment is not declared |
 | **No source declared** | 24 | We cannot tell which code was built. 9 name no repository, 13 no commit, 2 a commit that GitHub does not have | Not reproducible |
 | **Native code only** | 9 | Only Linux machine code (`.so` files), compiled from C/C++ by the publisher, for example SQLite's `libe_sqlite3.so`. The .NET SDK only copies these files into the release, so rebuilding Phoenix says nothing about them; the .NET app host is the exception, which the SDK copies and stamps with the program's name `[I]` | Open: rebuild each library with its own C/C++ build, or not |
 | **Ships nothing** | 29 | No file reaches the Linux release: meta packages, build-time tools such as analyzers, files for other platforms | Nothing to compare |
 
-After test B, each "ready" package gets one result: **reproducible** (same
+After the nupkg test, each "ready" package gets one result: **reproducible** (same
 bytes once signatures are removed), **differs** (and where), or **does not
 build** (and why).
 
@@ -71,11 +71,36 @@ DLLs (step 1); the symbol servers supplied 474 of the 493 PDBs that were not in
 their packages, which moved 145 packages to "ready" (step 2). The census's own
 finer categories (`N0`…`C2c`, `R`) are in its note and data.
 
+## A full build environment, and where a package declares it
+
+What changes the bytes of a .NET build, from our own measurements, and where a
+NuGet package can declare each part. "Level 1" is the package itself (`.nuspec`,
+`.nupkg`, DLL, PDB); "level 2" is the repository at the declared commit
+([declared-env](2026-10-13-declared-env.md)). Nothing is recorded for CI logs:
+they are not a declaration (decided 13/10).
+
+| # | Part of the environment | Where a package can declare it | Looked yet? |
+| --- | --- | --- | --- |
+| 1 | **Source commit** | `.nuspec` `<repository commit>`; often also the version (`4.2.0+c00e17fd…`) and Source Link in the PDB | Yes, census `[V]` |
+| 2 | **The SDK's exact build** | Not as such. Hints: the PDB's compiler record names the Roslyn commit and the .NET runtime that ran the compiler; the `.nupkg`'s `.psmdcp` names the pack tool and its version (`NuGet.Build.Tasks.Pack 6.12.2.1` for Serilog 4.2.0); level 2: `global.json`, `setup-dotnet` in CI | Roslyn commit `[V]`; `global.json` and CI `[V]`; pack tool on 3 packages by hand `[V]` |
+| 3 | **Package graph** (and runtime packs, for programs only) | The compiler record lists every reference by name and MVID, which fixes the exact reference DLLs; a `packages.lock.json` at the commit, if the repository has one | References `[V]`, not yet compared; lock files at the commit not checked `[I]` |
+| 4 | **Command line and properties** | Not recorded. Their effect on the compile step is in the compiler record: Release or Debug, defines, language version, nullable, platform. The command itself may be in the repository's CI file or build script (level 2) | Compiler record `[V]`; commands in CI files not extracted `[I]` |
+| 5 | **Environment variables** | Not recorded. Only their effects show, for example in a version stamp; a CI file may set some (level 2) | No |
+| 6 | **Build path or `PathMap`** | The PDB's document paths: `/_/…` means mapped; a real path such as `D:\a\1\s\…` means not mapped, and that path is part of the environment | Not checked `[I]` |
+| 7 | **Locale and umask** | Not recorded. The locale matters only for a compiler with a defect like W26; the umask never reaches a DLL's bytes | Not needed for the DLL |
+| 8 | **Target RID and host OS** | Target: the package folders (`lib/<framework>/` is portable, `runtimes/<rid>/` is for one platform). Host: sometimes in the `.psmdcp` (Newtonsoft.Json 13.0.3: `Microsoft Windows NT 10.0.20348.0`, .NET Framework 4.7.2); `runs-on` in CI (level 2); line endings through the PDB's source checksums | Folders `[V]`; `.psmdcp` on 3 packages `[V]`; CI `[V]`; line endings `[I]` |
+| 9 | **Tools whose output ships** | The pack tool: `.psmdcp`. Source generators, which write code into the DLL while it is compiled: their output may be embedded in the PDB `[I]` | Pack tool on 3 packages `[V]`; generators not checked |
+
+So a package declares the compile step well (points 1, 2 and 3 through the
+compiler record and Source Link) and almost nothing outside it (4, 5, 7). Two
+cheap additions to the census, both offline: the pack tool and host from the
+`.psmdcp` (2, 8, 9), and the PDB paths (6).
+
 ## Decisions
 
 1. **Which packages:** the 341 above.
-2. **Two tests.** **Test B, the main test:** build the package from its
-   declared commit and compare with the package on nuget.org. **Test A,
+2. **Two tests.** **Nupkg test, the main test:** build the package from its
+   declared commit and compare with the package on nuget.org. **Reprotest test,
    extra:** run reprotest on our own build of the package, as Benedetti et al.
    did.
 3. **Only what is declared.** The `.nuspec` can declare the repository and
@@ -85,7 +110,7 @@ finer categories (`N0`…`C2c`, `R`) are in its note and data.
 4. **No sample.** Every ready package is tried. The 311 packages that declare a
    commit come from 79 GitHub repositories at 103 commits, plus one package
    that declares a commit but no repository; one of the 103 commits is not on
-   GitHub. So at most 102 builds can start; test B needs 82 of them.
+   GitHub. So at most 102 builds can start; the nupkg test needs 82 of them.
    Microsoft's packages are included.
 5. **A failure is a result.** It is recorded with where it stopped and who
    could fix it (Benedetti et al.'s Fig. 3: as is, configuration, tool patch,
@@ -116,8 +141,8 @@ finer categories (`N0`…`C2c`, `R`) are in its note and data.
    image.
 2. **Symbol servers** (done 13/10; [symbol-servers](2026-10-13-symbol-servers.md)):
    474 of 493 missing PDBs found, 145 packages moved to "ready".
-3. **Test B on the 196 ready packages:** 82 builds, on `arch`. Next.
-4. **Test A** on every package that builds, on `arch`.
+3. **Nupkg test on the 196 ready packages:** 82 builds, on `arch`. Next.
+4. **Reprotest test** on every package that builds, on `arch`.
 
 ## Phoenix on .NET 10: what matters for this plan
 
@@ -145,7 +170,7 @@ R = ready to rebuild, C2b = PDB not in the package, C3 = does not build.
   `ContinuousIntegrationBuild` match after signatures are removed. The
   mismatches are reference versions and paths.
 - The Microsoft builds mostly stop at C3: Arcade, size, internal feeds.
-- Test A is green wherever test B is green. A package that matches nuget.org
+- The reprotest test is green wherever the nupkg test is green. A package that matches nuget.org
   was already built deterministically once.
 
 The first point was checked in step 2: 145 of 181 moved.
@@ -160,8 +185,8 @@ The first point was checked in step 2: 145 of 181 moved.
   (`go.microsoft.com/fwlink`, for example SkiaSharp). A redirect is not a
   repository.
 - **`dotnet/dotnet`.** Its build is far larger than one repository's; how much
-  of it test B needs is not known.
-- **`mac` as a second machine for test B.** Line endings and the
+  of it the nupkg test needs is not known.
+- **`mac` as a second machine for the nupkg test.** Line endings and the
   case-insensitive file system could show up.
 - **BuildValidator.** Use it to test the compile step alone?
 - **Analyzers** run inside Phoenix's own compile but do not ship.
@@ -171,12 +196,12 @@ The first point was checked in step 2: 145 of 181 moved.
 The points we discussed on 12/10 before we decided the plan.
 
 **Determinism is not reproducibility.** reprotest compares two of our own
-builds (test A). It cannot tell if our build matches what the publisher
-uploaded (test B). Test B is the supply-chain question.
+builds (reprotest test). It cannot tell if our build matches what the publisher
+uploaded (nupkg test). The nupkg test is the supply-chain question.
 
-**Benedetti et al. did only test A.** They built each repo's latest commit and
+**Benedetti et al. did only the reprotest test.** They built each repo's latest commit and
 did not compare with the published package (Section III-C). Their reasons:
-finding the right commit is hard, and environments differ. Test B is new
+finding the right commit is hard, and environments differ. The nupkg test is new
 relative to their study.
 
 **We cannot discard packages.** Benedetti et al. replaced a package with no repo
@@ -207,7 +232,7 @@ NuGet leaves the signature out of the content hash `[I]`. The layer plan's step
 
 **The lock file only proves "the same as last time".** Locked mode stops a
 build if a package changes. It cannot show that the package matches its
-source. Test B does.
+source. The nupkg test does.
 
 **`deps.json` is a run-time file, not a lock file.** The .NET host reads it at
 start to find assemblies. The layer plan says the host does not check its
@@ -230,7 +255,7 @@ packages that the feeds no longer hold (then C3). And the official build ID
 comes from Microsoft's internal pipeline, not the repo; decision 9 covers it.
 Signing needs Microsoft's keys, so we compare without signatures (decision 6).
 
-**Our "never build inside git" rule conflicts with test B.** The publisher
+**Our "never build inside git" rule conflicts with the nupkg test.** The publisher
 built inside a clone, so the commit is in `AssemblyInformationalVersion` and
 in Source Link. To match, we must build inside a clone at the declared commit.
 This is a deliberate exception.
@@ -256,11 +281,18 @@ the release.
 
 **Concepts**
 
-- **Test A / test B:** determinism under variation / rebuild matches nuget.org.
+- **Reprotest test:** reprotest builds the package twice under varied
+  conditions and compares. Answers: is our build deterministic? (Called test A
+  until 14/10.)
+- **Nupkg test:** rebuild the package from its declared source and compare
+  with the package on nuget.org. It compares the DLLs and PDBs *inside* the
+  `.nupkg`, with signatures removed, not the `.nupkg` file itself (decision 6).
+  Answers: does the published package match its source? (Called test B until
+  14/10.)
 - **Census:** reading what each package declares, before any build.
 - **Repository / commit / package:** the source code on GitHub / one exact
   version of it, which is one build / what a build gives, compared with
-  nuget.org. 61 repositories → 82 commits → 196 packages for test B.
+  nuget.org. 61 repositories → 82 commits → 196 packages for the nupkg test.
 - **Stratified sample:** a few items from each group, so the sample represents
   the whole. Not used: we test everything.
 - **Declared environment:** what a package itself says about how it was built.
@@ -292,6 +324,38 @@ the release.
 - **P/Invoke:** how a .NET DLL calls a native library.
 - **Native assets:** the `.so`, `.dylib` or `.dll` files under
   `runtimes/<rid>/native/`.
+- **Shared object (`.so`):** a shared library on Linux and most Unix-like
+  systems: machine code for one operating system and one processor type,
+  compiled from C or C++. A program loads it while it runs; many programs can
+  use the same file, and the system keeps one copy in memory. The same idea is
+  `.dll` on Windows and `.dylib` on macOS.
+- **Native DLL / .NET DLL:** both can end in `.dll`. A native DLL holds machine
+  code for Windows; a .NET DLL holds IL and runs wherever a .NET runtime runs.
+- **ELF:** the file format of Linux programs and `.so` files. The format, not
+  the extension, makes a file a Linux library.
+- **Object file (`.o`) / static library (`.a`):** a C or C++ compiler turns each
+  source file into an object file. A static library is copied into each
+  program when it is built; a shared object stays a separate file.
+- **Runtime identifier (RID):** a name for an operating system and a processor
+  type, for example `linux-x64`, `linux-arm64`, `win-x64`, `osx-arm64`. A
+  package ships one native file per RID; a lock file has one section per RID.
+- **glibc / musl:** two C libraries for Linux. Most distributions, Arch among
+  them, use glibc; Alpine uses musl. A `.so` built for one may not run with the
+  other, hence RIDs such as `linux-musl-x64`.
+- **.NET runtime:** the native program that runs IL, itself built per platform:
+  on Linux `libcoreclr.so`, with `libSystem.Native.so` as .NET's bridge to the
+  operating system.
+- **ReadyToRun (R2R):** a .NET DLL that also holds precompiled machine code for
+  one platform, to start faster. It keeps its IL. Most of the runtime pack's
+  DLLs are ReadyToRun (W21).
+- **App host:** the small native program that starts a .NET program, for
+  example `WebAPI`. The SDK copies it from the host pack and writes the
+  program's name into it `[I]`.
+- **Public signing / delay signing:** building a strong-named DLL without the
+  private key: the public key is filled in, the signature space stays zeros.
+- **What is removed before comparing:** the Authenticode certificate table and
+  the header field that points to it, the strong-name signature (set to
+  zeros), and the PE checksum, which the signature changes (decision 6).
 - **Satellite assembly:** a DLL with only translated resources, for example the
   Humanizer language packs.
 - **Meta package:** a package with no files of its own, only dependencies.
@@ -320,7 +384,7 @@ the release.
 
 **Tools**
 
-- **reprotest:** builds twice with variations and compares (test A).
+- **reprotest:** builds twice with variations and compares (reprotest test).
 - **Roslyn:** the C# compiler, `csc.dll`.
 - **BuildValidator:** a tool in the Roslyn repo that reads a DLL and its PDB,
   compiles the sources again with the recorded options, and compares. It uses
@@ -334,6 +398,12 @@ the release.
 - **Official build ID:** a date and counter that Microsoft's release pipeline
   gives an Arcade build; it becomes part of the DLL's file version. Not in the
   repo.
+- **jsign:** a tool that makes Authenticode signatures on any operating
+  system. Phoenix's Windows release uses jsign 7.5 on a Linux runner
+  (`deployment/signing/`).
+- **Azure Artifact Signing:** Microsoft's cloud service that holds the private
+  key for code signing. Phoenix's Windows release signs through it; the Linux
+  release is not signed, only listed in `SHA256SUMS`.
 - **NuGet Package Explorer / `dotnet-validate`:** check a package for Source
   Link, deterministic build and PDBs `[I]`, not run.
 - **`dotnet/dotnet`:** Microsoft's combined repository, from which .NET 10's
