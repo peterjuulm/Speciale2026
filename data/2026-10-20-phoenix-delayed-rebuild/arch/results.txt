@@ -1,0 +1,68 @@
+# phoenix-delayed-rebuild, arch, 20 October 2026. The outputs of the commands in kommando.txt.
+
+# ci-local.sh (N/ci-local.log):
+frontend start 16:01:24
+frontend exit 0 16:04:30
+linux start 16:04:30
+linux exit 0 16:07:02
+windows start 16:07:02
+windows exit 0 16:08:25
+migrator start 16:08:25
+migrator exit 0 16:09:03
+sql start 16:09:03
+sql exit 0 16:10:20
+images start 16:10:20
+images exit 0 16:18:34
+ci-local exit 0 16:18:34
+
+# ci-compare.sh against the release's artifacts of 14/10 (N/compare.txt):
+same  frontend export (994 / 994 files)
+same  ws-pems-linux-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+paste-signatures.sh, CI's signatures onto the local build: exit 0, The rebuild with the release's signatures equals the release: 2130 file(s), 114 folder(s)
+same  ws-pems-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+same  ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe
+same  bootstrap-postgresql-v0.0.0-thesis.6.sql
+same  SHA256SUMS (8 lines)
+not in this run  image ws-pems as an OCI artifact
+not in this run  image ws-pems-job-worker as an OCI artifact
+not in this run  image wspems-mcp-server as an OCI artifact
+not in this run  image wspems-chat-server as an OCI artifact
+not in this run  image wspems-mcp-auth-broker as an OCI artifact
+summary: 0 differ or failed, 5 not in this run
+
+# The five images against GHCR's v0.0.0-thesis.6 (N/images-ghcr.txt):
+weel-sandvig/ws-pems:v0.0.0-thesis.6  index sha256:e638c82a20d4bc444e092b6836f868f468b5bdc3994d9ac67c61c9998b782023  image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e
+  local image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e  same
+weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.6  index sha256:38e75e43540dbf1c91636bddb9539def749f5e1b2d5b6d6604d66b2737c19d83  image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b
+  local image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  same
+weel-sandvig/wspems-mcp-server:v0.0.0-thesis.6  index sha256:5b95393e9637b8bc06e96b99abff5d7753c7a323811bf00ce5bff35923f7acf0  image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4
+  local image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4  same
+weel-sandvig/wspems-chat-server:v0.0.0-thesis.6  index sha256:dbeda2cba720e7a57f3a0830714529c2a2256938d1724030ce8d75a1f22bf77e  image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5
+  local image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5  same
+weel-sandvig/wspems-mcp-auth-broker:v0.0.0-thesis.6  index sha256:93cf5a774a5df28628a493587a51a28d08a5bd803811aff0f38c7c895849c930  image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1
+  local image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1  same
+
+# The five images against the rebuild of 14/10 (oci-diff.py, first three lines each):
+ws-pems:
+  manifest same: sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e
+  config same
+  layers 10: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], differ []
+ws-pems-job-worker:
+  manifest same: sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b
+  config same
+  layers 9: same [0, 1, 2, 3, 4, 5, 6, 7, 8], differ []
+wspems-mcp-server:
+  manifest same: sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4
+  config same
+  layers 15: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], differ []
+wspems-chat-server:
+  manifest same: sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5
+  config same
+  layers 12: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], differ []
+wspems-mcp-auth-broker:
+  manifest same: sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1
+  config same
+  layers 11: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], differ []

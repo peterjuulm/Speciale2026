@@ -1,0 +1,46 @@
+# phoenix-mcp-pins, arch, 20 October 2026. Run by Claude at Leo's request,
+# in bash. Verbatim, with W for the WS worktree of the branch, C for a fresh
+# clone of it (/private/tmp/rb1-pin/src), NP for this run's private data
+# folder, N for the delayed rebuild's (the unpinned images), E for
+# Speciale2026/experiments and D for this folder.
+export DOCKER_CONFIG=/private/tmp/rb1-docker
+
+# The clone, P1-P3 at 16:33, P4-P6 at 16:50 (82d35f9df in place of f073bf5e4):
+rm -rf /private/tmp/rb1-pin && git clone -q --no-checkout file://$W $C && git -C $C checkout -q --detach f073bf5e4
+
+# Each image, with the release job's flags as ci-local.sh gives them; R is
+# the round, n the image, f its Dockerfile and ctx its context:
+#   wspems-mcp-server       mcp/Dockerfile              mcp
+#   wspems-chat-server      mcp/chat-server/Dockerfile  mcp
+#   wspems-mcp-auth-broker  mcp/auth-broker/Dockerfile  mcp/auth-broker
+env SOURCE_DATE_EPOCH=1791961346 docker buildx build --builder rb1 --no-cache --provenance=false \
+  -f "$C/$f" "$@" --output "type=oci,dest=$NP/$R/$n.oci.tar,rewrite-timestamp=true" "$C/$ctx" > "$NP/$R/$n.log" 2>&1
+# Rounds, the three images in that order each time:
+#   P1, P2  f073bf5e4, no extra arguments
+#   P3      f073bf5e4, "$@" = --build-arg DEBIAN_SNAPSHOT=20260101T000000Z
+#   P4, P5  82d35f9df, no extra arguments
+#   P6      82d35f9df, "$@" = --build-arg DEBIAN_SNAPSHOT=20260101T000000Z
+
+# The comparisons (D/results.txt has the first lines of each):
+python3 $E/phoenix-rt/oci-diff.py $N/local/images/$n.oci.tar $NP/P1/$n.oci.tar   # unpinned against P1
+python3 $E/phoenix-rt/oci-diff.py $NP/P1/$n.oci.tar $NP/P2/$n.oci.tar
+python3 $E/phoenix-rt/oci-diff.py $NP/P1/$n.oci.tar $NP/P3/$n.oci.tar
+python3 $E/phoenix-rt/oci-diff.py $NP/P1/$n.oci.tar $NP/P4/$n.oci.tar
+python3 $E/phoenix-rt/oci-diff.py $NP/P4/$n.oci.tar $NP/P5/$n.oci.tar
+python3 $E/phoenix-rt/oci-diff.py $NP/P3/$n.oci.tar $NP/P6/$n.oci.tar
+
+# The installed packages of wspems-mcp-server, P1 against P3: dpkg's status
+# file in the image's layer 5 (the apt layer), read with Python's tarfile and
+# gzip, and the versions of the packages marked installed set side by side.
+
+# --error-on=any, 16:49, in the base image, against a source that does not
+# answer:
+docker run --rm node:22.20.0-bookworm-slim@sha256:b21fe589dfbe5cc39365d0544b9be3f1f33f55f3c86c87a76ff65a02f8f5848e sh -c '
+s=/tmp/t; mkdir -p $s/parts; echo "deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] http://127.0.0.1:9/debian bookworm main" > $s/sources.list
+o="-o Dir::Etc::SourceList=$s/sources.list -o Dir::Etc::SourceParts=$s/parts -o Acquire::Retries=0"
+apt-get $o update >/dev/null 2>&1; echo "without --error-on=any: exit $?"
+apt-get $o update --error-on=any >/dev/null 2>&1; echo "with --error-on=any: exit $?"
+apt-get --version | head -1; echo "process.arch: $(node -p process.arch)"'
+
+# The canvas assets' digests on GitHub, 16:59:
+gh api repos/Automattic/node-canvas/releases/tags/v3.1.2 --jq '.assets[] | select(.name|test("napi-v7-linux-(x64|arm64).tar.gz")) | "\(.name) \(.digest)"'

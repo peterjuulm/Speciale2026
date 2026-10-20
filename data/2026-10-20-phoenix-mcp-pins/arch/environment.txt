@@ -1,0 +1,7 @@
+2026-10-20T16:58+02:00, the builds' environment (the same builder as the delayed rebuild of the day)
+commits on the WS branch: f073bf5e4 (the pins; P1-P3) and 82d35f9df (the two guards on top; P4-P6), each from a fresh clone in /private/tmp/rb1-pin; SOURCE_DATE_EPOCH 1791961346, v0.0.0-thesis.6's commit time
+arch: Linux 7.2.9-arch1-1 x86_64, 16 CPUs; Docker 29.9.1; buildx v0.38.0, BuildKit v0.33.1 (builder rb1, docker-container, image moby/buildkit:buildx-stable-1 sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea, the index digest of moby/buildkit:v0.33.1 too)
+base image: node:22.20.0-bookworm-slim@sha256:b21fe589dfbe5cc39365d0544b9be3f1f33f55f3c86c87a76ff65a02f8f5848e (apt 2.6.1); its debian.sources name the snapshot 20251020T000000Z
+Debian snapshots: 20261020T000000Z (the Dockerfiles' default) and 20260101T000000Z (P3, P6), over http://snapshot.debian.org
+canvas prebuilts: canvas-v3.1.2-napi-v7-linux-x64.tar.gz sha256:4b0c6d817737346b03bc5af96d5e6536bacecbc4e5e15e0b34aa586470a7889f and canvas-v3.1.2-napi-v7-linux-arm64.tar.gz sha256:0728841cb1c36e7588102cb22a6373591d5920e09f9bcf30bbfa16ff719f5022, the digests GitHub lists for the release assets
+caches: the builder's npm cache mount, warm from the day's builds; --no-cache for every layer

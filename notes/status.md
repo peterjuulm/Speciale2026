@@ -5,11 +5,26 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 14 October 2026, 14:30-15:10, `SHA256SUMS` on a download and the
-rebuild scripts' exit status, on `arch` (W66). Last edit: 14 October 2026, 15:25. Also 12/10: the frontend lock's hashes filled
+Last run: 20 October 2026, 16:01-16:57, the reference release rebuilt six
+days later and the MCP images' Debian packages and canvas binary pinned, on
+`arch` (W67, W68). Last edit: 20 October 2026, 17:05. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 20/10 16:01-16:57
+([phoenix-delayed-rebuild](2026-10-20-phoenix-delayed-rebuild.md),
+[phoenix-mcp-pins](2026-10-20-phoenix-mcp-pins.md); W67, W68):
+`v0.0.0-thesis.6` rebuilt six days after its release, after a reboot and
+with an empty NuGet cache. Every output came out as on 14/10, byte for
+byte, and all five images equal GHCR's; Debian had changed nothing the
+MCP images install. Those images now take their packages from
+snapshot.debian.org at a date each Dockerfile names (W67), and canvas's
+prebuilt by its SHA-256 (W68). Pinned, two builds give the same
+manifests, with the unpinned build's layers, and the snapshot of
+1 January changes the apt layer only. The release job's BuildKit is
+pinned to v0.33.1, the version that built the release. On the WS branch
+(`f073bf5e4`, `82d35f9df`, `56e4b4820`), pushed; not yet in a release.
 
 On `arch`, 14/10 14:30-15:10
 ([phoenix-reference-release](2026-10-14-phoenix-reference-release.md),
@@ -475,8 +490,9 @@ WS branch since `fa60ea97`.
 1. Peter: W54's fix on the Mac (`100e3912`, a locked restore of
    `src/DbMigrator`).
 2. The office runner: the Windows job and the SDK installer ran there in
-   the reference release (14/10). A release with the Linux jobs there
-   waits for the pipeline-map change; then rebuild it the same way.
+   the reference release (14/10). Main's release jobs can run there since
+   WS's pipeline change of 16/10; a release from the branch with the Linux
+   jobs there waits for the merge. Then rebuild it the same way.
 3. PR validation has not run on the merged branch; a draft pull request
    would run it (Leo's call). The release workflow ran on it as the dry run
    of 13/10, the version check and the migrator's smoke test included.
@@ -497,8 +513,9 @@ WS branch since `fa60ea97`.
    migrator and one MCP image; a rebuild with empty caches from an
    archive. Background:
    [release-transparency-research](2026-10-14-release-transparency-research.md).
-7. Main, before WS's next release, Leo's call: W64's fix (the Windows
-   job's frontend) and W66's (`SHA256SUMS` names) as a small PR.
+7. Done on main: WS's pipeline change of 16/10 fixes W64 (the Windows
+   job takes the release's export) and W66 (`SHA256SUMS` hashes `db/`
+   from inside it) in its own way.
 
 ## Keeping this file
 

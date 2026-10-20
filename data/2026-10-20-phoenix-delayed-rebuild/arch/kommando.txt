@@ -1,0 +1,41 @@
+# phoenix-delayed-rebuild, arch, 20 October 2026. Run by Claude at Leo's
+# request, in bash. Verbatim, with E for Speciale2026/experiments, O for
+# the private data folder of the reference release (14/10), N for this
+# run's private data folder and D for this folder.
+
+# The environment, 16:00 (D/environment.txt):
+/private/tmp/rb1-sdk-run2/dotnet --version; /private/tmp/rb1-sdk-run2/dotnet --list-runtimes | grep NETCore.App
+/private/tmp/rb1-node22/bin/node --version; sha256sum /private/tmp/rb1-tools/zip
+DOCKER_CONFIG=/private/tmp/rb1-docker docker buildx inspect rb1 --bootstrap   # BuildKit version: v0.33.1
+docker inspect buildx_buildkit_rb10 --format '{{.Config.Image}} {{.Image}}'; docker image inspect ws-signing:rb-ref6 --format '{{.Id}}'
+ls /tmp/dch   # gone: the NuGet cache starts empty
+
+# The run folder, 16:01: the release's artifacts of 14/10 linked in as ci/,
+# the published SHA256SUMS among them (O/ci/sha256sums):
+mkdir -p $N && ln -sfn $O/ci $N/ci
+
+# The rebuild, all six jobs, 16:01:
+OUT=$N DOTNET_DIR=/private/tmp/rb1-sdk-run2 REPO=/private/tmp/rb1-ci/src DOCKER_CONFIG=/private/tmp/rb1-docker $E/phoenix-rt/ci-local.sh v0.0.0-thesis.6 > $N/ci-local.log 2>&1
+
+# The comparison with the release's artifacts, 16:19 (D/results.txt):
+cd /private/tmp && SIGNED=azure CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-ref6 DOCKER_CONFIG=/private/tmp/rb1-docker $E/phoenix-rt/ci-compare.sh $N v0.0.0-thesis.6 > $N/compare.txt 2>&1
+
+# The images against GHCR, and against the rebuild of 14/10, 16:21:
+for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do GH_TOKEN=$(gh auth token) timeout 120 python3 $E/phoenix-rt/ghcr-manifests.py weel-sandvig/$n v0.0.0-thesis.6 $N/local/images/$n.oci.tar; done > $N/images-ghcr.txt 2>&1
+for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do python3 $E/phoenix-rt/oci-diff.py $O/local/images/$n.oci.tar $N/local/images/$n.oci.tar > $N/$n-vs-1014.txt 2>&1; done
+
+# Whether Debian's archive moved, 16:27: the release file each date resolves
+# to on snapshot.debian.org (same file name = same content):
+for a in debian debian-security; do for ts in 20261020T120000Z 20261014T090000Z 20260101T000000Z; do s=$([ $a = debian ] && echo bookworm || echo bookworm-security); curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' -I "http://snapshot.debian.org/archive/$a/$ts/dists/$s/InRelease"; done; done
+#   debian bookworm: 20261020T120000Z and 20261014T090000Z -> file/736a99b8b096598d48c438eb356bd074fecfbf23; 20260101T000000Z -> file/cae9c5d7f778a8bd33f2885a4697fae62ebe86e1
+#   debian-security bookworm-security: 20261020T120000Z -> file/3c62d987d66f67a5a78a8bd2bd839256760411b1; 20261014T090000Z -> file/5377dcc5d4bf1c75698c20136b60e316ac3782d4; 20260101T000000Z -> file/ebddb11d37a6aa9b2b6426dab7ad0e415c43a48a
+
+# Where the MCP server image's canvas binary comes from, 16:24-16:29: the
+# install script, the release asset's digest on GitHub, the asset itself
+# against the image's canvas/build (SC is a scratch folder):
+gh api repos/Automattic/node-canvas/releases/tags/v3.1.2 --jq '.assets[] | "\(.name)\t\(.size)\t\(.digest)"'
+curl -fsSL -o $SC/canvas-v3.1.2-napi-v7-linux-x64.tar.gz https://github.com/Automattic/node-canvas/releases/download/v3.1.2/canvas-v3.1.2-napi-v7-linux-x64.tar.gz && sha256sum $SC/canvas-v3.1.2-napi-v7-linux-x64.tar.gz
+#   4b0c6d817737346b03bc5af96d5e6536bacecbc4e5e15e0b34aa586470a7889f, GitHub's digest too
+# The asset's 30 files, unpacked and hashed, equal the 30 files under
+# app/server/node_modules/canvas/build in the image's layer 8, read with
+# Python's tarfile from N/local/images/wspems-mcp-server.oci.tar.

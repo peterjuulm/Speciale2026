@@ -64,3 +64,64 @@ Written 16:00.
 ## Commands
 
 Verbatim in `data/2026-10-20-phoenix-delayed-rebuild/arch/kommando.txt`.
+
+## Result
+
+`[V]` (`results.txt` and `environment.txt` in the data folder; the
+rebuild, its logs and the comparisons in private data). All six jobs ran
+16:01-16:18, 17 minutes.
+
+1. Held. All six jobs passed, and the locked restore filled the empty
+   NuGet cache from nuget.org.
+2. Held. Byte for byte: the frontend export (994 files), both Linux zips,
+   the Linux migrator and the SQL script; with the release's signatures
+   pasted (2130 files, 114 folders), both Windows zips and the Windows
+   migrator; and a `SHA256SUMS` made from the rebuilt files equals the
+   published one. `ci-compare.sh`: 0 differ or failed.
+3. Held. The `linux/amd64` manifests of `ws-pems` and
+   `ws-pems-job-worker` equal GHCR's.
+4. Held for all three MCP images, against the expectation's doubt about
+   `wspems-mcp-server`: each manifest equals GHCR's, and each layer
+   equals the rebuild of 14/10's. Debian changed none of the packages they
+   install in the six days. On snapshot.debian.org, `bookworm`'s release
+   file is the same file on 14/10 and 20/10; `bookworm-security`'s
+   changed, but in packages these images do not install.
+
+Found while checking where the MCP server image's files come from: its
+canvas binary is downloaded at build time, without a checksum (W68). It
+was the same file both days. See
+[phoenix-mcp-pins](2026-10-20-phoenix-mcp-pins.md).
+
+## Interpretation
+
+**Six days, a reboot and an empty NuGet cache change nothing.** `[V]`
+for this release. What the branch pins by hash or digest came back the
+same: the SDK, the lock files' packages, the base images.
+
+**The one input that can move did not, this time.** `[I]` Debian's main
+archive took no update for `bookworm` in the window, and the security
+updates that came missed the images' packages. That is the timing, not
+the build: a point release, or a security fix to cairo, pango or librsvg,
+changes the MCP server image, and `ca-certificates` all three (W67).
+
+**The test is weak where nothing moved.** `[I]` A delayed rebuild shows
+time-dependence only when the world changes in between. Here the
+inputs that can change stayed put, so this run cannot tell a pinned input
+from a lucky one. The pins note tests the Debian input directly, with an
+older snapshot.
+
+## Caveats
+
+- One machine, the same tools on purpose (`environment.txt`). It does
+  not show a rebuild on another machine after a delay.
+- The frontend installed from the npm cache of 14/10, offline, so npm's
+  registry was not asked again. The MCP images' `npm ci` runs with a
+  BuildKit cache mount, which `--no-cache` does not empty, so their
+  packages may have come from the builder's cache of 14/10 too `[I]`.
+- Six days is short against Debian's update rhythm.
+
+## Not tested
+
+- A rebuild with every cache empty, BuildKit's cache mounts included.
+- A rebuild with the network limited to an archive of the inputs.
+- A rebuild after a Debian point release.
