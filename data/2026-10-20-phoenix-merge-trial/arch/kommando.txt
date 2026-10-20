@@ -1,0 +1,25 @@
+# phoenix-merge-trial, arch, 20 October 2026. Run by Claude at Leo's
+# request, in bash. Verbatim, with W for the WS worktree of the branch, T
+# for the scratch clone (/private/tmp/rb1-merge-trial), E for
+# Speciale2026/experiments and M for this run's private data folder.
+
+# The merge, 16:50: the trial merge of 16:39 (a2f3dbfa: f073bf5e4 and main,
+# the conflicts resolved by hand) with the branch's two new commits merged
+# in, which conflicted nowhere; then one merge commit with the branch head
+# and main as parents and that tree.
+git -C $T fetch -q origin thesis/reproducible-builds:refs/remotes/origin/thesis/reproducible-builds
+git -C $T checkout -q -B trial2 a2f3dbfa && git -C $T merge --no-edit -q origin/thesis/reproducible-builds
+c=$(git -C $T commit-tree "$(git -C $T rev-parse 'trial2^{tree}')" -p 56e4b482 -p c87b2555 -m "Merge main into thesis/reproducible-builds (trial 2, 20 Oct)")
+git -C $T checkout -q -B trial2 $c && git -C $T tag -f v0.0.0-merge-trial.2 $c
+
+# Two runs of all six jobs, one after the other (M/run.sh):
+for r in run1 run2; do
+  OUT=$M/$r DOTNET_DIR=/private/tmp/rb1-sdk-run2 REPO=$T DOCKER_CONFIG=/private/tmp/rb1-docker \
+    $E/phoenix-rt/ci-local.sh v0.0.0-merge-trial.2 > $M/$r.log 2>&1
+done
+
+# The comparison: every output file but the logs and the image tars by
+# SHA-256, and the images by manifest and layer:
+(cd $M/$r/local && find . -type f ! -name '*.log' ! -name '*.oci.tar' -print0 | sort -z | xargs -0 sha256sum) > $M/$r-files.sha256
+diff $M/run1-files.sha256 $M/run2-files.sha256
+python3 $E/phoenix-rt/oci-diff.py $M/run1/local/images/$n.oci.tar $M/run2/local/images/$n.oci.tar
