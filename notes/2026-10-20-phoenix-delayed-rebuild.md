@@ -95,8 +95,9 @@ was the same file both days. See
 ## Interpretation
 
 **Six days, a reboot and an empty NuGet cache change nothing.** `[V]`
-for this release. What the branch pins by hash or digest came back the
-same: the SDK, the lock files' packages, the base images.
+for this release. What the branch pins came back the same: the lock
+files' packages by hash and the base images by digest. The SDK was the
+same folder on disk, not a new download.
 
 **The one input that can move did not, this time.** `[I]` Debian's main
 archive took no update for `bookworm` in the window, and the security
@@ -115,9 +116,15 @@ older snapshot.
 - One machine, the same tools on purpose (`environment.txt`). It does
   not show a rebuild on another machine after a delay.
 - The frontend installed from the npm cache of 14/10, offline, so npm's
-  registry was not asked again. The MCP images' `npm ci` runs with a
-  BuildKit cache mount, which `--no-cache` does not empty, so their
-  packages may have come from the builder's cache of 14/10 too `[I]`.
+  registry was not asked again. The MCP server's and chat server's
+  `npm ci` run with a BuildKit cache mount, which `--no-cache` does not
+  empty, so their packages may have come from the builder's cache of
+  14/10 too `[I]`; the broker's runs without one.
+- The expectation's "every package is pinned by its hash" says too much.
+  The runtime packs come through `PackageDownload`, which the lock files
+  do not record (W21), `dotnet-ef` is named by version only, and the SDK
+  installer takes its archive's hash from Microsoft's live release
+  metadata. Found by Codex's check the same evening.
 - Six days is short against Debian's update rhythm.
 
 ## Not tested

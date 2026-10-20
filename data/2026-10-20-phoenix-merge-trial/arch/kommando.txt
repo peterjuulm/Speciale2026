@@ -23,3 +23,14 @@ done
 (cd $M/$r/local && find . -type f ! -name '*.log' ! -name '*.oci.tar' -print0 | sort -z | xargs -0 sha256sum) > $M/$r-files.sha256
 diff $M/run1-files.sha256 $M/run2-files.sha256
 python3 $E/phoenix-rt/oci-diff.py $M/run1/local/images/$n.oci.tar $M/run2/local/images/$n.oci.tar
+
+# CI's .NET steps on the merge, 17:34, as on 13/10 for 79cb67a7 (M/ci-check.sh).
+# A lab from git archive, an empty home folder, then the private repo's
+# code/net10-probe/stage.sh (restore, Release build, the three test tiers
+# with CI's filters, dotnet tool restore, dotnet ef migrations
+# has-pending-model-changes):
+L=/private/tmp/rb1-trial-lab/x SH=/private/tmp/rb1-trial-home
+rm -rf /private/tmp/rb1-trial-lab $SH && mkdir -p $L $SH && git -C $T archive 7e90bad9 -- . ':(exclude).claude' | tar -x -C $L
+python3 $E/labcheck.py $T 7e90bad9 $L | tail -1
+HOME=$SH GITHUB_ACTIONS=true OUT=$M/ci-check-7e90bad9 bash stage.sh $L /private/tmp/rb1-sdk-run2/dotnet ci-7e90bad9
+docker ps -a --filter label=org.testcontainers=true -q | wc -l   # before and after the check

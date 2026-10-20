@@ -1,0 +1,77 @@
+# phoenix-merge-trial, arch, 20 October 2026. The outputs of the commands in kommando.txt.
+
+# ci-local.sh, run 1 and run 2 (M/run1.log, M/run2.log; M/run.out):
+run1 frontend start 16:57:52
+run1 frontend exit 0 17:01:08
+run1 linux start 17:01:08
+run1 linux exit 0 17:03:14
+run1 windows start 17:03:14
+run1 windows exit 0 17:04:45
+run1 migrator start 17:04:45
+run1 migrator exit 0 17:05:22
+run1 sql start 17:05:22
+run1 sql exit 0 17:06:40
+run1 images start 17:06:40
+run1 images exit 0 17:14:18
+run2 frontend start 17:14:18
+run2 frontend exit 0 17:17:21
+run2 linux start 17:17:21
+run2 linux exit 0 17:19:22
+run2 windows start 17:19:22
+run2 windows exit 0 17:20:47
+run2 migrator start 17:20:47
+run2 migrator exit 0 17:21:26
+run2 sql start 17:21:26
+run2 sql exit 0 17:22:41
+run2 images start 17:22:41
+run2 images exit 0 17:32:55
+run1 exit 0 17:14:18
+run2 exit 0 17:32:55
+
+# Every output file but the logs and image tars, run 1 against run 2:
+files: 1002 / 1002; differing lines: 0
+995 files of the frontend export, the four zips, both migrators and the SQL script; the Windows outputs unsigned. Not in the frontend export:
+8c0e2ce260fb483773fc8ae2e1cf8d98b5a7c5c2ae8b09c009b0514098b5b586  linux/ws-pems-job-worker-linux-x64-v0.0.0-merge-trial.2.zip
+c6e6328fafa1f56d754d6a3619e1a8c6ed964de4020df79c0cb3dc916984cf11  linux/ws-pems-linux-x64-v0.0.0-merge-trial.2.zip
+bc793144cfb050044e7a48b4c8f0330a1883db8cc591061b945b44474378da80  migrator/bootstrap-postgresql-v0.0.0-merge-trial.2.sql
+02033dcca4b500b1a6eec80050ead6a8968ed589fecc380fe0eee8b3b1e309e4  migrator/ws-pems-db-migrator-linux-x64-v0.0.0-merge-trial.2
+9ef9c164a76e226c64e66529d76e8c388c97a4c4782b5fd7c6ef9a0392bb22b2  windows/ws-pems-db-migrator-win-x64-v0.0.0-merge-trial.2.exe
+93138d5cfa0667bfa60fe870a5ac5e94bd14d05554cd34785668c7d025061277  windows/ws-pems-job-worker-win-x64-v0.0.0-merge-trial.2.zip
+3fefc43bd658b402414e35efd2e404e8a02efc0daa0af8d22c7081f4b81c6685  windows/ws-pems-win-x64-v0.0.0-merge-trial.2.zip
+
+# The five images, run 1 against run 2 (oci-diff.py, first three lines each):
+ws-pems:
+  manifest same: sha256:eb4e7b89daf7bec7d778e55738b588742773045826a8e05372664d22e6e5ddae
+  config same
+  layers 10: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], differ []
+ws-pems-job-worker:
+  manifest same: sha256:609119aeb8d96601abbbd09940b24b5848dc6d733761306ee06399239b45dfad
+  config same
+  layers 9: same [0, 1, 2, 3, 4, 5, 6, 7, 8], differ []
+wspems-mcp-server:
+  manifest same: sha256:52bc99e70ff1d7a643472c520cc39d385d1844fcdd13d47ae3d6a744a8a625ea
+  config same
+  layers 15: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], differ []
+wspems-chat-server:
+  manifest same: sha256:a0e2a97095cc06e5f1e18a961e0ee1e669f1a12febbc42f86a297e62a1a8ed70
+  config same
+  layers 12: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], differ []
+wspems-mcp-auth-broker:
+  manifest same: sha256:6d9bc00678683f228efe7a2c5a06b57cc94e7273a566c2c645662112e08ba972
+  config same
+  layers 11: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], differ []
+
+# CI's .NET steps on the merge (M/ci-check.out, M/ci-check-7e90bad9/info.txt):
+5780 files in commit, 5780 in lab: 0 missing, 0 differing, 0 extra
+restore 0 17:34:24
+build 0 17:36:32
+test-UnitTests 0 17:36:59
+test-IntegrationTests 0 18:02:48
+test-FunctionalTests 0 18:05:20
+tool 0 18:05:20
+ef 0 18:07:02
+done 2026-10-20T18:07:03+02:00
+UnitTests: Failed: 0, Passed: 4731, Skipped: 44, Total: 4775
+IntegrationTests: Failed: 0, Passed: 812, Skipped: 25, Total: 837
+FunctionalTests: Failed: 0, Passed: 159, Skipped: 5, Total: 164
+Testcontainers containers left after the run: 0 (docker ps -a --filter label=org.testcontainers=true)

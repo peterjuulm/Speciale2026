@@ -38,9 +38,14 @@ date of the Debian archive decide the packages?
   `v0.0.0-thesis.6`'s commit time (1791961346), so their layers can be set
   against the same day's rebuild of that tag.
 
-## Expectation, written before the runs
+## Expectation
 
-Written 16:40.
+Written 16:40, while the rounds ran (16:33-16:41), and not all of it
+before the results. The comparison files' times show P1 compared with the
+unpinned build at 16:36 and with P2 at 16:39, so items 1, 2 and 4 were
+written knowing those results. Only item 3 came before its comparison,
+at 16:41. (Corrected the same evening, after Codex's check of the note;
+the heading said "written before the runs".)
 
 1. P1, the snapshot of `20261020T000000Z`: every layer of each image
    equals the layer of the same day's unpinned build. The configs differ

@@ -5,12 +5,22 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 20 October 2026, 16:01-16:57, the reference release rebuilt six
-days later and the MCP images' Debian packages and canvas binary pinned, on
-`arch` (W67, W68). Last edit: 20 October 2026, 17:05. Also 12/10: the frontend lock's hashes filled
+Last run: 20 October 2026, 16:01-18:07, the reference release rebuilt six
+days later, the MCP images' Debian packages and canvas binary pinned
+(W67, W68), and a trial merge of main built twice and tested, on `arch`.
+Last edit: 20 October 2026, 18:13. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 20/10 16:58-18:07
+([phoenix-merge-trial](2026-10-20-phoenix-merge-trial.md)): main merged
+into the branch again, as a trial in a scratch clone, not pushed. Main's
+48 commits since 9/10 conflicted only in the build and release setup,
+21 hunks in six files. Built twice with all six release jobs, every
+output came out the same, 1002 files and five images. CI's .NET steps
+passed on .NET 10, 4731 unit, 812 integration and 159 functional tests,
+none failed. The real merge waits for Leo's decisions, the SDK first.
 
 On `arch`, 20/10 16:01-16:57
 ([phoenix-delayed-rebuild](2026-10-20-phoenix-delayed-rebuild.md),
