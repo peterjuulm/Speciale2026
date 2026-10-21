@@ -135,8 +135,9 @@ def build(r, name, src, work, sdk, out):
             if 'csc.dll' in files and root.endswith(os.path.join('Roslyn', 'bincore')):
                 csc = os.path.join(root, 'csc.dll')
                 data = open(csc, 'rb').read()
-                v = re.search(rb'\d+\.\d+\.\d+-[0-9.]+\+[0-9a-f]{40}', data)
-                log.write(f'csc.dll {v.group().decode() if v else "version not found"}, '
+                # the informational version's attribute blob: prolog 01 00, a length byte, the string
+                v = re.search(rb'\x01\x00.(\d+\.\d+\.\d+-[0-9.]+\+[0-9a-f]{40})', data, re.S)
+                log.write(f'csc.dll {v.group(1).decode() if v else "version not found"}, '
                           f'sha256 {hashlib.sha256(data).hexdigest()} ({csc})\n')
         log.write(f'--- build {now()}\n')
         run(log, ['dotnet', 'build-server', 'shutdown'], env, src)
@@ -179,6 +180,8 @@ def main():
     sdk = os.path.join(work, 'sdk')
     with open(os.path.join(out, 'sdk.txt'), 'w', encoding='utf-8') as log:
         must(log, [sys.executable, '-I', os.path.join(HERE, 'install-sdk.py'), r['sdk'], sdk])
+        for rt in r.get('runtimes', []):   # runtimes the CI image had, for the tests
+            must(log, [sys.executable, '-I', os.path.join(HERE, 'install-sdk.py'), '--runtime', rt, sdk])
 
     results = {}
     for name, src in (('A', r.get('clone_dir') or os.path.join(work, 'A', 'src')), ('B', os.path.join(work, 'B', 'src'))):

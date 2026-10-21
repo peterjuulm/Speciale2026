@@ -18,6 +18,10 @@ repo = "https://github.com/HangfireIO/Cronos.git"
 commit = "14ca2b146d55f8d16a36eded60a74425b1b00f51"
 clone_dir = 'C:\projects\cronos'
 sdk = "9.0.100"
+# The tests (psake's Pack task depends on them) target netcoreapp3.1 too, and
+# fail without that runtime (first run, 21/10). The AppVeyor image had it,
+# since the release build ran the same tests there; 3.1.32 is the last 3.1.
+runtimes = ["3.1.32"]
 shell = "cmd"
 build = "build.bat"
 packages = "build"
