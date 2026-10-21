@@ -31,6 +31,12 @@ RUNNER_*, ACTIONS_*, DOTNET_*, NUGET_*, CI), with no other dotnet on PATH;
 the recipe's [env] then sets the CI variables the package's own CI had. In
 [env] values, {src} stands for the clone's directory.
 
+Every build gets NuGetAudit=false. The audit checks the restored packages
+against today's advisory database, so an advisory published after the
+release can fail a restore that passed at the time (Serilog 4.2.0's tests on
+Windows, 21/10: NU1902/NU1903 as errors). The audit only warns or fails; it
+does not change what is compiled.
+
 Written 21 October 2026 for the nupkg test. For new builds it replaces
 build.sh, which built the pilot's Serilog builds A to D on arch.
 """
@@ -75,7 +81,7 @@ def build_env(r, sdk, home, nuget, src):
                    NUGET_HTTP_CACHE_PATH=os.path.join(home, 'nuget-http-cache'))
     else:
         env = {'HOME': home, 'PATH': f'{sdk}:/usr/bin', 'LANG': 'C.UTF-8'}
-    env.update(NUGET_PACKAGES=nuget, DOTNET_CLI_TELEMETRY_OPTOUT='1', DOTNET_NOLOGO='1')
+    env.update(NUGET_PACKAGES=nuget, DOTNET_CLI_TELEMETRY_OPTOUT='1', DOTNET_NOLOGO='1', NuGetAudit='false')
     env.update({k: str(v).replace('{src}', src) for k, v in r.get('env', {}).items()})
     return env
 
