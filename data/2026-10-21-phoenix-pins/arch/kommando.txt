@@ -1,0 +1,110 @@
+# phoenix-pins, arch, 21 October 2026. Run by Claude at Leo's request, in
+# bash, one step after the other. Verbatim: the private run script
+# (speciale-2026/data/phoenix-pins/arch-2026-10-21/run.sh), its output
+# folder P private. W is the WS worktree of the branch, L the scratch lab,
+# E Speciale2026/experiments/phoenix-rt. The test scripts and ci-local.sh
+# are in E at the commit of this file.
+# The branch's pins of 21 October 2026, checked at the head that will be
+# pushed: the light checks, ci-local.sh twice, the frontend with install
+# scripts, the MCP images at P4's clock, the signing image, the MCP tests
+# a year ahead, and the dev container. One heavy step at a time.
+set -u
+E=/home/leos/Dev/Speciale2026/experiments/phoenix-rt P=/home/leos/Dev/speciale-2026/data/phoenix-pins/arch-2026-10-21
+W=/home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro L=/private/tmp/rb1-pins
+export DOCKER_CONFIG=/private/tmp/rb1-docker
+HEAD=$(git -C $W rev-parse HEAD) TAG=v0.0.0-pins.1 EPOCH_P4=1791961346
+NODE=/private/tmp/rb1-node22 SDK=/private/tmp/rb1-sdk-run2
+step() { echo "$1 $2 $(date +%T)"; }
+
+step setup start
+rm -rf $L && mkdir -p $L
+git clone -q --no-checkout file://$W $L/repo && git -C $L/repo tag $TAG $HEAD
+git clone -q file://$W $L/head && git -C $L/head checkout -q --detach $HEAD
+git clone -q file://$W $L/main && git -C $L/main checkout -q --detach c87b2555d
+echo "head $HEAD, tag $TAG in $L/repo; main c87b2555d"
+{ echo "# arch, $(date -Is)"; uname -r
+  echo "head $HEAD, tag $TAG (scratch clone only), main c87b2555d"
+  echo "ci-local.sh at $(git -C /home/leos/Dev/Speciale2026 log -1 --format=%h -- experiments/phoenix-rt/ci-local.sh) + worktree: $(sha256sum $E/ci-local.sh | cut -c1-16)"
+  echo "SDK: $($SDK/dotnet --version), runtimes: $($SDK/dotnet --list-runtimes | awk '{print $1, $2}' | tr '\n' ' ')"
+  echo "Node: $($NODE/bin/node --version), npm $($NODE/bin/npm --version 2>/dev/null)"
+  echo "python3: $(python3 --version 2>&1)"
+  docker version --format 'docker client {{.Client.Version}}, server {{.Server.Version}}'
+  docker buildx version
+  docker buildx inspect rb1 --bootstrap | grep -E 'BuildKit version|Driver:'
+  echo "rb1's container image: $(docker inspect buildx_buildkit_rb10 --format '{{.Image}}')"
+  sha256sum /private/tmp/rb1-tools/zip
+} > $P/environment.txt 2>&1
+step setup end
+
+step light start
+(cd $L/head && /private/tmp/rb1-actionlint/actionlint; echo "actionlint exit $?") > $P/actionlint.txt 2>&1
+rm -rf /private/tmp/rb1-docs/y && mkdir -p /private/tmp/rb1-docs/y && git -C $W archive $HEAD | tar -x -C /private/tmp/rb1-docs/y \
+  && cp -al /private/tmp/rb1-docs/x/docs/node_modules /private/tmp/rb1-docs/y/docs/node_modules \
+  && (cd /private/tmp/rb1-docs/y/docs && PATH=$NODE/bin:/usr/bin npm run check:deps; echo "check:deps exit $?") > $P/check-deps.txt 2>&1
+W=$L/head LOG=$P/installer-tests.txt $E/installer-lock-tests.sh > /dev/null 2>&1
+W=$L/head C=/private/tmp/rb1-ci/sql SDK=$SDK HOME_USED=/tmp/dch LOG=$P/nuget-tests.txt $E/nuget-check-tests.sh > /dev/null 2>&1
+step light end
+
+for r in run1 run2; do
+  step $r start
+  OUT=$P/$r DOTNET_DIR=$SDK REPO=$L/repo $E/ci-local.sh $TAG > $P/$r.log 2>&1
+  step "$r exit $?" end
+done
+for r in run1 run2; do
+  (cd $P/$r/local && find . -type f ! -name '*.log' ! -name '*.oci.tar' -print0 | sort -z | xargs -0 sha256sum) > $P/$r-files.sha256
+done
+echo "files: $(wc -l < $P/run1-files.sha256) / $(wc -l < $P/run2-files.sha256); differing lines: $(diff $P/run1-files.sha256 $P/run2-files.sha256 | grep -c '^[<>]')"
+for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do
+  python3 $E/oci-diff.py $P/run1/local/images/$n.oci.tar $P/run2/local/images/$n.oci.tar > $P/$n-run1-vs-run2.txt 2>&1
+  echo "$n: $(head -3 $P/$n-run1-vs-run2.txt | tr '\n' ' ')"
+done
+for r in run1 run2; do for j in linux windows migrator sql; do
+  echo "$r $j NuGet check: $(grep -c -E '^ok ' $P/$r/local/$j.log) ok, $(grep -c -E '^not restored' $P/$r/local/$j.log) not restored, $(grep -c '::error' $P/$r/local/$j.log) errors"
+done; done
+for r in run1 run2; do echo "$r frontend: $(grep -E '^@next/swc' $P/$r/local/frontend.log)"; done
+
+step frontend-with-scripts start
+F=/private/tmp/rb1-ci/frontend-scripts && rm -rf $F && git clone -q --depth 1 --branch $TAG file://$L/repo $F \
+  && (cd $F/src/WebAPI/ClientApp && env -i HOME=/tmp/dch USER=$USER PATH=$NODE/bin:/usr/bin CI=true npm_config_cache=/private/tmp/rb1-npm \
+      npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1 NEXT_DISABLE_SWC_WASM=1 NEXT_IGNORE_INCORRECT_LOCKFILE=1 APP_VERSION=$TAG \
+      sh -c 'npm ci --offline --no-audit --no-fund && npm run build') > $P/frontend-with-scripts.log 2>&1
+step "frontend-with-scripts exit $?" end
+(cd $F/src/WebAPI/ClientApp/out && find . -type f -print0 | sort -z | xargs -0 sha256sum) > $P/frontend-with-scripts.sha256
+(cd $P/run1/local/frontend-out && find . -type f -print0 | sort -z | xargs -0 sha256sum) > $P/frontend-run1.sha256
+echo "export with scripts vs run1: $(wc -l < $P/frontend-with-scripts.sha256) / $(wc -l < $P/frontend-run1.sha256) files, differing lines: $(diff $P/frontend-with-scripts.sha256 $P/frontend-run1.sha256 | grep -c '^[<>]')"
+
+step mcp-p4-clock start
+mkdir -p $P/mcp
+build() {  # name, Dockerfile, context, extra arguments: as P4 built them
+  local n=$1 f=$2 ctx=$3; shift 3
+  env SOURCE_DATE_EPOCH=$EPOCH_P4 docker buildx build --builder rb1 --no-cache --provenance=false -f $L/head/$f "$@" \
+    --output "type=oci,dest=$P/mcp/$n.oci.tar,rewrite-timestamp=true" $L/head/$ctx > $P/mcp/$n.log 2>&1
+  echo "$n exit $? $(date +%T)"
+}
+build wspems-mcp-server mcp/Dockerfile mcp
+build wspems-chat-server mcp/chat-server/Dockerfile mcp
+build wspems-mcp-auth-broker mcp/auth-broker/Dockerfile mcp/auth-broker
+for n in wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do
+  python3 $E/oci-diff.py /home/leos/Dev/speciale-2026/data/phoenix-mcp-pins/arch-2026-10-20/P4/$n.oci.tar $P/mcp/$n.oci.tar > $P/mcp/$n-P4-vs-head.txt 2>&1
+  echo "$n vs P4: $(head -3 $P/mcp/$n-P4-vs-head.txt | tr '\n' ' ')"
+done
+build broker-wrong-hash mcp/auth-broker/Dockerfile mcp/auth-broker --build-arg DEBIAN_BOOKWORM_SECURITY_SHA256=$(printf '0%.0s' $(seq 64))
+build broker-14-oct mcp/auth-broker/Dockerfile mcp/auth-broker --build-arg DEBIAN_SNAPSHOT=20261014T090000Z
+for n in broker-wrong-hash broker-14-oct; do echo "$n:"; grep -E 'InRelease: |sha256sum: WARNING' $P/mcp/$n.log | sed 's/^#[0-9]* [0-9.]* /  /'; done
+step mcp-p4-clock end
+
+step signing start
+docker build --no-cache -t ws-signing:pins-1 $L/head/deployment/signing > $P/signing.log 2>&1
+echo "signing image exit $?"
+docker run --rm --entrypoint sh ws-signing:pins-1 -c 'dpkg-query -W -f "\${Package} \${Version}\n" osslsigncode openjdk-21-jre-headless python3 curl ca-certificates; cat /etc/apt/sources.list.d/ubuntu.sources | grep URIs' > $P/signing-packages.txt 2>&1
+cat $P/signing-packages.txt
+step signing end
+
+step faketime start
+C=$L/head OUT=$P/faketime SHIFT=+365d $E/faketime-tests.sh
+step faketime end
+
+step devcontainer start
+C=$L/head M=$L/main OUT=$P/devcontainer $E/devcontainer-test.sh > $P/devcontainer.txt 2>&1
+cat $P/devcontainer.txt
+step devcontainer end

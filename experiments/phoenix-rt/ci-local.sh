@@ -42,6 +42,14 @@
 # report exit 0). The frontend job removes the previous export before it
 # builds, so a failed build cannot leave an older export for the jobs after
 # it; jobs run without frontend still reuse the export that is there.
+#
+# Changed 21 October: each job follows its tag's own workflow where the
+# branch changed it. The frontend runs npm ci with --ignore-scripts and
+# Next's two switches when the tag's frontend workflow does, and the .NET
+# jobs run verify-nuget-downloads.py after their restores when the tag
+# has it (from 12cb488e3). The sql job gives the CLI a home of its own and
+# checks the tools with --tools when the tag's migration job does (from
+# b3e0134ff).
 set -u
 OUT=${OUT:?set OUT to a private data folder}
 TAG=${1:?TAG} JOBS=${2:-frontend linux windows migrator sql images}
@@ -57,6 +65,9 @@ net=("${base[@]}" DOTNET_ROOT="$DN" PATH="$DN:/usr/local/bin:/usr/bin" DOTNET_CL
 clone() {  # a fresh shallow clone of TAG for one job, as actions/checkout makes it
   rm -rf "${ci:?}/$1"
   git clone -q --depth 1 --branch "$TAG" "file://$repo" "$ci/$1" 2> /dev/null && git -C "$ci/$1" remote set-url origin "$url"
+}
+check() {  # the NuGet check the tag's jobs run after restore, if the tag has it
+  [ ! -f scripts/verify-nuget-downloads.py ] || "${base[@]}" python3 scripts/verify-nuget-downloads.py "$@"
 }
 export_in() { rm -rf "$ci/$1/src/WebAPI/ClientApp/out" && cp -r "$L/frontend-out" "$ci/$1/src/WebAPI/ClientApp/out"; }
 epoch() { git -C "$ci/$1" log -1 --format=%ct; }
@@ -90,20 +101,23 @@ for job in $JOBS; do
   echo "$job start $(date +%T)"
   case $job in
     frontend)
-      rm -rf "$L/frontend-out" && clone frontend && ( cd "$ci/frontend/src/WebAPI/ClientApp" && "${base[@]}" PATH="$NODE/bin:/usr/bin" CI=true \
-          npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1 APP_VERSION="$TAG" \
-          sh -c 'npm ci --offline --no-audit --no-fund && npm run build' ) > "$L/frontend.log" 2>&1 \
+      rm -rf "$L/frontend-out" && clone frontend && scripts= next=() \
+        && if grep -q 'npm ci --ignore-scripts' "$ci/frontend/.github/workflows/00-reusable-frontend-build.yml"; then
+             scripts=--ignore-scripts next=(NEXT_DISABLE_SWC_WASM=1 NEXT_IGNORE_INCORRECT_LOCKFILE=1); fi \
+        && ( cd "$ci/frontend/src/WebAPI/ClientApp" && "${base[@]}" PATH="$NODE/bin:/usr/bin" CI=true \
+          npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1 APP_VERSION="$TAG" "${next[@]}" \
+          sh -c "npm ci $scripts --offline --no-audit --no-fund && npm run build" ) > "$L/frontend.log" 2>&1 \
         && cp -r "$ci/frontend/src/WebAPI/ClientApp/out" "$L/frontend-out" ;;
     linux)
       clone linux && export_in linux && ( cd "$ci/linux" \
-        && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
+        && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln && check \
         && "${net[@]}" LC_ALL=C.UTF-8 dotnet publish ./src/WebAPI/WebAPI.csproj -c Release -o ./release/ws-pems-linux-x64 -r linux-x64 --self-contained true --no-restore /p:SkipSpaBuild=true \
         && "${net[@]}" LC_ALL=C.UTF-8 dotnet publish ./src/BackgroundJobExecutor/BackgroundJobExecutor.csproj -c Release -o ./release/ws-pems-job-worker-linux-x64 -r linux-x64 --self-contained true --no-restore ) > "$L/linux.log" 2>&1 \
         && pack linux release ws-pems-linux-x64 ws-pems-job-worker-linux-x64 >> "$L/linux.log" 2>&1 \
         && mkdir -p "$L/linux" && cp "$ci/linux/release/"*.zip "$L/linux/" ;;
     windows)
       clone windows && export_in windows && ( cd "$ci/windows" \
-        && "${net[@]}" dotnet restore ./WS.Phoenix.sln \
+        && "${net[@]}" dotnet restore ./WS.Phoenix.sln && check \
         && "${net[@]}" dotnet publish src/WebAPI/WebAPI.csproj --configuration Release --output release/win/ws-pems-win-x64 --runtime win-x64 --self-contained true --no-restore -p:SkipSpaBuild=true \
         && "${net[@]}" dotnet publish src/BackgroundJobExecutor/BackgroundJobExecutor.csproj --configuration Release --output release/win/ws-pems-job-worker-win-x64 --runtime win-x64 --self-contained true --no-restore \
         && "${net[@]}" dotnet publish src/DbMigrator/DbMigrator.csproj --configuration Release --output publish/migrator-win --runtime win-x64 --self-contained true --no-restore \
@@ -112,14 +126,17 @@ for job in $JOBS; do
         && mkdir -p "$L/windows" && cp "$ci/windows/release/"*.zip "$ci/windows/release/win/"*.exe "$L/windows/" ;;
     migrator)
       clone migrator && ( cd "$ci/migrator" \
-        && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
+        && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln && check \
         && "${net[@]}" LC_ALL=C.UTF-8 dotnet publish ./src/DbMigrator/DbMigrator.csproj -c Release -o ./publish/migrator -r linux-x64 --self-contained true --no-restore ) > "$L/migrator.log" 2>&1 \
         && mkdir -p "$L/migrator" && cp "$ci/migrator/publish/migrator/ws-pems-db-migrator" "$L/migrator/ws-pems-db-migrator-linux-x64-$TAG" ;;
     sql)
-      clone sql && ( cd "$ci/sql" \
-        && "${net[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
-        && "${net[@]}" LC_ALL=C.UTF-8 dotnet tool restore \
-        && "${net[@]}" LC_ALL=C.UTF-8 dotnet ef migrations script --idempotent --configuration Release --context DatabaseContext \
+      clone sql && home=() flag= && rm -rf "$ci/sql-cli-home" \
+        && if grep -q 'DOTNET_CLI_HOME=$RUNNER_TEMP/dotnet-cli-home' "$ci/sql/.github/workflows/03-release.yml"; then
+             home=(NUGET_PACKAGES=/tmp/dch/.nuget/packages DOTNET_CLI_HOME="$ci/sql-cli-home") flag=--tools; fi \
+        && ( cd "$ci/sql" \
+        && "${net[@]}" "${home[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
+        && "${net[@]}" "${home[@]}" LC_ALL=C.UTF-8 dotnet tool restore && check $flag \
+        && "${net[@]}" "${home[@]}" LC_ALL=C.UTF-8 dotnet ef migrations script --idempotent --configuration Release --context DatabaseContext \
              -p src/Infrastructure/Infrastructure.csproj -s src/WebAPI/WebAPI.csproj -o "bundles/bootstrap-postgresql-$TAG.sql" ) > "$L/sql.log" 2>&1 \
         && mkdir -p "$L/migrator" && cp "$ci/sql/bundles/bootstrap-postgresql-$TAG.sql" "$L/migrator/" ;;
     images)
