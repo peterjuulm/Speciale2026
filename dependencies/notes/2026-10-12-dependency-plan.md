@@ -40,9 +40,10 @@ hash).
 
 Every package, with its category, is listed in `census.md`; every package left
 out, with its reason, in `left-out.md`. Both are in
-`dependencies/data/2026-10-13-dependency-census/mac/` but **not in git**: they name every
-package and version Phoenix ships, and this repo is public (decided 12/10).
-`kommando.txt` makes them again.
+`dependencies/data/2026-10-13-dependency-census/mac/`. From 12/10 they were
+kept out of git, as they name every package and version Phoenix ships and this
+repo is public. They are in git since 21/10, at Peter's request, so that Leo
+has them. `kommando.txt` makes them again.
 
 ## Where each package stands
 

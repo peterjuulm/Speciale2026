@@ -138,7 +138,8 @@ their PDBs are public.
 - **The owner rule is crude.** `Serilog.AspNetCore` and
   `Serilog.Extensions.Hosting` count as Microsoft because their authors
   include Microsoft.
-- **The lists and the PDBs are not in git.** `symbols.md` and `symbols.csv`
-  name packages and versions; the PDBs are bytes. Make them again with
-  `kommando.txt`. The 474 PDBs were kept in the session's scratch directory,
+- **The PDBs are not in git; the lists are since 21/10.** The PDBs are
+  bytes. `symbols.md` and `symbols.csv` name packages and versions and were
+  kept out of git until 21/10, when they were added at Peter's request.
+  `kommando.txt` makes them again. The 474 PDBs were kept in the session's scratch directory,
   which was emptied by 14/10; the nupkg test downloads them again.

@@ -170,5 +170,6 @@ discuss CI logs; leaving the logs out is our own decision.
   can have another one in a subfolder.
 - **The owner rule is crude.** `serilog-extensions-logging` counts as
   Microsoft because its authors include Microsoft.
-- **The lists are not in git** (`declared-env.md`, `declared-env.csv`), for the
-  same reason as the census lists. Make them again with `kommando.txt`.
+- **The lists were kept out of git until 21/10** (`declared-env.md`,
+  `declared-env.csv`), for the same reason as the census lists. They are in
+  git since 21/10, at Peter's request. `kommando.txt` makes them again.
