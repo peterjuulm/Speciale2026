@@ -1,0 +1,463 @@
+# phoenix-pins, arch, 21 October 2026. The outputs of the commands in kommando.txt; P is the private run folder.
+
+# The light checks (P/actionlint.txt, P/check-deps.txt):
+actionlint exit 0
+docs/docs/developer-guide/dependencies.md is up to date: 93 NuGet, 160 npm, 10 images.
+check:deps exit 0
+
+# The installer's tests at b3e0134ff (P/installer-tests.txt):
+10:29:24 installer at b3e0134f, sha256 5d14dde52b55a53f
+== L1 --record writes the committed lock again
+SDK 10.0.401 (runtime 10.0.12): 11 archives in /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json
+exit 0; equal to the committed lock: yes
+== L2 no cache: downloaded and checked
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+exit 0; runtimes: Microsoft.AspNetCore.App 10.0.12 Microsoft.NETCore.App 10.0.12 
+== L3 an empty cache filled, then a cache hit without network
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+exit 0
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz (cached)
+exit 0, offline; runtimes: Microsoft.AspNetCore.App 10.0.12 Microsoft.NETCore.App 10.0.12 
+urllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>
+exit 1, offline without the cache
+== L4 a corrupt cache entry is downloaded again
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+exit 0; the entry's sha512 now 51c8b999af9e8dd9, its name 51c8b999af9e8dd9
+== L5 a lock that does not fit
+global.json names SDK 10.0.401, /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json pins 10.0.400: run install-dotnet-sdk.py --record
+another version: exit 1
+/private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json has no archive for linux-x64
+no linux-x64 archive: exit 1
+/private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json: the linux-x64 archive's sha512 is not 128 hex digits
+a malformed hash: exit 1
+SHA-512 mismatch for https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz: 51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b, expected 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+another hash: exit 1
+the SDK in /private/tmp/rb1-sdk-tests-3/l5b carries runtime ['10.0.12'], /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json names 10.0.11
+another runtime: exit 1
+no /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json: run install-dotnet-sdk.py --record
+no lock: exit 1
+== L6 the action's step on a github-hosted runner
+exit 0; from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+tool cache: 
+== L6 the action's step on a self-hosted runner
+exit 0; from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+tool cache: 51c8b999af9e8dd9 
+10:30:16 done
+
+# The NuGet check's tests in run.sh (P/nuget-tests.txt). N1 ran on the trial merge's clone of 20 October, before ci-local.sh cloned the tag there:
+10:30:16 check at b3e0134f, clone at 7e90bad
+== N1 the clone as restored
+no /private/tmp/rb1-ci/sql/nuget-downloads.lock.json
+exit 1
+== N2 the copy as is
+ok  dotnet-format 5.1.250801 (tool)
+exit 0
+== N3 a runtime pack with another hash
+::error::Microsoft.NETCore.App.Runtime.linux-x64 10.0.12: /private/tmp/rb1-nuget-tests/pkgs/microsoft.netcore.app.runtime.linux-x64/10.0.12/microsoft.netcore.app.runtime.linux-x64.10.0.12.nupkg does not have the SHA-512 in nuget-downloads.lock.json
+exit 1
+== N4 a pack the lock does not name
+::error::Microsoft.NETCore.App.Host.win-x64 10.0.12 is not in nuget-downloads.lock.json: run verify-nuget-downloads.py --record
+exit 1
+== N5 a tool with another hash
+::error::the tool dotnet-ef 10.0.12: /private/tmp/rb1-nuget-tests/pkgs/dotnet-ef/10.0.12/dotnet-ef.10.0.12.nupkg does not have the SHA-512 in nuget-downloads.lock.json
+exit 1
+== N6 a tool not restored
+not restored  csharpier 0.29.2
+exit 0
+== N7 --tools with a tool not restored
+::error::the tool csharpier 0.29.2 is not in /private/tmp/rb1-nuget-tests/pkgs: tool restore took it from elsewhere, through the resolver cache of the CLI's home
+exit 1
+== N8 a lock but no restore
+no obj/project.assets.json under /private/tmp/rb1-nuget-tests/empty: run this after dotnet restore
+exit 1
+== N9 tool restore with a used CLI home, then with a new one
+used home: restore exit 0, package folder: 
+  dotnet-ef runs /tmp/dch/.nuget/packages/dotnet-ef/10.0.12/tools/net8.0/any/dotnet-ef.dll
+new home: restore exit 0, package folder: csharpier dotnet-ef dotnet-format 
+  dotnet-ef runs /private/tmp/rb1-nuget-tests/pk-new/dotnet-ef/10.0.12/tools/net8.0/any/dotnet-ef.dll
+10:30:25 done
+
+# ci-local.sh, run 1 and run 2 (P/run1.log, P/run2.log):
+run1 frontend start 10:30:25
+run1 frontend exit 0 10:33:30
+run1 linux start 10:33:30
+run1 linux exit 0 10:35:40
+run1 windows start 10:35:40
+run1 windows exit 0 10:37:17
+run1 migrator start 10:37:17
+run1 migrator exit 0 10:38:05
+run1 sql start 10:38:05
+run1 sql exit 0 10:39:30
+run1 images start 10:39:30
+run1 images exit 0 10:47:52
+run2 frontend start 10:47:52
+run2 frontend exit 0 10:53:29
+run2 linux start 10:53:29
+run2 linux exit 0 10:57:43
+run2 windows start 10:57:43
+run2 windows exit 0 11:00:29
+run2 migrator start 11:00:29
+run2 migrator exit 0 11:01:53
+run2 sql start 11:01:53
+run2 sql exit 0 11:04:17
+run2 images start 11:04:17
+run2 images exit 0 11:13:48
+run1 exit 0 end 10:47:52
+run2 exit 0 end 11:13:48
+
+# Every output file but the logs and image tars, run 1 against run 2:
+files: 1002 / 1002; differing lines: 0
+995 files of the frontend export, the four zips, both migrators and the SQL script; the Windows outputs unsigned. Not in the frontend export:
+336a4008ec83d51d72a99f27092d729dc256c63a730dfe24f75cc4dde6de1144  linux/ws-pems-job-worker-linux-x64-v0.0.0-pins.1.zip
+d9f2a5cc7896431dd20d4da6345e1aa11e5876f7400722e1eed15a898e95ade5  linux/ws-pems-linux-x64-v0.0.0-pins.1.zip
+bc793144cfb050044e7a48b4c8f0330a1883db8cc591061b945b44474378da80  migrator/bootstrap-postgresql-v0.0.0-pins.1.sql
+1550dcd309ebfaa95d380fc72d7bf0132ab497a64297e3e128966e14eca5b33e  migrator/ws-pems-db-migrator-linux-x64-v0.0.0-pins.1
+58475fd45f494741c47276c303d78c3d0d1a65f83dd3fce33fd05566d1d3a246  windows/ws-pems-db-migrator-win-x64-v0.0.0-pins.1.exe
+e264b318fde4bedb7befea0d91cd8bca8f2d158ae25d425ab9b7159fbb0d038d  windows/ws-pems-job-worker-win-x64-v0.0.0-pins.1.zip
+2cc32fc817025ae5dda089b6381bc9cc8f83b9772d925fe4c8d6b15a93e296dc  windows/ws-pems-win-x64-v0.0.0-pins.1.zip
+
+# The five images, run 1 against run 2 (oci-diff.py, first three lines each):
+ws-pems:
+  manifest same: sha256:5d4ee138ee9ad373d1319ad05258a41ddcd3973919fa4db4dfd9bbd2a36d4e91
+  config same
+  layers 10: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], differ []
+ws-pems-job-worker:
+  manifest same: sha256:89e61ec2571d19aca393f5a618ead26a34e312378363a29501a456f312470a19
+  config same
+  layers 9: same [0, 1, 2, 3, 4, 5, 6, 7, 8], differ []
+wspems-mcp-server:
+  manifest same: sha256:4588cf2c72235f8830174bffe541f72ed6c3d5b0fab8e3d4c57dc6a8e6024ccc
+  config same
+  layers 15: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], differ []
+wspems-chat-server:
+  manifest same: sha256:362d61481c10cbe44e175c43301807d3a41967a51445e550a030eab5ce43eb78
+  config same
+  layers 12: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], differ []
+wspems-mcp-auth-broker:
+  manifest same: sha256:8f8e4295b456667079facef77c353c80e44068cb4c02c7909f5effa0f2f089ca
+  config same
+  layers 11: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], differ []
+
+# The NuGet check in each .NET job, and the frontend's check of Next's compiler:
+run1 linux NuGet check: 8 ok, 0 not restored, 0 errors
+run1 windows NuGet check: 8 ok, 0 not restored, 0 errors
+run1 migrator NuGet check: 8 ok, 0 not restored, 0 errors
+run1 sql NuGet check: 8 ok, 0 not restored, 0 errors
+run2 linux NuGet check: 8 ok, 0 not restored, 0 errors
+run2 windows NuGet check: 8 ok, 0 not restored, 0 errors
+run2 migrator NuGet check: 8 ok, 0 not restored, 0 errors
+run2 sql NuGet check: 8 ok, 0 not restored, 0 errors
+run1 frontend: @next/swc-linux-x64-gnu 15.5.25
+run2 frontend: @next/swc-linux-x64-gnu 15.5.25
+
+# The frontend built with the install scripts, against run 1's export:
+frontend-with-scripts exit 0 end 11:17:17
+export with scripts vs run1: 995 / 995 files, differing lines: 0
+
+# The MCP images at P4's clock against P4 of 20 October (oci-diff.py of 21 October, which aligns the history; P4's entries -, the head's +):
+wspems-mcp-server exit 0 11:19:37
+wspems-chat-server exit 0 11:20:15
+wspems-mcp-auth-broker exit 0 11:20:29
+wspems-mcp-server:
+  manifest differ: sha256:1088cba9d7b764e685ec0715fb7346908e0bdf8b89bf982185aa81c9175117a9 / sha256:2e1c49d1d60b967226bfe40866705dc3ccf007f8b92b1040f92345919d8260
+  config differ: history
+  layers 15: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], differ []
+  index.json differs
+    config history, aligned:
+      10 the same
+      - RUN |1 DEBIAN_SNAPSHOT=20261020T000000Z /bin/sh -c ...
+      + ARG DEBIAN_BOOKWORM_SHA256 (empty layer)
+      + ARG DEBIAN_BOOKWORM_UPDATES_SHA256 (empty layer)
+      + ARG DEBIAN_BOOKWORM_SECURITY_SHA256 (empty layer)
+      + RUN |4 DEBIAN_SNAPSHOT=20261020T000000Z DEBIAN_BOOKWORM_SHA256=77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa DEBIAN_BOOKWORM_UPDATE
+      9 the same
+      - RUN |1 DEBIAN_SNAPSHOT=20261020T000000Z /bin/sh -c ...
+      + RUN |4 DEBIAN_SNAPSHOT=20261020T000000Z DEBIAN_BOOKWORM_SHA256=77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa DEBIAN_BOOKWORM_UPDATE
+      6 the same
+wspems-chat-server:
+  manifest differ: sha256:47295ff2331cdb193facdf64b1a5535bfe6f3f50d081420d788c978416a0b391 / sha256:0d0285069e3bf57dcf9729c0009e92f285d00891f40d19489331b032adfddf
+  config differ: history
+  layers 12: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], differ []
+  index.json differs
+    config history, aligned:
+      10 the same
+      - RUN |1 DEBIAN_SNAPSHOT=20261020T000000Z /bin/sh -c ...
+      + ARG DEBIAN_BOOKWORM_SHA256 (empty layer)
+      + ARG DEBIAN_BOOKWORM_UPDATES_SHA256 (empty layer)
+      + ARG DEBIAN_BOOKWORM_SECURITY_SHA256 (empty layer)
+      + RUN |4 DEBIAN_SNAPSHOT=20261020T000000Z DEBIAN_BOOKWORM_SHA256=77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa DEBIAN_BOOKWORM_UPDATE
+      6 the same
+      - RUN |1 DEBIAN_SNAPSHOT=20261020T000000Z /bin/sh -c ...
+      + RUN |4 DEBIAN_SNAPSHOT=20261020T000000Z DEBIAN_BOOKWORM_SHA256=77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa DEBIAN_BOOKWORM_UPDATE
+      5 the same
+wspems-mcp-auth-broker:
+  manifest differ: sha256:02cf6337908c11dd76becee0a403e6762cb82a713ff3a3dfa9335165b598b18e / sha256:de44d2cad03dd6cb2aedd24e1ac9b93419d41404db5e5d33bf0e4286913f40
+  config differ: history
+  layers 11: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], differ []
+  index.json differs
+    config history, aligned:
+      10 the same
+      - RUN |1 DEBIAN_SNAPSHOT=20261020T000000Z /bin/sh -c ...
+      + ARG DEBIAN_BOOKWORM_SHA256=77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa (empty layer)
+      + ARG DEBIAN_BOOKWORM_UPDATES_SHA256=fb5ccff7febeb90f812ca9aa7d8348acac1eeb53791e1c2c68661717b12fdd4c (empty layer)
+      + ARG DEBIAN_BOOKWORM_SECURITY_SHA256=debdb23d9224f88d20a26b1f9876ece2f3112edc94f37f1618bac2fe41f4408f (empty layer)
+      + RUN |4 DEBIAN_SNAPSHOT=20261020T000000Z DEBIAN_BOOKWORM_SHA256=77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa DEBIAN_BOOKWORM_UPDATE
+      3 the same
+      - RUN |1 DEBIAN_SNAPSHOT=20261020T000000Z /bin/sh -c ...
+      + RUN |4 DEBIAN_SNAPSHOT=20261020T000000Z DEBIAN_BOOKWORM_SHA256=77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa DEBIAN_BOOKWORM_UPDATE
+      7 the same
+
+# The broker with a broken pin (P/mcp/broker-*.log):
+broker-wrong-hash exit 1 11:20:32
+broker-14-oct exit 1 11:20:36
+broker-wrong-hash:
+  /var/lib/apt/lists/snapshot.debian.org_archive_debian_20261020T000000Z_dists_bookworm_InRelease: OK
+  /var/lib/apt/lists/snapshot.debian.org_archive_debian_20261020T000000Z_dists_bookworm-updates_InRelease: OK
+  /var/lib/apt/lists/snapshot.debian.org_archive_debian-security_20261020T000000Z_dists_bookworm-security_InRelease: FAILED
+  sha256sum: WARNING: 1 computed checksum did NOT match
+broker-14-oct:
+  /var/lib/apt/lists/snapshot.debian.org_archive_debian_20261014T090000Z_dists_bookworm_InRelease: OK
+  /var/lib/apt/lists/snapshot.debian.org_archive_debian_20261014T090000Z_dists_bookworm-updates_InRelease: FAILED
+  /var/lib/apt/lists/snapshot.debian.org_archive_debian-security_20261014T090000Z_dists_bookworm-security_InRelease: FAILED
+  sha256sum: WARNING: 2 computed checksums did NOT match
+
+# The signing image (P/signing.log, P/signing-packages.txt):
+signing image exit 0
+ca-certificates 20260601~26.04.1
+curl 8.18.0-1ubuntu2.8
+openjdk-21-jre-headless 21.0.12.1+1-1~26.04.4
+osslsigncode 2.13-1
+python3 3.14.3-0ubuntu2
+## Mirror your choices (except for URIs and Suites) in the security section below to
+## URIs: A URL to the repository (you may add multiple URLs)
+URIs: http://archive.ubuntu.com/ubuntu/
+## Ubuntu security updates. Aside from URIs and Suites,
+URIs: http://security.ubuntu.com/ubuntu/
+
+# The MCP build tests under faketime +365d (P/faketime/):
+faketime start 11:21:52
+server +365d start 11:21:52
+server +365d exit 0 11:24:19
+chat-server +365d start 11:24:19
+chat-server +365d exit 0 11:24:41
+faketime end 11:24:41
+server:
+  Thu Oct 21 09:22:24 UTC 2027
+  31 suites print "tests passed"; lines with "tests failed" or "<n> failed": 0
+  #22 DONE 131.7s
+chat-server:
+  Thu Oct 21 09:24:37 UTC 2027
+   Test Files  40 passed (40)
+        Tests  542 passed (542)
+  #21 DONE 9.0s
+
+# The dev container at b3e0134ff (P/devcontainer.txt):
+build start 11:24:41
+build exit 0 11:27:13
+== D1 the branch, a new volume
+refusing .: outside the target
+9.0.318 [/usr/share/dotnet/sdk]
+The command could not be loaded, possibly because:
+  * You intended to execute a .NET application:
+      The application '--version' does not exist.
+  * You intended to execute a .NET SDK command:
+      A compatible .NET SDK was not found.
+
+Requested SDK version: 10.0.401
+global.json file: /workspace/global.json
+
+Installed SDKs:
+
+Install the [10.0.401] .NET SDK or update [/workspace/global.json] to match an installed SDK.
+
+Learn about SDK resolution:
+https://aka.ms/dotnet/sdk-not-found
+exit 145
+== D2 the branch again, a new container: the SDK from the volume
+refusing .: outside the target
+
+real	0m4.273s
+user	0m3.734s
+sys	0m0.540s
+10.0.401-bbf163b106e3.partial
+archives
+dotnet is /usr/bin/dotnet -> /usr/share/dotnet/dotnet
+9.0.318 [/usr/share/dotnet/sdk]
+The command could not be loaded, possibly because:
+  * You intended to execute a .NET application:
+      The application '--version' does not exist.
+  * You intended to execute a .NET SDK command:
+      A compatible .NET SDK was not found.
+
+Requested SDK version: 10.0.401
+global.json file: /workspace/global.json
+
+Installed SDKs:
+
+Install the [10.0.401] .NET SDK or update [/workspace/global.json] to match an installed SDK.
+
+Learn about SDK resolution:
+https://aka.ms/dotnet/sdk-not-found
+exit 145
+== D3 a non-login shell, as an SSH command gets: PATH and install_location
+refusing .: outside the target
+exit 1
+== D4 main before the branch, no lock: the image's SDK
+dotnet: /usr/share/dotnet
+9.0.318
+dotnet is /usr/local/bin/dotnet -> /usr/share/dotnet/dotnet
+9.0.318
+Microsoft.AspNetCore.App 9.0.20
+Microsoft.NETCore.App 9.0.20
+10.0.401-bbf163b106e3.partial
+archives
+exit 0
+
+# L7 alone on b3e0134ff's installer, the fallback before the fix (P/l7-before-fix.txt, P/l7.py: the Python of L7 in installer-lock-tests.sh):
+L7 on b3e0134ff's installer (b3e0134f), 11:38:55
+the SDK from the cache: exit refusing .: outside the target
+fine: refusing .: outside the target
+up: refusing .: outside the target
+absolute: refusing /tmp/rb1-l7-f: outside the target
+link-up: refusing .: outside the target
+hard-link-up: refusing .: outside the target
+fifo: refusing .: outside the target
+
+# After the fix, 2cd85fd01 (P/rerun.log):
+fix 2cd85fd0193f8bbea62ca52f1cb9f2252de84ea7 in /private/tmp/rb1-pins/head2; the tag's sql clone at b3e0134
+installer start 11:33:47
+installer end 11:35:11
+nuget start 11:35:11
+nuget end 11:35:21
+devcontainer start 11:35:21
+devcontainer end 11:37:20
+## The installer's tests (P/installer-tests-2.txt):
+11:33:47 installer at 2cd85fd0, sha256 099e172e7efb35d3
+== L1 --record writes the committed lock again
+SDK 10.0.401 (runtime 10.0.12): 11 archives in /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json
+exit 0; equal to the committed lock: yes
+== L2 no cache: downloaded and checked
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+exit 0; runtimes: Microsoft.AspNetCore.App 10.0.12 Microsoft.NETCore.App 10.0.12 
+== L3 an empty cache filled, then a cache hit without network
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+exit 0
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz (cached)
+exit 0, offline; runtimes: Microsoft.AspNetCore.App 10.0.12 Microsoft.NETCore.App 10.0.12 
+urllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>
+exit 1, offline without the cache
+== L4 a corrupt cache entry is downloaded again
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+exit 0; the entry's sha512 now 51c8b999af9e8dd9, its name 51c8b999af9e8dd9
+== L5 a lock that does not fit
+global.json names SDK 10.0.401, /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json pins 10.0.400: run install-dotnet-sdk.py --record
+another version: exit 1
+/private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json has no archive for linux-x64
+no linux-x64 archive: exit 1
+/private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json: the linux-x64 archive's sha512 is not 128 hex digits
+a malformed hash: exit 1
+SHA-512 mismatch for https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz: 51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b, expected 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+another hash: exit 1
+the SDK in /private/tmp/rb1-sdk-tests-3/l5b carries runtime ['10.0.12'], /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json names 10.0.11
+another runtime: exit 1
+no /private/tmp/rb1-sdk-tests-3/gj/dotnet-sdk.lock.json: run install-dotnet-sdk.py --record
+no lock: exit 1
+== L6 the action's step on a github-hosted runner
+exit 0; from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+tool cache: 
+== L6 the action's step on a self-hosted runner
+exit 0; from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+tool cache: 51c8b999af9e8dd9 
+== L7 a Python without tarfile's data filter
+SDK 10.0.401 (linux-x64, runtime 10.0.12) in /private/tmp/rb1-sdk-tests-3/l7
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz (cached)
+sha512 51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b
+the SDK from the cache: installed, runtimes ['10.0.12']
+fine: unpacked ['a', 'h', 'l']
+up: refusing ./../f: ./../f can lead outside the target
+absolute: refusing /tmp/rb1-l7-f: /tmp/rb1-l7-f can lead outside the target
+link-up: refusing ./l: ../f can lead outside the target
+hard-link-up: refusing ./h: ../f can lead outside the target
+fifo: refusing ./p: neither a file, a folder nor a link
+11:35:11 done
+## The NuGet check's tests, N1 on the tag's restore (P/nuget-tests-2.txt):
+11:35:11 check at b3e0134f, clone at b3e0134
+== N1 the clone as restored
+ok  Microsoft.AspNetCore.App.Runtime.linux-x64 10.0.12
+ok  Microsoft.AspNetCore.App.Runtime.win-x64 10.0.12
+ok  Microsoft.NETCore.App.Host.win-x64 10.0.12
+ok  Microsoft.NETCore.App.Runtime.linux-x64 10.0.12
+ok  Microsoft.NETCore.App.Runtime.win-x64 10.0.12
+ok  csharpier 0.29.2 (tool)
+ok  dotnet-ef 10.0.12 (tool)
+ok  dotnet-format 5.1.250801 (tool)
+exit 0
+== N2 the copy as is
+ok  dotnet-format 5.1.250801 (tool)
+exit 0
+== N3 a runtime pack with another hash
+::error::Microsoft.NETCore.App.Runtime.linux-x64 10.0.12: /private/tmp/rb1-nuget-tests/pkgs/microsoft.netcore.app.runtime.linux-x64/10.0.12/microsoft.netcore.app.runtime.linux-x64.10.0.12.nupkg does not have the SHA-512 in nuget-downloads.lock.json
+exit 1
+== N4 a pack the lock does not name
+::error::Microsoft.NETCore.App.Host.win-x64 10.0.12 is not in nuget-downloads.lock.json: run verify-nuget-downloads.py --record
+exit 1
+== N5 a tool with another hash
+::error::the tool dotnet-ef 10.0.12: /private/tmp/rb1-nuget-tests/pkgs/dotnet-ef/10.0.12/dotnet-ef.10.0.12.nupkg does not have the SHA-512 in nuget-downloads.lock.json
+exit 1
+== N6 a tool not restored
+not restored  csharpier 0.29.2
+exit 0
+== N7 --tools with a tool not restored
+::error::the tool csharpier 0.29.2 is not in /private/tmp/rb1-nuget-tests/pkgs: tool restore took it from elsewhere, through the resolver cache of the CLI's home
+exit 1
+== N8 a lock but no restore
+no obj/project.assets.json under /private/tmp/rb1-nuget-tests/empty: run this after dotnet restore
+exit 1
+== N9 tool restore with a used CLI home, then with a new one
+used home: restore exit 0, package folder: 
+  dotnet-ef runs /tmp/dch/.nuget/packages/dotnet-ef/10.0.12/tools/net8.0/any/dotnet-ef.dll
+new home: restore exit 0, package folder: csharpier dotnet-ef dotnet-format 
+  dotnet-ef runs /private/tmp/rb1-nuget-tests/pk-new/dotnet-ef/10.0.12/tools/net8.0/any/dotnet-ef.dll
+11:35:21 done
+## The dev container (P/devcontainer-2.txt):
+build start 11:35:21
+build exit 0 11:37:01
+== D1 the branch, a new volume
+SDK 10.0.401 (linux-x64, runtime 10.0.12) in /home/vscode/.dotnet-sdks/10.0.401-bbf163b106e3.partial
+from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz
+sha512 51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b
+dotnet: /home/vscode/.dotnet-sdks/10.0.401-bbf163b106e3
+10.0.401
+dotnet is /usr/local/bin/dotnet -> /home/vscode/.dotnet-sdks/10.0.401-bbf163b106e3/dotnet
+10.0.401
+Microsoft.AspNetCore.App 10.0.12
+Microsoft.NETCore.App 10.0.12
+exit 0
+== D2 the branch again, a new container: the SDK from the volume
+dotnet: /home/vscode/.dotnet-sdks/10.0.401-bbf163b106e3
+10.0.401
+
+real	0m0.131s
+user	0m0.086s
+sys	0m0.047s
+10.0.401-bbf163b106e3
+archives
+dotnet is /usr/local/bin/dotnet -> /home/vscode/.dotnet-sdks/10.0.401-bbf163b106e3/dotnet
+10.0.401
+Microsoft.AspNetCore.App 10.0.12
+Microsoft.NETCore.App 10.0.12
+exit 0
+== D3 a non-login shell, as an SSH command gets: PATH and install_location
+10.0.401
+/home/vscode/.dotnet-sdk
+exit 0
+== D4 main before the branch, no lock: the image's SDK
+dotnet: /usr/share/dotnet
+9.0.318
+dotnet is /usr/local/bin/dotnet -> /usr/share/dotnet/dotnet
+9.0.318
+Microsoft.AspNetCore.App 9.0.20
+Microsoft.NETCore.App 9.0.20
+10.0.401-bbf163b106e3
+archives
+exit 0

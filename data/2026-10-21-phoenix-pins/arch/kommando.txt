@@ -108,3 +108,36 @@ step devcontainer start
 C=$L/head M=$L/main OUT=$P/devcontainer $E/devcontainer-test.sh > $P/devcontainer.txt 2>&1
 cat $P/devcontainer.txt
 step devcontainer end
+
+# After run.sh, 11:33: the fix for the dev container's failure committed as
+# 2cd85fd01, then the private rerun.sh, verbatim. installer-lock-tests.sh
+# has L7 from here on, and devcontainer-test.sh groups the checks after an
+# install, so that none runs after a failed one; both changed after the
+# expectation's commit.
+# After run.sh: the dev container's test failed in the SDK installer's
+# fallback for a Python without tarfile's data filter, fixed in
+# 2cd85fd01. The installer tests with L7, and the dev container, at that
+# commit; the NuGet tests again, N1 now on the tag's own restore by
+# ci-local.sh's sql job (run.sh ran them before ci-local.sh had cloned
+# the tag there). One step after the other.
+set -u
+E=/home/leos/Dev/Speciale2026/experiments/phoenix-rt P=/home/leos/Dev/speciale-2026/data/phoenix-pins/arch-2026-10-21
+W=/home/leos/Dev/Weel-Sandvig/WS.Phoenix-repro L=/private/tmp/rb1-pins
+export DOCKER_CONFIG=/private/tmp/rb1-docker
+FIX=$(git -C $W rev-parse HEAD) SDK=/private/tmp/rb1-sdk-run2
+step() { echo "$1 $2 $(date +%T)"; }
+rm -rf $L/head2 && git clone -q file://$W $L/head2 && git -C $L/head2 checkout -q --detach $FIX
+echo "fix $FIX in $L/head2; the tag's sql clone at $(git -C /private/tmp/rb1-ci/sql rev-parse --short HEAD)"
+step installer start
+W=$L/head2 LOG=$P/installer-tests-2.txt $E/installer-lock-tests.sh > /dev/null 2>&1
+step installer end
+step nuget start
+W=$L/head C=/private/tmp/rb1-ci/sql SDK=$SDK HOME_USED=/tmp/dch LOG=$P/nuget-tests-2.txt $E/nuget-check-tests.sh > /dev/null 2>&1
+step nuget end
+step devcontainer start
+C=$L/head2 M=$L/main OUT=$P/devcontainer-2 $E/devcontainer-test.sh > $P/devcontainer-2.txt 2>&1
+step devcontainer end
+
+# The results file (the private collect.sh): the logs above, and oci-diff.py
+# again on the MCP images against P4, now aligning the history:
+python3 -I $E/oci-diff.py $P4/$n.oci.tar $P/mcp/$n.oci.tar

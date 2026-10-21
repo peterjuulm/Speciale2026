@@ -5,6 +5,11 @@ on `arch` with `ci-local.sh`. Not pushed; the real merge waits for Leo's
 decisions. Run by Claude at Leo's request, with a review of what is left on
 the branch.
 
+Added 21 October: the real merge is `1b9659554`, made that morning with
+these resolutions. Its tree is the trial's (`8b300fcd`), so the results
+below hold for it; what came after it is in
+[phoenix-pins](2026-10-21-phoenix-pins.md).
+
 ## Question
 
 Main is 48 commits ahead of the branch since their merge base of 9 October,

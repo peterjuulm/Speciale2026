@@ -5,13 +5,29 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 20 October 2026, 16:01-18:07, the reference release rebuilt six
-days later, the MCP images' Debian packages and canvas binary pinned
-(W67, W68), and a trial merge of main built twice and tested, on `arch`.
-Last edit: 20 October 2026, 18:13. Also 12/10: the frontend lock's hashes filled
+Last run: 21 October 2026, 10:29-11:37, the WS branch after the real
+merge of main and the remaining pins, built twice and its checks tested,
+on `arch` (W69, W70).
+Last edit: 21 October 2026, 11:43. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `arch`, 21/10 10:29-11:37
+([phoenix-pins](2026-10-21-phoenix-pins.md); W69, W70): main merged into
+the WS branch for real (`1b9659554`, the trial's tree), then the inputs
+left open on 20/10 pinned or checked, in 14 commits up to `2cd85fd01`.
+Among them are the SDK archives by hash, the NuGet packs and tools no lock
+file holds, Node by hash, Debian's release files, the SBOM maker, the
+signing image and the dev container's SDK. Built twice with all six
+release jobs, every output came out the same, 1002 files and five
+images; the MCP images keep 20 October's layers. Each new check passes on
+the real inputs and stopped the wrong ones tried. Codex's review found
+that the release's tools could come from another package folder through
+the CLI's resolver cache (W69). The dev container's test found that the
+SDK installer refused every archive on a Python without `tarfile`'s data
+filter (W70). Both are fixed on the branch. Not yet in a release, and
+not run on GitHub.
 
 On `arch`, 20/10 16:58-18:07
 ([phoenix-merge-trial](2026-10-20-phoenix-merge-trial.md)): main merged

@@ -5,11 +5,14 @@
 
 The first three lines say whether the image manifests, the image configs
 and the layers are the same. Then, per difference: the config fields that
-differ, and for each layer that differs, what differs among its entries
-(content, mode, owner, time, order) with up to ten examples. An index that
-holds several manifests is followed to its linux/amd64 image; attestation
-manifests are skipped. Layers are read as gzip or plain tar.
+differ, the build history aligned when it differs (since 21 October:
+entries only in A marked -, only in B +), and for each layer that differs,
+what differs among its entries (content, mode, owner, time, order) with up
+to ten examples. An index that holds several manifests is followed to its
+linux/amd64 image; attestation manifests are skipped. Layers are read as
+gzip or plain tar.
 """
+import difflib
 import gzip
 import hashlib
 import json
@@ -88,6 +91,20 @@ def config_diff(a, b, prefix=""):
     return [] if a == b else [(prefix, a, b)]
 
 
+def history_diff(ha, hb):
+    """The two build histories aligned: what is only in A (-) and only in B (+)."""
+    def describe(h):
+        return h.get("created_by", "")[:150] + (" (empty layer)" if h.get("empty_layer") else "")
+    ka, kb = [json.dumps(h, sort_keys=True) for h in ha], [json.dumps(h, sort_keys=True) for h in hb]
+    out = []
+    for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, ka, kb, autojunk=False).get_opcodes():
+        if op == "equal":
+            out.append(f"    {i2 - i1} the same")
+        else:
+            out += [f"    - {describe(h)}" for h in ha[i1:i2]] + [f"    + {describe(h)}" for h in hb[j1:j2]]
+    return out
+
+
 def main(pa, pb):
     A, B = Layout(pa), Layout(pb)
     ia, da, ma = A.image()
@@ -113,7 +130,12 @@ def main(pa, pb):
                                    json.load(B.tar.extractfile("index.json"))):
             print(f"  index {p}: {x} / {y}")
     for p, x, y in cdiff:
-        print(f"  config {p}: {x} / {y}")
+        if p != "history" and not p.startswith("history["):
+            print(f"  config {p}: {x} / {y}")
+    if ca.get("history") != cb.get("history"):
+        print("  config history, aligned:")
+        for line in history_diff(ca.get("history", []), cb.get("history", [])):
+            print(line)
     for i in diff:
         dida, didb = ca["rootfs"]["diff_ids"][i], cb["rootfs"]["diff_ids"][i]
         print(f"layer {i}: {la[i]['digest']} / {lb[i]['digest']}, "

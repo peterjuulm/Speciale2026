@@ -2,7 +2,8 @@
 # install-dotnet-sdk.py with the archive lock (21 October 2026): it installs
 # from dotnet-sdk.lock.json alone, offline from its cache, and stops on a
 # lock that does not fit. Then the setup-dotnet-sdk action's step as a
-# runner runs it.
+# runner runs it, and the unpacking on a Python without tarfile's data
+# filter (L7, added after the dev container's test failed on it).
 #   W=<WS checkout> LOG=<file> installer-lock-tests.sh
 set -uo pipefail
 W=${W:?the WS checkout} LOG=${LOG:?a log file}
@@ -83,4 +84,53 @@ for kind in github-hosted self-hosted; do
   say "tool cache: $(ls "$R/tool"/dotnet-sdk-archives 2>/dev/null | cut -c1-16 | tr '\n' ' ')"
   rm -rf "$R/temp/dotnet-sdk"
 done
+# The fallback for a Python without tarfile's data filter, such as Debian
+# bookworm's 3.11.2 in the dev container: the host's Python, with the
+# installer given a tarfile module without the filter (Python's own
+# extractall needs it from 3.14). The SDK from the cache, then small
+# archives built here: one that is fine, and five that each lead out of
+# the target or hold a special file.
+say "== L7 a Python without tarfile's data filter"
+python3 -I - "$W/scripts/install-dotnet-sdk.py" "$W/global.json" "$X" <<'EOF' 2>&1 | tee -a "$LOG"
+import importlib.util, io, os, sys, tarfile, types
+installer, global_json, x = sys.argv[1:4]
+spec = importlib.util.spec_from_file_location("installer", installer)
+m = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(m)
+m.tarfile = types.SimpleNamespace(**{k: getattr(tarfile, k) for k in dir(tarfile) if k != "data_filter"})
+os.environ["TMPDIR"] = f"{x}/tmp"
+sys.argv = ["install-dotnet-sdk.py", "--global-json", global_json, "--cache", f"{x}/cache", f"{x}/l7"]
+try:
+    m.main()
+    print("the SDK from the cache: installed, runtimes", sorted(os.listdir(f"{x}/l7/shared/Microsoft.NETCore.App")))
+except SystemExit as e:
+    print("the SDK from the cache: exit", e.code)
+def archive(name, members):
+    path = f"{x}/{name}.tar"
+    with tarfile.open(path, "w") as t:
+        for member_name, kind, link in members:
+            info = tarfile.TarInfo(member_name)
+            info.type, info.linkname = kind, link
+            data = b"x" if kind == tarfile.REGTYPE else b""
+            info.size = len(data)
+            t.addfile(info, io.BytesIO(data))
+    return path
+D, F, S, H, P = tarfile.DIRTYPE, tarfile.REGTYPE, tarfile.SYMTYPE, tarfile.LNKTYPE, tarfile.FIFOTYPE
+cases = {
+    "fine": [(".", D, ""), ("./a", D, ""), ("./a/f", F, ""), ("./l", S, "a/f"), ("./h", H, "./a/f")],
+    "up": [(".", D, ""), ("./../f", F, "")],
+    "absolute": [("/tmp/rb1-l7-f", F, "")],
+    "link-up": [(".", D, ""), ("./l", S, "../f")],
+    "hard-link-up": [(".", D, ""), ("./h", H, "../f")],
+    "fifo": [(".", D, ""), ("./p", P, "")],
+}
+for name, members in cases.items():
+    target = f"{x}/l7-{name}"
+    try:
+        m.unpack(archive(name, members), target, False)
+        print(f"{name}: unpacked", sorted(os.listdir(target)))
+    except SystemExit as e:
+        print(f"{name}: {e.code}")
+EOF
+rm -rf "$X/l7"
 say "$(date +%T) done"

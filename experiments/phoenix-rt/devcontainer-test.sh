@@ -23,7 +23,7 @@ docker volume rm $V > /dev/null 2>&1; docker volume create $V > /dev/null
 as_vscode() {  # workspace, command: as the entrypoint runs setup, su to vscode
   docker run --rm --entrypoint su -v "$1:/workspace:ro" -v $V:/home/vscode/.dotnet-sdks $I vscode -c "$2"
 }
-show='echo "dotnet is $(command -v dotnet) -> $(readlink -f "$(command -v dotnet)")"; cd /workspace && dotnet --version && dotnet --list-runtimes | cut -d" " -f1-2'
+show='{ echo "dotnet is $(command -v dotnet) -> $(readlink -f "$(command -v dotnet)")"; cd /workspace && dotnet --version && dotnet --list-runtimes | cut -d" " -f1-2; }'
 echo "== D1 the branch, a new volume"
 as_vscode "$C" "bash /install-sdk.sh && $show"; echo "exit $?"
 echo "== D2 the branch again, a new container: the SDK from the volume"
