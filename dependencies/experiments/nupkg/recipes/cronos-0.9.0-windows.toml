@@ -17,6 +17,11 @@ ships = "lib/net6.0/Cronos.dll"
 repo = "https://github.com/HangfireIO/Cronos.git"
 commit = "14ca2b146d55f8d16a36eded60a74425b1b00f51"
 clone_dir = 'C:\projects\cronos'
+# The published PDB has the checksums of the sources with LF line endings,
+# while the SDK's generated files have CRLF: a Windows build of an LF
+# checkout. GitHub's Windows runners check out with core.autocrlf=true; the
+# second run (21/10) got CRLF and differed in every source checksum.
+git_config = ["core.autocrlf=input"]
 sdk = "9.0.100"
 # The tests (psake's Pack task depends on them) target netcoreapp3.1 too, and
 # fail without that runtime (first run, 21/10). The AppVeyor image had it,
