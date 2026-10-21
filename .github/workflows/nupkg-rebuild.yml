@@ -1,0 +1,57 @@
+name: Nupkg rebuild
+
+# Rebuilds one NuGet package from the commit it declares, twice, on a
+# standard GitHub-hosted runner, and compares the result with the package on
+# nuget.org (dependencies/experiments/nupkg/rebuild.py). Started by hand.
+#
+# Standard runners are free on public repositories; larger runners are always
+# billed, so the runner input offers standard labels only. Logs and artifacts
+# are public: open-source packages only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      recipe:
+        description: Recipe file in dependencies/experiments/nupkg/recipes
+        required: true
+        type: string
+      runner:
+        description: Runner image
+        required: true
+        default: windows-2022
+        type: choice
+        options:
+          - windows-2022
+          - windows-2025
+          - ubuntu-24.04
+          - ubuntu-22.04
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild:
+    name: ${{ inputs.recipe }} on ${{ inputs.runner }}
+    runs-on: ${{ inputs.runner }}
+    timeout-minutes: 60
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Rebuild
+        shell: bash
+        env:
+          RECIPE: ${{ inputs.recipe }}
+        run: python -I dependencies/experiments/nupkg/rebuild.py "dependencies/experiments/nupkg/recipes/$RECIPE" "$RUNNER_TEMP/nupkg"
+      - name: Upload the results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ${{ inputs.recipe }}-${{ inputs.runner }}
+          path: ${{ runner.temp }}/nupkg/out
+          if-no-files-found: error

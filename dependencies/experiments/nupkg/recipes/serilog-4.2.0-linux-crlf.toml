@@ -1,0 +1,19 @@
+# Serilog 4.2.0 on Linux, as pilot build A (recipe serilog-4.2.0-crlf.sh for
+# build.sh): a CRLF checkout, Build.ps1's dotnet commands run directly, since
+# PowerShell is not installed on arch. Here to check that rebuild.py builds
+# what build.sh built. Declared facts: see serilog-4.2.0-windows.toml.
+package = "Serilog"
+version = "4.2.0"
+ships = "lib/net9.0/Serilog.dll"
+repo = "https://github.com/serilog/serilog"
+commit = "c00e17fdeb615d36c062569f7342f72c9ece4aa7"
+branch = "main"
+depth = 1
+git_config = ["core.autocrlf=true"]   # Git for Windows' default on a Windows runner
+sdk = "9.0.101"
+shell = "bash"
+build = "dotnet --version && dotnet restore --no-cache && dotnet build -c Release --version-suffix=main-$(git rev-parse --short HEAD) /p:ContinuousIntegrationBuild=true && cd src/Serilog && dotnet pack -c Release --no-build --no-restore -o ../../artifacts"
+packages = "artifacts"
+
+[env]
+CI_TARGET_BRANCH = "main"

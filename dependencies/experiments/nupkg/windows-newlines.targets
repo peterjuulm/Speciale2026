@@ -1,0 +1,24 @@
+<Project>
+  <!--
+    A diagnostic for the nupkg pilot, not a fix and not part of any package's
+    build. Imported through the CustomAfterMicrosoftCommonTargets property (set
+    as an environment variable by the recipe), so the package's repository is
+    not touched.
+
+    Just before the compiler runs, the three files the SDK generated during the
+    build get CRLF line endings, which is what the SDK writes on Windows. If the
+    DLL then equals a Windows-built one, those line endings were the whole
+    difference between building on Linux and on Windows.
+
+    Written 21 October 2026 (build D in dependencies/notes/2026-10-21-nupkg-pilot.md).
+  -->
+  <Target Name="NupkgPilotWindowsNewlines" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <_NupkgPilotGenerated Include="$(GeneratedAssemblyInfoFile)" Condition="Exists('$(GeneratedAssemblyInfoFile)')" />
+      <_NupkgPilotGenerated Include="$(TargetFrameworkMonikerAssemblyAttributesPath)" Condition="Exists('$(TargetFrameworkMonikerAssemblyAttributesPath)')" />
+      <_NupkgPilotGenerated Include="$(GeneratedGlobalUsingsFile)" Condition="Exists('$(GeneratedGlobalUsingsFile)')" />
+    </ItemGroup>
+    <Exec Command="sed -i 's/\r*$/\r/' &quot;%(_NupkgPilotGenerated.FullPath)&quot;" Condition="'@(_NupkgPilotGenerated)' != ''" />
+    <Message Importance="high" Text="nupkg pilot: CRLF in %(_NupkgPilotGenerated.Identity)" Condition="'@(_NupkgPilotGenerated)' != ''" />
+  </Target>
+</Project>

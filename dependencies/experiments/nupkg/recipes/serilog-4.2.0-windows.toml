@@ -1,0 +1,37 @@
+# Serilog 4.2.0 on a GitHub Windows runner, built as its own CI built it.
+# Declared: the .nuspec's repository and commit (branch refs/heads/main).
+# ci.yml at the commit: windows-latest, actions/checkout@v4 (depth 1, HEAD on
+# the pushed branch), setup-dotnet 9.0.x, CI_TARGET_BRANCH = main on a push
+# to main, CI_BUILD_NUMBER = run number + 2300, DOTNET_CLI_TELEMETRY_OPTOUT,
+# then ./Build.ps1 in pwsh. Build.ps1 restores, builds, packs src/* and runs
+# the tests; on main with a build number the package gets no suffix.
+# SDK 9.0.101 from the PDB's compiler record (Roslyn 4.12.0-3.24570.6 on
+# runtime 9.0.0), verified from the SDK's csc.dll on arch, 21/10.
+# The GITHUB_* values are those a push of this commit to main would have had,
+# except the run number, which the build does not read.
+package = "Serilog"
+version = "4.2.0"
+ships = "lib/net9.0/Serilog.dll"
+repo = "https://github.com/serilog/serilog"
+commit = "c00e17fdeb615d36c062569f7342f72c9ece4aa7"
+branch = "main"
+depth = 1
+clone_dir = 'D:\a\serilog\serilog'
+sdk = "9.0.101"
+shell = "pwsh"
+build = "./Build.ps1"
+packages = "artifacts"
+
+[env]
+CI = "true"
+GITHUB_ACTIONS = "true"
+GITHUB_REPOSITORY = "serilog/serilog"
+GITHUB_SHA = "c00e17fdeb615d36c062569f7342f72c9ece4aa7"
+GITHUB_REF = "refs/heads/main"
+GITHUB_REF_NAME = "main"
+GITHUB_EVENT_NAME = "push"
+GITHUB_WORKSPACE = "{src}"
+RUNNER_OS = "Windows"
+CI_TARGET_BRANCH = "main"
+CI_BUILD_NUMBER = "2301"
+DOTNET_CLI_TELEMETRY_OPTOUT = "true"

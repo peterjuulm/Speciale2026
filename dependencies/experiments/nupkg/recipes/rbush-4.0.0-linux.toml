@@ -1,0 +1,33 @@
+# RBush 4.0.0 on Linux, as its release workflow built it.
+# Declared: the .nuspec's repository, commit and branch refs/tags/v4.0.0.
+# release.yml at the commit: on a pushed tag, ubuntu-latest,
+# actions/checkout@v4 (the tag only, depth 1), setup-dotnet 8.0.x, then
+# dotnet restore, dotnet build -c Release --no-restore, dotnet pack -c Release
+# --no-build --property:PackageOutputPath=../nupkgs. MinVer takes the version
+# from the tag; Directory.Build.props sets ContinuousIntegrationBuild when
+# GITHUB_ACTIONS is true.
+# SDK 8.0.404 from the compiler record (Roslyn 4.11.0-3.24510.3 on runtime
+# 8.0.11). Inferred; the build log names the csc version.
+package = "RBush"
+version = "4.0.0"
+ships = "lib/net8.0/RBush.dll"
+repo = "https://github.com/viceroypenguin/RBush"
+commit = "b8690322abac35d835baa2fdca4a3918ed77a910"
+tag = "v4.0.0"
+depth = 1
+sdk = "8.0.404"
+shell = "bash"
+build = "dotnet restore && dotnet build -c Release --no-restore && dotnet pack -c Release --no-build --property:PackageOutputPath=../nupkgs"
+packages = "nupkgs"
+
+[env]
+CI = "true"
+GITHUB_ACTIONS = "true"
+GITHUB_REPOSITORY = "viceroypenguin/RBush"
+GITHUB_SHA = "b8690322abac35d835baa2fdca4a3918ed77a910"
+GITHUB_REF = "refs/tags/v4.0.0"
+GITHUB_REF_NAME = "v4.0.0"
+GITHUB_REF_TYPE = "tag"
+GITHUB_EVENT_NAME = "push"
+GITHUB_WORKSPACE = "{src}"
+RUNNER_OS = "Linux"
