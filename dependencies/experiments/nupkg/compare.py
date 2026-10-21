@@ -8,7 +8,8 @@ package; "same" when every package has the same bytes. Packaging files that
 are random or added by nuget.org (the .psmdcp core-properties file, its
 _rels, [Content_Types].xml, .signature.p7s) are listed but marked, since the
 test compares DLLs and PDBs only (decision 6). The last line is the verdict
-for SHIPPED. Exit code 0 when SHIPPED is identical in all packages.
+for SHIPPED: identical in all packages, or which packages have the same
+bytes as the first. Exit code 0 when SHIPPED is identical in all packages.
 
 Written 21 October 2026 for the nupkg pilot.
 """
@@ -28,5 +29,9 @@ for name in sorted(set().union(*entries)):
     print(f'{state:12} {name}{mark}: ' + ' '.join(h[:16] for h in hs))
 hs = [e.get(shipped) for e in entries]
 ok = None not in hs and len(set(hs)) == 1
-print(f'verdict: {shipped} is {"IDENTICAL" if ok else "DIFFERENT"} in all {len(paths)} packages')
+if ok:
+    print(f'verdict: {shipped} is IDENTICAL in all {len(paths)} packages')
+else:
+    same = [str(i) for i, h in enumerate(hs) if h is not None and h == hs[0]]
+    print(f'verdict: {shipped} is NOT the same in all {len(paths)} packages; as in package 0: {", ".join(same)}')
 sys.exit(0 if ok else 1)

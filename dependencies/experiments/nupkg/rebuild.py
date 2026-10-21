@@ -14,8 +14,9 @@ The script
    if it has one (the path the CI built in), else in WORKDIR/A/src, and B in
    WORKDIR/B/src. The directory is the one thing that differs between them;
 3. downloads the package from nuget.org, and its .snupkg if there is one;
-4. compares nuget.org's package with A's and B's, and A's with B's, entry by
-   entry (compare.py).
+4. compares A with nuget.org's package, B with nuget.org's, and A with B,
+   for the shipped DLL and its PDB, and lists every entry of all three
+   (compare.py).
 
 Logs, the built packages and the comparisons land in WORKDIR/out, and a
 summary goes to stdout. The exit code is 0 when the script ran to the end,
@@ -201,16 +202,21 @@ def main():
     for kind, inner in (('nupkg', r['ships']), ('snupkg', pdb)):
         def pkg(d):
             return next((os.path.join(d, f) for f in os.listdir(d) if f.lower() == f'{lid}.{lver}.{kind}'), None)
-        mine = [p for p in (pkg(os.path.join(out, n)) for n in results) if p]
-        theirs = pkg(ref)
-        for label, files in ((f'{kind}: nuget.org, A, B', [theirs] + mine), (f'{kind}: A, B', mine)):
-            if None in files or len(files) < 2:
-                summary.append(f'{label}: not compared, a package is missing')
-                continue
-            path = os.path.join(out, f'compare-{label.split(":")[0]}-{"ref-A-B" if "nuget" in label else "A-B"}.txt')
-            with open(path, 'w', encoding='utf-8') as f:
-                subprocess.run([sys.executable, '-I', os.path.join(HERE, 'compare.py'), inner] + files, stdout=f)
-            summary.append(f'{label}: ' + open(path, encoding='utf-8').read().splitlines()[-1])
+        p = {'nuget.org': pkg(ref), 'A': pkg(os.path.join(out, 'A')), 'B': pkg(os.path.join(out, 'B'))}
+        present = [n for n in p if p[n]]
+        if len(present) < 2:
+            summary.append(f'{kind}: not compared, fewer than two packages')
+            continue
+        # every entry of every package, for reading; then one verdict per pair
+        with open(os.path.join(out, f'compare-{kind}.txt'), 'w', encoding='utf-8') as f:
+            subprocess.run([sys.executable, '-I', os.path.join(HERE, 'compare.py'), inner] + [p[n] for n in present], stdout=f)
+        for x, y in (('A', 'nuget.org'), ('B', 'nuget.org'), ('A', 'B')):
+            if p[x] and p[y]:
+                same = subprocess.run([sys.executable, '-I', os.path.join(HERE, 'compare.py'), inner, p[y], p[x]],
+                                      stdout=subprocess.DEVNULL).returncode == 0
+                summary.append(f'{kind}: {inner} {x} vs {y}: {"identical" if same else "differs"}')
+            else:
+                summary.append(f'{kind}: {x} vs {y}: not compared, a package is missing')
     summary.append(f'end {now()}')
     with open(os.path.join(out, 'summary.txt'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(summary) + '\n')
