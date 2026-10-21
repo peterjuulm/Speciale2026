@@ -12,7 +12,10 @@
 package = "Ardalis.GuardClauses"
 version = "5.0.0"
 ships = "lib/net8.0/Ardalis.GuardClauses.dll"
-repo = "https://github.com/ardalis/guardclauses"
+# The clone URL in the repository's own case, as actions/checkout builds it
+# from GITHUB_REPOSITORY: Source Link writes the URL into the PDB. With the
+# .nuspec's lower-case URL, the first run (21/10) differed only there.
+repo = "https://github.com/ardalis/GuardClauses"
 commit = "ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5"
 branch = "main"
 depth = 1
