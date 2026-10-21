@@ -21,6 +21,11 @@ beyond those already in the `environment.txt` files.
   question, **expectation written before the run**, commands verbatim, result,
   interpretation, caveats. Observation and interpretation stay separate.
 - `notes/yyyy-mm-dd-findings.md`: investigation notes with no run.
+- `dependencies/`: part 2, rebuilding Phoenix's NuGet packages from source.
+  It has its own `notes/`, `data/` and `experiments/`, with the same rules as
+  the top-level folders. The top-level ones keep part 1, making WS.Phoenix
+  reproducible. Commands recorded before 21/10 use the old paths `data/` and
+  `experiments/dep-census/`.
 - `notes/dotnet-build-who-does-what.md`: background on MSBuild versus Roslyn.
   The glossary is in `notes/2026-09-07-empty-class.md`.
 - `data/<experiment>/<machine>/`: `environment.txt`, `hashes.txt`,

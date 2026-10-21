@@ -4,7 +4,7 @@ Run 13 October 2026 on `mac`. Online, read only: GitHub's API through `gh`.
 Step 1b of the [dependency plan](2026-10-12-dependency-plan.md), on its census
 of Phoenix `79cb67a7` (.NET 10). No build.
 
-Data: `data/2026-10-13-declared-env/mac/` (the lists stay out of git, as the
+Data: `dependencies/data/2026-10-13-declared-env/mac/` (the lists stay out of git, as the
 census lists do).
 
 ## Question
@@ -43,6 +43,9 @@ keeps the API responses, so a rerun is offline.
 
     curl -sI 'https://go.microsoft.com/fwlink/?linkid=868515' | grep -i '^location'
     python3 -I experiments/dep-census/declared_env.py data/2026-10-13-dependency-census/mac/census.csv CACHE data/2026-10-13-declared-env/mac
+
+The commands are as run. On 21/10 `data/` and `experiments/` in them moved
+to `dependencies/data/` and `dependencies/experiments/`.
 
 The script asks GitHub's API for the file tree at each declared commit, then
 reads `global.json` and every CI file (GitHub Actions, Azure Pipelines,

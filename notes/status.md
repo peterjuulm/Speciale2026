@@ -478,12 +478,12 @@ WS branch since `fa60ea97`.
   `.dockerignore` keeps `.git` out (13/10, phoenix-ci-dry-run).
 - Dependency tree: lock files done (W22). Plan, census and repository lookup
   redone on 13/10 for `79cb67a7` (.NET 10, three programs, `dotnet-ef`)
-  ([dependency-plan](2026-10-12-dependency-plan.md),
-  [declared-env](2026-10-13-declared-env.md)): 341 packages tested; 53
+  ([dependency-plan](../dependencies/notes/2026-10-12-dependency-plan.md),
+  [declared-env](../dependencies/notes/2026-10-13-declared-env.md)): 341 packages tested; 53
   declare commit and compiler; 181 keep the PDB outside the package; 126 get
   an exact SDK from the repository. On macOS `DbMigrator` failed a locked
   restore (`NU1004`, host RID added; W54, fixed in `0b52e115`). Symbol servers on 13/10
-  ([symbol-servers](2026-10-13-symbol-servers.md)): 474 of 493 missing PDBs
+  ([symbol-servers](../dependencies/notes/2026-10-13-symbol-servers.md)): 474 of 493 missing PDBs
   found; 198 packages now declare commit and compiler. No rebuild yet.
 - Developer path (13/10,
   [phoenix-dev-workflows](2026-10-13-phoenix-dev-workflows.md)): fixed on

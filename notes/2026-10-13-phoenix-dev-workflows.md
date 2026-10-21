@@ -153,7 +153,7 @@ with the branch's tools rewrites that line, so that migration's diff
 carries it. The model did not change: the add found no operations.
 
 Peter's finding on `mac`
-([dependency-plan](2026-10-12-dependency-plan.md)), now W54: `src/DbMigrator` sets
+([dependency-plan](../dependencies/notes/2026-10-12-dependency-plan.md)), now W54: `src/DbMigrator` sets
 `PublishSingleFile` and two runtimes but no single runtime, so the SDK
 adds the host's runtime to the restore
 (`Microsoft.NET.RuntimeIdentifierInference.targets:130-154`, SDK

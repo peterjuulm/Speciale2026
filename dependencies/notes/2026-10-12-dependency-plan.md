@@ -40,7 +40,7 @@ hash).
 
 Every package, with its category, is listed in `census.md`; every package left
 out, with its reason, in `left-out.md`. Both are in
-`data/2026-10-13-dependency-census/mac/` but **not in git**: they name every
+`dependencies/data/2026-10-13-dependency-census/mac/` but **not in git**: they name every
 package and version Phoenix ships, and this repo is public (decided 12/10).
 `kommando.txt` makes them again.
 
@@ -408,10 +408,10 @@ the release.
   Link, deterministic build and PDBs `[I]`, not run.
 - **`dotnet/dotnet`:** Microsoft's combined repository, from which .NET 10's
   own packages are built.
-- **`experiments/dep-census/census.py`:** our census script.
-- **`experiments/dep-census/declared_env.py`:** reads `global.json` and the CI
+- **`dependencies/experiments/dep-census/census.py`:** our census script.
+- **`dependencies/experiments/dep-census/declared_env.py`:** reads `global.json` and the CI
   files at each declared commit (step 1b).
-- **`experiments/dep-census/symbols.py`:** looks up the missing PDBs on the
+- **`dependencies/experiments/dep-census/symbols.py`:** looks up the missing PDBs on the
   symbol servers (step 2).
 - **`tools/dependency-graph.js`:** Phoenix's script that counted the graph on
   15/9.

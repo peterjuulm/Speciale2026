@@ -5,7 +5,7 @@ Run 13 October 2026 on `mac`. Online: Microsoft's symbol server
 of the [dependency plan](2026-10-12-dependency-plan.md). Phoenix commit
 `79cb67a7` (.NET 10). No build.
 
-Data: `data/2026-10-13-symbol-servers/mac/` (the lists stay out of git, as the
+Data: `dependencies/data/2026-10-13-symbol-servers/mac/` (the lists stay out of git, as the
 census lists do). The PDBs themselves are bytes and stay out too.
 
 ## Question
@@ -40,6 +40,9 @@ outside git.
     python3 -I experiments/dep-census/census.py X ~/.nuget/packages data/2026-10-13-dependency-census/mac linux-x64 WebAPI BackgroundJobExecutor DbMigrator --tool dotnet-ef
     python3 -I experiments/dep-census/symbols.py probe data/2026-10-13-dependency-census/mac PDB_DIR data/2026-10-13-symbol-servers/mac
     python3 -I experiments/dep-census/symbols.py download data/2026-10-13-dependency-census/mac PDB_DIR data/2026-10-13-symbol-servers/mac
+
+The commands are as run. On 21/10 `data/` and `experiments/` in them moved
+to `dependencies/data/` and `dependencies/experiments/`.
 
 The census was run again first, offline, to write `census.files.csv`: one row
 per shipped DLL with its PDB name, GUID, age and PdbChecksum. Its

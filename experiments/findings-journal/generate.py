@@ -95,7 +95,9 @@ def note_links(measured):
     # Only link note names explicitly present in the recorded run description.
     # Ambiguous names retain every matching note, with their dates in the label.
     links = []
-    for path in sorted((ROOT / "notes").glob("*.md")):
+    for path in sorted([*(ROOT / "notes").glob("*.md"),
+                        *(ROOT / "dependencies/notes").glob("*.md")],
+                       key=lambda path: path.name):
         name = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", path.stem)
         names = [name]
         if name.startswith("phoenix-") and "-" in name.removeprefix("phoenix-"):
@@ -103,7 +105,7 @@ def note_links(measured):
         if not any(re.search(r"(?<![\w-])" + re.escape(value) + r"(?![\w-])", measured)
                    for value in names):
             continue
-        links.append(f'<a href="../notes/{escape(path.name, quote=True)}">'
+        links.append(f'<a href="../{escape(path.relative_to(ROOT).as_posix(), quote=True)}">'
                      f'{escape(path.stem)}</a>')
     return "".join(f"<li>{link}</li>" for link in links)
 
