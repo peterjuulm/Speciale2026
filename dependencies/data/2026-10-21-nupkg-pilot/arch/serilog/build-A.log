@@ -1,0 +1,119 @@
+start 2026-10-21T12:30:40+02:00
+recipe: /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/serilog-4.2.0-crlf.sh
+# Serilog 4.2.0 as its CI built it, imitated on Linux (pilot builds A and B).
+# Declared: .nuspec repository + commit; ci.yml (windows-latest, setup-dotnet 9.0.x,
+# actions/checkout@v4 at depth 1, CI_TARGET_BRANCH=main on a push to main, a
+# CI_BUILD_NUMBER, which on main only means "no package suffix"); Build.ps1's
+# dotnet commands, run here directly since PowerShell is not installed.
+# SDK 9.0.101 from the PDB's compiler record (Roslyn 4.12.0-3.24570.6, runtime 9.0.0).
+REPO=https://github.com/serilog/serilog
+COMMIT=c00e17fdeb615d36c062569f7342f72c9ece4aa7
+SDK_DIR=/private/tmp/nupkg-pilot/sdk/9.0.101
+DEPTH=1
+GIT_CONFIG="core.autocrlf=true"   # Git for Windows' default on a Windows runner
+VARS="CI_TARGET_BRANCH=main"
+# Build.ps1 on main with a build number: suffix "", build suffix "<branch>-<short hash>".
+BUILD='dotnet --version && dotnet restore --no-cache && dotnet build -c Release --version-suffix=main-$(git rev-parse --short HEAD) /p:ContinuousIntegrationBuild=true && cd src/Serilog && dotnet pack -c Release --no-build --no-restore -o ../../artifacts'
+SHIPS=lib/net9.0/Serilog.dll
+--- environment
+CI_TARGET_BRANCH=main
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-pilot/serilog/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-pilot/serilog/A/nuget
+PATH=/private/tmp/nupkg-pilot/sdk/9.0.101:/usr/bin
+--- git config
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	remote.origin.url=git@github.com:leosakharoff/speciale-2026.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.main.remote=origin
+file:.git/config	branch.main.merge=refs/heads/main
+file:.git/config	branch.main.vscode-merge-base=origin/main
+file:.git/config	lfs.repositoryformatversion=0
+--- toolchain
+.NET SDK:
+ Version:           9.0.101
+ Commit:            eedb237549
+ Workload version:  9.0.100-manifests.3068a692
+ MSBuild version:   17.12.12+1cce77968
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-pilot/sdk/9.0.101/sdk/9.0.101/
+
+.NET workloads installed:
+There are no installed workloads to display.
+Configured to use loose manifests when installing new manifests.
+
+Host:
+  Version:      9.0.0
+  Architecture: x64
+  Commit:       9d5a6a9aa4
+
+.NET SDKs installed:
+  9.0.101 [/private/tmp/nupkg-pilot/sdk/9.0.101/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 9.0.0 [/private/tmp/nupkg-pilot/sdk/9.0.101/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 9.0.0 [/private/tmp/nupkg-pilot/sdk/9.0.101/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll sha256 2a9e0df3a7b8f8bec8a4a3cc54b54bc97e8ccf6c4b2768dfa9e58ae3c623e799 (/private/tmp/nupkg-pilot/sdk/9.0.101/sdk/9.0.101/Roslyn/bincore/csc.dll)
+--- clone 2026-10-21T12:30:40+02:00
+HEAD: c00e17fdeb615d36c062569f7342f72c9ece4aa7
+tags at HEAD: 
+short hash: c00e17f
+--- build 2026-10-21T12:30:41+02:00
+9.0.101
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.ApprovalTests/Serilog.ApprovalTests.csproj (in 2.31 sec).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.Tests/Serilog.Tests.csproj (in 2.47 sec).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/src/Serilog/Serilog.csproj (in 2.65 sec).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/TestDummies/TestDummies.csproj (in 3.08 sec).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.PerformanceTests/Serilog.PerformanceTests.csproj (in 3.53 sec).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/src/Serilog/Serilog.csproj (in 350 ms).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.PerformanceTests/Serilog.PerformanceTests.csproj (in 371 ms).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.ApprovalTests/Serilog.ApprovalTests.csproj (in 350 ms).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/TestDummies/TestDummies.csproj (in 350 ms).
+  Restored /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.Tests/Serilog.Tests.csproj (in 350 ms).
+  Serilog -> /private/tmp/nupkg-pilot/serilog/A/src/src/Serilog/bin/Release/netstandard2.0/Serilog.dll
+  Serilog -> /private/tmp/nupkg-pilot/serilog/A/src/src/Serilog/bin/Release/net6.0/Serilog.dll
+  Serilog -> /private/tmp/nupkg-pilot/serilog/A/src/src/Serilog/bin/Release/net9.0/Serilog.dll
+  Serilog -> /private/tmp/nupkg-pilot/serilog/A/src/src/Serilog/bin/Release/net8.0/Serilog.dll
+  TestDummies -> /private/tmp/nupkg-pilot/serilog/A/src/test/TestDummies/bin/Release/netstandard2.0/TestDummies.dll
+  TestDummies -> /private/tmp/nupkg-pilot/serilog/A/src/test/TestDummies/bin/Release/net462/TestDummies.dll
+  Serilog.ApprovalTests -> /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.ApprovalTests/bin/Release/net9.0/Serilog.ApprovalTests.dll
+  Serilog.PerformanceTests -> /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.PerformanceTests/bin/Release/net9.0/Serilog.PerformanceTests.dll
+  Serilog.PerformanceTests -> /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.PerformanceTests/bin/Release/net8.0/Serilog.PerformanceTests.dll
+  Serilog.Tests -> /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.Tests/bin/Release/net9.0/Serilog.Tests.dll
+  Serilog.Tests -> /private/tmp/nupkg-pilot/serilog/A/src/test/Serilog.Tests/bin/Release/net8.0/Serilog.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.48
+  Successfully created package '/private/tmp/nupkg-pilot/serilog/A/src/artifacts/Serilog.4.2.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-pilot/serilog/A/src/artifacts/Serilog.4.2.0.snupkg'.
+end 2026-10-21T12:30:58+02:00

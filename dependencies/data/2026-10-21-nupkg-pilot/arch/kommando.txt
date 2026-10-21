@@ -1,0 +1,52 @@
+# On arch, 21 October 2026, from /home/leos/Dev/Speciale2026. L=/private/tmp/nupkg-pilot, E=dependencies/experiments/nupkg,
+# D=dependencies/data/2026-10-21-nupkg-pilot/arch. The report tool runs with SDK 10.0.401: R="/private/tmp/rb1-dotnet10/sdk/dotnet run $E/dllreport.cs --".
+
+# Choosing the packages (read only): dependents per package from the three programs' lock files at Phoenix 79cb67a7
+# (a package counts as a dependent when its lock entry lists the package); which DLL ships, from the reference
+# release's WebAPI.deps.json (v0.0.0-thesis.6, private data); PDBs from msdl.microsoft.com / symbols.nuget.org by
+# their SSQP keys; $R on each DLL with its PDB for the line endings of the embedded generated files.
+mkdir -p $L/fingerprint/<package> && $R $L/fingerprint/<package>/<dll> $L/fingerprint/<package>/<pdb> > $L/fingerprint/<package>/report.txt
+/private/tmp/rb1-dotnet10/sdk/dotnet run $E/mvids.cs -- /private/tmp/rb1-dotnet10/sdk/packs/Microsoft.NETCore.App.Ref/10.0.12/ref
+
+# Serilog 4.2.0, step 1: the package and its symbols from nuget.org; SHA-512 against Phoenix's cache.
+curl -fsSLo serilog.4.2.0.nupkg https://api.nuget.org/v3-flatcontainer/serilog/4.2.0/serilog.4.2.0.nupkg
+curl -fsSLo serilog.4.2.0.snupkg https://www.nuget.org/api/v2/symbolpackage/Serilog/4.2.0
+openssl dgst -sha512 -binary serilog.4.2.0.nupkg | base64 -w0; cat ~/.nuget/packages/serilog/4.2.0/serilog.4.2.0.nupkg.sha512
+# step 2: report of the published DLL (its PDB from the .snupkg, beside it)
+$R $L/nuget-org/serilog/Serilog.dll > $L/nuget-org/serilog/report.txt
+# step 3: the SDK, alone
+python3 -I $E/install-sdk.py 9.0.101 $L/sdk/9.0.101
+# steps 5 and 6: builds A and B (CRLF checkout), C (LF checkout)
+bash $E/build.sh $E/recipes/serilog-4.2.0-crlf.sh $L/serilog/A
+bash $E/build.sh $E/recipes/serilog-4.2.0-crlf.sh $L/serilog/B-second-dir
+bash $E/build.sh $E/recipes/serilog-4.2.0-lf.sh $L/serilog/C
+# step 7
+python3 -I $E/compare.py lib/net9.0/Serilog.dll $L/nuget-org/serilog/serilog.4.2.0.nupkg $L/serilog/A/src/artifacts/Serilog.4.2.0.nupkg $L/serilog/B-second-dir/src/artifacts/Serilog.4.2.0.nupkg $L/serilog/C/src/artifacts/Serilog.4.2.0.nupkg > $D/serilog/compare.txt
+# step 8: each build's DLL and PDB taken out of its .nupkg and .snupkg into $L/serilog/<build>/out, then
+$R $L/serilog/<build>/out/Serilog.dll > $D/serilog/report-<build>.txt
+diff $D/serilog/report-nugetorg.txt $D/serilog/report-A.txt
+# step 2 on the clones (run after the builds; the builds do not touch tracked files)
+python3 -I $E/srccheck.py $D/serilog/report-nugetorg.txt $L/serilog/C/src /_/ > $D/serilog/srccheck-C-lf-clone.txt
+python3 -I $E/srccheck.py $D/serilog/report-nugetorg.txt $L/serilog/A/src /_/ > $D/serilog/srccheck-A-crlf-clone.txt
+
+# Build D (diagnostic, 12:52): build A plus windows-newlines.targets, imported through CustomAfterMicrosoftCommonTargets
+bash $E/build.sh $E/recipes/serilog-4.2.0-crlf-generated.sh $L/serilog/D
+python3 -I $E/compare.py lib/net9.0/Serilog.dll $L/nuget-org/serilog/serilog.4.2.0.nupkg $L/serilog/D/src/artifacts/Serilog.4.2.0.nupkg > $D/serilog/compare-D.txt
+# D's DLL and PDB out of its .nupkg and .snupkg into $L/serilog/D/out, then
+cmp $L/serilog/D/out/Serilog.pdb $L/nuget-org/serilog/Serilog.pdb
+$R $L/serilog/D/out/Serilog.dll > $D/serilog/report-D.txt
+diff $D/serilog/report-nugetorg.txt $D/serilog/report-D.txt
+# the two packages' XML documentation and .nuspec: line endings counted, compared after CRLF -> LF, into $D/serilog/packaging-D.txt
+
+# The Microsoft toolset, read only: SDK 10.0.111 (tools.dotnet in dotnet/dotnet's global.json at 95017c71)
+python3 -I $E/install-sdk.py 10.0.111 $L/sdk/10.0.111
+
+# Pilot 2, 13:59-14:18: rebuild.py at the commit named (each run's recipe.toml is in its output folder).
+# Output folders are copied without packages (text only) to $D/rebuild/<name>/.
+python3 -I $E/rebuild.py $E/recipes/serilog-4.2.0-linux-crlf.toml $L/rebuild/serilog-linux-crlf          # before 633ecac; checks rebuild.py against build A
+python3 -I $E/rebuild.py $E/recipes/rbush-4.0.0-linux.toml $L/rebuild/rbush-linux                         # 633ecac
+python3 -I $E/rebuild.py $E/recipes/fluentvalidation-11.11.0-linux.toml $L/rebuild/fluentvalidation-linux # 633ecac (run 1)
+python3 -I $E/rebuild.py $E/recipes/fluentvalidation-11.11.0-linux.toml $L/rebuild/fluentvalidation-linux-2 # 97954ec (run 2)
+# Report diffs: the shipped DLL (and its PDB, where the package has one) out of each .nupkg, then
+$R <dll> [<pdb>] > report-<tfm>-<nugetorg|A>.txt
+diff report-<tfm>-nugetorg.txt report-<tfm>-A.txt

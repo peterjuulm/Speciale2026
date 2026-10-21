@@ -1,0 +1,24 @@
+# FluentValidation 11.11.0 on Linux. Built on the maintainer's own machine:
+# the PDB is embedded and has LF in the SDK-generated files (Linux or macOS),
+# and no CI workflow publishes packages. What the repository declares at the
+# commit: global.json 8.0.100 (rollForward latestFeature); build.ps1 (posh-
+# build) runs "dotnet build FluentValidation.sln -c Release --no-incremental",
+# the tests, then "dotnet pack FluentValidation.sln -c Release" into
+# .build/packages. Release sets ContinuousIntegrationBuild; the strong-name
+# key is in the repository. The dotnet commands run directly: no PowerShell
+# on arch, and the tests do not touch the packed files.
+# A full clone, as a maintainer has. SDK 8.0.100 from the compiler record
+# (Roslyn 4.8.0-3.23524.11 on runtime 8.0.0). Inferred; the build log names
+# the csc version.
+package = "FluentValidation"
+version = "11.11.0"
+ships = "lib/net8.0/FluentValidation.dll"
+# The clone URL the published PDB's Source Link names: the maintainer's clone
+# had the repository's current name. The .nuspec's older URL redirects on
+# GitHub, and the first run (21/10) differed from nuget.org only there.
+repo = "https://github.com/FluentValidation/FluentValidation"
+commit = "c8c6400fa2f467d65669b78804613d44066c1c33"
+sdk = "8.0.100"
+shell = "bash"
+build = "dotnet build FluentValidation.sln -c Release --no-incremental && dotnet pack FluentValidation.sln -c Release"
+packages = ".build/packages"

@@ -1,0 +1,25 @@
+# Build D against nuget.org: the XML documentation and the .nuspec, line endings counted, then compared after CRLF -> LF
+lib/net9.0/Serilog.xml: nuget.org 307689 bytes, crlf 5001 lf 0 | D 302688 bytes, crlf 0 lf 5001 | equal after CRLF -> LF: True
+lib/netstandard2.0/Serilog.xml: nuget.org 380829 bytes, crlf 6223 lf 0 | D 374606 bytes, crlf 0 lf 6223 | equal after CRLF -> LF: True
+Serilog.nuspec: nuget.org 2294 bytes, crlf 39 lf 0 | D 1217 bytes, crlf 0 lf 25 | equal after CRLF -> LF: False
+# diff of the two .nuspec files after CRLF -> LF (< nuget.org, > D)
+15c15
+<     <repository type="git" url="https://github.com/serilog/serilog" branch="refs/heads/main" commit="c00e17fdeb615d36c062569f7342f72c9ece4aa7" />
+---
+>     <repository type="git" url="https://github.com/serilog/serilog" commit="c00e17fdeb615d36c062569f7342f72c9ece4aa7" />
+17,25d16
+<       <group targetFramework=".NETFramework4.6.2">
+<         <dependency id="System.Diagnostics.DiagnosticSource" version="8.0.1" exclude="Build,Analyzers" />
+<         <dependency id="System.Threading.Channels" version="8.0.0" exclude="Build,Analyzers" />
+<         <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+<       </group>
+<       <group targetFramework=".NETFramework4.7.1">
+<         <dependency id="System.Diagnostics.DiagnosticSource" version="8.0.1" exclude="Build,Analyzers" />
+<         <dependency id="System.Threading.Channels" version="8.0.0" exclude="Build,Analyzers" />
+<       </group>
+34,38d24
+<     <frameworkAssemblies>
+<       <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.6.2, .NETFramework4.7.1" />
+<       <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.6.2, .NETFramework4.7.1" />
+<       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.6.2, .NETFramework4.7.1" />
+<     </frameworkAssemblies>

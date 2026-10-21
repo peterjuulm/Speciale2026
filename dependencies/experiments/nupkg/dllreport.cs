@@ -14,7 +14,7 @@
 // resources, the debug entries, and in the PDB the compiler record, the
 // references, the source documents and the PDB's own streams.
 //
-// Written 21 October 2026 for the nupkg pilot (dependencies/notes/2026-10-21-nupkg-pilot.md).
+// Written 21 October 2026 for the nupkg pilot (dependencies/notes/2026-10-21-nupkg-pilot-serilog-runners.md).
 
 using System.Collections.Immutable;
 using System.IO.Compression;

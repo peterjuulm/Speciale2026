@@ -1,0 +1,21 @@
+date: 2026-10-21T12:33:04+02:00
+uname: Linux 7.2.9-arch1-1 x86_64
+python: Python 3.14.8
+git: git version 2.56.0
+report tool runs on: Microsoft SDK 10.0.401 in /private/tmp/rb1-dotnet10/sdk (dotnet run dllreport.cs)
+lab: /private/tmp/nupkg-pilot (outside every repository)
+network: api.nuget.org and www.nuget.org (packages, symbol packages), msdl.microsoft.com and symbols.nuget.org (PDBs), github.com and raw.githubusercontent.com (clones, CI files), builds.dotnet.microsoft.com (SDK archives and release metadata)
+--- SDK 9.0.101 (Serilog)
+sdk 9.0.101: https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.101/dotnet-sdk-9.0.101-linux-x64.tar.gz
+sha512 91b37efd64242e5f1f3c2025d183eb34e17f3a9271c5602f29ddf794845eee103723ef955ed869788ebf5a731e8ddc69328799c92c64cb118e1328d259a6ad01 (matches https://builds.dotnet.microsoft.com/dotnet/release-metadata/9.0/releases.json)
+runtime in the release metadata: 9.0.0
+9.0.101 [/private/tmp/nupkg-pilot/sdk/9.0.101/sdk]
+Microsoft.AspNetCore.App 9.0.0 [/private/tmp/nupkg-pilot/sdk/9.0.101/shared/Microsoft.AspNetCore.App]
+Microsoft.NETCore.App 9.0.0 [/private/tmp/nupkg-pilot/sdk/9.0.101/shared/Microsoft.NETCore.App]
+csc.dll sha256 2a9e0df3a7b8f8bec8a4a3cc54b54bc97e8ccf6c4b2768dfa9e58ae3c623e799, version 4.12.0-3.24570.6+913fb4ecf8382b79d29e8a4434bb5667f7988846
+--- SDK 10.0.111 (Microsoft's dotnet/dotnet toolset, read only so far)
+10.0.111 [/private/tmp/nupkg-pilot/sdk/10.0.111/sdk]
+Microsoft.AspNetCore.App 10.0.11 [/private/tmp/nupkg-pilot/sdk/10.0.111/shared/Microsoft.AspNetCore.App]
+Microsoft.NETCore.App 10.0.11 [/private/tmp/nupkg-pilot/sdk/10.0.111/shared/Microsoft.NETCore.App]
+csc.dll sha256 a962f6e888cacc51f9aa0ab8d61f69583dcb60acfb2860eecad695c4311fb290, version 5.0.0-2.26373.116+e2f47b0110ed922f21a1522da67279133ce28f32
+--- each build's own environment block (env, git config, dotnet --info, csc hash) is at the top of its build.log

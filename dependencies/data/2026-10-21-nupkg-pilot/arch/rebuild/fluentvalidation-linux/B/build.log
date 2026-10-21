@@ -1,0 +1,124 @@
+start 2026-10-21T14:09:34+02:00
+build B in /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/nuget
+NuGetAudit=false
+PATH=/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/sdk:/usr/bin
+--- clone 2026-10-21T14:09:34+02:00
+$ git init -q /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src
+$ git -C /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src remote add origin https://github.com/JeremySkinner/fluentvalidation
+$ git -C /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src -c advice.detachedHead=false checkout -q c8c6400fa2f467d65669b78804613d44066c1c33
+$ git -C /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	remote.origin.url=https://github.com/JeremySkinner/fluentvalidation
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src rev-parse HEAD
+c8c6400fa2f467d65669b78804613d44066c1c33
+$ git -C /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src tag --points-at HEAD
+11.11.0
+--- toolchain 2026-10-21T14:10:13+02:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.100
+ Commit:            57efcf1350
+ Workload version:  8.0.100-manifests.6c33ef20
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/sdk/sdk/8.0.100/
+
+.NET workloads installed:
+ Workload version: 8.0.100-manifests.6c33ef20
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.0
+  Architecture: x64
+  Commit:       5535e31a71
+
+.NET SDKs installed:
+  8.0.100 [/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.0 [/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.0 [/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 94.8.0-3.23524.11+f43cd10b737b6343956dee421cff8c50b602c788, sha256 b3c1d1404fbc634f19d5e258c5b9f288697d49e2acadf5ec0dd09dd63d379c47 (/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/sdk/sdk/8.0.100/Roslyn/bincore/csc.dll)
+--- build 2026-10-21T14:10:13+02:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build FluentValidation.sln -c Release --no-incremental && dotnet pack FluentValidation.sln -c Release
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj (in 17.1 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.Tests/FluentValidation.Tests.csproj (in 47.44 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.Tests.Benchmarks/FluentValidation.Tests.Benchmarks.csproj (in 55.25 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/FluentValidation.csproj (in 1.07 min).
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/netstandard2.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/netstandard2.1/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net7.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net5.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net6.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net8.0/FluentValidation.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll
+  FluentValidation.Tests.Benchmarks -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.Tests.Benchmarks/bin/Release/net6.0/FluentValidation.Tests.Benchmarks.dll
+  FluentValidation.Tests -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.Tests/bin/Release/net7.0/FluentValidation.Tests.dll
+  FluentValidation.Tests -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.Tests/bin/Release/net6.0/FluentValidation.Tests.dll
+  FluentValidation.Tests -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.Tests/bin/Release/net8.0/FluentValidation.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:12.00
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/netstandard2.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net5.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net6.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net7.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/net8.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation/bin/Release/netstandard2.1/FluentValidation.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll
+  Successfully created package '/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/../.build/packages/FluentValidation.DependencyInjectionExtensions.11.11.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-pilot/rebuild/fluentvalidation-linux/B/src/src/../.build/packages/FluentValidation.11.11.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-21T14:11:32+02:00

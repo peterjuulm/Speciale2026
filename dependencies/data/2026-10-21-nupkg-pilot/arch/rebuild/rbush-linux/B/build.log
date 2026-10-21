@@ -1,0 +1,111 @@
+start 2026-10-21T14:06:31+02:00
+build B in /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src
+--- environment
+CI=true
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+GITHUB_ACTIONS=true
+GITHUB_EVENT_NAME=push
+GITHUB_REF=refs/tags/v4.0.0
+GITHUB_REF_NAME=v4.0.0
+GITHUB_REF_TYPE=tag
+GITHUB_REPOSITORY=viceroypenguin/RBush
+GITHUB_SHA=b8690322abac35d835baa2fdca4a3918ed77a910
+GITHUB_WORKSPACE=/private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src
+HOME=/private/tmp/nupkg-pilot/rebuild/rbush-linux/B/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-pilot/rebuild/rbush-linux/B/nuget
+PATH=/private/tmp/nupkg-pilot/rebuild/rbush-linux/sdk:/usr/bin
+RUNNER_OS=Linux
+--- clone 2026-10-21T14:06:31+02:00
+$ git init -q /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src
+$ git -C /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src remote add origin https://github.com/viceroypenguin/RBush
+$ git -C /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src fetch -q --no-tags --depth=1 origin +refs/tags/v4.0.0:refs/tags/v4.0.0
+$ git -C /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src -c advice.detachedHead=false checkout -q refs/tags/v4.0.0
+$ git -C /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	remote.origin.url=https://github.com/viceroypenguin/RBush
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src rev-parse HEAD
+b8690322abac35d835baa2fdca4a3918ed77a910
+$ git -C /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src tag --points-at HEAD
+v4.0.0
+--- toolchain 2026-10-21T14:06:37+02:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.404
+ Commit:            7b190310f2
+ Workload version:  8.0.400-manifests.996cfe54
+ MSBuild version:   17.11.9+a69bbaaf5
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-pilot/rebuild/rbush-linux/sdk/sdk/8.0.404/
+
+.NET workloads installed:
+Configured to use loose manifests when installing new manifests.
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.11
+  Architecture: x64
+  Commit:       9cb3b725e3
+
+.NET SDKs installed:
+  8.0.404 [/private/tmp/nupkg-pilot/rebuild/rbush-linux/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.11 [/private/tmp/nupkg-pilot/rebuild/rbush-linux/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.11 [/private/tmp/nupkg-pilot/rebuild/rbush-linux/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 94.11.0-3.24510.3+cfe3bd0a653ebd218fec07ff4cce9a994715a473, sha256 9b8327e5167095664251c71e3feb55792500dcdde7d3dd2a20b3605c61f6bd50 (/private/tmp/nupkg-pilot/rebuild/rbush-linux/sdk/sdk/8.0.404/Roslyn/bincore/csc.dll)
+--- build 2026-10-21T14:06:37+02:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet restore && dotnet build -c Release --no-restore && dotnet pack -c Release --no-build --property:PackageOutputPath=../nupkgs
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src/RBush.Test/RBush.Test.csproj (in 12.13 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src/RBush/RBush.csproj (in 20.34 sec).
+  RBush -> /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src/RBush/bin/Release/net47/RBush.dll
+  RBush -> /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src/RBush/bin/Release/netstandard2.0/RBush.dll
+  RBush -> /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src/RBush/bin/Release/net8.0/RBush.dll
+  RBush.Test -> /private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src/RBush.Test/bin/Release/net8.0/RBush.Test.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.48
+  Successfully created package '/private/tmp/nupkg-pilot/rebuild/rbush-linux/B/src/nupkgs/RBush.4.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-21T14:07:06+02:00

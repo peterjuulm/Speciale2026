@@ -1,0 +1,36 @@
+# Cronos 0.9.0 on a GitHub Windows runner, built as its AppVeyor CI built it.
+# Declared: the .nuspec's repository and commit. appveyor.yml at the commit:
+# image "Visual Studio 2022", deploy on a tag, build_script "build.bat sign".
+# build.bat restores psake and Hangfire.Build 0.5.0 with the repository's
+# NuGet.exe and runs psake-project.ps1: dotnet restore --locked-mode, dotnet
+# build -c Release, the tests, then NuGet.exe pack of nuspecs/Cronos.nuspec
+# into build\. The "sign" task (SignPath, Authenticode) needs Hangfire's API
+# token, so this runs build.bat without it: at best level 2.
+# AppVeyor clones the whole repository into C:\projects\cronos and checks out
+# the commit; the PDB has absolute paths there (no ContinuousIntegrationBuild).
+# SDK 9.0.100 from the compiler record (Roslyn 4.12.0-3.24523.4 on runtime
+# 9.0.0), verified from that SDK's csc.dll on arch, 21/10.
+# The APPVEYOR_* values are those of a build of the tag v0.9.0.
+package = "Cronos"
+version = "0.9.0"
+ships = "lib/net6.0/Cronos.dll"
+repo = "https://github.com/HangfireIO/Cronos.git"
+commit = "14ca2b146d55f8d16a36eded60a74425b1b00f51"
+clone_dir = 'C:\projects\cronos'
+sdk = "9.0.100"
+# The tests (psake's Pack task depends on them) target netcoreapp3.1 too, and
+# fail without that runtime (first run, 21/10). The AppVeyor image had it,
+# since the release build ran the same tests there; 3.1.32 is the last 3.1.
+runtimes = ["3.1.32"]
+shell = "cmd"
+build = "build.bat"
+packages = "build"
+
+[env]
+CI = "True"
+APPVEYOR = "True"
+APPVEYOR_REPO_NAME = "HangfireIO/Cronos"
+APPVEYOR_REPO_COMMIT = "14ca2b146d55f8d16a36eded60a74425b1b00f51"
+APPVEYOR_REPO_TAG = "True"
+APPVEYOR_REPO_TAG_NAME = "v0.9.0"
+APPVEYOR_BUILD_FOLDER = "{src}"

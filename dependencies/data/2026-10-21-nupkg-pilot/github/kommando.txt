@@ -1,0 +1,22 @@
+# Pilot 2 on GitHub's standard runners, 21 October 2026, from arch. Workflow .github/workflows/nupkg-rebuild.yml,
+# which runs dependencies/experiments/nupkg/rebuild.py on the runner at the commit the run started from.
+gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=<recipe> -f runner=<runner>
+gh run download <run id> -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-pilot/gh/<run id>
+# Each run's output folder, without packages (text only), is copied to <package>-<runner>-run<N>-<run id>/ here.
+#
+# run id       recipe                            runner        commit
+# 39596681330  serilog-4.2.0-windows.toml        windows-2022  633ecac
+# 39596686629  serilog-4.2.0-windows.toml        windows-2025  633ecac
+# 39596691641  guardclauses-5.0.0-windows.toml   windows-2022  633ecac
+# 39596697042  cronos-0.9.0-windows.toml         windows-2022  633ecac
+# 39597050142  serilog-4.2.0-windows.toml        windows-2022  6e7e55c
+# 39597055965  serilog-4.2.0-windows.toml        windows-2025  6e7e55c
+# 39597130182  guardclauses-5.0.0-windows.toml   windows-2022  b355751
+# 39597621215  cronos-0.9.0-windows.toml         windows-2022  2b77d0f
+# 39598051326  guardclauses-5.0.0-windows.toml   windows-2022  1584116
+# 39598199840  cronos-0.9.0-windows.toml         windows-2022  d664239
+#
+# Report diffs, on arch with the report tool of the pilot (R in ../arch/kommando.txt): the shipped DLL
+# (and its PDB, where the package has one) out of each .nupkg, then
+$R <dll> [<pdb>] > report-<tfm>-<nugetorg|A>.txt
+diff report-<tfm>-nugetorg.txt report-<tfm>-A.txt

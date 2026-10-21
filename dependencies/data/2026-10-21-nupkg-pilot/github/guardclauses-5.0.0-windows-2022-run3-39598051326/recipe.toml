@@ -1,0 +1,42 @@
+# Ardalis.GuardClauses 5.0.0 on a GitHub Windows runner, as its CI built it.
+# Declared: the .nuspec's repository and commit (no branch). publish.yml at
+# the commit: on a push to main, windows-latest, actions/checkout@v4 (depth 1,
+# HEAD on main), setup-dotnet 6.0.x, then rohith/publish-nuget@v2, which runs
+# "dotnet build -c Release <project>" and "dotnet pack --no-build -c Release
+# <project> -o ." in the workspace (its index.js at v2).
+# The PDB has absolute paths under D:\a\GuardClauses\GuardClauses (the project
+# sets no ContinuousIntegrationBuild), so build A runs in that directory.
+# SDK 8.0.400 from the compiler record (Roslyn 4.11.0-3.24365.8 on runtime
+# 8.0.8): no global.json, so the runner's newest SDK built it, not the 6.0.x
+# that setup-dotnet added. Inferred; the build log names the csc version.
+package = "Ardalis.GuardClauses"
+version = "5.0.0"
+ships = "lib/net8.0/Ardalis.GuardClauses.dll"
+# The clone URL in the repository's own case, as actions/checkout builds it
+# from GITHUB_REPOSITORY: Source Link writes the URL into the PDB. With the
+# .nuspec's lower-case URL, the first run (21/10) differed only there.
+repo = "https://github.com/ardalis/GuardClauses"
+commit = "ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5"
+branch = "main"
+depth = 1
+clone_dir = 'D:\a\GuardClauses\GuardClauses'
+sdk = "8.0.400"
+# The netstandard2.0 build compiles NullableAttributes.cs from the package
+# TunnelVisionLabs.ReferenceAssemblyAnnotator, and the PDB holds its path in
+# the runner's default NuGet cache. With an empty cache elsewhere, the second
+# run (21/10) differed only there.
+nuget_packages = 'C:\Users\runneradmin\.nuget\packages'
+shell = "pwsh"
+build = "dotnet build -c Release src/GuardClauses/GuardClauses.csproj; if ($LASTEXITCODE) { exit $LASTEXITCODE }; dotnet pack --no-build -c Release src/GuardClauses/GuardClauses.csproj -o ."
+packages = "."
+
+[env]
+CI = "true"
+GITHUB_ACTIONS = "true"
+GITHUB_REPOSITORY = "ardalis/GuardClauses"
+GITHUB_SHA = "ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5"
+GITHUB_REF = "refs/heads/main"
+GITHUB_REF_NAME = "main"
+GITHUB_EVENT_NAME = "push"
+GITHUB_WORKSPACE = "{src}"
+RUNNER_OS = "Windows"

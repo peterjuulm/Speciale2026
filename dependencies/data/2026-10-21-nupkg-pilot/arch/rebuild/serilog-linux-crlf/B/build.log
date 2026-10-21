@@ -1,0 +1,121 @@
+start 2026-10-21T14:01:15+02:00
+build B in /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src
+--- environment
+CI_TARGET_BRANCH=main
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/nuget
+PATH=/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/sdk:/usr/bin
+--- clone 2026-10-21T14:01:15+02:00
+$ git init -q /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src remote add origin https://github.com/serilog/serilog
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src fetch -q --no-tags --depth=1 origin c00e17fdeb615d36c062569f7342f72c9ece4aa7
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src checkout -q -B main c00e17fdeb615d36c062569f7342f72c9ece4aa7
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=true
+file:.git/config	remote.origin.url=https://github.com/serilog/serilog
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src rev-parse HEAD
+c00e17fdeb615d36c062569f7342f72c9ece4aa7
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src rev-parse --abbrev-ref HEAD
+main
+$ git -C /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src tag --points-at HEAD
+--- toolchain 2026-10-21T14:01:17+02:00
+$ dotnet --info
+.NET SDK:
+ Version:           9.0.101
+ Commit:            eedb237549
+ Workload version:  9.0.100-manifests.3068a692
+ MSBuild version:   17.12.12+1cce77968
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/sdk/sdk/9.0.101/
+
+.NET workloads installed:
+There are no installed workloads to display.
+Configured to use loose manifests when installing new manifests.
+
+Host:
+  Version:      9.0.0
+  Architecture: x64
+  Commit:       9d5a6a9aa4
+
+.NET SDKs installed:
+  9.0.101 [/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 9.0.0 [/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 9.0.0 [/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll sha256 2a9e0df3a7b8f8bec8a4a3cc54b54bc97e8ccf6c4b2768dfa9e58ae3c623e799 (/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/sdk/sdk/9.0.101/Roslyn/bincore/csc.dll)
+--- build 2026-10-21T14:01:17+02:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet --version && dotnet restore --no-cache && dotnet build -c Release --version-suffix=main-$(git rev-parse --short HEAD) /p:ContinuousIntegrationBuild=true && cd src/Serilog && dotnet pack -c Release --no-build --no-restore -o ../../artifacts
+9.0.101
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/src/Serilog/Serilog.csproj (in 30.27 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.Tests/Serilog.Tests.csproj (in 37.95 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.ApprovalTests/Serilog.ApprovalTests.csproj (in 38.23 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/TestDummies/TestDummies.csproj (in 46.81 sec).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.PerformanceTests/Serilog.PerformanceTests.csproj (in 56.64 sec).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/TestDummies/TestDummies.csproj (in 343 ms).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.PerformanceTests/Serilog.PerformanceTests.csproj (in 345 ms).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/src/Serilog/Serilog.csproj (in 343 ms).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.Tests/Serilog.Tests.csproj (in 343 ms).
+  Restored /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.ApprovalTests/Serilog.ApprovalTests.csproj (in 343 ms).
+  Serilog -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/src/Serilog/bin/Release/netstandard2.0/Serilog.dll
+  Serilog -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/src/Serilog/bin/Release/net6.0/Serilog.dll
+  Serilog -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/src/Serilog/bin/Release/net8.0/Serilog.dll
+  Serilog -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/src/Serilog/bin/Release/net9.0/Serilog.dll
+  TestDummies -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/TestDummies/bin/Release/netstandard2.0/TestDummies.dll
+  TestDummies -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/TestDummies/bin/Release/net462/TestDummies.dll
+  Serilog.ApprovalTests -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.ApprovalTests/bin/Release/net9.0/Serilog.ApprovalTests.dll
+  Serilog.PerformanceTests -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.PerformanceTests/bin/Release/net9.0/Serilog.PerformanceTests.dll
+  Serilog.PerformanceTests -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.PerformanceTests/bin/Release/net8.0/Serilog.PerformanceTests.dll
+  Serilog.Tests -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.Tests/bin/Release/net9.0/Serilog.Tests.dll
+  Serilog.Tests -> /private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/test/Serilog.Tests/bin/Release/net8.0/Serilog.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.51
+  Successfully created package '/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/artifacts/Serilog.4.2.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-pilot/rebuild/serilog-linux-crlf/B/src/artifacts/Serilog.4.2.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-21T14:02:27+02:00
