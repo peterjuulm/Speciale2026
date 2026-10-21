@@ -1,0 +1,53 @@
+# phoenix-mac-rebuild, mac, 21 October 2026. Run by Claude at Peter's
+# request, in zsh (scripts in bash). Verbatim, with E for
+# Speciale2026/experiments, S for a scratch folder, N for the run's private
+# folder /private/tmp/rb1-mac-run, and D for this folder.
+
+# The tag, fetched into Peter's clone without a change to its working tree, 14:00:
+git -C ~/WS.Phoenix fetch origin thesis/reproducible-builds 'refs/tags/v0.0.0-thesis.6:refs/tags/v0.0.0-thesis.6'
+git -C ~/WS.Phoenix rev-parse v0.0.0-thesis.6^{commit}
+#   be5fc56e76c5fc7b01e9f25cdc4117ce5783dce0
+
+# Node 22.23.3, 14:01, checked against nodejs.org's SHASUMS256.txt:
+curl -fsSL https://nodejs.org/dist/v22.23.3/SHASUMS256.txt | grep darwin-arm64.tar.gz
+#   23b25245dcfb9af7262f8ff142e9e2e0af025368117329e7a7458a51e5922f53  node-v22.23.3-darwin-arm64.tar.gz
+cd $S/node-dl && curl -fsSLO https://nodejs.org/dist/v22.23.3/node-v22.23.3-darwin-arm64.tar.gz && shasum -a 256 node-v22.23.3-darwin-arm64.tar.gz
+#   23b25245dcfb9af7262f8ff142e9e2e0af025368117329e7a7458a51e5922f53, the same
+mkdir -p /private/tmp/rb1-node22 && tar -xzf $S/node-dl/node-v22.23.3-darwin-arm64.tar.gz -C /private/tmp/rb1-node22 --strip-components 1
+
+# /private/tmp/rb1-tools for pack-release-zip.sh, 14:01: two Python shims,
+# realpath ([-m] [--] PATH, os.path.realpath) and touch (-h -d @N FILE...,
+# os.utime with follow_symlinks=False), and links chmod -> /bin/chmod,
+# rm -> /bin/rm. Hashes in environment.txt. zip is /usr/bin/zip.
+
+# The environment, 14:02 (D/environment.txt).
+
+# The npm cache filled from the registry in a scratch clone, 14:02:
+git clone -q --depth 1 --branch v0.0.0-thesis.6 file:///Users/peterjuulmoller/WS.Phoenix $S/npm-fill
+cd $S/npm-fill/src/WebAPI/ClientApp && env -i HOME=$S/npm-home PATH=/private/tmp/rb1-node22/bin:/usr/bin npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false npm ci --ignore-scripts --no-audit --no-fund > $S/npm-fill.log 2>&1
+#   added 1339 packages in 20s; 214 MB; next 15.5.25 with @next/swc-darwin-arm64
+
+# The rebuild, first try, 14:02:47:
+mkdir -p /private/tmp/rb1-mac-run && cd /private/tmp && OUT=/private/tmp/rb1-mac-run REPO=/Users/peterjuulmoller/WS.Phoenix DOTNET_DIR=/Users/peterjuulmoller/.dotnet NODE_DIR=/private/tmp/rb1-node22 $E/phoenix-rt/ci-local.sh v0.0.0-thesis.6 "frontend linux" > $N/ci-local.log 2>&1
+#   frontend exit 127: "env: sh: No such file or directory". The script's
+#   PATH was /usr/bin only; macOS has sh in /bin. ci-local.sh changed: every
+#   PATH ends in :/bin too (see its header).
+
+# The release's assets, 14:03:
+cd $N/release && gh release download v0.0.0-thesis.6 -R Weel-Sandvig/WS.Phoenix -p 'ws-pems-linux-x64-v0.0.0-thesis.6.zip' -p 'ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip' -p SHA256SUMS
+#   their sha256 equal GitHub's asset digests and the published SHA256SUMS
+for z in ws-pems-linux-x64 ws-pems-job-worker-linux-x64; do mkdir -p unz/$z && unzip -q $z-v0.0.0-thesis.6.zip -d unz/$z; done
+
+# The rebuild, second try, 14:03:31:
+rm -rf $N/local /private/tmp/rb1-ci && cd /private/tmp && OUT=/private/tmp/rb1-mac-run REPO=/Users/peterjuulmoller/WS.Phoenix DOTNET_DIR=/Users/peterjuulmoller/.dotnet NODE_DIR=/private/tmp/rb1-node22 $E/phoenix-rt/ci-local.sh v0.0.0-thesis.6 "frontend linux" > $N/ci-local.log 2>&1
+#   frontend exit 0 14:05:45, linux exit 0 14:08:50
+
+# The comparison, 14:09 (D/results.txt); E/phoenix-rt/mac-compare.sh, written for this run:
+$E/phoenix-rt/mac-compare.sh 2>&1 | tee $N/compare.txt
+
+# Checks, 14:10:
+du -sh /tmp/dch/.nuget/packages
+strings /private/tmp/rb1-ci/linux/release/ws-pems-linux-x64/WebAPI.pdb | grep -A1 -E '^(compiler-version|runtime-version)$'
+defaults read -g AppleLocale
+grep -c -E 'in [0-9]+,[0-9]+ sec' $N/local/linux.log
+#   6, every restore line with a decimal comma; 0 with a point

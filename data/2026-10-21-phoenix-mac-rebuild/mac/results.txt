@@ -1,0 +1,35 @@
+# phoenix-mac-rebuild, mac, 21 October 2026. The outputs of the commands in kommando.txt.
+
+# ci-local.sh, second try (N/ci-local.log):
+frontend start 14:03:31
+frontend exit 0 14:05:45
+linux start 14:05:45
+linux exit 0 14:08:50
+ci-local exit 0
+
+# mac-compare.sh against the release's assets from GitHub (N/compare.txt):
+same  ws-pems-linux-x64-v0.0.0-thesis.6.zip  4c0d636231aa89d886fe7e71c24844786f30cc3801f88876fa5787f3bbe74fee
+same    ws-pems-linux-x64: entries' contents (1624 / 1624 files)
+same    ws-pems-linux-x64: zipinfo -v
+same  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip  202f5b5dc722702fcfa5bc25bc82845505037b7f70eb336748aeb34ef0cda5dd
+same    ws-pems-job-worker-linux-x64: entries' contents (500 / 500 files)
+same    ws-pems-job-worker-linux-x64: zipinfo -v
+same  frontend export against the release's wwwroot/ (994 files)
+
+# The release's assets as downloaded (shasum -a 256), equal to GitHub's digests:
+202f5b5dc722702fcfa5bc25bc82845505037b7f70eb336748aeb34ef0cda5dd  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+4c0d636231aa89d886fe7e71c24844786f30cc3801f88876fa5787f3bbe74fee  ws-pems-linux-x64-v0.0.0-thesis.6.zip
+d2dc8463efe5f3e9077703d1b37ca4252eea894293f3d893e15128d5ba3fde56  SHA256SUMS
+
+# The WebAPI PDB's compilation options (strings), the compiler that ran on the Mac:
+compiler-version
+5.9.0-1.26423.113+e34a38d2ae1fc26406a317517196e55c68ff83ab
+runtime-version
+10.0.12-servicing.26422.108+95017c711e6afc1085133d440e42b4bd78155701
+
+# The culture the build ran in: MSBuild's restore lines (N/local/linux.log), and macOS's setting:
+  Restored /private/tmp/rb1-ci/linux/src/ApplicationCore/ApplicationCore.csproj (in 18,99 sec).
+  Restored /private/tmp/rb1-ci/linux/src/Infrastructure/Infrastructure.csproj (in 29,21 sec).
+defaults read -g AppleLocale: da_DK
+
+# The NuGet cache after the run, empty before it: 4.2G

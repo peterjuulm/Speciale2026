@@ -50,6 +50,10 @@
 # has it (from 12cb488e3). The sql job gives the CLI a home of its own and
 # checks the tools with --tools when the tag's migration job does (from
 # b3e0134ff).
+#
+# Also changed 21 October: every PATH ends in /bin as well, for macOS,
+# where sh, chmod and rm live in /bin only. On Arch /bin is a link to
+# /usr/bin, so the builds there see the same tools as before.
 set -u
 OUT=${OUT:?set OUT to a private data folder}
 TAG=${1:?TAG} JOBS=${2:-frontend linux windows migrator sql images}
@@ -58,8 +62,8 @@ url=https://github.com/Weel-Sandvig/WS.Phoenix
 ci=/private/tmp/rb1-ci
 DN=${DOTNET_DIR:-/private/tmp/rb1-dotnet10/sdk} NODE=${NODE_DIR:-/private/tmp/rb1-node22}
 L=$OUT/local; mkdir -p "$L" "$ci"
-base=(env -i HOME=/tmp/dch USER="$USER" LOGNAME="$LOGNAME" SHELL=/bin/bash PATH=/usr/local/bin:/usr/bin)
-net=("${base[@]}" DOTNET_ROOT="$DN" PATH="$DN:/usr/local/bin:/usr/bin" DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1
+base=(env -i HOME=/tmp/dch USER="$USER" LOGNAME="$LOGNAME" SHELL=/bin/bash PATH=/usr/local/bin:/usr/bin:/bin)
+net=("${base[@]}" DOTNET_ROOT="$DN" PATH="$DN:/usr/local/bin:/usr/bin:/bin" DOTNET_CLI_HOME=/tmp/dch DOTNET_NOLOGO=1
      MSBUILDDISABLENODEREUSE=1 GITHUB_ACTIONS=true APP_VERSION="$TAG")
 
 clone() {  # a fresh shallow clone of TAG for one job, as actions/checkout makes it
@@ -92,7 +96,7 @@ build_images() {  # the images job's builds, one per image; stops at the first f
 pack() {  # job folder, release dir, zip suffix dirs...: the job's packing step
   local j=$1 dir=$2; shift 2
   ( cd "$ci/$j/$dir" && for d in "$@"; do
-      env PATH=/private/tmp/rb1-tools:/usr/bin SOURCE_DATE_EPOCH="$(epoch "$j")" "$ci/$j/scripts/pack-release-zip.sh" "$d" "$ci/$j/release/$d-$TAG.zip" || exit 1
+      env PATH=/private/tmp/rb1-tools:/usr/bin:/bin SOURCE_DATE_EPOCH="$(epoch "$j")" "$ci/$j/scripts/pack-release-zip.sh" "$d" "$ci/$j/release/$d-$TAG.zip" || exit 1
     done )
 }
 
@@ -104,7 +108,7 @@ for job in $JOBS; do
       rm -rf "$L/frontend-out" && clone frontend && scripts= next=() \
         && if grep -q 'npm ci --ignore-scripts' "$ci/frontend/.github/workflows/00-reusable-frontend-build.yml"; then
              scripts=--ignore-scripts next=(NEXT_DISABLE_SWC_WASM=1 NEXT_IGNORE_INCORRECT_LOCKFILE=1); fi \
-        && ( cd "$ci/frontend/src/WebAPI/ClientApp" && "${base[@]}" PATH="$NODE/bin:/usr/bin" CI=true \
+        && ( cd "$ci/frontend/src/WebAPI/ClientApp" && "${base[@]}" PATH="$NODE/bin:/usr/bin:/bin" CI=true \
           npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1 APP_VERSION="$TAG" "${next[@]}" \
           sh -c "npm ci $scripts --offline --no-audit --no-fund && npm run build" ) > "$L/frontend.log" 2>&1 \
         && cp -r "$ci/frontend/src/WebAPI/ClientApp/out" "$L/frontend-out" ;;

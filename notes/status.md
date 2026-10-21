@@ -5,13 +5,27 @@ cell and its date when a run finishes; the detail stays in the run's note and
 in the [findings table](findings-table.md). The plan and the reasoning behind
 the layers are in [the layer plan](2026-09-15-layer-plan.md).
 
-Last run: 21 October 2026, 10:29-11:37, the WS branch after the real
-merge of main and the remaining pins, built twice and its checks tested,
-on `arch` (W69, W70).
-Last edit: 21 October 2026, 11:43. Also 12/10: the frontend lock's hashes filled
+Last run: 21 October 2026, 14:03-14:09, the reference release's frontend
+and Linux zips rebuilt on `mac`, macOS on arm64 (W71). Before it,
+10:29-11:37, the WS branch after the real merge of main and the remaining
+pins, on `arch` (W69, W70).
+Last edit: 21 October 2026, 14:35. Also 12/10: the frontend lock's hashes filled
 ([phoenix-lock-fill](2026-10-12-phoenix-lock-fill.md), W41, W46).
 
 ## Last batch
+
+On `mac`, 21/10 14:03-14:09
+([phoenix-mac-rebuild](2026-10-21-phoenix-mac-rebuild.md); W71):
+`v0.0.0-thesis.6` rebuilt on Peter's Mac, macOS 14.6.1 on arm64, with
+`ci-local.sh`'s `frontend` and `linux` jobs, from an empty NuGet cache.
+Every output is the release's from GitHub, byte for byte: the frontend
+export's 994 files, and both Linux zips, `4c0d6362…` and `202f5b5d…`,
+their 1624 and 500 files too. SWC ran as its darwin-arm64 binary, the
+zips were packed with Apple's `zip`, and `csc.dll` has another hash than
+`arch`'s; the PDBs name the same Roslyn commit and runtime 10.0.12. .NET
+ran in the Mac's culture, `da-DK`, as `LC_ALL=C.UTF-8` does not exist
+on macOS, with no effect on the bytes. `ci-local.sh`'s `PATH` now ends
+in `/bin` too, for macOS.
 
 On `arch`, 21/10 10:29-11:37
 ([phoenix-pins](2026-10-21-phoenix-pins.md); W69, W70): main merged into
@@ -395,7 +409,7 @@ Layer 5 (container) is below the SDK 10 table.
 | `all` | red 5/10: locale and the two dev json; with `LC_ALL` the dev json only W8 W9 | fix 5/10: red from the locale alone, green with `LC_ALL` | green 12/10 beyond W47, both builds the same order | red 12/10 as CI packs, also modes and time zone W48; normalised identical, across runs too |
 | `fileordering` | - needs a VM with `disorderfs` | - | - | - |
 | `domain_host` | - cannot run on `arch` | - cannot run on `arch` | - | - |
-| Machine | - VM too small W14 | fix 14/10 W58: GitHub's build is `arch`'s, the SDK installed alone on both (13/10 red from the compiler's runtime patch only) | green 13/10 on SDK 10: GitHub's export is `arch`'s, 994 files; again 14/10 | fix 14/10 W58: GitHub's Linux and Windows zips are `arch`'s, the Windows ones with CI's signatures pasted; again in the reference release 14/10, the Windows zips built and signed through Azure on the office runner |
+| Machine | - VM too small W14 | fix 14/10 W58: GitHub's build is `arch`'s, the SDK installed alone on both (13/10 red from the compiler's runtime patch only); green 21/10 on `mac`, macOS arm64, both Linux zips' files the release's W71 | green 13/10 on SDK 10: GitHub's export is `arch`'s, 994 files; again 14/10; green 21/10 on `mac`, with SWC for darwin-arm64 W71 | fix 14/10 W58: on `mac` 21/10 both Linux zips the release's, packed with Apple's `zip` W71; GitHub's Linux and Windows zips are `arch`'s, the Windows ones with CI's signatures pasted; again in the reference release 14/10, the Windows zips built and signed through Azure on the office runner |
 | SDK binary | - empty-class only, 8/9 | - | - Node pinned to 22.23.3 since the merge, ran in main's CI 13/10 W40 | - |
 | Network | - | - lock files in place W22 | - offline from a filled cache; lock hashes filled 12/10 W41; npm 10.8.2 drops `libc` W46, main's lock has none since 17/9 | - |
 | Windows | - | green 13/10 on SDK 10, built on Linux as the job builds it, unsigned: layer `W` below W55 | built once, on Linux, for both releases | green 13/10 on SDK 10: both Windows zips identical before signing, layer `W` below W55 |
