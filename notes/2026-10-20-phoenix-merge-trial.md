@@ -99,6 +99,10 @@ pipeline in the same weeks; the code merged without a conflict.
   jobs on WS's office runner.
 - The Windows outputs are unsigned; signing is not reproducible anyway,
   and its check pastes the release's signatures (W59).
+- The scratch clone of the trial (`/private/tmp/rb1-merge-trial`) and
+  the lab of CI's .NET steps (`/private/tmp/rb1-trial-lab`, with its
+  home) were removed from `arch` on 21 October 2026 to free disk. The
+  real merge, `1b9659554`, has the trial's tree.
 
 ## Not tested
 

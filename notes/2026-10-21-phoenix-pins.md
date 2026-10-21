@@ -275,6 +275,11 @@ into it whatever the CLI's home (4). N9 shows the mechanism directly.
 - The dev container's image was built without the `ws` CLI. Its
   download, from WS.CLI, answers 404 from outside WS. That predates the
   branch.
+- The labs of these runs were removed from `arch` the same day, after
+  the results were written, to free disk: `/private/tmp/rb1-pins`, the
+  job clones in `/private/tmp/rb1-ci`, `/private/tmp/rb1-sdk-tests-3` and
+  the dev container's test image. The outputs and logs are in the
+  private data.
 
 ## Not tested
 

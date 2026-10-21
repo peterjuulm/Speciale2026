@@ -147,6 +147,9 @@ would close that, at the cost of a longer bump.
   lock's integrity hash either way.
 - The arm64 prebuilt is checked by its digest only; no arm64 image was
   built.
+- The lab `/private/tmp/rb1-pin` was removed from `arch` on 21 October
+  2026 to free disk. The images of P1-P6 and their comparisons are in
+  the private data.
 
 ## Not tested
 
