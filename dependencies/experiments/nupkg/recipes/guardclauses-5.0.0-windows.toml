@@ -21,6 +21,11 @@ branch = "main"
 depth = 1
 clone_dir = 'D:\a\GuardClauses\GuardClauses'
 sdk = "8.0.400"
+# The netstandard2.0 build compiles NullableAttributes.cs from the package
+# TunnelVisionLabs.ReferenceAssemblyAnnotator, and the PDB holds its path in
+# the runner's default NuGet cache. With an empty cache elsewhere, the second
+# run (21/10) differed only there.
+nuget_packages = 'C:\Users\runneradmin\.nuget\packages'
 shell = "pwsh"
 build = "dotnet build -c Release src/GuardClauses/GuardClauses.csproj; if ($LASTEXITCODE) { exit $LASTEXITCODE }; dotnet pack --no-build -c Release src/GuardClauses/GuardClauses.csproj -o ."
 packages = "."

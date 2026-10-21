@@ -115,9 +115,11 @@ def clone(r, src, env, log):
 
 def build(r, name, src, work, sdk, out):
     d = os.path.join(work, name)
-    home, nuget = os.path.join(d, 'home'), os.path.join(d, 'nuget')
+    # an empty package cache, unless the recipe names the CI's own: a package
+    # that adds source files to the build puts their cache path into the PDB
+    home, nuget = os.path.join(d, 'home'), r.get('nuget_packages') or os.path.join(d, 'nuget')
     os.makedirs(home)
-    os.makedirs(nuget)
+    os.makedirs(nuget, exist_ok=True)
     env = build_env(r, sdk, home, nuget, src)
     dest = os.path.join(out, name)
     os.makedirs(dest)
