@@ -1,0 +1,10 @@
+# From the root of Speciale2026, on mac, 21 October 2026.
+# SDK 9.0.100 osx-arm64 from releases.json, SHA-512 checked, unpacked to /private/tmp/rb1-sdks/9.0.100.
+# The published DLL: the NuGet cache's copy of cronos 0.9.0 (restored for the census, 13/10).
+S=/private/tmp/rb1-sdks/9.0.100; L=/private/tmp/rb1-nupkg; T=dependencies/experiments/nupkg-test
+bash $T/cronos.sh $L/cronos-a $S pathmap   > $L/cronos-a.log 2>&1
+bash $T/cronos.sh $L/cronos-b $S pathmap   > $L/cronos-b.log 2>&1
+bash $T/cronos.sh $L/cronos-c $S nopathmap > $L/cronos-c.log 2>&1
+python3 -I $T/pe.py strip ~/.nuget/packages/cronos/0.9.0/lib/net6.0/Cronos.dll $L/published.stripped.dll
+for x in a b c; do python3 -I $T/pe.py strip $L/cronos-$x/out/Cronos.dll $L/cronos-$x.stripped.dll; done
+shasum -a 256 $L/published.stripped.dll $L/cronos-?.stripped.dll $L/cronos-?/out/Cronos.dll

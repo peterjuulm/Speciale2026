@@ -1,0 +1,114 @@
+# sha256, 21 October 2026. *.stripped.dll: pe.py strip (no Authenticode table, PE checksum 0).
+# a, b: SDK 9.0.100, APPVEYOR=True, PathMap to C:\projects418e7ae68059da51130b5dfe93a1b2660e92e391a0ec41df8a0b001739a850b1  ~/.nuget/packages/cronos/0.9.0/lib/net6.0/Cronos.dll
+adc6e8d769cb7bf14e6fcdfa15732439a4b9c7c6100b4c6e6b8d04898db8adf2  /private/tmp/rb1-nupkg/published.stripped.dll
+6230712fbc4ebbfc82f9ea5104ce058781e9ac925eb7d3bf52bff867da6dc167  /private/tmp/rb1-nupkg/cronos-a/out/Cronos.dll
+6339f6da7aefd2bb7eaae73a41101f09de5496e8f4c783eac084b3381377e490  /private/tmp/rb1-nupkg/cronos-b/out/Cronos.dll
+cd79878bf45037ff2ee583dc9404f5a709c3116f569def08620ddaccce4bd902  /private/tmp/rb1-nupkg/cronos-c/out/Cronos.dll
+6230712fbc4ebbfc82f9ea5104ce058781e9ac925eb7d3bf52bff867da6dc167  /private/tmp/rb1-nupkg/cronos-a.stripped.dll
+6339f6da7aefd2bb7eaae73a41101f09de5496e8f4c783eac084b3381377e490  /private/tmp/rb1-nupkg/cronos-b.stripped.dll
+cd79878bf45037ff2ee583dc9404f5a709c3116f569def08620ddaccce4bd902  /private/tmp/rb1-nupkg/cronos-c.stripped.dll
+
+== pe-diff-regions published.stripped.dll cronos-a.stripped.dll
+10545  debug data type 17
+  197  section .text
+   32  debug data type 19
+   16  metadata #GUID
+   16  debug data type 2
+    5  debug directory
+    4  PE TimeDateStamp
+    4  metadata #~
+    3  headers/other
+    1  section .reloc
+10823 differing bytes
+== pe-diff-regions cronos-a.stripped.dll cronos-b.stripped.dll
+10212  debug data type 17
+   32  debug data type 19
+   16  metadata #GUID
+   16  debug data type 2
+    4  PE TimeDateStamp
+    4  debug directory
+10284 differing bytes
+== pe-diff-regions cronos-a.stripped.dll cronos-c.stripped.dll
+10564  debug data type 17
+  151  section .text
+   32  debug data type 19
+   16  metadata #GUID
+   16  debug data type 2
+    5  debug directory
+    4  PE TimeDateStamp
+    4  metadata #~
+    3  headers/other
+    1  section .reloc
+10796 differing bytes
+
+== diff of pdbdump, published vs a
+2,13c2,13
+< C:\projects\cronos\src\SharedAssemblyInfo.cs  alg=8829d00f  hash=02c1822a8b0c8bc6
+< C:\projects\cronos\src\Cronos\CalendarHelper.cs  alg=8829d00f  hash=889cab882dfaee5d
+< C:\projects\cronos\src\Cronos\CronExpression.cs  alg=8829d00f  hash=624838eed4928d5d
+< C:\projects\cronos\src\Cronos\CronExpressionFlag.cs  alg=8829d00f  hash=bc930bc16818d02e
+< C:\projects\cronos\src\Cronos\CronField.cs  alg=8829d00f  hash=ddca403507158874
+< C:\projects\cronos\src\Cronos\CronFormat.cs  alg=8829d00f  hash=5160afaaf0a990a5
+< C:\projects\cronos\src\Cronos\CronFormatException.cs  alg=8829d00f  hash=7e6cff869aafb2d1
+< C:\projects\cronos\src\Cronos\CronParser.cs  alg=8829d00f  hash=aaafd01fddf48570
+< C:\projects\cronos\src\Cronos\DateTimeHelper.cs  alg=8829d00f  hash=e9d32cb95ca47978
+< C:\projects\cronos\src\Cronos\Properties\AssemblyInfo.cs  alg=8829d00f  hash=47fabf13621e6e9d
+< C:\projects\cronos\src\Cronos\TimeZoneHelper.cs  alg=8829d00f  hash=a750ac6f795db012
+< C:\projects\cronos\src\Cronos\obj\Release\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs  alg=8829d00f  hash=f55a8701535cd251
+---
+> C:/projects/cronos/src/SharedAssemblyInfo.cs  alg=8829d00f  hash=02c1822a8b0c8bc6
+> C:/projects/cronos/src/Cronos/CalendarHelper.cs  alg=8829d00f  hash=889cab882dfaee5d
+> C:/projects/cronos/src/Cronos/CronExpression.cs  alg=8829d00f  hash=624838eed4928d5d
+> C:/projects/cronos/src/Cronos/CronExpressionFlag.cs  alg=8829d00f  hash=bc930bc16818d02e
+> C:/projects/cronos/src/Cronos/CronField.cs  alg=8829d00f  hash=ddca403507158874
+> C:/projects/cronos/src/Cronos/CronFormat.cs  alg=8829d00f  hash=5160afaaf0a990a5
+> C:/projects/cronos/src/Cronos/CronFormatException.cs  alg=8829d00f  hash=7e6cff869aafb2d1
+> C:/projects/cronos/src/Cronos/CronParser.cs  alg=8829d00f  hash=aaafd01fddf48570
+> C:/projects/cronos/src/Cronos/DateTimeHelper.cs  alg=8829d00f  hash=e9d32cb95ca47978
+> C:/projects/cronos/src/Cronos/Properties/AssemblyInfo.cs  alg=8829d00f  hash=47fabf13621e6e9d
+> C:/projects/cronos/src/Cronos/TimeZoneHelper.cs  alg=8829d00f  hash=a750ac6f795db012
+> C:/projects/cronos/src/Cronos/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs  alg=8829d00f  hash=7897e5953cb5cd51
+15c15
+< SourceLink parent=ModuleDefinition:1  {"documents":{"C:\\projects\\cronos\\*":"https://raw.githubusercontent.com/HangfireIO/Cronos/14ca2b146d55f8d16a36eded60a74425b1b00f51/*"}}
+---
+> SourceLink parent=ModuleDefinition:1  {"documents":{"/private/tmp/rb1-nupkg/cronos-a/src/*":"https://raw.githubusercontent.com/HangfireIO/Cronos/14ca2b146d55f8d16a36eded60a74425b1b00f51/*"}}
+20c20
+< EmbeddedSource parent=Document:12  202 bytes
+---
+> EmbeddedSource parent=Document:12  201 bytes
+== diff of pdbdump, a vs b
+15c15
+< SourceLink parent=ModuleDefinition:1  {"documents":{"/private/tmp/rb1-nupkg/cronos-a/src/*":"https://raw.githubusercontent.com/HangfireIO/Cronos/14ca2b146d55f8d16a36eded60a74425b1b00f51/*"}}
+---
+> SourceLink parent=ModuleDefinition:1  {"documents":{"/private/tmp/rb1-nupkg/cronos-b/src/*":"https://raw.githubusercontent.com/HangfireIO/Cronos/14ca2b146d55f8d16a36eded60a74425b1b00f51/*"}}
+== diff of pdbdump, a vs c
+2,13c2,13
+< C:/projects/cronos/src/SharedAssemblyInfo.cs  alg=8829d00f  hash=02c1822a8b0c8bc6
+< C:/projects/cronos/src/Cronos/CalendarHelper.cs  alg=8829d00f  hash=889cab882dfaee5d
+< C:/projects/cronos/src/Cronos/CronExpression.cs  alg=8829d00f  hash=624838eed4928d5d
+< C:/projects/cronos/src/Cronos/CronExpressionFlag.cs  alg=8829d00f  hash=bc930bc16818d02e
+< C:/projects/cronos/src/Cronos/CronField.cs  alg=8829d00f  hash=ddca403507158874
+< C:/projects/cronos/src/Cronos/CronFormat.cs  alg=8829d00f  hash=5160afaaf0a990a5
+< C:/projects/cronos/src/Cronos/CronFormatException.cs  alg=8829d00f  hash=7e6cff869aafb2d1
+< C:/projects/cronos/src/Cronos/CronParser.cs  alg=8829d00f  hash=aaafd01fddf48570
+< C:/projects/cronos/src/Cronos/DateTimeHelper.cs  alg=8829d00f  hash=e9d32cb95ca47978
+< C:/projects/cronos/src/Cronos/Properties/AssemblyInfo.cs  alg=8829d00f  hash=47fabf13621e6e9d
+< C:/projects/cronos/src/Cronos/TimeZoneHelper.cs  alg=8829d00f  hash=a750ac6f795db012
+< C:/projects/cronos/src/Cronos/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs  alg=8829d00f  hash=7897e5953cb5cd51
+---
+> /private/tmp/rb1-nupkg/cronos-c/src/src/SharedAssemblyInfo.cs  alg=8829d00f  hash=02c1822a8b0c8bc6
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/CalendarHelper.cs  alg=8829d00f  hash=889cab882dfaee5d
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/CronExpression.cs  alg=8829d00f  hash=624838eed4928d5d
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/CronExpressionFlag.cs  alg=8829d00f  hash=bc930bc16818d02e
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/CronField.cs  alg=8829d00f  hash=ddca403507158874
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/CronFormat.cs  alg=8829d00f  hash=5160afaaf0a990a5
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/CronFormatException.cs  alg=8829d00f  hash=7e6cff869aafb2d1
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/CronParser.cs  alg=8829d00f  hash=aaafd01fddf48570
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/DateTimeHelper.cs  alg=8829d00f  hash=e9d32cb95ca47978
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/Properties/AssemblyInfo.cs  alg=8829d00f  hash=47fabf13621e6e9d
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/TimeZoneHelper.cs  alg=8829d00f  hash=a750ac6f795db012
+> /private/tmp/rb1-nupkg/cronos-c/src/src/Cronos/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs  alg=8829d00f  hash=7897e5953cb5cd51
+15c15
+< SourceLink parent=ModuleDefinition:1  {"documents":{"/private/tmp/rb1-nupkg/cronos-a/src/*":"https://raw.githubusercontent.com/HangfireIO/Cronos/14ca2b146d55f8d16a36eded60a74425b1b00f51/*"}}
+---
+> SourceLink parent=ModuleDefinition:1  {"documents":{"/private/tmp/rb1-nupkg/cronos-c/src/*":"https://raw.githubusercontent.com/HangfireIO/Cronos/14ca2b146d55f8d16a36eded60a74425b1b00f51/*"}}
