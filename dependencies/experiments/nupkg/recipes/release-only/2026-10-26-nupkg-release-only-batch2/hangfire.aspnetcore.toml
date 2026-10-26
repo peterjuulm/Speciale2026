@@ -1,0 +1,15 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Hangfire.AspNetCore"
+version = "1.8.25"
+ships = "lib/netcoreapp3.0/Hangfire.AspNetCore.dll"
+repo = "https://github.com/HangfireIO/Hangfire"
+commit = "1d4778c23410b365b5f9ce35458202efe0b0f3ea"
+project = "src/Hangfire.AspNetCore/Hangfire.AspNetCore.csproj"
+sdk = "9.0.306"
+shell = "bash"
+build = "dotnet build src/Hangfire.AspNetCore/Hangfire.AspNetCore.csproj -c Release -p:PackageVersion=1.8.25 && dotnet pack src/Hangfire.AspNetCore/Hangfire.AspNetCore.csproj -c Release --no-build -o out-nupkg -p:PackageVersion=1.8.25"
+packages = "out-nupkg"
+os = "windows"
+depth = 1
+clone_dir = "C:\\projects\\hangfire-525"
+git_config = ["core.autocrlf=false", "core.eol=lf"]
