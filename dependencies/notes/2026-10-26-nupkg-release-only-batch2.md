@@ -57,9 +57,50 @@ with the five from the first run added for the method's version 2.
 
 See `dependencies/data/2026-10-26-nupkg-release-only-batch2/kommando.txt`.
 
+## Run 1, stopped after 25 minutes (13:20)
+
+The first run was stopped once its logs showed errors in the scripts, as
+agreed: fix, then run the whole batch again. What it showed, and what
+changed, before run 2 (the method's version 2 is now rules 1 to 8 with
+these changes; nothing was changed to make a DLL match):
+
+- 47 of 58 derived; 11 skipped by a rule, two of them (Newtonsoft.Json
+  twice, ClosedXML) for a compiler that ran on .NET Framework 4.8, which
+  `derive.py` crashed on at first and now records as a rule-3 skip.
+- Bogus's informational version is `35.6.1 built on 2024-09-02 22:19:07Z`;
+  rule 8 split it on the first hyphen and passed garbage to MSBuild
+  (MSB1008). Rule 8 now passes version properties only for a semantic
+  version; otherwise none, recorded as a default.
+- ExCSS's `Directory.Build.targets` adds `$(NuGetPackageRoot)` as a
+  SourceRoot, which must end in a separator; our `NUGET_PACKAGES` had none.
+  `rebuild.py` adds it.
+- Dapper, Humanizer.Core and Mono.TextTemplating use Nerdbank.GitVersioning,
+  which reads the version height from the history and failed on the shallow
+  clone; MediatR.Extensions.Microsoft.DependencyInjection uses MinVer, which
+  found no tag and packed `0.0.0-alpha.0`. Rule 2 now clones the full
+  history with tags. The depth was an implementation shortcut, not a fact
+  read from the release.
+- FluentModbus and Markdig record `/home/runner/work/...` as the build
+  folder, a GitHub runner's, which this user cannot create on `arch`.
+  Such Linux recipes now run on GitHub's `ubuntu-24.04` runner.
+- Newtonsoft.Json is in the list twice (13.0.3 and 13.0.4, both shipped);
+  the batch keeps one folder per package name, so the second is recorded as
+  not derived. Both are rule-3 skips anyway.
+
+Seen but **not** changed, since it is a method result and not a script
+error: CsvHelper, Quartz (four packages) and Serilog.Settings.Configuration
+reach level 4 with the same cause, the assembly and file versions
+(`33.0.0.0` on nuget.org, `33.1.0.0` from us; `3.13.1` against `3.13.1.0`).
+Both are attributes of the shipped DLL, so a version 3 of rule 8 could
+pass `AssemblyVersion` and `FileVersion` as well. That is for a later run.
+Hangfire (packages.config-era restore of RazorGenerator) and AutoMapper
+(ApiCompat needs a binary the build script fetches) failed in ways the
+method cannot cover. Run 1's text outputs are under `run1/` in the data
+folder: `run1/windows-2022/runs.txt` lists the run ids.
+
 ## Result
 
-(after the run)
+(after run 2)
 
 ## Caveats
 

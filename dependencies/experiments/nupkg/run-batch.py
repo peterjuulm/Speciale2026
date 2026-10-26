@@ -15,7 +15,11 @@ per line. LAB is a folder outside the repositories. The steps:
  5. for every build: the match level (level.py on dllreport.cs reports of
     nuget.org's DLL and ours) and A against A2;
  6. copy every text output into the data folder and write results.tsv:
-    package, version, category, os, sdk, build, level, a_eq_a2, note.
+    package, version, category, os, runner, sdk, build, level, a_eq_a2, note.
+
+A Linux recipe whose recorded build folder cannot be made here (a GitHub
+runner's /home/runner/work/...) goes to GitHub's ubuntu-24.04 runner, where
+it can; the runner column says where each build ran.
 
 A second run in the same LAB reuses the derivations unless --rederive.
 Everything it does and every failure goes to LAB/run.log and the console.
@@ -75,6 +79,16 @@ def report(dll, out, log):
     return r.returncode == 0
 
 
+def can_make(path):
+    """Whether this user can create PATH here: its nearest existing ancestor is writable."""
+    if not path or not path.startswith('/'):
+        return True
+    p = path
+    while not os.path.exists(p):
+        p = os.path.dirname(p)
+    return os.access(p, os.W_OK)
+
+
 def level_of(outdir, recipe, log):
     """The level of A's shipped DLL against nuget.org's, from their reports; '' when a package is missing."""
     ships = recipe['ships']
@@ -118,13 +132,16 @@ def main():
     results = {}
     for pv, cat, os_, sdk, rec in rows:
         pkg, ver = pv.split()
-        results[pkg] = dict(package=pkg, version=ver, category=cat, os=os_, sdk=sdk, build='', level='', a_eq_a2='', note='')
+        results[pkg] = dict(package=pkg, version=ver, category=cat, os=os_, runner='', sdk=sdk, build='', level='', a_eq_a2='', note='')
         d = os.path.join(data, 'derive', pkg); os.makedirs(d, exist_ok=True)
         copy_text(os.path.join(derive, pkg), d)
         for f in os.listdir(d):
             if f.endswith('.nupkg') or f.endswith('.dll') or f.endswith('.pdb'):
                 os.remove(os.path.join(d, f))
     derived = {pkg: r for pkg, r in results.items() if r['category'].startswith('derived')}
+    for pkg, r in derived.items():
+        recipe = tomllib.load(open(os.path.join(derive, pkg, 'recipe.toml'), 'rb'))
+        r['runner'] = 'windows-2022' if r['os'] == 'windows' else ('arch' if can_make(recipe.get('clone_dir')) else 'ubuntu-24.04')
     log(f'derived {len(derived)} of {len(results)}; skipped: ' + ', '.join(p for p, r in results.items() if p not in derived))
 
     # 2. recipes into the repository
@@ -139,11 +156,11 @@ def main():
     commit = sh(['git', '-C', REPO, 'rev-parse', '--short', 'HEAD'], log).stdout.strip()
     log(f'recipes at {commit}')
 
-    # 3. builds: Windows dispatched first, Linux built here meanwhile
+    # 3. builds: the runner ones dispatched first, the local ones built here meanwhile
     runs = {}
     for pkg, r in derived.items():
-        if r['os'] == 'windows':
-            res = sh(['gh', 'workflow', 'run', 'nupkg-rebuild.yml', '-R', GH_REPO, '-f', f'recipe=release-only/{batch}/{pkg.lower()}.toml', '-f', 'runner=windows-2022'], log, timeout=120)
+        if r['runner'] != 'arch':
+            res = sh(['gh', 'workflow', 'run', 'nupkg-rebuild.yml', '-R', GH_REPO, '-f', f'recipe=release-only/{batch}/{pkg.lower()}.toml', '-f', f'runner={r["runner"]}'], log, timeout=120)
             if res.returncode:
                 r['build'] = 'dispatch failed'; r['note'] = res.stderr.strip()[-200:]
             else:
@@ -156,16 +173,16 @@ def main():
             for pkg in runs:
                 if runs[pkg] is None and f'release-only/{batch}/{pkg.lower()}.toml' in run['displayTitle'] and run['headSha'].startswith(commit):
                     runs[pkg] = run['databaseId']
-        log('windows runs: ' + ', '.join(f'{p}={i}' for p, i in runs.items()))
+        log('runner runs: ' + ', '.join(f'{p}={i}' for p, i in runs.items()))
     for pkg, r in derived.items():
-        if r['os'] != 'linux':
+        if r['runner'] != 'arch':
             continue
         work = os.path.join(lab, 'build', pkg)
         res = sh([sys.executable, '-I', os.path.join(HERE, 'rebuild.py'), os.path.join(recipes, f'{pkg.lower()}.toml'), work], log, timeout=3600)
         r['build'] = 'ran' if res.returncode == 0 else f'rebuild.py exit {res.returncode}'
         log(f'{pkg}: ' + res.stdout.strip().replace('\n', ' | ')[-400:])
 
-    # 4. wait for the Windows runs
+    # 4. wait for the runner runs
     pending = {p: i for p, i in runs.items() if i}
     for pkg in runs:
         if not runs[pkg]:
@@ -188,7 +205,7 @@ def main():
     # 5. levels and A = A2; 6. data and table
     for pkg, r in derived.items():
         recipe = tomllib.load(open(os.path.join(recipes, f'{pkg.lower()}.toml'), 'rb'))
-        if r['os'] == 'linux':
+        if r['runner'] == 'arch':
             outdir = os.path.join(lab, 'build', pkg, 'out')
         else:
             rid = runs.get(pkg)
@@ -204,11 +221,11 @@ def main():
         r['a_eq_a2'] = {'identical': 'yes', 'differs': 'no'}.get(a2.group(1), '') if a2 else ''
         r['level'], note = level_of(outdir, recipe, log)
         r['note'] = note
-        dest = os.path.join(data, 'windows' if r['os'] == 'windows' else 'arch', pkg)
+        dest = os.path.join(data, r['runner'], pkg)
         copy_text(outdir, dest)
         log(f'{pkg}: build {r["build"]}, level {r["level"] or "-"}, A=A2 {r["a_eq_a2"] or "-"}; {note}')
     with open(os.path.join(data, 'results.tsv'), 'w', encoding='utf-8') as f:
-        keys = ['package', 'version', 'category', 'os', 'sdk', 'build', 'level', 'a_eq_a2', 'note']
+        keys = ['package', 'version', 'category', 'os', 'runner', 'sdk', 'build', 'level', 'a_eq_a2', 'note']
         f.write('\t'.join(keys) + '\n')
         for r in results.values():
             f.write('\t'.join(str(r[k]) for k in keys) + '\n')

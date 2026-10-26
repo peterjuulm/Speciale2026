@@ -28,6 +28,10 @@ def main():
             continue
         pkg, ver = raw.split()
         dest = os.path.join(out, pkg)
+        if any(l.startswith(f'{pkg} ') for l in lines):   # one folder and one recipe per package name
+            lines.append(f'{pkg} {ver}\tnot derived: {pkg} is already in the list with another version\t\t\t')
+            print(lines[-1], flush=True)
+            continue
         if os.path.exists(os.path.join(dest, 'facts.txt')):
             r = None   # derived in an earlier run of the list; only failed ones are redone
         else:

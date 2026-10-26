@@ -1,0 +1,15 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "FluentModbus"
+version = "5.3.2"
+ships = "lib/netstandard2.1/FluentModbus.dll"
+repo = "https://github.com/Apollo3zehn/FluentModbus"
+commit = "5e44710bbea12d279fac78fb91eaf7081babb0de"
+project = "src/FluentModbus/FluentModbus.csproj"
+sdk = "8.0.114"
+shell = "bash"
+build = "dotnet build src/FluentModbus/FluentModbus.csproj -c Release -p:VersionPrefix=5.3.2 -p:PackageVersion=5.3.2 && dotnet pack src/FluentModbus/FluentModbus.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=5.3.2 -p:PackageVersion=5.3.2"
+packages = "out-nupkg"
+os = "linux"
+depth = 1
+clone_dir = "/home/runner/work/FluentModbus/FluentModbus"
+git_config = ["core.autocrlf=false", "core.eol=lf"]

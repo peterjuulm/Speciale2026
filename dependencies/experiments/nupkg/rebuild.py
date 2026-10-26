@@ -96,15 +96,14 @@ def clone(r, src, env, log):
     for c in r.get('git_config', []):
         must(log, git + ['config'] + c.split('=', 1), env)
     detached = ['-c', 'advice.detachedHead=false', 'checkout', '-q']
-    if r.get('tag'):       # as actions/checkout for a pushed tag: the tag only, HEAD detached at it
-        ref = f'refs/tags/{r["tag"]}'
-        must(log, git + ['fetch', '-q', '--no-tags', f'--depth={r.get("depth", 1)}', 'origin', f'+{ref}:{ref}'], env)
-        must(log, git + detached + [ref], env)
+    if r.get('depth'):   # as actions/checkout for a push: the one commit, no tags (recipes before 26/10)
+        must(log, git + ['fetch', '-q', '--no-tags', f'--depth={r["depth"]}', 'origin', r.get('tag') and f'+refs/tags/{r["tag"]}:refs/tags/{r["tag"]}' or r['commit']], env)
+    else:                # a full clone, every branch and tag, and the commit itself in case no branch holds it
+        must(log, git + ['fetch', '-q', '--tags', 'origin', '+refs/heads/*:refs/remotes/origin/*'], env)
+        must(log, git + ['fetch', '-q', 'origin', r['commit']], env)
+    if r.get('tag'):       # as actions/checkout for a pushed tag: HEAD detached at it
+        must(log, git + detached + [f'refs/tags/{r["tag"]}'], env)
     else:
-        if r.get('depth'):   # as actions/checkout for a push: the one commit, no tags
-            must(log, git + ['fetch', '-q', '--no-tags', f'--depth={r["depth"]}', 'origin', r['commit']], env)
-        else:                # a full clone, tags included
-            must(log, git + ['fetch', '-q', '--tags', 'origin', '+refs/heads/*:refs/remotes/origin/*'], env)
         if r.get('branch'):  # HEAD on the pushed branch
             must(log, git + ['checkout', '-q', '-B', r['branch'], r['commit']], env)
         else:
@@ -120,6 +119,7 @@ def build(r, name, src, work, sdk, out):
     # an empty package cache, unless the recipe names the CI's own: a package
     # that adds source files to the build puts their cache path into the PDB
     home, nuget = os.path.join(d, 'home'), r.get('nuget_packages') or os.path.join(d, 'nuget')
+    nuget = nuget.rstrip('/\\') + os.sep   # NuGetPackageRoot is taken as given; a SourceRoot must end in a separator (ExCSS, 26/10)
     if name.endswith('2'):
         for p in (src, home, nuget):
             shutil.rmtree(p, ignore_errors=True)

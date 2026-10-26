@@ -301,13 +301,15 @@ def main():
     if mapped:
         props.append('-p:ContinuousIntegrationBuild=true')
         fact('ContinuousIntegrationBuild', 'true', 'inferred: the PDB paths are mapped to /_/, which that property does (DeterministicSourcePaths alone would too)')
-    if info:
-        iv = info.group(1).split('+')[0]
-        prefix, _, suffix = iv.partition('-')
+    semver = re.match(r'^(\d+\.\d+\.\d+)(?:-([0-9A-Za-z.-]+))?(?:\+.*)?$', info.group(1)) if info else None
+    if semver:
+        prefix, suffix = semver.group(1), semver.group(2) or ''
         props.append(f'-p:VersionPrefix={prefix}')
         if suffix:
             props.append(f'-p:VersionSuffix={suffix}')
         fact('version', f'prefix {prefix}, suffix {suffix or "none"}', 'inferred: VersionPrefix/VersionSuffix from the DLL AssemblyInformationalVersion; a project that sets Version itself, or MinVer, keeps its own')
+    elif info:
+        fact('version', 'none passed', f'default: the informational version {info.group(1)!r} is not a semantic version (Bogus, 26/10: "35.6.1 built on ...")')
     else:
         fact('version', 'none passed', 'default: the DLL has no informational version')
     props.append(f'-p:PackageVersion={ver}')
@@ -319,7 +321,7 @@ def main():
               'sdk': sdk, 'shell': 'bash', 'build': build, 'packages': 'out-nupkg', 'os': 'windows' if win else 'linux'}
     if branch: recipe['branch'] = branch
     if tag: recipe['tag'] = tag
-    if not tag: recipe['depth'] = 1
+    fact('history', 'full clone, all branches and tags', 'rule 2, version 2 (26/10): version tools such as Nerdbank.GitVersioning and MinVer read the history; at depth 1 three builds failed on the height and MinVer packed 0.0.0-alpha.0')
     if clone_dir: recipe['clone_dir'] = clone_dir
     if nuget_packages: recipe['nuget_packages'] = nuget_packages
     # explicit on every OS: GitHub's Windows runners set core.autocrlf=true system-wide, and a

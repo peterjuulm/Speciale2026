@@ -1,0 +1,15 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Markdig"
+version = "1.2.0"
+ships = "lib/net10.0/Markdig.dll"
+repo = "https://github.com/xoofx/markdig"
+commit = "be4da8b42dfdf4d5009c372d814ac2b9f968a8d2"
+project = "src/Markdig/Markdig.csproj"
+sdk = "10.0.203"
+shell = "bash"
+build = "dotnet build src/Markdig/Markdig.csproj -c Release -p:VersionPrefix=1.2.0 -p:PackageVersion=1.2.0 && dotnet pack src/Markdig/Markdig.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=1.2.0 -p:PackageVersion=1.2.0"
+packages = "out-nupkg"
+os = "linux"
+depth = 1
+clone_dir = "/home/runner/work/markdig/markdig"
+git_config = ["core.autocrlf=false", "core.eol=lf"]

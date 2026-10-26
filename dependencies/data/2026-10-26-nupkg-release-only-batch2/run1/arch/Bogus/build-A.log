@@ -1,0 +1,96 @@
+start 2026-10-26T13:18:03+01:00
+build A in /private/tmp/nupkg-batch2/build/Bogus/A/src
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2/build/Bogus/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2/build/Bogus/A/nuget
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2/build/Bogus/sdk:/usr/bin
+--- clone 2026-10-26T13:18:03+01:00
+$ git init -q /private/tmp/nupkg-batch2/build/Bogus/A/src
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src remote add origin https://github.com/bchavez/Bogus
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src fetch -q --no-tags --depth=1 origin 905a7e753ed2d7bfd42fc5099a50278adf45b467
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src -c advice.detachedHead=false checkout -q 905a7e753ed2d7bfd42fc5099a50278adf45b467
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/bchavez/Bogus
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src rev-parse HEAD
+905a7e753ed2d7bfd42fc5099a50278adf45b467
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2/build/Bogus/A/src tag --points-at HEAD
+--- toolchain 2026-10-26T13:18:05+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.300
+ Commit:            326f6e68b2
+ Workload version:  8.0.300-manifests.c1c70047
+ MSBuild version:   17.10.4+10fbfbf2e
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2/build/Bogus/sdk/sdk/8.0.300/
+
+.NET workloads installed:
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.5
+  Architecture: x64
+  Commit:       087e15321b
+
+.NET SDKs installed:
+  8.0.300 [/private/tmp/nupkg-batch2/build/Bogus/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.5 [/private/tmp/nupkg-batch2/build/Bogus/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.5 [/private/tmp/nupkg-batch2/build/Bogus/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.10.0-3.24216.12+3af0081a6e811b78d37c62e479914f7f4cfb0d1a, sha256 a33f7941bee45d32a05505b634c8441a7e301aab8f94b3e9673729712287316b (/private/tmp/nupkg-batch2/build/Bogus/sdk/sdk/8.0.300/Roslyn/bincore/csc.dll)
+--- build 2026-10-26T13:18:05+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build Source/Bogus/Bogus.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=35.6.1 built on 2024 -p:VersionSuffix=09-02 22:19:07Z -p:PackageVersion=35.6.1 && dotnet pack Source/Bogus/Bogus.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=35.6.1 built on 2024 -p:VersionSuffix=09-02 22:19:07Z -p:PackageVersion=35.6.1
+MSBUILD : error MSB1008: Only one project can be specified.
+    Full command line: '/private/tmp/nupkg-batch2/build/Bogus/sdk/sdk/8.0.300/MSBuild.dll -maxcpucount -verbosity:m -nologo -restore -consoleloggerparameters:Summary --property:ContinuousIntegrationBuild=true --property:VersionPrefix=35.6.1 --property:VersionSuffix=09-02 --property:PackageVersion=35.6.1 -property:Configuration=Release Source/Bogus/Bogus.csproj built on 2024 22:19:07Z'
+  Switches appended by response files:
+Switch: built
+
+For switch syntax, type "MSBuild -help"
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 1
+end 2026-10-26T13:18:07+01:00

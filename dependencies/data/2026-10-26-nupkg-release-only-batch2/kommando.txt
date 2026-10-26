@@ -4,3 +4,7 @@ mkdir -p /private/tmp/nupkg-batch2
 ln -sfn /private/tmp/nupkg-release-only/sdk /private/tmp/nupkg-batch2/sdk
 cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
 nohup python3 -I run-batch.py 2026-10-26-nupkg-release-only-batch2 recipes/release-only/batch-third-party.txt /private/tmp/nupkg-batch2 > /private/tmp/nupkg-batch2/console.log 2>&1 &
+
+# Run 1 was stopped at 13:20 (script errors, see the note); its text outputs moved to run1/. Run 2, 13:40, same command after clearing the lab:
+rm -rf /private/tmp/nupkg-batch2/derive /private/tmp/nupkg-batch2/build /private/tmp/nupkg-batch2/gh
+nohup python3 -I run-batch.py 2026-10-26-nupkg-release-only-batch2 recipes/release-only/batch-third-party.txt /private/tmp/nupkg-batch2 > /private/tmp/nupkg-batch2/console.log 2>&1 &

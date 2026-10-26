@@ -1,0 +1,114 @@
+start 2026-10-26T13:18:21+01:00
+build A in /private/tmp/nupkg-batch2/build/ExCSS/A/src
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2/build/ExCSS/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2/build/ExCSS/A/nuget
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2/build/ExCSS/sdk:/usr/bin
+--- clone 2026-10-26T13:18:21+01:00
+$ git init -q /private/tmp/nupkg-batch2/build/ExCSS/A/src
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src remote add origin https://github.com/TylerBrinks/ExCSS
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src fetch -q --no-tags --depth=1 origin c97e84d6126bb2e42658cf5af627d52e697c8779
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src -c advice.detachedHead=false checkout -q c97e84d6126bb2e42658cf5af627d52e697c8779
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/TylerBrinks/ExCSS
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src rev-parse HEAD
+c97e84d6126bb2e42658cf5af627d52e697c8779
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2/build/ExCSS/A/src tag --points-at HEAD
+--- toolchain 2026-10-26T13:18:22+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.412
+ Commit:            819e1a9566
+ Workload version:  8.0.400-manifests.9cf71931
+ MSBuild version:   17.11.31+933b72e36
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/
+
+.NET workloads installed:
+Configured to use loose manifests when installing new manifests.
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.18
+  Architecture: x64
+  Commit:       ef853a7105
+
+.NET SDKs installed:
+  8.0.412 [/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.18 [/private/tmp/nupkg-batch2/build/ExCSS/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.18 [/private/tmp/nupkg-batch2/build/ExCSS/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.11.0-3.24554.2+bc1c3011064a493b0ca527df6fb7215e2e5cfa96, sha256 0593bfd4b56795c417429717f432dd28c5cb0a17b97127453de303b8d3779093 (/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/bincore/csc.dll)
+--- build 2026-10-26T13:18:22+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/ExCSS/ExCSS.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.3.1 -p:VersionSuffix=release.0 -p:PackageVersion=4.3.1 && dotnet pack src/ExCSS/ExCSS.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.3.1 -p:VersionSuffix=release.0 -p:PackageVersion=4.3.1
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj (in 8.39 sec).
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net48]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=netstandard2.1]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net7.0]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=netcoreapp3.1]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net6.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net48]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=netstandard2.1]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net7.0]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=netcoreapp3.1]
+/private/tmp/nupkg-batch2/build/ExCSS/sdk/sdk/8.0.412/Roslyn/Microsoft.Managed.Core.targets(237,5): error : SourceRoot paths are required to end with a slash or backslash: '/private/tmp/nupkg-batch2/build/ExCSS/A/nuget' [/private/tmp/nupkg-batch2/build/ExCSS/A/src/src/ExCSS/ExCSS.csproj::TargetFramework=net6.0]
+    0 Warning(s)
+    7 Error(s)
+
+Time Elapsed 00:00:09.93
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 1
+end 2026-10-26T13:18:34+01:00

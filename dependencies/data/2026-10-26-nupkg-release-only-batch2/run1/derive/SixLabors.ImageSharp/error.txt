@@ -1,0 +1,15 @@
+git-lfs filter-process: linje 1: git-lfs: command not found
+error: could not read greeting from subprocess 'git-lfs filter-process'
+error: initialization for subprocess 'git-lfs filter-process' failed
+fatal: tests/ImageSharp.Tests/Formats/Jpg/pdfjs/baseline/ycck - Copy.jpg: smudge filter lfs failed
+Traceback (most recent call last):
+  File "/home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/derive.py", line 358, in <module>
+    main()
+    ~~~~^^
+  File "/home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/derive.py", line 221, in main
+    subprocess.run(['git', '-C', src, '-c', 'advice.detachedHead=false', 'checkout', '-q', commit], check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', '-C', '/private/tmp/nupkg-batch2/src/sixlabors.imagesharp-1.0.4', '-c', 'advice.detachedHead=false', 'checkout', '-q', '5321ca862acc48343de60b2c06f78bbafcac2a03']' returned non-zero exit status 128.
