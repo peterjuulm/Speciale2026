@@ -10,5 +10,4 @@ shell = "bash"
 build = "dotnet build src/Stateless/Stateless.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=5.16.0 -p:PackageVersion=5.16.0 && dotnet pack src/Stateless/Stateless.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=5.16.0 -p:PackageVersion=5.16.0"
 packages = "out-nupkg"
 os = "windows"
-depth = 1
 git_config = ["core.autocrlf=true"]

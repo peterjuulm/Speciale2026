@@ -10,5 +10,4 @@ shell = "bash"
 build = "dotnet build YamlDotNet/YamlDotNet.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=16.2.1 -p:PackageVersion=16.2.1 && dotnet pack YamlDotNet/YamlDotNet.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=16.2.1 -p:PackageVersion=16.2.1"
 packages = "out-nupkg"
 os = "windows"
-depth = 1
 git_config = ["core.autocrlf=false", "core.eol=lf"]

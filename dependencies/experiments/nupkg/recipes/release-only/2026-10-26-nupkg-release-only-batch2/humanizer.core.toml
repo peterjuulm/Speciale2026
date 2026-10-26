@@ -10,5 +10,4 @@ shell = "bash"
 build = "dotnet build src/Humanizer/Humanizer.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=2.14.1 -p:PackageVersion=2.14.1 && dotnet pack src/Humanizer/Humanizer.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=2.14.1 -p:PackageVersion=2.14.1"
 packages = "out-nupkg"
 os = "windows"
-depth = 1
 git_config = ["core.autocrlf=false", "core.eol=lf"]

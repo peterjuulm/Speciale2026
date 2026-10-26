@@ -10,5 +10,4 @@ shell = "bash"
 build = "dotnet build UnitsNet/UnitsNet.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=6.0.0 -p:VersionSuffix=pre012 -p:PackageVersion=6.0.0-pre012 && dotnet pack UnitsNet/UnitsNet.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=6.0.0 -p:VersionSuffix=pre012 -p:PackageVersion=6.0.0-pre012"
 packages = "out-nupkg"
 os = "windows"
-depth = 1
 git_config = ["core.autocrlf=true"]

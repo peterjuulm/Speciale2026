@@ -10,5 +10,4 @@ shell = "bash"
 build = "dotnet build Dapper/Dapper.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=2.0.123 -p:PackageVersion=2.0.123 && dotnet pack Dapper/Dapper.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=2.0.123 -p:PackageVersion=2.0.123"
 packages = "out-nupkg"
 os = "windows"
-depth = 1
 git_config = ["core.autocrlf=false", "core.eol=lf"]

@@ -10,5 +10,4 @@ shell = "bash"
 build = "dotnet build src/ExCSS/ExCSS.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.3.1 -p:VersionSuffix=release.0 -p:PackageVersion=4.3.1 && dotnet pack src/ExCSS/ExCSS.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.3.1 -p:VersionSuffix=release.0 -p:PackageVersion=4.3.1"
 packages = "out-nupkg"
 os = "linux"
-depth = 1
 git_config = ["core.autocrlf=false", "core.eol=lf"]

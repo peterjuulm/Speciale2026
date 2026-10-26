@@ -7,8 +7,7 @@ commit = "cb559e2032efd50b926c12927430c82b44d29b1d"
 project = "Mono.TextTemplating/Mono.TextTemplating.csproj"
 sdk = "7.0.410"
 shell = "bash"
-build = "dotnet build Mono.TextTemplating/Mono.TextTemplating.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=3.0.0.1 -p:PackageVersion=3.0.0 && dotnet pack Mono.TextTemplating/Mono.TextTemplating.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=3.0.0.1 -p:PackageVersion=3.0.0"
+build = "dotnet build Mono.TextTemplating/Mono.TextTemplating.csproj -c Release -p:ContinuousIntegrationBuild=true -p:PackageVersion=3.0.0 && dotnet pack Mono.TextTemplating/Mono.TextTemplating.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:PackageVersion=3.0.0"
 packages = "out-nupkg"
 os = "windows"
-depth = 1
 git_config = ["core.autocrlf=true"]
