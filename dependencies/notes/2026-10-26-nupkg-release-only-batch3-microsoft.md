@@ -60,7 +60,29 @@ See `dependencies/data/2026-10-26-nupkg-release-only-batch3-microsoft/kommando.t
 
 ## Result
 
-(after the run)
+**Stopped at 14:26, during the derivation step, by decision: the day ends
+here, and the batch is rerun tomorrow with a clean slate.** 57 of 139
+packages had been derived (no build started, nothing dispatched to the
+runners). What the derivations showed so far, for tomorrow's planning:
+
+- The Azure SDK packages (Azure.Core 1.50.0 and Azure.Identity derived;
+  Azure.Communication.Email, the KeyVault and Storage packages skipped):
+  their compiler is `csc 4.4.0-6.22565.8`, which no public .NET 7 SDK
+  bundles. The Azure repository pins Roslyn through the
+  `Microsoft.Net.Compilers.Toolset` package, so rule 3 (SDK-bundled
+  compilers only) cannot place them. A version 3 of rule 3 could look the
+  compiler up among that package's versions.
+- Several ASP.NET Core 9 packages skip for the same reason (csc
+  `4.12.0-2.24422.8` with runtime 9.0.0, no public SDK).
+- The `dotnet/dotnet` (VMR) packages derive: a public .NET 10 SDK does
+  bundle their compiler. Whether they build is tomorrow's question.
+- The derivation's checkouts of the VMR take 2 to 3 GB each commit; the
+  SDK cache grew to 36 GB over the day (66 SDK versions installed as rule
+  3's candidates). Disk, not time, is the constraint on `arch`.
+
+The 57 derivations stay in the lab (`/private/tmp/nupkg-batch3/derive`),
+not in the data folder; tomorrow's run derives from scratch so that one
+run holds the whole batch.
 
 ## Caveats
 
