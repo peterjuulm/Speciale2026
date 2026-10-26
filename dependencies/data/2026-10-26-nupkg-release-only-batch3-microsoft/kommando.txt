@@ -1,0 +1,5 @@
+# Round A, batch 3 (Microsoft-owned packages), 26 October 2026, on arch (Linux builds) and GitHub windows-2022 / ubuntu-24.04
+mkdir -p /private/tmp/nupkg-batch3
+ln -sfn /private/tmp/nupkg-release-only/sdk /private/tmp/nupkg-batch3/sdk
+cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
+nohup python3 -I run-batch.py 2026-10-26-nupkg-release-only-batch3-microsoft recipes/release-only/batch-microsoft.txt /private/tmp/nupkg-batch3 > /private/tmp/nupkg-batch3/console.log 2>&1 &
