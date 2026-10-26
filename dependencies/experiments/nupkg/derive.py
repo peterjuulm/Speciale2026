@@ -170,7 +170,16 @@ def main():
     # 3. SDK
     rt = runtime.split('+')[0].split('-')[0]
     channel = '.'.join(rt.split('.')[:2])
-    meta = json.load(urllib.request.urlopen(f'https://builds.dotnet.microsoft.com/dotnet/release-metadata/{channel}/releases.json', timeout=60))
+    if rt.startswith('4.'):
+        # the compiler ran on .NET Framework: Visual Studio's MSBuild, not a dotnet SDK
+        meta = {'releases': []}
+        skip('sdk', f'the compiler ran on .NET Framework {rt} (Visual Studio or msbuild.exe); no dotnet SDK bundles it')
+    else:
+        try:
+            meta = json.load(urllib.request.urlopen(f'https://builds.dotnet.microsoft.com/dotnet/release-metadata/{channel}/releases.json', timeout=60))
+        except urllib.error.HTTPError as e:
+            meta = {'releases': []}
+            skip('sdk', f'no release metadata for runtime channel {channel} (HTTP {e.code})')
     cands = sorted({s['version'] for r in meta['releases'] for s in r.get('sdks', []) if s.get('runtime-version') == rt and '-' not in s['version']},
                    key=lambda v: [int(x) for x in v.split('.')])
     sdk = None

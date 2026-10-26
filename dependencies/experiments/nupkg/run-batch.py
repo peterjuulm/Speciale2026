@@ -134,7 +134,7 @@ def main():
         sh(['git', '-C', REPO, 'add', recipes], log)
         sh(['git', '-C', REPO, 'commit', '-q', '-m', f'Release-only recipes, batch {batch}',
             '-m', f'Derived by derive.py, {len(derived)} of {len(results)} packages in the list; the facts are in the batch data folder.'], log)
-        sh(['git', '-C', REPO, 'pull', '--rebase', '-q'], log)
+        sh(['git', '-C', REPO, 'pull', '--rebase', '--autostash', '-q'], log)
         sh(['git', '-C', REPO, 'push', '-q', 'origin', 'main'], log)
     commit = sh(['git', '-C', REPO, 'rev-parse', '--short', 'HEAD'], log).stdout.strip()
     log(f'recipes at {commit}')

@@ -4,14 +4,16 @@ Usage: python3 -I derive-batch.py LIST CENSUS_FILES_CSV LAB OUT
 
 LIST has one "Package Version" per line (# comments allowed). Each package
 goes through derive.py into OUT/<Package>/; a derivation that raises stops
-nothing: its error is recorded as "skipped (derive.py failed: ...)". The
+nothing: its error is recorded as "skipped (derive.py failed: ...)". A
+package with a facts.txt from an earlier run is kept as it is; one with
+none (a failed derivation) is derived again, so a rerun redoes failures. The
 end is OUT/batch.txt, one line per package with its category and, for a
 derived package, its OS, SDK and the recipe's path, so that the Linux ones
 can be built here and the Windows ones dispatched to the runner.
 
 Written 26 October 2026 for round A on the packages not seen before.
 """
-import os, subprocess, sys
+import os, shutil, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -26,8 +28,12 @@ def main():
             continue
         pkg, ver = raw.split()
         dest = os.path.join(out, pkg)
-        r = subprocess.run([sys.executable, '-I', os.path.join(HERE, 'derive.py'), pkg, ver, census, lab, dest],
-                           capture_output=True, text=True)
+        if os.path.exists(os.path.join(dest, 'facts.txt')):
+            r = None   # derived in an earlier run of the list; only failed ones are redone
+        else:
+            shutil.rmtree(dest, ignore_errors=True)
+            r = subprocess.run([sys.executable, '-I', os.path.join(HERE, 'derive.py'), pkg, ver, census, lab, dest],
+                               capture_output=True, text=True)
         facts = os.path.join(dest, 'facts.txt')
         if os.path.exists(facts):
             cat = [l for l in open(facts, encoding='utf-8') if l.startswith('category:')][-1].strip()[len('category: '):]
