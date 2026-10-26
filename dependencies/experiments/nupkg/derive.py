@@ -310,8 +310,10 @@ def main():
     if not tag: recipe['depth'] = 1
     if clone_dir: recipe['clone_dir'] = clone_dir
     if nuget_packages: recipe['nuget_packages'] = nuget_packages
-    # explicit on every OS: GitHub's Windows runners set core.autocrlf=true system-wide
-    recipe['git_config'] = [{'asis': 'core.autocrlf=false', 'crlf': 'core.autocrlf=true'}[eol]]
+    # explicit on every OS: GitHub's Windows runners set core.autocrlf=true system-wide, and a
+    # repository with "* text=auto" checks out with core.eol, which is CRLF on Windows by default
+    # (Cronos, run 1 on 26/10); "as stored" therefore also pins core.eol=lf
+    recipe['git_config'] = {'asis': ['core.autocrlf=false', 'core.eol=lf'], 'crlf': ['core.autocrlf=true']}[eol]
     finish(out, pkg, ver, recipe)
 
 
