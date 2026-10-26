@@ -120,6 +120,7 @@ def main():
     batch, lst, lab = sys.argv[1], os.path.abspath(sys.argv[2]), os.path.abspath(sys.argv[3])
     push = '--no-push' not in sys.argv
     os.makedirs(lab, exist_ok=True)
+    os.environ.setdefault('NUPKG_GIT_MIRRORS', os.path.join(lab, 'mirrors'))   # one mirror per repository for the local builds
     log = Log(os.path.join(lab, 'run.log'))
     data = os.path.join(REPO, 'dependencies', 'data', batch)
     recipes = os.path.join(HERE, 'recipes', 'release-only', batch)
@@ -184,9 +185,14 @@ def main():
         if r['runner'] != 'arch':
             continue
         work = os.path.join(lab, 'build', pkg)
-        res = sh([sys.executable, '-I', os.path.join(HERE, 'rebuild.py'), os.path.join(recipes, f'{pkg.lower()}.toml'), work], log, timeout=3600)
+        res = sh([sys.executable, '-I', os.path.join(HERE, 'rebuild.py'), os.path.join(recipes, f'{pkg.lower()}.toml'), work], log, timeout=7200)
         r['build'] = 'ran' if res.returncode == 0 else f'rebuild.py exit {res.returncode}'
         log(f'{pkg}: ' + res.stdout.strip().replace('\n', ' | ')[-400:])
+        for d in ('A', 'sdk'):   # the clone, cache and SDK go once the output is saved; out/ stays
+            shutil.rmtree(os.path.join(work, d), ignore_errors=True)
+        recipe = tomllib.load(open(os.path.join(recipes, f'{pkg.lower()}.toml'), 'rb'))
+        if recipe.get('clone_dir'):
+            shutil.rmtree(recipe['clone_dir'], ignore_errors=True)
 
     # 4. wait for the runner runs
     pending = dict(runs)

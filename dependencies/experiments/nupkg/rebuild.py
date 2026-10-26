@@ -99,8 +99,20 @@ def clone(r, src, env, log):
     if r.get('depth'):   # as actions/checkout for a push: the one commit, no tags (recipes before 26/10)
         must(log, git + ['fetch', '-q', '--no-tags', f'--depth={r["depth"]}', 'origin', r.get('tag') and f'+refs/tags/{r["tag"]}:refs/tags/{r["tag"]}' or r['commit']], env)
     else:                # a full clone, every branch and tag, and the commit itself in case no branch holds it
-        must(log, git + ['fetch', '-q', '--tags', 'origin', '+refs/heads/*:refs/remotes/origin/*'], env)
-        must(log, git + ['fetch', '-q', 'origin', r['commit']], env)
+        # With NUPKG_GIT_MIRRORS set (a folder), the objects come from a local mirror of the repository,
+        # made or refreshed first, so that a batch does not fetch dotnet/runtime once per package. The
+        # remote 'origin' still names the real URL; the checkout is the same either way (26/10).
+        src_remote = 'origin'
+        if os.environ.get('NUPKG_GIT_MIRRORS'):
+            mirror = os.path.join(os.environ['NUPKG_GIT_MIRRORS'], re.sub(r'[^A-Za-z0-9._-]+', '_', r['repo']) + '.git')
+            if os.path.isdir(mirror):
+                must(log, ['git', '-C', mirror, 'fetch', '-q', '--prune', 'origin'], env)
+            else:
+                os.makedirs(os.path.dirname(mirror), exist_ok=True)
+                must(log, ['git', 'clone', '-q', '--mirror', r['repo'], mirror], env)
+            src_remote = mirror
+        must(log, git + ['fetch', '-q', '--tags', src_remote, '+refs/heads/*:refs/remotes/origin/*'], env)
+        must(log, git + ['fetch', '-q', src_remote, r['commit']], env)
     if r.get('tag'):       # as actions/checkout for a pushed tag: HEAD detached at it
         must(log, git + detached + [f'refs/tags/{r["tag"]}'], env)
     else:

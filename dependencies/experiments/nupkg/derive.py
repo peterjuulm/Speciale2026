@@ -212,7 +212,7 @@ def main():
         fact('os', 'linux', 'default: no SDK-generated file embedded in the PDB')
 
     # a shallow clone at the commit, for rules 5 to 7 (no conversion of line endings)
-    src = os.path.join(lab, 'src', f'{lid}-{lver}')
+    src = os.path.join(lab, 'src', commit)   # one checkout per commit: packages from one repository build share it
     if not os.path.isdir(src):
         subprocess.run(['git', 'init', '-q', src], check=True)
         subprocess.run(['git', '-C', src, 'config', 'core.autocrlf', 'false'], check=True)
