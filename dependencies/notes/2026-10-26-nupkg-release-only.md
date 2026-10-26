@@ -44,7 +44,7 @@ turned an observation into a choice), or **default** (and why).
 | 5 | Build folder, NuGet cache | From the PDB's absolute document paths: a path minus the tracked file it ends with; the cache likewise. Mapped `/_/` paths: any folder | No path ends in a tracked file: any folder, **default** |
 | 6 | Checkout line endings | As stored in git, or converted to CRLF (`core.autocrlf=true`), whichever reproduces the PDB's source checksums; set explicitly, since GitHub's Windows runners convert by default. Checksums that match no form are counted and reported | PDB has LF where git stores CRLF (git does not convert to LF at checkout), or nothing decides: as stored, **default** |
 | 7 | Project | The one `.csproj` whose assembly name is the DLL's | None or several: **skipped** |
-| 8 | Command | `dotnet pack <project> -c Release`, with `ContinuousIntegrationBuild=true` when the PDB's paths are mapped (**inferred**), `VersionPrefix` and `VersionSuffix` from the DLL's informational version (**inferred**; a project that sets `Version` itself, or MinVer, keeps its own), `PackageVersion` from the `.nuspec`; NuGet's audit off | No informational version: no version properties, **default** |
+| 8 | Command | `dotnet pack <project> -c Release`, with `ContinuousIntegrationBuild=true` when the PDB's paths are mapped (**inferred**), `VersionPrefix` and `VersionSuffix` from the DLL's informational version (**inferred**; a project that sets `Version` itself, or MinVer, keeps its own), `PackageVersion` from the `.nuspec`; NuGet's audit off. **Version 2** (afternoon of 26/10, after GuardClauses): `dotnet build <project> -c Release` with the same properties, then `dotnet pack <project> -c Release --no-build`; batch 2 runs under it | No informational version: no version properties, **default** |
 
 Then `rebuild.py` builds A, and A2 in exactly A's paths again with
 everything deleted first, so that A against A2 measures repeatability with
@@ -154,7 +154,7 @@ folder):
 | FluentValidation 11.11.0 | derived | `arch` | level 1 | yes |
 | Serilog 4.2.0 | derived | windows-2022 | level 1, DLL and PDB | yes |
 | Ardalis.GuardClauses 5.0.0 | derived | windows-2022 | **did not build**: `dotnet pack` packed nothing | (no build) |
-| Cronos 0.9.0 | derived with defaults | windows-2022 | run 1: level 4; run 2: level 2 | yes |
+| Cronos 0.9.0 | derived with defaults | windows-2022 | run 1: level 3; run 2: level 2 | yes |
 
 - **GuardClauses.** `dotnet pack` restored and then failed with NU5026, the
   DLL to pack "was not found on disk": no compile ran. The project sets
@@ -163,7 +163,9 @@ folder):
   (which packs) and then `dotnet pack --no-build`. The fixed command of
   rule 8 cannot build such a project. Recorded as "did not build"; a
   changed rule 8 is a new version of the method, not a rerun.
-- **Cronos, run 1.** Same IL and metadata as nuget.org, but every source
+- **Cronos, run 1.** Level 3 (written as 4 at first; `level.py`, written
+  in the afternoon, applies the definition: the IL and the metadata streams
+  are equal, the MVID, PDB checksum and `#GUID` are not). Every source
   checksum in the PDB differed: the checkout had CRLF although the recipe
   set `core.autocrlf=false`. The repository's `.gitattributes` says
   `* text=auto`, and for such files git writes `core.eol`, which is the

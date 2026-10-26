@@ -1,0 +1,6 @@
+# Round A, batch 2, 26 October 2026, on arch (Linux builds) and GitHub windows-2022 (Windows builds)
+# Lab outside the repositories; the SDKs installed this morning are reused through a symlink.
+mkdir -p /private/tmp/nupkg-batch2
+ln -sfn /private/tmp/nupkg-release-only/sdk /private/tmp/nupkg-batch2/sdk
+cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
+nohup python3 -I run-batch.py 2026-10-26-nupkg-release-only-batch2 recipes/release-only/batch-third-party.txt /private/tmp/nupkg-batch2 > /private/tmp/nupkg-batch2/console.log 2>&1 &

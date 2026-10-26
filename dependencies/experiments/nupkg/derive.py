@@ -30,10 +30,13 @@ The rules, in the order they run (dependencies/notes/2026-10-26-nupkg-release-on
     a shallow clone at the commit; no decision possible: the OS's default.
  7. Project: the .csproj whose assembly name is the DLL's; none or several:
     skipped.
- 8. Command, the same for all: dotnet pack PROJECT -c Release, with
-    ContinuousIntegrationBuild when the PDB's paths start with /_/, the
-    version prefix and suffix from the DLL's informational version, and the
-    package version from the .nuspec.
+ 8. Command, the same for all (version 2, 26 October, after GuardClauses):
+    dotnet build PROJECT -c Release, then dotnet pack PROJECT -c Release
+    --no-build, with ContinuousIntegrationBuild when the PDB's paths start
+    with /_/, the version prefix and suffix from the DLL's informational
+    version, and the package version from the .nuspec. Version 1 was one
+    dotnet pack, which skips the build for a project with
+    GeneratePackageOnBuild and then has nothing to pack.
 
 OUT gets recipe.toml (for rebuild.py), facts.txt (one line per rule, with
 its mark) and the report of the published DLL. Written 26 October 2026.
@@ -300,8 +303,8 @@ def main():
         fact('version', 'none passed', 'default: the DLL has no informational version')
     props.append(f'-p:PackageVersion={ver}')
     proj = projects[0].replace('\\', '/')
-    build = f'dotnet pack {proj} -c Release -o out-nupkg {" ".join(props)}'
-    fact('command', build, 'rule 8')
+    build = f'dotnet build {proj} -c Release {" ".join(props)} && dotnet pack {proj} -c Release --no-build -o out-nupkg {" ".join(props)}'
+    fact('command', build, 'rule 8, version 2')
 
     recipe = {'package': pkg, 'version': ver, 'ships': ship, 'repo': url, 'commit': commit, 'project': proj,
               'sdk': sdk, 'shell': 'bash', 'build': build, 'packages': 'out-nupkg', 'os': 'windows' if win else 'linux'}
