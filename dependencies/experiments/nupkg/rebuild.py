@@ -11,12 +11,14 @@ The script
 
 1. installs the recipe's SDK alone into WORKDIR/sdk (install-sdk.py);
 2. builds twice, each time from a fresh clone: A in the recipe's clone_dir
-   if it has one (the path the CI built in), else in WORKDIR/A/src, and B in
-   WORKDIR/B/src. The directory is the one thing that differs between them;
+   if it has one (the path the CI built in), else in WORKDIR/A/src; then A2
+   in exactly A's paths again (clone, HOME and package cache deleted first),
+   so that A against A2 measures repeatability with nothing varied. Varied
+   builds (the folder, time, locale and the rest) are the reprotest test's,
+   a later step;
 3. downloads the package from nuget.org, and its .snupkg if there is one;
-4. compares A with nuget.org's package, B with nuget.org's, and A with B,
-   for the shipped DLL and its PDB, and lists every entry of all three
-   (compare.py).
+4. compares A with nuget.org's package and A with A2, for the shipped DLL
+   and its PDB, and lists every entry of all three (compare.py).
 
 Logs, the built packages and the comparisons land in WORKDIR/out, and a
 summary goes to stdout. The exit code is 0 when the script ran to the end,
@@ -114,17 +116,24 @@ def clone(r, src, env, log):
 
 
 def build(r, name, src, work, sdk, out):
-    d = os.path.join(work, name)
+    d = os.path.join(work, name.rstrip('2'))   # A2 reuses A's paths
     # an empty package cache, unless the recipe names the CI's own: a package
     # that adds source files to the build puts their cache path into the PDB
     home, nuget = os.path.join(d, 'home'), r.get('nuget_packages') or os.path.join(d, 'nuget')
+    if name.endswith('2'):
+        for p in (src, home, nuget):
+            shutil.rmtree(p, ignore_errors=True)
     os.makedirs(home)
     os.makedirs(nuget, exist_ok=True)
     env = build_env(r, sdk, home, nuget, src)
     dest = os.path.join(out, name)
     os.makedirs(dest)
     with open(os.path.join(dest, 'build.log'), 'w', encoding='utf-8') as log:
-        log.write(f'start {now()}\nbuild {name} in {src}\n--- environment\n')
+        log.write(f'start {now()}\nbuild {name} in {src}\n')
+        for k in ('ImageOS', 'ImageVersion', 'RUNNER_OS', 'RUNNER_ARCH'):   # GitHub's runner image, before it is dropped
+            if k in os.environ:
+                log.write(f'runner {k}={os.environ[k]}\n')
+        log.write('--- environment\n')
         for k in sorted(env):
             log.write(f'{k}={"<redacted>" if SECRET.search(k) else env[k]}\n')
         log.write(f'--- clone {now()}\n')
@@ -149,6 +158,10 @@ def build(r, name, src, work, sdk, out):
         code = run(log, shell + [r['build']], env, src)
         run(log, ['dotnet', 'build-server', 'shutdown'], env, src)
         log.write(f'build exit code {code}\nend {now()}\n')
+    if r.get('project'):   # the resolved dependencies, for the record
+        assets = os.path.join(src, os.path.dirname(r['project']), 'obj', 'project.assets.json')
+        if os.path.exists(assets):
+            shutil.copy(assets, os.path.join(dest, 'project.assets.json'))
     found = []
     want = {f'{r["package"]}.{r["version"]}.{x}'.lower() for x in ('nupkg', 'snupkg')}
     pkgdir = os.path.join(src, r.get('packages', '.'))   # where the CI took the package from
@@ -187,8 +200,9 @@ def main():
             must(log, [sys.executable, '-I', os.path.join(HERE, 'install-sdk.py'), '--runtime', rt, sdk])
 
     results = {}
-    for name, src in (('A', r.get('clone_dir') or os.path.join(work, 'A', 'src')), ('B', os.path.join(work, 'B', 'src'))):
-        if os.path.exists(src):
+    a_src = r.get('clone_dir') or os.path.join(work, 'A', 'src')
+    for name, src in (('A', a_src), ('A2', a_src)):
+        if os.path.exists(src) and name != 'A2':
             sys.exit(f'{src} exists')
         results[name] = build(r, name, src, work, sdk, out)
         print(f'build {name} in {src}: exit {results[name][0]}, packages {results[name][1]}', flush=True)
@@ -204,7 +218,7 @@ def main():
     for kind, inner in (('nupkg', r['ships']), ('snupkg', pdb)):
         def pkg(d):
             return next((os.path.join(d, f) for f in os.listdir(d) if f.lower() == f'{lid}.{lver}.{kind}'), None)
-        p = {'nuget.org': pkg(ref), 'A': pkg(os.path.join(out, 'A')), 'B': pkg(os.path.join(out, 'B'))}
+        p = {'nuget.org': pkg(ref), 'A': pkg(os.path.join(out, 'A')), 'A2': pkg(os.path.join(out, 'A2'))}
         present = [n for n in p if p[n]]
         if len(present) < 2:
             summary.append(f'{kind}: not compared, fewer than two packages')
@@ -212,7 +226,7 @@ def main():
         # every entry of every package, for reading; then one verdict per pair
         with open(os.path.join(out, f'compare-{kind}.txt'), 'w', encoding='utf-8') as f:
             subprocess.run([sys.executable, '-I', os.path.join(HERE, 'compare.py'), inner] + [p[n] for n in present], stdout=f)
-        for x, y in (('A', 'nuget.org'), ('B', 'nuget.org'), ('A', 'B')):
+        for x, y in (('A', 'nuget.org'), ('A', 'A2')):
             if p[x] and p[y]:
                 same = subprocess.run([sys.executable, '-I', os.path.join(HERE, 'compare.py'), inner, p[y], p[x]],
                                       stdout=subprocess.DEVNULL).returncode == 0
