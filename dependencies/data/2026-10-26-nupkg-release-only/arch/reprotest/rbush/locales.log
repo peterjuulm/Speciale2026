@@ -1,0 +1,93 @@
+start 2026-10-26T12:28:59+01:00
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+INFO:reprotest:STARTING VIRTUAL SERVER ['/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/virt/autopkgtest-virt-null']
+reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+which: no dpkg-query in (/private/tmp/nupkg-release-only/reprotest/rbush/sdk:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+INFO:reprotest:build "control": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.ZgPLwH/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying /private/tmp/nupkg-release-only/reprotest/rbush/src over to virtual server's /tmp/reprotest.ZgPLwH/build-control/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.ZgPLwH/build-control/, artifact pattern: ./artifact
+INFO:reprotest:executing build in /tmp/reprotest.ZgPLwH/const_build_path/
+  Determining projects to restore...
+  Restored /tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj (in 136 ms).
+  RBush -> /tmp/reprotest.ZgPLwH/const_build_path/RBush/bin/Release/net47/RBush.dll
+  RBush -> /tmp/reprotest.ZgPLwH/const_build_path/RBush/bin/Release/netstandard2.0/RBush.dll
+  RBush -> /tmp/reprotest.ZgPLwH/const_build_path/RBush/bin/Release/net8.0/RBush.dll
+  Successfully created package '/tmp/reprotest.ZgPLwH/const_build_path/out-nupkg/RBush.4.0.0.nupkg'.
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.ZgPLwH/artifacts-control/ back from virtual server's /private/tmp/nupkg-release-only/reprotest/rbush/out/locales-store/control
+INFO:reprotest:build "experiment-1": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, vary locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.ZgPLwH/const_build_path
+INFO:reprotest.build:LOCALE variation: LC_ALL = et_EE.UTF-8 LANGUAGE = et_EE.UTF-8:fr
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying /private/tmp/nupkg-release-only/reprotest/rbush/src over to virtual server's /tmp/reprotest.ZgPLwH/build-experiment-1/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.ZgPLwH/build-experiment-1/, artifact pattern: ./artifact
+INFO:reprotest:executing build in /tmp/reprotest.ZgPLwH/const_build_path/
+sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory
+sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory
+  Determining projects to restore...
+  Restored /tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj (in 129 ms).
+/usr/bin/sh : warning : setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory [/tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj::TargetFramework=net47]
+/tmp/reprotest.ZgPLwH/const_build_path/RBush/obj/Release/net47/RBush.AssemblyInfo.cs(19,59): warning CS7035: The specified version string '/usr/bin/sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory;4.0.0' does not conform to the recommended format - major.minor.build.revision [/tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj::TargetFramework=net47]
+/tmp/reprotest.ZgPLwH/const_build_path/RBush/obj/Release/net47/RBush.AssemblyInfo.cs(25,55): error CS7034: The specified version string '/usr/bin/sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.0.0.0' does not conform to the required format - major[.minor[.build[.revision]]] [/tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj::TargetFramework=net47]
+/tmp/reprotest.ZgPLwH/const_build_path/RBush/obj/Release/netstandard2.0/RBush.AssemblyInfo.cs(19,59): warning CS7035: The specified version string '/usr/bin/sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory;4.0.0' does not conform to the recommended format - major.minor.build.revision [/tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ZgPLwH/const_build_path/RBush/obj/Release/netstandard2.0/RBush.AssemblyInfo.cs(25,55): error CS7034: The specified version string '/usr/bin/sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.0.0.0' does not conform to the required format - major[.minor[.build[.revision]]] [/tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ZgPLwH/const_build_path/RBush/obj/Release/net8.0/RBush.AssemblyInfo.cs(19,59): warning CS7035: The specified version string '/usr/bin/sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.UTF-8): No such file or directory;4.0.0' does not conform to the recommended format - major.minor.build.revision [/tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj::TargetFramework=net8.0]
+/tmp/reprotest.ZgPLwH/const_build_path/RBush/obj/Release/net8.0/RBush.AssemblyInfo.cs(25,55): error CS7034: The specified version string '/usr/bin/sh: warning: setlocale: LC_ALL: cannot change locale (et_EE.0.0.0' does not conform to the required format - major[.minor[.build[.revision]]] [/tmp/reprotest.ZgPLwH/const_build_path/RBush/RBush.csproj::TargetFramework=net8.0]
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.ZgPLwH/build-experiment-1-aux && \
+    mv /tmp/reprotest.ZgPLwH/build-experiment-1/ /tmp/reprotest.ZgPLwH/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.ZgPLwH/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-release-only/reprotest/rbush/sdk:$PATH DOTNET_ROOT=/private/tmp/nupkg-release-only/reprotest/rbush/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-release-only/reprotest/rbush/clihome NUGET_PACKAGES=/private/tmp/nupkg-release-only/reprotest/rbush/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && dotnet build-server shutdown >/dev/null 2>&1; dotnet pack RBush/RBush.csproj -c Release -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.0.0 -p:PackageVersion=4.0.0 && rm -rf artifact && mkdir artifact && unzip -q -o out-nupkg/*.nupkg "lib/*" -d artifact'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.ZgPLwH/const_build_path /tmp/reprotest.ZgPLwH/build-experiment-1/ || __c=$?; \
+    rm -rf /tmp/reprotest.ZgPLwH/build-experiment-1-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-10-26T12:29:15+01:00 exit 125

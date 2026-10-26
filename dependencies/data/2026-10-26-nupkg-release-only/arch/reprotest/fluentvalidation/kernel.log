@@ -1,0 +1,62 @@
+start 2026-10-26T12:35:39+01:00
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+INFO:reprotest:STARTING VIRTUAL SERVER ['/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/virt/autopkgtest-virt-null']
+reprotest: WARNING: Could not load target distro keychain. Falling back to Debian
+which: no dpkg-query in (/private/tmp/nupkg-release-only/reprotest/fluentvalidation/sdk:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+INFO:reprotest:build "control": FIX environment, FIX build_path, FIX kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.lEpCdI/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying /private/tmp/nupkg-release-only/reprotest/fluentvalidation/src over to virtual server's /tmp/reprotest.lEpCdI/build-control/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.lEpCdI/build-control/, artifact pattern: ./artifact
+INFO:reprotest:executing build in /tmp/reprotest.lEpCdI/const_build_path/
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  Restored /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/FluentValidation.csproj (in 125 ms).
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/netstandard2.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/netstandard2.1/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net5.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net6.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net7.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net8.0/FluentValidation.dll
+  Successfully created package '/tmp/reprotest.lEpCdI/const_build_path/out-nupkg/FluentValidation.11.11.0.nupkg'.
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.lEpCdI/artifacts-control/ back from virtual server's /private/tmp/nupkg-release-only/reprotest/fluentvalidation/out/kernel-store/control
+INFO:reprotest:build "experiment-1": FIX environment, FIX build_path, vary kernel, FIX aslr, FIX num_cpus, FIX time, FIX user_group, FIX fileordering, FIX domain_host, FIX home, FIX locales, FIX exec_path, FIX timezone, FIX umask
+INFO:reprotest.build:BUILD_PATH variation: const_path = /tmp/reprotest.lEpCdI/const_build_path
+INFO:reprotest.build:TIMEZONE variation: TZ=GMT+12
+INFO:reprotest:copying /private/tmp/nupkg-release-only/reprotest/fluentvalidation/src over to virtual server's /tmp/reprotest.lEpCdI/build-experiment-1/
+INFO:reprotest:starting build with source directory: /tmp/reprotest.lEpCdI/build-experiment-1/, artifact pattern: ./artifact
+INFO:reprotest:executing build in /tmp/reprotest.lEpCdI/const_build_path/
+INFO:reprotest.build:KERNEL variation: SETARCH_ARCH = 'linux64' SETARCH_OPTS = '--uname-2.6'
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  Restored /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/FluentValidation.csproj (in 126 ms).
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/netstandard2.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/netstandard2.1/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net5.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net6.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net7.0/FluentValidation.dll
+  FluentValidation -> /tmp/reprotest.lEpCdI/const_build_path/src/FluentValidation/bin/Release/net8.0/FluentValidation.dll
+  Successfully created package '/tmp/reprotest.lEpCdI/const_build_path/out-nupkg/FluentValidation.11.11.0.nupkg'.
+INFO:reprotest:build successful, copying artifacts
+INFO:reprotest:copying /tmp/reprotest.lEpCdI/artifacts-experiment-1/ back from virtual server's /private/tmp/nupkg-release-only/reprotest/fluentvalidation/out/kernel-store/experiment-1
+INFO:reprotest:Running diffoscope: ['diffoscope', '--exclude-directory-metadata=yes', '/private/tmp/nupkg-release-only/reprotest/fluentvalidation/out/kernel-store/control', '/private/tmp/nupkg-release-only/reprotest/fluentvalidation/out/kernel-store/experiment-1']
+INFO:reprotest:No differences between /private/tmp/nupkg-release-only/reprotest/fluentvalidation/out/kernel-store/control, /private/tmp/nupkg-release-only/reprotest/fluentvalidation/out/kernel-store/experiment-1
+=======================
+Reproduction successful
+=======================
+No differences in ./artifact
+81c64571dd04e20737a53f70c354e71353d5ea075c2ba51e70dcd47ce6e88cd6  ./artifact/lib/net7.0/FluentValidation.xml
+cdc1b0face83dec6cc7c570ee434c6489db970a1bc36f5a6164eb69f32fae9ba  ./artifact/lib/net7.0/FluentValidation.dll
+81c64571dd04e20737a53f70c354e71353d5ea075c2ba51e70dcd47ce6e88cd6  ./artifact/lib/netstandard2.1/FluentValidation.xml
+14e19fde03615a1abf96a8ec61e09c8dccda91673584b4cc8f78f0994b07c4be  ./artifact/lib/netstandard2.1/FluentValidation.dll
+81c64571dd04e20737a53f70c354e71353d5ea075c2ba51e70dcd47ce6e88cd6  ./artifact/lib/net6.0/FluentValidation.xml
+c8671c08ab5c13ce96c582745a62cec4df900a46cd47dfc87d5e036735572dc7  ./artifact/lib/net6.0/FluentValidation.dll
+81c64571dd04e20737a53f70c354e71353d5ea075c2ba51e70dcd47ce6e88cd6  ./artifact/lib/netstandard2.0/FluentValidation.xml
+188844141e26512e560c7bfa324f061af7a83d45cc0cd3fe78b8bb6bf1312d75  ./artifact/lib/netstandard2.0/FluentValidation.dll
+81c64571dd04e20737a53f70c354e71353d5ea075c2ba51e70dcd47ce6e88cd6  ./artifact/lib/net5.0/FluentValidation.xml
+c5f8a1ce0939a0a55153b6246e0d2f44388a50c512c87741171d91fb79aed8ef  ./artifact/lib/net5.0/FluentValidation.dll
+81c64571dd04e20737a53f70c354e71353d5ea075c2ba51e70dcd47ce6e88cd6  ./artifact/lib/net8.0/FluentValidation.xml
+c138e2e6941c7a63dbbab3af9720ea7d40118968a3033abff501f4b25f892fc8  ./artifact/lib/net8.0/FluentValidation.dll
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-10-26T12:36:10+01:00 exit 0

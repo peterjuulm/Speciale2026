@@ -112,7 +112,12 @@ Roslyn 4.12 under `et_EE` (W26; RBush and FluentValidation use 4.11 and
 
 ## Commands
 
-To be filled in from the runs. Derivation on `arch`:
+Verbatim in `dependencies/data/2026-10-26-nupkg-release-only/kommando.txt`,
+with the run ids and the commits. The scripts ran at `f1284ad`; the
+workflow needed one fix for a slash in the artifact name (`8add058`), and
+rule 6's implementation one fix after Cronos's first run (`699539b`, below).
+Run on 26/10 12:25-12:35 at Leo's request, while Leo and Peter were at
+lunch. Derivation on `arch`:
 
     E=dependencies/experiments/nupkg; C=dependencies/data/2026-10-13-dependency-census/mac/census.files.csv; L=/private/tmp/nupkg-release-only
     python3 -I $E/derive.py <Package> <Version> $C $L $L/derive/<Package>
@@ -128,7 +133,122 @@ Round B, on `arch`, for each package that built on Linux:
 
 ## Result
 
+### Round A
+
+Step 1, the derivation, 12:25 `[V]` (`arch/derive/<Package>/facts.txt`):
+all five derived, none skipped. Cronos with one default: its DLL has no
+informational version, so no version properties were passed. Inferred
+values: the SDK (4 of 5; FluentValidation's runtime 8.0.0 has only one
+SDK), the OS (all), `ContinuousIntegrationBuild` (3), the version
+properties (4). The SDKs: RBush 8.0.404, FluentValidation 8.0.100, Serilog
+9.0.101, GuardClauses 8.0.400, Cronos 9.0.100, each verified in its
+`csc.dll`; the same five the pilot had taken from CI and the compiler
+record.
+
+Steps 3 and 4 `[V]` (`summary.txt` and the report diffs in each run's
+folder):
+
+| Package | Category | Built on | Shipped DLL against nuget.org | A = A2 |
+| --- | --- | --- | --- | --- |
+| RBush 4.0.0 | derived | `arch` | level 1 | yes |
+| FluentValidation 11.11.0 | derived | `arch` | level 1 | yes |
+| Serilog 4.2.0 | derived | windows-2022 | level 1, DLL and PDB | yes |
+| Ardalis.GuardClauses 5.0.0 | derived | windows-2022 | **did not build**: `dotnet pack` packed nothing | (no build) |
+| Cronos 0.9.0 | derived with defaults | windows-2022 | run 1: level 4; run 2: level 2 | yes |
+
+- **GuardClauses.** `dotnet pack` restored and then failed with NU5026, the
+  DLL to pack "was not found on disk": no compile ran. The project sets
+  `GeneratePackageOnBuild=true`, and with that property `dotnet pack` skips
+  the build, since a build would pack by itself. Its CI runs `dotnet build`
+  (which packs) and then `dotnet pack --no-build`. The fixed command of
+  rule 8 cannot build such a project. Recorded as "did not build"; a
+  changed rule 8 is a new version of the method, not a rerun.
+- **Cronos, run 1.** Same IL and metadata as nuget.org, but every source
+  checksum in the PDB differed: the checkout had CRLF although the recipe
+  set `core.autocrlf=false`. The repository's `.gitattributes` says
+  `* text=auto`, and for such files git writes `core.eol`, which is the
+  platform's ending by default, CRLF on Windows. The derivation's own clone
+  on Linux had LF, so rule 6 as written ("as stored") was right and its
+  implementation was not. `699539b` pins `core.eol=lf` as well; the Cronos
+  recipe was re-derived, identical apart from that line
+  (`arch/derive-run2/Cronos/facts.txt`).
+- **Cronos, run 2.** Level 2: only the Authenticode signature and the PE
+  checksum differ. The unsigned DLL hashes to `adc6e8d7…`, the same bytes
+  as the pilot's CI-informed build and as Peter's stripped copy of
+  nuget.org's DLL.
+- On Windows the runner image was `windows-2022`, version in each build
+  log (`runner ImageVersion=…`).
+
+Expectation 1 **held**. Expectation 2 **held for four**: RBush, Serilog and
+FluentValidation at level 1, Cronos at 2 (after the rule-6 fix); **failed**
+for GuardClauses, which did not build. Expectation 3 did not happen: the
+version rule collided with nothing; RBush's MinVer and FluentValidation's
+`VersionPrefix` gave the published values. Expectation 4 **held** for the
+four that built.
+
+### Round B
+
+RBush 12:27-12:34 and FluentValidation 12:34-12:39 on `arch`, the Windows
+three not covered `[V]` (`arch/reprotest/<package>/summary.txt`, one log
+per axis):
+
+| Axis | RBush 4.0.0 | FluentValidation 11.11.0 |
+| --- | --- | --- |
+| build_path | reproducible | reproducible |
+| environment | reproducible | reproducible |
+| kernel | reproducible | reproducible |
+| locales | **build failed** | reproducible (see caveats) |
+| exec_path | reproducible | reproducible |
+| time | reproducible | reproducible |
+| timezone | reproducible | reproducible |
+| umask | reproducible | reproducible |
+| fileordering | not run | not run |
+
+- **RBush, locales.** `et_EE.UTF-8` is not installed on `arch`, so every
+  shell under the varied build prints `setlocale: LC_ALL: cannot change
+  locale`. MinVer reads the version from the output of the `git` commands
+  it runs, and the warning landed in it: `CS7035`, a version string that
+  begins with the warning text. A build failure, not a difference in the
+  artefact; the axis is untested for RBush until the locale is installed.
+- **fileordering** needs `disorderfs`, which `arch` does not have; both
+  runs recorded it as not run.
+- **time** hung on RBush's first attempt: the compiler server that the
+  build started outlived it, and the `faketime` wrapper waits for every
+  process it started. The server was stopped by hand (12:33), the axis then
+  compared and passed. The wrapper now shuts the build servers down at the
+  end of every build as well; FluentValidation ran with that version.
+
+Round B's expectation **held** where it could be tested: 7 of 9 axes for
+RBush and 8 of 9 for FluentValidation reproducible, `build_path` included,
+as both set `ContinuousIntegrationBuild`; no axis found a difference.
+
 ## Interpretation
+
+For four of the five packages, what the release publishes was enough: the
+compiler record named the SDK, the embedded generated files named the OS,
+the document paths named the build folder and the checkout's line endings,
+and Source Link named the clone URL. The one fact the release does not
+carry, the build command, the fixed `dotnet pack` replaced for those four.
+The pilot's CI-informed recipes gave the same bytes, so for these four the
+CI files added nothing the release did not have.
+
+The fifth, GuardClauses, failed on exactly that gap. A single fixed command
+cannot fit every project: `GeneratePackageOnBuild` turns `dotnet pack`
+into a no-op build. The failure is a limit of the method's rule 8, and it
+says nothing about whether the package is reproducible; the pilot showed it
+is, with `dotnet build` followed by `dotnet pack --no-build`, which is also
+what a next version of rule 8 could use for every package.
+
+The rule-6 fix is the kind of correction the method allows: the rule was
+"as stored", the first implementation did not achieve it on Windows, and
+the derivation data shows the intended value. It is not a value changed
+to fit nuget.org.
+
+Round B adds, for the two Linux packages, that the build is deterministic
+under every condition reprotest could vary here, the folder included. That
+is Benedetti et al.'s measure, and with it their expectation from the plan
+held: a package that matches nuget.org was built deterministically once,
+and here it stays so under variation.
 
 ## Caveats
 
@@ -148,3 +268,14 @@ Round B, on `arch`, for each package that built on Linux:
   evidence against the package.
 - Rule 3 stops at the lowest SDK with the compiler; SDKs above it with the
   same compiler are listed, not tried.
+- Round B's `locales` axis sets `LC_ALL=et_EE.UTF-8`, which `arch` lacks.
+  glibc then falls back to C, and FluentValidation's "reproducible" on that
+  axis says less than it seems: whether .NET, which reads the culture
+  through ICU, still saw Estonian is not checked. W26 (Roslyn 4.12 orders
+  generated types by culture) does not concern these two, built with Roslyn
+  4.11 and 4.8.
+- Round B used the lab's warm package cache (one restore before the runs),
+  so the network was not varied.
+- The wrapper's first version classified RBush's failed `locales` build as
+  "not run"; the summary file carries the correction, the logs are as
+  written.

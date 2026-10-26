@@ -1,0 +1,14 @@
+RBush 4.0.0, reprotest, SDK 8.0.404, 2026-10-26T12:34:12+01:00
+build_path: reproducible
+environment: reproducible
+kernel: reproducible
+locales: not run (reprotest could not vary it; disorderfs missing?)
+exec_path: reproducible
+time: reproducible
+timezone: reproducible
+umask: reproducible
+fileordering: not run (reprotest could not vary it; disorderfs missing?)
+
+# Correction, 26/10 12:45: the "locales" line above should read "build failed under reprotest (exit 125)": the build broke on the
+# setlocale warning (et_EE.UTF-8 is not installed on arch), see locales.log. The script wrote "not run" because it took every exit 125
+# for a missing disorderfs; fixed the same day.

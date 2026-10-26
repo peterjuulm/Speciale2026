@@ -1,0 +1,30 @@
+# Nupkg test, release-only method, 26 October 2026, from /home/leos/Dev/Speciale2026 on arch. Run at Leo's request
+# while Leo and Peter were at lunch. E=dependencies/experiments/nupkg, L=/private/tmp/nupkg-release-only (fresh;
+# the SDKs installed by the test derivation of the morning were copied into $L/sdk first, SHA-512 checked at install),
+# C=dependencies/data/2026-10-13-dependency-census/mac/census.files.csv, R="/private/tmp/rb1-dotnet10/sdk/dotnet run $E/dllreport.cs --".
+# Scripts at commit f1284ad (derive.py, rebuild.py, reprotest-run.py).
+
+# Step 1, 12:25: derive, in this order
+python3 -I $E/derive.py RBush 4.0.0 $C $L $L/derive/RBush
+python3 -I $E/derive.py FluentValidation 11.11.0 $C $L $L/derive/FluentValidation
+python3 -I $E/derive.py Serilog 4.2.0 $C $L $L/derive/Serilog
+python3 -I $E/derive.py Ardalis.GuardClauses 5.0.0 $C $L $L/derive/Ardalis.GuardClauses
+python3 -I $E/derive.py Cronos 0.9.0 $C $L $L/derive/Cronos
+# facts.txt and report-nugetorg.txt of each to arch/derive/<Package>/; recipe.toml to $E/recipes/release-only/<package>.toml, commit fd917db
+
+# Step 3, Linux, 12:26-12:27, one after the other
+python3 -I $E/rebuild.py $E/recipes/release-only/rbush.toml $L/build/rbush
+python3 -I $E/rebuild.py $E/recipes/release-only/fluentvalidation.toml $L/build/fluentvalidation
+# Step 3, Windows: the workflow at commit fd917db failed to upload (a slash in the artifact name; fixed in 8add058, workflow only),
+# runs 40315013969, 40315017766, 40315021809 (no output kept). Run 1, at 8add058, 12:27:
+gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/<serilog|ardalis.guardclauses|cronos>.toml -f runner=windows-2022
+#   40315213787 serilog, 40315217905 ardalis.guardclauses, 40315222182 cronos
+# Cronos run 2, at 699539b (rule 6 pins core.eol=lf; recipe re-derived 12:29 into $L/derive-run2/Cronos, otherwise unchanged):
+#   40315566509
+gh run download <id> -R peterjuulm/Speciale2026 -D $L/gh/<id>
+# Step 4, the level where A differs: the shipped DLL out of A's .nupkg and nuget.org's, then
+$R <dll> > report-<tfm>-<A|nugetorg>.txt; diff report-<tfm>-nugetorg.txt report-<tfm>-A.txt
+
+# Round B, 12:27, one after the other
+python3 -I $E/reprotest-run.py $E/recipes/release-only/rbush.toml $L/reprotest/rbush
+python3 -I $E/reprotest-run.py $E/recipes/release-only/fluentvalidation.toml $L/reprotest/fluentvalidation

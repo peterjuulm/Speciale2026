@@ -18,8 +18,12 @@ new id at every pack. The axes, one run each, in this order:
 The first is the folder, which Benedetti et al. left out and which .NET
 embeds unless ContinuousIntegrationBuild is set; the other eight are theirs.
 fileordering needs disorderfs; without it reprotest exits 125 and the axis is
-recorded as not run. Each build starts with dotnet build-server shutdown, so
-no build reuses the previous one's compiler server (W27).
+recorded as not run. locales needs the et_EE.UTF-8 locale installed; without
+it the shell's setlocale warning lands in the output of the commands MinVer
+runs, and the build fails. Each build starts and ends with dotnet
+build-server shutdown: no build reuses the previous one's compiler server
+(W27), and no server outlives the build, which the time axis needs, since
+the faketime wrapper waits for every process it started.
 
 The SDK is installed alone in WORKDIR/sdk; the NuGet cache (WORKDIR/nuget)
 and DOTNET_CLI_HOME are fixed paths outside the copied tree, filled by one
@@ -70,7 +74,10 @@ def main():
     pre = (f'export PATH={sdk}:$PATH DOTNET_ROOT={sdk} DOTNET_CLI_HOME={clihome} NUGET_PACKAGES={nuget} '
            f'DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false'
            + ''.join(f' {k}={str(v).replace("{src}", ".")!r}' for k, v in r.get('env', {}).items()))
-    cmd = (f'{pre} && dotnet build-server shutdown >/dev/null 2>&1; {r["build"]} && '
+    # the servers are shut down after the build as well: a compiler server that outlives the build
+    # keeps the faketime wrapper's pipe open, and the time axis hangs (RBush, 26/10)
+    cmd = (f'{pre} && dotnet build-server shutdown >/dev/null 2>&1; {r["build"]}; rc=$?; '
+           f'dotnet build-server shutdown >/dev/null 2>&1; [ $rc = 0 ] && '
            f'rm -rf artifact && mkdir artifact && unzip -q -o {r["packages"]}/*.nupkg "lib/*" -d artifact')
     open(os.path.join(out, 'command.txt'), 'w', encoding='utf-8').write(cmd + '\n')
     results = []
@@ -87,8 +94,8 @@ def main():
             verdict = 'reproducible'
         elif rc == 1 and 'differences' in text.lower():
             verdict = 'NOT reproducible (artefacts differ)'
-        elif rc == 125 or 'disorderfs' in text:
-            verdict = 'not run (reprotest could not vary it; disorderfs missing?)'
+        elif 'disorderfs' in text:
+            verdict = 'not run (reprotest needs disorderfs for this axis)'
         else:
             verdict = f'build failed under reprotest (exit {rc})'
         results.append(f'{axis}: {verdict}')

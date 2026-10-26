@@ -1,0 +1,15 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Serilog"
+version = "4.2.0"
+ships = "lib/net9.0/Serilog.dll"
+repo = "https://github.com/serilog/serilog"
+commit = "c00e17fdeb615d36c062569f7342f72c9ece4aa7"
+project = "src/Serilog/Serilog.csproj"
+sdk = "9.0.101"
+shell = "bash"
+build = "dotnet pack src/Serilog/Serilog.csproj -c Release -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.2.0 -p:VersionSuffix=main-c00e17f -p:PackageVersion=4.2.0"
+packages = "out-nupkg"
+os = "windows"
+branch = "main"
+depth = 1
+git_config = ["core.autocrlf=true"]
