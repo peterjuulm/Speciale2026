@@ -48,10 +48,17 @@ jobs:
         env:
           RECIPE: ${{ inputs.recipe }}
         run: python -I dependencies/experiments/nupkg/rebuild.py "dependencies/experiments/nupkg/recipes/$RECIPE" "$RUNNER_TEMP/nupkg"
+      - name: Name the artifact
+        if: always()
+        shell: bash
+        env:
+          RECIPE: ${{ inputs.recipe }}
+        run: echo "name=${RECIPE//\//-}-${{ inputs.runner }}" >> "$GITHUB_OUTPUT"
+        id: artifact
       - name: Upload the results
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: ${{ inputs.recipe }}-${{ inputs.runner }}
+          name: ${{ steps.artifact.outputs.name }}
           path: ${{ runner.temp }}/nupkg/out
           if-no-files-found: error
