@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "AutoMapper"
+version = "13.0.1"
+ships = "lib/net6.0/AutoMapper.dll"
+repo = "https://github.com/AutoMapper/AutoMapper"
+commit = "f13753466880413af7e4b2f642240ee06514544a"
+project = "src/AutoMapper/AutoMapper.csproj"
+sdk = "8.0.101"
+shell = "bash"
+build = "dotnet build src/AutoMapper/AutoMapper.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=13.0.1 -p:PackageVersion=13.0.1 && dotnet pack src/AutoMapper/AutoMapper.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=13.0.1 -p:PackageVersion=13.0.1"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=true"]

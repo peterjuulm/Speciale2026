@@ -1,0 +1,119 @@
+start 2026-10-26T12:29:39+00:00
+build A2 in /home/runner/work/markdig/markdig
+runner ImageOS=ubuntu24
+runner ImageVersion=20261023.334.3
+runner RUNNER_OS=Linux
+runner RUNNER_ARCH=X64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/home/runner/work/_temp/nupkg/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/home/runner/work/_temp/nupkg/A/nuget/
+NuGetAudit=false
+PATH=/home/runner/work/_temp/nupkg/sdk:/usr/bin
+--- clone 2026-10-26T12:29:39+00:00
+$ git init -q /home/runner/work/markdig/markdig
+$ git -C /home/runner/work/markdig/markdig remote add origin https://github.com/xoofx/markdig
+$ git -C /home/runner/work/markdig/markdig config core.autocrlf false
+$ git -C /home/runner/work/markdig/markdig config core.eol lf
+$ git -C /home/runner/work/markdig/markdig fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /home/runner/work/markdig/markdig fetch -q origin be4da8b42dfdf4d5009c372d814ac2b9f968a8d2
+$ git -C /home/runner/work/markdig/markdig -c advice.detachedHead=false checkout -q be4da8b42dfdf4d5009c372d814ac2b9f968a8d2
+$ git -C /home/runner/work/markdig/markdig config --list --show-origin
+file:/etc/gitconfig	safe.directory=*
+file:/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:/etc/gitconfig	filter.lfs.required=true
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/xoofx/markdig
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /home/runner/work/markdig/markdig rev-parse HEAD
+be4da8b42dfdf4d5009c372d814ac2b9f968a8d2
+$ git -C /home/runner/work/markdig/markdig rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /home/runner/work/markdig/markdig tag --points-at HEAD
+1.2.0
+--- toolchain 2026-10-26T12:29:41+00:00
+$ dotnet --info
+.NET SDK:
+ Version:           10.0.203
+ Commit:            c23858a6d8
+ Workload version:  10.0.200-manifests.ef86bccd
+ MSBuild version:   18.3.3+c23858a6d
+
+Runtime Environment:
+ OS Name:     ubuntu
+ OS Version:  24.04
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /home/runner/work/_temp/nupkg/sdk/sdk/10.0.203/
+
+.NET workloads installed:
+There are no installed workloads to display.
+Configured to use workload sets when installing new manifests.
+No workload sets are installed. Run "dotnet workload restore" to install a workload set.
+
+Host:
+  Version:      10.0.7
+  Architecture: x64
+  Commit:       b16286c228
+
+.NET SDKs installed:
+  10.0.203 [/home/runner/work/_temp/nupkg/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 10.0.7 [/home/runner/work/_temp/nupkg/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 10.0.7 [/home/runner/work/_temp/nupkg/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  DOTNET_CLI_TELEMETRY_OPTOUT              [1]
+  DOTNET_NOLOGO                            [1]
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 5.3.0-2.26219.105+c23858a6d860abe3ca94f9ac630c3e61b2625664, sha256 e72e2060aff0f394af7f12402dd362e51d7f8873e955d59f80cac74569a9a1c9 (/home/runner/work/_temp/nupkg/sdk/sdk/10.0.203/Roslyn/bincore/csc.dll)
+--- build 2026-10-26T12:29:41+00:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Markdig/Markdig.csproj -c Release -p:VersionPrefix=1.2.0 -p:PackageVersion=1.2.0 && dotnet pack src/Markdig/Markdig.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=1.2.0 -p:PackageVersion=1.2.0
+  Determining projects to restore...
+  Restored /home/runner/work/markdig/markdig/src/Markdig/Markdig.csproj (in 984 ms).
+  Markdig -> /home/runner/work/markdig/markdig/src/Markdig/bin/Release/net462/Markdig.dll
+  Markdig -> /home/runner/work/markdig/markdig/src/Markdig/bin/Release/netstandard2.0/Markdig.dll
+  Markdig -> /home/runner/work/markdig/markdig/src/Markdig/bin/Release/netstandard2.1/Markdig.dll
+  Markdig -> /home/runner/work/markdig/markdig/src/Markdig/bin/Release/net8.0/Markdig.dll
+  Markdig -> /home/runner/work/markdig/markdig/src/Markdig/bin/Release/net10.0/Markdig.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.57
+  Successfully created package '/home/runner/work/markdig/markdig/out-nupkg/Markdig.1.2.0.nupkg'.
+  Successfully created package '/home/runner/work/markdig/markdig/out-nupkg/Markdig.1.2.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-26T12:29:51+00:00

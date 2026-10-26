@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Bogus"
+version = "35.6.1"
+ships = "lib/net6.0/Bogus.dll"
+repo = "https://github.com/bchavez/Bogus"
+commit = "905a7e753ed2d7bfd42fc5099a50278adf45b467"
+project = "Source/Bogus/Bogus.csproj"
+sdk = "8.0.300"
+shell = "bash"
+build = "dotnet build Source/Bogus/Bogus.csproj -c Release -p:ContinuousIntegrationBuild=true -p:PackageVersion=35.6.1 && dotnet pack Source/Bogus/Bogus.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:PackageVersion=35.6.1"
+packages = "out-nupkg"
+os = "linux"
+git_config = ["core.autocrlf=false", "core.eol=lf"]

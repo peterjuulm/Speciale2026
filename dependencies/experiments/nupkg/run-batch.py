@@ -94,9 +94,13 @@ def level_of(outdir, recipe, log):
     ships = recipe['ships']
     lid, lver = recipe['package'].lower(), recipe['version'].lower()
     ref = os.path.join(outdir, 'nuget-org', f'{lid}.{lver}.nupkg')
-    a = next((os.path.join(outdir, 'A', f) for f in os.listdir(os.path.join(outdir, 'A')) if f.lower() == f'{lid}.{lver}.nupkg'), None) if os.path.isdir(os.path.join(outdir, 'A')) else None
+    packed = sorted(f for f in os.listdir(os.path.join(outdir, 'A')) if f.lower().endswith('.nupkg')) if os.path.isdir(os.path.join(outdir, 'A')) else []
+    a = next((os.path.join(outdir, 'A', f) for f in packed if f.lower() == f'{lid}.{lver}.nupkg'), None)
+    other = ''
+    if not a and len(packed) == 1:   # packed under another version (a version tool's own); the DLL is still compared
+        a = os.path.join(outdir, 'A', packed[0]); other = f'packed as {packed[0]}, not {lid}.{lver}.nupkg; '
     if not (a and os.path.exists(ref)):
-        return '', 'no package to compare'
+        return '', 'no package to compare' + (f' (packed: {", ".join(packed)})' if packed else '')
     lv = os.path.join(outdir, 'level'); os.makedirs(lv, exist_ok=True)
     for src, name in ((ref, 'nugetorg'), (a, 'A')):
         try:
@@ -109,7 +113,7 @@ def level_of(outdir, recipe, log):
     r = subprocess.run([sys.executable, '-I', os.path.join(HERE, 'level.py'), os.path.join(lv, 'report-nugetorg.txt'), os.path.join(lv, 'report-A.txt')],
                        capture_output=True, text=True)
     m = re.match(r'level (\d)', r.stdout)
-    return (m.group(1) if m else ''), r.stdout.strip()
+    return (m.group(1) if m else ''), other + r.stdout.strip()
 
 
 def main():
@@ -166,13 +170,15 @@ def main():
             else:
                 time.sleep(3)
                 runs[pkg] = None   # id found below
-    time.sleep(10)
-    if runs:
-        res = sh(['gh', 'run', 'list', '-R', GH_REPO, '-w', 'nupkg-rebuild.yml', '-L', str(len(runs) + 10), '--json', 'databaseId,displayTitle,headSha,createdAt'], log, timeout=120)
+    def find_ids():
+        # a queued run shows the workflow's name, not its run-name, so the lookup is repeated while waiting
+        res = subprocess.run(['gh', 'run', 'list', '-R', GH_REPO, '-w', 'nupkg-rebuild.yml', '-L', str(len(runs) + 20), '--json', 'databaseId,displayTitle,headSha'], capture_output=True, text=True)
         for run in json.loads(res.stdout or '[]'):
             for pkg in runs:
                 if runs[pkg] is None and f'release-only/{batch}/{pkg.lower()}.toml' in run['displayTitle'] and run['headSha'].startswith(commit):
                     runs[pkg] = run['databaseId']
+    if runs:
+        time.sleep(15); find_ids()
         log('runner runs: ' + ', '.join(f'{p}={i}' for p, i in runs.items()))
     for pkg, r in derived.items():
         if r['runner'] != 'arch':
@@ -183,13 +189,19 @@ def main():
         log(f'{pkg}: ' + res.stdout.strip().replace('\n', ' | ')[-400:])
 
     # 4. wait for the runner runs
-    pending = {p: i for p, i in runs.items() if i}
-    for pkg in runs:
-        if not runs[pkg]:
-            derived[pkg]['build'] = 'run id not found'
+    pending = dict(runs)
+    waited = 0
     while pending:
-        time.sleep(30)
+        time.sleep(30); waited += 30
+        if not all(pending.values()):
+            find_ids()
+            pending = {p: runs[p] for p in pending}
         for pkg, rid in list(pending.items()):
+            if rid is None:
+                if waited > 3600:
+                    derived[pkg]['build'] = 'run id not found in an hour'; del pending[pkg]
+                    log(f'{pkg}: no run found for its dispatch')
+                continue
             res = subprocess.run(['gh', 'run', 'view', str(rid), '-R', GH_REPO, '--json', 'status,conclusion'], capture_output=True, text=True)
             try:
                 st = json.loads(res.stdout)

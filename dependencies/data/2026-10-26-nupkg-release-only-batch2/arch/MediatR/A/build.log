@@ -1,0 +1,106 @@
+start 2026-10-26T13:33:39+01:00
+build A in /private/tmp/nupkg-batch2/build/MediatR/A/src
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2/build/MediatR/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2/build/MediatR/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2/build/MediatR/sdk:/usr/bin
+--- clone 2026-10-26T13:33:39+01:00
+$ git init -q /private/tmp/nupkg-batch2/build/MediatR/A/src
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src remote add origin https://github.com/jbogard/MediatR
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src fetch -q origin fb309026775ef953a64fb5339d074426c1ad2c37
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src -c advice.detachedHead=false checkout -q fb309026775ef953a64fb5339d074426c1ad2c37
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/jbogard/MediatR
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src rev-parse HEAD
+fb309026775ef953a64fb5339d074426c1ad2c37
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2/build/MediatR/A/src tag --points-at HEAD
+v12.4.1
+--- toolchain 2026-10-26T13:33:41+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.100
+ Commit:            57efcf1350
+ Workload version:  8.0.100-manifests.6c33ef20
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2/build/MediatR/sdk/sdk/8.0.100/
+
+.NET workloads installed:
+ Workload version: 8.0.100-manifests.6c33ef20
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.0
+  Architecture: x64
+  Commit:       5535e31a71
+
+.NET SDKs installed:
+  8.0.100 [/private/tmp/nupkg-batch2/build/MediatR/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.0 [/private/tmp/nupkg-batch2/build/MediatR/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.0 [/private/tmp/nupkg-batch2/build/MediatR/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.8.0-3.23524.11+f43cd10b737b6343956dee421cff8c50b602c788, sha256 b3c1d1404fbc634f19d5e258c5b9f288697d49e2acadf5ec0dd09dd63d379c47 (/private/tmp/nupkg-batch2/build/MediatR/sdk/sdk/8.0.100/Roslyn/bincore/csc.dll)
+--- build 2026-10-26T13:33:41+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/MediatR/MediatR.csproj -c Release -p:VersionPrefix=12.4.1 -p:PackageVersion=12.4.1 && dotnet pack src/MediatR/MediatR.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=12.4.1 -p:PackageVersion=12.4.1
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-batch2/build/MediatR/A/src/src/MediatR/MediatR.csproj (in 1.19 sec).
+  MediatR -> /private/tmp/nupkg-batch2/build/MediatR/A/src/src/MediatR/bin/Release/netstandard2.0/MediatR.dll
+  MediatR -> /private/tmp/nupkg-batch2/build/MediatR/A/src/src/MediatR/bin/Release/net6.0/MediatR.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.05
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Successfully created package '/private/tmp/nupkg-batch2/build/MediatR/A/src/out-nupkg/MediatR.12.4.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-batch2/build/MediatR/A/src/out-nupkg/MediatR.12.4.1.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-26T13:33:46+01:00

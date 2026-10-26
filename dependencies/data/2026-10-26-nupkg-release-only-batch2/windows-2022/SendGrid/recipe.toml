@@ -1,0 +1,14 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "SendGrid"
+version = "9.29.3"
+ships = "lib/netstandard2.0/SendGrid.dll"
+repo = "https://github.com/sendgrid/sendgrid-csharp"
+commit = "4a315350e910ef10c6579ca5291ed7f82ad9d376"
+project = "src/SendGrid/SendGrid.csproj"
+sdk = "8.0.202"
+shell = "bash"
+build = "dotnet build src/SendGrid/SendGrid.csproj -c Release -p:VersionPrefix=9.29.3 -p:PackageVersion=9.29.3 && dotnet pack src/SendGrid/SendGrid.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=9.29.3 -p:PackageVersion=9.29.3"
+packages = "out-nupkg"
+os = "windows"
+clone_dir = "D:\\a\\sendgrid-csharp\\sendgrid-csharp"
+git_config = ["core.autocrlf=true"]

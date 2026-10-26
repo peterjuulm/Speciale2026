@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Mono.TextTemplating"
+version = "3.0.0"
+ships = "lib/net6.0/Mono.TextTemplating.dll"
+repo = "https://github.com/mono/t4"
+commit = "cb559e2032efd50b926c12927430c82b44d29b1d"
+project = "Mono.TextTemplating/Mono.TextTemplating.csproj"
+sdk = "7.0.410"
+shell = "bash"
+build = "dotnet build Mono.TextTemplating/Mono.TextTemplating.csproj -c Release -p:ContinuousIntegrationBuild=true -p:PackageVersion=3.0.0 && dotnet pack Mono.TextTemplating/Mono.TextTemplating.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:PackageVersion=3.0.0"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=true"]

@@ -5,6 +5,11 @@ ln -sfn /private/tmp/nupkg-release-only/sdk /private/tmp/nupkg-batch2/sdk
 cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
 nohup python3 -I run-batch.py 2026-10-26-nupkg-release-only-batch2 recipes/release-only/batch-third-party.txt /private/tmp/nupkg-batch2 > /private/tmp/nupkg-batch2/console.log 2>&1 &
 
-# Run 1 was stopped at 13:20 (script errors, see the note); its text outputs moved to run1/. Run 2, 13:40, same command after clearing the lab:
+# Run 1 was stopped at 13:20 (script errors, see the note); its text outputs moved to run1/. Run 2, 13:27, same command after clearing the lab:
 rm -rf /private/tmp/nupkg-batch2/derive /private/tmp/nupkg-batch2/build /private/tmp/nupkg-batch2/gh
 nohup python3 -I run-batch.py 2026-10-26-nupkg-release-only-batch2 recipes/release-only/batch-third-party.txt /private/tmp/nupkg-batch2 > /private/tmp/nupkg-batch2/console.log 2>&1 &
+
+# After run 2 (13:41): three runs the script had not found by id (queued runs carry no run-name yet) were
+# downloaded and classified by hand with the same functions; YamlDotNet's run failed on a nuget.org download
+# (NETStandard.Library 2.0.3 "multiple attempts to download the nupkg have failed") and was dispatched once more:
+gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-26-nupkg-release-only-batch2/yamldotnet.toml -f runner=windows-2022

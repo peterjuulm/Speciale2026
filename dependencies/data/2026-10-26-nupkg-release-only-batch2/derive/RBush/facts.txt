@@ -1,0 +1,16 @@
+RBush 4.0.0, release-only derivation
+shipped file: lib/net8.0/RBush.dll  [read: census.files.csv]
+pdb: embedded in the DLL  [read: .nupkg]
+commit: b8690322abac35d835baa2fdca4a3918ed77a910  [read: .nuspec repository/@commit]
+clone url: https://github.com/viceroypenguin/RBush  [read: PDB Source Link]
+tag: v4.0.0  [read: .nuspec repository/@branch]
+sdk: 8.0.404 (csc 4.11.0-3.24510.3+cfe3bd0a653ebd218fec07ff4cce9a994715a473, runtime 8.0.11; candidates 8.0.111, 8.0.307, 8.0.404; the lowest match is taken, not read: none)  [inferred: the lowest SDK whose csc.dll has the compiler]
+os: linux (generated files: crlf 3, lf 36)  [inferred: CRLF in the SDK-generated files means Windows, LF means Linux (macOS would look the same)]
+build folder: mapped (/_/), any folder  [read: PDB document paths]
+checkout line endings: as stored in git, no conversion (of 9 source checksums: as stored 9, as CRLF 0, as LF 9; unmatched by the chosen form 0)  [read: PDB source checksums against the clone]
+project: RBush/RBush.csproj  [read: .csproj assembly name = the DLL name]
+ContinuousIntegrationBuild: true  [inferred: the PDB paths are mapped to /_/, which that property does (DeterministicSourcePaths alone would too)]
+version: prefix 4.0.0, suffix none  [inferred: VersionPrefix/VersionSuffix from the DLL AssemblyInformationalVersion; a project that sets Version itself, or MinVer, keeps its own]
+command: dotnet build RBush/RBush.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.0.0 -p:PackageVersion=4.0.0 && dotnet pack RBush/RBush.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.0.0 -p:PackageVersion=4.0.0  [rule 8, version 2]
+history: full clone, all branches and tags  [rule 2, version 2 (26/10): version tools such as Nerdbank.GitVersioning and MinVer read the history; at depth 1 three builds failed on the height and MinVer packed 0.0.0-alpha.0]
+category: derived, every value read from the release or the source; inferred: sdk, os, ContinuousIntegrationBuild, version

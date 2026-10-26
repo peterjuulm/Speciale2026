@@ -1,0 +1,111 @@
+start 2026-10-26T13:35:59+01:00
+build A2 in /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2/build/SixLabors.Fonts/sdk:/usr/bin
+--- clone 2026-10-26T13:35:59+01:00
+$ git init -q /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src remote add origin https://github.com/SixLabors/Fonts
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src fetch -q origin 32bef42997adb10268369ca149777f00e4241ce9
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src -c advice.detachedHead=false checkout -q 32bef42997adb10268369ca149777f00e4241ce9
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/SixLabors/Fonts
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src rev-parse HEAD
+32bef42997adb10268369ca149777f00e4241ce9
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src tag --points-at HEAD
+v1.0.0
+--- toolchain 2026-10-26T13:36:04+01:00
+$ dotnet --info
+.NET SDK:
+ Version:   7.0.306
+ Commit:    f500069cb7
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2/build/SixLabors.Fonts/sdk/sdk/7.0.306/
+
+Host:
+  Version:      7.0.9
+  Architecture: x64
+  Commit:       8e9a17b221
+
+.NET SDKs installed:
+  7.0.306 [/private/tmp/nupkg-batch2/build/SixLabors.Fonts/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 7.0.9 [/private/tmp/nupkg-batch2/build/SixLabors.Fonts/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 7.0.9 [/private/tmp/nupkg-batch2/build/SixLabors.Fonts/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.6.0-3.23259.8+c3cc1d0ceeab1a65da0217e403851a1e8a30086a, sha256 363148ff7e88513c6c255fab02d8d29d9e3d2fa363746d7f411efe01a8bb213e (/private/tmp/nupkg-batch2/build/SixLabors.Fonts/sdk/sdk/7.0.306/Roslyn/bincore/csc.dll)
+--- build 2026-10-26T13:36:04+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/SixLabors.Fonts/SixLabors.Fonts.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=1.0.0 -p:PackageVersion=1.0.0 && dotnet pack src/SixLabors.Fonts/SixLabors.Fonts.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=1.0.0 -p:PackageVersion=1.0.0
+MSBuild version 17.6.8+c70978d4d for .NET
+  Determining projects to restore...
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Runtime.CompilerServices.Unsafe. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package NETStandard.Library. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Numerics.Vectors. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Buffers. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Memory. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package Microsoft.NETCore.App.Ref. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package Microsoft.AspNetCore.App.Ref. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+  Failed to restore /private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj (in 300 ms).
+
+Build FAILED.
+
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Runtime.CompilerServices.Unsafe. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package NETStandard.Library. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Numerics.Vectors. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Buffers. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package System.Memory. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package Microsoft.NETCore.App.Ref. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+/private/tmp/nupkg-batch2/build/SixLabors.Fonts/A/src/src/SixLabors.Fonts/SixLabors.Fonts.csproj : error NU1101: Unable to find package Microsoft.AspNetCore.App.Ref. No packages exist with this id in source(s): https://f.feedz.io/sixlabors/sixlabors/nuget/index.json
+    0 Warning(s)
+    7 Error(s)
+
+Time Elapsed 00:00:00.92
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 1
+end 2026-10-26T13:36:06+01:00

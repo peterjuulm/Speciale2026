@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Dapper"
+version = "2.0.123"
+ships = "lib/net5.0/Dapper.dll"
+repo = "https://github.com/DapperLib/Dapper"
+commit = "2a837ad7d036671ac9a75c9945bb970aa41b7de9"
+project = "Dapper/Dapper.csproj"
+sdk = "5.0.402"
+shell = "bash"
+build = "dotnet build Dapper/Dapper.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=2.0.123 -p:PackageVersion=2.0.123 && dotnet pack Dapper/Dapper.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=2.0.123 -p:PackageVersion=2.0.123"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]
