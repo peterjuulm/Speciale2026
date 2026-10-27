@@ -241,7 +241,7 @@ def main():
         cd = f'cd {inner} && ' if inner else ''
         if g['kind'] == 'aspnetcore':
             # the shared-framework project is a .csproj up to .NET 9 and a .sfxproj in .NET 10 (docs/BuildErrors.md still says .csproj)
-            app = next((f for f in g['files'] if f.startswith(f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.') and f.endswith(('.csproj', '.sfxproj'))), None)
+            app = next((f for f in g['files'] if f in (f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj', f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj')), None)
             # '|| exit 1', not '&&': with '&&' the packs ran after a failed first step (27/10 21:52, aspnetcore-af22eff)
             first = f'./eng/build.sh --ci -nobl -c Release --projects "$PWD/{app[len(root):]}" {props} || exit 1; ' if app else ''
             facts.append('shared framework first: ' + (f'yes, {app} (docs/BuildErrors.md)' if first else 'no: App.Runtime project not found under src/Framework/App.Runtime/src'))
