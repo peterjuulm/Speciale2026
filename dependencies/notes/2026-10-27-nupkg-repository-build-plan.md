@@ -275,3 +275,33 @@ accept the repository recipe; not part of this run.
   `--projects repo-projects/efcore.proj` to see whether it closes.
 - Estimates are from repository size, not measurements; the first build
   of each kind gives the real number.
+
+## Version 2: the VMR identity properties (written 27 October 22:20, after build 4 of version 1, before any version-2 run)
+
+Build 4 (the VMR's aspnetcore at 95017c7, standalone) put all ten
+packages at level 4 for one cause, read from the reports: our DLLs say
+`RepositoryUrl` = github.com/dotnet/aspnetcore and `SourceCommitUrl`
+under that repository, and lack the `OriginalRepoCommitHash` attribute;
+the shipped DLLs say dotnet/dotnet and carry the hash cb21a42 of the
+aspnetcore commit the VMR was made from. Those are exactly two of the
+properties the VMR orchestration passes to the inner build
+(`RepositoryUrl`, `RepoOriginalSourceRevisionId`; the caveat above
+named them). Both values are facts of the release and of the source:
+the DLL's attributes, and `src/source-manifest.json` at the commit.
+
+Version 2 adds, for the VMR's inner repositories only:
+`/p:RepositoryUrl=https://github.com/dotnet/dotnet` and
+`/p:RepoOriginalSourceRevisionId=<commitSha of the inner repository in
+src/source-manifest.json>`. Nothing else changes. Version 1's rows stay
+as the version-1 measurement; version 2 is a separate batch
+(`2026-10-28-nupkg-repository-build-v2`, recipes under
+`recipes/repository/2026-10-28-nupkg-repository-build-v2/`), run after
+version 1's batch.
+
+Expectation `[I]`: the ten aspnetcore packages move to level 3 (the
+attributes were the only difference besides build identity in nine of
+them; Identity.UI also differs in IL and #US, to read). efcore and
+runtime do not change (their DLLs carry no such attributes, and
+`RepositoryUrl` already matched through Source Link), so their version-2
+rows should equal their version-1 rows; they are in the batch as that
+check, runtime last so it is the one dropped if the night runs out.

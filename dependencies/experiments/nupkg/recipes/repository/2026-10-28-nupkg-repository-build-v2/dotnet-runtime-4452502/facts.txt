@@ -1,0 +1,13 @@
+dotnet-runtime-4452502: repository build derivation
+repository: https://github.com/dotnet/dotnet
+commit: 44525024595742ebe09023abe709df51de65009b
+inner repository: src/runtime
+kind: runtime
+product Microsoft.Bcl.Cryptography 10.0.2: ships lib/net10.0/Microsoft.Bcl.Cryptography.dll; project src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj; file version 10.0.225.61305 -> 20251212.105 [inferred: FILE_PATCH 225 = (patch 2 mod 100)*100 + yy 25; FILE_REVISION 61305 = (50*12+12)*100 + 105, the VMR's +100 revision (the plain reading 20251213.5 gives the same file version); from release-only facts]
+official build id: 20251212.105  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+compiler: UsingToolMicrosoftNetCompilers=false  [read: the VMR passes it to every inner build; the PDBs record the SDK's csc]
+version 2, VMR identity: RepositoryUrl=https://github.com/dotnet/dotnet (the DLL's RepositoryUrl attribute), RepoOriginalSourceRevisionId=9ffface2f3fa6fbbb427793c3230b1626a1fdd84 (src/source-manifest.json at the commit; the DLL's OriginalRepoCommitHash attribute where the repository emits it)  [read]
+command: cd src/runtime && ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20251212.105 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=9ffface2f3fa6fbbb427793c3230b1626a1fdd84  [rule R3]
+sdk: from src/runtime/global.json, installed by the repository's own eng/common/tools.sh into src/runtime/.dotnet  [rule R2]
+sdk major from global.json: 10

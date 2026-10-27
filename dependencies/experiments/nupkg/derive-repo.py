@@ -1,6 +1,12 @@
 """Derive repository-build recipes: one per repository and commit, for the packages in a list.
 
-Usage: python3 -I derive-repo.py LIST CENSUS_FILES_CSV FACTS_DIR LAB OUT
+Usage: python3 -I derive-repo.py LIST CENSUS_FILES_CSV FACTS_DIR LAB OUT [--vmr-identity]
+
+--vmr-identity is version 2 of the method (28 October, written after build 4 of version 1): only the VMR's
+inner repositories are derived, and each gets the two identity properties the VMR orchestration passes and
+the shipped DLLs show: RepositoryUrl=https://github.com/dotnet/dotnet (the DLL's RepositoryUrl attribute)
+and RepoOriginalSourceRevisionId from src/source-manifest.json at the commit (the DLL's
+OriginalRepoCommitHash attribute). Version 1 recipes stay as they were.
 
 The repository-build method (dependencies/notes/2026-10-27-nupkg-repository-build-plan.md)
 builds a whole repository with its own build script and takes every listed package from
@@ -134,6 +140,7 @@ def report_attr(nupkg, ships, lab, name):
 
 def main():
     lst, census, facts_dir, lab, out = sys.argv[1:6]
+    vmr_identity = '--vmr-identity' in sys.argv[6:]
     os.makedirs(out, exist_ok=True)
     cen = {}
     for l in open(census, encoding='utf-8'):
@@ -238,6 +245,16 @@ def main():
             # the PDB compiler records of the shipped DLLs name the SDK's csc, not Microsoft.Net.Compilers.Toolset's
             props += ' /p:UsingToolMicrosoftNetCompilers=false'
             facts.append('compiler: UsingToolMicrosoftNetCompilers=false  [read: the VMR passes it to every inner build; the PDBs record the SDK\'s csc]')
+        if vmr_identity and not inner:
+            notes.append(f'{name}: not in version 2 (not a VMR inner repository)'); continue
+        if vmr_identity:
+            import json
+            man = json.loads(sh(['git', '-C', mirror_of(url, lab), 'show', f'{commit}:src/source-manifest.json']).stdout)
+            orig = next((r['commitSha'] for r in man['repositories'] if r['path'] == inner.split('/')[-1]), None)
+            if not orig:
+                notes.append(f'{name}: not derived: {inner} not in src/source-manifest.json'); continue
+            props += f' /p:RepositoryUrl={url} /p:RepoOriginalSourceRevisionId={orig}'
+            facts.append(f'version 2, VMR identity: RepositoryUrl={url} (the DLL\'s RepositoryUrl attribute), RepoOriginalSourceRevisionId={orig} (src/source-manifest.json at the commit; the DLL\'s OriginalRepoCommitHash attribute where the repository emits it)  [read]')
         cd = f'cd {inner} && ' if inner else ''
         if g['kind'] == 'aspnetcore':
             # the shared-framework project is a .csproj up to .NET 9 and a .sfxproj in .NET 10 (docs/BuildErrors.md still says .csproj)
