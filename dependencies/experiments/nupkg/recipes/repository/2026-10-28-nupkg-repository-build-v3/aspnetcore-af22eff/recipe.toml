@@ -1,0 +1,41 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "aspnetcore-af22eff"
+repo = "https://github.com/dotnet/aspnetcore"
+commit = "af22effae4069a5dfb9b0735859de48820104f5b"
+inner = ""
+kind = "aspnetcore"
+official_build_id = "20241029.3"
+shell = "bash"
+build = '''./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20241029.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || exit 1; ok=0; for p in "$PWD/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj" "$PWD/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj" "$PWD/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj" "$PWD/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20241029.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || ok=1; done; exit $ok'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.AspNetCore.Authentication.JwtBearer"
+version = "9.0.0"
+ships = "lib/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll"
+project = "src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj"
+file_version = "9.0.24.52903"
+
+[[products]]
+package = "Microsoft.AspNetCore.Authentication.OpenIdConnect"
+version = "9.0.0"
+ships = "lib/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll"
+project = "src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj"
+file_version = "9.0.24.52903"
+
+[[products]]
+package = "Microsoft.AspNetCore.DataProtection"
+version = "9.0.0"
+ships = "lib/net9.0/Microsoft.AspNetCore.DataProtection.dll"
+project = "src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj"
+file_version = "9.0.24.52903"
+
+[[products]]
+package = "Microsoft.AspNetCore.DataProtection.Abstractions"
+version = "9.0.0"
+ships = "lib/net9.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll"
+project = "src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj"
+file_version = "9.0.24.52903"

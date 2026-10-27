@@ -1,6 +1,6 @@
 """Derive repository-build recipes: one per repository and commit, for the packages in a list.
 
-Usage: python3 -I derive-repo.py LIST CENSUS_FILES_CSV FACTS_DIR LAB OUT [--vmr-identity]
+Usage: python3 -I derive-repo.py LIST CENSUS_FILES_CSV FACTS_DIR LAB OUT [--vmr-identity | --v2 | --v3]
 
 --vmr-identity is version 2 of the method (28 October, written after build 4 of version 1): only the VMR's
 inner repositories are derived, and each gets the two identity properties the VMR orchestration passes and
@@ -140,7 +140,8 @@ def report_attr(nupkg, ships, lab, name):
 
 def main():
     lst, census, facts_dir, lab, out = sys.argv[1:6]
-    v2 = '--v2' in sys.argv[6:]
+    v3 = '--v3' in sys.argv[6:]
+    v2 = v3 or '--v2' in sys.argv[6:]
     vmr_identity = v2 or '--vmr-identity' in sys.argv[6:]
     os.makedirs(out, exist_ok=True)
     cen = {}
@@ -273,6 +274,17 @@ def main():
             # one --pack call per project: a ';'-joined list loses its quotes in the shell and MSBuild splits it
             packs = ' '.join('"$PWD/' + p['project'][len(root):] + '"' for p in g['products'])
             build = f'{cd}{first}ok=0; for p in {packs}; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" {props} || ok=1; done; exit $ok'
+        elif g['kind'] == 'runtime' and v3 and not inner:
+            # version 3, R3c: the standalone dotnet/runtime commits without the native shims (libs.native), which do
+            # not compile with this machine's clang 23 at 9.0.0 (27/10 22:40, eleven C-to-C++ compatibility
+            # diagnostics raised as errors) and which the shipped managed packages do not contain; libs.pretest
+            # (test assets) is left out too. The subset names are read from eng/Subsets.props at the commit:
+            # Libs.Sfx/Libs.Oob exist from .NET 7, .NET 5 and 6 have Libs.Ref/Libs.Src/Libs.Packages instead.
+            # The README's /p:BuildNative=false is not consumed by any project file at 9.0.0 (git grep "(BuildNative)").
+            subsets_props = sh(['git', '-C', mirror_of(url, lab), 'show', f'{commit}:eng/Subsets.props']).stdout
+            subset = 'libs.sfx+libs.oob' if 'SubsetName Include="Libs.Sfx"' in subsets_props else 'libs.ref+libs.src+libs.packages'
+            build = f'{cd}./build.sh {subset} -c Release -ci -nobl -pack {props}'
+            facts.append(f'version 3, R3c: subset {subset} (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out)  [read]')
         elif g['kind'] == 'runtime':
             build = f'{cd}./build.sh libs -c Release -ci -nobl -pack {props}'
         elif g['kind'] == 'roslyn':

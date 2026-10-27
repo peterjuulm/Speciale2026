@@ -1,0 +1,16 @@
+aspnetcore-af22eff: repository build derivation
+repository: https://github.com/dotnet/aspnetcore
+commit: af22effae4069a5dfb9b0735859de48820104f5b
+inner repository: none (the repository itself)
+kind: aspnetcore
+product Microsoft.AspNetCore.Authentication.JwtBearer 9.0.0: ships lib/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll; project src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj; file version 9.0.24.52903 -> 20241029.3 [inferred: FILE_PATCH 24 = (patch 0 mod 100)*100 + yy 24; FILE_REVISION 52903 = (50*10+29)*100 + 3; from release-only facts]
+product Microsoft.AspNetCore.Authentication.OpenIdConnect 9.0.0: ships lib/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll; project src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj; file version 9.0.24.52903 -> 20241029.3 [inferred: FILE_PATCH 24 = (patch 0 mod 100)*100 + yy 24; FILE_REVISION 52903 = (50*10+29)*100 + 3; from release-only facts]
+product Microsoft.AspNetCore.DataProtection 9.0.0: ships lib/net9.0/Microsoft.AspNetCore.DataProtection.dll; project src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj; file version 9.0.24.52903 -> 20241029.3 [inferred: FILE_PATCH 24 = (patch 0 mod 100)*100 + yy 24; FILE_REVISION 52903 = (50*10+29)*100 + 3; from release-only facts]
+product Microsoft.AspNetCore.DataProtection.Abstractions 9.0.0: ships lib/net9.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll; project src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj; file version 9.0.24.52903 -> 20241029.3 [inferred: FILE_PATCH 24 = (patch 0 mod 100)*100 + yy 24; FILE_REVISION 52903 = (50*10+29)*100 + 3; from release-only facts]
+official build id: 20241029.3  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
+shared framework first: yes, src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj (docs/BuildErrors.md)
+command: ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20241029.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || exit 1; ok=0; for p in "$PWD/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj" "$PWD/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj" "$PWD/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj" "$PWD/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20241029.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || ok=1; done; exit $ok  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 9

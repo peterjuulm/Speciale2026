@@ -322,3 +322,50 @@ version-2 run: runtime's 34 packages also came out level 4 with
 move as well, except that most of them also differ in the managed
 resources by 8 bytes (1296 against 1288 in Logging), which version 2
 does not touch; those stay at level 4 until that is read.
+
+## Version 3: the standalone runtime commits without the native shims (written 27 October 23:20, after build 9 of version 1, before any version-3 run)
+
+Build 9 (`runtime-9d5a6a9`, dotnet/runtime 9.0.0, eight packages) did
+not build. The `libs` subset starts with `libs.native`, the C shims
+under `src/native/libs`, and this machine's clang 23.1.3 rejects
+eleven places in them (`pal_gssapi.c`, `pal_networking.c`,
+`pal_threading.c`, `pal_signal.c`, `pal_process.c`, `openssl.c`,
+`pal_evp_kdf.c`, `pal_evp_mac.c`) with C-to-C++ compatibility
+diagnostics raised as errors (`-Wimplicit-void-ptr-cast`,
+`-Wjump-misses-init`, `-Wimplicit-int-enum-cast`). The repository does
+not pass `-Werror` for a release branding (`configurecompiler.cmake`
+gates it on `PRERELEASE`, which nothing sets); the diagnostics are
+errors in this clang. The .NET 10 sources in the VMR (build 5) compile
+on the same clang, so the sources, not the method, are what the newer
+compiler rejects: expectation 1 said older toolchains, this is a newer
+one. The managed build never started, so the eight packages have no
+version-1 measurement beyond "did not build".
+
+R3c, version 3, for the standalone dotnet/runtime commits only: the
+subset leaves out `libs.native` and `libs.pretest` (test assets) and
+names the two managed subsets the shipped packages come from, read
+from `eng/Subsets.props` at the commit: `libs.sfx+libs.oob` where the
+file defines `Libs.Sfx` (.NET 7 and later), `libs.ref+libs.src+libs.packages`
+in .NET 5 and 6. The shipped packages in scope contain managed code
+only, so the shims are not an input of any byte compared. Everything
+else is version 2 (identity properties for VMR inner builds, which
+these are not; `EnableNgenOptimization=false`). The README
+(`docs/workflow/building/libraries/README.md`, 9.0.0) offers
+`/p:BuildNative=false` for this; no project file at that commit reads
+the property (`git grep "(BuildNative)"` finds nothing), so the subset
+is the way that exists. Recorded as a finding about the build
+documentation.
+
+Batch `2026-10-28-nupkg-repository-build-v3`, recipes under
+`recipes/repository/2026-10-28-nupkg-repository-build-v3/` (derived
+with `--v3`), order `order-2026-10-28-v3.txt`: the eight standalone
+runtime recipes, run after version 2's batch. Version 1's rows stay.
+
+Expectation `[I]`: the .NET 8 and 9 commits (5535e31, bf5e279,
+81cabf2, 9d5a6a9, fa7cdde) build and come out at level 4 where the
+package embeds a generated `ILLink.Substitutions.xml` (the newline
+effect of build 5) and level 3 otherwise. The .NET 5, 6 and 7 commits
+(cf258a1, 4822e3c, d099f07) are expected not to build for the reason
+expectation 1 gave: their SDKs (global.json) predate this machine's
+OpenSSL 3 and ICU, and `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT` covers
+only the ICU part.
