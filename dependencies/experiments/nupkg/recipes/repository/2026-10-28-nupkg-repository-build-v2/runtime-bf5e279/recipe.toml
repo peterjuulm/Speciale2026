@@ -1,0 +1,20 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-bf5e279"
+repo = "https://github.com/dotnet/runtime"
+commit = "bf5e279d9239bfef5bb1b8d6212f1b971c434606"
+inner = ""
+kind = "runtime"
+official_build_id = "20231130.1"
+shell = "bash"
+build = '''./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20231130.1 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Bcl.TimeProvider"
+version = "8.0.1"
+ships = "lib/net8.0/Microsoft.Bcl.TimeProvider.dll"
+project = "src/libraries/Microsoft.Bcl.TimeProvider/src/Microsoft.Bcl.TimeProvider.csproj"
+file_version = "8.0.123.58001"

@@ -6,7 +6,7 @@ inner = "src/efcore"
 kind = "arcade"
 official_build_id = "20260822.108"
 shell = "bash"
-build = '''cd src/efcore && ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=001bfac21c1910cdf1110ca256c9ea0a06f374ca'''
+build = '''cd src/efcore && ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=001bfac21c1910cdf1110ca256c9ea0a06f374ca'''
 packages = "src/efcore/artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]

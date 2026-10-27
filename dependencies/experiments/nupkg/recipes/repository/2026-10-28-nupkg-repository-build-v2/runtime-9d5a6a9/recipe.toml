@@ -1,0 +1,69 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-9d5a6a9"
+repo = "https://github.com/dotnet/runtime"
+commit = "9d5a6a9aa463d6d10b0b0ba6d5982cc82f363dc3"
+inner = ""
+kind = "runtime"
+official_build_id = "20241028.9"
+shell = "bash"
+build = '''./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20241028.9 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Extensions.FileProviders.Abstractions"
+version = "9.0.0"
+ships = "lib/net9.0/Microsoft.Extensions.FileProviders.Abstractions.dll"
+project = "src/libraries/Microsoft.Extensions.FileProviders.Abstractions/src/Microsoft.Extensions.FileProviders.Abstractions.csproj"
+file_version = "9.0.24.52809"
+
+[[products]]
+package = "Microsoft.Extensions.Hosting.Abstractions"
+version = "9.0.0"
+ships = "lib/net9.0/Microsoft.Extensions.Hosting.Abstractions.dll"
+project = "src/libraries/Microsoft.Extensions.Hosting.Abstractions/src/Microsoft.Extensions.Hosting.Abstractions.csproj"
+file_version = "9.0.24.52809"
+
+[[products]]
+package = "System.Composition.AttributedModel"
+version = "9.0.0"
+ships = "lib/net9.0/System.Composition.AttributedModel.dll"
+project = "src/libraries/System.Composition.AttributedModel/src/System.Composition.AttributedModel.csproj"
+file_version = "9.0.24.52809"
+
+[[products]]
+package = "System.Composition.Convention"
+version = "9.0.0"
+ships = "lib/net9.0/System.Composition.Convention.dll"
+project = "src/libraries/System.Composition.Convention/src/System.Composition.Convention.csproj"
+file_version = "9.0.24.52809"
+
+[[products]]
+package = "System.Composition.Hosting"
+version = "9.0.0"
+ships = "lib/net9.0/System.Composition.Hosting.dll"
+project = "src/libraries/System.Composition.Hosting/src/System.Composition.Hosting.csproj"
+file_version = "9.0.24.52809"
+
+[[products]]
+package = "System.Composition.Runtime"
+version = "9.0.0"
+ships = "lib/net9.0/System.Composition.Runtime.dll"
+project = "src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj"
+file_version = "9.0.24.52809"
+
+[[products]]
+package = "System.Composition.TypedParts"
+version = "9.0.0"
+ships = "lib/net9.0/System.Composition.TypedParts.dll"
+project = "src/libraries/System.Composition.TypedParts/src/System.Composition.TypedParts.csproj"
+file_version = "9.0.24.52809"
+
+[[products]]
+package = "System.Security.Cryptography.Xml"
+version = "9.0.0"
+ships = "lib/net9.0/System.Security.Cryptography.Xml.dll"
+project = "src/libraries/shims/stubs/System.Security.Cryptography.Xml.csproj"
+file_version = "9.0.24.52809"

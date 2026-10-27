@@ -289,10 +289,23 @@ properties the VMR orchestration passes to the inner build
 named them). Both values are facts of the release and of the source:
 the DLL's attributes, and `src/source-manifest.json` at the commit.
 
-Version 2 adds, for the VMR's inner repositories only:
+Version 2 adds, for the VMR's inner repositories:
 `/p:RepositoryUrl=https://github.com/dotnet/dotnet` and
 `/p:RepoOriginalSourceRevisionId=<commitSha of the inner repository in
-src/source-manifest.json>`. Nothing else changes. Version 1's rows stay
+src/source-manifest.json>`.
+
+Added 22:55, after build 7 (msbuild 18.0.2) and before any version-2
+run, R5b for every recipe: `/p:EnableNgenOptimization=false`. Passing
+`OfficialBuildId` (R4) makes Arcade's `OfficialBuild` true, and in a
+Release official build Arcade's `VisualStudio.AcquireOptimizationData`
+step then restores internal tools from a Microsoft-internal feed (401)
+and fetches IBC optimization data from an internal drop. msbuild has
+`UsingToolIbcOptimization=true`, so build 7 died there; Roslyn has it
+on Windows only. The documented suppression is
+`EnableNgenOptimization=false`. A shipped DLL that carries merged
+optimization data will then stay at level 4 with equal IL, and that is
+the finding: an input of the official build that is not public. Nothing
+else changes. Version 1's rows stay
 as the version-1 measurement; version 2 is a separate batch
 (`2026-10-28-nupkg-repository-build-v2`, recipes under
 `recipes/repository/2026-10-28-nupkg-repository-build-v2/`), run after

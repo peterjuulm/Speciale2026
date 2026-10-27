@@ -1,0 +1,69 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "roslyn-6c4a46a"
+repo = "https://github.com/dotnet/roslyn"
+commit = "6c4a46a31302167b425d5e0a31ea83c9a9aa1d09"
+inner = ""
+kind = "roslyn"
+official_build_id = "20251117.12"
+shell = "bash"
+build = '''./build.sh --restore --build --pack --ci -bl -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.CodeAnalysis.CSharp"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.CSharp.dll"
+project = "src/Compilers/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.csproj"
+file_version = "5.0.25.56712"
+
+[[products]]
+package = "Microsoft.CodeAnalysis.CSharp.Features"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.CSharp.Features.dll"
+project = "src/Features/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Features.csproj"
+file_version = "5.0.25.56712"
+
+[[products]]
+package = "Microsoft.CodeAnalysis.CSharp.Workspaces"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll"
+project = "src/Workspaces/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Workspaces.csproj"
+file_version = "5.0.25.56712"
+
+[[products]]
+package = "Microsoft.CodeAnalysis.Common"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.dll"
+project = "src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj"
+file_version = "5.0.25.56712"
+
+[[products]]
+package = "Microsoft.CodeAnalysis.Features"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.Features.dll"
+project = "src/Features/Core/Portable/Microsoft.CodeAnalysis.Features.csproj"
+file_version = "5.0.25.56712"
+
+[[products]]
+package = "Microsoft.CodeAnalysis.Scripting.Common"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.Scripting.dll"
+project = "src/Scripting/Core/Microsoft.CodeAnalysis.Scripting.csproj"
+file_version = "5.0.25.56712"
+
+[[products]]
+package = "Microsoft.CodeAnalysis.Workspaces.Common"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.Workspaces.dll"
+project = "src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj"
+file_version = "5.0.25.56712"
+
+[[products]]
+package = "Microsoft.CodeAnalysis.Workspaces.MSBuild"
+version = "5.0.0"
+ships = "lib/net9.0/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll"
+project = "src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj"
+file_version = "5.0.25.56712"

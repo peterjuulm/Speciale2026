@@ -140,7 +140,8 @@ def report_attr(nupkg, ships, lab, name):
 
 def main():
     lst, census, facts_dir, lab, out = sys.argv[1:6]
-    vmr_identity = '--vmr-identity' in sys.argv[6:]
+    v2 = '--v2' in sys.argv[6:]
+    vmr_identity = v2 or '--vmr-identity' in sys.argv[6:]
     os.makedirs(out, exist_ok=True)
     cen = {}
     for l in open(census, encoding='utf-8'):
@@ -245,9 +246,16 @@ def main():
             # the PDB compiler records of the shipped DLLs name the SDK's csc, not Microsoft.Net.Compilers.Toolset's
             props += ' /p:UsingToolMicrosoftNetCompilers=false'
             facts.append('compiler: UsingToolMicrosoftNetCompilers=false  [read: the VMR passes it to every inner build; the PDBs record the SDK\'s csc]')
-        if vmr_identity and not inner:
+        if v2:
+            # version 2, R5b: an official build (OfficialBuildId set) acquires IBC optimization data from a
+            # Microsoft-internal drop through eng/common/internal (msbuild: UsingToolIbcOptimization=true; 27/10 22:29,
+            # 401 on the devdiv feed). The documented suppression is EnableNgenOptimization=false. The shipped DLL
+            # may carry merged optimization data; that is then what a level 4 with equal IL says.
+            props += ' /p:EnableNgenOptimization=false'
+            facts.append('version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]')
+        if vmr_identity and not v2 and not inner:
             notes.append(f'{name}: not in version 2 (not a VMR inner repository)'); continue
-        if vmr_identity:
+        if vmr_identity and inner:
             import json
             man = json.loads(sh(['git', '-C', mirror_of(url, lab), 'show', f'{commit}:src/source-manifest.json']).stdout)
             orig = next((r['commitSha'] for r in man['repositories'] if r['path'] == inner.split('/')[-1]), None)

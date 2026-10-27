@@ -1,0 +1,34 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-81cabf2"
+repo = "https://github.com/dotnet/runtime"
+commit = "81cabf2857a01351e5ab578947c7403a5b128ad1"
+inner = ""
+kind = "runtime"
+official_build_id = "20240916.10"
+shell = "bash"
+build = '''./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20240916.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Extensions.DependencyModel"
+version = "8.0.2"
+ships = "lib/net8.0/Microsoft.Extensions.DependencyModel.dll"
+project = "src/libraries/Microsoft.Extensions.DependencyModel/src/Microsoft.Extensions.DependencyModel.csproj"
+file_version = "8.0.1024.46610"
+
+[[products]]
+package = "System.IO.Packaging"
+version = "8.0.1"
+ships = "lib/net8.0/System.IO.Packaging.dll"
+project = "src/libraries/shims/stubs/System.IO.Packaging.csproj"
+file_version = "8.0.1024.46610"
+
+[[products]]
+package = "System.Memory.Data"
+version = "8.0.1"
+ships = "lib/net8.0/System.Memory.Data.dll"
+project = "src/libraries/System.Memory.Data/src/System.Memory.Data.csproj"
+file_version = "8.0.1024.46610"

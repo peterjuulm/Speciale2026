@@ -15,7 +15,8 @@ product dotnet-ef 10.0.12: ships tools/net8.0/any/dotnet-ef.dll; project src/efc
 official build id: 20260822.108  [rule R4]
 release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
 compiler: UsingToolMicrosoftNetCompilers=false  [read: the VMR passes it to every inner build; the PDBs record the SDK's csc]
+version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
 version 2, VMR identity: RepositoryUrl=https://github.com/dotnet/dotnet (the DLL's RepositoryUrl attribute), RepoOriginalSourceRevisionId=001bfac21c1910cdf1110ca256c9ea0a06f374ca (src/source-manifest.json at the commit; the DLL's OriginalRepoCommitHash attribute where the repository emits it)  [read]
-command: cd src/efcore && ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=001bfac21c1910cdf1110ca256c9ea0a06f374ca  [rule R3]
+command: cd src/efcore && ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=001bfac21c1910cdf1110ca256c9ea0a06f374ca  [rule R3]
 sdk: from src/efcore/global.json, installed by the repository's own eng/common/tools.sh into src/efcore/.dotnet  [rule R2]
 sdk major from global.json: 10
