@@ -1,0 +1,405 @@
+start 2026-10-27T23:12:57+01:00
+repository build aspnetcore-3f1acb5 in /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-27T23:12:57+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src remote add origin https://github.com/dotnet/aspnetcore
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_aspnetcore.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_aspnetcore.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_aspnetcore.git 3f1acb59718cadf111a0a796681e3d3509bb3381
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src -c advice.detachedHead=false checkout -q 3f1acb59718cadf111a0a796681e3d3509bb3381
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src rev-parse HEAD
+3f1acb59718cadf111a0a796681e3d3509bb3381
+--- submodules 2026-10-27T23:13:13+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src submodule update --init --recursive --depth 1
+Submodule 'src/submodules/MessagePack-CSharp' (https://github.com/aspnet/MessagePack-CSharp.git) registered for path 'src/submodules/MessagePack-CSharp'
+Submodule 'src/submodules/googletest' (https://github.com/google/googletest) registered for path 'src/submodules/googletest'
+Cloning into '/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/submodules/MessagePack-CSharp'...
+Cloning into '/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/submodules/googletest'...
+From https://github.com/aspnet/MessagePack-CSharp
+ * branch            ecc4e18ad7a0c7db51cd7e3d2997a291ed01444d -> FETCH_HEAD
+Submodule path 'src/submodules/MessagePack-CSharp': checked out 'ecc4e18ad7a0c7db51cd7e3d2997a291ed01444d'
+From https://github.com/google/googletest
+ * branch            7e33b6a1c497ced1e98fc60175aeb4678419281c -> FETCH_HEAD
+Submodule path 'src/submodules/googletest': checked out '7e33b6a1c497ced1e98fc60175aeb4678419281c'
+nuget.config edit: NuGet.config: removed internal feeds darc-int-dotnet-efcore-e017dc1, darc-int-dotnet-runtime-5535e31
+--- build 2026-10-27T23:13:19+01:00
+$ bash -c ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || exit 1; ok=0; for p in "$PWD/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj" "$PWD/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/tmp/Release
+Downloading 'https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v8.0.100-rtm.23506.1' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz
+dotnet-install: The resource at primary link 'https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz' is not available.
+dotnet-install: Attempting to download using primary link https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz
+dotnet-install: Remote file https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz size is 214177103 bytes.
+dotnet-install: Extracting archive from https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 214177103 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 8.0.100-rtm.23506.1
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src//.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_SKIP_FIRST_TIME_EXPERIENCE;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.23516.4/tools/Tools.proj (in 3.48 sec).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 2.11 sec).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v8.0.0-rtm.23531.3' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Runtime/8.0.0-rtm.23531.3/dotnet-runtime-8.0.0-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Runtime/8.0.0-rtm.23531.3/dotnet-runtime-8.0.0-linux-x64.tar.gz size is 31389185 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Runtime/8.0.0-rtm.23531.3/dotnet-runtime-8.0.0-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 31389185 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 8.0.0
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/tools/RepoTasks/RepoTasks.csproj (in 3.84 sec).
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/RepoTasks/Release/net8.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Skipping NuGet package signature verification.
+  Skipping NuGet package signature verification.
+  Skipping NuGet package signature verification.
+  Skipping NuGet package signature verification.
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '8.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.23516.4/tools/Tools.proj (in 94 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 11 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v8.0.0-rtm.23531.3' from public_location.
+dotnet-install: .NET Core Runtime with version '8.0.0' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Components/Web/src/Microsoft.AspNetCore.Components.Web.csproj (in 5.94 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj (in 5.95 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/HttpLogging/src/Microsoft.AspNetCore.HttpLogging.csproj (in 5.94 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/ResponseCompression/src/Microsoft.AspNetCore.ResponseCompression.csproj (in 5.93 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/ResponseCaching.Abstractions/src/Microsoft.AspNetCore.ResponseCaching.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/RequestDecompression/src/Microsoft.AspNetCore.RequestDecompression.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/ResponseCaching/src/Microsoft.AspNetCore.ResponseCaching.csproj (in 20 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj (in 6.39 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 6.39 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Extensions/Features/src/Microsoft.Extensions.Features.csproj (in 435 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj (in 6.39 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj (in 6.39 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Configuration.KeyPerFile/src/Microsoft.Extensions.Configuration.KeyPerFile.csproj (in 6.41 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Localization/Localization/src/Microsoft.Extensions.Localization.csproj (in 6.42 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/Kestrel/Transport.NamedPipes/src/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.csproj (in 12 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/HostFiltering/src/Microsoft.AspNetCore.HostFiltering.csproj (in 12 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/Diagnostics.Abstractions/src/Microsoft.AspNetCore.Diagnostics.Abstractions.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/DataProtection/Extensions/src/Microsoft.AspNetCore.DataProtection.Extensions.csproj (in 448 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj (in 6.42 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Headers/src/Microsoft.Net.Http.Headers.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Authentication.Core/src/Microsoft.AspNetCore.Authentication.Core.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Authentication.Abstractions/src/Microsoft.AspNetCore.Authentication.Abstractions.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/RateLimiting/src/Microsoft.AspNetCore.RateLimiting.csproj (in 893 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/Kestrel/Core/src/Microsoft.AspNetCore.Server.Kestrel.Core.csproj (in 445 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/CORS/src/Microsoft.AspNetCore.Cors.csproj (in 430 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/HealthChecks/src/Microsoft.AspNetCore.Diagnostics.HealthChecks.csproj (in 445 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/Diagnostics/src/Microsoft.AspNetCore.Diagnostics.csproj (in 430 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/Rewrite/src/Microsoft.AspNetCore.Rewrite.csproj (in 6.84 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.Formatters.Xml/src/Microsoft.AspNetCore.Mvc.Formatters.Xml.csproj (in 395 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.ViewFeatures/src/Microsoft.AspNetCore.Mvc.ViewFeatures.csproj (in 6.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.Localization/src/Microsoft.AspNetCore.Mvc.Localization.csproj (in 403 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.TagHelpers/src/Microsoft.AspNetCore.Mvc.TagHelpers.csproj (in 6.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.Razor/src/Microsoft.AspNetCore.Mvc.Razor.csproj (in 419 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.RazorPages/src/Microsoft.AspNetCore.Mvc.RazorPages.csproj (in 6.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc/src/Microsoft.AspNetCore.Mvc.csproj (in 6.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/WebEncoders/src/Microsoft.Extensions.WebEncoders.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/server/Core/src/Microsoft.AspNetCore.SignalR.Core.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.Formatters.Json/src/Microsoft.AspNetCore.Mvc.Formatters.Json.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.DataAnnotations/src/Microsoft.AspNetCore.Mvc.DataAnnotations.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.Cors/src/Microsoft.AspNetCore.Mvc.Cors.csproj (in 27 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/Kestrel/Transport.Quic/src/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/Kestrel/Transport.Sockets/src/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/server/SignalR/src/Microsoft.AspNetCore.SignalR.csproj (in 27 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/common/Http.Connections/src/Microsoft.AspNetCore.Http.Connections.csproj (in 28 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Security/CookiePolicy/src/Microsoft.AspNetCore.CookiePolicy.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/common/Http.Connections.Common/src/Microsoft.AspNetCore.Http.Connections.Common.csproj (in 30 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/FileProviders/Embedded/src/Microsoft.Extensions.FileProviders.Embedded.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Security/Authorization/Policy/src/Microsoft.AspNetCore.Authorization.Policy.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/Connections.Abstractions/src/Microsoft.AspNetCore.Connections.Abstractions.csproj (in 41 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/IIS/IISIntegration/src/Microsoft.AspNetCore.Server.IISIntegration.csproj (in 23 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Razor/Razor/src/Microsoft.AspNetCore.Razor.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Security/Authentication/Core/src/Microsoft.AspNetCore.Authentication.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Security/Authorization/Core/src/Microsoft.AspNetCore.Authorization.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Components/Forms/src/Microsoft.AspNetCore.Components.Forms.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Security/Authentication/Cookies/src/Microsoft.AspNetCore.Authentication.Cookies.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Security/Authentication/OAuth/src/Microsoft.AspNetCore.Authentication.OAuth.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Security/Authentication/BearerToken/src/Microsoft.AspNetCore.Authentication.BearerToken.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Components/Components/src/Microsoft.AspNetCore.Components.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Razor/Razor.Runtime/src/Microsoft.AspNetCore.Razor.Runtime.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Components/Authorization/src/Microsoft.AspNetCore.Components.Authorization.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/JSInterop/Microsoft.JSInterop/src/Microsoft.JSInterop.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Localization/Abstractions/src/Microsoft.Extensions.Localization.Abstractions.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Antiforgery/src/Microsoft.AspNetCore.Antiforgery.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Components/Endpoints/src/Microsoft.AspNetCore.Components.Endpoints.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Routing.Abstractions/src/Microsoft.AspNetCore.Routing.Abstractions.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Routing/src/Microsoft.AspNetCore.Routing.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Metadata/src/Microsoft.AspNetCore.Metadata.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Http/src/Microsoft.AspNetCore.Http.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Http.Results/src/Microsoft.AspNetCore.Http.Results.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/OutputCaching/src/Microsoft.AspNetCore.OutputCaching.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/Localization/src/Microsoft.AspNetCore.Localization.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/Localization.Routing/src/Microsoft.AspNetCore.Localization.Routing.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/HttpsPolicy/src/Microsoft.AspNetCore.HttpsPolicy.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/HttpOverrides/src/Microsoft.AspNetCore.HttpOverrides.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Html.Abstractions/src/Microsoft.AspNetCore.Html.Abstractions.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Hosting/Server.Abstractions/src/Microsoft.AspNetCore.Hosting.Server.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Hosting/Abstractions/src/Microsoft.AspNetCore.Hosting.Abstractions.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.Core/src/Microsoft.AspNetCore.Mvc.Core.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.ApiExplorer/src/Microsoft.AspNetCore.Mvc.ApiExplorer.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Mvc/Mvc.Abstractions/src/Microsoft.AspNetCore.Mvc.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/WebSockets/src/Microsoft.AspNetCore.WebSockets.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/Session/src/Microsoft.AspNetCore.Session.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Middleware/StaticFiles/src/Microsoft.AspNetCore.StaticFiles.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Identity/Extensions.Core/src/Microsoft.Extensions.Identity.Core.csproj (in 153 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Identity/Extensions.Stores/src/Microsoft.Extensions.Identity.Stores.csproj (in 153 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Identity/Core/src/Microsoft.AspNetCore.Identity.csproj (in 152 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj (in 181 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/common/Protocols.Json/src/Microsoft.AspNetCore.SignalR.Protocols.Json.csproj (in 361 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/common/SignalR.Common/src/Microsoft.AspNetCore.SignalR.Common.csproj (in 372 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/FileProviders/Manifest.MSBuildTask/src/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.csproj (in 804 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Hosting/Hosting/src/Microsoft.AspNetCore.Hosting.csproj (in 1.67 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/HttpSys/src/Microsoft.AspNetCore.Server.HttpSys.csproj (in 1.77 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/IIS/IIS/src/Microsoft.AspNetCore.Server.IIS.csproj (in 1.77 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Servers/Kestrel/Kestrel/src/Microsoft.AspNetCore.Server.Kestrel.csproj (in 2.27 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/DefaultBuilder/src/Microsoft.AspNetCore.csproj (in 2.71 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Http/Http.Extensions/gen/Microsoft.AspNetCore.Http.RequestDelegateGenerator.csproj (in 4.83 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj (in 8.01 sec).
+  Microsoft.AspNetCore.Html.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Html.Abstractions/Release/net8.0/Microsoft.AspNetCore.Html.Abstractions.dll
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net8.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.AspNetCore.ResponseCaching.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.ResponseCaching.Abstractions/Release/net8.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.Features/Release/net8.0/Microsoft.Extensions.Features.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net8.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Net.Http.Headers/Release/net8.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.AspNetCore.Metadata -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Metadata/Release/net8.0/Microsoft.AspNetCore.Metadata.dll
+  Microsoft.JSInterop -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.JSInterop/Release/net8.0/Microsoft.JSInterop.dll
+  Microsoft.AspNetCore.Razor -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Razor/Release/net8.0/Microsoft.AspNetCore.Razor.dll
+  Microsoft.AspNetCore.Http.RequestDelegateGenerator -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http.RequestDelegateGenerator/Release/netstandard2.0/Microsoft.AspNetCore.Http.RequestDelegateGenerator.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Authorization -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authorization/Release/net8.0/Microsoft.AspNetCore.Authorization.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.Razor.Runtime -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Razor.Runtime/Release/net8.0/Microsoft.AspNetCore.Razor.Runtime.dll
+  yarn run v1.22.10
+  (node:738852) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  yarn run v1.22.10
+  $ npm run clean && npm run build:esm
+  (node:738859) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  $ yarn run clean && yarn install --mutex network --frozen-lockfile || yarn install --mutex network --frozen-lockfile
+  npm warn Unknown env config "always-auth". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+  npm warn Unknown env config "argv". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+  npm warn Unknown env config "version-git-tag". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+  npm warn Unknown env config "version-commit-hooks". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+  npm warn Unknown env config "version-tag-prefix". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+  npm warn Unknown env config "version-git-message". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+  npm notice run @microsoft/dotnet-js-interop@8.0.0-dev preclean
+  npm notice run yarn install --mutex network --frozen-lockfile || yarn install --mutex network --frozen-lockfile
+  (node:738926) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  $ cd ../common && yarn install --mutex network --frozen-lockfile || yarn install --mutex network --frozen-lockfile
+  (node:738949) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  [1/4] Resolving packages...
+  [2/4] Fetching packages...
+  warning Waiting for the other yarn instance to finish (738949)
+  (node:738949) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+  Microsoft.AspNetCore.Components -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Components/Release/net8.0/Microsoft.AspNetCore.Components.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net8.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Components.Forms -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Components.Forms/Release/net8.0/Microsoft.AspNetCore.Components.Forms.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net8.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Components.Authorization -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Components.Authorization/Release/net8.0/Microsoft.AspNetCore.Components.Authorization.dll
+  error eslint-plugin-jsdoc@39.9.1: The engine "node" is incompatible with this module. Expected version "^14 || ^16 || ^17 || ^18 || ^19". Got "26.12.0"
+  error Found incompatible module.
+  info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+  [1/4] Resolving packages...
+  (node:738961) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  [2/4] Fetching packages...
+  (node:738961) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+  (node:738948) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  warning Waiting for the other yarn instance to finish (738961)
+  error eslint-plugin-jsdoc@39.9.1: The engine "node" is incompatible with this module. Expected version "^14 || ^16 || ^17 || ^18 || ^19". Got "26.12.0"
+  error Found incompatible module.
+  info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+  [1/4] Resolving packages...
+  [2/4] Fetching packages...
+  error eslint-plugin-jsdoc@39.9.1: The engine "node" is incompatible with this module. Expected version "^14 || ^16 || ^17 || ^18 || ^19". Got "26.12.0"
+  error Found incompatible module.
+  info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+  error Command failed with exit code 1.
+  info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/targets/Npm.Common.targets(92,5): error MSB6006: "yarn" exited with code 1. [/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/JSInterop/Microsoft.JSInterop.JS/src/Microsoft.JSInterop.JS.npmproj]
+##vso[task.logissue type=error;sourcepath=/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/targets/Npm.Common.targets;linenumber=92;columnnumber=5;code=MSB6006;](NETCORE_ENGINEERING_TELEMETRY=Build) "yarn" exited with code 1.
+  [1/4] Resolving packages...
+  (node:738960) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  [2/4] Fetching packages...
+  error eslint-plugin-jsdoc@39.9.1: The engine "node" is incompatible with this module. Expected version "^14 || ^16 || ^17 || ^18 || ^19". Got "26.12.0"
+  error Found incompatible module.
+  info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+  error Command failed with exit code 1.
+  info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+  (node:738925) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  [1/4] Resolving packages...
+  [2/4] Fetching packages...
+  (node:738925) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+  Microsoft.AspNetCore.Components.Web -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Components.Web/Release/net8.0/Microsoft.AspNetCore.Components.Web.dll
+  [3/4] Linking dependencies...
+  [4/4] Building fresh packages...
+  $ yarn run build:lint && yarn run build:esm && yarn run build:cjs && yarn run build:browser && yarn run build:webworker
+  (node:741691) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  $ node ../common/node_modules/eslint/bin/eslint ./src --ext .ts --resolve-plugins-relative-to ../common
+  node:internal/modules/cjs/loader:1607
+    throw err;
+    ^
+  
+  Error: Cannot find module '/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/clients/ts/common/node_modules/eslint/bin/eslint'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1603:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1145:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1169:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1196:12)
+      at Module._load (node:internal/modules/cjs/loader:1370:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:173:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v26.12.0
+  error Command failed with exit code 1.
+  info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+  error Command failed with exit code 1.
+  info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/targets/Npm.Common.targets(92,5): error MSB6006: "yarn" exited with code 1. [/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/clients/ts/signalr/signalr.npmproj]
+##vso[task.logissue type=error;sourcepath=/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/targets/Npm.Common.targets;linenumber=92;columnnumber=5;code=MSB6006;](NETCORE_ENGINEERING_TELEMETRY=Build) "yarn" exited with code 1.
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net8.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Hosting.Server.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Hosting.Server.Abstractions/Release/net8.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net8.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Session -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Session/Release/net8.0/Microsoft.AspNetCore.Session.dll
+  Microsoft.AspNetCore.Diagnostics.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Diagnostics.Abstractions/Release/net8.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net8.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Routing.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Routing.Abstractions/Release/net8.0/Microsoft.AspNetCore.Routing.Abstractions.dll
+  Microsoft.AspNetCore.Hosting.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Hosting.Abstractions/Release/net8.0/Microsoft.AspNetCore.Hosting.Abstractions.dll
+  Microsoft.AspNetCore.RateLimiting -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.RateLimiting/Release/net8.0/Microsoft.AspNetCore.RateLimiting.dll
+  Microsoft.AspNetCore.HttpLogging -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.HttpLogging/Release/net8.0/Microsoft.AspNetCore.HttpLogging.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes/Release/net8.0/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets/Release/net8.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Quic -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic/Release/net8.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net8.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Mvc.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Abstractions/Release/net8.0/Microsoft.AspNetCore.Mvc.Abstractions.dll
+  Microsoft.Extensions.Localization.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.Localization.Abstractions/Release/net8.0/Microsoft.Extensions.Localization.Abstractions.dll
+  Microsoft.AspNetCore.Antiforgery -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Antiforgery/Release/net8.0/Microsoft.AspNetCore.Antiforgery.dll
+  Microsoft.AspNetCore.Localization -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Localization/Release/net8.0/Microsoft.AspNetCore.Localization.dll
+  Microsoft.AspNetCore.HttpOverrides -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.HttpOverrides/Release/net8.0/Microsoft.AspNetCore.HttpOverrides.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http/Release/net8.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Localization.Routing -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Localization.Routing/Release/net8.0/Microsoft.AspNetCore.Localization.Routing.dll
+  Microsoft.AspNetCore.ResponseCompression -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.ResponseCompression/Release/net8.0/Microsoft.AspNetCore.ResponseCompression.dll
+  Microsoft.AspNetCore.OutputCaching -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.OutputCaching/Release/net8.0/Microsoft.AspNetCore.OutputCaching.dll
+  Microsoft.AspNetCore.ResponseCaching -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.ResponseCaching/Release/net8.0/Microsoft.AspNetCore.ResponseCaching.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net8.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.AspNetCore.WebSockets -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.WebSockets/Release/net8.0/Microsoft.AspNetCore.WebSockets.dll
+  Microsoft.AspNetCore.CookiePolicy -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.CookiePolicy/Release/net8.0/Microsoft.AspNetCore.CookiePolicy.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net8.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.AspNetCore.HttpsPolicy -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.HttpsPolicy/Release/net8.0/Microsoft.AspNetCore.HttpsPolicy.dll
+  Microsoft.AspNetCore.Hosting -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Hosting/Release/net8.0/Microsoft.AspNetCore.Hosting.dll
+  Microsoft.AspNetCore.HostFiltering -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.HostFiltering/Release/net8.0/Microsoft.AspNetCore.HostFiltering.dll
+  Microsoft.AspNetCore.Server.Kestrel.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Core/Release/net8.0/Microsoft.AspNetCore.Server.Kestrel.Core.dll
+  Microsoft.AspNetCore.RequestDecompression -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.RequestDecompression/Release/net8.0/Microsoft.AspNetCore.RequestDecompression.dll
+  Microsoft.AspNetCore.Routing -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Routing/Release/net8.0/Microsoft.AspNetCore.Routing.dll
+  Microsoft.AspNetCore.Server.IISIntegration -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.IISIntegration/Release/net8.0/Microsoft.AspNetCore.Server.IISIntegration.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/Release/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+  Microsoft.AspNetCore.Server.HttpSys -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.HttpSys/Release/net8.0/Microsoft.AspNetCore.Server.HttpSys.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net8.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Authorization.Policy -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authorization.Policy/Release/net8.0/Microsoft.AspNetCore.Authorization.Policy.dll
+  Microsoft.AspNetCore.Cors -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Cors/Release/net8.0/Microsoft.AspNetCore.Cors.dll
+  Microsoft.AspNetCore.Server.Kestrel -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel/Release/net8.0/Microsoft.AspNetCore.Server.Kestrel.dll
+  Microsoft.AspNetCore.Http.Connections.Common -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Connections.Common/Release/net8.0/Microsoft.AspNetCore.Http.Connections.Common.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks/Release/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.StaticFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.StaticFiles/Release/net8.0/Microsoft.AspNetCore.StaticFiles.dll
+  Microsoft.AspNetCore.SignalR.Common -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR.Common/Release/net8.0/Microsoft.AspNetCore.SignalR.Common.dll
+  Microsoft.AspNetCore.Http.Results -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Results/Release/net8.0/Microsoft.AspNetCore.Http.Results.dll
+  Microsoft.AspNetCore.SignalR.Protocols.Json -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR.Protocols.Json/Release/net8.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+  Microsoft.AspNetCore.Authentication.Cookies -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Cookies/Release/net8.0/Microsoft.AspNetCore.Authentication.Cookies.dll
+  Microsoft.AspNetCore.Diagnostics -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Diagnostics/Release/net8.0/Microsoft.AspNetCore.Diagnostics.dll
+  Microsoft.AspNetCore.Server.IIS -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Server.IIS/Release/net8.0/Microsoft.AspNetCore.Server.IIS.dll
+  Microsoft.AspNetCore.Authentication.BearerToken -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.BearerToken/Release/net8.0/Microsoft.AspNetCore.Authentication.BearerToken.dll
+  Microsoft.AspNetCore.Rewrite -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Rewrite/Release/net8.0/Microsoft.AspNetCore.Rewrite.dll
+  Microsoft.AspNetCore.Mvc.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Core/Release/net8.0/Microsoft.AspNetCore.Mvc.Core.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.Extensions.Localization -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.Localization/Release/net8.0/Microsoft.Extensions.Localization.dll
+  Microsoft.AspNetCore.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Diagnostics.HealthChecks/Release/net8.0/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.SignalR.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR.Core/Release/net8.0/Microsoft.AspNetCore.SignalR.Core.dll
+  Microsoft.AspNetCore.Http.Connections -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Connections/Release/net8.0/Microsoft.AspNetCore.Http.Connections.dll
+  Microsoft.AspNetCore.Mvc.DataAnnotations -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.DataAnnotations/Release/net8.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Json -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Json/Release/net8.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Xml -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Xml/Release/net8.0/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll
+  Microsoft.AspNetCore.Mvc.ApiExplorer -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.ApiExplorer/Release/net8.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net8.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.AspNetCore.Mvc.Cors -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Cors/Release/net8.0/Microsoft.AspNetCore.Mvc.Cors.dll
+  Microsoft.AspNetCore.Authentication.OAuth -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.OAuth/Release/net8.0/Microsoft.AspNetCore.Authentication.OAuth.dll
+  Microsoft.AspNetCore.SignalR -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR/Release/net8.0/Microsoft.AspNetCore.SignalR.dll
+  Microsoft.AspNetCore.Identity -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore.Identity/Release/net8.0/Microsoft.AspNetCore.Identity.dll
+  Microsoft.AspNetCore -> /private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/artifacts/bin/Microsoft.AspNetCore/Release/net8.0/Microsoft.AspNetCore.dll
+
+Build FAILED.
+
+/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/targets/Npm.Common.targets(92,5): error MSB6006: "yarn" exited with code 1. [/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/JSInterop/Microsoft.JSInterop.JS/src/Microsoft.JSInterop.JS.npmproj]
+/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/eng/targets/Npm.Common.targets(92,5): error MSB6006: "yarn" exited with code 1. [/private/tmp/nupkg-repobuild/build/aspnetcore-3f1acb5/A/src/src/SignalR/clients/ts/signalr/signalr.npmproj]
+    0 Warning(s)
+    2 Error(s)
+
+Time Elapsed 00:02:08.87
+Build failed with exit code 1. Check errors above.
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 1
+end 2026-10-27T23:16:12+01:00

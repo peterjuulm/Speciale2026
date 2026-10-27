@@ -6,7 +6,7 @@ inner = ""
 kind = "aspnetcore"
 official_build_id = "20231018.12"
 shell = "bash"
-build = '''./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || exit 1; ok=0; for p in "$PWD/src/Razor/Microsoft.AspNetCore.Razor.Language/src/Microsoft.AspNetCore.Razor.Language.csproj" "$PWD/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok'''
+build = '''L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; s ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || exit 1; ok=0; for p in "$PWD/src/Razor/Microsoft.AspNetCore.Razor.Language/src/Microsoft.AspNetCore.Razor.Language.csproj" "$PWD/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj"; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]
