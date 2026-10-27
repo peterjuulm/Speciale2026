@@ -1,0 +1,242 @@
+start 2026-10-27T22:29:08+01:00
+repository build reverse-proxy-77f78d4 in /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-27T22:29:08+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src remote add origin https://github.com/microsoft/reverse-proxy
+$ git -C /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_microsoft_reverse-proxy.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_microsoft_reverse-proxy.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_microsoft_reverse-proxy.git 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
+$ git -C /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src -c advice.detachedHead=false checkout -q 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
+$ git -C /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src rev-parse HEAD
+77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
+--- submodules 2026-10-27T22:29:09+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src submodule update --init --recursive --depth 1
+--- build 2026-10-27T22:29:09+01:00
+$ bash -c ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20231117.1 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/tmp/Release
+Downloading 'https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v8.0.100-rtm.23506.1' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz
+dotnet-install: The resource at primary link 'https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz' is not available.
+dotnet-install: Attempting to download using primary link https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz
+dotnet-install: Remote file https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz size is 214177103 bytes.
+dotnet-install: Extracting archive from https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 214177103 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 8.0.100-rtm.23506.1
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src//.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.23560.1/tools/Tools.proj (in 4.6 sec).
+  Attempting to install runtime toolset 'dotnet/x64 v6.0.14' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Runtime/6.0.14/dotnet-runtime-6.0.14-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Runtime/6.0.14/dotnet-runtime-6.0.14-linux-x64.tar.gz size is 30690414 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Runtime/6.0.14/dotnet-runtime-6.0.14-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 30690414 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 6.0.14
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Attempting to install runtime toolset 'dotnet/x64 v7.0.3' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.3/dotnet-runtime-7.0.3-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.3/dotnet-runtime-7.0.3-linux-x64.tar.gz size is 31473717 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.3/dotnet-runtime-7.0.3-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 31473717 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 7.0.3
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Attempting to install runtime toolset 'aspnetcore/x64 v6.0.14' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/6.0.14/aspnetcore-runtime-6.0.14-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/6.0.14/aspnetcore-runtime-6.0.14-linux-x64.tar.gz size is 39839906 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/6.0.14/aspnetcore-runtime-6.0.14-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 39839906 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 6.0.14
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Attempting to install runtime toolset 'aspnetcore/x64 v7.0.3' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.3/aspnetcore-runtime-7.0.3-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.3/aspnetcore-runtime-7.0.3-linux-x64.tar.gz size is 41260656 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.3/aspnetcore-runtime-7.0.3-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 41260656 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 7.0.3
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/Prometheus/HttpLoadApp/HttpLoadApp.csproj (in 5.6 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/KubernetesIngress.Sample/backend/backend.csproj (in 5.6 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/testassets/TestClient/TestClient.csproj (in 5.63 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.Code.Sample/ReverseProxy.Code.Sample.csproj (in 5.65 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.ConfigFilter.Sample/ReverseProxy.ConfigFilter.Sample.csproj (in 5.65 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.Metrics.Sample/ReverseProxy.Metrics.Sample.csproj (in 5.65 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.HttpSysDelegation.Sample/ReverseProxy/ReverseProxy.HttpSysDelegation.Sample.csproj (in 5.65 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.Auth.Sample/ReverseProxy.Auth.Sample.csproj (in 5.65 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/testassets/ReverseProxy.Code/ReverseProxy.Code.csproj (in 27 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/Prometheus/ReverseProxy.Metrics-Prometheus.Sample/ReverseProxy.Metrics.Prometheus.Sample.csproj (in 5.65 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/testassets/ReverseProxy.Config/ReverseProxy.Config.csproj (in 5.65 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/testassets/TestServer/TestServer.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/SampleServer/SampleServer.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.Direct.Sample/ReverseProxy.Direct.Sample.csproj (in 17 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.HttpSysDelegation.Sample/SampleHttpSysServer/SampleHttpSysServer.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.Config.Sample/ReverseProxy.Config.Sample.csproj (in 19 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/testassets/ReverseProxy.Direct/ReverseProxy.Direct.csproj (in 20 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/BasicYarpSample/BasicYarpSample.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.Transforms.Sample/ReverseProxy.Transforms.Sample.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/testassets/BenchmarkApp/BenchmarkApp.csproj (in 946 ms).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/src/TelemetryConsumption/Yarp.Telemetry.Consumption.csproj (in 1.71 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/src/ReverseProxy/Yarp.ReverseProxy.csproj (in 1.73 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/ReverseProxy.LetsEncrypt.Sample/ReverseProxy.LetsEncrypt.Sample.csproj (in 7.52 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/test/Tests.Common/Yarp.Tests.Common.csproj (in 9.64 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/test/ReverseProxy.Tests/Yarp.ReverseProxy.Tests.csproj (in 3.99 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/test/ReverseProxy.FunctionalTests/Yarp.ReverseProxy.FunctionalTests.csproj (in 9.64 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/src/Kubernetes.Controller/Yarp.Kubernetes.Controller.csproj (in 6.57 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/KubernetesIngress.Sample/Ingress/Yarp.Kubernetes.Ingress.csproj (in 11.92 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/KubernetesIngress.Sample/Monitor/Yarp.Kubernetes.Monitor.csproj (in 12.22 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/samples/KubernetesIngress.Sample/Combined/Yarp.Kubernetes.IngressController.csproj (in 12.22 sec).
+  Restored /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/test/Kubernetes.Tests/Yarp.Kubernetes.Tests.csproj (in 6.61 sec).
+  TestClient -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/TestClient/Release/net6.0/TestClient.dll
+  HttpLoadApp -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/HttpLoadApp/Release/net6.0/HttpLoadApp.dll
+  TestClient -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/TestClient/Release/net7.0/TestClient.dll
+  HttpLoadApp -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/HttpLoadApp/Release/net7.0/HttpLoadApp.dll
+  SampleServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/SampleServer/Release/net7.0/SampleServer.dll
+  backend -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/backend/Release/net6.0/backend.dll
+  SampleServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/SampleServer/Release/net6.0/SampleServer.dll
+  HttpLoadApp -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/HttpLoadApp/Release/net8.0/HttpLoadApp.dll
+  SampleHttpSysServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/SampleHttpSysServer/Release/net6.0/SampleHttpSysServer.dll
+  SampleHttpSysServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/SampleHttpSysServer/Release/net7.0/SampleHttpSysServer.dll
+  SampleHttpSysServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/SampleHttpSysServer/Release/net8.0/SampleHttpSysServer.dll
+  backend -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/backend/Release/net8.0/backend.dll
+  SampleServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/SampleServer/Release/net8.0/SampleServer.dll
+  TestClient -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/TestClient/Release/net8.0/TestClient.dll
+  backend -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/backend/Release/net7.0/backend.dll
+  TestServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/TestServer/Release/net6.0/TestServer.dll
+  TestServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/TestServer/Release/net7.0/TestServer.dll
+  Yarp.ReverseProxy -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy/Release/net7.0/Yarp.ReverseProxy.dll
+  TestServer -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/TestServer/Release/net8.0/TestServer.dll
+  Yarp.ReverseProxy -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy/Release/net6.0/Yarp.ReverseProxy.dll
+  Yarp.ReverseProxy -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy/Release/net8.0/Yarp.ReverseProxy.dll
+  BenchmarkApp -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/BenchmarkApp/Release/net6.0/BenchmarkApp.dll
+  ReverseProxy.Config -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Config/Release/net6.0/ReverseProxy.Config.dll
+  BasicYarpSample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/BasicYarpSample/Release/net6.0/BasicYarpSample.dll
+  ReverseProxy.Config.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Config.Sample/Release/net6.0/ReverseProxy.Config.Sample.dll
+  ReverseProxy.Direct.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Direct.Sample/Release/net6.0/ReverseProxy.Direct.Sample.dll
+  Yarp.Telemetry.Consumption -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Telemetry.Consumption/Release/net6.0/Yarp.Telemetry.Consumption.dll
+  Yarp.Kubernetes.Controller -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Controller/Release/net8.0/Yarp.Kubernetes.Controller.dll
+  Yarp.Tests.Common -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Tests.Common/Release/net7.0/Yarp.Tests.Common.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/packages/Release/Shipping/Yarp.ReverseProxy.2.1.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/packages/Release/Shipping/Yarp.ReverseProxy.2.1.0.symbols.nupkg'.
+  Yarp.Kubernetes.Controller -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Controller/Release/net7.0/Yarp.Kubernetes.Controller.dll
+  Yarp.Telemetry.Consumption -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Telemetry.Consumption/Release/net7.0/Yarp.Telemetry.Consumption.dll
+  ReverseProxy.ConfigFilter.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.ConfigFilter.Sample/Release/net8.0/ReverseProxy.ConfigFilter.Sample.dll
+  Yarp.Kubernetes.Ingress -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Ingress/Release/net8.0/Yarp.Kubernetes.Ingress.dll
+  ReverseProxy.LetsEncrypt.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.LetsEncrypt.Sample/Release/net8.0/ReverseProxy.LetsEncrypt.Sample.dll
+  ReverseProxy.Direct -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Direct/Release/net8.0/ReverseProxy.Direct.dll
+  ReverseProxy.Config.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Config.Sample/Release/net7.0/ReverseProxy.Config.Sample.dll
+  Yarp.Tests.Common -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Tests.Common/Release/net6.0/Yarp.Tests.Common.dll
+  ReverseProxy.Code.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Code.Sample/Release/net7.0/ReverseProxy.Code.Sample.dll
+  ReverseProxy.ConfigFilter.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.ConfigFilter.Sample/Release/net6.0/ReverseProxy.ConfigFilter.Sample.dll
+  ReverseProxy.Transforms.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Transforms.Sample/Release/net6.0/ReverseProxy.Transforms.Sample.dll
+  ReverseProxy.Direct -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Direct/Release/net6.0/ReverseProxy.Direct.dll
+  ReverseProxy.Metrics.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Metrics.Sample/Release/net6.0/ReverseProxy.Metrics.Sample.dll
+  Yarp.Kubernetes.Monitor -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Monitor/Release/net7.0/Yarp.Kubernetes.Monitor.dll
+  ReverseProxy.HttpSysDelegation.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.HttpSysDelegation.Sample/Release/net6.0/ReverseProxy.HttpSysDelegation.Sample.dll
+  ReverseProxy.Direct.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Direct.Sample/Release/net7.0/ReverseProxy.Direct.Sample.dll
+  Yarp.Kubernetes.Tests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Tests/Release/net7.0/Yarp.Kubernetes.Tests.dll
+  ReverseProxy.Code.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Code.Sample/Release/net6.0/ReverseProxy.Code.Sample.dll
+  ReverseProxy.LetsEncrypt.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.LetsEncrypt.Sample/Release/net6.0/ReverseProxy.LetsEncrypt.Sample.dll
+  ReverseProxy.Auth.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Auth.Sample/Release/net7.0/ReverseProxy.Auth.Sample.dll
+  ReverseProxy.Code -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Code/Release/net6.0/ReverseProxy.Code.dll
+  BasicYarpSample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/BasicYarpSample/Release/net7.0/BasicYarpSample.dll
+  Yarp.ReverseProxy.FunctionalTests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy.FunctionalTests/Release/net7.0/Yarp.ReverseProxy.FunctionalTests.dll
+  ReverseProxy.Auth.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Auth.Sample/Release/net6.0/ReverseProxy.Auth.Sample.dll
+  Yarp.Kubernetes.Controller -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Controller/Release/net6.0/Yarp.Kubernetes.Controller.dll
+  ReverseProxy.Metrics.Prometheus.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Metrics.Prometheus.Sample/Release/net6.0/ReverseProxy.Metrics.Prometheus.Sample.dll
+  Yarp.ReverseProxy.FunctionalTests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy.FunctionalTests/Release/net6.0/Yarp.ReverseProxy.FunctionalTests.dll
+  ReverseProxy.HttpSysDelegation.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.HttpSysDelegation.Sample/Release/net8.0/ReverseProxy.HttpSysDelegation.Sample.dll
+  Yarp.Kubernetes.Monitor -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Monitor/Release/net8.0/Yarp.Kubernetes.Monitor.dll
+  Yarp.Kubernetes.IngressController -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.IngressController/Release/net6.0/Yarp.Kubernetes.IngressController.dll
+  Yarp.Kubernetes.IngressController -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.IngressController/Release/net8.0/Yarp.Kubernetes.IngressController.dll
+  ReverseProxy.ConfigFilter.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.ConfigFilter.Sample/Release/net7.0/ReverseProxy.ConfigFilter.Sample.dll
+  Yarp.Kubernetes.Monitor -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Monitor/Release/net6.0/Yarp.Kubernetes.Monitor.dll
+  Yarp.Kubernetes.IngressController -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.IngressController/Release/net7.0/Yarp.Kubernetes.IngressController.dll
+  ReverseProxy.Metrics.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Metrics.Sample/Release/net7.0/ReverseProxy.Metrics.Sample.dll
+  ReverseProxy.Auth.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Auth.Sample/Release/net8.0/ReverseProxy.Auth.Sample.dll
+  Yarp.Kubernetes.Ingress -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Ingress/Release/net6.0/Yarp.Kubernetes.Ingress.dll
+  Yarp.Kubernetes.Tests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Tests/Release/net6.0/Yarp.Kubernetes.Tests.dll
+  BenchmarkApp -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/BenchmarkApp/Release/net7.0/BenchmarkApp.dll
+  ReverseProxy.Code.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Code.Sample/Release/net8.0/ReverseProxy.Code.Sample.dll
+  ReverseProxy.Metrics.Prometheus.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Metrics.Prometheus.Sample/Release/net7.0/ReverseProxy.Metrics.Prometheus.Sample.dll
+  ReverseProxy.Code -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Code/Release/net7.0/ReverseProxy.Code.dll
+  BasicYarpSample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/BasicYarpSample/Release/net8.0/BasicYarpSample.dll
+  Yarp.ReverseProxy.Tests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy.Tests/Release/net7.0/Yarp.ReverseProxy.Tests.dll
+  The package Yarp.Kubernetes.Controller.2.1.0-rtw.23567.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/packages/Release/NonShipping/Yarp.Kubernetes.Controller.2.1.0-rtw.23567.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/packages/Release/NonShipping/Yarp.Kubernetes.Controller.2.1.0-rtw.23567.1.symbols.nupkg'.
+  ReverseProxy.Config -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Config/Release/net7.0/ReverseProxy.Config.dll
+  ReverseProxy.Direct -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Direct/Release/net7.0/ReverseProxy.Direct.dll
+  ReverseProxy.HttpSysDelegation.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.HttpSysDelegation.Sample/Release/net7.0/ReverseProxy.HttpSysDelegation.Sample.dll
+  ReverseProxy.LetsEncrypt.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.LetsEncrypt.Sample/Release/net7.0/ReverseProxy.LetsEncrypt.Sample.dll
+  Yarp.ReverseProxy.Tests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy.Tests/Release/net6.0/Yarp.ReverseProxy.Tests.dll
+  ReverseProxy.Transforms.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Transforms.Sample/Release/net8.0/ReverseProxy.Transforms.Sample.dll
+  ReverseProxy.Direct.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Direct.Sample/Release/net8.0/ReverseProxy.Direct.Sample.dll
+  ReverseProxy.Transforms.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Transforms.Sample/Release/net7.0/ReverseProxy.Transforms.Sample.dll
+  ReverseProxy.Config -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Config/Release/net8.0/ReverseProxy.Config.dll
+  Yarp.Kubernetes.Ingress -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Ingress/Release/net7.0/Yarp.Kubernetes.Ingress.dll
+  Yarp.Telemetry.Consumption -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Telemetry.Consumption/Release/net8.0/Yarp.Telemetry.Consumption.dll
+  Yarp.Tests.Common -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Tests.Common/Release/net8.0/Yarp.Tests.Common.dll
+  ReverseProxy.Config.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Config.Sample/Release/net8.0/ReverseProxy.Config.Sample.dll
+  ReverseProxy.Metrics.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Metrics.Sample/Release/net8.0/ReverseProxy.Metrics.Sample.dll
+  ReverseProxy.Metrics.Prometheus.Sample -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Metrics.Prometheus.Sample/Release/net8.0/ReverseProxy.Metrics.Prometheus.Sample.dll
+  ReverseProxy.Code -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/ReverseProxy.Code/Release/net8.0/ReverseProxy.Code.dll
+  Yarp.Kubernetes.Tests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.Kubernetes.Tests/Release/net8.0/Yarp.Kubernetes.Tests.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/packages/Release/Shipping/Yarp.Telemetry.Consumption.2.1.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/packages/Release/Shipping/Yarp.Telemetry.Consumption.2.1.0.symbols.nupkg'.
+  Yarp.ReverseProxy.FunctionalTests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy.FunctionalTests/Release/net8.0/Yarp.ReverseProxy.FunctionalTests.dll
+  Yarp.ReverseProxy.Tests -> /private/tmp/nupkg-repobuild/build/reverse-proxy-77f78d4/A/src/artifacts/bin/Yarp.ReverseProxy.Tests/Release/net8.0/Yarp.ReverseProxy.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:35.71
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T22:32:24+01:00
