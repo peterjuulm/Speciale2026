@@ -1,0 +1,251 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "dotnet-runtime-95017c7"
+repo = "https://github.com/dotnet/dotnet"
+commit = "95017c711e6afc1085133d440e42b4bd78155701"
+inner = "src/runtime"
+kind = "runtime"
+official_build_id = "20260822.108"
+shell = "bash"
+build = '''cd src/runtime && ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false'''
+packages = "src/runtime/artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Extensions.Caching.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Caching.Abstractions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Caching.Abstractions/src/Microsoft.Extensions.Caching.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Caching.Memory"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Caching.Memory.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Caching.Memory/src/Microsoft.Extensions.Caching.Memory.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration/src/Microsoft.Extensions.Configuration.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration.Abstractions/src/Microsoft.Extensions.Configuration.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration.Binder"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.Binder.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration.Binder/src/Microsoft.Extensions.Configuration.Binder.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration.CommandLine"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.CommandLine.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration.CommandLine/src/Microsoft.Extensions.Configuration.CommandLine.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration.EnvironmentVariables"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration.EnvironmentVariables/src/Microsoft.Extensions.Configuration.EnvironmentVariables.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration.FileExtensions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.FileExtensions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration.FileExtensions/src/Microsoft.Extensions.Configuration.FileExtensions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration.Json"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.Json.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration.Json/src/Microsoft.Extensions.Configuration.Json.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Configuration.UserSecrets"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Configuration.UserSecrets.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Configuration.UserSecrets/src/Microsoft.Extensions.Configuration.UserSecrets.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.DependencyInjection"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.DependencyInjection.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection/src/Microsoft.Extensions.DependencyInjection.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.DependencyInjection.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.DependencyModel"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.DependencyModel.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.DependencyModel/src/Microsoft.Extensions.DependencyModel.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Diagnostics"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Diagnostics.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Diagnostics/src/Microsoft.Extensions.Diagnostics.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Diagnostics.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Diagnostics.Abstractions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Diagnostics.Abstractions/src/Microsoft.Extensions.Diagnostics.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.FileProviders.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.FileProviders.Abstractions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.FileProviders.Abstractions/src/Microsoft.Extensions.FileProviders.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.FileProviders.Physical"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.FileProviders.Physical.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.FileProviders.Physical/src/Microsoft.Extensions.FileProviders.Physical.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.FileSystemGlobbing"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.FileSystemGlobbing.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.FileSystemGlobbing/src/Microsoft.Extensions.FileSystemGlobbing.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Hosting"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Hosting.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Hosting/src/Microsoft.Extensions.Hosting.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Hosting.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Hosting.Abstractions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Hosting.Abstractions/src/Microsoft.Extensions.Hosting.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Hosting.WindowsServices"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Hosting.WindowsServices.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Hosting.WindowsServices/src/Microsoft.Extensions.Hosting.WindowsServices.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Http"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Http.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Http/src/Microsoft.Extensions.Http.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Logging"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Logging.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Logging/src/Microsoft.Extensions.Logging.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Logging.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/src/Microsoft.Extensions.Logging.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Logging.Configuration"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Logging.Configuration.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Logging.Configuration/src/Microsoft.Extensions.Logging.Configuration.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Logging.Console"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Logging.Console.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Logging.Console/src/Microsoft.Extensions.Logging.Console.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Logging.Debug"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Logging.Debug.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Logging.Debug/src/Microsoft.Extensions.Logging.Debug.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Logging.EventLog"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Logging.EventLog.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Logging.EventLog/src/Microsoft.Extensions.Logging.EventLog.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Logging.EventSource"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Logging.EventSource.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Logging.EventSource/src/Microsoft.Extensions.Logging.EventSource.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Options"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Options.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Options/src/Microsoft.Extensions.Options.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Options.ConfigurationExtensions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Options.ConfigurationExtensions/src/Microsoft.Extensions.Options.ConfigurationExtensions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Primitives"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Primitives.dll"
+project = "src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "System.Diagnostics.EventLog"
+version = "10.0.12"
+ships = "lib/net10.0/System.Diagnostics.EventLog.dll"
+project = "src/runtime/src/libraries/shims/stubs/System.Diagnostics.EventLog.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "System.ServiceProcess.ServiceController"
+version = "10.0.12"
+ships = "lib/net10.0/System.ServiceProcess.ServiceController.dll"
+project = "src/runtime/src/libraries/shims/stubs/System.ServiceProcess.ServiceController.csproj"
+file_version = "10.0.1226.42308"

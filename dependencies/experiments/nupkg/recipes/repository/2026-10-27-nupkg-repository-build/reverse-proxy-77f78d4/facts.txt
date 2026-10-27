@@ -1,0 +1,11 @@
+reverse-proxy-77f78d4: repository build derivation
+repository: https://github.com/microsoft/reverse-proxy
+commit: 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
+inner repository: none (the repository itself)
+kind: arcade
+product Yarp.ReverseProxy 2.1.0: ships lib/net8.0/Yarp.ReverseProxy.dll; project src/ReverseProxy/Yarp.ReverseProxy.csproj; file version 2.100.23.56701 -> 20231117.1 [inferred: FILE_PATCH 23 = (patch 0 mod 100)*100 + yy 23; FILE_REVISION 56701 = (50*11+17)*100 + 1; from dllreport on the nupkg]
+official build id: 20231117.1  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+command: ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20231117.1 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 8

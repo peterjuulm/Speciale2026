@@ -1,0 +1,11 @@
+runtime-bf5e279: repository build derivation
+repository: https://github.com/dotnet/runtime
+commit: bf5e279d9239bfef5bb1b8d6212f1b971c434606
+inner repository: none (the repository itself)
+kind: runtime
+product Microsoft.Bcl.TimeProvider 8.0.1: ships lib/net8.0/Microsoft.Bcl.TimeProvider.dll; project src/libraries/Microsoft.Bcl.TimeProvider/src/Microsoft.Bcl.TimeProvider.csproj; file version 8.0.123.58001 -> 20231130.1 [inferred: FILE_PATCH 123 = (patch 1 mod 100)*100 + yy 23; FILE_REVISION 58001 = (50*11+30)*100 + 1; from dllreport on the nupkg]
+official build id: 20231130.1  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+command: ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20231130.1 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 8

@@ -1,0 +1,13 @@
+runtime-4822e3c: repository build derivation
+repository: https://github.com/dotnet/runtime
+commit: 4822e3c3aa77eb82b2fb33c9321f923cf11ddde6
+inner repository: none (the repository itself)
+kind: runtime
+product System.CodeDom 6.0.0: ships lib/net6.0/System.CodeDom.dll; project src/libraries/System.CodeDom/src/System.CodeDom.csproj; file version 6.0.21.52210 -> 20211022.10 [inferred: FILE_PATCH 21 = (patch 0 mod 100)*100 + yy 21; FILE_REVISION 52210 = (50*10+22)*100 + 10; from dllreport on the nupkg]
+product System.IO.Hashing 6.0.0: ships lib/net6.0/System.IO.Hashing.dll; project src/libraries/System.IO.Hashing/src/System.IO.Hashing.csproj; file version 6.0.21.52210 -> 20211022.10 [inferred: FILE_PATCH 21 = (patch 0 mod 100)*100 + yy 21; FILE_REVISION 52210 = (50*10+22)*100 + 10; from dllreport on the nupkg]
+official build id: 20211022.10  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+command: ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20211022.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 6
+env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK 6.x on Arch's ICU 78 does not start; nothing the compiler emits depends on it)

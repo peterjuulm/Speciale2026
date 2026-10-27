@@ -1,0 +1,41 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-fa7cdde"
+repo = "https://github.com/dotnet/runtime"
+commit = "fa7cdded37981a97cec9a3e233c4a6af58a91c57"
+inner = ""
+kind = "runtime"
+official_build_id = "20251017.16"
+shell = "bash"
+build = '''./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20251017.16 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "System.Configuration.ConfigurationManager"
+version = "9.0.11"
+ships = "lib/net9.0/System.Configuration.ConfigurationManager.dll"
+project = "src/libraries/shims/stubs/System.Configuration.ConfigurationManager.csproj"
+file_version = "9.0.1125.51716"
+
+[[products]]
+package = "System.Diagnostics.EventLog"
+version = "9.0.11"
+ships = "lib/net9.0/System.Diagnostics.EventLog.dll"
+project = "src/libraries/shims/stubs/System.Diagnostics.EventLog.csproj"
+file_version = "9.0.1125.51716"
+
+[[products]]
+package = "System.Security.Cryptography.Pkcs"
+version = "9.0.11"
+ships = "lib/net9.0/System.Security.Cryptography.Pkcs.dll"
+project = "src/libraries/shims/stubs/System.Security.Cryptography.Pkcs.csproj"
+file_version = "9.0.1125.51716"
+
+[[products]]
+package = "System.Security.Cryptography.ProtectedData"
+version = "9.0.11"
+ships = "lib/net9.0/System.Security.Cryptography.ProtectedData.dll"
+project = "src/libraries/shims/stubs/System.Security.Cryptography.ProtectedData.csproj"
+file_version = "9.0.1125.51716"

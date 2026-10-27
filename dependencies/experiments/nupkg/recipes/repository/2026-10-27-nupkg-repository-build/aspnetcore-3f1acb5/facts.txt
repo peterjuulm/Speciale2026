@@ -1,0 +1,13 @@
+aspnetcore-3f1acb5: repository build derivation
+repository: https://github.com/dotnet/aspnetcore
+commit: 3f1acb59718cadf111a0a796681e3d3509bb3381
+inner repository: none (the repository itself)
+kind: aspnetcore
+product Microsoft.Extensions.Diagnostics.HealthChecks 8.0.0: ships lib/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll; project src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj; file version 8.0.23.53112 -> 20231031.12 [inferred: FILE_PATCH 23 = (patch 0 mod 100)*100 + yy 23; FILE_REVISION 53112 = (50*10+31)*100 + 12; from dllreport on the nupkg]
+product Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions 8.0.0: ships lib/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll; project src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj; file version 8.0.23.53112 -> 20231031.12 [inferred: FILE_PATCH 23 = (patch 0 mod 100)*100 + yy 23; FILE_REVISION 53112 = (50*10+31)*100 + 12; from dllreport on the nupkg]
+official build id: 20231031.12  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+shared framework first: yes, docs/BuildErrors.md
+command: ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release && ok=0; for p in "$PWD/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj" "$PWD/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 8

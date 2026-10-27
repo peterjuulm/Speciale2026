@@ -1,0 +1,13 @@
+runtime-81cabf2: repository build derivation
+repository: https://github.com/dotnet/runtime
+commit: 81cabf2857a01351e5ab578947c7403a5b128ad1
+inner repository: none (the repository itself)
+kind: runtime
+product Microsoft.Extensions.DependencyModel 8.0.2: ships lib/net8.0/Microsoft.Extensions.DependencyModel.dll; project src/libraries/Microsoft.Extensions.DependencyModel/src/Microsoft.Extensions.DependencyModel.csproj; file version 8.0.1024.46610 -> 20240916.10 [inferred: FILE_PATCH 1024 does not fit the Arcade scheme for patch 2 (the repository sets its own); year 24 from the nuget.org publish date; FILE_REVISION 46610 = (50*9+16)*100 + 10; from dllreport on the nupkg]
+product System.IO.Packaging 8.0.1: ships lib/net8.0/System.IO.Packaging.dll; project src/libraries/shims/stubs/System.IO.Packaging.csproj; file version 8.0.1024.46610 -> 20240916.10 [inferred: FILE_PATCH 1024 does not fit the Arcade scheme for patch 1 (the repository sets its own); year 24 from the nuget.org publish date; FILE_REVISION 46610 = (50*9+16)*100 + 10; from dllreport on the nupkg]
+product System.Memory.Data 8.0.1: ships lib/net8.0/System.Memory.Data.dll; project src/libraries/System.Memory.Data/src/System.Memory.Data.csproj; file version 8.0.1024.46610 -> 20240916.10 [inferred: FILE_PATCH 1024 does not fit the Arcade scheme for patch 1 (the repository sets its own); year 24 from the nuget.org publish date; FILE_REVISION 46610 = (50*9+16)*100 + 10; from dllreport on the nupkg]
+official build id: 20240916.10  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+command: ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20240916.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 8

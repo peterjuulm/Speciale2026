@@ -1,0 +1,18 @@
+roslyn-6c4a46a: repository build derivation
+repository: https://github.com/dotnet/roslyn
+commit: 6c4a46a31302167b425d5e0a31ea83c9a9aa1d09
+inner repository: none (the repository itself)
+kind: roslyn
+product Microsoft.CodeAnalysis.CSharp 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.CSharp.dll; project src/Compilers/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+product Microsoft.CodeAnalysis.CSharp.Features 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.CSharp.Features.dll; project src/Features/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Features.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+product Microsoft.CodeAnalysis.CSharp.Workspaces 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll; project src/Workspaces/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Workspaces.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+product Microsoft.CodeAnalysis.Common 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.dll; project src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+product Microsoft.CodeAnalysis.Features 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.Features.dll; project src/Features/Core/Portable/Microsoft.CodeAnalysis.Features.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+product Microsoft.CodeAnalysis.Scripting.Common 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.Scripting.dll; project src/Scripting/Core/Microsoft.CodeAnalysis.Scripting.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+product Microsoft.CodeAnalysis.Workspaces.Common 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.Workspaces.dll; project src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+product Microsoft.CodeAnalysis.Workspaces.MSBuild 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll; project src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
+official build id: 20251117.12  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+command: ./build.sh --restore --build --pack --ci -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 10
