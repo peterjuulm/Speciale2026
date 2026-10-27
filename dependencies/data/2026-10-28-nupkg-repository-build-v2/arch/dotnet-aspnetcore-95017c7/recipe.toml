@@ -1,0 +1,83 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "dotnet-aspnetcore-95017c7"
+repo = "https://github.com/dotnet/dotnet"
+commit = "95017c711e6afc1085133d440e42b4bd78155701"
+inner = "src/aspnetcore"
+kind = "aspnetcore"
+official_build_id = "20260822.108"
+shell = "bash"
+build = '''cd src/aspnetcore && L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; s ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj" /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=cb21a42eafcd44cc35fad48d99dc82ff7512ce2f || exit 1; ok=0; for p in "$PWD/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj" "$PWD/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj" "$PWD/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj" "$PWD/src/Middleware/Diagnostics.EntityFrameworkCore/src/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.csproj" "$PWD/src/Identity/EntityFrameworkCore/src/Microsoft.AspNetCore.Identity.EntityFrameworkCore.csproj" "$PWD/src/Identity/UI/src/Microsoft.AspNetCore.Identity.UI.csproj" "$PWD/src/Middleware/Spa/SpaProxy/src/Microsoft.AspNetCore.SpaProxy.csproj" "$PWD/src/FileProviders/Embedded/src/Microsoft.Extensions.FileProviders.Embedded.csproj" "$PWD/src/Identity/Extensions.Core/src/Microsoft.Extensions.Identity.Core.csproj" "$PWD/src/Identity/Extensions.Stores/src/Microsoft.Extensions.Identity.Stores.csproj"; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=cb21a42eafcd44cc35fad48d99dc82ff7512ce2f || ok=1; done; exit $ok'''
+packages = "src/aspnetcore/artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.AspNetCore.Authentication.JwtBearer"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll"
+project = "src/aspnetcore/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.AspNetCore.Cryptography.Internal"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll"
+project = "src/aspnetcore/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.AspNetCore.Cryptography.KeyDerivation"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll"
+project = "src/aspnetcore/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll"
+project = "src/aspnetcore/src/Middleware/Diagnostics.EntityFrameworkCore/src/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.AspNetCore.Identity.EntityFrameworkCore"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll"
+project = "src/aspnetcore/src/Identity/EntityFrameworkCore/src/Microsoft.AspNetCore.Identity.EntityFrameworkCore.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.AspNetCore.Identity.UI"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.AspNetCore.Identity.UI.dll"
+project = "src/aspnetcore/src/Identity/UI/src/Microsoft.AspNetCore.Identity.UI.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.AspNetCore.SpaProxy"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.AspNetCore.SpaProxy.dll"
+project = "src/aspnetcore/src/Middleware/Spa/SpaProxy/src/Microsoft.AspNetCore.SpaProxy.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.FileProviders.Embedded"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll"
+project = "src/aspnetcore/src/FileProviders/Embedded/src/Microsoft.Extensions.FileProviders.Embedded.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Identity.Core"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Identity.Core.dll"
+project = "src/aspnetcore/src/Identity/Extensions.Core/src/Microsoft.Extensions.Identity.Core.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.Extensions.Identity.Stores"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.Extensions.Identity.Stores.dll"
+project = "src/aspnetcore/src/Identity/Extensions.Stores/src/Microsoft.Extensions.Identity.Stores.csproj"
+file_version = "10.0.1226.42308"
