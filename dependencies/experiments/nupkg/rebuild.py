@@ -93,6 +93,8 @@ def clone(r, src, env, log):
     git = ['git', '-C', src]
     must(log, ['git', 'init', '-q', src], env)
     must(log, git + ['remote', 'add', 'origin', r['repo']], env)
+    if os.name == 'nt':   # Windows' 260-character path limit: the VMR has test files beyond it (27/10, 51 runs)
+        must(log, git + ['config', 'core.longpaths', 'true'], env)
     for c in r.get('git_config', []):
         must(log, git + ['config'] + c.split('=', 1), env)
     detached = ['-c', 'advice.detachedHead=false', 'checkout', '-q']
