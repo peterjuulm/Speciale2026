@@ -6,7 +6,7 @@ inner = ""
 kind = "runtime"
 official_build_id = "20240916.10"
 shell = "bash"
-build = '''./build.sh libs.sfx+libs.oob -c Release -ci -nobl -pack /p:OfficialBuildId=20240916.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+build = '''./build.sh tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20240916.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]
@@ -23,7 +23,7 @@ file_version = "8.0.1024.46610"
 package = "System.IO.Packaging"
 version = "8.0.1"
 ships = "lib/net8.0/System.IO.Packaging.dll"
-project = "src/libraries/shims/stubs/System.IO.Packaging.csproj"
+project = "src/libraries/System.IO.Packaging/src/System.IO.Packaging.csproj"
 file_version = "8.0.1024.46610"
 
 [[products]]

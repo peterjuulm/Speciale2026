@@ -369,3 +369,24 @@ effect of build 5) and level 3 otherwise. The .NET 5, 6 and 7 commits
 expectation 1 gave: their SDKs (global.json) predate this machine's
 OpenSSL 3 and ICU, and `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT` covers
 only the ICU part.
+
+Amended 23:05, after build 10 (`runtime-fa7cdde`, 9.0.11) and before
+any version-3 run. Build 10 compiled (exit 0, no shim errors: the
+servicing sources compile on clang 23) and packed nothing but the
+RID-specific `runtime.linux-x64.runtime.native.System.IO.Ports`.
+`eng/packaging.targets` sets `GeneratePackageOnBuild` only with
+`BuildAllConfigurations=true` (or for RID-specific projects) in .NET 6
+to 9, and the libraries README says `build.sh libs -allconfigurations`
+for packages; the official pipeline packs the out-of-band libraries in
+its `Libraries_AllConfigurations` leg, `-s tools+libs -allConfigurations`
+on `windows_x64` (`eng/pipelines/runtime-official.yml`). Version 1's R3
+command (`libs -pack`, from the README's build line) therefore cannot
+produce the packages in scope for the standalone .NET 6 to 9 commits;
+that is version 1's result for them. R3c becomes
+`tools+libs.sfx+libs.oob -allconfigurations` (`tools+libs.ref+libs.src+libs.packages
+-allconfigurations` in .NET 5 and 6): the official leg's subsets and
+switch minus the shims. The leg is a Windows build, so the newline
+effect of build 5 applies to every package that embeds a generated
+file. The derivation also no longer picks `src/libraries/shims/stubs/*.csproj`
+as a package's project (rule 7 took the shorter path; four recipes
+named a stub). Recipes regenerated.

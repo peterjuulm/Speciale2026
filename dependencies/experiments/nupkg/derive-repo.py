@@ -198,7 +198,7 @@ def main():
         if files is None:
             notes.append(f'{key}: not derived: commit {commit[:9]} not reachable in {url}'); continue
         if not project:
-            cands = [f for f in files if f.lower().endswith(f'/{lid}.csproj') and '/ref/' not in f.lower() and '/referencepackages/' not in f.lower()]
+            cands = [f for f in files if f.lower().endswith(f'/{lid}.csproj') and '/ref/' not in f.lower() and '/referencepackages/' not in f.lower() and '/shims/' not in f.lower()]   # runtime's src/libraries/shims/stubs are facades, not the library
             if not cands:
                 notes.append(f'{key}: not derived: no {pkg}.csproj in the tree (rule 7)'); continue
             project = sorted(cands, key=len)[0]
@@ -283,8 +283,11 @@ def main():
             # The README's /p:BuildNative=false is not consumed by any project file at 9.0.0 (git grep "(BuildNative)").
             subsets_props = sh(['git', '-C', mirror_of(url, lab), 'show', f'{commit}:eng/Subsets.props']).stdout
             subset = 'libs.sfx+libs.oob' if 'SubsetName Include="Libs.Sfx"' in subsets_props else 'libs.ref+libs.src+libs.packages'
-            build = f'{cd}./build.sh {subset} -c Release -ci -nobl -pack {props}'
-            facts.append(f'version 3, R3c: subset {subset} (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out)  [read]')
+            # -allconfigurations: eng/packaging.targets generates the out-of-band packages only with BuildAllConfigurations
+            # (.NET 6 to 9; 27/10 22:49, build 10 packed nothing), and the official build packs them in its
+            # "Libraries_AllConfigurations" leg, "-s tools+libs -allConfigurations" on windows_x64 (eng/pipelines/runtime-official.yml)
+            build = f'{cd}./build.sh tools+{subset} -allconfigurations -c Release -ci -nobl -pack {props}'
+            facts.append(f'version 3, R3c: subset tools+{subset} -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]')
         elif g['kind'] == 'runtime':
             build = f'{cd}./build.sh libs -c Release -ci -nobl -pack {props}'
         elif g['kind'] == 'roslyn':

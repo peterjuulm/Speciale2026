@@ -6,7 +6,7 @@ inner = ""
 kind = "runtime"
 official_build_id = "20241028.9"
 shell = "bash"
-build = '''./build.sh libs.sfx+libs.oob -c Release -ci -nobl -pack /p:OfficialBuildId=20241028.9 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+build = '''./build.sh tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20241028.9 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]
@@ -65,5 +65,5 @@ file_version = "9.0.24.52809"
 package = "System.Security.Cryptography.Xml"
 version = "9.0.0"
 ships = "lib/net9.0/System.Security.Cryptography.Xml.dll"
-project = "src/libraries/shims/stubs/System.Security.Cryptography.Xml.csproj"
+project = "src/libraries/System.Security.Cryptography.Xml/src/System.Security.Cryptography.Xml.csproj"
 file_version = "9.0.24.52809"
