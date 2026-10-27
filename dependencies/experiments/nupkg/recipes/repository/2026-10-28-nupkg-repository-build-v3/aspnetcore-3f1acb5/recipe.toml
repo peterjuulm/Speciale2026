@@ -6,7 +6,7 @@ inner = ""
 kind = "aspnetcore"
 official_build_id = "20231031.12"
 shell = "bash"
-build = '''./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || exit 1; ok=0; for p in "$PWD/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj" "$PWD/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || ok=1; done; exit $ok'''
+build = '''L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; s ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || exit 1; ok=0; for p in "$PWD/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj" "$PWD/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || ok=1; done; exit $ok'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]

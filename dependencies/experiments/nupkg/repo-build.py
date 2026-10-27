@@ -139,6 +139,13 @@ def main():
             log.write(f'--- build {now()}\n')
             code = run(log, ['bash', '-c', r['build']], env, src)
             run(log, ['bash', '-c', '[ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true'], env, src)
+            # Arcade's tools.sh exits 0 after a failed build in --ci mode and writes ##vso[task.complete result=Failed;]
+            # instead (27/10 23:13); that marker is the build's own verdict, so it sets the exit code here
+            log.flush()
+            failed = open(os.path.join(out, 'build.log'), encoding='utf-8', errors='replace').read().count('##vso[task.complete result=Failed')
+            if code == 0 and failed:
+                log.write(f'build exit code 0 but {failed} x "##vso[task.complete result=Failed" in the log: Arcade --ci hides the exit code, counted as exit 1\n')
+                code = 1
             log.write(f'build exit code {code}\nend {now()}\n')
     open(os.path.join(out, 'toolchain.txt'), 'w', encoding='utf-8').write('\n'.join(toolchain(src, inner)) + '\n')
     print(f'build: exit {code}', flush=True)

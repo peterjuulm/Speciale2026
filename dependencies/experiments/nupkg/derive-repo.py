@@ -269,11 +269,16 @@ def main():
             # the shared-framework project is a .csproj up to .NET 9 and a .sfxproj in .NET 10 (docs/BuildErrors.md still says .csproj)
             app = next((f for f in g['files'] if f in (f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj', f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj')), None)
             # '|| exit 1', not '&&': with '&&' the packs ran after a failed first step (27/10 21:52, aspnetcore-af22eff)
-            first = f'./eng/build.sh --ci -nobl -c Release --projects "$PWD/{app[len(root):]}" {props} || exit 1; ' if app else ''
+            # Arcade's eng/common/tools.sh exits 0 after "Build failed" in --ci mode (MSBuild-Core: "Exiting with an exit
+            # code causes the azure pipelines task to log yet another noise error") and marks the failure with
+            # ##vso[task.complete result=Failed;] instead (27/10 23:13, aspnetcore-2aa4015: three failures, exit 0), so
+            # each step's output is read for that marker: s() runs a step and fails on it
+            wrap = 'L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; '
+            first = f's ./eng/build.sh --ci -nobl -c Release --projects "$PWD/{app[len(root):]}" {props} || exit 1; ' if app else ''
             facts.append('shared framework first: ' + (f'yes, {app} (docs/BuildErrors.md)' if first else 'no: App.Runtime project not found under src/Framework/App.Runtime/src'))
             # one --pack call per project: a ';'-joined list loses its quotes in the shell and MSBuild splits it
             packs = ' '.join('"$PWD/' + p['project'][len(root):] + '"' for p in g['products'])
-            build = f'{cd}{first}ok=0; for p in {packs}; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" {props} || ok=1; done; exit $ok'
+            build = f'{cd}{wrap}{first}ok=0; for p in {packs}; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" {props} || ok=1; done; exit $ok'
         elif g['kind'] == 'runtime' and v3 and not inner:
             # version 3, R3c: the standalone dotnet/runtime commits without the native shims (libs.native), which do
             # not compile with this machine's clang 23 at 9.0.0 (27/10 22:40, eleven C-to-C++ compatibility
