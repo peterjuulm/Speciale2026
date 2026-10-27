@@ -138,6 +138,9 @@ def report_attr(nupkg, ships, lab, name):
     return r.stdout
 
 
+NODE_BY_SDK = {8: '18.20.8', 9: '22.23.4'}   # R3d: the Node LTS line each aspnetcore tree's npm tooling accepts (8.0: <=19; 9.0: engines >=20.9)
+
+
 def main():
     lst, census, facts_dir, lab, out = sys.argv[1:6]
     v3 = '--v3' in sys.argv[6:]
@@ -320,6 +323,14 @@ def main():
                 'strip_internal_feeds = true']
         major = sdk_major(mirror_of(url, lab), commit, root)
         facts.append(f'sdk major from global.json: {major if major else "unreadable"}')
+        if v3 and g['kind'] == 'aspnetcore' and not inner and major in NODE_BY_SDK:
+            # version 3, R3d: the standalone aspnetcore build runs its npm projects (eng/Build.props adds NodeJsProjects
+            # whenever node is on PATH; Components.Server references Web.JS.npmproj, so they cannot be left out) and the
+            # tree's pinned tooling refuses this machine's Node 26 (27/10 23:16, 8.0: eslint-plugin-jsdoc wants ^14..^19).
+            # The build gets the Node LTS line of the tree's era from nodejs.org, first on PATH; nothing compared contains JS.
+            node = os.path.join(lab, 'node', f'node-v{NODE_BY_SDK[major]}-linux-x64', 'bin')
+            toml.append(f'path_prepend = ["{node}"]')
+            facts.append(f'version 3, R3d: Node {NODE_BY_SDK[major]} (nodejs.org, sha256 checked) first on PATH for the npm projects of the .NET {major} tree  [rule]')
         if major and major < 8:
             toml.append('[env]'); toml.append('DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"')
             facts.append(f'env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK {major}.x on Arch\'s ICU 78 does not start; nothing the compiler emits depends on it)')

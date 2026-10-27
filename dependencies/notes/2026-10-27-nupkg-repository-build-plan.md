@@ -407,3 +407,22 @@ authoring that produced it is not at the commit the DLL names.
 (2) Some .NET 5 `pkgproj` files harvest assets from an earlier
 package instead of building them, so a match there shows reuse, not a
 rebuild. Both go in the result note if they occur.
+
+Amended 23:30, after build 15 (`aspnetcore-3f1acb5`, 8.0.0) and before
+any version-3 run. Its App.Runtime step died in `yarn`: the standalone
+aspnetcore build adds the npm projects to every build when `node` is
+on PATH (`eng/build.sh` 258-264, `eng/Build.props` 137), the shared
+framework's `Microsoft.AspNetCore.Components.Server` references
+`Web.JS.npmproj`, and the 8.0 tree's pinned `eslint-plugin-jsdoc`
+refuses this machine's Node 26 (`"^14 || ^16 || ^17 || ^18 || ^19"`).
+`--no-build-nodejs` exists but makes the shared framework "fall back
+to the output from previous builds" (the script's own warning), which
+a clean clone has none of. R3d, version 3, standalone aspnetcore
+recipes: the build gets the Node LTS line of the tree's era from
+nodejs.org, sha256 checked, first on PATH (`path_prepend` in the
+recipe, recorded in the environment block): 18.20.8 for the .NET 8
+tree, 22.23.4 for .NET 9 (`engines` >= 20.9). No compared package
+contains JavaScript. The .NET 6 tree is not covered: its build stops
+earlier, at a build-tool package gone from the feeds (build 14). The
+version-3 order gains `aspnetcore-3f1acb5`; `aspnetcore-af22eff`
+joins it if its version-1 rerun fails the same way.

@@ -110,6 +110,8 @@ def main():
     os.makedirs(home); os.makedirs(nuget)
     env = rebuild.build_env(r, '', home, nuget, src)
     env['PATH'] = '/usr/bin'
+    for d in reversed(r.get('path_prepend', [])):   # a toolchain the recipe names (version 3, R3d: a Node line the tree accepts)
+        env['PATH'] = d + os.pathsep + env['PATH']
     env.update(GIT_HTTP_LOW_SPEED_LIMIT='1000', GIT_HTTP_LOW_SPEED_TIME='120')   # a stalled fetch aborts instead of hanging
     env['DOTNET_INSTALL_DIR'] = os.path.join(src, inner, '.dotnet') if inner else os.path.join(src, '.dotnet')
     code = None
