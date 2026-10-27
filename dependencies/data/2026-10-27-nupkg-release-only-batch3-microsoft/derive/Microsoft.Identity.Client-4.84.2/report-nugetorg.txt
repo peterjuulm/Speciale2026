@@ -1,0 +1,845 @@
+file: Microsoft.Identity.Client.dll
+size: 1220960
+sha256: f9bc295d0011112fe4d7d8a728a27a38627739df6cd144c8402b5dae03bf40af
+
+## PE headers
+machine: I386
+timestamp: 0xb4546d69
+characteristics: ExecutableImage, LargeAddressAware, Dll
+linker version: 48.0
+subsystem: WindowsCui
+dll characteristics: HighEntropyVirtualAddressSpace, DynamicBase, NxCompatible, NoSeh, TerminalServerAware
+pe checksum: 0x00130708
+section .text: virtual size 1207088, raw size 1207296
+section .rsrc: virtual size 2332, raw size 2560
+section .reloc: virtual size 12, raw size 512
+
+## Signatures
+authenticode: 10080 bytes, sha256 9c61ad9d9dd3ca0b19ddafe7cf4fd1d49f449b10196baa05582ffdb7bdc7e23d
+cor flags: ILOnly, StrongNameSigned
+strong-name signature: 128 bytes, sha256 56677ffd45a09e232be17180e9da7bbb44fe6bf406f15e0ba2021a24a6aa951b
+
+## Metadata
+metadata version: v4.0.30319
+metadata: 852488 bytes, sha256 b8ef3709d05f6e59862adca9e3f0b8fb4242135550bcb76479028ceeb5cdc908
+metadata stream #Blob: 185248 bytes, sha256 c0a7d30bae06c6725cfa88bc1071f240dc653a5b6e32f43db4b3eae21568594d
+metadata stream #GUID: 16 bytes, sha256 52625dff844b5fb41a52343ef95a58c1aa35dc614a8a4ede168241de9a90bbf6
+metadata stream #Strings: 161708 bytes, sha256 3e8fa9e8f438d9785e7ef8fa5bfd044ab2f3176ee0ae91e4330839345f9bc72e
+metadata stream #US: 170608 bytes, sha256 f71d51231fc3ae25fe6a312fe87868344c6caf8e36218db132738838380ba981
+metadata stream #~: 334800 bytes, sha256 386f66c954ec0952dabe4117715b15929841b38c4c4b023e0ba4299b09e8f72c
+mvid: 1eea8e67-5e67-42bf-bde3-95e5693ac104
+il bodies: 5154 methods, sha256 ec20e1b20c4b3f8891646263fc10b1cc2f6a606d9ab2c74a038951a404cad0c7
+managed resources: 1616 bytes, sha256 09ef79789d0475678a0c7ae334fdccd0bdf75e3e364dd516e52048e7898d8968
+
+## Assembly
+name: Microsoft.Identity.Client, version 4.84.2.0, culture '', flags PublicKey
+public key: 1d2c58abf793526f3362ad47aabcace0545629c6e5cdbe11284b884123521200
+attribute: AssemblyCompanyAttribute(Microsoft Corporation)
+attribute: AssemblyConfigurationAttribute(Release)
+attribute: AssemblyCopyrightAttribute(© Microsoft Corporation. All rights reserved.)
+attribute: AssemblyDescriptionAttribute(
+      This package contains the binaries of the Microsoft Authentication Library for .NET (MSAL.NET).
+      MSAL.NET makes it easy to obtain tokens from the Microsoft identity platform for developers (formerly Azure AD v2.0) signing-in users with work & school accounts, Microsoft personal accounts, and social identities via Azure AD B2C. These tokens provide access to Microsoft Cloud API and any other API secured by the Microsoft identity platform. This version supports adding authentication functionality to your .NET based clients - .NET, .NET Framework, .NET MAUI 
+    )
+attribute: AssemblyFileVersionAttribute(4.84.2.0)
+attribute: AssemblyInformationalVersionAttribute(4.84.2+bad7cae331c1d9e699ca2150a5fecb108ea54916)
+attribute: AssemblyMetadataAttribute(IsTrimmable, True)
+attribute: AssemblyMetadataAttribute(RepositoryUrl, https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)
+attribute: AssemblyMetadataAttribute(Serviceable, True)
+attribute: AssemblyProductAttribute(Microsoft Authentication Library)
+attribute: AssemblyTitleAttribute(Microsoft.Identity.Client)
+attribute: CLSCompliantAttribute(True)
+attribute: ComVisibleAttribute(False)
+attribute: CompilationRelaxationsAttribute(8)
+attribute: DebuggableAttribute(2)
+attribute: ExtensionAttribute()
+attribute: InternalsVisibleToAttribute(CommonCache.Test.Common, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(CommonCache.Test.Unit, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(DesktopTestApp, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(DynamicProxyGenAssembly2, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c547cac37abd99c8db225ef2f6c8a3602f3b3606cc9891605d02baa56104f4cfc0734aa39b93bf7852f7d9266654753cc297e7d2edfe0bac1cdcf9f717241550e0a7b191195b7667bb4f64bcb8e2121380fd1d9d46ad2d92d2d15605093924cceaf74c4861eff62abf69b9291ed0a340e113be11e6a7d3113e92484cf7045cc7)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Client.Broker, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Client.Desktop, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Client.Desktop.WinUI3, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Client.Extensions.Msal, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Client.Extensions.Web, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Client.Extensions.Web.UnitTests, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Client.KeyAttestation, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Lab.Api, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Test.Common, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Test.E2E.MSI, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Test.Integration.NetCore, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Test.Integration.NetFx, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Test.Performance, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Test.SideBySide, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(Microsoft.Identity.Test.Unit, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(NetCoreWinFormsWAM, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(NetFxConsoleApp, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(WebApi, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: InternalsVisibleToAttribute(XForms, PublicKey=00240000048000009400000006020000002400005253413100040000010001002d96616729b54f6d013d71559a017f50aa4861487226c523959d1579b93f3fdf71c08b980fd3130062b03d3de115c4b84e7ac46aef5e192a40e7457d5f3a08f66ceab71143807f2c3cb0da5e23b38f0559769978406f6e5d30ceadd7985fc73a5a609a8b74a1df0a29399074a003a226c943d480fec96dbec7106a87896539ad)
+attribute: RuntimeCompatibilityAttribute(WrapNonExceptionThrows=True)
+attribute: TargetFrameworkAttribute(.NETCoreApp,Version=v8.0, FrameworkDisplayName=.NET 8.0)
+assembly reference: Microsoft.IdentityModel.Abstractions 8.14.0.0 31bf3856ad364e35
+assembly reference: Microsoft.Win32.Primitives 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Collections 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Collections.Concurrent 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Collections.Immutable 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Collections.NonGeneric 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Console 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Diagnostics.DiagnosticSource 8.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Diagnostics.Process 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Diagnostics.TraceSource 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Diagnostics.Tracing 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Formats.Asn1 8.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Linq 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Memory 8.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Net.Http 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Net.HttpListener 8.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Net.Primitives 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Net.Security 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Net.Sockets 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Runtime 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Runtime.InteropServices 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Security.Claims 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Security.Cryptography 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Text.Encoding.Extensions 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Text.Encodings.Web 8.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Text.Json 8.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Text.RegularExpressions 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Threading 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Threading.Thread 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Xml.ReaderWriter 8.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Xml.XDocument 8.0.0.0 b03f5f7f11d50a3a
+
+## Debug directory
+CodeView: version 256.20557, stamp 0xe786dc12, size 113, guid aa0dac5c-ed14-4943-a9ee-1de7eeac9eb4, age 1, path /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/Microsoft.Identity.Client.pdb
+PdbChecksum: version 1.0, stamp 0x00000000, size 39, SHA256 5cac0daa14ed438969ee1de7eeac9eb412dc86676acabdafb87fe1a0dd19ff0e
+Reproducible: version 0.0, stamp 0x00000000, size 0
+
+## PDB (Microsoft.Identity.Client.pdb)
+size: 374144, sha256 74e9bd7bd83c0d48d3432af77fb335ace1a4fbbb0b707cac323ace9a7817b91a
+pdb stream #Blob: 216788 bytes, sha256 ba1db6780f1bb96b608794267f13a31d0a2e60056c3258e9620f697147c85ea2
+pdb stream #GUID: 176 bytes, sha256 d6d3db28f44830a260dc5b5774ecbfff1d88de37d96166c0c65cc78eae284a90
+pdb stream #Pdb: 148 bytes, sha256 8130baba5238c8f126796861366dc4ab8e80a4cc9bb91d181cebb0cbdf21dad3
+pdb stream #Strings: 9144 bytes, sha256 002a36b29ffd247ddbdde69d4b4d3d95c11c39275843b0454b3757d6799a6af1
+pdb stream #US: 4 bytes, sha256 df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119
+pdb stream #~: 147760 bytes, sha256 223dc950934901948413e62ca7efe794b1edd6be90cce544a6a30556257added
+pdb id: 5cac0daa14ed4349a9ee1de7eeac9eb412dc86e7
+
+## Source Link
+{"documents":{"/_/*":"https://raw.githubusercontent.com/AzureAD/microsoft-authentication-library-for-dotnet/bad7cae331c1d9e699ca2150a5fecb108ea54916/*"}}
+
+## Compiler record
+version: 2
+compiler-version: 4.14.0-3.25412.6+c167adef821b9ba2f1c44c227a5e79ca11876461
+language: C#
+source-file-count: 535
+output-kind: DynamicallyLinkedLibrary
+optimization: release
+platform: AnyCpu
+runtime-version: 4.8.9332.0
+language-version: 13.0
+unsafe: True
+define: TRACE,SUPPORTS_SYSTEM_TEXT_JSON,NET_CORE,SUPPORTS_CONFIDENTIAL_CLIENT,SUPPORTS_CUSTOM_CACHE,SUPPORTS_BROKER,SUPPORTS_WIN32,SUPPORTS_OTEL,SUPPORTS_MTLS,RELEASE,NET,NET8_0,NETCOREAPP,NET5_0_OR_GREATER,NET6_0_OR_GREATER,NET7_0_OR_GREATER,NET8_0_OR_GREATER,NETCOREAPP1_0_OR_GREATER,NETCOREAPP1_1_OR_GREATER,NETCOREAPP2_0_OR_GREATER,NETCOREAPP2_1_OR_GREATER,NETCOREAPP2_2_OR_GREATER,NETCOREAPP3_0_OR_GREATER,NETCOREAPP3_1_OR_GREATER
+
+## Metadata references
+reference: Microsoft.CSharp.dll aliases '' kind 0x01 stamp 0xac3c80a0 size 32768 mvid c8be654b-788e-4148-bb8f-cf90efa1a504
+reference: Microsoft.IdentityModel.Abstractions.dll aliases '' kind 0x01 stamp 0x9b9c5b81 size 32768 mvid 1e7675b7-9fb8-4bdb-9e90-2c2451465ec4
+reference: Microsoft.VisualBasic.Core.dll aliases '' kind 0x01 stamp 0xcc0c98b3 size 73728 mvid f0a057c9-fffe-48f4-893d-47bd649f1d4a
+reference: Microsoft.VisualBasic.dll aliases '' kind 0x01 stamp 0xd9114226 size 32768 mvid 0e5bc581-ab0f-4e6e-a491-fd1dde13da9f
+reference: Microsoft.Win32.Primitives.dll aliases '' kind 0x01 stamp 0xa41c1108 size 32768 mvid fa3ec0f1-4df7-45c7-beb8-65f0de241040
+reference: Microsoft.Win32.Registry.dll aliases '' kind 0x01 stamp 0xda6fc9e2 size 40960 mvid ed6e706d-3081-47ec-b9ed-1b6a7ae39610
+reference: System.AppContext.dll aliases '' kind 0x01 stamp 0xfab0d185 size 32768 mvid b1346a56-c0f7-4059-9747-464a84fc770f
+reference: System.Buffers.dll aliases '' kind 0x01 stamp 0xb589796d size 32768 mvid 364e5337-38f8-4cf8-8a79-339295c8a6b7
+reference: System.Collections.Concurrent.dll aliases '' kind 0x01 stamp 0xb8b2215e size 40960 mvid a1949174-5d6f-47bf-b4e7-21613a9a3ac2
+reference: System.Collections.Immutable.dll aliases '' kind 0x01 stamp 0x869f35bb size 90112 mvid 1782b7a6-c91d-4158-9857-7ab108551b1d
+reference: System.Collections.NonGeneric.dll aliases '' kind 0x01 stamp 0x9ebdcc79 size 40960 mvid da54d846-5136-4dd8-8e0b-12b3437fda6a
+reference: System.Collections.Specialized.dll aliases '' kind 0x01 stamp 0xb8591eed size 40960 mvid 244174f3-b0b3-4fa2-a8d3-3170eb7f4d52
+reference: System.Collections.dll aliases '' kind 0x01 stamp 0xfbc06056 size 65536 mvid b34e9c4f-ec58-4362-8164-cf60f78618c8
+reference: System.ComponentModel.Annotations.dll aliases '' kind 0x01 stamp 0x9f1db80c size 49152 mvid 7179b3d8-3c5a-4524-a3fd-88158db60346
+reference: System.ComponentModel.DataAnnotations.dll aliases '' kind 0x01 stamp 0x80e8940f size 32768 mvid 1d2b94b1-7323-45f5-b6af-89b1e800cfc2
+reference: System.ComponentModel.EventBasedAsync.dll aliases '' kind 0x01 stamp 0x802f1bc8 size 32768 mvid d8944e99-c143-4f73-84ba-094be38cd0fb
+reference: System.ComponentModel.Primitives.dll aliases '' kind 0x01 stamp 0xedaefe8e size 40960 mvid 814ed8be-60bd-4416-b6ee-6e20a80fc85f
+reference: System.ComponentModel.TypeConverter.dll aliases '' kind 0x01 stamp 0xcee25027 size 122880 mvid 3a07636d-c48f-4534-9099-b0e6fb5d46bc
+reference: System.ComponentModel.dll aliases '' kind 0x01 stamp 0xa523bb4c size 32768 mvid 3e3c9c29-5632-42c3-9ac7-a165c645b459
+reference: System.Configuration.dll aliases '' kind 0x01 stamp 0xb17de588 size 32768 mvid 839089ac-23f2-4270-a8bc-9bead1d512d6
+reference: System.Console.dll aliases '' kind 0x01 stamp 0xa827bd6b size 40960 mvid 8608fbf3-802b-4b2f-a47f-b046b9a3355d
+reference: System.Core.dll aliases '' kind 0x01 stamp 0xdbfdaa1e size 40960 mvid 8adf8761-5a5b-483a-92e1-d97c3e8574f5
+reference: System.Data.Common.dll aliases '' kind 0x01 stamp 0x82520fd5 size 172032 mvid 53a15695-af91-47f7-aa6a-9249b300b0ac
+reference: System.Data.DataSetExtensions.dll aliases '' kind 0x01 stamp 0xa66feae9 size 32768 mvid b56dc635-eb96-40bf-8685-80ac2e006422
+reference: System.Data.dll aliases '' kind 0x01 stamp 0xcfd82801 size 40960 mvid 63b48355-81a8-440f-a2af-eb508d918f72
+reference: System.Diagnostics.Contracts.dll aliases '' kind 0x01 stamp 0xcfb9fa87 size 32768 mvid 94d597b0-1f6b-4d66-9eaf-9f6b3bbb73ba
+reference: System.Diagnostics.Debug.dll aliases '' kind 0x01 stamp 0xf277738f size 32768 mvid b3a99d99-5f4f-4514-9fdb-a6454a8032c3
+reference: System.Diagnostics.DiagnosticSource.dll aliases '' kind 0x01 stamp 0xe9865166 size 57344 mvid db81009d-873e-4754-b9c3-67b15af6afa7
+reference: System.Diagnostics.FileVersionInfo.dll aliases '' kind 0x01 stamp 0xad97c7bc size 32768 mvid c7baa8af-b5a2-45d0-8495-0452f2975469
+reference: System.Diagnostics.Process.dll aliases '' kind 0x01 stamp 0xe1c6520f size 49152 mvid b123610b-8885-4713-a450-61a1d701d721
+reference: System.Diagnostics.StackTrace.dll aliases '' kind 0x01 stamp 0xdc7d9d20 size 40960 mvid da10373e-4a16-4a19-9313-4562f3236466
+reference: System.Diagnostics.TextWriterTraceListener.dll aliases '' kind 0x01 stamp 0xe8192ae7 size 32768 mvid 9f226b4c-7cb1-480c-b7b5-87365c977e1c
+reference: System.Diagnostics.Tools.dll aliases '' kind 0x01 stamp 0x8dc97be8 size 32768 mvid 2c809949-6d2b-404b-90e6-f980062d4d83
+reference: System.Diagnostics.TraceSource.dll aliases '' kind 0x01 stamp 0xc32e07be size 40960 mvid 93cf1baa-1ef0-4a97-9f6c-344995545340
+reference: System.Diagnostics.Tracing.dll aliases '' kind 0x01 stamp 0xea814a19 size 40960 mvid a0cbcd3e-d2c2-4cd1-946e-9e83f29c7eeb
+reference: System.Drawing.Primitives.dll aliases '' kind 0x01 stamp 0xdc89b41b size 49152 mvid bc748a70-c923-4234-bcbf-639fe21606da
+reference: System.Drawing.dll aliases '' kind 0x01 stamp 0xa4c3040f size 32768 mvid 94cee1ac-3ec4-44c2-9c93-26277eb812b2
+reference: System.Dynamic.Runtime.dll aliases '' kind 0x01 stamp 0x9ce3b1da size 32768 mvid 873cc644-af4c-49c4-9788-108409394581
+reference: System.Formats.Asn1.dll aliases '' kind 0x01 stamp 0x88cea848 size 40960 mvid f5904ef3-d41a-4a91-bcbf-dc1c441adc6d
+reference: System.Formats.Tar.dll aliases '' kind 0x01 stamp 0xc651a4ba size 32768 mvid 16609352-c23b-4272-882c-83bf17ac4c0e
+reference: System.Globalization.Calendars.dll aliases '' kind 0x01 stamp 0xf7c1ae41 size 32768 mvid 90f0b132-5412-4600-ad2c-acf15cc89095
+reference: System.Globalization.Extensions.dll aliases '' kind 0x01 stamp 0xc41be45c size 32768 mvid 5c9788ea-7d79-4781-8f80-58d9780f9bf1
+reference: System.Globalization.dll aliases '' kind 0x01 stamp 0xab6b3d68 size 32768 mvid 82d6d136-773a-44fe-8866-907bc0c9514c
+reference: System.IO.Compression.Brotli.dll aliases '' kind 0x01 stamp 0xceb29301 size 32768 mvid 984d02d1-7c96-44ca-a38c-8c0a11056a11
+reference: System.IO.Compression.FileSystem.dll aliases '' kind 0x01 stamp 0xb6853938 size 32768 mvid 96ae157b-d894-44f8-b9da-129bfdf40b77
+reference: System.IO.Compression.ZipFile.dll aliases '' kind 0x01 stamp 0x8c7e70de size 32768 mvid 983c8604-c6bf-496c-91f8-1a225be71de8
+reference: System.IO.Compression.dll aliases '' kind 0x01 stamp 0xf75b0c5a size 32768 mvid f1930846-f6e1-4ed9-bff0-6e148b80e96e
+reference: System.IO.FileSystem.AccessControl.dll aliases '' kind 0x01 stamp 0xb4de4489 size 32768 mvid 9b2d8104-2891-4070-a149-9c94ed4e99ff
+reference: System.IO.FileSystem.DriveInfo.dll aliases '' kind 0x01 stamp 0xbed2efac size 32768 mvid 453aedca-8d5d-4da9-befb-d5c902b7d264
+reference: System.IO.FileSystem.Primitives.dll aliases '' kind 0x01 stamp 0x9084684e size 32768 mvid 155b373c-5f37-431f-94fe-5d1cbbd56530
+reference: System.IO.FileSystem.Watcher.dll aliases '' kind 0x01 stamp 0x98c80c5d size 32768 mvid 2441a1b9-de57-4247-a247-97161b1ec870
+reference: System.IO.FileSystem.dll aliases '' kind 0x01 stamp 0x9ae40647 size 32768 mvid 60e5f72d-0904-4367-8cc1-bf504ee8f147
+reference: System.IO.IsolatedStorage.dll aliases '' kind 0x01 stamp 0xc47a33ab size 40960 mvid fd5061c8-aa8f-4da0-b3ca-b63b14fb2128
+reference: System.IO.MemoryMappedFiles.dll aliases '' kind 0x01 stamp 0xe576355b size 32768 mvid 0e8f9877-33c7-4c22-a6eb-edb303137f2c
+reference: System.IO.Pipes.AccessControl.dll aliases '' kind 0x01 stamp 0xac71dfa1 size 32768 mvid 84da05a1-4838-4281-89be-307e5fc6c9a6
+reference: System.IO.Pipes.dll aliases '' kind 0x01 stamp 0x9acd842f size 40960 mvid 6d618990-d455-4986-9990-6c9161c8f1d6
+reference: System.IO.UnmanagedMemoryStream.dll aliases '' kind 0x01 stamp 0xc04da375 size 32768 mvid ad2964da-8d1e-434c-b87f-d9a3766a9ad2
+reference: System.IO.dll aliases '' kind 0x01 stamp 0xc0123e7b size 32768 mvid e278ad2e-b538-490b-ae12-a8471909948c
+reference: System.Linq.Expressions.dll aliases '' kind 0x01 stamp 0x9cc58141 size 81920 mvid 9ede05e3-57ef-47df-bab5-40b2b7990a6e
+reference: System.Linq.Parallel.dll aliases '' kind 0x01 stamp 0xa1466171 size 49152 mvid 2d50ed82-75cb-40b1-ade3-8e5a996ac57b
+reference: System.Linq.Queryable.dll aliases '' kind 0x01 stamp 0xeb8eda1d size 49152 mvid 179ba951-7ef5-47c5-aa4e-a52657cc888b
+reference: System.Linq.dll aliases '' kind 0x01 stamp 0xa2656489 size 49152 mvid 191f7af3-7616-40ca-ad54-0fe33172bdb5
+reference: System.Memory.dll aliases '' kind 0x01 stamp 0xb1be3979 size 65536 mvid 19aab9c9-cd1f-4ef8-908f-6fa2e557607a
+reference: System.Net.Http.Json.dll aliases '' kind 0x01 stamp 0x98f2121f size 40960 mvid 1dfbbcde-483e-4288-81b1-8027042e2156
+reference: System.Net.Http.dll aliases '' kind 0x01 stamp 0xfcaa42d1 size 73728 mvid ce1b2333-4923-43a0-90bf-24cf6215df8d
+reference: System.Net.HttpListener.dll aliases '' kind 0x01 stamp 0x9f22ac7a size 40960 mvid 2c0031e9-3d5a-4ec4-a264-7da8374676fe
+reference: System.Net.Mail.dll aliases '' kind 0x01 stamp 0xf8a626a4 size 49152 mvid f851ce7c-680f-43b1-89cd-8700d2cb09e4
+reference: System.Net.NameResolution.dll aliases '' kind 0x01 stamp 0xf89463f2 size 32768 mvid 79e4a6e8-a201-4979-b472-88385a17bd70
+reference: System.Net.NetworkInformation.dll aliases '' kind 0x01 stamp 0x9e6a0336 size 49152 mvid ba282912-b81e-45cc-a417-6ddbaf4e3345
+reference: System.Net.Ping.dll aliases '' kind 0x01 stamp 0xd3e0d1ce size 32768 mvid 4b5ccacf-ebd6-4be1-a8cc-af7cb5c262fb
+reference: System.Net.Primitives.dll aliases '' kind 0x01 stamp 0xa9061901 size 49152 mvid 303d9135-71d7-498b-a57b-4983bfe5cf65
+reference: System.Net.Quic.dll aliases '' kind 0x01 stamp 0xfe5043db size 40960 mvid 1797c74b-ba22-4ac6-92c7-2a893edf656f
+reference: System.Net.Requests.dll aliases '' kind 0x01 stamp 0xcc63ced1 size 49152 mvid 42c67958-0b4f-4ac9-87e8-2cdaa7a7007b
+reference: System.Net.Security.dll aliases '' kind 0x01 stamp 0xd7f3a5f3 size 65536 mvid 31287714-2039-4b16-8b29-65ec5b587b0f
+reference: System.Net.ServicePoint.dll aliases '' kind 0x01 stamp 0x8d176e62 size 32768 mvid 3f9b1836-6b4c-4eed-be55-aa799cca60a9
+reference: System.Net.Sockets.dll aliases '' kind 0x01 stamp 0xb7ff84f5 size 65536 mvid 2e93d938-f17b-4b37-a60f-4b8487a2df22
+reference: System.Net.WebClient.dll aliases '' kind 0x01 stamp 0x97b094ee size 40960 mvid 287d7010-733d-4e81-ad50-54c1bb373118
+reference: System.Net.WebHeaderCollection.dll aliases '' kind 0x01 stamp 0x9fdf9b7e size 32768 mvid c4b20588-0d42-45e5-8166-a6edb5c65867
+reference: System.Net.WebProxy.dll aliases '' kind 0x01 stamp 0x93153639 size 32768 mvid becd28e4-922a-4b81-9018-b908cc403adb
+reference: System.Net.WebSockets.Client.dll aliases '' kind 0x01 stamp 0xfbeae909 size 32768 mvid d4cec9fe-e3f5-4ec7-aad4-fabdd42da85d
+reference: System.Net.WebSockets.dll aliases '' kind 0x01 stamp 0xf5777421 size 40960 mvid ea6e3ef6-3160-44db-83e2-e91c06ecaaa1
+reference: System.Net.dll aliases '' kind 0x01 stamp 0xc90432e8 size 32768 mvid 6c6568f1-3c6a-480b-905b-cc73b74a7b32
+reference: System.Numerics.Vectors.dll aliases '' kind 0x01 stamp 0xbfac3449 size 57344 mvid 912599f1-75dd-431e-9b44-7fd1f2c08192
+reference: System.Numerics.dll aliases '' kind 0x01 stamp 0xc89b96eb size 32768 mvid 434a9009-8d5b-4e96-8276-b03169177188
+reference: System.ObjectModel.dll aliases '' kind 0x01 stamp 0xd1e2cb3b size 40960 mvid 12f05ae3-b74c-403e-a196-c8414786dcc8
+reference: System.Reflection.DispatchProxy.dll aliases '' kind 0x01 stamp 0xe1af6c53 size 32768 mvid 6112d8a2-962f-4c23-bad6-528a2ba4b42a
+reference: System.Reflection.Emit.ILGeneration.dll aliases '' kind 0x01 stamp 0xa8a9baaa size 32768 mvid d7bcfa03-bb8e-4420-b466-8430e80ee30f
+reference: System.Reflection.Emit.Lightweight.dll aliases '' kind 0x01 stamp 0x9bc71811 size 32768 mvid 9efc1dba-1fa6-4c50-b05d-0600dbaaaa67
+reference: System.Reflection.Emit.dll aliases '' kind 0x01 stamp 0x9c786612 size 57344 mvid 0553bccd-27aa-4ad3-9545-34d2f50fc0f4
+reference: System.Reflection.Extensions.dll aliases '' kind 0x01 stamp 0xb86e8c9e size 32768 mvid 543e99c2-badc-46b1-90fc-445bfe7c7000
+reference: System.Reflection.Metadata.dll aliases '' kind 0x01 stamp 0xc804e2b7 size 139264 mvid bd860973-8b82-4797-9f97-4258280e222d
+reference: System.Reflection.Primitives.dll aliases '' kind 0x01 stamp 0x9df56c60 size 40960 mvid 80ade072-da1a-4ac5-aa31-6c8aefb3b42a
+reference: System.Reflection.TypeExtensions.dll aliases '' kind 0x01 stamp 0xd3e95f9d size 32768 mvid 26682709-b6b8-4ef0-bab3-b13b0244ae00
+reference: System.Reflection.dll aliases '' kind 0x01 stamp 0x9d64605e size 32768 mvid 890f62c3-83af-407d-b9fb-46efdfa2b3f4
+reference: System.Resources.Reader.dll aliases '' kind 0x01 stamp 0xe2b7402a size 32768 mvid c9c25506-9426-4c9a-89c2-ac0fd7fcd802
+reference: System.Resources.ResourceManager.dll aliases '' kind 0x01 stamp 0xba97f08a size 32768 mvid b45e835a-de6a-46e8-a46e-5956bc167772
+reference: System.Resources.Writer.dll aliases '' kind 0x01 stamp 0xc12fa0a9 size 32768 mvid 838967ff-025c-47a0-b7b7-b886956ed24b
+reference: System.Runtime.CompilerServices.Unsafe.dll aliases '' kind 0x01 stamp 0xb94e1e29 size 32768 mvid 22a0275b-2bde-4e1c-bc96-5c0f7f68bade
+reference: System.Runtime.CompilerServices.VisualC.dll aliases '' kind 0x01 stamp 0x8caa0a90 size 32768 mvid 5f258ea6-5abf-4ff8-9c9f-8ed9c46410ae
+reference: System.Runtime.Extensions.dll aliases '' kind 0x01 stamp 0x963002e8 size 32768 mvid 4144a50e-617b-4256-a5a8-0b74391890ac
+reference: System.Runtime.Handles.dll aliases '' kind 0x01 stamp 0xc76ad9fc size 32768 mvid 4b0caa17-313e-4392-a9cd-299a5a8d02e8
+reference: System.Runtime.InteropServices.JavaScript.dll aliases '' kind 0x01 stamp 0x9b818c88 size 40960 mvid 6466cbbd-0da8-4a0f-9d4d-4a47b2dde299
+reference: System.Runtime.InteropServices.RuntimeInformation.dll aliases '' kind 0x01 stamp 0xcdea8341 size 32768 mvid 533e7e84-4e3e-4d6a-ab1f-63ca4649929b
+reference: System.Runtime.InteropServices.dll aliases '' kind 0x01 stamp 0xedc60000 size 114688 mvid f82b63f0-4bf6-47e4-a5a6-fbdc46bcbd9b
+reference: System.Runtime.Intrinsics.dll aliases '' kind 0x01 stamp 0xc7de47e8 size 294912 mvid 9b9e08e7-0b47-4d41-9aaa-0650a891b8d9
+reference: System.Runtime.Loader.dll aliases '' kind 0x01 stamp 0x8dbff1d2 size 32768 mvid 403cbcf9-84aa-411b-9f47-2104bfcd7f2e
+reference: System.Runtime.Numerics.dll aliases '' kind 0x01 stamp 0x89fea671 size 49152 mvid 5536107e-d220-40a8-bca3-2d670954e66c
+reference: System.Runtime.Serialization.Formatters.dll aliases '' kind 0x01 stamp 0xd1eb51dc size 40960 mvid f0edfd55-7409-42bf-883c-d293dabfe62c
+reference: System.Runtime.Serialization.Json.dll aliases '' kind 0x01 stamp 0x8a9108bd size 32768 mvid d0caf6c9-341e-4673-8ad3-bd8c908e83cc
+reference: System.Runtime.Serialization.Primitives.dll aliases '' kind 0x01 stamp 0xea2ed21d size 32768 mvid f90ed332-09ee-4b5d-8b56-fe845b596ac6
+reference: System.Runtime.Serialization.Xml.dll aliases '' kind 0x01 stamp 0x9062a309 size 57344 mvid 9867d675-32eb-4e88-8981-44fc216d411b
+reference: System.Runtime.Serialization.dll aliases '' kind 0x01 stamp 0x97990faa size 32768 mvid 27408343-f003-4cbb-8615-302db0e6f908
+reference: System.Runtime.dll aliases '' kind 0x01 stamp 0x9b35a640 size 843776 mvid 842c7999-4097-4e77-880e-caa8f35cf6cc
+reference: System.Security.AccessControl.dll aliases '' kind 0x01 stamp 0x86b08ad5 size 49152 mvid ad9902f1-96f7-4d1f-9c66-5f23c2403033
+reference: System.Security.Claims.dll aliases '' kind 0x01 stamp 0xd363ed25 size 49152 mvid c496e637-6080-44ce-8465-91f2a57bf268
+reference: System.Security.Cryptography.Algorithms.dll aliases '' kind 0x01 stamp 0xc94ffb92 size 32768 mvid 527d5bc5-6678-46a4-a23c-3215636361a9
+reference: System.Security.Cryptography.Cng.dll aliases '' kind 0x01 stamp 0xba5932b0 size 32768 mvid 6b67fb74-39a0-4996-9dfa-72ef218f9803
+reference: System.Security.Cryptography.Csp.dll aliases '' kind 0x01 stamp 0x9d7a83b0 size 32768 mvid 0f7b2558-b3be-46a6-af90-7ca00970fb07
+reference: System.Security.Cryptography.Encoding.dll aliases '' kind 0x01 stamp 0xafdc71b7 size 32768 mvid 76dabe46-0ef6-488a-9303-d0a03c8de447
+reference: System.Security.Cryptography.OpenSsl.dll aliases '' kind 0x01 stamp 0xe6505f80 size 32768 mvid 5b41dda1-1a79-4c6c-ac99-7b145de59fb2
+reference: System.Security.Cryptography.Primitives.dll aliases '' kind 0x01 stamp 0xe70eebe3 size 32768 mvid 18e4673b-4395-40dd-93fa-162e8e8abc74
+reference: System.Security.Cryptography.X509Certificates.dll aliases '' kind 0x01 stamp 0xb64f3e06 size 32768 mvid f3a226c3-28f0-4c6a-b96e-9f95c90e386b
+reference: System.Security.Cryptography.dll aliases '' kind 0x01 stamp 0xfd8acd11 size 147456 mvid f7d24abe-3c1b-4333-ab40-5938d9bf894a
+reference: System.Security.Principal.Windows.dll aliases '' kind 0x01 stamp 0xef35bfa4 size 40960 mvid 15d07df2-f675-484d-8875-eb9e912a14e6
+reference: System.Security.Principal.dll aliases '' kind 0x01 stamp 0xfb170e90 size 32768 mvid a34cbd3d-65e4-4a74-9873-98f2d6a6c62e
+reference: System.Security.SecureString.dll aliases '' kind 0x01 stamp 0x97e48ec0 size 32768 mvid a2c58382-9f18-4229-b76d-eac87d79345b
+reference: System.Security.dll aliases '' kind 0x01 stamp 0x8ff6b385 size 32768 mvid a42e1d92-150e-427c-a09d-87ef63d640f1
+reference: System.ServiceModel.Web.dll aliases '' kind 0x01 stamp 0xf78377a6 size 32768 mvid f71f3a60-7aa2-4033-82f1-f9f2c4315ab2
+reference: System.ServiceProcess.dll aliases '' kind 0x01 stamp 0xac650d98 size 32768 mvid 251763d8-16c7-4137-86e4-2b535a463a66
+reference: System.Text.Encoding.CodePages.dll aliases '' kind 0x01 stamp 0xc860e1b2 size 32768 mvid 8b9dd542-dd03-487f-ad6e-8338b1eeb857
+reference: System.Text.Encoding.Extensions.dll aliases '' kind 0x01 stamp 0xd45bbda9 size 32768 mvid 8be54631-874c-4c6a-a6f5-6e70b4383531
+reference: System.Text.Encoding.dll aliases '' kind 0x01 stamp 0xfd6140ae size 32768 mvid 3c39d3f9-b95c-4eda-a387-dcb44b1ad518
+reference: System.Text.Encodings.Web.dll aliases '' kind 0x01 stamp 0xc4b5ed22 size 40960 mvid 3a6febb4-2334-45b9-9887-df759e590741
+reference: System.Text.Json.dll aliases '' kind 0x01 stamp 0xfa4e4e20 size 90112 mvid 1b937abc-b40b-46f1-aa98-d4af87dd1962
+reference: System.Text.RegularExpressions.dll aliases '' kind 0x01 stamp 0x829e6738 size 49152 mvid a8f055a9-0dd4-4b96-b1cc-ef1062d2f985
+reference: System.Threading.Channels.dll aliases '' kind 0x01 stamp 0xbbf49386 size 32768 mvid e6de603b-2ebf-4e5e-b726-3ac8308f6a2e
+reference: System.Threading.Overlapped.dll aliases '' kind 0x01 stamp 0xcaf26d0b size 32768 mvid 9747e3ef-4797-4750-adeb-0853e46f7dd7
+reference: System.Threading.Tasks.Dataflow.dll aliases '' kind 0x01 stamp 0xedf9f862 size 49152 mvid 1167ec3c-2548-41fa-9bf2-5a0ed9c717b6
+reference: System.Threading.Tasks.Extensions.dll aliases '' kind 0x01 stamp 0xc658be7f size 32768 mvid 270460ec-eca8-4432-b9f6-c33c76d9fa85
+reference: System.Threading.Tasks.Parallel.dll aliases '' kind 0x01 stamp 0xb1862913 size 32768 mvid dea0d004-8411-489d-83a8-36fb90f6a676
+reference: System.Threading.Tasks.dll aliases '' kind 0x01 stamp 0x9642911b size 32768 mvid 7ef35fd5-78c8-4e6a-be59-42e145516f47
+reference: System.Threading.Thread.dll aliases '' kind 0x01 stamp 0x8fe57965 size 40960 mvid 0e324348-6d94-412a-a0f2-b0c9e22b3661
+reference: System.Threading.ThreadPool.dll aliases '' kind 0x01 stamp 0xa663b0f5 size 32768 mvid 7e917496-0de0-4651-b5dc-31033e60710f
+reference: System.Threading.Timer.dll aliases '' kind 0x01 stamp 0xd9508765 size 32768 mvid 00ea4280-7440-406c-abcf-814472eff484
+reference: System.Threading.dll aliases '' kind 0x01 stamp 0xd6d9634c size 49152 mvid 28976ccb-3823-4ae9-a877-45bc8102278a
+reference: System.Transactions.Local.dll aliases '' kind 0x01 stamp 0xf9697d0b size 40960 mvid e1f37497-ab82-48d0-9cc3-ba472f20a6e7
+reference: System.Transactions.dll aliases '' kind 0x01 stamp 0xfeaa49b1 size 32768 mvid bd09e9ae-4b32-4458-ac8d-ab8c69a145e9
+reference: System.ValueTuple.dll aliases '' kind 0x01 stamp 0x92552b84 size 32768 mvid 6b077bf3-9291-46ab-b3f5-c1f209ef777f
+reference: System.Web.HttpUtility.dll aliases '' kind 0x01 stamp 0x84ca6f08 size 32768 mvid a39c12a3-c037-47e9-b86e-269787bd1447
+reference: System.Web.dll aliases '' kind 0x01 stamp 0xf75f2ad4 size 32768 mvid cba698f9-0d7d-4e9a-9e89-59930ead8dc8
+reference: System.Windows.dll aliases '' kind 0x01 stamp 0xfc4497fb size 32768 mvid 4a6eea04-174e-4d69-b6ae-b143e12e3944
+reference: System.Xml.Linq.dll aliases '' kind 0x01 stamp 0xac159455 size 32768 mvid 4411cafc-d94b-4ff9-ab29-6cc96adbf2eb
+reference: System.Xml.ReaderWriter.dll aliases '' kind 0x01 stamp 0x8dfa0193 size 131072 mvid 0fc010d7-14c7-4506-9f31-09f5f799b56b
+reference: System.Xml.Serialization.dll aliases '' kind 0x01 stamp 0xed001c01 size 32768 mvid ca56f48d-cad8-4005-aa85-e2c776982e5e
+reference: System.Xml.XDocument.dll aliases '' kind 0x01 stamp 0xf4baffd6 size 49152 mvid a224aa51-36c1-4e5f-b7a5-20ed721a92db
+reference: System.Xml.XPath.XDocument.dll aliases '' kind 0x01 stamp 0x963e0ba9 size 32768 mvid 53824297-b4cc-4208-a9eb-7721649863e7
+reference: System.Xml.XPath.dll aliases '' kind 0x01 stamp 0xb6b4442b size 32768 mvid 8fedcec2-936c-4f5e-a58a-5056e3770244
+reference: System.Xml.XmlDocument.dll aliases '' kind 0x01 stamp 0x94589941 size 32768 mvid 0f78a067-b997-452c-b085-4c46db6f8e66
+reference: System.Xml.XmlSerializer.dll aliases '' kind 0x01 stamp 0x9ca68f65 size 65536 mvid 5a505e1e-28f2-453d-bcea-c8a39f51c2de
+reference: System.Xml.dll aliases '' kind 0x01 stamp 0xa9076091 size 40960 mvid 46632b95-8e0a-4e97-8572-c45d9ba7ce05
+reference: System.dll aliases '' kind 0x01 stamp 0xe8fa4a93 size 65536 mvid 5169f09d-f6de-455d-b71a-c423c858b96a
+reference: WindowsBase.dll aliases '' kind 0x01 stamp 0xc8633f66 size 32768 mvid 99f3c77c-aba3-4d41-80c4-e4943f3e6d60
+reference: mscorlib.dll aliases '' kind 0x01 stamp 0xe7194a05 size 73728 mvid 108e7c47-990c-4538-8d53-874898621aa4
+reference: netstandard.dll aliases '' kind 0x01 stamp 0xc484e701 size 114688 mvid 5f4fc224-68f6-4b48-b41b-462c824990ac
+
+## Documents
+document: /_/src/client/Microsoft.Identity.Client/Account.cs sha256 7ff0956c458fa234017e8e8787519b30816341d7dd5ade5143cc2b977d284076
+document: /_/src/client/Microsoft.Identity.Client/AccountExtensions.cs sha256 053ddcd368b0b6e8b3e51500e7f0e544ecf2f413252110c986137b7c0d4866be
+document: /_/src/client/Microsoft.Identity.Client/AccountId.cs sha256 0fde25a64ad67dc7614061065b46d968792da7bddbe097f8b903bffdeb6f24ce
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AbstractAcquireTokenParameterBuilder.cs sha256 805d0a7b512264c006765c112520badcb49fbc5646af99652649341647af922f
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AbstractClientAppBaseAcquireTokenParameterBuilder.cs sha256 1c2c55f6a270a8de057c8f4cfa2d695bfe4267f7be613d1de71fa39ec721af23
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AbstractConfidentialClientAcquireTokenParameterBuilder.cs sha256 53f41c329e33ebc31e69c01b7bfa52f6fd8aade16705db58d0519149c07f458b
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AbstractManagedIdentityAcquireTokenParameterBuilder.cs sha256 6963926e15815dd04bb37553c643baf31f725678760c627ca54b6b0a723463ff
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AbstractPublicClientAcquireTokenParameterBuilder.cs sha256 1efefa71fedbfb4ab45d4943b34382e1fe8426a5b389afa2cc81bf030d82249b
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenByAuthorizationCodeParameterBuilder.cs sha256 3a2b2ee2d7ee6128a9da701c5289ee393cce9b44c4ea9cac0b352a8f77b9e86f
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenByIntegratedWindowsAuthParameterBuilder.cs sha256 762f247e5a0b29a029099ab630b83b2c451a878271a05e4acf1e8cc70482ac55
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenByRefreshTokenParameterBuilder.cs sha256 65b52bf94f98ca7a948c1f7953e6bc243d0dbca6007430eb7e89982098728b23
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenByUserFederatedIdentityCredentialParameterBuilder.cs sha256 6d64a17c9b43c8cfb250edc475c064645cb962904bbc82840e2db5fb2abe0f5b
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenByUsernameAndPasswordConfidentialParameterBuilder.cs sha256 87873ce549376316876603d7c4e2864d00c43c9fc1ebdfcf652c41bb662e60cc
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenByUsernamePasswordParameterBuilder.cs sha256 1656a5d6bb1cc398fb98b04505a7555ec94fae4de67d9dba17c343a706268977
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenForClientParameterBuilder.cs sha256 4cf903a064726a32d1899ab049d4688db24164b801d73b6cb3c184e5e8a558b9
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenForManagedIdentityParameterBuilder.cs sha256 d2dbaba7a4a778632d950a9096592eaa1addc90adcead1a81aa7d11122c59191
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenInteractiveParameterBuilder.cs sha256 b138c0e6cb1e8351c64d54d65bbd29c2dc0de485f591494298cbdfd5f1a12c1d
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenOnBehalfOfParameterBuilder.cs sha256 a62d0c660ccaad1401d55830782d3d5c1c16f9dc9f67c83aa40fb26a92730f96
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenSilentParameterBuilder.cs sha256 607ea6ee595dff4379872f126953ee05263aef0321a5e5c4460b385903ea7d6e
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/AcquireTokenWithDeviceCodeParameterBuilder.cs sha256 a6da818d425ea3c5b0c102007404ab7a5922ff08300d97515976abae0295c5fe
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/BaseAbstractAcquireTokenParameterBuilder.cs sha256 64daccc27189e972fa365b0eba96d7585359191b2dd286847d2a4c2f6f7343d2
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/BrokerOptions.cs sha256 d768f620ad83517bdfa0a69999c9b9eb2604248694a9b8b9b69c3fb64f7e7e8b
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/EmbeddedWebViewOptions.cs sha256 078bc081a5e0a1d47693b792128ee66822150d11bcdcbbdfb6a4d4f16a4cbadc
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/AbstractExecutor.cs sha256 3759d3853aa3d2eb9a39fd68f7db86992cb30e9a6eb895b5bc2d755d5e039069
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/ClientApplicationBaseExecutor.cs sha256 f8cf65c6eb8e2a5c229caf9df10ebf424a40a6039aa2c8afb5fb0241087c9734
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/ClientExecutorFactory.cs sha256 fc6daf6085e418b360f18301a4f4b73a006e64f65634c15eb72f331720dd0b3a
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/ConfidentialClientExecutor.cs sha256 8332c75c42fef645d5c9bf49f44cbfb2d1368baedabf536fa3ae2708c3521692
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/IClientApplicationBaseExecutor.cs sha256 76007be1cd2c8dabeb34a5709688fc338ae34d87e54d5d8e4ab266d81a1e6b74
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/IConfidentialClientApplicationExecutor.cs sha256 d089cb245c6e90afbe6a615b173a11d8aff0f76c1441b3ac9b6a89b587a2f166
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/IManagedIdentityApplicationExecutor.cs sha256 a5bce2455358612272b093ee3de704f8bdbd1f8a52326febb9365c38a76e0f55
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/IPublicClientApplicationExecutor.cs sha256 9ad0ce79f97fa09bf2682b4aca45d03547e9355fbf1321ae73e263c174c1d5f0
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/ManagedIdentityExecutor.cs sha256 17ea1f5055011907c948694af66251400a613aa5e141fe3322a68247624d5970
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Executors/PublicClientExecutor.cs sha256 637d4a3dc6058c19a5073127e468fd12708ec3d4ca499a1a89f48cddc1626298
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/GetAuthorizationRequestUrlParameterBuilder.cs sha256 6befa361bab708c2c5cb46f2bbb3226c346af2df908aceba9727725def1dc509
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AbstractAcquireTokenByUsernameParameters.cs sha256 b198f6d30fa34bc710ac92b800fd83bcecc27f57ae245f03dde4f866dc673c5f
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AbstractAcquireTokenConfidentialClientParameters.cs sha256 46cc3c0932904ecd49b34f9a1996614010e77c481acf139526e68fafbc470956
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenByAuthorizationCodeParameters.cs sha256 54628a426f58db0208d6a7f730c6b16dca5ce776874cc109364f6dafc475412a
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenByIntegratedWindowsAuthParameters.cs sha256 caf501f4d9192d47adddbfd75d9d506132566ae052b66abdcf65023b30cc9e73
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenByRefreshTokenParameters.cs sha256 e91cff0048da80f6fa560b740bcb5e2f2152c7161ee19150062d5b48a02e964c
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenByUserFederatedIdentityCredentialParameters.cs sha256 21ba74804519a48e5476786dbfe9108ae55945ef5ad4c83b6ae2cc5b18cd79eb
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenByUsernamePasswordParameters.cs sha256 3a5d40cd68d82f87cbe1eae22a69b26ba7afefb116fffab7ed6f99b30ca016fd
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenCommonParameters.cs sha256 e732cf92a950dd8cd2f7b2d1b5ab146eb8b3cd1efe3b82b4f8db4e88992f12d8
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenForClientParameters.cs sha256 91aab1759613835a3d2eed0fa08664ded0c9fb15a226b1ea67580a4b8f733306
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenForManagedIdentityParameters.cs sha256 5d602193dfc4d9b964ec09e6ae1184f86d41ab7b84218c92821dae979124ee70
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenInteractiveParameters.cs sha256 6f2d36b98da81e6be85f292a1e349dcd5a763665c82f5eade9008754d7b41160
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenOnBehalfOfParameters.cs sha256 99d79d250f7f2e2121dad6b3a977e06dbfc9d49dbeff9ed3adab20b2619d72a0
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenSilentParameters.cs sha256 aae5f3f63ddb899b95a629ddd8b7fc201bf1e6357223ca275563a3f9ed4d11cf
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/AcquireTokenWithDeviceCodeParameters.cs sha256 2411ead0f5bdd5a9f1635a9af9b592c14016da8b4cf9d3f1aef9b555dc4d90fd
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/GetAuthorizationRequestUrlParameters.cs sha256 818093f4e438aeaa03f6ca2fd7ee788769748de32b9ca1c8228d335d43d317c7
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/IAcquireTokenParameters.cs sha256 f2069f3f226ea8ba94476a7a20afee8b0ec890a1278a19babd48813c183af65b
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/MtlsPopParametersInitializer.cs sha256 64ce4c8ffda3253ae8ef6b8c81e68b8c10ff38e6c8e915eebde62ab9b336372f
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/Parameters/WebViewPreference.cs sha256 f56fee582cd201b7d8a1b4467d8a65e29f238fa8c77ba8bf5797a9705ddc98c1
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/SystemWebViewOptions.cs sha256 d429f5adcde6f0a5725bed8b01d1f241b672eab219acb68e1ddf9fa2412ed9ab
+document: /_/src/client/Microsoft.Identity.Client/ApiConfig/WindowsBrokerOptions.cs sha256 85e857977a15f5d8cae56f9d3ad70cecb50117e9f962fecdd134c1ef1ca4a19f
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/AadAuthorityAudience.cs sha256 ace981f3cae64cfe91de080158c7365ee4abc6e162d8840899b287bd7a7aefd8
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/AbstractApplicationBuilder.cs sha256 7f3b2bab952963d708d9bba9982ebb9195d3a1b7be21d7ebf4cea641f4380de0
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ApplicationConfiguration.cs sha256 8a83be9b80a52cf05a857c85d7acc5f750df0e4db320a7a16d8171cd5d0f1076
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ApplicationOptions.cs sha256 d7a4a9a19268fc6ba48de036fbfe5bbed78b20b07933e5d38956550be02b6cc4
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/AssertionRequestOptions.cs sha256 c589a1d5797ee93e4e565126af6adb05ae42e2e70fd0117d572c734256aea4ac
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/AuthorityInfo.cs sha256 9e8c800db025064b75a9b0c7b62769dc13f7c90656b0f3900f9e19543ad9d509
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/AuthorityType.cs sha256 2f6b3b89d6c0e1aee4ff3a49eaf86bbd06f68613a309198c08a4c7fb53053e0c
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/AzureCloud.cs sha256 b15fca9a8cf8efa8ef966a4621ad82993aff4120892df6d22c64e76fa17b5863
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/BaseAbstractApplicationBuilder.cs sha256 83442d741934a39ac708ca8c342964b083d4dd6001d1e0c164baf8cd75cb18d6
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/BaseApplicationOptions.cs sha256 ca1f9be04ab5473d03b3fa261d81ae5259de5b31800ff87f17b7191d543d2e7f
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/CacheOptions.cs sha256 cc5e7ab329dbe9364b7c1e89bf0f6c8d7faa5740ecb871b000d321d48c7c528f
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/CertificateOptions.cs sha256 c952a2ba412c6cdc9e64bfd7433b0e67ed99f6f35ac395f32e2a9d9f85d6e3e1
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ClientSignedAssertion.cs sha256 0f5356ef6b2afba06d060b2379a8a18702acf6012b81af05c309ed0485839307
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ConfidentialClientApplicationBuilder.cs sha256 d0f1a1761a309dd2c77442a0e0b81fa6b80dd0104d9c1919ac21de2e80f9e05c
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ConfidentialClientApplicationOptions.cs sha256 d0a1ba50e13f1a2e07fc9bd70976a72f6cd92da615802b92ad2e2fdc248b7a2f
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/IAppConfig.cs sha256 cf2660b2f86b44f27ca04092e8db205fe3b1f07c5fbc3ad88262f241887d0a30
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/IMsalHttpClientFactory.cs sha256 ea5d5fb4a0ce28ac326777894a7e89bcadce3f5dc0a83b159013cfa061ec89a9
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/IMsalMtlsHttpClientFactory.cs sha256 d1420833d33d1bfba9a0f078fc587b0acbbdb68c2787861db44101ce79bacb87
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/IMsalSFHttpClientFactory.cs sha256 d79df736cd1823403811f3868ffbede2f410229099ac249f6e5e781c32237a4a
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ITelemetryConfig.cs sha256 708a54fedc1a4f701c6482ee55ed27122d4190e26d3d321d36c8ca77c13d1f0e
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ITelemetryEventPayload.cs sha256 51589f5a43dbf112332af99e9731aa961319438219cef8684174ee65feb85eae
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ManagedIdentityApplicationBuilder.cs sha256 4330b9f4fcd2c0af5519557c1943112a217fb53b31b4b380d650b16b9b347bf4
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ManagedIdentityId.cs sha256 c6c55ab1c64cb28f9de9cf9d813e16cca1ad878d5d6a66d7125bcc8f235b1896
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/ManagedIdentityIdType.cs sha256 ce699104720d9e6698cfb609fad7a19e327c66fcbd3d9bae7e775c414c9edd64
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/MsalClientType.cs sha256 40c41d1b8a4b64df39f192033abfae58777bbef4a3e37c46e383febd03858b93
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/MtlsBindingStrength.cs sha256 0f8058a1bc86e75270717dd3947977bb1dfb5c5ea66a0f59c3aec0ce6cc211da
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/PopAuthenticationConfiguration.cs sha256 60458d40462633ec53d7695f80f29f53bc643cf9d1230f4e04e02559ebd37df5
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/PublicClientApplicationBuilder.cs sha256 b129d116ce13c509650949641a08caf97ef4af1b18db2de27c5d4f694d735cba
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/PublicClientApplicationOptions.cs sha256 031933c17f9b30228280c6c82171cca3d2e28f3f52a1e4d6ccc804c8f175583b
+document: /_/src/client/Microsoft.Identity.Client/AppConfig/TraceTelemetryConfig.cs sha256 39c8bae3338f390dbe7597ab9189c7b1a65ca3ecb04d437a5426442e3aceb4a5
+document: /_/src/client/Microsoft.Identity.Client/ApplicationBase.cs sha256 946a5cffa6c5d7462f4fd7c5cdc845485e61cb60c8ae3f8405d48fff5517f54a
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/AuthSchemeHelper.cs sha256 1751d7e8adcfc54229942b6e0c0ad29167436f3bbe96a2460fe387d24e315c9b
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/Bearer/BearerAuthenticationOperation.cs sha256 3f95e7a1e2cf14491dbc27eb171672b600acbc3f74d3ddf4c30dea9b99f76bf9
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/CredentialEvaluationContext.cs sha256 d299d625da6280832a8af5a02fe01b0c5af6967e975e6633417790ea5dde9f35
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/IAuthenticationOperation.cs sha256 c01e2491a995103cd73ca2f7e9c77001428f5824ce88504db632e4451a76247e
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/IAuthenticationOperation2.cs sha256 5d6af8185ef4d4fc869759b1def77be1d95e8ecc87b1d5cb60c99a2e90bb534d
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/IAuthenticationOperation3.cs sha256 986f9b0eba742f021d0c1a216a19d9c744f252a1e517e997767ddcf8c785668e
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/MsalCacheValidationData.cs sha256 7bf12396c28779c8342a381ed712c1372c9be66cad555c7f17e8812275a86d16
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/IPoPCryptoProvider.cs sha256 c8d322f4880fc30542ff9f1f38e62f8544ec69e2ad2521bc5c6de4a0ec08b4be
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/InMemoryCryptoProvider.cs sha256 fe166457494e573b470a7c06402c8b5e561a9a21120bf8731e82d41e15222583
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/JWKConstants.cs sha256 38bd35385679055f3e6b6cb245487d936c644a05f7607676294a0a06b5588915
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/MtlsPopAuthenticationOperation.cs sha256 a364a8e2e4b93584b521e76cd4696a75cf384e3f4408a7b5a380dfb21cfc65a6
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/PoPClaimTypes.cs sha256 fc52e6ac5b21dbbdf15c4772731feeb62079417a796dc0e9e1ee2e491e5c3666
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/PoPCryptoProviderFactory.cs sha256 f04c096d950f39d7813b2769a886a76dda69a0c09f78f47b1abd34a1bece043b
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/PopAuthenticationOperation.cs sha256 fc17ce961cf0ae02dfe9b1e54dbbbc6b65a9e7369ef7744106192359935078cb
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/PoP/PopBrokerAuthenticationOperation.cs sha256 593aefdf62f5756ae69484940c85c8bde4bf1122b2f9dff3c643135d1d9763fe
+document: /_/src/client/Microsoft.Identity.Client/AuthScheme/SSHCertificates/SSHCertAuthenticationOperation.cs sha256 9805ed64d03dac11dfbab3ef3b8c0b5c1975486c488affdaef22031f0ce0cee1
+document: /_/src/client/Microsoft.Identity.Client/AuthenticationHeaderParser.cs sha256 ba2269247691160b169bd6fb87c95e087be52b8af72199e26a50c2727b51f2cf
+document: /_/src/client/Microsoft.Identity.Client/AuthenticationInfoParameters.cs sha256 5dfe7fdc4fbde3a8369cf847b7337591e46001b072d0757462980dbac112f4ed
+document: /_/src/client/Microsoft.Identity.Client/AuthenticationResult.cs sha256 51e403f07eaa7bc96c73828488dcdeab5775fb4e949d12e7784c6312a1a6f133
+document: /_/src/client/Microsoft.Identity.Client/AuthenticationResultMetadata.cs sha256 e899ae50c0dca336c3454d34565a40d11f25d797f4a25bbe4ed7a0777e0b1a2f
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/AdalResult.cs sha256 c47e0f661e23028c91e97ded3213d8ea07ed8db3610d19cc1bd439d0d47854f3
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/AdalResultWrapper.cs sha256 b8debea37e5edd04db5120dde35ed195d894b2861ea03b568c8a932edf92fe6f
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/AdalTokenCacheKey.cs sha256 6b1469c0c46a3aeb0411457d37e927380b7e5e4eab9a7dba4ea41d248997c284
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/AdalUserForMsalEntry.cs sha256 4651e8c735fc1bdf7f3f28d007ba6746e051b8ee4d5bce0f79b9225728d3a840
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/AdalUserInfo.cs sha256 a82dd6254f6dfc92de9d0cf05a3383589fb52ad9659ea111c7378c69d2324a9d
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/AdalUsersForMsal.cs sha256 0a9bd1aab411d8051a10d35b0e84a5131bc014d3e60d2915fd504de11c5af8c8
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/CacheData.cs sha256 a7fde452b5bff6c5bf5022e084fbdc0896cd25f17bee50717ad680e40f8cd3c3
+document: /_/src/client/Microsoft.Identity.Client/Cache/Adal/CacheFallbackOperations.cs sha256 16cb374a2eecaf61ac8b489295e536c390c6ca758430499f9636db7a1197a922
+document: /_/src/client/Microsoft.Identity.Client/Cache/AdalCacheOperations.cs sha256 4416e7544485354c15a7e153f5142fda8020a968533780af937b2516a39a0d7c
+document: /_/src/client/Microsoft.Identity.Client/Cache/AuthorityType.cs sha256 45e88f18899272c50d0bd3aa3dc80b703941a2ad7805df38121b02d994c19551
+document: /_/src/client/Microsoft.Identity.Client/Cache/CacheKeyFactory.cs sha256 8cb9fe05a3d6a642fcd6a9863ba4ef165e8cb359e00cc82b081570511f1e8338
+document: /_/src/client/Microsoft.Identity.Client/Cache/CacheLevel.cs sha256 442d8c3aabe40a60b14a9adbcf568ff6c4fd3fb7334c092fcfaadffa48af8d4e
+document: /_/src/client/Microsoft.Identity.Client/Cache/CacheRefreshReason.cs sha256 552d713b02fbbb2c7902a24754a19a266d35a024ca798c70ce06500d3a3c0aa8
+document: /_/src/client/Microsoft.Identity.Client/Cache/CacheSessionManager.cs sha256 982930292b1de98d9b386e2d53dfe97b125d22c0de821da7611bf5be259502cb
+document: /_/src/client/Microsoft.Identity.Client/Cache/ICacheSessionManager.cs sha256 b0da69bbb63a2e237f5988cd6713bc136213b8ca704fe303eb9381a73654dd5d
+document: /_/src/client/Microsoft.Identity.Client/Cache/ILegacyCachePersistence.cs sha256 cac3ea509d166af2c7f604de4b70261f55ebf58d4c8be44b432045bdad7805fe
+document: /_/src/client/Microsoft.Identity.Client/Cache/ITokenCacheAccessor.cs sha256 cafe75c7647d56dd596a28b4c93ac01d2ac35a5dbc1702ed5003e8df312747ea
+document: /_/src/client/Microsoft.Identity.Client/Cache/ITokenCacheSerializable.cs sha256 90e43fbed2c8ae2ff13e1f8f06cbebda080253d33d77cfca0535cb28d66407ef
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/CacheSerializationContract.cs sha256 166a58786ebe185fcb9ed8d3ccb860a103ff831100c850b75ad75594bad26aa5
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/IiOSKey.cs sha256 3203347f73ca59692fe409ad7e955e6b392cac1b8073a97c099edbb696129dc0
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/IosKey.cs sha256 c95c32461e3d23ea5fbe9e45a6c6d274aab101e8a85b05dfc31872693cb41338
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalAccessTokenCacheItem.cs sha256 ca2a2401f417c1dfe9fe2b9dc4e2a26f67a7961109ce1a00afbf2ec577053ffc
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalAccountCacheItem.cs sha256 3db5b172465102c95fd6003f97d8f920c18c050ec85e53466ba685c2f03a9f75
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalAppMetadataCacheItem.cs sha256 18d800dc0c6c3944749e49844268c2e4479af9a5f43664862f91a448ca1b51a8
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalCacheItemBase.cs sha256 c574b6eb1c742df099225e05b61bb51509991f3558a05dc330df9a1f201b843c
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalCacheKeys.cs sha256 d34de9a5d1ba9465475b462a2e3e508547034bd80386d0b017194fe16e99f357
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalCredentialCacheItemBase.cs sha256 70cdc88f3a7da201350fa27faede65d4276be0467290c05a5e9ce6607656415f
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalIdTokenCacheItem.cs sha256 1c8a2a41071d58576a5f2648dca6b278b128f2b8e8ee5b04e35cc8076d918a20
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalItemWithAdditionalFields.cs sha256 ae364f54829607ff879db4ce416440be79cb5fb91d84eedfd0310cb070db763f
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/MsalRefreshTokenCacheItem.cs sha256 1467d996c57b647778491215f0b8fcd75015b4bd1c7833bfa8606fcb64d9303b
+document: /_/src/client/Microsoft.Identity.Client/Cache/Items/iOSCredentialAttrType.cs sha256 c43a2222869662efa28ae5faa907dfc250d83f4faa0080dd3054c8ee95e7952c
+document: /_/src/client/Microsoft.Identity.Client/Cache/StorageJsonKeys.cs sha256 a9829baebf7172ee48c1c8817428bb9b444889785b230c2119e16af10352533c
+document: /_/src/client/Microsoft.Identity.Client/Cache/StorageJsonValues.cs sha256 17f6141b0f9c5d94aa7d43c4c21f1d6fecf1ea6e455d30d70c54ea00f32a784e
+document: /_/src/client/Microsoft.Identity.Client/Cache/TokenCacheDictionarySerializer.cs sha256 1a06bc3444e18510069b5740f1849f8a78767ee24da5eab1d409966cd06485cd
+document: /_/src/client/Microsoft.Identity.Client/Cache/TokenCacheJsonSerializer.cs sha256 8e8d587c20b74a7952b5a8ec544f8d7b0f6bf77b9fe07a06fb369a8877a7df4d
+document: /_/src/client/Microsoft.Identity.Client/ClientApplicationBase.cs sha256 5e2485d6f11051e183d40a9e3ec7400bd42842378dcae525a7b43aec96e81eed
+document: /_/src/client/Microsoft.Identity.Client/ConfidentialClientApplication.cs sha256 01bd3f952bb160686294f8b9de98b04307708d3d08b1f359f2c768dde4a9866b
+document: /_/src/client/Microsoft.Identity.Client/DeviceCodeResult.cs sha256 4420b6a97d099804b2008a70320e646e372d08dbbc558d6a3829111b287172b4
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AbstractConfidentialClientAcquireTokenParameterBuilderExtension.cs sha256 12a2b7fdae5f6c0f2e7ac67aec6d8abfa3a6c4e8754483297287b6feec6ceee3
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AcquireTokenForClientBuilderExtensions.cs sha256 7cede435600a6580ed652de291aef7da2e3a7855c422a7e41afc3327c8bb222f
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AcquireTokenInteractiveParameterBuilderExtensions.cs sha256 56bb9921a4cd2a927262796d9df66a98e1ae6383d28be5efcd051a4af013fdff
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AcquireTokenOnBehalfOfParameterBuilderExtensions.cs sha256 db7fdc126841916415d24596d5b809b5d10006cfe67db78bba9acdf01129035a
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AcquireTokenParameterBuilderExtensions.cs sha256 1b1867aa7f49d8f06755b94618be021c3028fe8587d1dc08f811a17d394c4810
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AppTokenProviderParameters.cs sha256 c3d7fa17040ecc56ef2dc5e2c54341b35197867921347a1d3c7c7edcc057be22
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AppTokenProviderResult.cs sha256 9fa7e7e80f029f0fc7572d6ab8660fa44ed536bfb41ba021a24b11466c78ef94
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/AuthenticationResultExtensions.cs sha256 afb944a2bf353fe46f934e05e6c56f0872d03dfa1704227be26729489e4af81f
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/ConfidentialClientApplicationBuilderExtensions.cs sha256 4f31180403aaf2a1e99800b96fd63c24a628c086ede1c1ef6339349e4ee8dc27
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/ConfidentialClientApplicationExtensions.cs sha256 32ce3e4c442b1e12dfa14f9e80203be353b953fc05e9ab3a45b10e1e3198b5b4
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/ExecutionResult.cs sha256 ab438de0d992d438eb64498cb1daeaff92019d22396468f21804eaf440a22d53
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/ExternalBoundTokenScheme.cs sha256 c97af730532010b0377b8b2fab0918a84ecfe5d2eda36d84077e31ae658b4ee2
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/ICustomWebUI.cs sha256 741f5c09f5f4eb92e5d209826d1e64e7b19cde4b9eee3f8c91c8ecf160ce2a01
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/MsalAuthenticationExtension.cs sha256 29f37dd5e509ffac3707c648e66ab36bc281061eb808151a95c3e8c3ac327241
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/OnBeforeTokenRequestData.cs sha256 4a61a3da8714f542b6f93efeda2c2324c15c736101b5c80c0c4a94d84803644c
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/PublicClientApplicationExtensions.cs sha256 0ce7ae54a3177045d3675dcec995eb7d3d22a81c793e65de1a1677569e37e506
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/RP/AcquireTokenForClientParameterBuilderForResourceProviders.cs sha256 c21841d592e6b8cb1a8fffb7b35c8ea47d836c31cc6c8e8a9a1455fca2589f74
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/RP/ConfidentialClientApplicationBuilderForResourceProviders.cs sha256 e99730f6e09de71fbd65304dacee3b93c71f0ef8592b4eb4ac0e2596e9330451
+document: /_/src/client/Microsoft.Identity.Client/Extensibility/SSHExtensions.cs sha256 f34ec1ae252a4135b59648f619a7d4da46fb0d89fe8eb2f70e424d739ec4b572
+document: /_/src/client/Microsoft.Identity.Client/Http/HttpClientConfig.cs sha256 09d66332a558dd3cc59be8dc3ea18ddcc33c96da4bf7e001c13def20d7e3e578
+document: /_/src/client/Microsoft.Identity.Client/Http/HttpManager.cs sha256 8fa8e1838f189b5a43f356f2d871aeb4d27e7f3be68a9c258375c3e2544f70c5
+document: /_/src/client/Microsoft.Identity.Client/Http/HttpManagerFactory.cs sha256 f7ff78507606a1512457fd2a5341841b4a1fb57283b4c3641d74f21100e9c2c9
+document: /_/src/client/Microsoft.Identity.Client/Http/HttpResponse.cs sha256 6e7614895442623b0639c60a74540b1591075d4631f606b0acbd5d9700ce9bc9
+document: /_/src/client/Microsoft.Identity.Client/Http/IHttpManager.cs sha256 27c55e27cf7754136175b1219d0ea8e4dae3adb5e650d3d690d3f44bb3159dcf
+document: /_/src/client/Microsoft.Identity.Client/Http/RedirectUriHelper.cs sha256 6443ac2d365a215130748585ed524a8a693277bdf2569e0906098ee49e841f51
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/DefaultRetryPolicy.cs sha256 4cd59bc5f5c6486e38726739a9218556968999ee109aa0d5afcb3cf18f408e22
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/ExponentialRetryStrategy.cs sha256 bf94ce16ae5e36361e7f6576b89951ddc655c01a0c4f0d41dcf51df4b2edfb37
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/HttpRetryConditions.cs sha256 c3f5a58618b746ff29fdd2a5e472422f30d4b2124fe3d2cb8dd0ef0c9dd5e26d
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/IRetryPolicy.cs sha256 038317e65c108a89fb787b106435bf4caf3f7698817288d2e6bff6cf32e118b0
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/IRetryPolicyFactory.cs sha256 e70096486a4b5b1878fedbda088946d777a13ca8dee6119f9469f13b0712c650
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/ImdsProbeRetryPolicy.cs sha256 aec826cf57395a5d2b31b77f8cc7454d2cb1d5054b0ca75b6492744da2b4f88b
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/ImdsRetryPolicy.cs sha256 845e0c1c60f1936fb089f8a17e7585540935886f2721d43acaa0049d949650cc
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/LinearRetryStrategy.cs sha256 7d5ec020321763136bba4c521a735506cb3075bdaf0de456439560395a363034
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/RegionDiscoveryRetryPolicy.cs sha256 72e63d53ec168b2f29666fc98f6f54352175bc08f399cf417614f1939703eb43
+document: /_/src/client/Microsoft.Identity.Client/Http/Retry/RetryPolicyFactory.cs sha256 0f0af79a7d3ed638d8b6f77cc97327c7595eb95d420535b97b602560448ad786
+document: /_/src/client/Microsoft.Identity.Client/IAccount.cs sha256 e9b14eaf557b9c4fef87db889b6d8fa8b53582557a6f76ea9a5068711fc3a2df
+document: /_/src/client/Microsoft.Identity.Client/IApplicationBase.cs sha256 d7fba51c4744d0f3a6e05a7239785e7019e99959bef39fb05ffdd515c55e9f2f
+document: /_/src/client/Microsoft.Identity.Client/IByRefreshToken.cs sha256 3dae197ea0f23bebdab4864af09830f69710bccef3d8b84e10b48c909708e2b9
+document: /_/src/client/Microsoft.Identity.Client/IByUserFederatedIdentityCredential.cs sha256 be438c01816418f322c44d1db8ff2f7c5d9622af472f13cf5998d19f89814f8d
+document: /_/src/client/Microsoft.Identity.Client/IByUsernameAndPassword.cs sha256 4fa7e9c38998b1ecc85ac164a3735d5169d46cb1f7c65cc2a7c7a3c4f3d60cfb
+document: /_/src/client/Microsoft.Identity.Client/IClientApplicationBase.cs sha256 e9d1fdd00921295fbf212476c23f1ef3c23c4395ea7d09c23d86d656a9d1a881
+document: /_/src/client/Microsoft.Identity.Client/IConfidentialClientApplication.cs sha256 4092327f15701ac93c784270aa9b39eb8cb63608ec9a6feb4bf7f41953bc6097
+document: /_/src/client/Microsoft.Identity.Client/ILongRunningWebApi.cs sha256 448eb25dee5f2452d7240d181069853a8d9af60b74b3faec75147b464c56a0b3
+document: /_/src/client/Microsoft.Identity.Client/IManagedIdentityApplication.cs sha256 66ad024f58b5a781602f41e04909be6b9e7088673954f367bf6f4dfbbc43ff25
+document: /_/src/client/Microsoft.Identity.Client/IPublicClientApplication.cs sha256 2fda150404070ed46a9186aed361105184079cd6921dadd950321546669957fc
+document: /_/src/client/Microsoft.Identity.Client/ITokenCache.cs sha256 a8134896aa4806b2f2ec3082cfdb82091939d70d73abac7778b05e0e093cbb13
+document: /_/src/client/Microsoft.Identity.Client/ITokenCacheInternal.cs sha256 2cfa8fa50a1122d2b494be6ea5e4932176b0d36ce65d0af2f1f85f98232cd75c
+document: /_/src/client/Microsoft.Identity.Client/ITokenCacheSerializer.cs sha256 9f2210222bc048787fdf2c643a76b5e7e5cebb07bd87218b1f79ab4ade17f456
+document: /_/src/client/Microsoft.Identity.Client/Instance/AadAuthority.cs sha256 0d62e98575b419f263e55f90da1f6eb7af61c6d95d36430fc7b3dd95c989be6c
+document: /_/src/client/Microsoft.Identity.Client/Instance/AdfsAuthority.cs sha256 515d9aa1dab4db3d03e58637816798a7e10bf4155fa0ec85a1ce3701f91c2a2f
+document: /_/src/client/Microsoft.Identity.Client/Instance/Authority.cs sha256 ddd5c69e6f95eeb3aa79d29d1a6d2156e80904e4282a739c67248a5a9d9adcb2
+document: /_/src/client/Microsoft.Identity.Client/Instance/AuthorityManager.cs sha256 8535d2f956a9357395c2b9e3f2647aebfee8505ea361a6bc36d369271633ddbc
+document: /_/src/client/Microsoft.Identity.Client/Instance/B2CAuthority.cs sha256 27ef351a38c1bf06929c7934fb95e89b923a8adc4922417b0c56f3c994693a7b
+document: /_/src/client/Microsoft.Identity.Client/Instance/CiamAuthority.cs sha256 a2af43030f3d77a369443d8c93b3686f24b699e8a857b9707a913accded1e170
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/IInstanceDiscoveryManager.cs sha256 44e8ca2c166665f277cb6b6d765bd58fe285fa62d4dca379ec131c25f77afaca
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/IKnownMetadataProvider.cs sha256 b24d5391d54c0300c196c7a1a3f8307ccdbe4724dfa5173a3d83086d848f489d
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/INetworkCacheMetadataProvider.cs sha256 35a25f557677a800f1779bc31631383a9bdb34c7abb76fcf40c7ee9d6ce2c2aa
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/INetworkMetadataProvider.cs sha256 88762e99e5ddf090b3d7c139fc507cd971d37daf9aafcf3062bc8ccb1cabb194
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/IRegionDiscoveryProvider.cs sha256 3f75a358f57a14656dc7b125ab28e16229e1270968bf2f146977a2480b51a458
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/IUserMetadataProvider.cs sha256 c49c5adb80f1e7acde3699da38a6aaa6f3801d382c941f88f8aa932ea0e2fa30
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/InstanceDiscoveryManager.cs sha256 b0bdd95504f7b47f23f17bbb5ed64b5d90f26146e94d2e27a0f55c54ea0fa7de
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/InstanceDiscoveryMetadataEntry.cs sha256 a39f4de1d75af43bb9fea4228e9b4b17fc9930e0326b52e45eaa0d4fe686a52a
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/InstanceDiscoveryResponse.cs sha256 57260605bd383ce3677c38ad3c135c68f521284b6cb8a1d042f1877ce5a4bb6c
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/KnownMetadataProvider.cs sha256 cff445893de9015efdeb593b71ab4d2941e360b6b776c08e6af59d541ea9f260
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/NetworkCacheMetadataProvider.cs sha256 fa9c05d752521f9224a3c113b8c9f74d8b7551d0734d334125a241e82f622df3
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/NetworkMetadataProvider.cs sha256 fc4a40e78ab8dfccb8169e6d215d2a74eed99e2c4eb7381e59b0bea83a596594
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/RegionAndMtlsDiscoveryProvider.cs sha256 e9859d403f477a2db9499440d014cd6a9aadce60cae1e03e59ea75ac40e9f1b5
+document: /_/src/client/Microsoft.Identity.Client/Instance/Discovery/UserMetadataProvider.cs sha256 5ccea48c9de5ec6d79664bde0d4bd1d347a7a682cff89bc21ef873e264c28a2d
+document: /_/src/client/Microsoft.Identity.Client/Instance/DstsAuthority.cs sha256 9829aea02194bf457ef2617bb10416240ce3352bf3076e84136136c0f5dceeca
+document: /_/src/client/Microsoft.Identity.Client/Instance/GenericAuthority.cs sha256 37b26282eff8195463f3de6a899aab93870a62b04bb611283398790edd5c7636
+document: /_/src/client/Microsoft.Identity.Client/Instance/Oidc/OidcMetadata.cs sha256 adf57515226078e63e383cd44b3cb24b358a353af3456811100e78b25451214d
+document: /_/src/client/Microsoft.Identity.Client/Instance/Oidc/OidcRetrieverWithCache.cs sha256 926881a2f649640b7459efe7a13bb73b7e9d5fdf8e65b0ee85e8bae41b70e841
+document: /_/src/client/Microsoft.Identity.Client/Instance/Region/IRegionManager.cs sha256 03d15ee2fb995706418a125089ba82379f4b38063ddb6a3c9be5202b8d2d2532
+document: /_/src/client/Microsoft.Identity.Client/Instance/Region/LocalImdsErrorResponse.cs sha256 28b4039683d90c2876f24ce587cd4e56bab162c4e6cdd00e528d568b6d2d2b56
+document: /_/src/client/Microsoft.Identity.Client/Instance/Region/RegionAutodetectionSource.cs sha256 c53fcc9ee0a212dd543443fd771ec114089040ab3b53de3fd320a7e33ce57b19
+document: /_/src/client/Microsoft.Identity.Client/Instance/Region/RegionManager.cs sha256 180bc1b5febef1e13c1fca2b55b291c56de75269aef8562f5aa2c1afb87de817
+document: /_/src/client/Microsoft.Identity.Client/Instance/Region/RegionOutcome.cs sha256 65cb9eb0b8c90eca699d871b7e4a1d439d1e2dded2d157bce072b406a42c0d0e
+document: /_/src/client/Microsoft.Identity.Client/Instance/Validation/AadAuthorityValidator.cs sha256 6164080cc3f57c0eaaf1b7a180c49e7124a4a0c931d0f94943071cae378f30be
+document: /_/src/client/Microsoft.Identity.Client/Instance/Validation/AdfsAuthorityValidator.cs sha256 92a5cc5d003d29245939f316254ba2b6ce815dec7df75f8aa6821a74b172945e
+document: /_/src/client/Microsoft.Identity.Client/Instance/Validation/AdfsWebFingerResponse.cs sha256 bd28363651d46096cd255701157468aeccc3194a6822a44f175b489c94e0fe31
+document: /_/src/client/Microsoft.Identity.Client/Instance/Validation/IAuthorityValidator.cs sha256 8fce3b9b7ee5b1142cf564f8300ea2231e92350286346564cc3536346e678e20
+document: /_/src/client/Microsoft.Identity.Client/Instance/Validation/NullAuthorityValidator.cs sha256 a70a33da02578a1f9a93d788667a642929f7690bdcd909bd4702a36abcae720f
+document: /_/src/client/Microsoft.Identity.Client/Internal/Broker/BrokerInteractiveRequestComponent.cs sha256 51bc2f3ea37f6a18070211997b2da194dc08735a892129c8e455592c7019459e
+document: /_/src/client/Microsoft.Identity.Client/Internal/Broker/BrokerParameter.cs sha256 af0d255d93fce520159e956af5523d0650ef620a46f6522650a420d25f5a6a2c
+document: /_/src/client/Microsoft.Identity.Client/Internal/Broker/BrokerResponseConst.cs sha256 211fe3ea8b49b4ddc0b47d91596a697ee6d4718ae48f5cc24f76982ef48d2a33
+document: /_/src/client/Microsoft.Identity.Client/Internal/Broker/IBroker.cs sha256 686986a8633d59a35e4b7f9ffccd0cff896ec758036d078aae14ae8f253f2ef1
+document: /_/src/client/Microsoft.Identity.Client/Internal/Broker/NullBroker.cs sha256 f2c69cce99283ba6bf3ade7dfc1dd14e08e6b4c5c64c65a7c25e65b19f121246
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClaimsHelper.cs sha256 3076b93663ddebc358e66e279da51d2b2acc0a72bcc0810bc15f71f8831b360b
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/CertificateAndClaimsClientCredential.cs sha256 7a13b767869a47466cae126c6f9b1b15c830bcfb8be453f06c4ede58f89f068b
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/CertificateClientCredential.cs sha256 685f548180a0b150ecd9330cf315ddc2597c3b05904d353a9e6fc171a24192b8
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/ClientAssertionDelegateCredential.cs sha256 1b05b19e16918a1d3b6fef130a5c4e4aa2e98ac8874c01f9eeea9c73d777bd39
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/ClientAssertionStringDelegateCredential.cs sha256 2644b72a59a4d48b540cb7a57d5a63173561737b437e2879fa7c3a19d90dad2a
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/ClientCredentialGuards.cs sha256 76f279a4613aa42451d8afcae11b1cfea6b6c4f624a503629292b13b44623625
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/ClientSecretCredential.cs sha256 c26b4603e75bb3f058a6dc673e3901ecd298b322069d7bd026f55f7a97318b6c
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/CredentialContext.cs sha256 46283a541024012281ca8647d96a368564477a382c18ff8c009c575ca4263985
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/CredentialMaterial.cs sha256 89929c390c2c13ff94eb657157ceb3e50a4860f6d949468adb049452011841f9
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/CredentialMaterialResolver.cs sha256 e58ee45a8616d0e3dc0a725d34fa05ac1af762ea1a751a4898145c6016377353
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/CredentialTransportProtocol.cs sha256 fb517acf24a3aa05e658a282972686efc75034d3e807e91f39a5bbd55e5086cd
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/DynamicCertificateClientCredential.cs sha256 9e4a13799705928a4b58362029c10efa04f567cb09a4b471de2abf1052000f12
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/IClientCredential.cs sha256 6b1d8ba53190276676e911341bc7309637ddb35b9f91b1de62d7314817ff6e24
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/IClientSignedAssertionProvider.cs sha256 ebf0a83ca67a1e624b0ff943766a567b9304a49d237f414a6197c6a1ec83e27f
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientCredential/SignedAssertionClientCredential.cs sha256 f1925f4c7963fd9de9db17eeef809dedca4ada9b99b3da9a797d76619b191da8
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientInfo.cs sha256 b1d30de3b61927315d15c89cafa14e5a8f0a166942bca720010ae08c42db3e4f
+document: /_/src/client/Microsoft.Identity.Client/Internal/ClientInfoClaim.cs sha256 bf6358bd7237892094078f51d0fab1746139ad9f007d27bb4040264c5963ac11
+document: /_/src/client/Microsoft.Identity.Client/Internal/Constants.cs sha256 71d16271d9a8ee3195b3115719f4604e5e4e662a87de70efe828d055fae49f21
+document: /_/src/client/Microsoft.Identity.Client/Internal/DeviceCodeResponse.cs sha256 1caa8b3798cc175323c6a686d561c880a15e31710baf42286eedc773812aec0e
+document: /_/src/client/Microsoft.Identity.Client/Internal/IServiceBundle.cs sha256 a3c0cc3b930e744427f9b7e5c5d0ca6ef5e16cfd90a2b05ad62254d50dd7e599
+document: /_/src/client/Microsoft.Identity.Client/Internal/IdToken.cs sha256 1b2e77663c0598256070f6c2f654f01e487b2a6cd2f7b6ed1f0831e88ad5e35a
+document: /_/src/client/Microsoft.Identity.Client/Internal/JsonWebToken.cs sha256 aa1d108c210900faac1a0f063b6d87a5366d7e4ed3f2ad8a349039b1c4fe0019
+document: /_/src/client/Microsoft.Identity.Client/Internal/JsonWebTokenConstants.cs sha256 6090045742c3db09158e3ef77abd04efbbe0fd4dd34f50c73d05654308ec530e
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/CallbackIdentityLogger.cs sha256 e8778f3ed6a48dbf392a8fad70f094d000e0575c3e2c1aabc340753ee20ff0dd
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/CallbackIdentityLoggerAdapter.cs sha256 f2db0d70ec1035ddc7aa7f6a3ea5ac82e04150a358984ae2deefac1fa1752707
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/DurationLogHelper.cs sha256 b712c712c38cc723c42d93cac92656b336326c4c3754de185df98e116d722a09
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/ILoggerAdapter.cs sha256 36ffa3e514197be62fe974d62dd3ffaf116b6b5a889592b513e50614bfa74218
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/IdentityLogger.cs sha256 4cface1ac1db7f34b354d086ded23b8ee9c3bac6bcbf71d5975427db1731fb0c
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/IdentityLoggerAdapter.cs sha256 63cf7856d0f945ceb64f074cc6e066fcdbbf6833aed4d55f60afe8f51943e8e5
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/LoggerHelper.cs sha256 ac8a0b8f03f5e125e78d26eaac2885c25c241307d4c9996d556d552a690894c6
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/MsalLoggerExtensions.cs sha256 56874683139de30d125e87760abc17061c1dabfadbd1187b0382144fa3e773af
+document: /_/src/client/Microsoft.Identity.Client/Internal/Logger/NullLogger.cs sha256 dfeee7c0bc96e86d9b85ffd2bc64d4a77f280822114adcad170f2084e35bf49f
+document: /_/src/client/Microsoft.Identity.Client/Internal/MsalIdHelper.cs sha256 a7b74453aaebf92a8dd9ea380ff30ca946301911d98b96f14e076eee58509639
+document: /_/src/client/Microsoft.Identity.Client/Internal/RequestContext.cs sha256 3f235938756181de97a35a44d9de6898a57ef18656cdf7b2029f0e271f6c05c0
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/AuthenticationRequestParameters.cs sha256 03f9a2ff7e8fe628641c07ff1333da30e10cbc3fc7d45fa8cea35a3c3ab35c4d
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/ByRefreshTokenRequest.cs sha256 adf99e9ed8b89bb886b16c6c27be2355f878f7047cdd6956f12b04f9f0372ea2
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/ClientCredentialRequest.cs sha256 5c045a39d005e907ab0dcabd31404ca28a854a08435c822031668e403792feb4
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/ConfidentialAuthCodeRequest.cs sha256 7258deb75bb91d5123631b8f068f8c14dbfe00533791d644703a51df731ed1fb
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/DeviceCodeRequest.cs sha256 514c7239f705f096bb60827cc9b0fa03db62f68e32f2007e329df3c067d2849e
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/IntegratedWindowsAuthRequest.cs sha256 e36ffb9d1bce976ea6f76f798721384bec3c9953e51b7260eeada27d40748623
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Interactive/AuthCodeExchangeComponent.cs sha256 74aec1b07323239e73685a91fbe2237b8776b404da8c5e17954c4ef600a63e4a
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Interactive/AuthCodeRequestComponent.cs sha256 5fc07f0b17f5d2037678f0c94bdbde5ae44df312cbe65b84ddc86528f4df1947
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Interactive/IAuthCodeRequestComponent.cs sha256 1aa5928d121f5720b1d2f1856c03040e818f66634a44c1e8a8a079eb5e328c79
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Interactive/ITokenRequestComponent.cs sha256 d83e0478ac67ac7e5c647459427bba63b650c770d0e7e291ee93931874e95b6b
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Interactive/InteractiveRequest.cs sha256 4daee6774e1e966c518e0956d9c15e26421847f98774dc80956cc381e7c83002
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/ManagedIdentityAuthRequest.cs sha256 017281277c040402df0785c01256218f1501a56056f8fc181292a056f4ca3ef6
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/OnBehalfOfRequest.cs sha256 fa2e09b153a6c487c412bd4465d487b8080a0bd03e856b5d9914bb957afea0aa
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/RequestBase.cs sha256 81cdb45316317dbac641042dba0fd2575324e30ed89e53cc708e4c2775dd8bf8
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Silent/BrokerSilentStrategy.cs sha256 c6b91ad1a870b3a1ef239f76abe49cf6e46e04dac0b231541aeca6f9a04c7c93
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Silent/CacheSilentStrategy.cs sha256 d3f6f804f05597b028155c8fe3f0f497075af6ffe611c0bc9a5be814cfe5abcd
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Silent/ISilentAuthRequestStrategy.cs sha256 c69047cadff5fe7ce1a241043f86386fd2209a03d60e23321b4331e44676f3c5
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/Silent/SilentRequest.cs sha256 3affbeb684095dc2fef65d1006233f0e44e0e7deec71c338415613ddb4629147
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/SilentRequestHelper.cs sha256 38e143067bedfccc4ea1e9ef1bde6eb502ec6ae52dd15319a5edc1b139778934
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/UserFederatedIdentityCredentialRequest.cs sha256 9498f478982078b821f4cea39992599ed894819165e4dd28aaeb51d163e23b03
+document: /_/src/client/Microsoft.Identity.Client/Internal/Requests/UsernamePasswordRequest.cs sha256 6c572dcc0d8f41b4edb91bfcdacf6cd644786a84ea754834a5290b16917d5c99
+document: /_/src/client/Microsoft.Identity.Client/Internal/ServiceBundle.cs sha256 4fca38a8e6ef426cfbc864fb01f6d7bff348e0c28202502992f921add40e6f82
+document: /_/src/client/Microsoft.Identity.Client/Internal/TelemetryTokenTypeConstants.cs sha256 958e438c9ffa1d8f90656395ac585e5cdffa264fda5fbb6112424a5e4f470135
+document: /_/src/client/Microsoft.Identity.Client/Internal/XmlNamespace.cs sha256 989fc2968b0a775c3c7e7c36fbe9ba2c4c93e72694c63bd1ed5c39c6716f6002
+document: /_/src/client/Microsoft.Identity.Client/IntuneAppProtectionPolicyRequiredException.cs sha256 3e601fec328f8a5e7d966aa90fecff9a85d73b05e312e23449863414f029d758
+document: /_/src/client/Microsoft.Identity.Client/IsExternalInit.cs sha256 039689d97a5363a1a9829d34f676e51398be52d2f3a4663e6896931f738afbfa
+document: /_/src/client/Microsoft.Identity.Client/Kerberos/KerberosKeyTypes.cs sha256 f29f4db28ad56e09fed1d4370a25c313947b576e1d703185e5def9c4a79dd227
+document: /_/src/client/Microsoft.Identity.Client/Kerberos/KerberosSupplementalTicket.cs sha256 5c65939b3aa6a9227f7ae140273f6c86db307df238fa53d7d85c7a09f4222c64
+document: /_/src/client/Microsoft.Identity.Client/Kerberos/KerberosSupplementalTicketManager.cs sha256 437f6cf584df8dcbaf20492a0402b5f6c0f9555a24e45b81968b24a8c4deb850
+document: /_/src/client/Microsoft.Identity.Client/Kerberos/KerberosTicketContainer.cs sha256 33efffa0a3b1cd17831d82ba916f6006147640a96a9eb9775f581cdf192bd0d6
+document: /_/src/client/Microsoft.Identity.Client/LogCallback.cs sha256 01547cf6341eabf715dd73a54ad1a5208f0ce0e7a01e1288a5b18fceba667ba0
+document: /_/src/client/Microsoft.Identity.Client/LogLevel.cs sha256 425208569f6801cdbef2f14c58dea744dbfe23c1aba74a1634b219821b42c3bb
+document: /_/src/client/Microsoft.Identity.Client/LogMessages.cs sha256 4e58bed9632ced6a6319fa9dce944e76fb1c8968505cc4140de8d76bc3457990
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/AbstractManagedIdentity.cs sha256 91c5b40037768dd6b51929c444751ea5eb9dc80777b8bf7ada85ddf0dc8037ef
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/AppServiceManagedIdentitySource.cs sha256 4b29d25d04bc20338b71fd28ad4ad811bfc2d81b5a07e3ee75ac5912c255b02f
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/AttestationTokenInput.cs sha256 8172056333c84a1034ddff5e8a31f06646ee2e258e9b4b114576606440aeeff5
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/AttestationTokenResponse.cs sha256 5f570e05ee4b61ec7ee8f12937064c4c4d5cfc527acaad96f7ff2ad25fd77dbe
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/AzureArcManagedIdentitySource.cs sha256 00250ab55da10c73a5ed7aff49fd9f221a1b3adc1a66ed64484b11ef1717bdf5
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/CloudShellManagedIdentitySource.cs sha256 21c8cb0bf5f8fa1e2c0ee7b2452a5f4ec23e32c8ba714b9d5bef872d2fefc365
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ComputeMetadataResponse.cs sha256 26cff450bafa7e13b2d25612e8d43828b68a45df8e9db582d18114fdc1944166
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/EnvironmentVariables.cs sha256 c50a284f2259d68ebe8bd8356400881bac3b8211705977464d90afaebe70f709
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/IManagedIdentityKeyProvider.cs sha256 6f13d48f3f706f580f7f6946ebd22208ee6370a8c17ca351f6f2a78e80137a14
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ImdsComputeMetadataManager.cs sha256 9fee5e2d35eb44d50872a2a0637c113eb1c5bdb654fb2fd319344e521ce4bce9
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ImdsManagedIdentitySource.cs sha256 828503eed698c4ae51b9755aba9806356619eee927386bad67307ce1d86cd1f3
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/KeyProviders/InMemoryManagedIdentityKeyProvider.cs sha256 2495597ae308fa1d5457cf7b120a5f414110b5a0017467a1f302b7f2c294c953
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/KeyProviders/WindowsCngKeyOperations.cs sha256 79622ef131f4250859fc694a552a37cf35a6b117b37850d5de043d9f22c608c2
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/KeyProviders/WindowsManagedIdentityKeyProvider.cs sha256 b8939cb563d5c2d8c7bad749e3ab8518910e63935afdd0113c633908dd57c016
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/MachineLearningManagedIdentitySource.cs sha256 99a93f06a4845e805fa0e6eeb4df9a69e80359126057558693b4e0b8f6d967a5
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityCapabilities.cs sha256 3fc77bf34439c6efc33ad540850f80547b371f111fd344d85be3efd5bb61e1e4
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityClient.cs sha256 08e2845e88dc26ca7f591426ebdbabb7dac400c69342a6c824b8ddb44f9f2f00
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityDiscoveryResult.cs sha256 48832c17ca04b7cdd47525f81b3dcdc5712995c30d5bb7af2956b6f71467284f
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityErrorResponse.cs sha256 7d67908677afeecf1f7a9a40f305a5384868bb30ef5a30764d012d7ee05230be
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityKeyInfo.cs sha256 b572f323532deb26a5f25d3531dba6fd0e016574bf35400531f0541792e29a1a
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityKeyProviderFactory.cs sha256 4deb3c4e7bc95ff9016482587d88c4e022adf4d478c59c236bab7a836681a63b
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityKeyType.cs sha256 77ad751dcf8125d01a53f18193a95d9ea1db2c0fc5b40d0150cb8ba8de0f2e78
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityPopExtensions.cs sha256 21607c486272944f1fa7952bdfe3756ad2da3081b062f67d828da942e70897e8
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityRequest.cs sha256 da283303b3d70dfb2698a9d297f8cd8b8de5e47ce06c8e6d8dec3d5de0872cd2
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentityResponse.cs sha256 8f520ffde8dff0832bddb1aeabd72ea6c00a921bd139d7e4c6189c9f4557ce1d
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentitySource.cs sha256 456b6d8de236a87a2335c3ee8fd73bc566104f3e3bf23fb3ec8badb5d14cf7e9
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ManagedIdentitySourceExtensions.cs sha256 ffaec32338c1d7677e10f3ec0116ac6897235c42079e04faaae8677e22e8f239
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/ServiceFabricManagedIdentitySource.cs sha256 64e7ab8c92dd30be1f9d35dcd47b2ab57d851b3aba2917242e6ef979976e65a5
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/CertificateCacheEntry.cs sha256 e3081e83eda4c309503a1c1f8e24aa8f97d02fa284237540d576fe15e52a9b24
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/CertificateCacheValue.cs sha256 47cb7ffb8f565be0f5e6e901619542cb7fae3d9bc15ccad1d78d7bec50adcce0
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/CertificateRequest.cs sha256 6e28770c501bebb0b5f18ce74c8a8c7293800e345c5305e2fe54645f26dc1680
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/CertificateRequestBody.cs sha256 6c8603b09d4f4147feff79ce92f291d5285fcf7835d69bb341882c2f50278aa8
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/CertificateRequestResponse.cs sha256 3c6a04c0117a1a1dd0fc46a4a7d36e0010ef14bbb3deb9b69cfea3327914e0d1
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/Csr.cs sha256 47583c509b42b9cc558be5aeb0bda3d297692a56f2a02b13a19f6af298bfda04
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/CsrMetadata.cs sha256 c27c4d1923cf25634205281efbff97c54733c3e5d0d5e11c13fe718dafaf08dc
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/DefaultCsrFactory.cs sha256 fb9f050373d622cd72566582e441664d478b5ead9c03cc581a23c5ef98a04dc3
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/ICertificateCache.cs sha256 131380d375f42e4287f93f81294a357b7b536ec5f8a0d5d76b351ab21875f053
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/ICsrFactory.cs sha256 37602c4b0d61f0add2f5867e5c6e928ee4f0ed1345448f6afc4f0bb9eef3610f
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/IMtlsCertificateCache.cs sha256 47d5ec5ea6e716d2af225ee5d641f73358580c88e1ce922944bb2afdef01484d
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/IPersistentCertificateCache.cs sha256 3c2a9bd104206aa42c35ae42e2ac317fdd0405396476ccbeef0cff118cc2cb36
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/ImdsV2ManagedIdentitySource.cs sha256 06430c33ef1809744824e6a6a327a79968f389ef07b8f84e2dbe586cddcbd23d
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/ImdsVersion.cs sha256 0f96f73aec2f6ba71285d64565dce8945ae34573da34e7aa6798433f619742df
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/InMemoryCertificateCache.cs sha256 daa49907de6786d6cf4f99d99d94ba72ce610410735359e6f2f4990d0a049b3d
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/InterprocessLock.cs sha256 003aaa02e066333a624f19d0555109b9bd8283919188c20ff16baffba6140bb9
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/MsiCertificateFriendlyNameEncoder.cs sha256 9c7d991580a23c17b15dcb57e79e789b09f0c83f4adbda5792ff9f569ce5095d
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/MtlsBindingInfo.cs sha256 0f6006a2607692e1bb020094f51f5a09777be6f3844f9fe319fbd54dfed1dbcf
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/MtlsCertificateCache.cs sha256 645861bba0f480660c55c9dfd65f6a04f62906e701b32363e60cbc7dfdc9a2d0
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/NoOpPersistentCertificateCache.cs sha256 d9dbbddc9a0c50246cc3b232078a4bc404a85290e7bd6c1af4c7905aec3f6bfe
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/PersistentCertificateCacheFactory.cs sha256 aded7a87cf637baf76a0a811cb68a0aba06733515dfabe36eea2ea0da1ca1649
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentity/V2/WindowsPersistentCertificateCache.cs sha256 83e17cb6431eccdf7272f400e8f131d64ffec0147b9ebcfc257b3f02968ee15f
+document: /_/src/client/Microsoft.Identity.Client/ManagedIdentityApplication.cs sha256 2ed1cc80e2be181d841a241620008fa938d0b4c3680fc8fcec13662adca6740a
+document: /_/src/client/Microsoft.Identity.Client/Metrics.cs sha256 bce9bb8f70128b2364effe15a3e6f7693dbdf5c5f05b876cb87ecc09e1f0e525
+document: /_/src/client/Microsoft.Identity.Client/MsalClaimsChallengeException.cs sha256 c3bd056fcdada39e6f55d10872c9de937c9b4da19139f3f619fee391c8d97673
+document: /_/src/client/Microsoft.Identity.Client/MsalClientException.cs sha256 b932e1124516351e6dcf199438fdd3cb511a2c0e287214532b34323398126efa
+document: /_/src/client/Microsoft.Identity.Client/MsalError.cs sha256 0a96b005f5c9d9ed81d4a8ca12774a51e9bd544b3c5fb71c22282bb0271351de
+document: /_/src/client/Microsoft.Identity.Client/MsalErrorMessage.cs sha256 b8242416c97662a4d12bba55b3add5ace8f51e75fceb2dbebd9dff2f28c5263b
+document: /_/src/client/Microsoft.Identity.Client/MsalException.cs sha256 1e249f41a0e2a9e32eec01b1d0f84383efd76028381279be1159202f06460947
+document: /_/src/client/Microsoft.Identity.Client/MsalManagedIdentityException.cs sha256 9db1ff88d54dc7243787766f0a3b1ab74a5d6ffad9a19c58f10b1d513c0dfc8b
+document: /_/src/client/Microsoft.Identity.Client/MsalServiceException.cs sha256 868260db1ca3d5183aa79a837e1cde333ad1f4288a9467b7e6c2f0484c350d2e
+document: /_/src/client/Microsoft.Identity.Client/MsalServiceExceptionFactory.cs sha256 e308b481fb3b9333aa445e631ea04a3f0eed94c2dd086c1c40979612e91c1cf4
+document: /_/src/client/Microsoft.Identity.Client/MsalThrottledServiceException.cs sha256 e3f44c1f6d085cbbe9bdcd2aaf3fc3e483bbf9b9e9d612630e63fc050d7a6019
+document: /_/src/client/Microsoft.Identity.Client/MsalThrottledUiRequiredException.cs sha256 c0b7a03d24c75e6558b50c1a7a0092329885b078c3ce83b737867b497b05d2a9
+document: /_/src/client/Microsoft.Identity.Client/MsalUiRequiredException.cs sha256 961e34325c6399d588fed5b0a0e63093d72dd25bb08a7e8c52673372135efd9a
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/DeviceAuthJWTResponse.cs sha256 2e98fda0059a17cb16e2fb1e2a9456ec87ba98cd5d009b9ee228ab292cdf7fd5
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/MsalTokenResponse.cs sha256 490fe7163f2a3e799bf976f9563930dd9ac5c1f6dedc212c991cb2a5d9592bae
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/OAuth2Client.cs sha256 f1e2f89abe1dc785a693f67e00b472315ffe1f47c72decf642a810b3a6c7e8b2
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/OAuth2ResponseBase.cs sha256 fbe888c12df1749ee0a4fb259167b9edef6c5fb75a4f795aaf746938c7e0e96e
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/OAuthConstants.cs sha256 a7190b0dec542168dde59015b83bd1548ad65ad822e1d8f75ecc4546cb8ac05b
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/HttpStatusProvider.cs sha256 5ca34f67188a8f9c19bf9e891aeaa000bb0baf474c3d3e31934baf212247cd8b
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/IThrottlingProvider.cs sha256 c5c7913e149f333fc6bc994ce585eb1b57c464f9f286f16b01bfeee4ff0625fd
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/RetryAfterProvider.cs sha256 3661307aba4164e17c904b8dd428e411e1d763451f98bd0fe8142efa396e33d5
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/SingletonThrottlingManager.cs sha256 37bc9754dcacc9231084a5a399055998de976025d0b5f48ae5b91ecaf9275672
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/ThrottleCommon.cs sha256 8aaef661f736e81faef77d2f0a4356b0c25c4ed6ba5f2bf27c34615d145210ec
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/ThrottlingCache.cs sha256 6ce1baeb9e2fb975e0cc6561b9d7250a6d751a35f15ff996c0a488c28744d117
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/ThrottlingCacheEntry.cs sha256 23e56eeb906334128d2e517e436afac8dd1009fe12ca19afc0bc521a65bf417c
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/Throttling/UiRequiredProvider.cs sha256 cfdc5090edd78d4862856e620a4e8ab4c436a8653cf82f81c4d57241e0cb5085
+document: /_/src/client/Microsoft.Identity.Client/OAuth2/TokenClient.cs sha256 02d9b293d312e3c6aa9b6182e1c22f99b6984c8f8b5efbd61d4269b600d23867
+document: /_/src/client/Microsoft.Identity.Client/OsCapabilitiesExtensions.cs sha256 aa4c872281f50601bc85cd2e3c8e1ff28717b50184e5dcbe3dc09c36edda884a
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DefaultOSBrowser/AuthorizationResponse.cs sha256 46da1d0eb4874440cae148b82cd924af17c50b1bd461d5d9329ce78d7e753890
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DefaultOSBrowser/DefaultOsBrowserWebUi.cs sha256 3fda4c9603f9e0e59e6e14e946b67aaf05b042e59bb4c0463aa8f05301d57967
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DefaultOSBrowser/HttpListenerInterceptor.cs sha256 a5eeceb3bb35ebf1d893a1e86fe23f66e70cd1b3964864916d6925e593565280
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DefaultOSBrowser/IUriInterceptor.cs sha256 91d02e4538caa0b9c535f6750629c66dc9a9d6eaa3e66d93fd0e173f9d957896
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DefaultOSBrowser/MessageAndHttpCode.cs sha256 24fbdf7669684a5b9881232506d1d182c8f03505725f5a0ceb65e81bda765887
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DesktopOS/Kerberos/Credential.cs sha256 fb4f36d23811be765c178b2742e7d6c73db90aace9b216665a26ecded206de1e
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DesktopOS/MacNativeMethods.cs sha256 1f729d005907f27c2f61d1baa17f9b7b0c6dcae414f031bcabd85a435e430c75
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DesktopOS/StaTaskScheduler.cs sha256 fb1f470036ac88439e72d00472d6a13c29ec23de7bd5c92ad7ee949be0d2088b
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DesktopOS/Win32VersionApi.cs sha256 80c420b51bf029549f2eb0b8ead2272215164544484704fc495daf77bcff4443
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DesktopOS/WindowsNativeDpiHelper.cs sha256 f88316142a1c1f0c433ba93fb956bc49975ae2b6056d094c13b87f66f63f74a9
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DesktopOS/WindowsNativeMethods.cs sha256 efccc3e4f4f25e0ffdb130a75bf37a683a2a4ec9283898072f29467e5965bef8
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/DesktopOS/WindowsNativeUtils.cs sha256 f5a9fd8872501d643d131f4c3557f2736ad8227aeba9dd64837282e9bf49c5dd
+document: /_/src/client/Microsoft.Identity.Client/Platforms/Features/OpenTelemetry/OtelInstrumentation.cs sha256 75f0109a6ec95aadbdc342162fffd7aa4f0673fdab93869bf1dea46e7609326f
+document: /_/src/client/Microsoft.Identity.Client/Platforms/net/JsonObjectAttribute.cs sha256 ae263e1455f790108f8358bf09fe54cf7eb4109e4efc8ae5d0dfafb3586bcb06
+document: /_/src/client/Microsoft.Identity.Client/Platforms/net/JsonStringConverter.cs sha256 b820ee8764b0cdc3612af54389744b4dae4bd92937084a8232d51fcffe0e0e36
+document: /_/src/client/Microsoft.Identity.Client/Platforms/net/MsalJsonSerializerContext.cs sha256 208ecaacae7124702bcf62b89d921eb51c7caa87547905ead41797c5da4283b6
+document: /_/src/client/Microsoft.Identity.Client/Platforms/netstandard/ApiConfig/SystemWebViewOptions.cs sha256 a778a0be533996225629a7f6585a1c41f73e66b017abf01b0da6523c6178c7a6
+document: /_/src/client/Microsoft.Identity.Client/Platforms/netstandard/NetCoreFeatureFlags.cs sha256 0c6fc92e7f5a1ab17a3ce4afacb50cb317024795c84514818335f557a44f7ea5
+document: /_/src/client/Microsoft.Identity.Client/Platforms/netstandard/NetCorePlatformProxy.cs sha256 0588cec9db6f66516f0d57163ec97e608b8b260eea005da943b556ce6a5542f6
+document: /_/src/client/Microsoft.Identity.Client/Platforms/netstandard/NetCoreWebUIFactory.cs sha256 4e921fe97cd8935356814aaca9d17dcfc0d8291e25fc29ed16c5665cb8e1b6be
+document: /_/src/client/Microsoft.Identity.Client/Platforms/netstandard/NetstandardPlatformProxy.cs sha256 bfa54fe7caaf4b5c95f69ef5cc1392ddc77f22cdcdb15ae58b6d47ee242e6e1d
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Factories/PlatformProxyFactory.cs sha256 6662d3c9e8a9b41321047683866af86843bb9cd43358f1e450275ec4b95587ab
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Interfaces/ICryptographyManager.cs sha256 a03749cd8172c495d508d08e0bd6aa4392444621ae89f84d0663ba00aa37e4d5
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Interfaces/IDeviceAuthManager.cs sha256 637cff8b5bd27a385a008362bd02e3e0f178b821ba76f9c92900b8efd62d60af
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Interfaces/IFeatureFlags.cs sha256 f329e8eb41a013fcd6a10f1188f960f4061e11dee28f1d9e2855a8b513a6e25d
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Interfaces/IPlatformLogger.cs sha256 7007c94e5ec186e7a182897aa0bad36d575dfef9a1809771eee49df696db737e
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Interfaces/IPlatformProxy.cs sha256 ce79b05735a446e1d2b1251d1ce6fc59b780f9a12213fb75bc68ff9e5dcd8219
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/AbstractPlatformProxy.cs sha256 2c18bd67e1d48c27a7319ec63c96778becb28dd9740f0c559bb185101310fe09
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/CommonCryptographyManager.cs sha256 c8b1050729d603109deacc2d79816994508c616581931e698fd7cd61ca28b180
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/ConsolePlatformLogger.cs sha256 74d8f9b1b7e880d7c92b1afb9eea0e902941c74b9cddda20a99bceb952dbad12
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/DesktopOsHelper.cs sha256 39fc7c371d1d282ebd8f9b09b63e81903cccd71c8038495364d693ce298ead11
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/DeviceAuthHelper.cs sha256 91668da83ece94ebaaa2f40e9258a270313ed545b10563d6c6c3a8c93d93967c
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/DeviceAuthManager.cs sha256 bdc5944fb1cc422e3cd03b3be8bb10a2568579cf74d04174a44318f636e4309f
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/EventSourcePlatformLogger.cs sha256 311cf3e73a3e81eb64761988b9a63503b972ff5d8e135a2d4cb6bde9dc409119
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/InMemoryLegacyCachePersistance.cs sha256 bb9908524c2f5194b59c12b792ae51d32eecaa73a8f6425575dc6e0e8df9e506
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/InMemoryPartitionedAppTokenCacheAccessor.cs sha256 b2538b16fdfddf334af015c28773dd71a045d6e8104a3214c485b37805bfd3d8
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/InMemoryPartitionedUserTokenCacheAccessor.cs sha256 d68edce86d834c289f597749de21f57c72e81622cb553dc18bbc39f3805e68fa
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/KeyedSemaphorePool.cs sha256 3cd7263a4f5d08ab099d6bed761eaa5548b99afc05098c9883004e884f9c5bfd
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/MsalEventSource.cs sha256 f7409fecd1c777cc66a32897bb9526ca5e561f5f21ee230ea6b638c44c3f2da1
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/NullDeviceAuthManager.cs sha256 22afc43e8c028ec111fb890995cfcfb0770aaee02b40fa4fdb4fef172244b67c
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/NullLegacyCachePersistence.cs sha256 d2089f138f932db039b76c5dc4d35a78895a42175e0353eacc5e1e9fc010efee
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/PKeyAuthConstants.cs sha256 6fac42d42f5c4d98e2cb986b66a2aadf6f93ce7659c827266ea50e8a5ff685f9
+document: /_/src/client/Microsoft.Identity.Client/PlatformsCommon/Shared/SimpleHttpClientFactory.cs sha256 2d0c2584fc5a5f9cb60ea8e3e176ff2fa303d9b723a8b94a1bf6088c672d51cb
+document: /_/src/client/Microsoft.Identity.Client/PreserveAttribute.cs sha256 b3dd5d49e0f0dffe60b4b54e26442ea9ff10b16c0389eb6683335cbdfd3899be
+document: /_/src/client/Microsoft.Identity.Client/Prompt.cs sha256 5ac3ceac8ad6579301e57541690c58d0431c02961212b718486cd16b935f72c0
+document: /_/src/client/Microsoft.Identity.Client/Properties/AssemblyInfo.cs sha256 aae6d5d31399303f926dad3a11af6340c6041d6c0e2b46bac9d625f84999bff3
+document: /_/src/client/Microsoft.Identity.Client/Properties/InternalsVisibleTo.KeyTokens.cs sha256 a5461a416e023bca61b37125129ec4fd6fef4ceac693c35ef04038da38a550b0
+document: /_/src/client/Microsoft.Identity.Client/Properties/InternalsVisibleTo.cs sha256 4c3344c1aadb9045171c99a091018bb0bb7f8ed6b57b58f4c5d090813d27adc6
+document: /_/src/client/Microsoft.Identity.Client/PublicClientApplication.cs sha256 dc9848bcdd563fb3bf16884b6afd71888cb1a4dee1efac23070ba9ccdfe488c6
+document: /_/src/client/Microsoft.Identity.Client/RegionDetails.cs sha256 cd5b33d2002c797b23893d45abf19399e3b0cf0e469cf46ca58d202d7692345b
+document: /_/src/client/Microsoft.Identity.Client/RequestType.cs sha256 7eae6bceb67d1546973174ecf2c6ef1e2ebc193921cdeaf284e7e86904c3c0ff
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/AssertionType.cs sha256 9fff8ce87d3077c91f00de87c6a6715070b7830f4b6c8adeb8e47d02c3d22527
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/Http/HttpHeaderSantizer.cs sha256 6d2df439ef3284c30d70f3df0930482381f3e7c39030106f8b46b9a8adedf7d2
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/Http/HttpTelemetryManager.cs sha256 c9cf29522a701c6dc6e2e9d0d2265521adbe07919542ddc6734816f973143c1d
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/Http/IHttpTelemetryManager.cs sha256 2ee72edad8b4ea9d1be3e13e58e71f430ef352d2db325028ac2ae0ed87514bfa
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/ITelemetryReceiver.cs sha256 aec89c1eebe50cdadc0b245cdc55fd285364d7e35c0aad34362823de2dd1b8fd
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/Internal/Events/ApiEvent.cs sha256 1f1c12270ebecfe40ff5d76045c9a617e9e5a1652a7002cfbec244270dc153c5
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/OpenTelemetry/IOtelInstrumentation.cs sha256 9780d5a183c0336d155127e2991b881922e45c46dc2f94177199d99899ee1d80
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/OpenTelemetry/NullOtelInstrumentation.cs sha256 101b4b43d29c0cb9ef6eeb281bd620cefbdb6786decc98c5761b6889545b2c10
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/TelemetryConstants.cs sha256 4fb5aa89277d30ba6b1b1210f32d6c893c62a2773f90f40c8cc83262a86950a2
+document: /_/src/client/Microsoft.Identity.Client/TelemetryCore/TelemetryData.cs sha256 f427830f7f63dc56e65dc9b6a4aedf15a684a73fc7c353c6352a0677776dbd42
+document: /_/src/client/Microsoft.Identity.Client/TenantProfile.cs sha256 f4e44a751f6a2253e8ad49c6e450330cbbaa923ce03c915a3e08f2f04db917bc
+document: /_/src/client/Microsoft.Identity.Client/TokenCache.ITokenCacheInternal.cs sha256 77cec89989a08a720807ccb400fc7c48d38e99f58f50a194cd879c4243635a08
+document: /_/src/client/Microsoft.Identity.Client/TokenCache.Notifications.cs sha256 66eb350ee86017a7459388e876684b843cf66b116d6ecf4646b187bffa4bc1c8
+document: /_/src/client/Microsoft.Identity.Client/TokenCache.Serialization.cs sha256 99b7580608daa860851377e697c8a693fd150b5eb9db618febb8eb19e85f5b22
+document: /_/src/client/Microsoft.Identity.Client/TokenCache.cs sha256 94b203c3d12494aae2d711dd939ec90aa36ab3b6a65d921110772b4b3bc90224
+document: /_/src/client/Microsoft.Identity.Client/TokenCacheExtensions.cs sha256 6f29e1328a18d146d2cebdd69b12aba7b31f78110bf91d8f0aa6c0f35f058768
+document: /_/src/client/Microsoft.Identity.Client/TokenCacheNotificationArgs.cs sha256 05cf10769b769d3b05f9b0155b3c918d3725dede1bb5f9fd75ef0bce54d88fcb
+document: /_/src/client/Microsoft.Identity.Client/TokenResponseHelper.cs sha256 ebe665b974fb344e6406ee63771cdd422a2bcd54fc1ac99fe9cb44e45d922d5a
+document: /_/src/client/Microsoft.Identity.Client/TokenSource.cs sha256 57eb60ab96e45061528d6914837d654a43cd89d8bd3e4250ddad1c1c4817bcce
+document: /_/src/client/Microsoft.Identity.Client/UI/AuthorizationResult.cs sha256 31d6a3ecb0f17a5f2cf9ee3bbb1552e9667bae42d16feda76fe9f16df4af672d
+document: /_/src/client/Microsoft.Identity.Client/UI/CoreUIParent.cs sha256 ed1ab52dc519f856a7c510f035603e998bb6dd42d4e2194128e8edd436b60f7b
+document: /_/src/client/Microsoft.Identity.Client/UI/CustomWebUiHandler.cs sha256 d6989b0989d7e7e5e1bf5bd8b3fabde08f5e37a40a04164b03d64c5d7e420fd1
+document: /_/src/client/Microsoft.Identity.Client/UI/EmbeddedUiCommon.cs sha256 eba39ffe6ca3d198cc3528d701549b37529485ce1cbe9a9f994dc2090b3a1256
+document: /_/src/client/Microsoft.Identity.Client/UI/IWebUI.cs sha256 3e9024a48ad3154b08e7540257728ae68bf8dbe14d6e3295cb25e0ff9d6e19e8
+document: /_/src/client/Microsoft.Identity.Client/UI/IWebUIFactory.cs sha256 d52512e0897c8832543ad5ce92371322c9f50974e7d4dcfc86e7969cc39a7a47
+document: /_/src/client/Microsoft.Identity.Client/UiRequiredExceptionClassification.cs sha256 4a37c8224a0e900122132c09f0fecb680970b584f15d89cd2cf1df9cb8f04490
+document: /_/src/client/Microsoft.Identity.Client/UserAssertion.cs sha256 ca203f7457b60a77885b5d204d8eafd9c29f93c88e4d63b89517e3a49dbaee10
+document: /_/src/client/Microsoft.Identity.Client/Utils/AuthorityHelpers.cs sha256 e23eca04839f8df2007b4b2a8ff324a5f177b19e228b79cf5f1b21411cb7d1a1
+document: /_/src/client/Microsoft.Identity.Client/Utils/Base64UrlHelpers.cs sha256 cba2348bf9b791a049453b042da72b90ae7f7c678b56ac2cd4b13582edb807d4
+document: /_/src/client/Microsoft.Identity.Client/Utils/CollectionHelpers.cs sha256 b9c6dc4e963e3f49feeeb40edf1312e6f1e64151c384888afb7ae72661b0aae3
+document: /_/src/client/Microsoft.Identity.Client/Utils/CoreHelpers.cs sha256 adc8889fa7091f76a2da1d5d3ba3a72f93138b8a88bb00d151d313c69bf5971a
+document: /_/src/client/Microsoft.Identity.Client/Utils/DateTimeHelpers.cs sha256 727ae2ce370ae4bbfefa2aeea3b5b8470052d9905c83e4d56b9585fc9b02f817
+document: /_/src/client/Microsoft.Identity.Client/Utils/EnumerableExtensions.cs sha256 bef0ec9d2b63500500a5d8a9498b9851eede877e798d562bbfeff69f58af2ab6
+document: /_/src/client/Microsoft.Identity.Client/Utils/GuidFactory.cs sha256 607ec2ec85acac63759a863a43d86e2cf07de258d098866b47ba50e9d13c8851
+document: /_/src/client/Microsoft.Identity.Client/Utils/IGuidFactory.cs sha256 bc5034a1333eeeb808868c969a5183d067b78d5907958582a9a12c6cbcb5aa97
+document: /_/src/client/Microsoft.Identity.Client/Utils/ITimeService.cs sha256 716eb1db543ea8d9bc828405208470d6e319028f50188b3101bfae804aa0d863
+document: /_/src/client/Microsoft.Identity.Client/Utils/JsonHelper.cs sha256 5e6244f210867c62570868be8ad7f940b19ac8c25bb476b7a3708512b0909fed
+document: /_/src/client/Microsoft.Identity.Client/Utils/MacMainThreadScheduler.cs sha256 89f87abad61e9062da343d63f55f10243d659c251d7c7e3358b85f5e67ebc797
+document: /_/src/client/Microsoft.Identity.Client/Utils/MeasureDurationResult.cs sha256 9f3151eea8fd58593709f0d0de3c25dab51896d22f5bd9cb2b1d52414507118b
+document: /_/src/client/Microsoft.Identity.Client/Utils/OptionalSemaphoreSlim.cs sha256 0c9200094d454628f2a9fadfe2ba4af75056fd53a6a0fa5f61cb1bb8d55cf210
+document: /_/src/client/Microsoft.Identity.Client/Utils/ScopeHelper.cs sha256 08ab14a6fcbeea5392a8de37992bbabcd94882cdbfd889441235dbc930d0f4e1
+document: /_/src/client/Microsoft.Identity.Client/Utils/StopWatchService.cs sha256 d88f7f52fe2e5ea4bd5d333b96a89d2f09c0faf1556c49824c9ea51188c242d6
+document: /_/src/client/Microsoft.Identity.Client/Utils/StringExtensions.cs sha256 3b986f829d7d31fcad9480c0aa3ff8eb159af62c396612ca9e7d45f38c93e342
+document: /_/src/client/Microsoft.Identity.Client/Utils/StringWriterWithEncoding.cs sha256 b7b4dad63df4c3fed39904012170d8b20eeaa2334fda00dfa19b38bfe11a1167
+document: /_/src/client/Microsoft.Identity.Client/Utils/TimeService.cs sha256 96a0f3db2bb827296cbc510d048e1bd4b575c59a3cd5afa1a5b7370aa3bf2ef1
+document: /_/src/client/Microsoft.Identity.Client/Utils/UriBuilderExtensions.cs sha256 7abda6064e0bc515df527ced711374106cd1992c5455e38ce09b67c9a161a7df
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/CommonNonInteractiveHandler.cs sha256 b18383595e9ab5a048b56ce7d47ceaa487b696c17972d4cbd7cd496d4ebe1f28
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/IWsTrustWebRequestManager.cs sha256 404f98425b59e23c077dc2a8333f86b180fa8888c350912171e0f1a5543a49cb
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/MexDocument.cs sha256 8a46b72baacc6c37c314584008ae586fd9baad43dc9dc7ee2ce3cc684c0111e8
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/SecureStringExtensions.cs sha256 3dd35000661a88013b985d45bd92f0a88139517963c1d6053315a37a0a0a8bb7
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/UserRealmDiscoveryResponse.cs sha256 eed4efb2dc00e89edb1169edeea0f37e728146606d92cc3d3b893ff5169959cd
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/WsTrustEndpoint.cs sha256 91de10bd9cab35089773be3492df574cea1062fe1d7305ace4b5e1facd1c9212
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/WsTrustResponse.cs sha256 60af18caac9c0843366295e1cb645704a2d63e8c122b7a6bd3532b6fcd0702f2
+document: /_/src/client/Microsoft.Identity.Client/WsTrust/WsTrustWebRequestManager.cs sha256 e20374e894df60e86e1cb38e900309f4fddfc96bfd36504396801084ea3f0bac
+document: /_/src/client/Microsoft.Identity.Client/WwwAuthenticateParameters.cs sha256 9f21e88e08e3c7657a2d9ab1d92c380c70d430b68f4fe522b39a38ea5c3665c6
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs sha256 f7a5d9789c863625e139ff99e1113a503830f6b85a88f6129916df83ac76b49e embedded (crlf 4, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/Microsoft.Identity.Client.AssemblyInfo.cs sha256 c2e56714a96d69d5da2635196239120fd0fa9756e384e01826319bca4d7234ea embedded (crlf 30, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.AdalResult.g.cs sha1 d580016251598b57c5472ed1173f3204cb36f900 embedded (crlf 88, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.AdalResultWrapper.g.cs sha1 e233f094dfb76fbf06f0a7631ccfc48fb55c3bb6 embedded (crlf 148, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.AdalUserInfo.g.cs sha1 fcd7c0993e87055cddaaacc6e18ed98a69af0b27 embedded (crlf 209, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.AdfsWebFingerResponse.g.cs sha1 de576d45745a6400cb25c40c966b061435cbbe61 embedded (crlf 229, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.Boolean.g.cs sha1 c6ce069d63ca65e2d9aa451b6af217f0f7218afc embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.CertificateRequestBody.g.cs sha1 4a678eb947649f201dc88e68bb05d567110bac6f embedded (crlf 111, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.CertificateRequestResponse.g.cs sha1 2dde472cae4ad1f0be08e5c69d18150c020a5b62 embedded (crlf 167, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ClientInfo.g.cs sha1 cbb091694d13453998b59976bdba4825fefb34f6 embedded (crlf 128, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ComputeMetadataResponse.g.cs sha1 411cb6cca58b2658eda569521fea476b13079d9f embedded (crlf 108, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ComputeSecurityProfile.g.cs sha1 41d2d85f145483a8e924a08cb8299b3ff8ba079c embedded (crlf 87, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.CsrMetadata.g.cs sha1 aff609e0f1db29f9e902d296483e618f68dfd13d embedded (crlf 148, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.CuidInfo.g.cs sha1 392c7c8a3acb557325a790229f52d1ce23a2b0ce embedded (crlf 107, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.DateTimeOffset.g.cs sha1 31e16518c6d45746c3383cb9cc9db07dd727bb44 embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.DeviceAuthHeader.g.cs sha1 e75294d5ab05ee21b4260f4508fb0849bbe11bb1 embedded (crlf 144, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.DeviceAuthPayload.g.cs sha1 290da4bd05799c64bc6bedcd5197ba07f6cfe044 embedded (crlf 133, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.DeviceCodeResponse.g.cs sha1 58815b414162a5d2620ffffde02d93306d789825 embedded (crlf 298, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.DictionaryStringJsonElement.g.cs sha1 0bf3d28e18e3fa22ff2a5ffd24890f76b465ffaa embedded (crlf 62, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.DictionaryStringObject.g.cs sha1 225856d11dd9774e7baa9c69c42f20be7e1e9c11 embedded (crlf 41, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.DictionaryStringString.g.cs sha1 e6b4236560c796259a049eddc81ddc6ec0cd2d3d embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.GetJsonTypeInfo.g.cs sha1 5226ebbb6c3b00098a10300996f2c5b9c1412ab3 embedded (crlf 221, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.HttpResponse.g.cs sha1 55be70b03239ff937185f9d50fbbd2baebace143 embedded (crlf 170, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.HttpResponseHeaders.g.cs sha1 11c798a7b4aadad0786332d4e0f18adf740763cc embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.HttpStatusCode.g.cs sha1 edc8dca8cc787024054e4611818f193730639220 embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.IDictionaryStringString.g.cs sha1 72a75573cdb720a77899c36a71efaab3b84fe4d6 embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.IEnumerableString.g.cs sha1 619a59b4064900d8da010f419175ee1032d2ef5a embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.IListString.g.cs sha1 386bd78c5f0930cfa096d7f2f1da7a9c5a193473 embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.InstanceDiscoveryMetadataEntry.g.cs sha1 b3a1d1ddf60ff4b22f40d26a950e603f94f5a270 embedded (crlf 128, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.InstanceDiscoveryMetadataEntryArray.g.cs sha1 c182b1e3ecc03dd0b397d0adb5640fc32f7bb161 embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.InstanceDiscoveryResponse.g.cs sha1 18c32068fbc7f1fe6c03dfdea0f229548f623a7b embedded (crlf 229, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.Int64.g.cs sha1 2759767d2c32abad5092c6000d34957cee8dc42a embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.JsonElement.g.cs sha1 0167b5d8ac3bd17a29acd498c3e874d2691e5ba9 embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.KeyValuePairStringIEnumerableString.g.cs sha1 f008e7cecc730bf337d3af9a2d519e6c22157ac7 embedded (crlf 127, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.LinksList.g.cs sha1 f386b4a28834e13a045cbc55f5bd20ec4930496d embedded (crlf 107, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ListKeyValuePairStringIEnumerableString.g.cs sha1 838b4f8fff983a4edc22920fb2016aba70bb319b embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ListLinksList.g.cs sha1 f3688a3088c10f4660a6f70e814f53cf0e0a3fd0 embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ListString.g.cs sha1 72c979f6092e3f1b3ad3aa91252b5067b698bbe4 embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.LocalImdsErrorResponse.g.cs sha1 9c923f93c22078e5acb27c906a8bb24cb793dba9 embedded (crlf 108, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ManagedIdentityErrorResponse.g.cs sha1 20a6f1c69419b76aa160d1efd1c1ca04d844153e embedded (crlf 147, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.ManagedIdentityResponse.g.cs sha1 8d15f88eb0545126caea1d41879eec3e402b1402 embedded (crlf 206, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.MsalTokenResponse.g.cs sha1 b1d28855f9630ac7610cce4ab397bea158988e3f embedded (crlf 526, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.NullableDateTimeOffset.g.cs sha1 27973b857cf9b00e5bbf4ff2c321b8f64ef47e36 embedded (crlf 35, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.NullableInt64.g.cs sha1 c704bdd39c23c1b237f4fe6882723d812a40b821 embedded (crlf 35, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.OAuth2ResponseBase.g.cs sha1 71200172358a4276992d3ac80551af2d685fc844 embedded (crlf 188, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.Object.g.cs sha1 3d25fc3e277ae7f5bf2b57bfaee7bc06ad904a20 embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.OidcMetadata.g.cs sha1 9b2a6356be9f36bb9341989c38c1ace0bb71f0cc embedded (crlf 127, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.PropertyNames.g.cs sha1 990f0dcebbf9608478c507006e4a70bba4779aa5 embedded (crlf 90, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.String.g.cs sha1 5d4fc327c67e52351033e4e1677a0c9872415e70 embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.StringArray.g.cs sha1 5cf6de29e23a5e79040028b88b0af4922a65d9c5 embedded (crlf 61, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.TokenSource.g.cs sha1 06614c6e176c269dde5e3699d181b52e3db68b6c embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.Uri.g.cs sha1 23adec9d41edf0a363bd5a184ad9594d3151d06c embedded (crlf 34, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.UserRealmDiscoveryResponse.g.cs sha1 7d0b791db9d26f611193cdd79015d5850061f788 embedded (crlf 247, lf 0)
+document: /_/src/client/Microsoft.Identity.Client/obj/Release/net8.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/MsalJsonSerializerContext.g.cs sha1 3a348a8c03fa50d0ee2b903b668d87b6b219981a embedded (crlf 84, lf 0)

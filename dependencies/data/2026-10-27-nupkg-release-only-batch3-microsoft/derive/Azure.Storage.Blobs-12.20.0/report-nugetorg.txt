@@ -1,0 +1,794 @@
+file: Azure.Storage.Blobs.dll
+size: 1326112
+sha256: ee7c60c9b22e535542bc609592f782c795c2f6d8504027ace5536f9ea7ac7150
+
+## PE headers
+machine: I386
+timestamp: 0xad7082ee
+characteristics: ExecutableImage, LargeAddressAware, Dll
+linker version: 48.0
+subsystem: WindowsCui
+dll characteristics: HighEntropyVirtualAddressSpace, DynamicBase, NxCompatible, NoSeh, TerminalServerAware
+pe checksum: 0x0014acc7
+section .text: virtual size 1311536, raw size 1311744
+section .rsrc: virtual size 2876, raw size 3072
+section .reloc: virtual size 12, raw size 512
+
+## Signatures
+authenticode: 10272 bytes, sha256 351477ad0ada6cef8d8d0340b61ff8be2acd2df5065ce60f4b526eaecce41c4b
+cor flags: ILOnly, StrongNameSigned
+strong-name signature: 128 bytes, sha256 7876bae4d004129151861e63ffeddd8686c09dc7510213884c85e814a762c3a9
+
+## Metadata
+metadata version: v4.0.30319
+metadata: 797580 bytes, sha256 70e8390af6c0ca8779faa138fed7dd4516a2a2b73db96ad68e10de7177885856
+metadata stream #Blob: 164336 bytes, sha256 8e66ce2ab0272db283bccbba895232944c6d0f40e9fb29662bc552f217ce8d5e
+metadata stream #GUID: 16 bytes, sha256 f2cbc2be263b7c79778e51cc84bea79668dfbf2877e281f569e5cfbcd3cba1bf
+metadata stream #Strings: 116984 bytes, sha256 8bf8c26ee4eca9138ecd3fffaff6fcd982d2b3c25e870e4d48d0f0cfc7d54ff8
+metadata stream #US: 55940 bytes, sha256 0e867bd91026614f0d35261c3be8ca0438b19923241a6cd4397ec2f890197885
+metadata stream #~: 460196 bytes, sha256 d994c8c0e3ad84a5725b79a9fef52b3a7371cb81135b18b70906405276388167
+mvid: 4cc7acde-5429-427a-8257-7bb3c3a6ee1f
+il bodies: 5727 methods, sha256 d99b2c7aa3c18162a6d8ed8273ea973772905aa20734a8dd4bb0430aa8e16584
+managed resources: none
+
+## Assembly
+name: Azure.Storage.Blobs, version 12.20.0.0, culture '', flags PublicKey
+public key: e1c3d4773aa8e0997888facf0e6ce03d2de5a4cde665a2be7a5cee988e999542
+attribute: AssemblyCompanyAttribute(Microsoft Corporation)
+attribute: AssemblyConfigurationAttribute(Release)
+attribute: AssemblyCopyrightAttribute(© Microsoft Corporation. All rights reserved.)
+attribute: AssemblyDescriptionAttribute(
+      This client library enables working with the Microsoft Azure Storage Blob service for storing binary and text data.
+      For this release see notes - https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/storage/Azure.Storage.Blobs/README.md and https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/storage/Azure.Storage.Blobs/CHANGELOG.md
+      in addition to the breaking changes https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/storage/Azure.Storage.Blobs/BreakingChanges.txt
+      Microsoft Azure Storage quickstarts and tutorials - https://docs.microsoft.com/en-us/azure/storage/
+      Microsoft Azure Storage REST API Reference - https://docs.microsoft.com/en-us/rest/api/storageservices/
+      REST API Reference for Blob Service - https://docs.microsoft.com/en-us/rest/api/storageservices/blob-service-rest-api
+    )
+attribute: AssemblyFileVersionAttribute(12.2000.24.26306)
+attribute: AssemblyInformationalVersionAttribute(12.20.0+f04919fc23b35d3f73ffb6e7fc0d7378a8834ffb)
+attribute: AssemblyMetadataAttribute(RepositoryUrl, https://github.com/Azure/azure-sdk-for-net)
+attribute: AssemblyProductAttribute(Azure .NET SDK)
+attribute: AssemblyTitleAttribute(Microsoft Azure.Storage.Blobs client library)
+attribute: AzureResourceProviderNamespaceAttribute(Microsoft.Storage)
+attribute: CodeGenSuppressTypeAttribute(QueryRequestQueryType)
+attribute: CompilationRelaxationsAttribute(8)
+attribute: DebuggableAttribute(2)
+attribute: ExtensionAttribute()
+attribute: InternalsVisibleToAttribute(Azure.Storage.Blobs.Tests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100d15ddcb29688295338af4b7686603fe614abd555e09efba8fb88ee09e1f7b1ccaeed2e8f823fa9eef3fdd60217fc012ea67d2479751a0b8c087a4185541b851bd8b16f8d91b840e51b1cb0ba6fe647997e57429265e85ef62d565db50a69ae1647d54d7bd855e4db3d8a91510e5bcbd0edfbbecaa20a7bd9ae74593daa7b11b4)
+attribute: InternalsVisibleToAttribute(Azure.Storage.DataMovement.Blobs.Tests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100d15ddcb29688295338af4b7686603fe614abd555e09efba8fb88ee09e1f7b1ccaeed2e8f823fa9eef3fdd60217fc012ea67d2479751a0b8c087a4185541b851bd8b16f8d91b840e51b1cb0ba6fe647997e57429265e85ef62d565db50a69ae1647d54d7bd855e4db3d8a91510e5bcbd0edfbbecaa20a7bd9ae74593daa7b11b4)
+attribute: InternalsVisibleToAttribute(DynamicProxyGenAssembly2, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c547cac37abd99c8db225ef2f6c8a3602f3b3606cc9891605d02baa56104f4cfc0734aa39b93bf7852f7d9266654753cc297e7d2edfe0bac1cdcf9f717241550e0a7b191195b7667bb4f64bcb8e2121380fd1d9d46ad2d92d2d15605093924cceaf74c4861eff62abf69b9291ed0a340e113be11e6a7d3113e92484cf7045cc7)
+attribute: NeutralResourcesLanguageAttribute(en-US)
+attribute: RuntimeCompatibilityAttribute(WrapNonExceptionThrows=True)
+attribute: TargetFrameworkAttribute(.NETCoreApp,Version=v6.0, FrameworkDisplayName=.NET 6.0)
+assembly reference: Azure.Core 1.39.0.0 92742159e12e44c8
+assembly reference: Azure.Storage.Common 12.19.0.0 92742159e12e44c8
+assembly reference: System.ClientModel 1.0.0.0 92742159e12e44c8
+assembly reference: System.Collections 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Collections.Concurrent 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Collections.Specialized 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.ComponentModel.Primitives 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Diagnostics.DiagnosticSource 6.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.IO.Hashing 6.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Linq 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Memory 6.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Memory.Data 1.0.2.0 cc7b13ffcd2ddd51
+assembly reference: System.Net.Http 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Net.Primitives 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Net.Security 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Runtime 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Runtime.InteropServices.RuntimeInformation 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Security.Cryptography.Algorithms 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Security.Cryptography.Primitives 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Text.Json 6.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Threading 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Threading.Thread 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Web.HttpUtility 6.0.0.0 cc7b13ffcd2ddd51
+assembly reference: System.Xml.ReaderWriter 6.0.0.0 b03f5f7f11d50a3a
+assembly reference: System.Xml.XDocument 6.0.0.0 b03f5f7f11d50a3a
+
+## Debug directory
+CodeView: version 256.20557, stamp 0x94861a0c, size 100, guid 3364c7b7-f289-46a9-a8d7-6fa87a6ae3b9, age 1, path /_/artifacts/obj/Azure.Storage.Blobs/Release/net6.0/Azure.Storage.Blobs.pdb
+PdbChecksum: version 1.0, stamp 0x00000000, size 39, SHA256 b7c7643389f2a92668d76fa87a6ae3b90c1a869407d74f06caf3c30f59403b06
+Reproducible: version 0.0, stamp 0x00000000, size 0
+
+## PDB (Azure.Storage.Blobs.pdb)
+size: 344968, sha256 55b404bc11f9a4f0a51a90a496db2b0b57a088c1970b672bad180bc0e9d420da
+pdb stream #Blob: 175140 bytes, sha256 341a1bd3013acfb9250b020d12408086f898326a3fa572dc21e5248516dafda8
+pdb stream #GUID: 160 bytes, sha256 abde9301930d1ded2a9350e77b609de1d8f319e65beb1f137635577cdbc1c953
+pdb stream #Pdb: 136 bytes, sha256 3af70b77d78c47ba9aea4947437f3fc15a42100bc06d26f6cd30ad9ede8fed82
+pdb stream #Strings: 9700 bytes, sha256 7a9d6fc94705edcceb10d268a2fdf163e24c4f4778ec82d60a98dc2f2fb8a59a
+pdb stream #US: 4 bytes, sha256 df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119
+pdb stream #~: 159704 bytes, sha256 f7b25db959553b36e17eb97e9829021ce0becf83b506a60b44e284927993125f
+pdb id: b7c7643389f2a946a8d76fa87a6ae3b90c1a8694
+
+## Source Link
+{"documents":{"/_3/*":"https://raw.githubusercontent.com/Azure/autorest.csharp/a69b89f2cb6e62264a93b806659e33c81d34541e/src/assets/*","/_/*":"https://raw.githubusercontent.com/Azure/azure-sdk-for-net/f04919fc23b35d3f73ffb6e7fc0d7378a8834ffb/*"}}
+
+## Compiler record
+version: 2
+compiler-version: 4.4.0-6.22565.8+53091686b435746d62a5df56abfab0e71203d83a
+language: C#
+source-file-count: 507
+output-kind: DynamicallyLinkedLibrary
+optimization: release
+platform: AnyCpu
+runtime-version: 7.0.18+544c7e6eb3d5525c6f85341f51217d81d7c8ed80
+language-version: 11.0
+define: BlobSDK,TRACE,RELEASE,NET,NET6_0,NETCOREAPP,NET5_0_OR_GREATER,NET6_0_OR_GREATER,NETCOREAPP1_0_OR_GREATER,NETCOREAPP1_1_OR_GREATER,NETCOREAPP2_0_OR_GREATER,NETCOREAPP2_1_OR_GREATER,NETCOREAPP2_2_OR_GREATER,NETCOREAPP3_0_OR_GREATER,NETCOREAPP3_1_OR_GREATER
+
+## Metadata references
+reference: Azure.Core.dll aliases '' kind 0x01 stamp 0xbc40f723 size 442368 mvid 3e0a8171-f4c2-4154-9a2b-a86888f1c216
+reference: Azure.Storage.Common.dll aliases '' kind 0x01 stamp 0xc0745c15 size 147456 mvid 98e56a37-84a8-4758-94bd-57ad09f2e693
+reference: Microsoft.Bcl.AsyncInterfaces.dll aliases '' kind 0x01 stamp 0x8188feac size 32768 mvid 33d2597a-f1db-4f8a-9d58-7fc1f1b66a5a
+reference: Microsoft.CSharp.dll aliases '' kind 0x01 stamp 0xeaa75ba1 size 32768 mvid 6f1204b4-7430-4505-916e-d796298caacd
+reference: Microsoft.VisualBasic.Core.dll aliases '' kind 0x01 stamp 0xa29fd54c size 73728 mvid 27e0482a-7c34-4222-b55b-804f586059bc
+reference: Microsoft.VisualBasic.dll aliases '' kind 0x01 stamp 0xb210273c size 32768 mvid 83d95f05-3a15-4bcc-b8f5-04a808fcdfef
+reference: Microsoft.Win32.Primitives.dll aliases '' kind 0x01 stamp 0xeaf56e42 size 32768 mvid 78f688f3-1ddd-4ec0-a237-de4489e0cb00
+reference: Microsoft.Win32.Registry.dll aliases '' kind 0x01 stamp 0xdd03b5b1 size 40960 mvid a2a8b989-520f-4f93-86eb-3befe1d408a7
+reference: System.AppContext.dll aliases '' kind 0x01 stamp 0xd7c4622f size 32768 mvid df41dcf0-f326-4a6d-bf77-dc25fc19c055
+reference: System.Buffers.dll aliases '' kind 0x01 stamp 0x98a9b56c size 32768 mvid 4936ee35-1992-41f9-bc56-b0d8554062eb
+reference: System.ClientModel.dll aliases '' kind 0x01 stamp 0xe72bd711 size 40960 mvid 3be7d9c0-2f06-4408-87c3-8d8138b23fe0
+reference: System.Collections.Concurrent.dll aliases '' kind 0x01 stamp 0x90abd728 size 40960 mvid e0d24cc3-cead-46ed-bb65-25abe250027f
+reference: System.Collections.Immutable.dll aliases '' kind 0x01 stamp 0xe29c66df size 81920 mvid 7b65f758-ae66-46c8-bcd7-b6eb13f5959a
+reference: System.Collections.NonGeneric.dll aliases '' kind 0x01 stamp 0xd0ceb231 size 40960 mvid 31bbd56b-36e3-464b-88ff-58a42688f41d
+reference: System.Collections.Specialized.dll aliases '' kind 0x01 stamp 0x8eb83f28 size 40960 mvid c4664fdc-92ac-43b0-b96a-b96bd3e4ce24
+reference: System.Collections.dll aliases '' kind 0x01 stamp 0xb2fad038 size 65536 mvid 89a40703-ba07-4fca-827f-82629a1b8dfc
+reference: System.ComponentModel.Annotations.dll aliases '' kind 0x01 stamp 0xad256ff3 size 49152 mvid 2875f204-67fe-41f6-9dfe-06e3f6cabb48
+reference: System.ComponentModel.DataAnnotations.dll aliases '' kind 0x01 stamp 0xecbc172d size 32768 mvid 3fcc8b41-3a30-4b78-a173-a058152d7ed8
+reference: System.ComponentModel.EventBasedAsync.dll aliases '' kind 0x01 stamp 0xd16283fb size 32768 mvid 3df3baa0-f4bf-4925-a62b-0a276a0597a1
+reference: System.ComponentModel.Primitives.dll aliases '' kind 0x01 stamp 0x8903ece1 size 40960 mvid de7eb651-58e3-40ef-b814-2188f47dc6c3
+reference: System.ComponentModel.TypeConverter.dll aliases '' kind 0x01 stamp 0xf568c783 size 114688 mvid 3a9898f8-3c52-42c3-9f4a-9341e0e39d1d
+reference: System.ComponentModel.dll aliases '' kind 0x01 stamp 0xff138404 size 32768 mvid 2f204eab-db1f-4e75-a643-4270e914ea04
+reference: System.Configuration.dll aliases '' kind 0x01 stamp 0xd29b31ae size 32768 mvid 95ec19eb-ae83-4cbe-b209-8a730c4ebf14
+reference: System.Console.dll aliases '' kind 0x01 stamp 0xd09a0936 size 40960 mvid 870a267f-bbb6-48ad-832a-7dd7f80eaadd
+reference: System.Core.dll aliases '' kind 0x01 stamp 0xb1a5fe8b size 40960 mvid 25a355a4-4b74-440a-a6cf-ccce095d5ca3
+reference: System.Data.Common.dll aliases '' kind 0x01 stamp 0xfaa3b9a7 size 163840 mvid 3a787e75-185e-4dc6-afc2-643565c32a21
+reference: System.Data.DataSetExtensions.dll aliases '' kind 0x01 stamp 0xad640701 size 32768 mvid 135de26c-da3d-4b3a-a4cf-0325a06956ac
+reference: System.Data.dll aliases '' kind 0x01 stamp 0xc9117af6 size 40960 mvid f186177e-b184-4a37-af7c-cc7a8a8b066d
+reference: System.Diagnostics.Contracts.dll aliases '' kind 0x01 stamp 0xcf26e2aa size 32768 mvid b58fddbc-ba0e-4a07-9c8e-b6a22ee76e0b
+reference: System.Diagnostics.Debug.dll aliases '' kind 0x01 stamp 0x9d1cecf0 size 32768 mvid f90de8b9-f55c-4afd-96e2-5faf0e0afbe2
+reference: System.Diagnostics.DiagnosticSource.dll aliases '' kind 0x01 stamp 0x99e92fcf size 163840 mvid 27ac3e1e-f4d2-44b3-b146-5d58fac3bada
+reference: System.Diagnostics.FileVersionInfo.dll aliases '' kind 0x01 stamp 0xfaf07b44 size 32768 mvid 3d9307cf-d7d3-437d-87ec-cfc93d33ce39
+reference: System.Diagnostics.Process.dll aliases '' kind 0x01 stamp 0xd59f2a43 size 49152 mvid 999a5ab3-aab3-44b3-a04d-4aa13ca72023
+reference: System.Diagnostics.StackTrace.dll aliases '' kind 0x01 stamp 0xdfe6e289 size 40960 mvid 87f9898e-bd20-4386-92eb-7ae16d50961d
+reference: System.Diagnostics.TextWriterTraceListener.dll aliases '' kind 0x01 stamp 0xec4b12fd size 32768 mvid e64c8e46-cf5d-4399-890b-42b68693093d
+reference: System.Diagnostics.Tools.dll aliases '' kind 0x01 stamp 0xf0f55441 size 32768 mvid 4cee2bce-34a2-4421-a933-154f6f584e2c
+reference: System.Diagnostics.TraceSource.dll aliases '' kind 0x01 stamp 0x8b69c2f0 size 40960 mvid 4f80f663-8dca-478b-a9c0-9ecc89689f57
+reference: System.Diagnostics.Tracing.dll aliases '' kind 0x01 stamp 0xd620032a size 40960 mvid 95d4f4fe-adb5-49c9-beaa-bac64e68d74f
+reference: System.Drawing.Primitives.dll aliases '' kind 0x01 stamp 0x8fce0075 size 49152 mvid aa057b15-74ea-4824-aec4-e62b9c56171a
+reference: System.Drawing.dll aliases '' kind 0x01 stamp 0x867cdba9 size 32768 mvid a1f21e05-2d5c-4ce1-90c1-1e40376677c3
+reference: System.Dynamic.Runtime.dll aliases '' kind 0x01 stamp 0xf219898c size 32768 mvid 90fb3509-006d-4b77-9bbc-04221371d4ea
+reference: System.Formats.Asn1.dll aliases '' kind 0x01 stamp 0xc40b81ee size 40960 mvid f7c23c50-a135-4334-8447-0bfcaaccffa1
+reference: System.Globalization.Calendars.dll aliases '' kind 0x01 stamp 0xc7533be7 size 32768 mvid 8bf6c354-9a7c-4c75-9a23-0786008f363d
+reference: System.Globalization.Extensions.dll aliases '' kind 0x01 stamp 0x9259fb06 size 32768 mvid 8ace6c4c-a556-4407-a3df-f8338b84ab95
+reference: System.Globalization.dll aliases '' kind 0x01 stamp 0xba1396bd size 32768 mvid 00d0a20c-aeaf-443b-99aa-ed62dee41ff6
+reference: System.IO.Compression.Brotli.dll aliases '' kind 0x01 stamp 0x8bddcd18 size 32768 mvid b0c2a053-8b5c-4371-b721-83e804276535
+reference: System.IO.Compression.FileSystem.dll aliases '' kind 0x01 stamp 0xd02712b4 size 32768 mvid 08b477e2-92ae-4e96-8829-fec7a644d3c1
+reference: System.IO.Compression.ZipFile.dll aliases '' kind 0x01 stamp 0xd6af036d size 32768 mvid 3e9ff723-ea92-4867-9419-2d717bd8ad5c
+reference: System.IO.Compression.dll aliases '' kind 0x01 stamp 0xf7127cf2 size 40960 mvid 6b4556f3-5c19-4ccf-a8b5-2a1bb7257f2d
+reference: System.IO.FileSystem.AccessControl.dll aliases '' kind 0x01 stamp 0xde5dfa59 size 40960 mvid a32a66ea-191c-4560-a38d-e814ca3ad67c
+reference: System.IO.FileSystem.DriveInfo.dll aliases '' kind 0x01 stamp 0xf3980b94 size 32768 mvid 42b8c067-a706-4d52-81bd-05e927e89314
+reference: System.IO.FileSystem.Primitives.dll aliases '' kind 0x01 stamp 0xae2e986e size 32768 mvid 45a68465-914b-4f28-9260-60b5b027993f
+reference: System.IO.FileSystem.Watcher.dll aliases '' kind 0x01 stamp 0xd08f98ee size 40960 mvid bec1966b-fba8-4b61-be52-4a231c68e236
+reference: System.IO.FileSystem.dll aliases '' kind 0x01 stamp 0xeb2aaa49 size 32768 mvid f3629254-8b99-458a-9654-7380da892768
+reference: System.IO.Hashing.dll aliases '' kind 0x01 stamp 0x88d71cd9 size 49152 mvid ced2e0af-11ad-4046-a3da-b116f96b8d0c
+reference: System.IO.IsolatedStorage.dll aliases '' kind 0x01 stamp 0xb021d6ad size 40960 mvid 9926ed82-c85b-491e-bcbe-8b5056c49559
+reference: System.IO.MemoryMappedFiles.dll aliases '' kind 0x01 stamp 0xa6da601b size 32768 mvid 745e9c3f-f69a-49a2-baf8-6edf72cda11d
+reference: System.IO.Pipes.AccessControl.dll aliases '' kind 0x01 stamp 0x88b38f0a size 32768 mvid 2cec8df8-9e59-4d59-9cfb-d0e038214e9f
+reference: System.IO.Pipes.dll aliases '' kind 0x01 stamp 0xd69386c7 size 40960 mvid 663359aa-4344-46f2-988e-539a671f59e1
+reference: System.IO.UnmanagedMemoryStream.dll aliases '' kind 0x01 stamp 0xe1c7eac0 size 32768 mvid fd6d08ee-a8ea-41e5-aa5e-f07a9f2326ec
+reference: System.IO.dll aliases '' kind 0x01 stamp 0xed136377 size 32768 mvid cadf7b6c-651f-4452-8263-4f921be3b74f
+reference: System.Linq.Expressions.dll aliases '' kind 0x01 stamp 0xd409a0f3 size 81920 mvid ff73d080-5a62-4e48-8b5f-0ca1f647b2f7
+reference: System.Linq.Parallel.dll aliases '' kind 0x01 stamp 0xd08bba91 size 49152 mvid 155fd8f5-1ffc-40a8-913e-9784d21fcd29
+reference: System.Linq.Queryable.dll aliases '' kind 0x01 stamp 0xddcd439a size 49152 mvid 4060d34f-3af6-4bc6-bac9-11b8952d79ad
+reference: System.Linq.dll aliases '' kind 0x01 stamp 0xff1a9277 size 49152 mvid 511aca6e-dae7-470c-ab91-e609c43249ea
+reference: System.Memory.Data.dll aliases '' kind 0x01 stamp 0xf9b19e7b size 40960 mvid 8303659a-67e6-4724-84e1-7290ed400756
+reference: System.Memory.dll aliases '' kind 0x01 stamp 0xab0ee935 size 57344 mvid 4e316314-42a2-42a2-bbbf-ad885bb6d4c1
+reference: System.Net.Http.Json.dll aliases '' kind 0x01 stamp 0xc95ecda6 size 32768 mvid 1d04ebe3-fa14-42d3-93ce-b623b4f1dae8
+reference: System.Net.Http.dll aliases '' kind 0x01 stamp 0xcef7418e size 73728 mvid f28b0cb8-3eff-4913-afeb-8e7b427cd3dc
+reference: System.Net.HttpListener.dll aliases '' kind 0x01 stamp 0xb44ca1a3 size 40960 mvid 50c4efd8-be59-407c-8572-229a2c8088e3
+reference: System.Net.Mail.dll aliases '' kind 0x01 stamp 0xf34ac96f size 49152 mvid 6a3d40c4-10f5-4f30-a3a8-aaae533d000a
+reference: System.Net.NameResolution.dll aliases '' kind 0x01 stamp 0xa860c14d size 32768 mvid 1b66c9b5-1af6-43b2-a647-5f993029b24c
+reference: System.Net.NetworkInformation.dll aliases '' kind 0x01 stamp 0xe3fb15ff size 49152 mvid 6e6b8072-3f45-4775-99e7-f9bde185075d
+reference: System.Net.Ping.dll aliases '' kind 0x01 stamp 0xeed3c5f0 size 32768 mvid 0f75ba4a-b84f-4229-b7b5-e502ac0f72e9
+reference: System.Net.Primitives.dll aliases '' kind 0x01 stamp 0x9fd59f5f size 49152 mvid 03a9a16e-be78-49c3-aa54-db4c4b84b2d2
+reference: System.Net.Requests.dll aliases '' kind 0x01 stamp 0xc7860999 size 57344 mvid 452f19d7-54d0-4ca2-915f-f1fe901169f8
+reference: System.Net.Security.dll aliases '' kind 0x01 stamp 0xb2f77ae3 size 65536 mvid cf51177a-3519-4f28-8ba0-07fc5c258154
+reference: System.Net.ServicePoint.dll aliases '' kind 0x01 stamp 0x91b8557c size 32768 mvid d56bd4cd-1ed6-42b3-b5b6-910e27a882c0
+reference: System.Net.Sockets.dll aliases '' kind 0x01 stamp 0x9aee580a size 65536 mvid 402a5f31-d07d-488a-987a-0ae735408323
+reference: System.Net.WebClient.dll aliases '' kind 0x01 stamp 0x97e4576e size 40960 mvid 0d923f1b-e979-42af-bfa0-2434b3f2b8f7
+reference: System.Net.WebHeaderCollection.dll aliases '' kind 0x01 stamp 0xae228e6b size 32768 mvid 648aafc2-e6ef-4346-8a20-b150fc7f881c
+reference: System.Net.WebProxy.dll aliases '' kind 0x01 stamp 0xbaefcdc7 size 32768 mvid 4180ac62-94ec-42d9-ac47-459f3eb06e27
+reference: System.Net.WebSockets.Client.dll aliases '' kind 0x01 stamp 0x90cc6759 size 32768 mvid 58444ad4-41a2-467d-9282-3f51711eb2a6
+reference: System.Net.WebSockets.dll aliases '' kind 0x01 stamp 0xd0541f73 size 40960 mvid 1d749ff3-9a11-418c-8134-2eb748a21903
+reference: System.Net.dll aliases '' kind 0x01 stamp 0xbdbfae8d size 32768 mvid 52331e66-1a3f-4023-81b1-2db9da3aa1dc
+reference: System.Numerics.Vectors.dll aliases '' kind 0x01 stamp 0x8d49b9eb size 49152 mvid def47d29-4c3a-4644-93ed-8d7ea55c25ec
+reference: System.Numerics.dll aliases '' kind 0x01 stamp 0xafe4de24 size 32768 mvid 1f9cef34-35c2-430e-8785-17b59b9f476e
+reference: System.ObjectModel.dll aliases '' kind 0x01 stamp 0xd891f6c5 size 49152 mvid c2071b88-5445-4d20-89d1-afd483629f98
+reference: System.Reflection.DispatchProxy.dll aliases '' kind 0x01 stamp 0x87ba8402 size 32768 mvid f7d0cd7d-a01d-4868-8cf0-1102e9b2014f
+reference: System.Reflection.Emit.ILGeneration.dll aliases '' kind 0x01 stamp 0x92017cbe size 40960 mvid e72c074a-d5fc-420c-8952-f861c37d399b
+reference: System.Reflection.Emit.Lightweight.dll aliases '' kind 0x01 stamp 0x9b4d4ef5 size 32768 mvid e7965d5d-63f4-462b-80aa-e29c50ade3e7
+reference: System.Reflection.Emit.dll aliases '' kind 0x01 stamp 0xe0f8be00 size 57344 mvid f7023cfb-bcd4-42fd-9000-d19ffdf13735
+reference: System.Reflection.Extensions.dll aliases '' kind 0x01 stamp 0xf317e9d8 size 32768 mvid ac75eced-98a6-46f9-bf98-0fb8bdf16d2c
+reference: System.Reflection.Metadata.dll aliases '' kind 0x01 stamp 0xbe1d013e size 139264 mvid 2c7feb25-feba-4481-a126-1b03df989863
+reference: System.Reflection.Primitives.dll aliases '' kind 0x01 stamp 0xfc342e74 size 40960 mvid c74ede52-904e-4006-aa30-13d7a27f1aea
+reference: System.Reflection.TypeExtensions.dll aliases '' kind 0x01 stamp 0xcaee4b7f size 32768 mvid 981a669c-18b2-4105-99f3-a4aa2215ffca
+reference: System.Reflection.dll aliases '' kind 0x01 stamp 0xb7ed77e1 size 32768 mvid 3d29cbae-68ce-4e62-9b98-d5ad103080fb
+reference: System.Resources.Reader.dll aliases '' kind 0x01 stamp 0xe7eaf286 size 32768 mvid 3e8739d6-587e-4784-90be-bba7c751337b
+reference: System.Resources.ResourceManager.dll aliases '' kind 0x01 stamp 0xa7e5d7d9 size 32768 mvid 90a86366-5fe1-4dab-aa91-449d7bbf9725
+reference: System.Resources.Writer.dll aliases '' kind 0x01 stamp 0x9f8101ea size 32768 mvid 6a5ab451-f386-4da4-b52d-de226703a85d
+reference: System.Runtime.CompilerServices.Unsafe.dll aliases '' kind 0x01 stamp 0xb764b5b5 size 32768 mvid efd9d55b-6d0d-450c-a3b8-001b0ae3705d
+reference: System.Runtime.CompilerServices.VisualC.dll aliases '' kind 0x01 stamp 0xca5234fc size 32768 mvid 114335c0-7eee-47d9-bc1d-3505cb281bc8
+reference: System.Runtime.Extensions.dll aliases '' kind 0x01 stamp 0xfc0f8c51 size 32768 mvid e5d1c98c-70e9-42b8-8bf2-28695de89662
+reference: System.Runtime.Handles.dll aliases '' kind 0x01 stamp 0x9bdce71a size 32768 mvid a8e31f38-ac07-440c-9180-f1b16622ce01
+reference: System.Runtime.InteropServices.RuntimeInformation.dll aliases '' kind 0x01 stamp 0xa5cccf62 size 32768 mvid e31c83db-3a0d-447b-a02c-55e407cc12ab
+reference: System.Runtime.InteropServices.dll aliases '' kind 0x01 stamp 0xb0810bc6 size 81920 mvid 48c992d1-18e8-4770-9280-e9ca9701c793
+reference: System.Runtime.Intrinsics.dll aliases '' kind 0x01 stamp 0xedd3d719 size 180224 mvid c71fff5f-aa00-496b-9321-336fb8739824
+reference: System.Runtime.Loader.dll aliases '' kind 0x01 stamp 0xba7d1aeb size 32768 mvid cdc09399-575c-4fb6-9efc-01a46657c24d
+reference: System.Runtime.Numerics.dll aliases '' kind 0x01 stamp 0xf7a2d194 size 40960 mvid 882a2305-0aa8-41af-97b9-f88f06270009
+reference: System.Runtime.Serialization.Formatters.dll aliases '' kind 0x01 stamp 0xc4835f97 size 40960 mvid 53f36243-fc1e-4b9d-98b6-f1ea1c1b1258
+reference: System.Runtime.Serialization.Json.dll aliases '' kind 0x01 stamp 0xe331ae11 size 32768 mvid 6c47efe3-9812-4160-b5e9-42a9cd35f2b8
+reference: System.Runtime.Serialization.Primitives.dll aliases '' kind 0x01 stamp 0x8f3099c2 size 32768 mvid 71f0cf09-5a3a-438a-a3a0-7392d4855b84
+reference: System.Runtime.Serialization.Xml.dll aliases '' kind 0x01 stamp 0xdffd2457 size 49152 mvid 1fe56e52-d033-4a49-bced-49bc4a747317
+reference: System.Runtime.Serialization.dll aliases '' kind 0x01 stamp 0x929ece72 size 32768 mvid 1aaae8c9-e7bf-4b7a-a951-b9ef9c1f74ee
+reference: System.Runtime.dll aliases '' kind 0x01 stamp 0xbaa6d436 size 491520 mvid fde82b90-2e7b-4cac-b230-6cb7595e7fec
+reference: System.Security.AccessControl.dll aliases '' kind 0x01 stamp 0xa674c9c5 size 57344 mvid b97785d2-d32b-4af8-b2e1-66f5a91db304
+reference: System.Security.Claims.dll aliases '' kind 0x01 stamp 0x93380f9f size 49152 mvid afeaf749-df7e-42a8-8159-3a3d715621a5
+reference: System.Security.Cryptography.Algorithms.dll aliases '' kind 0x01 stamp 0x8bfe6a93 size 65536 mvid bb8cfb67-4ef5-4023-a00d-a04b5308c73d
+reference: System.Security.Cryptography.Cng.dll aliases '' kind 0x01 stamp 0x83b60697 size 49152 mvid ed2f170c-7dcd-4ab1-a38d-0faaaa1aa4c7
+reference: System.Security.Cryptography.Csp.dll aliases '' kind 0x01 stamp 0xb8840e49 size 40960 mvid 56360c12-a89d-4594-aa9e-dfe20d12799e
+reference: System.Security.Cryptography.Encoding.dll aliases '' kind 0x01 stamp 0x91842bda size 40960 mvid aeb9931e-6173-4a67-b90a-499c56588adc
+reference: System.Security.Cryptography.OpenSsl.dll aliases '' kind 0x01 stamp 0xa297e302 size 32768 mvid c7807023-0c62-44bc-afed-7a28d93a9eb6
+reference: System.Security.Cryptography.Primitives.dll aliases '' kind 0x01 stamp 0xa3a2a9db size 40960 mvid 85c4c57d-53d5-4724-8e15-76ff37c181f9
+reference: System.Security.Cryptography.X509Certificates.dll aliases '' kind 0x01 stamp 0xbca5c2c3 size 57344 mvid de8c8e0b-078d-4fdb-b5ea-f4c286117ef5
+reference: System.Security.Principal.Windows.dll aliases '' kind 0x01 stamp 0xe8595654 size 40960 mvid 8f4b3249-dc9b-4728-92bf-c5d399056ff4
+reference: System.Security.Principal.dll aliases '' kind 0x01 stamp 0xfbf135c4 size 32768 mvid 64b1b72a-f555-49c3-9313-1304c3ef060b
+reference: System.Security.SecureString.dll aliases '' kind 0x01 stamp 0x8abdf2c7 size 32768 mvid 6a94dd0e-8f63-4eb6-bc08-0dde956fc147
+reference: System.Security.dll aliases '' kind 0x01 stamp 0xa9bcde1f size 32768 mvid 2bd162d0-54ef-4611-945a-47a50e908622
+reference: System.ServiceModel.Web.dll aliases '' kind 0x01 stamp 0xfd31d8b0 size 32768 mvid 4b04b89d-31b9-4e89-b546-a6893cdc2faa
+reference: System.ServiceProcess.dll aliases '' kind 0x01 stamp 0xeb8379a7 size 32768 mvid 86c2c937-0d23-4d44-95b4-9ff914ab365b
+reference: System.Text.Encoding.CodePages.dll aliases '' kind 0x01 stamp 0xe4a3db50 size 32768 mvid 919d928d-27b7-4b0d-9cfb-9dd4c86f3be5
+reference: System.Text.Encoding.Extensions.dll aliases '' kind 0x01 stamp 0xbd056624 size 40960 mvid eff7ff72-ae49-4276-9c87-c49e230b16ce
+reference: System.Text.Encoding.dll aliases '' kind 0x01 stamp 0xd195d71d size 32768 mvid 51d27699-7ce0-4ded-88ab-344c3bf9db6f
+reference: System.Text.Encodings.Web.dll aliases '' kind 0x01 stamp 0x9af91815 size 40960 mvid 81826dfc-7c32-4a22-99be-95ed39dd571a
+reference: System.Text.Json.dll aliases '' kind 0x01 stamp 0xf6538932 size 73728 mvid 3e1b4a0f-cf25-4b89-9fa4-32c60df3f6a9
+reference: System.Text.RegularExpressions.dll aliases '' kind 0x01 stamp 0xc015922a size 49152 mvid bd8f561f-514f-4690-b07c-4a07e908d63b
+reference: System.Threading.Channels.dll aliases '' kind 0x01 stamp 0xab944fb3 size 32768 mvid d18e96ec-002c-499b-9605-62e2de5b8205
+reference: System.Threading.Overlapped.dll aliases '' kind 0x01 stamp 0xd2901903 size 32768 mvid fa846c59-f50d-4693-b1e9-0fd6089df1c4
+reference: System.Threading.Tasks.Dataflow.dll aliases '' kind 0x01 stamp 0x9013a1f6 size 49152 mvid 163de916-d7a6-4783-95f3-600c5c1c1faf
+reference: System.Threading.Tasks.Extensions.dll aliases '' kind 0x01 stamp 0xd756c3e7 size 32768 mvid 410f2f02-7252-4ca2-9c26-8efccbb9e820
+reference: System.Threading.Tasks.Parallel.dll aliases '' kind 0x01 stamp 0x91647794 size 32768 mvid 0d392a2c-c85e-4973-b28e-5e1cbd0a53d0
+reference: System.Threading.Tasks.dll aliases '' kind 0x01 stamp 0x92e47e1d size 32768 mvid bd0d977d-f479-413a-b898-0f3c53ed0557
+reference: System.Threading.Thread.dll aliases '' kind 0x01 stamp 0xd446ed8b size 40960 mvid d8b2080b-e2c4-45f8-a834-9195c8793c78
+reference: System.Threading.ThreadPool.dll aliases '' kind 0x01 stamp 0x80ed724f size 32768 mvid 2cc2624f-011c-4c57-892e-577659deb665
+reference: System.Threading.Timer.dll aliases '' kind 0x01 stamp 0xd79d4515 size 32768 mvid a7a4d39a-370e-4d97-933f-ed9e0295ba8b
+reference: System.Threading.dll aliases '' kind 0x01 stamp 0xa749ec32 size 49152 mvid 1ece12ab-418d-4d0d-83f1-000dc35ac06d
+reference: System.Transactions.Local.dll aliases '' kind 0x01 stamp 0xf0d6a77f size 40960 mvid f7cf09c9-7f4f-424d-abda-df995d4b8f44
+reference: System.Transactions.dll aliases '' kind 0x01 stamp 0xd9aaa7c1 size 32768 mvid 751aabb3-a7c1-474a-b0bc-919572c2cf64
+reference: System.ValueTuple.dll aliases '' kind 0x01 stamp 0xc68ecf77 size 32768 mvid e86223c6-60ba-4dd4-89e0-14d1b84b1831
+reference: System.Web.HttpUtility.dll aliases '' kind 0x01 stamp 0xe6d75007 size 32768 mvid 9a34b68a-75a3-413e-9929-3f726338d062
+reference: System.Web.dll aliases '' kind 0x01 stamp 0xd4001655 size 32768 mvid ba00341d-5f26-4225-86fb-20ebdd121788
+reference: System.Windows.dll aliases '' kind 0x01 stamp 0xbe63c0ea size 32768 mvid 038776ad-b2f9-45ed-bcb0-0b13093de32e
+reference: System.Xml.Linq.dll aliases '' kind 0x01 stamp 0xcbdb822f size 32768 mvid bdfe35cc-7634-4ad9-ab7c-0d726f29ac17
+reference: System.Xml.ReaderWriter.dll aliases '' kind 0x01 stamp 0xbeb20987 size 131072 mvid b363695d-4f4c-4a74-892a-d5ba414ffa00
+reference: System.Xml.Serialization.dll aliases '' kind 0x01 stamp 0xf9139952 size 32768 mvid 6e62b475-2c25-4fc3-9a59-57e6b2d0b88f
+reference: System.Xml.XDocument.dll aliases '' kind 0x01 stamp 0xc314f097 size 49152 mvid c603d5e7-0c2b-45d2-8fc5-8d90bd30410a
+reference: System.Xml.XPath.XDocument.dll aliases '' kind 0x01 stamp 0x8b70539d size 32768 mvid d79c3f97-30db-43a7-a22a-876ae8302b46
+reference: System.Xml.XPath.dll aliases '' kind 0x01 stamp 0xcbc7ebcf size 32768 mvid 5828fe9f-2d62-407f-b829-44544847ca59
+reference: System.Xml.XmlDocument.dll aliases '' kind 0x01 stamp 0xcd3b21ba size 32768 mvid 11c8aeca-72bd-4c62-afd3-4182330c0062
+reference: System.Xml.XmlSerializer.dll aliases '' kind 0x01 stamp 0x9a693a4f size 65536 mvid ed25b4e2-fb79-456a-a5ea-63893676f53c
+reference: System.Xml.dll aliases '' kind 0x01 stamp 0x9e60e5d9 size 40960 mvid eed47321-deb4-47ed-b250-cfccf8dcc534
+reference: System.dll aliases '' kind 0x01 stamp 0xe3868e82 size 65536 mvid 0fe24a37-2f32-4cc6-b695-e474edba5f47
+reference: WindowsBase.dll aliases '' kind 0x01 stamp 0x9056a366 size 32768 mvid d4dfe2ae-5b6c-42b4-b81d-27ce82068514
+reference: mscorlib.dll aliases '' kind 0x01 stamp 0x8e77dd1b size 73728 mvid 4a1dff77-3c18-4e1a-9f59-f53edcaa2289
+reference: netstandard.dll aliases '' kind 0x01 stamp 0xa49d6e25 size 114688 mvid ac09946f-9f82-485e-bc10-f1dd7cbf588d
+
+## Documents
+document: /_/artifacts/obj/Azure.Storage.Blobs/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs sha256 f55a8701535cd25190399fe9b11bdb60ecd686ece28c49157ec692fbc2a1c078 embedded (crlf 4, lf 0)
+document: /_/artifacts/obj/Azure.Storage.Blobs/Release/net6.0/Azure.Storage.Blobs.AssemblyInfo.cs sha256 68c83f98bfdf4a15e9266c51348dca39b65af0e6c6626545a6b06c8b322528ec embedded (crlf 33, lf 0)
+document: /_/sdk/core/Azure.Core/src/Shared/AppContextSwitchHelper.cs sha256 bf14ebb4132e95c72c74c5e956e112032c32266c9399272b63748d01b27d86c8
+document: /_/sdk/core/Azure.Core/src/Shared/ArrayBufferWriter.cs sha256 9d25f586771a40e71424a03e10da7cc3846c1e3655bf84c29c7cc5639eba599c
+document: /_/sdk/core/Azure.Core/src/Shared/AsyncLockWithValue.cs sha256 ffae3231fe0127951867ac1d745454a77982e3634ff90bfc83bac00c36ae5d99
+document: /_/sdk/core/Azure.Core/src/Shared/AuthorizationChallengeParser.cs sha256 3e53b5cde942b9612922ada2bafc32b44bf0a4a9dd2cda0d9fb8d3137cbfd61b
+document: /_/sdk/core/Azure.Core/src/Shared/AzureResourceProviderNamespaceAttribute.cs sha256 b923740d013504f0735a8d92f525defa4af1c4827b2aed185b30573602b050ba
+document: /_/sdk/core/Azure.Core/src/Shared/CallerShouldAuditAttribute.cs sha256 0e6797fe398d8ef255da00ed0b5a30d35d6bb9b5e4b2f819672bf37c8c45cbe2
+document: /_/sdk/core/Azure.Core/src/Shared/CancellationHelper.cs sha256 08f70ecce15bf375d1fed1f805be8b4fa88deed5736bcbb0d4ac272272761dee
+document: /_/sdk/core/Azure.Core/src/Shared/ClientDiagnostics.cs sha256 8320f0a545da802633d242d4fde671631f3dbe69ebd5cc64b7c8613c8623e49d
+document: /_/sdk/core/Azure.Core/src/Shared/DiagnosticScope.cs sha256 9f9bcdfb0b4da1fdcca9ceb69f2a9577cb40658c4f71c3d705c0001e2efd6dae
+document: /_/sdk/core/Azure.Core/src/Shared/DiagnosticScopeFactory.cs sha256 ffadf740c3993162f8a8f20c8c4ff852967484519d2bf849366e6e1191206000
+document: /_/sdk/core/Azure.Core/src/Shared/FixedDelayWithNoJitterStrategy.cs sha256 d20fd3a536c73fc5568d838cdb3cb5c112c0c9784ca204eede10d191c0032d06
+document: /_/sdk/core/Azure.Core/src/Shared/FormUrlEncodedContent.cs sha256 e00c98920a1e383c0254b65a5bbc858900d76b063e8a37d30e5f8ac82df4e884
+document: /_/sdk/core/Azure.Core/src/Shared/ForwardsClientCallsAttribute.cs sha256 49b8a3f5050e20a30ab4a71e46ffdebee7076c96a4ad044310753030e651f762
+document: /_/sdk/core/Azure.Core/src/Shared/HashCodeBuilder.cs sha256 9e0725f86294e280e959bfacf69501d558661c6482caa3744c2b0e1a96ee3186
+document: /_/sdk/core/Azure.Core/src/Shared/HttpMessageSanitizer.cs sha256 e2759ba9d28310f17363b5b7c91d6966e0da0fd5e7666f6031b2aef4567fd041
+document: /_/sdk/core/Azure.Core/src/Shared/HttpPipelineExtensions.cs sha256 4d6d6ef8292d8017074df6bd4bcf1b24f85b07a629514059e211966fa4538320
+document: /_/sdk/core/Azure.Core/src/Shared/IOperationSource.cs sha256 923fbe09667316b01d8df0566eb96d3d85980f2688b65ed4ec72187d056ffc12
+document: /_/sdk/core/Azure.Core/src/Shared/IUtf8JsonSerializable.cs sha256 eb8be534f0cf27f60894b33a5b18267b7cefe0c0ba1e276742c2ccef21556371
+document: /_/sdk/core/Azure.Core/src/Shared/IXmlSerializable.cs sha256 eef0a0a49d911bf1f07883a2f9e7915780eafb0345271e1a140995788ac688a7
+document: /_/sdk/core/Azure.Core/src/Shared/NextLinkOperationImplementation.cs sha256 4fe5b7cf17f198b877ff0e9e591f912edad97ca64d9df5b3dd5472eca40ba5f6
+document: /_/sdk/core/Azure.Core/src/Shared/NoBodyResponseOfT.cs sha256 74762e88406d411ee6d70f8da22a67408fed51af33cd6a3e4fd9ec52f600902f
+document: /_/sdk/core/Azure.Core/src/Shared/OperationFinalStateVia.cs sha256 dd6867ccb84dbaca3726da192603b68b63a116d9a0d4efc82a634d8f959b4f15
+document: /_/sdk/core/Azure.Core/src/Shared/OperationHelpers.cs sha256 2c7fb69ba1799609f1a491547172e35a6fe5d93efe1e0c93ef705579046c9721
+document: /_/sdk/core/Azure.Core/src/Shared/OperationInternal.cs sha256 1faed2febd92744799526b678bb30b6d9f4cd3209516d71c84f4f9ccd4bbbde8
+document: /_/sdk/core/Azure.Core/src/Shared/OperationInternalBase.cs sha256 0b0cdb2a79459ce30492c1d4aa03703c3e4fd7e7e814c4e01b58152a6ba2be0e
+document: /_/sdk/core/Azure.Core/src/Shared/OperationInternalOfT.cs sha256 5ed726806c6e7cda23b8452ded4254204c2c34a58e4c7264ce6fd0018cbd4722
+document: /_/sdk/core/Azure.Core/src/Shared/OperationPoller.cs sha256 44d2304337c3c7c011ec81fcec2bd02b723a8532f18b48353d1d2775e531f5fd
+document: /_/sdk/core/Azure.Core/src/Shared/Page.cs sha256 b1d6781fd171c1b5cc0e7de0ac73dd522c9a7714a8009671c2fdd58256efd119
+document: /_/sdk/core/Azure.Core/src/Shared/PageableHelpers.cs sha256 5e945717ed1d852285088842d40cb81a54105734e351772ccab2687529c98de2
+document: /_/sdk/core/Azure.Core/src/Shared/ProtocolOperation.cs sha256 996a52d410ef678de0e2e5a0c9c6c4f6d9d148ad7a0e73ca4936f4c2e525d53f
+document: /_/sdk/core/Azure.Core/src/Shared/ProtocolOperationHelpers.cs sha256 0d5685f2cc3dc4d5d9bc0f38cc086802de9fbbef3bf283cda3df94bc2d9096b8
+document: /_/sdk/core/Azure.Core/src/Shared/RawRequestUriBuilder.cs sha256 60107aa212e67e41fd68fce14992b6dfa14a430cf7ef858e3daa761bdf3c1987
+document: /_/sdk/core/Azure.Core/src/Shared/RequestHeaderExtensions.cs sha256 42bfb80c3a695ebe4da22d6ff7de80085ea7a94cbeba6a3fa27fc2fd459b5bad
+document: /_/sdk/core/Azure.Core/src/Shared/RequestUriBuilderExtensions.cs sha256 5422232bed5cc0e33097bf627b1bd6619a8c10d3fbf6ef91db5cd15d6cb3d255
+document: /_/sdk/core/Azure.Core/src/Shared/ResponseHeadersExtensions.cs sha256 cc6eb374036b879019485646ba7a698a3fa76c1aa8fa6be2df82af3d2d357ab5
+document: /_/sdk/core/Azure.Core/src/Shared/ResponseWithHeaders.cs sha256 9a02608f0ee66a642f4cf88b0ab863ebc075d1ed379778878087b3fc6fef2b10
+document: /_/sdk/core/Azure.Core/src/Shared/ResponseWithHeadersOfTHeaders.cs sha256 2019a35f08fba54ce41d8e1186f280036e15a56a09c23d9545437c4ae61ae62e
+document: /_/sdk/core/Azure.Core/src/Shared/ResponseWithHeadersOfTOfTHeaders.cs sha256 27fb3b753fe10bd7babde91e3eebe184d755e87b46a246bd9224f18770bccb22
+document: /_/sdk/core/Azure.Core/src/Shared/RetriableStream.cs sha256 d0eea296164b38a4da2c9a576a7d7038d01594a3171d2df67b5079cc043d4630
+document: /_/sdk/core/Azure.Core/src/Shared/SequentialDelayStrategy.cs sha256 9256001fea04f8471252d084e3fc77da5f2de493cd73c9b46bc5d3722d99603f
+document: /_/sdk/core/Azure.Core/src/Shared/StringRequestContent.cs sha256 6b81304646ce0f357370f7004c28fe915677747ce56e91c29afd91f27f288642
+document: /_/sdk/core/Azure.Core/src/Shared/TaskExtensions.cs sha256 2fb96fd18105bbb0518add18fac2d5aea4928f2325abb6365a79b82f10ff5719
+document: /_/sdk/core/Azure.Core/src/Shared/TrimmingAttribute.cs sha256 52c6b36bc2d8d02304bd17ebe51d4723b1049563fe135ed72c45032ea9a255a3
+document: /_/sdk/core/Azure.Core/src/Shared/TypeFormatters.cs sha256 b351376122779ba76e7174efe82b6d0310963e0108b637261c92d18616ac7e69
+document: /_/sdk/core/Azure.Core/src/Shared/VoidValue.cs sha256 cf21547c3e0c530512c58ce5f304528eaea1ac1077972e42eebb221ae8bd8e50
+document: /_/sdk/core/Azure.Core/src/Shared/XElementExtensions.cs sha256 104f50fe008644e92b706844dd9e42bcf139a2fa3df6c7d647c6bf685aa6c189
+document: /_/sdk/core/Azure.Core/src/Shared/XmlWriterContent.cs sha256 cffb59c4ce6dff8b77fef2021915938cfda14561affe5f2a9f9ca1f8626231fd
+document: /_/sdk/core/Azure.Core/src/Shared/XmlWriterExtensions.cs sha256 82d14cdceea787fd0d79160928d76598f5f027913b68a0917ae67240936cd652
+document: /_/sdk/storage/Azure.Storage.Blobs/src/AppendBlobClient.cs sha256 d739ebbed758193ad148c6c775df8c7a88f6d53b254f9ca43c1163ea8947444f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/AppendBlobWriteStream.cs sha256 d0248f300476096d011d13461ebf6e84e3c00b83d32fad278434f0aa606b0c74
+document: /_/sdk/storage/Azure.Storage.Blobs/src/AssemblyInfo.cs sha256 ca69dbd56601dc1213bc4289409179d86b85f241226458856c52eb0365b6d7ae
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobBaseClient.cs sha256 bf5938fa9c5e3572ad0c8f3184f5f0fb3ae47df68506b266bce0f94d109610f8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobClient.cs sha256 daef37d68f70a8c02f74a8f433ab1abbc10ac81b37c9615a668d4a89a53bb7ae
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobClientBuilderExtensions.cs sha256 fba87c41b52eab60824ff231399e2075f12a6ce86546b798245050420abb0f5e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobClientOptions.cs sha256 8f9b38b451c575552c085e506a8fc87f8971710c5081e6c6d9ff4c1211b718d6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobClientSideDecryptor.cs sha256 aa5aca1e48e3666eaf65d3c7ee1415227c9d1e2891a681f168a7ab06b6ef3a8b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobClientSideEncryptor.cs sha256 896b990fdf410937288591939310f9e4721e2cb36a140a437c09e4df736223d6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobContainerClient.cs sha256 e1b2dbb9d6e6a5d278acbd6da661a8c55e06d653e3417f47463ed3f6e2852953
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobExtensions.cs sha256 6234d82d507fdeed3db914c58e3f19b25e33435a2f2a93e38013d9387c3cca44
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobLeaseClient.cs sha256 5bb0d6d7fba455359c5246db4ad0a9ccabf6efb5658c3615a877e3aa20c482d8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobQuickQueryStream.cs sha256 e933599a3cfccaaa69609998bd690d2bab39aed848dedb8fb43b01fd6ba3a283
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobServiceClient.cs sha256 922599bd8350e59a21b97f857c743d34f92b6f362a2f58adc8bc21415fcfbabe
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlobUriBuilder.cs sha256 d5266e8bfb18aea9b0d8c05022caf7581d9771ae3f00b074ebd8a70e50854636
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlockBlobClient.cs sha256 75d5be2d528875c10dae03569892726621ed96c84ff6b1b6057a4caaf5ffa4de
+document: /_/sdk/storage/Azure.Storage.Blobs/src/BlockBlobWriteStream.cs sha256 6e45b8df779ed08757cf5b7fa43eb81790ebe213627991f30dfa3bfdf4ec3d37
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/AppendBlobAppendBlockFromUrlHeaders.cs sha256 71fb640f1a8a0b5865d7ba035d91e0d8ccd30b69fb637a7d8df113d47cc5de6d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/AppendBlobAppendBlockHeaders.cs sha256 608b719163202e65250ace3e9814ef85a0e747630ac6cf4346bc9f22cd280005
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/AppendBlobCreateHeaders.cs sha256 289bb6ad222366ab843589ada924873737cca9711205bcc83b7b8ec8584de411
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/AppendBlobRestClient.cs sha256 8f893e29566896d4ae516a653798b861f48041a73ed10fef9be2fbc53f4e741c
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/AppendBlobSealHeaders.cs sha256 313a6de65921c1b61931575bed8f500700f58e4ecdd0ee0e583f97fa790ce93e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobAbortCopyFromURLHeaders.cs sha256 36edb2c2b65c095adfb4952d38cd5457a4490349af1e9afafe0a0051fd255e91
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobAcquireLeaseHeaders.cs sha256 5897ab1205b527cbf2a61d9faf328ed70ac06d69fbad024da4b1bf3b7cf59963
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobBreakLeaseHeaders.cs sha256 2d5dfc88a3982019d0289b32007323fb094e8443daefb1fbd1c940d5ee41b413
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobChangeLeaseHeaders.cs sha256 6146f0e71ef6ebc0f92fb44dc88b422553ea3398cc56c4068d28daeab27aa730
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobCopyFromURLHeaders.cs sha256 3fd655ceabfdfccf242f2a04541b9707d0ec1911e43f27bceab074ae369d95fd
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobCreateSnapshotHeaders.cs sha256 2881eab36ce2a6d288231f11bf4ba6312e83c7f86d7db7fa1298a9eae5e4210b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobDeleteHeaders.cs sha256 9929f13b3b7c758a203b17f5b544d614e65b494ce1c65a48f9f4c2e542803bd7
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobDeleteImmutabilityPolicyHeaders.cs sha256 6dcd90f3b7178a8bb4791845844dea906c02a44bf37c645d430efebe3a5db1b6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobDownloadHeaders.cs sha256 bc4e0b34ed50f46c5d999896598b195df20554a6e6b5e56fa0c5c67bf0c9a102
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobGetPropertiesHeaders.cs sha256 087ff8ff4a6082961d168ce195f9549af686813886f9409a2c6235884cff2464
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobGetTagsHeaders.cs sha256 d42b2b123b8e6cd8284aaafc86197a112fd762e7cc785ff2ec3e6eea89b3a4ff
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobQueryHeaders.cs sha256 cb20c77f1bc079afca3103d11c9b7073a1befddf244bd65c342af6d3fa598fd6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobReleaseLeaseHeaders.cs sha256 be353251dcf7a2f2da5b8939ea55681c20402abb00aab6890c031b51edc66a35
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobRenewLeaseHeaders.cs sha256 6828c0e427cf6299e934227b05c8c7baceb040a323cba564b32aba8e0d681dc8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobRestClient.cs sha256 9e79ccde6e83b90b98a37b95e7c1fa66fb14eda5167c8f2eee2f3ad0b2296626
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobSetExpiryHeaders.cs sha256 a74b3b3891f8e9b9c880b9926636c3a5431595a2c0acfe473e92d338bd03d200
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobSetHttpHeadersHeaders.cs sha256 b08b2566fc9058124b79f639f1ead4cf01ea640316e7abdabd8e48a34af57985
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobSetImmutabilityPolicyHeaders.cs sha256 f207a935a27c8e30dbb3f8bbb963f8b3c88a5748dad697ca4eb5b626ca3c582a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobSetLegalHoldHeaders.cs sha256 79fcfd661dafc238be6e0956aac303b81e8d889eebec120ddabafd8f2543974e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobSetMetadataHeaders.cs sha256 a1c904aa83421df9ad230d735a16c369310c15b5d3361377275545de18d92978
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobSetTagsHeaders.cs sha256 113e416547c4d893c8ff3eefe12ea134d47faa27528ed78e7820f252b4a0b77f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobSetTierHeaders.cs sha256 9ba90622b8111d84836f85d010ab0382a2d6d5cfeb5246740a9d12e18610a9a1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobStartCopyFromURLHeaders.cs sha256 a9629a23a2bf3ac0da3ab869a9815ca256d50272f9ec08da4cbce2e7621a6761
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobUndeleteHeaders.cs sha256 d0e6c610bc9ef3cb713cbcc2c84de4ed6aa216a4028c48c1bd89525420a615f5
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlobsModelFactory.cs sha256 bc7c1b309142f88258d5338af1473ef9cb24ec1f076a9f625ebb80f1efcac154
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlockBlobCommitBlockListHeaders.cs sha256 3d0eacd8ef06add80fc9ef70bb94726502db7d180b39e23c1854e8be362ff608
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlockBlobGetBlockListHeaders.cs sha256 8574e210c6eec571cdf2cace5e4cb8bdb3d9d84a32434299daee4a646411e211
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlockBlobPutBlobFromUrlHeaders.cs sha256 2300954ce512291a860afff009ebde2eeec8d74e117118e0c8bfa00d1e8138f2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlockBlobRestClient.cs sha256 2458199cc2a401057a07f08274ade3fd7a39f098445eb137ef2ce8c7e56fea83
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlockBlobStageBlockFromURLHeaders.cs sha256 6eaf65c931c96f6011e9c0e8179f54503d54c2fa0df4b1efd54225e872d4b8a7
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlockBlobStageBlockHeaders.cs sha256 c882edd8635b9fc9bab24ed0b8a7ca3a4a82f4b88217d94d96d3cbd972e724a0
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/BlockBlobUploadHeaders.cs sha256 ddcb6b8362fdbf7dbec586b5f7e4814c6d7699ed32bec99346359091ed48dc75
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerAcquireLeaseHeaders.cs sha256 f8a5130a18b9fe51e49460c0d014c00c9651648df804771942f1f936a6ef9836
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerBreakLeaseHeaders.cs sha256 efd40c0699675d151f976fe20b19520447f6b3c4dcff7eb824e3d87f603a5345
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerChangeLeaseHeaders.cs sha256 204e24bfb316b7880af31675cf7d3e87ba443b9524a974d32cf7e158cf3be753
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerCreateHeaders.cs sha256 699b97ee4127505f41d379c49eab053a28823d1aa98ef9d5ca5a504d103ad4d5
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerDeleteHeaders.cs sha256 f8af2b96dd8a22d680e5e31363be2704c73fac4f96e3c05ccccc8ba86aa4f6e3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerFilterBlobsHeaders.cs sha256 59933aedac560eb7e1c0501f4cb45b3ca2e9ac6a69b9ee0c86c607a0dc015ae4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerGetAccessPolicyHeaders.cs sha256 38dae5305a109535f20871ed719efea237766f744875a15a05dea2683f852b0d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerGetPropertiesHeaders.cs sha256 a1f650c999518992acd68d694f2565f8e6b244e6d9a6690410cf6d0ae996889d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerListBlobFlatSegmentHeaders.cs sha256 e7a58daf2a44d544e9c2dea5f6f3fd327704acd445b2c97b067dceb3c6ce3e55
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerListBlobHierarchySegmentHeaders.cs sha256 d2d497de3cd2a6e2568ada513849bbdacc67fa66324c707ce591bb3f6dc3a672
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerReleaseLeaseHeaders.cs sha256 6e81e5d1df1c7d80626fdacde90cc9dc3e884c981e486d524035df09bafb1bd2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerRenameHeaders.cs sha256 0e89821fd7dc3e77cab3c56bf3c04d3041882bbe100c18e0128ea29bb141be68
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerRenewLeaseHeaders.cs sha256 e78ba1075fb1cd5afd3055b842595fa71c74c0d1fd2d2fb0b9d0af8262b28bde
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerRestClient.cs sha256 aa3e8d9c7ed8ea0dec2cfe5fd1dcd35c64193c08c1c62cd4fed49b97f748dbbd
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerRestoreHeaders.cs sha256 fcce968495c313a3e4266afaa31aef9c5be12c8de3512d917b5ebae38e43e9ce
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerSetAccessPolicyHeaders.cs sha256 606fe329d5b284089b7576b808071a0bd93290ba257b3ee05893c975a6e06d6d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerSetMetadataHeaders.cs sha256 afad35c8905c11ead9f1150524b5267132daaed745d230b27246fa58897dcc95
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ContainerSubmitBatchHeaders.cs sha256 409b331764479f34b0c1620178eafdcc0717755a7dad1de9874af1e95f90a0ce
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/Argument.cs sha256 6b43eb4627cdce8b7805bbc6b3390f4b3a2833529ec282b6e441fb808e846def
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/ChangeTrackingDictionary.cs sha256 6a7415fd79ee7b1209a752b97b6376b95738d769990adbffe843d194817eaeb0
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/ChangeTrackingList.cs sha256 4adbc74a55e33a4747386231fe3acdaf827eb374d10463aea66ab7fce3156055
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/ModelSerializationExtensions.cs sha256 55f0bf9bb20494f22ba96d05eb0d5ab42587c3099eb171dd4eecf0d70e574b90
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/MultipartFormDataRequestContent.cs sha256 e90627bb36b944a9d5fcaaf900f0858f3e4eddae6c87cf6fcf48ea2ebfdc63d8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/Optional.cs sha256 df1df159aec646e4bce5bebcb4f04b47ec03cc1f1734d1a5f71b5fb00af2cc7c
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/RequestContentHelper.cs sha256 d1a16614437f30c4f5a3a8db88e85d0ccb2de5ab5dbc0f6b741f39a3dfef6745
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Internal/Utf8JsonRequestContent.cs sha256 053be01a28492e2a724b2abca8e094a3850f9841bdf9d3f422615cd6289615fc
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/AccessTier.cs sha256 0fb5c136f0bb133f704e8cba7dca0b837eb159c876a8ca2933a702ad883fed72
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/AccountKind.Serialization.cs sha256 010a8752e808cb773c5a8990451dbf4d950cef6c1b18dd3feba646816d346ab0
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ArchiveStatus.Serialization.cs sha256 721ef9d1d51c414871826dcc65f0756c8f9af83814e1590c432d2dea95c9771d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ArrowFieldInternal.Serialization.cs sha256 2c83dc0844c678704208d50555814db8f8efdc4a783608f6ab9b3780f6de2679
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ArrowFieldInternal.cs sha256 ce7f293ec5b8ba068c6cc829e8746dce762b9101fa3b17e482b6967d9b45ee2c
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ArrowTextConfigurationInternal.Serialization.cs sha256 7ee88e6a91ee9d7832a3f15fdc91214ba33782862bde0bc13f7686d485366f1c
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ArrowTextConfigurationInternal.cs sha256 2913448fce2044e6ef711a12f1333e6661cf48b76b02ba65976d000fd18e88b4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobAccessPolicy.Serialization.cs sha256 b0e3a36e03e88b61a1ffdd52dc8e8604d85847bc17d47f8e8e86f9deb27e8896
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobAccessPolicy.cs sha256 ef05665facc828d8ae461cae4e17fa5f6e35ee6c75c53218474e8191cb270775
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobAnalyticsLogging.Serialization.cs sha256 ec460ef80b0bf8b69d7d9ee21cd3c2b912da61f7730c9d4eb1fac6a9c1af7ea3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobAnalyticsLogging.cs sha256 e730bdaf917662c404ec24a7298d596bb37b0ef4fb13dc7506351cd37abbb9ec
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobBlock.Serialization.cs sha256 47b0e889df7ddc0fe27eaf607c671dd558c4669d33f3af7cafe95396f39a03fc
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobBlock.cs sha256 0339706f0415deb6d8384d97c19146c0fbd7f8145bc50495e1cba15125f2bef9
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobCopySourceTagsMode.Serialization.cs sha256 360c675b6a69782e84e65322c24ba16cab7da4089f5a4c630d5ee3dcfb96ee60
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobCorsRule.Serialization.cs sha256 7467e934a71498f122047606e8d3de00f01f50056c7c2de2e097abe73c9a83ef
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobCorsRule.cs sha256 cc16953cb4bba1f14fd63807419e4655a9ce2ba9e97c1296abf44a5891d73be7
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobDeleteType.Serialization.cs sha256 4750c9a1927ff1eb3cd329b82a4f9358b47055a2473f2029643bf1cd3ab19b01
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobErrorCode.cs sha256 34ae848d933464feecac3bcef17288e9290effd7e54151a7934e12244e976811
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobExpiryOptions.cs sha256 759b2e30a314a182d486ba70569119f2ef7d1763a26da014543d4c89f4c43417
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobFlatListSegment.Serialization.cs sha256 c02682d27b72a3e667394327a602e01e2c67aead48717819e7b7f4458683a2e9
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobFlatListSegment.cs sha256 0fc8a17e39ed7ad1bedffe5e6da95675a1dacbd7de69418454fa0759be034b02
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobGeoReplication.Serialization.cs sha256 5d17282ef2a9708d35d5eca6315a21c05f42ac60cbb37f200e8d18ae64474f2d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobGeoReplication.cs sha256 b52866dd69243f374319844dbe993d09cdc8513c42020ef8d240dbb1cbcc5a93
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobGeoReplicationStatus.Serialization.cs sha256 e62595678dd9cc4f6a89c8bc3800a2382561288b4732a9e0c3a34723e3677e19
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobGeoReplicationStatus.cs sha256 2c041c988fb8b539497bba48e3d382b83dea6312d37cd0a419d79e5d05dd7417
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobHierarchyListSegment.Serialization.cs sha256 4bbc4ac572113d0513b8b52d8a117fd0b53eef2a1b6b2a0b9ce4429790501dd4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobHierarchyListSegment.cs sha256 198952e314372f2631dd18ddcd5993cff0d39cf0e3bc419425fccb90939477f2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobImmutabilityPolicyMode.Serialization.cs sha256 8bffcc41ae825a5c2db1e5ddbecaae7cb8af95b993b126304903092dfdf32653
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobItemInternal.Serialization.cs sha256 be84906fba13851589a65c48a1cc043f8d4f863493db84571064775858cece5a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobItemInternal.cs sha256 791b88ba35af390ebf6749c94660f42de4a3ae5856365c1f318f5f036d554317
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobMetrics.Serialization.cs sha256 70c8ec5430e3ba384047acacb7cefac27c5d3e8303fdfb70dc19faa1ad8d3d22
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobMetrics.cs sha256 16049e18c2cd096d2d8f4912533136cb9cbbfe18d24efbd12dc21fb6cfcc5acb
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobName.Serialization.cs sha256 5a0075c0b00f3908f55c5f6a84c451b1de2a6071f2c3a8e3b1778e850e2e3a98
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobName.cs sha256 dba344482596c675763a8159c3527be11e689f635feec9036ce5caaa69f73218
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobPrefix.Serialization.cs sha256 8b75b479bee56d5f1738cbb8ac9f257ecb66eb1f6aea8330d61318eda2d26578
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobPrefix.cs sha256 557cb705ea62af83cc589feaa484b866e709f6ad6b293fea198ba13fbb0e03c9
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobPropertiesInternal.Serialization.cs sha256 c17b9c18830efd4d958ff6e6dcc25ee6f8a6972a6c9c426fbad903ffe98deafe
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobPropertiesInternal.cs sha256 0dca0a8170d12951d50ec8e54cbf25769e5a978a6c6e0d9c5a133dc5728f52a9
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobRetentionPolicy.Serialization.cs sha256 bb0c4af15fd893bced806d2f45bed26b1d2bb1533f8a3086adb113dfc47c9bee
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobRetentionPolicy.cs sha256 9f9dd9fbbd61805898856bfceafd0603f89006564976f9923df84b5f1493a31d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobServiceProperties.Serialization.cs sha256 3f4125719dbad9666ed45e5b990e2395820379d76dc7acd0aceda0e794b77585
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobServiceProperties.cs sha256 a72eac0cef3ff693c04d356025658b00e8075ae34c9bc7897c95b45410bec441
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobServiceStatistics.Serialization.cs sha256 2d7d353162a8314a8c8d2645e5da477a9b66be6636c470900f69e95c72bcb963
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobServiceStatistics.cs sha256 1f2e9ae1f20b72a2f092fa7fbfff13a363fd27b3cb78d51f0d1a370004b13ae7
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobSignedIdentifier.Serialization.cs sha256 28ba76012f80745e86bc5a8b9ec0e6c88f90d17b3716b457461e6f3f5460d9a9
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobSignedIdentifier.cs sha256 c7d7b7f449f5fa00b9f11037fc1f0a58ca23047a2c5df76455994c1f6d7266b5
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobStaticWebsite.Serialization.cs sha256 f61ad67a4897782c7c667425c1027a6c562569b7185fa00a778abd4da4024f73
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobStaticWebsite.cs sha256 0265e84818bc6f0396a614ddb392b49bee560d4c8441d82c3070dd551ab7dced
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobTag.Serialization.cs sha256 f0f3a92afcfe36ca6b142c883a6b5bc921e32053de295b6270fcc90efdba3119
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobTag.cs sha256 be660fb9990b0cfade0c982b7facfd8d068bffcbbe7727046e8395e7f1bda52f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobTags.Serialization.cs sha256 32052e69a01a664619cfa20761462ef3a4bfc6fedd63024194985d37108949cf
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobTags.cs sha256 01c59109c9f3e06538e583b8c279b6553024cbb37397b30bc12f5cb984012427
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlobType.Serialization.cs sha256 cb01fdbe923207c065ca1e5eeb14203bd11ea0be889fc0817ec3fee0d3a85d85
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlockList.Serialization.cs sha256 c5d1fbf7589be623be39cc763927cbb9109235649438db92b2d92404fa4cf343
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlockList.cs sha256 f3465267ef5828e46c9adf58df1acfa117f8b4a8503d0ca8119d09a1689d6e94
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlockListType.Serialization.cs sha256 dd85001e159566752b264005c2a4c3e9ab2f674284f2660d891052d2c6a0f150
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlockLookupList.Serialization.cs sha256 d8f04b0f299b4db0b723eb31d89dc0affc3f95b2cf75ec587a756636a9236649
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/BlockLookupList.cs sha256 b0b23053d7c1384a4301bee8f269fd083095fbb0b75210a0f087697a577c0ae6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ClearRange.Serialization.cs sha256 2d0fb2bf2a5bdfb82fe6a2cff40921f71212d734acac935149e653ed7ecbea90
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ClearRange.cs sha256 a7c1b90315fbed65090183213427ad5c40da62e02bacf96812e2f9ea106312f1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ContainerItemInternal.Serialization.cs sha256 9cbcd858323fa99ce39a8e16b569870dd78c18abeb78cb96edc08575e04eb752
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ContainerItemInternal.cs sha256 428ceaf63da2f7d589863db2fec9b5b48f1dbbae6eca8896e44d7ff09f62c14d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ContainerPropertiesInternal.Serialization.cs sha256 5d5d5c8e63f1217037ab7df619a404cb557366d76fce393ed13d1125c135952b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ContainerPropertiesInternal.cs sha256 2e4cca2091b768a28d9bc2708ced27bcc281d92d260a447280e7b3bbd85cb44f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/CopyStatus.Serialization.cs sha256 354ea83b0b901d545d06faf902810c815f96a0fa3825f41c0c8ab76c81ba89b7
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/DeleteSnapshotsOption.Serialization.cs sha256 ef16111f4d1c3aaf2eac974417dee0d27f1e3c9b53a570eb4f8e32c18f19736a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/DelimitedTextConfigurationInternal.Serialization.cs sha256 f4496ae8346bec36f5bb8b92a727236e4a8d71c4c5dae0a6c2601e0e24cd82f3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/DelimitedTextConfigurationInternal.cs sha256 fc958e94a5acf95e6de509c3547e9264c78b382be230e786448a9ae5322fc6cc
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/EncryptionAlgorithmTypeInternal.Serialization.cs sha256 4ee5f03d7d6e94eb56338dab5497bad9d06a52ad516b664d8e2b2c0d011987a2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/FilterBlobItem.Serialization.cs sha256 681cf19ea25835940d028da34607717cf5172e9d1785f509b0c6f4763de0e3b3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/FilterBlobItem.cs sha256 6c47dccfcd625ea1e9e314e97565a5229418dda713a841876dd1bccf5573e091
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/FilterBlobSegment.Serialization.cs sha256 d58436cb8e8e53ad9a8276fddcd786effd0922490f97008cac271ebce3683673
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/FilterBlobSegment.cs sha256 ea444ad715165f5625d73ab2003bab9f113a40630b5f9c0d1ae4b278e9b6cc6b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/FilterBlobsIncludeItem.Serialization.cs sha256 f99945344056a83b31d48054fd57d91e4133f0bb82f46348abf5bcf3394c6966
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/JsonTextConfigurationInternal.Serialization.cs sha256 d0e50b182f2e3346f255cbd9d29ea068cbf7c5916b310a6fe3f70368dc204d57
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/JsonTextConfigurationInternal.cs sha256 e6f7452941707f8a4f972bbea93cc76b5d11ecbe7943dfa987d89bd02cfdccc9
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/KeyInfo.Serialization.cs sha256 ade421e904a915ace775403c6c9fe07a7a9577ff3dc338bc9d72ced679d245f2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/KeyInfo.cs sha256 a5eebdcd788563769dec1efac04b739f5095aeb7168f019e8ec42aeda5e082d8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/LeaseDurationType.Serialization.cs sha256 f01896aa172c76968d4da78b8d9a1aed763cc4d849b72f337c249f977f50bbf1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/LeaseState.Serialization.cs sha256 76d5020f7c30717a0e119a8c96802d6e6df21d593a6da0fb4c52a2ebbd147a35
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/LeaseStatus.Serialization.cs sha256 c87bd6ccb8ea4ccfab57c9c8093df71563bdd19fd140e86f9597ad2f5803be82
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListBlobsFlatSegmentResponse.Serialization.cs sha256 4f787ff8a653dd66797b2d0a59a2f1535efa815c5066c1ea75926324fc442b5f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListBlobsFlatSegmentResponse.cs sha256 bce9079bee922626a6cce4b457863144cb2a7eab604d3c3a119a2aa190fc147c
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListBlobsHierarchySegmentResponse.Serialization.cs sha256 c22c590d579bae437560fdf424bb92265aad3fd335c1194af9ab732cdfe11d5b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListBlobsHierarchySegmentResponse.cs sha256 b4d0a79928f8ab7df025445a6640235db3525415872fdca1a0cc124120ceb947
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListBlobsIncludeItem.Serialization.cs sha256 b8c68b0404f570cb2ad901eb68a87a9e99c38ed0aba4b2f07711a8960d7afb7e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListContainersIncludeType.Serialization.cs sha256 caf4ad9499ef62bbaabf59bb6e623ad8e02fe87912281ad4479a984fd607d378
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListContainersSegmentResponse.Serialization.cs sha256 a08df84fdaab1b6a887a9cc8c30e8e13e8be2be934f54aff986d604ae4d44bd0
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/ListContainersSegmentResponse.cs sha256 d517909ae358bb78e08b60d0d8772fa68258419a51dda4d8f10c9f137c99112a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/PageList.Serialization.cs sha256 66f3484ece5db7993df1f01dfa43f9fe9416e51e08d7b221f6247052d2f667a1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/PageList.cs sha256 2c749f360c2dc32a66180b6f93e79e414dbe1b294b8502a75807853d1d97c84d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/PageRange.Serialization.cs sha256 cd0cc0d77c7ed95f48c0aa6b7be7800c5e18c00168d6ba10cf4ebf5b6672e950
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/PageRange.cs sha256 59c878db205a41fda3d33961accba2b3b664c87fdbee56fdf2e56e8daa6cec33
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/PremiumPageBlobAccessTier.cs sha256 4b33d3375b3a542155be5f244dfc7541f0af1541d64f7910a81d6aa1a67c9498
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/PublicAccessType.Serialization.cs sha256 96ff4167ce7e4c21dcd03f24f470d0e6102e61a07e871c5a868557f116858991
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/QueryFormat.Serialization.cs sha256 b9caa9d72a179f9dc0b5ab35c241ddefd1c7ac33d9a0e47e3ed74b2825ff3d5d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/QueryFormat.cs sha256 e590e6605f9fdf1d8fb4ad347533d0bac23a917425d57518c231a36d3bef3258
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/QueryFormatType.Serialization.cs sha256 23ea2baf6299abf70f23058a4ef93e9a3359378d94cf60c302dbc0ccc68c84a6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/QueryRequest.Serialization.cs sha256 493b326fcaaa8ad2ea254c833c80a3271ca66be5d15942cc11d7965a7eec67de
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/QueryRequest.cs sha256 e5a5c7c04a643ef7aed9204357466c63b12d2ddf87845ec0bdd927816c45b194
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/QuerySerialization.Serialization.cs sha256 9a68cfe3d2ab854f7a31e584f6115fc7b486a7a662b3ddfb095c545a6cb7c05f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/QuerySerialization.cs sha256 43ea3a34d9fde2ca2a70eab6426a784abc0472d83325b1c2a92ff79ec467eda6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/RehydratePriority.Serialization.cs sha256 4288ea95093e75f7d72b2986298b19d20d06b90dc57a16c8803db5d56eb14889
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/RehydratePriority.cs sha256 7ed1ae41d4ecb0b1130a6853b739ad5fb9887cffa2f8c9d14b9be32579a1ff47
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/SequenceNumberAction.Serialization.cs sha256 16dddd05f075b73da4bddef66c43167a6c11975cf60ce2021bdeb1793a0d9d5f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/SkuName.Serialization.cs sha256 0807ae5eb9761d3fdf8de9d41908bf4632a33bd9a5b7e50cfe37d74416ab685d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/StorageError.Serialization.cs sha256 61ac8a9fc720ffc1b40ca15f6b9c6635a377d6d185a14c183aacce4f3fc3d5b3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/StorageError.cs sha256 4f153d7f6d631667be3dc1250bf433313fe9e5a6116cb28210c031ef7de40e6a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/UserDelegationKey.Serialization.cs sha256 4dbb988782782a40cd1a16cbda857bcbc4993eaeff4348051cf78467c6699906
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/Models/UserDelegationKey.cs sha256 989b4155f32e4ecb9b5e0dacec633e0a5a2c0d90ae4a947aa72d0eca78cf83ad
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobClearPagesHeaders.cs sha256 96ff2f162c65af77759c1532a5b3023f306dc7db733bfde85677682fa6636495
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobCopyIncrementalHeaders.cs sha256 4052c3dfeeb3bb5360e4f5c001526b91c4faa18012f4f909ac8675c588c9d83e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobCreateHeaders.cs sha256 d88aa54dc24f4d07fc693c57e35423347dec3093170114842f61b80176dba8ca
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobGetPageRangesDiffHeaders.cs sha256 1a477796f90d7707f09b8eb5a9b520d577e51478e1e674754c09ab24d6982bb3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobGetPageRangesHeaders.cs sha256 b90e31433e64bda0d07f08bb1d7a9eb5041b7b595ae85d67c38ef16ad130529b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobResizeHeaders.cs sha256 0ffc175451cc7d6bd55f716fd2c62f71eb9d0e9751e9346a3f270cd096c1df08
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobRestClient.cs sha256 1da12662a699cd990696ed70bc495009b457f52104c8be72d8b959d5743e3e14
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobUpdateSequenceNumberHeaders.cs sha256 db349231fa4ed699f4b4374e443101c7b0aa8665b7f9c9415ad086e7999d1a28
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobUploadPagesFromURLHeaders.cs sha256 080058e3713aff6e5afcf46dc939d9a23aff7e4a0da54c8a0d8c4f8f2af11c91
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/PageBlobUploadPagesHeaders.cs sha256 e98bdd1921aec1c2c84684e253677a4a68e6a6a13ed1814cbf7cb64f4ff8728a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceFilterBlobsHeaders.cs sha256 d26c27a1a1728d9d73628e350c0abeed841f30f76ad0a418066501631fd43987
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceGetAccountInfoHeaders.cs sha256 e73b85c62adc8069623de4d60f1622199eded3cb6529a85bdd39b32d56fc2900
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceGetPropertiesHeaders.cs sha256 8ecd9529fa87f22d7ea15300d6dd4c6634eb799ae05d219355a604960345f6c0
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceGetStatisticsHeaders.cs sha256 282698d253ef8052fb5814e40c69e14b1da2cb1386075e847471012100ac64de
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceGetUserDelegationKeyHeaders.cs sha256 e722686c9860c773524d5dec8da63efd4d0c8b6a3902c842d5f81041a54ea1b7
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceListContainersSegmentHeaders.cs sha256 dbd47440b87a7ed610f078a96f50e44fb298a31273c09c209ddc29cf44b7d825
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceRestClient.cs sha256 9c328c12f24114412427f6709fda1bb7b735b65e36546cb9dd3b9a1968392b6d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceSetPropertiesHeaders.cs sha256 264e1390e4e384c77a9d2034e68b35f505c37ffcd4a0271055a7b1ed7a2e341d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Generated/ServiceSubmitBatchHeaders.cs sha256 42c52416094064a142b9fc268153a07e9ea2cb4d508f2bacf67d46198c65e413
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/AccountInfo.cs sha256 a24cc2ceb90106e627f9cfd46cd1d1e2558ffaa342f85a85542d4b6a414b4f09
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/AccountKind.cs sha256 84b71c09741ad64fd1cd4a66188091977bc987e858491e0a3f1a5ec9201cd75f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/AppendBlobAppendBlockFromUriOptions.cs sha256 c7e6504b4ded5015fe898ebdf4765617498efcfc1ad4f7140f98ea5bb06c4827
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/AppendBlobAppendBlockOptions.cs sha256 542bfe6811a8d73a632188cc52856f975a48cabbb11140d1d455ce81c09b2489
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/AppendBlobCreateOptions.cs sha256 0dbc16e3bc4649b24d9adaf50d48d3bb1e0f8dd1c2ccf883a11fc7040dd1ae05
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/AppendBlobOpenWriteOptions.cs sha256 5e16bdc3d0da97e6c4ddbd2596eec8a693c41f30c3133641bb8fbe068bd0dd59
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/AppendBlobRequestConditions.cs sha256 2ca2139f906645aa02e929d0bbbc87659faf0f0da8a4818b7730190bdc032907
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/ArchiveStatus.cs sha256 9521611adc8d9e61604b309237ff3d5628366e0b95547e123d64c0286c87a8cb
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobAccessPolicy.cs sha256 bf2ba42b42a46969d5d73461544a02f8abf9327708de2ed357638d480c0319cd
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobAnalyticsLogging.cs sha256 6751ea9179be8b46863df98ea6a07adc21fb2a72fdc21076a913150cf05597df
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobAppendInfo.cs sha256 ae51e4b4eff90fd95855ad01a6ff9ba36c77f32e5cee0214c17b7c08312810d7
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobAudience.cs sha256 b95a6c93416d9fac6525fb139a702e69012cc4dce5285f5955304c6262835fa2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobBaseClientExistsClassifier.cs sha256 64b2edfe10ccb2c25e7e8fcf991894c9706384b127b9a63abe422727afc9e7dc
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobBlock.cs sha256 462186ca2c86de965fe004761bfe9decb89194b1e7774e96d8fad9b0673cd7b1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContainerAccessPolicy.cs sha256 20900ee9eb31d56dbe737b6321685c1b8f78469ca5db4e2ea88c8f916029a67a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContainerEncryptionScopeOptions.cs sha256 819f4ab22c02552892e46e6e0c645b8e25892b93f616e63f489d7d1aa56afd81
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContainerInfo.cs sha256 f22a6c0bb5e48eafa547fad05601f485f0ce17887f9012b2fae64aa74da9219c
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContainerItem.cs sha256 de943ac57833481eade7eb77431c8721807c0941292f363c1002bc2f60d667de
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContainerProperties.cs sha256 e3a565251f8e9c75395debe83f6e86085fb535c5b3a63ce71a6b93f96c48956b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContainerStates.cs sha256 98080a5500d2dcf517b6286fd888e1d5191997e657a8e6ce14ba2f20e91b35fe
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContainerTraits.cs sha256 ffc8452b60a9560c91e3c5a1b9f80fc6df098d75c68b4c0d6d091d7518134112
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobContentInfo.cs sha256 0016bb39b960f2b4f1a9a6d9e2c54c72f5d223e312601645f1a7c4326132f387
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobCopyFromUriOptions.cs sha256 b1b7baaa5a7366dc2e21940fcae0e7041d96afbf3b123f5f6cd290600621ea69
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobCopyInfo.cs sha256 60c13dc287f0c851f45b62c05e7717e9cb195fd9100ef7dbfed7b8815b0625bf
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobCopySourceTagsMode.cs sha256 8a8b5c05b162c17e472a62d25667cfffbd230170aab0956c5b14377c96d840d6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobCorsRule.cs sha256 82620d6f5c2f6dfe21bf830a5652db30bcde862e99f451b52eee1fff20b9d9d5
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobDownloadDetails.cs sha256 a67be2762779793924c5a70480897991d89c8557cb8d02bd5faa3d63afbbd0f8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobDownloadInfo.cs sha256 97d357248b124375abd565c94e2fa479bae3ddcdc8273fb22ca01a79ffee1301
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobDownloadOptions.cs sha256 9b99bc7712663b7548d376628b7815fc1361e5448fd081b5517731d1b467b6dd
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobDownloadResult.cs sha256 378d19c8c6cd6c39a372f481beb2a5a431ad679f1d78e5060be084394e115cd1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobDownloadStreamingResult.cs sha256 f39db8a027fa42d3924c31284854d2f4cf3ab5753f313aa15db17debfed76e32
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobDownloadToOptions.cs sha256 75fbb002eb78c861c0a7e996e87b4ec8a0bca871d3e1439954d3ca3c1b51932b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobErrorCode.cs sha256 da1796bdabc0f4200fce34d19dcee7f1a823c9e2985f366979722e3e32724398
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobGeoReplication.cs sha256 bb74a5931fde6096c537cdd3ac65572530004416338eb0c3a53526ae76153306
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobHierarchyItem.cs sha256 6bdb23593081d43bac936ad69c158bf5e0f5adb15d9eb89589c01b20c5a6a3af
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobHttpHeaders.cs sha256 da3e2338153daa17b449ca64522b2599e783751e488f1718582793dcebf02711
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobImmutabilityPolicy.cs sha256 0a720d865ee44397ffbc9dc8f312d060fe3f3ded4bd5724c42f7eb32319c3ef2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobImmutabilityPolicyMode.cs sha256 5fc3699dca6ed8f95641d5dac7df070f5a2ffa14615d3d4d29eccd9c5ef9bb8a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobInfo.cs sha256 3f29eefe70b174428c2650540212696291d746db889ffc35853a3cc41ef9a424
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobItem.cs sha256 9b152afdc50477f070a080756ceeecb5246ee3028fc24845255f749e7b9e496f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobItemProperties.cs sha256 7219b82daaf61a5899f36023dfee7c0fdb6aab8436e565cc45ba03dba3912186
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobLease.cs sha256 881d279e2d364c6ee7e2c00247f5eaa5af7023664254b7985f5a558608dba1e4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobLeaseRequestConditions.cs sha256 6bfa2ca03dd128d55399f8d26885aee40be9b4195ad8f859135951530e61d62f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobLegalHoldResult.cs sha256 dedbdbee5c339f1b0eebf36cc8110378e0bb8811aaf276d1fd4cfe6affb19633
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobMetrics.cs sha256 3040e5f09d262fa42eeb2a399f9f3070aebdcc849edd6d8979d58285c6778c88
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobOpenReadOptions.cs sha256 872ea26be6f27112209435ad1574a968835c4360365f9c9f892746837ccd6fba
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobOpenWriteOptions.cs sha256 0129d888d7d94ec2e79d3af5a353921b36ad06894be8510b6405e3dfe07aebf1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobProperties.cs sha256 8d54ff3a7c5e08f5eda4eea3c1c8d52e098d5296f348a0ba12fd07c994abd4be
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryArrowField.cs sha256 f59ca9b6fa41461dc8291758cf32dace79f1d2ca2748202964629a0ed9ad0042
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryArrowFieldType.cs sha256 70af1c95ddeadbd88e6744ae20a44c143b06a17b87854977ab54761dff7aed25
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryArrowOptions.cs sha256 bb2e74b9b0f2e41320b3bca8895ed38761b6c450a0cc6bae468d8e4f962c012e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryCsvTextOptions.cs sha256 07c77fbcdfb852147dd4c086815837b72a062c663864459d45262ca5be674058
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryError.cs sha256 79f261f1701ea574adde62cc311d0ca0cb724f28639769210ac60bec1416b76e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryJsonTextOptions.cs sha256 99536d7de7786439b3f82f27bbc026688296b1bf3a24a775272e1c11a6c3caa4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryOptions.cs sha256 9c20b69630900b85566fff269217bd598b7f2e23754628f64010a1505bacc372
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryParquetTextOptions.cs sha256 e65ec8e7954d743430103bf502c03655afbea919392c07dc6146a95ef38a8b4f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobQueryTextOptions.cs sha256 79929f8dd94cc3c49e51d2b9d0bb4883de85b5e80265194972a89eac4e94fe60
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobRequestConditions.cs sha256 2e3ebd15f6c5a6705c9867ec46a3d6ba8d7b81b6d8667abd2543aa6096a240ec
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobRetentionPolicy.cs sha256 93b0e20be83fc9df582b6e04b38f13d8c23c7ccee6700308494eb6a65532ba08
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobServiceProperties.cs sha256 114fa42fbf284cd2b2fa94172056dbe2e6ce6c179493ba30fcd60e83c9a0cc51
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobServiceStatistics.cs sha256 e10ef66566654b42cabea7058743282dd00503604e0b6bb290e58ed421354068
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobSignedIdentifier.cs sha256 5bcb0aced94be857c69d90965348344a5604ec5ac581fffa02dafcab41705552
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobSnapshotInfo.cs sha256 cc3cbf396fe1424522cdac45a29a04b164c6d16d47093bdbe3b19eba448efaf2
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobStates.cs sha256 7b64805a7d5e59b8007095b22f71bbef2db15f9ea47a51e52ae353806db7ea01
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobStaticWebsite.cs sha256 37d0708b64fcc80554ee66168c62776d67cea83de2fd53541cd3d696497987d5
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobSyncUploadFromUriOptions.cs sha256 6a5abb1c440e112034a1eef594dcdacd0427bed49b4c8fee1d9ef0b8fb81462b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobTraits.cs sha256 227244499ce0104729a79c158fc2e27444d7bbfd713dff85b6677fad560f0cbf
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobType.cs sha256 158a029d01c434f5c9db6c205bf69477943bd2d2030981e108368bc11bdf0879
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobUploadOptions.cs sha256 6356ae73dd3569b18875c1ca487c878c07f45203b524d58e1adf71e9aed9cc9a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlobsModelFactory.cs sha256 06d143efaa36f949efd6a226e89589d47d4989358742eee6748ce8623fc594c8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlockBlobOpenWriteOptions.cs sha256 ec991d0187bb8fe3b0854c29b7a155fc112e6e530c8514be5a0db99a45d2cc10
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlockBlobStageBlockOptions.cs sha256 d02f07a0d141b40cc64d24448ce0f63bb67fda6a9953cd45e686878c45de4103
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlockInfo.cs sha256 bd57f93ebfe8362eacf1e61a2da771326977223a1f066d2bb7c41cc431fd86ce
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlockList.cs sha256 0f4e653c26c6d4faef478d4732cb3c01341c3992514e9ac3b1c6429fc213b605
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/BlockListTypes.cs sha256 57fb596f864ed2a0d8068830b36cad414e25056ba34ac5655c2820a6ed1c2a71
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/CommitBlockListOptions.cs sha256 c47c361bf72b36cca2210b87395357e57ea36bc651c17194388a643b45ee6956
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/CopyFromUriOperation.cs sha256 381088ba7981afdd15b99d1361fc247e86f3c1a93070bd178926aaa632b7962f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/CopyStatus.cs sha256 37421d63f2695205647971f12b79574c18b0a76c4914b60835bf1fbf88cc1694
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/CustomerProvidedKey.cs sha256 d1fe2b6d93eaf9303d6d1ecfb58235f86907cdf8da35abada4c0b6b08548e1b3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/DeleteSnapshotsOption.cs sha256 316b29ad8c344ec9ceecd9925ed0a7695c7ec6a783aa791d968f6e6497f6dfca
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/EncryptionAlgorithmType.cs sha256 a2919e7c72ce658fc45a39c955309a33aa295530289ff6d1edbc3287bb9014ec
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/FilterBlobsAsyncCollection.cs sha256 29b1069b02b08065c99b2be6dc033863de0b100721972a00cdbcf27f6d053727
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/GetBlobContainersAsyncCollection.cs sha256 8b4f34ed178da1defa77b84699bc907e698b81d47bc7ae20ca502e637966c9ff
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/GetBlobTagResult.cs sha256 5e627ce230b622a0c6201f10e5cb324d8235767e7439afe53bc0ebf17ceb6691
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/GetBlobsAsyncCollection.cs sha256 a51bafb220c9016d3a54ae42323a9b68033e3e03d3375a46cccfd3a05cf95649
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/GetBlobsByHierarchyAsyncCollection.cs sha256 f0958b17340bdb97b74d55e4372bf3a00e9fdf958b6bc2a2fd0a2dc3768d2fdf
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/GetPageRangesAsyncCollection.cs sha256 2402e86966301e2b3c51b7fefd5f1f16ce4c6c14a521d5f44787294cc3461234
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/GetPageRangesDiffOptions.cs sha256 d13bbf2cee3deed0050217b40beb4a1bc92737bedc9cc5b8e8526b1908090618
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/GetPageRangesOptions.cs sha256 fa356d370fcad76e66e69c3d636d8dd619d8b049d880a39a4434186c5161f69d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ArrowConfiguration.cs sha256 503c34037be224ca5570e57022c2e1659a6a15d75b8c6ef175c0b2d82c7ecbf8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ArrowFieldInternal.cs sha256 e55fd97e75ff8ab2ccbb197cb1dfe206aabb89b02ada783b8f178de254735cd4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ArrowTextConfigurationInternal.cs sha256 6f22476d7baf6bd2dcec5fb7b5c76e959e50753cd58000e91d3e537508b2e947
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobDeleteType.cs sha256 540594d9360461cfb23a8a4d7b468ed5b6bde054296cf8710e9b4d29c3327fda
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobExpiryOptions.cs sha256 255a90b9a47ab981713e0ca5d3a419e6077fa18d0184b33d3752840b4afbe158
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobFlatListSegment.cs sha256 737beb7a51a991ce64a851bc7dcac77000ee5cefe4eb4c207291e2c4d1b88a1e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobHierarchyListSegment.cs sha256 54f06a2c6688aab50295d633341ca5522ef13e2e46a7661e99e106d3ce04e159
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobItemInternal.cs sha256 b749c1e8a51dedc46b21cd38516e7046243e0719af728d823be774a34bcee8f1
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobPrefix.cs sha256 fa2b68b12ab5896fabe6ec30f92a94c2d68809b3df5fd681537c6d0adde81d42
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobPropertiesInternal.cs sha256 4e0aa1d60d161a78a320a2eda0ed02d63f1f44117fb6866f912fe86525693ec6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobRequestConditionProperty.cs sha256 3e20a536ee2dd4a212b3b394563393cce75e4efe0d50ab5ee6b6f5ffc7a878ba
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobTag.cs sha256 a8ae926e933f333d501774a2862e8bf741917e6d144f39e2ec3bd50a60e2ea8b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlobTags.cs sha256 2dd27795360b62cc1578c21f52d708ab9f87be17200653c6f3a1bb50b1360dc6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlockListType.cs sha256 9e9a7b984e6365fbd3aee053cbca002996ee57ba393397c9772fb58dd6cdaf59
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/BlockLookupList.cs sha256 65edf3887d8da24091934b85015f2eb4d60a1e914993c4eb37cc1a889b4663ab
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ClearRange.cs sha256 10d70b70707f4560f0b3dee943a145a84e1666c5d991b6f96df70c520f7a6d58
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ContainerItemInternal.cs sha256 43fe16973d102fb7c89669109c200e1f216cf0590bec4450e109513af9793d06
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ContainerPropertiesInternal.cs sha256 58fea81f6c21aefc2478a97a08ced9f8932399fec1d743b42e45f0ef92be15ed
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/DelimitedTextConfigurationInternal.cs sha256 c3b615bed3a5f07c53acfbbcf13d73fd270572cb924c64c430223b3ff9c49393
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/EncryptionAlgorithmTypeInternal.cs sha256 6a322da57186b35b3c00f2d74c8ede214abfddee6dd271126b289fa055c91616
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/FilterBlobItem.cs sha256 c1c4cef535baf4de5933604f0c4169eee2c62f7985f24781ed3acbecc1450af8
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/FilterBlobSegment.cs sha256 6befb6c0023bc48607044712a201ec658f45e440b9a8f7ec199c4352da7bc61d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/FilterBlobsIncludeItem.cs sha256 7e2349fd97df3563825d78d68f175efb6153fd9bc612558c736f5a7107387f85
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/JsonTextConfigurationInternal.cs sha256 35419f4224f062500c2a4c29683c5cbfde707bbadf6dddf4c7f14384ed8a2ea6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/KeyInfo.cs sha256 bea7bee1541b5b5484bbe9928d7c0c3fd2e674b05f7912bb16703d8a460e256b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ListBlobsFlatSegmentResponse.cs sha256 5f3e5fd9ed4402744c7054b9bd9e30365dc58ed020b5bff39de30d5473271b81
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ListBlobsHierarchySegmentResponse.cs sha256 c7b5c10d4462cc7b6fe3fc531a3ff640b560056ae5df4f274e19dc7987764f89
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ListBlobsIncludeItem.cs sha256 f238152ee8068a0a72f7e5cfc065ff58a9193fdb05133331c9b6e78472e426dc
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ListBlobsIncludeItemExtensions.cs sha256 677871f8fbc0e4bb230b01e5e98907e7eba1c31a2d0062eb3eff5568e9aa4949
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ListContainersIncludeType.cs sha256 eea5b93f8e61f1f810d62fa0c8187417d6e76fcf00427ba3108dae71e3687a52
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/ListContainersSegmentResponse.cs sha256 c42fcbdda81cbc8569676c1c70dc9787d40d5657ea8954bbd3ff2759494735bd
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/PageList.cs sha256 378f937691a26283f4fedcaf449a540eab9c3185396b602c5f91f3a3ed1b08eb
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/PageRange.cs sha256 505da04b733678213d337f48b78f12c70754e20843a5c0d8eb32bd060f503c8c
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/PremiumPageBlobAccessTier.cs sha256 5015111b8a1792c06f1c7ea07ec633cc5e055bd8ec1c0af8ccff3648672ea72e
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/QueryFormat.cs sha256 85745f6c3026ccaba2224573506651efa64469fc90a6c256c5f4cf49ce5e41d4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/QueryFormatType.cs sha256 881b2b5981b00950098207a2b2faf863d79934f2b7731b4730367cd9720ffe22
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/QueryRequest.cs sha256 76841b4300c800c1950d590e84d428908e7ee29f5d48e847711a08df489857d4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/Internal/QuerySerialization.cs sha256 534d5be02740d57fbc088db474441fb7ecdd90f0993de64fb66c62697711da75
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/LeaseDurationType.cs sha256 55cdcd56463244e427269d8ddd2c8729b55e2c3b3ba215bd4e03162bc090a32a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/LeaseState.cs sha256 f437e89f6e8dc1fa1f3baf86d3d0dfe91c4cb3ffef3c7d6a46dce50692946f7a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/LeaseStatus.cs sha256 d3246f95685357956652f283a9f1badc72221c0862c85d0ed48bd938a30ee20b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/ObjectReplicationPolicy.cs sha256 33dc1d631c7b18d25415af516d249802a42f318cf860afbfa12c085e21998645
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/ObjectReplicationRule.cs sha256 59fb0ae214949f0b45bdff49b1fb5df7cfd168f1cee753420d39108361a7e83f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageBlobCreateOptions.cs sha256 55b270c5ec4212b83e51c0704fe2c717de330164c329bf1fc14dd896305b7781
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageBlobInfo.cs sha256 92b53ca0b781ba5a8cf6ddff840332115994f0c2c50290f8dd3c9db45fcad2e6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageBlobOpenWriteOptions.cs sha256 7b51b26f2b07a2f60c5d37c875abcae099d00e9864240d1201ba9aee84824f05
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageBlobRequestConditions.cs sha256 908652ff26c1572dce6e40702a90be243e50e70448375d0054ff486960f9515b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageBlobUploadPagesFromUriOptions.cs sha256 cf915948c636046c1f4d5430ef6b77110fe9a50a77022d72d7be66f900a5c027
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageBlobUploadPagesOptions.cs sha256 a4c5873b95fa6332a75181d3f0a12daa82564849844fbc13d07238a605735307
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageInfo.cs sha256 2c12ad9792195dfae3196d3bc830b5710773654c35aa11c5b5d646aceea1c1ce
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageRangeItem.cs sha256 0e188c52f576c5899db104f8712e3fae4456d4824fe83871459c80a11515110d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PageRangesInfo.cs sha256 74d36a953486ca57197b019a32dd7878b7621893c901a26d1ef30612462cdcd6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PathRenameMode.cs sha256 c650057182be26478445353e6b959f248c22a51bf2693f286f9d6d398219e870
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/PublicAccessType.cs sha256 762ac136578052ddbb4a93339da45e6c2392c403367af14ae7b40da852af67a0
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/ReleasedObjectInfo.cs sha256 f9768be6b5fd73abe30dc9e86769a1a3652b90dfc6285f646dff2d55903d46e6
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/SequenceNumberAction.cs sha256 a07e82aed832f5332b69aea743c006f55c9c9f596ca98175409141dac9b066bd
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/SkuName.cs sha256 11019cf57dd7f72bfb211291ac5640c728571084e7634ac24ba9768919e831c3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/StageBlockFromUriOptions.cs sha256 590e9c662efb9a86e84a1961757e17784c152ca2716305a5655ff6bf2f5c8f35
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/TaggedBlobItem.cs sha256 57149624035ff0576bf9900f089803291af4e63fcfebb6c0bfa29b58873f3b24
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Models/UserDelegationKey.cs sha256 7a839ecd182f372030891b8d673610c14ea8a6b4264e2ba5b8b57bf2abe4670d
+document: /_/sdk/storage/Azure.Storage.Blobs/src/PageBlobClient.cs sha256 43c33a849dfdbe26224cd3f69d897c336213ecb04fbf00486a5c9c78210d7867
+document: /_/sdk/storage/Azure.Storage.Blobs/src/PageBlobWriteStream.cs sha256 63871bf97532a9747f3a8a3de43967f192885d577c74483657b0f2294f1dddcc
+document: /_/sdk/storage/Azure.Storage.Blobs/src/PartitionedDownloader.cs sha256 e41bca0da2a7012aa88fb05df3890be533bcef9602225c5b98091f8285a21d91
+document: /_/sdk/storage/Azure.Storage.Blobs/src/QuickQueryExtensions.cs sha256 eb73ec688cd1c0b2a600de1928bd0f1b13d52f17cbc8a981a40a0a1a6f3d8217
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/BlobAccountSasPermissions.cs sha256 e15c3d536f6f614de1f5377447284c5017008d24fab852be63d5b4d972041b3b
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/BlobContainerSasPermissions.cs sha256 420f446249c540e575ee807af64b30effd322eaf614405b169245c4d53c35f7a
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/BlobSasBuilder.cs sha256 6333502580099399f6b9ea80baa7cc0c9627f411357610a207699e60b2b86398
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/BlobSasPermissions.cs sha256 edf400dff9583477b9732ce3089d17d5e45963da79cbc3f621c6a99f2e2e8444
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/BlobSasQueryParameters.cs sha256 87806a830d8186fa796a20c2e9211ca659083c4bde418a92bca2d67698b5fa38
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/BlobVersionSasPermissions.cs sha256 b89410a9f783b2cf4d6e60a6577760ce201129014e8a352ac6c6da8bd73ccaf4
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/SasQueryParametersExtensions.cs sha256 ef0a351b29dfda66286b7a242b240b538663e45298c94dd5918e614b17c71992
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Sas/SnapshotSasPermissions.cs sha256 425d6d52df0be583d80fb71d2d6e7665e97e8c0bd7ff282eb7601b2fc63d0282
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Shared/BlobClientConfiguration.cs sha256 207c7cf9b195cb8955b9ecf3ad45fb1129c6fb6415d9f17434a99629d4777929
+document: /_/sdk/storage/Azure.Storage.Blobs/src/Shared/BlobErrors.cs sha256 08e2f3f4f1c9c8b06f772f3db303af90b8ef81df8b07b85ff19f61ea3591149f
+document: /_/sdk/storage/Azure.Storage.Blobs/src/SpecializedBlobClientOptions.cs sha256 7b30ef8d1219689d20a753b1c45a206fe75b51cf191d4ec47e377b2c317726a3
+document: /_/sdk/storage/Azure.Storage.Blobs/src/SpecializedBlobExtensions.ClientSideEncryption.cs sha256 d703c51934a41eae4e3ce6dd689b8e5ce2a2e36ea92da258cf29c7ca0018ccf0
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/AggregatingProgressIncrementer.cs sha256 d55656aa29577cb5173f5bb3f7b493bc79bd38c67becf0e502952c51b09cb3e0
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/AzureSasCredentialSynchronousPolicy.cs sha256 7a521368de26c66f6539355a12c371abea508403f9c137a7dc37c2076d808065
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/BufferExtensions.cs sha256 d08d173dba7ccc13655466a4c58dc8d9465bcae4b077488e1d3657b0be7e1c0a
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ChecksumCalculatingStream.cs sha256 d1669be30372c2bb3a4a43b44507dcd1fb7ccc839f9d47bc2eb94db1586fce35
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/AuthenticatedRegionCryptoStream.cs sha256 9c5ca7503d05f1eb33cedf1a4c524a4a9a8578aae8394f200bfc92417a3ffa19
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/ClientSideDecryptor.cs sha256 ecca7368f8ae0bb0c2a85c0212db0845625fcc774ae89cc366f77d045d9ee954
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/ClientSideEncryptionOptionsExtensions.cs sha256 3adf948be4d05b9221fe0a896f078f39bfa439dc527d89d5c4de9595cd273f7e
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/ClientSideEncryptionVersionExtensions.cs sha256 3f1dac57a7e631c28fd4ffe044d16005b7ab8c4b4850814d8b8a9aa027a1a4f6
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/ClientSideEncryptorV1_0.cs sha256 11590260e71b2bf5bc127168ecc2943d01fa6b59ff4a198a1dca4fe270f7a8d0
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/ClientSideEncryptorV2_0.cs sha256 cdab108bcf50bd314fb84e4ae61c3cb476195fe47ed9247b0ba47db52574d184
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/GcmAuthenticatedCryptographicTransform.cs sha256 7fad1564b8d5b29e3fd12263a470a527f68aeb5a844092c99d1002b36ab4f848
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/IAuthenticatedCryptographicTransform.cs sha256 6f54065be690d5e8025554a76f3795ea054863ab363034533724b9d7a83de4d7
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/IClientSideEncryptor.cs sha256 fea0e7928afc942e70c58e0ef5b294f1e986d07f0042a437b13ebca6c68fdad8
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/Models/ClientSideEncryptionAlgorithm.cs sha256 cadb5dae92b7d6da6e3e6d72482105aaa840f1f6995e05668eb31fa29215384e
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/Models/EncryptedRegionInfo.cs sha256 b8704e1814dea67fc1bc2e686f242d6f8072c3a2d2c5b38c65a88d217eae2a3b
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/Models/EncryptionAgent.cs sha256 2ddb0957ff7de308219d7d45a5bf94d08af2204dc73a87b89e00eb6dcc6601e2
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/Models/EncryptionData.cs sha256 4425830b4fa48c295f526a4d3c642d75be58a6838c90fa6cac1f5acc707f3103
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/Models/EncryptionDataSerializer.cs sha256 637a1b500bfc85a0ae348ce14c22342fb33805ce422e2ada678d6fff4846ad60
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/Models/KeyEnvelope.cs sha256 1ef3102ef4c668a5ebad6bb416788783a9ae313c47e3387a20bbb2ba9ac80047
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ClientsideEncryption/Models/TransformMode.cs sha256 54a093759e9022155bd5e1198fea1ffe8637ff30bb85d1c727292a91a035dfff
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/CompatSwitches.cs sha256 b7cc5435a4f2f78987004f7fd685dd9427e0dc9b71b040fd0a4652a87d3377cf
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/Constants.cs sha256 255194c58abc7a64df3baa5e3d6cb1a4f9f2b11dc58abba953f4658aadd7ac3e
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ContentHasher.cs sha256 ff6a74c78094698439ea1ba3049b3ed336762ff1d4b78387d35540c3567733b0
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ContentRange.cs sha256 e36b747fbc362ff06d2e87f6b85e65a797553093ece60b79d4055c75d495a2d7
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/DisposableBucket.cs sha256 32b3fd9e4e81dfc13bbae5d69cf19c039c550c6547604515efe4c94f6ad7f5d9
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/Errors.Clients.cs sha256 368ed6d300194d176be14277714343a9485a674c29e08f663900fa23acc985a3
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/Errors.cs sha256 e0cf3edc5ccfe3d83777a0c6cd297cf3ca30449c60c7bdf4bf6eb3d819623814
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ExpectContinueOnThrottlePolicy.cs sha256 42d329e76b92597db8e2fe661fc9008d5d945688ee17b3e383523fe0fa4072cb
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ExpectContinuePolicy.cs sha256 a045620daabdd30acd0248ad78cd7934813f58536278b8ac6ec15c283abed435
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/GeoRedundantReadPolicy.cs sha256 a206679de302020ada89200808d2684de75479bfb27f8b1d29dd76487758804f
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/HashAlgorithmHasher.cs sha256 3206d9108ee85622bdedd1e8c43b69112c472f96e8bebffec951e84e43407c7e
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/IDownloadedContent.cs sha256 7f7f26b5f02518d751e1ffa066707d69fd5e6abe1eddf35e3683f33f5fbe9bed
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/IHasher.cs sha256 5ce495302345925a6c9b4153e64643b59cf264cd8e9c35b11c04f43870a52d52
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/IHasherExtensions.cs sha256 f4d76424924c43cdee3d7091a3658803ffc6a933166f79ee5d5414fb8aa14cd8
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ISupportsTenantIdChallenges.cs sha256 94bd1fad707a4d9a1d92244479a7d7a1eef997945b400d415252e8bb91de1989
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/LazyLoadingReadOnlyStream.cs sha256 5a55463980fd724fd1a2e778fd95c14b8d31e2d68093e17be999164d7cf95aa1
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/LoggingExtensions.cs sha256 3b05eb0448ae791a887087b4803f558a0efa8ff88537dc95a64da9e87ceaa737
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/NonCryptographicHashAlgorithmHasher.cs sha256 73ae258b7d37ae42fc64611c0c23a50709c3813f8cb728935f9c15e211cd032d
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/NonDisposingStream.cs sha256 584db6278570b9d0392ab09a427353977a3473b797f66121e22a198b4f7cb98b
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/PartitionedUploader.cs sha256 f6daaf356dbe4da17cb8fefc14ca3321f8a446d9d83eebe07a2c84b7b068dc3f
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/PooledMemoryStream.cs sha256 ce853e8ad40ff51a5e82248a29111f3249266d0bf18362fd4865d30dfc77e937
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/ProgressIncrementingStream.cs sha256 4ea748fb83fb549018519228150617bc3084c55ffbd5360b677379bb22df3e23
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/SasExtensions.cs sha256 e25f058aebd06cfa4849a0961a690fe25e089bd98a680f6dbd6a16f94a122db9
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/SasQueryParametersInternals.cs sha256 365d4e6eb985283983e51a30d00fd031ab9786c8070533d4ffd482b38a083802
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/SharedAccessSignatureCredentials.cs sha256 ee96aa274a4a2bfe32e59750fd35e6d8a1d6409c5c249d9fbb7c8092cfb1faec
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageBearerTokenChallengeAuthorizationPolicy.cs sha256 3bfa7d52195b08d6a99609c0f55787e6ad611314ab0756cfb925bb7c7045e114
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageClientConfiguration.cs sha256 e9fc08d6f3bf7dd5e8dd0056d367812d412c745a797eda7a903a74780266f15a
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageClientOptions.cs sha256 d1f98bba15ef0f5fbeb201fb90f1571f3194b10bc97407fd7916ec46685cd492
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageCollectionEnumerator.cs sha256 5f8ef19240f566100191f16ef911ba0de385d4ffb808983b1663ab75c4a1be25
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageConnectionString.cs sha256 ac341a64f44f1168c05d2be8639c05f9145afa1091413204d3d22e19296bf9d7
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageCrc64Calculator.cs sha256 3636ff5a3bc1e0a445f19a2281080704c3d6c147308529817a8b1250af6d68c9
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageCrc64Composer.cs sha256 2ebba24b37325692338808bd239685744f8a61794e395a279be1c5777ae5a5b0
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageExceptionExtensions.cs sha256 3888e3fc327b86f794a99c10817f2f3b9c5ba6ef1b3bf6697ffb40932e86bd37
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageExtensions.cs sha256 d71372f0784291bf7197efe99fe9ccbce046ceeb29817201d979344e9db7f4c4
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageProgressExtensions.cs sha256 20150dc34da412e57400a582f31f34c8d400288b8070f0e41ebb1b9a77f0215b
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageRequestFailedDetailsParser.cs sha256 0c045dab600437434536dff74d795c03d183301a6eb315377dbd9771de93f2fc
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageRequestValidationPipelinePolicy.cs sha256 52c1efb7ecc2bd5a58378c622937a8a4363377fe04d1b33afb84d1fc6d6729ac
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageResponseClassifier.cs sha256 c70c64f59a2fd094d341dfe833a7360fe120506796d8627b4c745800fe530a92
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageServerTimeoutPolicy.cs sha256 336c2d2bcc8da0d63ae3db7fe2f5d6ead0e79c12950c0593ff7603946966ea65
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageSharedKeyCredentialInternals.cs sha256 d8146119c6fb5ae2dbb9f28574edd9d88accb1176e03a7c230e75d066b27df2c
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageSharedKeyPipelinePolicy.cs sha256 18ace2cbe95dacae1162fd9381d5bdccd571ed984f4d0a37e4421c9eb1d62c99
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageTelemetryPolicy.cs sha256 0c92b0429558886e4333fd91a13c1f9d832ef821c3da6a45491efb8519a237c3
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageVersionExtensions.cs sha256 4519ac969960e825da0f715876a3be34c9108d1cd3be2806f951ccd9d68e9d7f
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StorageWriteStream.cs sha256 9db309a236c22b1e20025ba61011be6c60d32b5e93c6eef139dbd04599e299e6
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/StreamExtensions.cs sha256 3680126cd058492eed12734bad903bd7a3c9a4253170410bd351d3814dd8036b
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/TransferValidationOptionsExtensions.cs sha256 07cb90690fdfebf3d6ca6cc3443519d9ba8c0934e999b17b18915da68c945f37
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/UriExtensions.cs sha256 ca0c119f5faa412c607012467a79949a25703d2490c83ad3fdf2e3803985e753
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/UriQueryParamsCollection.cs sha256 181158bb45c989b0b1c6e3f3a1ee191d4a15c1a65867e657d1f84418a9735353
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/UserDelegationKeyProperties.cs sha256 85c565ab92dc1f5ac066a3cc414a997ca527f21d7087206828e3245276d7a0c1
+document: /_/sdk/storage/Azure.Storage.Common/src/Shared/WindowStream.cs sha256 e6a9fce9e96569b4ae18d07821c8c1aa2f96d13c9ef90ba5385d3f0ad91ed0ba
+document: /_/sdk/storage/Azure.Storage.Internal.Avro/src/AvroConstants.cs sha256 a95f54620f910512d662172340654a88e713a028c499e41c617b579a5077d32e
+document: /_/sdk/storage/Azure.Storage.Internal.Avro/src/AvroParser.cs sha256 7f0a49df9409d9f57c447bb16bc81c287bab5aabc0a093a9593867ff280abe7f
+document: /_/sdk/storage/Azure.Storage.Internal.Avro/src/AvroReader.cs sha256 2718ba4af251597ae25dddf04a01967faf4ec431aa64444435fa6f1f87444a52
+document: /_/sdk/storage/Azure.Storage.Internal.Avro/src/StreamWithPosition.cs sha256 c3c141743b6d32ffde98bc03526faa1966c7d209023a6c3ea5cca76976b77df9
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenClientAttribute.cs sha256 5b52a513253ceb5bb6a84523886cf03b7350c9bc5ff870c46530ad053122e826 embedded (crlf 19, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenMemberAttribute.cs sha256 953b24266443aa69983ee80736f576c9f19741f7202911ca581ca20020df2db4 embedded (crlf 21, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenModelAttribute.cs sha256 3c6349ac2ae226a04126046721d47140b18477def7b0646a35a7ec3f8dbdee44 embedded (crlf 31, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenOverrideServiceVersionsAttribute.cs sha256 28b2adba55c1167fc84c7b3d524ebe3f8af6557b6125945baea79a42e49cc53c embedded (crlf 20, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenSerializationAttribute.cs sha256 1587baea69a8b193689ea157d6b1c1e881ba91471e543204b2b75605b429cfb5 embedded (crlf 57, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenSuppressAttribute.cs sha256 732f9050b0a45d6129237fdccedafd771459b6aa69a6804a058485a1113f7d4c embedded (crlf 20, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenSuppressTypeAttribute.cs sha256 feefc1b26e2229ac96aa20da3744166f60c5271ad0b33f19c2a867a029a295c2 embedded (crlf 20, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/CodeGenTypeAttribute.cs sha256 43e0441507f57ceb150a73a8d766889da832f0b786d74ae6b31069a39a99ccb7 embedded (crlf 20, lf 0)
+document: /_1/microsoft.azure.autorest.csharp/3.0.0-beta.20240511.1/content/Generator.Shared/GeneratorPageableHelpers.cs sha256 40a814c22aa4c5a45ac64eee5274ca85d06f2f58c5c3d11d9eaf84e35cf88a07 embedded (crlf 167, lf 0)

@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Microsoft.Bcl.Cryptography"
+version = "10.0.2"
+ships = "lib/net10.0/Microsoft.Bcl.Cryptography.dll"
+repo = "https://github.com/dotnet/dotnet"
+commit = "44525024595742ebe09023abe709df51de65009b"
+project = "src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj"
+sdk = "10.0.101"
+shell = "bash"
+build = "dotnet build src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=10.0.2 -p:AssemblyVersion=10.0.0.2 -p:FileVersion=10.0.225.61305 -p:PackageVersion=10.0.2 && dotnet pack src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=10.0.2 -p:AssemblyVersion=10.0.0.2 -p:FileVersion=10.0.225.61305 -p:PackageVersion=10.0.2"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=true"]

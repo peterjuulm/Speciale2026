@@ -9,3 +9,5 @@ nohup python3 -I run-batch.py 2026-10-27-nupkg-release-only-batch3-microsoft rec
 mkdir -p /private/tmp/nupkg-batch3
 cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
 nohup python3 -I run-batch.py 2026-10-27-nupkg-release-only-batch3-microsoft recipes/release-only/batch-microsoft.txt /private/tmp/nupkg-batch3 > /private/tmp/nupkg-batch3/console.log 2>&1 &
+# Run 2b, 12:20: the 51 dotnet/dotnet runs dispatched again on 4fe1a31 (core.longpaths on Windows clones); same recipes, same command per run:
+gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch3-microsoft/<recipe> -f runner=windows-2022

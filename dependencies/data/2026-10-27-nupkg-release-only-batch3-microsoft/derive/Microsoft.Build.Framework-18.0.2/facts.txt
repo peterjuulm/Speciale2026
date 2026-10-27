@@ -1,0 +1,18 @@
+Microsoft.Build.Framework 18.0.2, release-only derivation
+shipped file: lib/net10.0/Microsoft.Build.Framework.dll  [read: census.files.csv]
+pdb: in the package  [read: .nupkg]
+commit: 995a3dce41788caebf2b8ca6602a7431f08bfd06  [read: .nuspec repository/@commit]
+clone url: https://github.com/dotnet/msbuild  [read: PDB Source Link, the entry at the .nuspec commit (other entries: dotnet/dotnet)]
+branch or tag: none, the commit detached  [read: .nuspec has no branch]
+compiler package: eng/Packages.props references Microsoft.Net.Compilers.Toolset $(MicrosoftNetCompilersToolsetVersion)  [noted: an MSBuild property the rule does not evaluate; the SDK rules decide]
+sdk: 10.0.100-rc.1.25451.107 (csc 5.0.0-2.25451.107+2db1f5ee2bdda2e8d873769325fabede32e420e0, runtime 10.0.0; candidates 10.0.100-preview.1.25120.13, 10.0.100-preview.2.25164.34, 10.0.100-preview.3.25201.16, 10.0.100-preview.4.25258.110, 10.0.100-preview.5.25277.114, 10.0.100-preview.6.25358.103, 10.0.100-preview.7.25380.108, 10.0.100-rc.1.25451.107, 10.0.100-rc.2.25502.107, 10.0.100; the lowest match is taken, not read: 10.0.100-rc.2.25502.107)  [inferred: the lowest SDK whose csc.dll has the compiler; the ones not read may bundle it too (an uncertainty, not a match)]
+os: windows (generated files: crlf 30, lf 0)  [inferred: CRLF in the SDK-generated files means Windows, LF means Linux (macOS would look the same)]
+build folder: not found: no absolute path ends in a tracked file  [default: any folder]
+checkout line endings: converted to CRLF, core.autocrlf=true (of 170 source checksums: as stored 0, as CRLF 170, as LF 0; unmatched by the chosen form 0)  [read: PDB source checksums against the clone]
+project: src/Framework/Microsoft.Build.Framework.csproj  [read: .csproj assembly name = the DLL name]
+version: prefix 18.0.2, suffix none  [inferred: VersionPrefix/VersionSuffix from the DLL AssemblyInformationalVersion; a project that sets Version itself, or MinVer, keeps its own]
+assembly version: 15.1.0.0  [read: the DLL's assembly definition]
+file version: 18.0.2.52102  [read: the DLL's AssemblyFileVersionAttribute]
+command: dotnet build src/Framework/Microsoft.Build.Framework.csproj -c Release -p:VersionPrefix=18.0.2 -p:AssemblyVersion=15.1.0.0 -p:FileVersion=18.0.2.52102 -p:PackageVersion=18.0.2 && dotnet pack src/Framework/Microsoft.Build.Framework.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=18.0.2 -p:AssemblyVersion=15.1.0.0 -p:FileVersion=18.0.2.52102 -p:PackageVersion=18.0.2  [rule 8, version 3]
+history: full clone, all branches and tags  [rule 2, version 2 (26/10): version tools such as Nerdbank.GitVersioning and MinVer read the history; at depth 1 three builds failed on the height and MinVer packed 0.0.0-alpha.0]
+category: derived with defaults (build folder); inferred: sdk, os, version
