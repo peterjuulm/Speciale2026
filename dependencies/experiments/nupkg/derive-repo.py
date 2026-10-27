@@ -1,0 +1,275 @@
+"""Derive repository-build recipes: one per repository and commit, for the packages in a list.
+
+Usage: python3 -I derive-repo.py LIST CENSUS_FILES_CSV FACTS_DIR LAB OUT
+
+The repository-build method (dependencies/notes/2026-10-27-nupkg-repository-build-plan.md)
+builds a whole repository with its own build script and takes every listed package from
+that one build. This script reads, per package: the repository, the commit and the shipped
+DLL (from the release-only facts in FACTS_DIR when they exist, else from the nupkg's
+.nuspec and the census), and the DLL's AssemblyFileVersionAttribute (from the release-only
+report when it exists, else from the nupkg via dllreport). It decodes Arcade's official
+build id from the file version (rule R4), finds each package's project in the repository's
+mirror (git ls-tree, the release-only rule 7: a .csproj named like the package id, not under
+ref/), and groups the packages by repository, commit and inner repository (for the VMR, the
+src/<name>/ that holds the project) into OUT/<repo>-<inner>-<commit7>.toml, with facts.txt
+and a [[products]] list. Packages the method does not cover (runtime packs, SkiaSharp) are
+written to OUT/not-covered.txt with the reason.
+
+LIST lines are "Package Version"; '#' starts a comment. LAB holds the mirrors (LAB/mirrors)
+and downloaded nupkgs (LAB/nupkg).
+"""
+import os, re, subprocess, sys, zipfile, urllib.request, shutil, collections
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPORT_DOTNET = os.environ.get('DLLREPORT_DOTNET', '/private/tmp/rb1-dotnet10/sdk/dotnet')
+INNER_KINDS = {'runtime': 'runtime', 'aspnetcore': 'aspnetcore', 'efcore': 'arcade', 'roslyn': 'roslyn',
+               'msbuild': 'arcade', 'symreader': 'arcade', 'reverse-proxy': 'arcade'}
+NOT_COVERED = {
+    'Microsoft.NETCore.App.Runtime.linux-x64': 'a runtime pack: needs the full product build (clr+libs+host), rule R8',
+    'Microsoft.AspNetCore.App.Runtime.linux-x64': 'a runtime pack: needs the full product build, rule R8',
+}
+
+
+def sh(args, **kw):
+    return subprocess.run(args, capture_output=True, text=True, **kw)
+
+
+def mirror_of(url, lab):
+    m = os.path.join(lab, 'mirrors', re.sub(r'[^A-Za-z0-9._-]+', '_', url) + '.git')
+    if os.path.isdir(m) and not sh(['git', '-C', m, 'for-each-ref', '--count=1']).stdout.strip():
+        shutil.rmtree(m, ignore_errors=True)   # a fetch that was interrupted: no refs yet
+    if not os.path.isdir(m):
+        # a mirror of the branches and tags only: `git clone --mirror` would also take GitHub's refs/pull/*,
+        # which for dotnet/runtime is several GB of pull-request history the build never needs
+        os.makedirs(os.path.dirname(m), exist_ok=True)
+        subprocess.run(['git', 'init', '-q', '--bare', m], check=True)
+        subprocess.run(['git', '-C', m, 'remote', 'add', 'origin', url], check=True)
+        subprocess.run(['git', '-C', m, 'config', '--replace-all', 'remote.origin.fetch', '+refs/heads/*:refs/heads/*'], check=True)
+        subprocess.run(['git', '-C', m, 'config', '--add', 'remote.origin.fetch', '+refs/tags/*:refs/tags/*'], check=True)
+        subprocess.run(['git', '-C', m, 'config', 'remote.origin.mirror', 'true'], check=True)
+        if subprocess.run(['git', '-C', m, 'fetch', '-q', '--prune', 'origin']).returncode:
+            shutil.rmtree(m, ignore_errors=True)
+            raise RuntimeError(f'mirror of {url} failed')
+    return m
+
+
+def tree(mirror, commit):
+    r = sh(['git', '-C', mirror, 'ls-tree', '-r', '--name-only', commit])
+    if r.returncode:   # the commit may be missing from the mirror: fetch it
+        subprocess.run(['git', '-C', mirror, 'fetch', '-q', 'origin', commit], check=False)
+        r = sh(['git', '-C', mirror, 'ls-tree', '-r', '--name-only', commit])
+    return r.stdout.split('\n') if r.returncode == 0 else None
+
+
+def decode_build_id(filever, pkgver, vmr, year_hint):
+    """Arcade's scheme (Versioning.md): FILE_PATCH = (PATCH mod 100)*100 + yy; FILE_REVISION = (50*mm+dd)*100 + r,
+    with r up to 199 (CalculateAssemblyAndFileVersions.cs). The VMR adds 100 to the revision before it reaches the
+    inner repository (repo-projects/Directory.Build.props), so for a VMR product the same FILE_REVISION reads as
+    day d, revision r (a plain official build) or day d-1, revision r+100 (the VMR). Both give the same file version;
+    the VMR reading is passed, because the inner build is run without the VMR's +100. Where FILE_PATCH does not fit
+    the scheme the year is lost (msbuild sets its own patch), and year_hint (the nuget.org publish year) is used."""
+    parts = filever.split('.')
+    if len(parts) != 4 or not all(p.isdigit() for p in parts):
+        return None, f'file version {filever} is not four numbers'
+    fp, fr = int(parts[2]), int(parts[3])
+    r = fr % 100
+    md = fr // 100
+    mm, dd = md // 50, md % 50
+    if not (1 <= mm <= 12 and 1 <= dd <= 32):
+        return None, f'file version {filever}: revision part {fr} does not decode to a date'
+    m = re.match(r'^(\d+)\.(\d+)\.(\d+)', pkgver)
+    patch = int(m.group(3)) if m else None
+    fits = patch is not None and fp // 100 == patch % 100
+    yy = fp % 100 if fits else (year_hint % 100 if year_hint else None)
+    if yy is None:
+        return None, f'file version {filever}: FILE_PATCH {fp} does not fit the Arcade scheme for patch {patch}, and no publish year is known'
+    how = (f'FILE_PATCH {fp} = (patch {patch} mod 100)*100 + yy {yy}' if fits
+           else f'FILE_PATCH {fp} does not fit the Arcade scheme for patch {patch} (the repository sets its own); year {yy} from the nuget.org publish date')
+    if vmr:
+        if dd < 2:
+            return None, f'file version {filever}: day {dd} cannot carry the VMR\'s +100 revision'
+        bid = f'20{yy:02d}{mm:02d}{dd - 1:02d}.{r + 100}'
+        return bid, f'inferred: {how}; FILE_REVISION {fr} = (50*{mm}+{dd - 1})*100 + {r + 100}, the VMR\'s +100 revision (the plain reading 20{yy:02d}{mm:02d}{dd:02d}.{r} gives the same file version)'
+    if dd > 31:
+        return None, f'file version {filever}: day {dd} is not a date'
+    return f'20{yy:02d}{mm:02d}{dd:02d}.{r}', f'inferred: {how}; FILE_REVISION {fr} = (50*{mm}+{dd})*100 + {r}'
+
+
+def publish_year(pkg, ver):
+    """The year nuget.org lists the version as published, for a file version that lost its year."""
+    try:
+        import json
+        with urllib.request.urlopen(f'https://api.nuget.org/v3/registration5-gz-semver2/{pkg.lower()}/{ver.lower()}.json', timeout=60) as r:
+            data = r.read()
+        try:
+            import gzip; data = gzip.decompress(data)
+        except Exception:
+            pass
+        j = json.loads(data)
+        return int(j.get('published', '')[:4])
+    except Exception:
+        return None
+
+
+def sdk_major(mirror, commit, root):
+    """The major version of the SDK in global.json at the commit, for the environment rule on old SDKs."""
+    r = sh(['git', '-C', mirror, 'show', f'{commit}:{root}global.json'])
+    m = re.search(r'"version"\s*:\s*"(\d+)\.', r.stdout) if r.returncode == 0 else None
+    return int(m.group(1)) if m else None
+
+
+def report_attr(nupkg, ships, lab, name):
+    """Run dllreport on the shipped DLL inside the nupkg; return the report text."""
+    d = os.path.join(lab, 'nupkg', 'dll'); os.makedirs(d, exist_ok=True)
+    dll = os.path.join(d, name + '.dll')
+    open(dll, 'wb').write(zipfile.ZipFile(nupkg).read(ships))
+    r = sh([REPORT_DOTNET, 'run', os.path.join(HERE, 'dllreport.cs'), '--', dll])
+    return r.stdout
+
+
+def main():
+    lst, census, facts_dir, lab, out = sys.argv[1:6]
+    os.makedirs(out, exist_ok=True)
+    cen = {}
+    for l in open(census, encoding='utf-8'):
+        p = l.rstrip('\n').split(',')
+        if len(p) > 2 and p[0] != 'package':
+            cen[(p[0], p[1])] = p[2]
+    groups = collections.OrderedDict()
+    notes = []
+    for line in open(lst, encoding='utf-8'):
+        line = line.split('#')[0].strip()
+        if not line:
+            continue
+        pkg, ver = line.split()[:2]
+        key = f'{pkg}-{ver}'
+        if pkg in NOT_COVERED:
+            notes.append(f'{key}: not covered: {NOT_COVERED[pkg]}'); continue
+        facts = os.path.join(facts_dir, key, 'facts.txt')
+        t = open(facts, encoding='utf-8').read() if os.path.exists(facts) else ''
+        ships = (re.search(r'^shipped file: (\S+)', t, re.M) or [None, cen.get((pkg, ver))])[1]
+        commit = (re.search(r'^commit: ([0-9a-f]{40})', t, re.M) or [None, None])[1]
+        url = (re.search(r'^clone url: (\S+)', t, re.M) or [None, None])[1]
+        project = (re.search(r'^project: (\S+\.csproj)', t, re.M) or [None, None])[1]
+        filever = (re.search(r'^file version: (\S+)', t, re.M) or [None, None])[1]
+        src = []
+        # the nupkg: needed when the facts lack the commit, the URL or the file version
+        lid, lver = pkg.lower(), ver.lower()
+        np = os.path.join(lab, 'nupkg', f'{lid}.{lver}.nupkg')
+        if not (commit and url and filever):
+            if not os.path.exists(np):
+                os.makedirs(os.path.dirname(np), exist_ok=True)
+                with urllib.request.urlopen(f'https://api.nuget.org/v3-flatcontainer/{lid}/{lver}/{lid}.{lver}.nupkg', timeout=300) as r, open(np, 'wb') as f:
+                    shutil.copyfileobj(r, f)
+            z = zipfile.ZipFile(np)
+            nuspec = next(n for n in z.namelist() if n.endswith('.nuspec') and '/' not in n)
+            x = z.read(nuspec).decode('utf-8', 'replace')
+            m = re.search(r'<repository[^>]*\burl="([^"]+)"[^>]*\bcommit="([0-9a-f]{40})"', x) or re.search(r'<repository[^>]*\bcommit="([0-9a-f]{40})"[^>]*\burl="([^"]+)"', x)
+            if m and not (commit and url):
+                a, b = m.group(1), m.group(2)
+                url, commit = (a, b) if b and re.fullmatch(r'[0-9a-f]{40}', b) else (b, a)
+                url = re.sub(r'\.git$', '', url); src.append('nuspec')
+            if not ships:
+                ships = next((n for n in z.namelist() if n.lower().startswith('lib/') and n.lower().endswith(f'/{lid}.dll')), None)
+            if not filever and ships:
+                rep = report_attr(np, ships, lab, key)
+                fm = re.search(r'^attribute: AssemblyFileVersionAttribute\(([^)]+)\)$', rep, re.M)
+                filever = fm.group(1) if fm else None; src.append('dllreport on the nupkg')
+        if not (commit and url and ships):
+            notes.append(f'{key}: not derived: missing ' + ', '.join(n for n, v in (('commit', commit), ('url', url), ('shipped file', ships)) if not v)); continue
+        if not filever:
+            notes.append(f'{key}: not derived: no AssemblyFileVersionAttribute in {ships}'); continue
+        mirror = mirror_of(url, lab)
+        files = tree(mirror, commit)
+        if files is None:
+            notes.append(f'{key}: not derived: commit {commit[:9]} not reachable in {url}'); continue
+        if not project:
+            cands = [f for f in files if f.lower().endswith(f'/{lid}.csproj') and '/ref/' not in f.lower() and '/referencepackages/' not in f.lower()]
+            if not cands:
+                notes.append(f'{key}: not derived: no {pkg}.csproj in the tree (rule 7)'); continue
+            project = sorted(cands, key=len)[0]
+        inner = ''
+        if url.rstrip('/').endswith('/dotnet/dotnet'):
+            inner = '/'.join(project.split('/')[:2])   # src/<name>
+        kind_name = inner.split('/')[-1] if inner else url.rstrip('/').split('/')[-1]
+        kind = INNER_KINDS.get(kind_name)
+        if not kind:
+            notes.append(f'{key}: not covered: {url} ({kind_name}) has no repository-build command in rule R3'); continue
+        vmr = url.rstrip('/').endswith('/dotnet/dotnet')
+        bid, how = decode_build_id(filever, ver, vmr, None)
+        if not bid and 'does not fit' in how:
+            bid, how = decode_build_id(filever, ver, vmr, publish_year(pkg, ver))
+        if not bid:
+            notes.append(f'{key}: not derived: {how}'); continue
+        g = groups.setdefault((url, commit, inner), {'kind': kind, 'products': [], 'files': files})
+        g['products'].append({'package': pkg, 'version': ver, 'ships': ships, 'project': project,
+                              'file_version': filever, 'build_id': bid, 'how': how, 'source': ', '.join(src) or 'release-only facts'})
+    for (url, commit, inner), g in groups.items():
+        name = f'{url.rstrip("/").split("/")[-1]}-{(inner.split("/")[-1] + "-") if inner else ""}{commit[:7]}'
+        root = inner + '/' if inner else ''
+        ids = collections.Counter(p['build_id'] for p in g['products'])
+        facts = [f'{name}: repository build derivation', f'repository: {url}', f'commit: {commit}',
+                 f'inner repository: {inner or "none (the repository itself)"}', f'kind: {g["kind"]}']
+        for p in g['products']:
+            facts.append(f'product {p["package"]} {p["version"]}: ships {p["ships"]}; project {p["project"]}; file version {p["file_version"]} -> {p["build_id"]} [{p["how"]}; from {p["source"]}]')
+        if len(ids) > 1:
+            notes.append(f'{name}: not derived: its products decode to different build ids {dict(ids)}; one build cannot have two')
+            d = os.path.join(out, name); os.makedirs(d, exist_ok=True)
+            open(os.path.join(d, 'facts.txt'), 'w', encoding='utf-8').write('\n'.join(facts + [notes[-1]]) + '\n')
+            continue
+        bid = next(iter(ids))
+        facts.append(f'official build id: {bid}  [rule R4]')
+        props = f'/p:OfficialBuildId={bid}'
+        # R4b: the shipped versions carry no prerelease label, so the build is told it is the release; the
+        # Arcade repositories gate DotNetFinalVersionKind=release on StabilizePackageVersion (eng/Versions.props)
+        stable = all(not re.search(r'-', p['version']) for p in g['products'])
+        if stable:
+            props += ' /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'
+            facts.append('release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]')
+        else:
+            facts.append('release branding: none passed (a shipped version has a prerelease label)')
+        if inner:
+            # the VMR forces the SDK's compiler on every inner repository (repo-projects/Directory.Build.targets);
+            # the PDB compiler records of the shipped DLLs name the SDK's csc, not Microsoft.Net.Compilers.Toolset's
+            props += ' /p:UsingToolMicrosoftNetCompilers=false'
+            facts.append('compiler: UsingToolMicrosoftNetCompilers=false  [read: the VMR passes it to every inner build; the PDBs record the SDK\'s csc]')
+        cd = f'cd {inner} && ' if inner else ''
+        if g['kind'] == 'aspnetcore':
+            app = f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj'
+            first = f'./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" {props} && ' if app in g['files'] else ''
+            facts.append('shared framework first: ' + ('yes, docs/BuildErrors.md' if first else 'no: App.Runtime project not at the documented path'))
+            # one --pack call per project: a ';'-joined list loses its quotes in the shell and MSBuild splits it
+            packs = ' '.join('"$PWD/' + p['project'][len(root):] + '"' for p in g['products'])
+            build = f'{cd}{first}ok=0; for p in {packs}; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" {props} || ok=1; done; exit $ok'
+        elif g['kind'] == 'runtime':
+            build = f'{cd}./build.sh libs -c Release -ci -nobl -pack {props}'
+        elif g['kind'] == 'roslyn':
+            build = f'{cd}./build.sh --restore --build --pack --ci -c Release {props}'
+        else:
+            build = f'{cd}./build.sh --restore --build --pack --ci -nobl -c Release {props}'
+        facts.append(f'command: {build}  [rule R3]')
+        gj = f'{root}global.json'
+        facts.append(f'sdk: from {gj}, installed by the repository\'s own eng/common/tools.sh into {root}.dotnet  [rule R2]')
+        toml = [f'# Derived by derive-repo.py (repository-build method), see facts.txt beside it.',
+                f'name = "{name}"', f'repo = "{url}"', f'commit = "{commit}"', f'inner = "{inner}"', f'kind = "{g["kind"]}"',
+                f'official_build_id = "{bid}"', 'shell = "bash"', f"build = '''{build}'''",
+                f'packages = "{root}artifacts/packages/Release/Shipping"', 'os = "windows"', 'git_config = ["core.autocrlf=true"]',
+                'strip_internal_feeds = true']
+        major = sdk_major(mirror_of(url, lab), commit, root)
+        facts.append(f'sdk major from global.json: {major if major else "unreadable"}')
+        if major and major < 8:
+            toml.append('[env]'); toml.append('DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"')
+            facts.append(f'env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK {major}.x on Arch\'s ICU 78 does not start; nothing the compiler emits depends on it)')
+        for p in g['products']:
+            toml += ['', '[[products]]', f'package = "{p["package"]}"', f'version = "{p["version"]}"', f'ships = "{p["ships"]}"', f'project = "{p["project"]}"', f'file_version = "{p["file_version"]}"']
+        d = os.path.join(out, name); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, 'recipe.toml'), 'w', encoding='utf-8').write('\n'.join(toml) + '\n')
+        open(os.path.join(d, 'facts.txt'), 'w', encoding='utf-8').write('\n'.join(facts) + '\n')
+        print(f'{name}: {len(g["products"])} products, build id {bid}')
+    open(os.path.join(out, 'not-covered.txt'), 'w', encoding='utf-8').write('\n'.join(notes) + '\n')
+    for n in notes:
+        print(n)
+
+
+if __name__ == '__main__':
+    main()

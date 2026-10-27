@@ -1,0 +1,8 @@
+# Repository-build method, batch 2026-10-27-nupkg-repository-build, on arch (Linux). Plan: dependencies/notes/2026-10-27-nupkg-repository-build-plan.md
+# Prerequisites: cmake and ninja installed (sudo pacman -S cmake ninja); the lab /private/tmp/nupkg-repobuild with mirrors/ from the derivation.
+cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
+# 1. derive the recipes (one per repository and commit); idempotent, fast once the mirrors exist
+python3 -I derive-repo.py recipes/repository/batch-arcade.txt ../../data/2026-10-13-dependency-census/mac/census.files.csv ../../data/2026-10-27-nupkg-release-only-batch3-microsoft/derive /private/tmp/nupkg-repobuild recipes/repository/2026-10-27-nupkg-repository-build
+# 2. run the batch in the planned order, unattended; results land in dependencies/data/2026-10-27-nupkg-repository-build/results.tsv after every build
+nohup python3 -I run-repo-batch.py 2026-10-27-nupkg-repository-build recipes/repository/order-2026-10-27.txt /private/tmp/nupkg-repobuild > /private/tmp/nupkg-repobuild/console.log 2>&1 &
+# watch: tail -f /private/tmp/nupkg-repobuild/run.log
