@@ -1,0 +1,70 @@
+start 2026-10-27T23:16:24+01:00
+repository build msbuild-02bf662 in /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-27T23:16:24+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src remote add origin https://github.com/dotnet/msbuild
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git 02bf66295b64ab368d12933041f7281aad186a2d
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src -c advice.detachedHead=false checkout -q 02bf66295b64ab368d12933041f7281aad186a2d
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src rev-parse HEAD
+02bf66295b64ab368d12933041f7281aad186a2d
+--- submodules 2026-10-27T23:16:31+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src submodule update --init --recursive --depth 1
+--- build 2026-10-27T23:16:32+01:00
+$ bash -c ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20250916.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/tmp/Release
+Downloading 'https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v8.0.201' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.201/dotnet-sdk-8.0.201-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.201/dotnet-sdk-8.0.201-linux-x64.tar.gz size is 226357468 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.201/dotnet-sdk-8.0.201-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 226357468 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 8.0.201
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src//.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_SKIP_FIRST_TIME_EXPERIENCE;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.25455.3/tools/Tools.proj (in 3.79 sec).
+/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.25455.3/tools/VisualStudio.AcquireOptimizationData.targets(44,5): error : Internal tool not found: "/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/drop.app/18.165.29912-buildid11693003/lib/net45/drop.exe". Run restore on "/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/eng/common\internal\Tools.csproj". [/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.25455.3/tools/Tools.proj]
+##vso[task.logissue type=error;sourcepath=/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.25455.3/tools/VisualStudio.AcquireOptimizationData.targets;linenumber=44;columnnumber=5;code=;](NETCORE_ENGINEERING_TELEMETRY=Restore) Internal tool not found: "/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/drop.app/18.165.29912-buildid11693003/lib/net45/drop.exe". Run restore on "/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/eng/common\internal\Tools.csproj".
+
+Build FAILED.
+
+/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.25455.3/tools/VisualStudio.AcquireOptimizationData.targets(44,5): error : Internal tool not found: "/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/drop.app/18.165.29912-buildid11693003/lib/net45/drop.exe". Run restore on "/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/eng/common\internal\Tools.csproj". [/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.25455.3/tools/Tools.proj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:04.16
+Build failed with exit code 1. Check errors above.
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 1
+end 2026-10-27T23:17:10+01:00
