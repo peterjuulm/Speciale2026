@@ -1,0 +1,624 @@
+start 2026-10-27T21:47:48+01:00
+repository build aspnetcore-af22eff in /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-27T21:47:48+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src remote add origin https://github.com/dotnet/aspnetcore
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_aspnetcore.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_aspnetcore.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_aspnetcore.git af22effae4069a5dfb9b0735859de48820104f5b
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src -c advice.detachedHead=false checkout -q af22effae4069a5dfb9b0735859de48820104f5b
+$ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src rev-parse HEAD
+af22effae4069a5dfb9b0735859de48820104f5b
+nuget.config edit: NuGet.config: removed internal feeds darc-int-dotnet-runtime-9d5a6a9, darc-int-dotnet-efcore-645f313, dotnet7-internal, dotnet7-internal-transport, dotnet8-internal, dotnet8-internal-transport, dotnet9-internal, dotnet9-internal-transport
+--- build 2026-10-27T21:48:02+01:00
+$ bash -c ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20241029.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release && ok=0; for p in "$PWD/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj" "$PWD/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj" "$PWD/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj" "$PWD/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20241029.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+Downloading 'https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v9.0.100-rc.1.24452.12' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.100-rc.1.24452.12/dotnet-sdk-9.0.100-rc.1.24452.12-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.100-rc.1.24452.12/dotnet-sdk-9.0.100-rc.1.24452.12-linux-x64.tar.gz size is 203613000 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.100-rc.1.24452.12/dotnet-sdk-9.0.100-rc.1.24452.12-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 203613000 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 9.0.100-rc.1.24452.12
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 20.59 sec).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 5.26 sec).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Runtime/9.0.0-rtm.24528.9/dotnet-runtime-9.0.0-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Runtime/9.0.0-rtm.24528.9/dotnet-runtime-9.0.0-linux-x64.tar.gz size is 33497524 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Runtime/9.0.0-rtm.24528.9/dotnet-runtime-9.0.0-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 33497524 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 9.0.0
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/RepoTasks/RepoTasks.csproj (in 49.07 sec).
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/RepoTasks/Release/net9.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 104 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 12 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/JSInterop/Microsoft.JSInterop/src/Microsoft.JSInterop.csproj (in 4.59 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj (in 4.6 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/Diagnostics.Abstractions/src/Microsoft.AspNetCore.Diagnostics.Abstractions.csproj (in 4.83 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj (in 5.01 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Html.Abstractions/src/Microsoft.AspNetCore.Html.Abstractions.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Hosting/Server.Abstractions/src/Microsoft.AspNetCore.Hosting.Server.Abstractions.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj (in 6.41 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Localization/Abstractions/src/Microsoft.Extensions.Localization.Abstractions.csproj (in 6.41 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Http/src/Microsoft.AspNetCore.Http.csproj (in 6.43 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Web/src/Microsoft.AspNetCore.Components.Web.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Hosting/Abstractions/src/Microsoft.AspNetCore.Hosting.Abstractions.csproj (in 757 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/RateLimiting/src/Microsoft.AspNetCore.RateLimiting.csproj (in 8.33 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/Kestrel/Core/src/Microsoft.AspNetCore.Server.Kestrel.Core.csproj (in 8.33 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/HealthChecks/src/Microsoft.AspNetCore.Diagnostics.HealthChecks.csproj (in 8.33 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Http.Results/src/Microsoft.AspNetCore.Http.Results.csproj (in 8.33 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/CORS/src/Microsoft.AspNetCore.Cors.csproj (in 8.33 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.Core/src/Microsoft.AspNetCore.Mvc.Core.csproj (in 1.89 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.ApiExplorer/src/Microsoft.AspNetCore.Mvc.ApiExplorer.csproj (in 1.16 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/Diagnostics/src/Microsoft.AspNetCore.Diagnostics.csproj (in 8.33 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.Abstractions/src/Microsoft.AspNetCore.Mvc.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Metadata/src/Microsoft.AspNetCore.Metadata.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Routing.Abstractions/src/Microsoft.AspNetCore.Routing.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/WebSockets/src/Microsoft.AspNetCore.WebSockets.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Headers/src/Microsoft.Net.Http.Headers.csproj (in 0.9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Routing/src/Microsoft.AspNetCore.Routing.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/StaticFiles/src/Microsoft.AspNetCore.StaticFiles.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Authentication.Abstractions/src/Microsoft.AspNetCore.Authentication.Abstractions.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Authentication.Core/src/Microsoft.AspNetCore.Authentication.Core.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/HostFiltering/src/Microsoft.AspNetCore.HostFiltering.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/ResponseCompression/src/Microsoft.AspNetCore.ResponseCompression.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/Rewrite/src/Microsoft.AspNetCore.Rewrite.csproj (in 13 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/ResponseCaching.Abstractions/src/Microsoft.AspNetCore.ResponseCaching.Abstractions.csproj (in 0.8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/ResponseCaching/src/Microsoft.AspNetCore.ResponseCaching.csproj (in 12 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/RequestDecompression/src/Microsoft.AspNetCore.RequestDecompression.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/OutputCaching/src/Microsoft.AspNetCore.OutputCaching.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/Localization/src/Microsoft.AspNetCore.Localization.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/HttpOverrides/src/Microsoft.AspNetCore.HttpOverrides.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/Localization.Routing/src/Microsoft.AspNetCore.Localization.Routing.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/HttpsPolicy/src/Microsoft.AspNetCore.HttpsPolicy.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/HttpLogging/src/Microsoft.AspNetCore.HttpLogging.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/Kestrel/Transport.Sockets/src/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/Kestrel/Transport.Quic/src/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/Kestrel/Transport.NamedPipes/src/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/IIS/IISIntegration/src/Microsoft.AspNetCore.Server.IISIntegration.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Middleware/Session/src/Microsoft.AspNetCore.Session.csproj (in 8.44 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Identity/Core/src/Microsoft.AspNetCore.Identity.csproj (in 3.59 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/Connections.Abstractions/src/Microsoft.AspNetCore.Connections.Abstractions.csproj (in 1.09 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/CookiePolicy/src/Microsoft.AspNetCore.CookiePolicy.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authorization/Policy/src/Microsoft.AspNetCore.Authorization.Policy.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Localization/Localization/src/Microsoft.Extensions.Localization.csproj (in 9.55 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj (in 3.14 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Identity/Extensions.Core/src/Microsoft.Extensions.Identity.Core.csproj (in 4.94 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Identity/Extensions.Stores/src/Microsoft.Extensions.Identity.Stores.csproj (in 4.94 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/SignalR/server/Core/src/Microsoft.AspNetCore.SignalR.Core.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/SignalR/server/SignalR/src/Microsoft.AspNetCore.SignalR.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Razor/Razor.Runtime/src/Microsoft.AspNetCore.Razor.Runtime.csproj (in 0.9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/SignalR/common/Http.Connections/src/Microsoft.AspNetCore.Http.Connections.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/WebEncoders/src/Microsoft.Extensions.WebEncoders.csproj (in 1.25 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/SignalR/common/Http.Connections.Common/src/Microsoft.AspNetCore.Http.Connections.Common.csproj (in 1.73 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.Formatters.Xml/src/Microsoft.AspNetCore.Mvc.Formatters.Xml.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.Formatters.Json/src/Microsoft.AspNetCore.Mvc.Formatters.Json.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.DataAnnotations/src/Microsoft.AspNetCore.Mvc.DataAnnotations.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.Cors/src/Microsoft.AspNetCore.Mvc.Cors.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authorization/Core/src/Microsoft.AspNetCore.Authorization.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authentication/OAuth/src/Microsoft.AspNetCore.Authentication.OAuth.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authentication/Core/src/Microsoft.AspNetCore.Authentication.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authentication/Cookies/src/Microsoft.AspNetCore.Authentication.Cookies.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authentication/BearerToken/src/Microsoft.AspNetCore.Authentication.BearerToken.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Razor/Razor/src/Microsoft.AspNetCore.Razor.csproj (in 0.8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/SignalR/common/SignalR.Common/src/Microsoft.AspNetCore.SignalR.Common.csproj (in 1.56 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/SignalR/common/Protocols.Json/src/Microsoft.AspNetCore.SignalR.Protocols.Json.csproj (in 1.56 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/FileProviders/Embedded/src/Microsoft.Extensions.FileProviders.Embedded.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Extensions/Features/src/Microsoft.Extensions.Features.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/DataProtection/Extensions/src/Microsoft.AspNetCore.DataProtection.Extensions.csproj (in 13.96 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj (in 0.9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Configuration.KeyPerFile/src/Microsoft.Extensions.Configuration.KeyPerFile.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/FileProviders/Manifest.MSBuildTask/src/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.csproj (in 3.4 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Forms/src/Microsoft.AspNetCore.Components.Forms.csproj (in 0.7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Hosting/Hosting/src/Microsoft.AspNetCore.Hosting.csproj (in 14.26 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/StaticAssets/src/Microsoft.AspNetCore.StaticAssets.csproj (in 9.73 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/Kestrel/Kestrel/src/Microsoft.AspNetCore.Server.Kestrel.csproj (in 10.89 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Endpoints/src/Microsoft.AspNetCore.Components.Endpoints.csproj (in 4.77 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Components/src/Microsoft.AspNetCore.Components.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.TagHelpers/src/Microsoft.AspNetCore.Mvc.TagHelpers.csproj (in 10.93 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Authorization/src/Microsoft.AspNetCore.Components.Authorization.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.Localization/src/Microsoft.AspNetCore.Mvc.Localization.csproj (in 9.68 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.ViewFeatures/src/Microsoft.AspNetCore.Mvc.ViewFeatures.csproj (in 10.93 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj (in 5.3 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.Razor/src/Microsoft.AspNetCore.Mvc.Razor.csproj (in 9.71 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/DefaultBuilder/src/Microsoft.AspNetCore.csproj (in 8.16 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc.RazorPages/src/Microsoft.AspNetCore.Mvc.RazorPages.csproj (in 10.93 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Antiforgery/src/Microsoft.AspNetCore.Antiforgery.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Mvc/Mvc/src/Microsoft.AspNetCore.Mvc.csproj (in 9.71 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/HttpSys/src/Microsoft.AspNetCore.Server.HttpSys.csproj (in 11.06 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Servers/IIS/IIS/src/Microsoft.AspNetCore.Server.IIS.csproj (in 11.1 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Http/Http.Extensions/gen/Microsoft.AspNetCore.Http.RequestDelegateGenerator.csproj (in 11.17 sec).
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj (in 22.51 sec).
+  Microsoft.AspNetCore.ResponseCaching.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.ResponseCaching.Abstractions/Release/net9.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+  Microsoft.AspNetCore.Html.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Html.Abstractions/Release/net9.0/Microsoft.AspNetCore.Html.Abstractions.dll
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net9.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Features/Release/net9.0/Microsoft.Extensions.Features.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net9.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.Metadata -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Metadata/Release/net9.0/Microsoft.AspNetCore.Metadata.dll
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Net.Http.Headers/Release/net9.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.JSInterop -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.JSInterop/Release/net9.0/Microsoft.JSInterop.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Http.RequestDelegateGenerator -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.RequestDelegateGenerator/Release/netstandard2.0/Microsoft.AspNetCore.Http.RequestDelegateGenerator.dll
+  Microsoft.AspNetCore.Razor -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Razor/Release/net9.0/Microsoft.AspNetCore.Razor.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net9.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.Authorization -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authorization/Release/net9.0/Microsoft.AspNetCore.Authorization.dll
+  Microsoft.AspNetCore.Razor.Runtime -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Razor.Runtime/Release/net9.0/Microsoft.AspNetCore.Razor.Runtime.dll
+  Microsoft.AspNetCore.Components -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Components/Release/net9.0/Microsoft.AspNetCore.Components.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net9.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net9.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net9.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net9.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Components.Forms -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Components.Forms/Release/net9.0/Microsoft.AspNetCore.Components.Forms.dll
+  Microsoft.AspNetCore.Routing.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Routing.Abstractions/Release/net9.0/Microsoft.AspNetCore.Routing.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net9.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Diagnostics.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Diagnostics.Abstractions/Release/net9.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+  Microsoft.AspNetCore.HttpLogging -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.HttpLogging/Release/net9.0/Microsoft.AspNetCore.HttpLogging.dll
+  Microsoft.AspNetCore.Session -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Session/Release/net9.0/Microsoft.AspNetCore.Session.dll
+  Microsoft.AspNetCore.RateLimiting -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.RateLimiting/Release/net9.0/Microsoft.AspNetCore.RateLimiting.dll
+  Microsoft.AspNetCore.Components.Authorization -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Components.Authorization/Release/net9.0/Microsoft.AspNetCore.Components.Authorization.dll
+  Microsoft.AspNetCore.Components.Web -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Components.Web/Release/net9.0/Microsoft.AspNetCore.Components.Web.dll
+  Microsoft.AspNetCore.Mvc.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Abstractions/Release/net9.0/Microsoft.AspNetCore.Mvc.Abstractions.dll
+  Microsoft.AspNetCore.Hosting.Server.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Hosting.Server.Abstractions/Release/net9.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net9.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.Extensions.Localization.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Localization.Abstractions/Release/net9.0/Microsoft.Extensions.Localization.Abstractions.dll
+  Microsoft.AspNetCore.Hosting.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Hosting.Abstractions/Release/net9.0/Microsoft.AspNetCore.Hosting.Abstractions.dll
+  Microsoft.AspNetCore.Localization -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Localization/Release/net9.0/Microsoft.AspNetCore.Localization.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets/Release/net9.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
+  Microsoft.AspNetCore.Antiforgery -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Antiforgery/Release/net9.0/Microsoft.AspNetCore.Antiforgery.dll
+  Microsoft.AspNetCore.HttpOverrides -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.HttpOverrides/Release/net9.0/Microsoft.AspNetCore.HttpOverrides.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http/Release/net9.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Localization.Routing -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Localization.Routing/Release/net9.0/Microsoft.AspNetCore.Localization.Routing.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Quic -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic/Release/net9.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes/Release/net9.0/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll
+  Microsoft.AspNetCore.Routing -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Routing/Release/net9.0/Microsoft.AspNetCore.Routing.dll
+  Microsoft.AspNetCore.ResponseCaching -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.ResponseCaching/Release/net9.0/Microsoft.AspNetCore.ResponseCaching.dll
+  Microsoft.AspNetCore.ResponseCompression -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.ResponseCompression/Release/net9.0/Microsoft.AspNetCore.ResponseCompression.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net9.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.AspNetCore.HostFiltering -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.HostFiltering/Release/net9.0/Microsoft.AspNetCore.HostFiltering.dll
+  Microsoft.AspNetCore.RequestDecompression -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.RequestDecompression/Release/net9.0/Microsoft.AspNetCore.RequestDecompression.dll
+  Microsoft.AspNetCore.Server.Kestrel.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Core/Release/net9.0/Microsoft.AspNetCore.Server.Kestrel.Core.dll
+  Microsoft.AspNetCore.CookiePolicy -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.CookiePolicy/Release/net9.0/Microsoft.AspNetCore.CookiePolicy.dll
+  Microsoft.AspNetCore.WebSockets -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.WebSockets/Release/net9.0/Microsoft.AspNetCore.WebSockets.dll
+  Microsoft.AspNetCore.Hosting -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Hosting/Release/net9.0/Microsoft.AspNetCore.Hosting.dll
+  Microsoft.AspNetCore.HttpsPolicy -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.HttpsPolicy/Release/net9.0/Microsoft.AspNetCore.HttpsPolicy.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net9.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/Release/net9.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks/Release/net9.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.OutputCaching -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.OutputCaching/Release/net9.0/Microsoft.AspNetCore.OutputCaching.dll
+  Microsoft.AspNetCore.Http.Results -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Results/Release/net9.0/Microsoft.AspNetCore.Http.Results.dll
+  Microsoft.AspNetCore.Authorization.Policy -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authorization.Policy/Release/net9.0/Microsoft.AspNetCore.Authorization.Policy.dll
+  Microsoft.AspNetCore.Server.Kestrel -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel/Release/net9.0/Microsoft.AspNetCore.Server.Kestrel.dll
+  Microsoft.AspNetCore.Cors -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cors/Release/net9.0/Microsoft.AspNetCore.Cors.dll
+  Microsoft.AspNetCore.Rewrite -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Rewrite/Release/net9.0/Microsoft.AspNetCore.Rewrite.dll
+  Microsoft.AspNetCore.Http.Connections.Common -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Connections.Common/Release/net9.0/Microsoft.AspNetCore.Http.Connections.Common.dll
+  Microsoft.AspNetCore.SignalR.Common -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR.Common/Release/net9.0/Microsoft.AspNetCore.SignalR.Common.dll
+  Microsoft.AspNetCore.StaticFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.StaticFiles/Release/net9.0/Microsoft.AspNetCore.StaticFiles.dll
+  Microsoft.AspNetCore.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Diagnostics.HealthChecks/Release/net9.0/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.StaticAssets -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.StaticAssets/Release/net9.0/Microsoft.AspNetCore.StaticAssets.dll
+  Microsoft.Extensions.FileProviders.Embedded.Manifest.Task -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task/Release/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll
+  Microsoft.Extensions.FileProviders.Embedded -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded/Release/net9.0/Microsoft.Extensions.FileProviders.Embedded.dll
+  Microsoft.AspNetCore.Server.IISIntegration -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.IISIntegration/Release/net9.0/Microsoft.AspNetCore.Server.IISIntegration.dll
+  Microsoft.AspNetCore.Server.HttpSys -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.HttpSys/Release/net9.0/Microsoft.AspNetCore.Server.HttpSys.dll
+  Microsoft.AspNetCore.Diagnostics -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Diagnostics/Release/net9.0/Microsoft.AspNetCore.Diagnostics.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net9.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Http.Connections -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Connections/Release/net9.0/Microsoft.AspNetCore.Http.Connections.dll
+  Microsoft.AspNetCore.DataProtection.Extensions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Extensions/Release/net9.0/Microsoft.AspNetCore.DataProtection.Extensions.dll
+  Microsoft.AspNetCore.Authentication.Cookies -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Cookies/Release/net9.0/Microsoft.AspNetCore.Authentication.Cookies.dll
+  Microsoft.AspNetCore.Authentication.OAuth -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.OAuth/Release/net9.0/Microsoft.AspNetCore.Authentication.OAuth.dll
+  Microsoft.AspNetCore.Authentication.BearerToken -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.BearerToken/Release/net9.0/Microsoft.AspNetCore.Authentication.BearerToken.dll
+  Microsoft.AspNetCore.Server.IIS -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Server.IIS/Release/net9.0/Microsoft.AspNetCore.Server.IIS.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net9.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.AspNetCore.Components.Endpoints -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Components.Endpoints/Release/net9.0/Microsoft.AspNetCore.Components.Endpoints.dll
+  Microsoft.AspNetCore.Mvc.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Core/Release/net9.0/Microsoft.AspNetCore.Mvc.Core.dll
+  Microsoft.Extensions.Localization -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Localization/Release/net9.0/Microsoft.Extensions.Localization.dll
+  Microsoft.AspNetCore.SignalR.Protocols.Json -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR.Protocols.Json/Release/net9.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Json -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Json/Release/net9.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Xml -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Xml/Release/net9.0/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll
+  Microsoft.AspNetCore.Mvc.DataAnnotations -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.DataAnnotations/Release/net9.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+  Microsoft.AspNetCore.Mvc.Cors -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Cors/Release/net9.0/Microsoft.AspNetCore.Mvc.Cors.dll
+  Microsoft.AspNetCore.Mvc.ApiExplorer -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.ApiExplorer/Release/net9.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+  Microsoft.AspNetCore.Identity -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Identity/Release/net9.0/Microsoft.AspNetCore.Identity.dll
+  Microsoft.AspNetCore.SignalR.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR.Core/Release/net9.0/Microsoft.AspNetCore.SignalR.Core.dll
+  Microsoft.AspNetCore.Mvc.ViewFeatures -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.ViewFeatures/Release/net9.0/Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+  Microsoft.AspNetCore -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore/Release/net9.0/Microsoft.AspNetCore.dll
+  Microsoft.AspNetCore.SignalR -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.SignalR/Release/net9.0/Microsoft.AspNetCore.SignalR.dll
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/BufferWriter.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/BufferWriter.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/ExtensionHeader.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/ExtensionHeader.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/ExtensionResult.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/ExtensionResult.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackCode.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackCode.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackReader.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackReader.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackSerializationException.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackSerializationException.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/T4/MessagePackReader.Integers.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/T4/MessagePackReader.Integers.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackWriter.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackWriter.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequenceReader.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequenceReader.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Internal/DateTimeConstants.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Internal/DateTimeConstants.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Nil.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Nil.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/StringEncoding.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/StringEncoding.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequenceReaderExtensions.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequenceReaderExtensions.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequencePool.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequencePool.cs' could not be found.
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Utilities.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+##vso[task.logissue type=error;sourcepath=CSC;linenumber=0;columnnumber=0;code=CS2001;](NETCORE_ENGINEERING_TELEMETRY=Build) Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Utilities.cs' could not be found.
+  Microsoft.AspNetCore.Mvc.Razor -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Razor/Release/net9.0/Microsoft.AspNetCore.Mvc.Razor.dll
+  Microsoft.AspNetCore.Mvc.TagHelpers -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.TagHelpers/Release/net9.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll
+  Microsoft.AspNetCore.Mvc.Localization -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.Localization/Release/net9.0/Microsoft.AspNetCore.Mvc.Localization.dll
+  Microsoft.AspNetCore.Mvc.RazorPages -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc.RazorPages/Release/net9.0/Microsoft.AspNetCore.Mvc.RazorPages.dll
+  Microsoft.AspNetCore.Mvc -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Mvc/Release/net9.0/Microsoft.AspNetCore.Mvc.dll
+
+Build FAILED.
+
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/BufferWriter.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/ExtensionHeader.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/ExtensionResult.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackCode.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackReader.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackSerializationException.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/T4/MessagePackReader.Integers.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackWriter.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequenceReader.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Internal/DateTimeConstants.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Nil.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/StringEncoding.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequenceReaderExtensions.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/SequencePool.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+CSC : error CS2001: Source file '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/submodules/MessagePack-CSharp/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Utilities.cs' could not be found. [/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj]
+    0 Warning(s)
+    15 Error(s)
+
+Time Elapsed 00:01:29.68
+Build failed with exit code 1. Check errors above.
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 109 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 13 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/RepoTasks/Release/net9.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 106 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 13 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj (in 8.44 sec).
+  16 of 17 projects are up-to-date for restore.
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Net.Http.Headers/Release/net9.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Features/Release/net9.0/Microsoft.Extensions.Features.dll
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net9.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net9.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net9.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net9.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net9.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net9.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net9.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http/Release/net9.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net9.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net9.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net9.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net9.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net9.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Authentication.JwtBearer -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.JwtBearer/Release/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Authentication.JwtBearer.9.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Authentication.JwtBearer.9.0.0.symbols.nupkg'.
+  Added <frameworkReference> to Microsoft.AspNetCore.Authentication.JwtBearer.9.0.0.nupkg
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:20.83
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 108 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 13 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/RepoTasks/Release/net9.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 107 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 13 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj (in 39 ms).
+  17 of 18 projects are up-to-date for restore.
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Net.Http.Headers/Release/net9.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.Features/Release/net9.0/Microsoft.Extensions.Features.dll
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net9.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net9.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net9.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net9.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net9.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net9.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net9.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Http/Release/net9.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net9.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net9.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net9.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net9.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net9.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Authentication.OAuth -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.OAuth/Release/net9.0/Microsoft.AspNetCore.Authentication.OAuth.dll
+  Microsoft.AspNetCore.Authentication.OpenIdConnect -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Authentication.OpenIdConnect/Release/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+  The package Microsoft.AspNetCore.Authentication.OpenIdConnect.9.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Authentication.OpenIdConnect.9.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Authentication.OpenIdConnect.9.0.0.symbols.nupkg'.
+  Added <frameworkReference> to Microsoft.AspNetCore.Authentication.OpenIdConnect.9.0.0.nupkg
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.51
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 107 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 12 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/RepoTasks/Release/net9.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 102 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 12 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net462/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net462/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net9.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net462/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/netstandard2.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net9.0/Microsoft.AspNetCore.DataProtection.dll
+  The package Microsoft.AspNetCore.DataProtection.9.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.DataProtection.9.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.DataProtection.9.0.0.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.43
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 109 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 12 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/RepoTasks/Release/net9.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '9.0.0') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/nuget/microsoft.dotnet.arcade.sdk/9.0.0-beta.24516.2/tools/Tools.proj (in 103 ms).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/eng/tools/GenerateFiles/GenerateFiles.csproj (in 13 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v9.0.0-rtm.24528.9' from public_location.
+dotnet-install: .NET Core Runtime with version '9.0.0' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net462/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/netstandard2.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net9.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  The package Microsoft.AspNetCore.DataProtection.Abstractions.9.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.DataProtection.Abstractions.9.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/aspnetcore-af22eff/A/src/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.DataProtection.Abstractions.9.0.0.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.38
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T21:52:14+01:00
