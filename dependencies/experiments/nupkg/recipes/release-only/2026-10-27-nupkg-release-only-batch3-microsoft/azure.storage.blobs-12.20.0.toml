@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Azure.Storage.Blobs"
+version = "12.20.0"
+ships = "lib/net6.0/Azure.Storage.Blobs.dll"
+repo = "https://github.com/Azure/azure-sdk-for-net"
+commit = "f04919fc23b35d3f73ffb6e7fc0d7378a8834ffb"
+project = "sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj"
+sdk = "7.0.101"
+shell = "bash"
+build = "dotnet build sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj -c Release -p:VersionPrefix=12.20.0 -p:AssemblyVersion=12.20.0.0 -p:FileVersion=12.2000.24.26306 -p:PackageVersion=12.20.0 && dotnet pack sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=12.20.0 -p:AssemblyVersion=12.20.0.0 -p:FileVersion=12.2000.24.26306 -p:PackageVersion=12.20.0"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=true"]
