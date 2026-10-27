@@ -6,7 +6,7 @@ inner = ""
 kind = "roslyn"
 official_build_id = "20251117.12"
 shell = "bash"
-build = '''./build.sh --restore --build --pack --ci -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'''
+build = '''./build.sh --restore --build --pack --ci -bl -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]
