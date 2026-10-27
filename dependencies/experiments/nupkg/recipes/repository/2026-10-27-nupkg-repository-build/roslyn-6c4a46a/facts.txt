@@ -13,6 +13,6 @@ product Microsoft.CodeAnalysis.Workspaces.Common 5.0.0: ships lib/net9.0/Microso
 product Microsoft.CodeAnalysis.Workspaces.MSBuild 5.0.0: ships lib/net9.0/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll; project src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj; file version 5.0.25.56712 -> 20251117.12 [inferred: FILE_PATCH 25 = (patch 0 mod 100)*100 + yy 25; FILE_REVISION 56712 = (50*11+17)*100 + 12; from release-only facts]
 official build id: 20251117.12  [rule R4]
 release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
-command: ./build.sh --restore --build --pack --ci -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+command: ./build.sh --restore --build --pack --ci -bl -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
 sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
 sdk major from global.json: 10

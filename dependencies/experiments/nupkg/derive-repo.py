@@ -268,7 +268,9 @@ def main():
         elif g['kind'] == 'runtime':
             build = f'{cd}./build.sh libs -c Release -ci -nobl -pack {props}'
         elif g['kind'] == 'roslyn':
-            build = f'{cd}./build.sh --restore --build --pack --ci -c Release {props}'
+            # Roslyn's eng/build.sh has no -nobl, and Arcade's tools.sh refuses a CI build without a binary log
+            # unless opted out, so the log is written (-bl); it does not change what is built (27/10 22:28)
+            build = f'{cd}./build.sh --restore --build --pack --ci -bl -c Release {props}'
         else:
             build = f'{cd}./build.sh --restore --build --pack --ci -nobl -c Release {props}'
         facts.append(f'command: {build}  [rule R3]')
