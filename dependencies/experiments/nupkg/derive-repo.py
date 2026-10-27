@@ -240,10 +240,11 @@ def main():
             facts.append('compiler: UsingToolMicrosoftNetCompilers=false  [read: the VMR passes it to every inner build; the PDBs record the SDK\'s csc]')
         cd = f'cd {inner} && ' if inner else ''
         if g['kind'] == 'aspnetcore':
-            app = f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj'
+            # the shared-framework project is a .csproj up to .NET 9 and a .sfxproj in .NET 10 (docs/BuildErrors.md still says .csproj)
+            app = next((f for f in g['files'] if f.startswith(f'{root}src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.') and f.endswith(('.csproj', '.sfxproj'))), None)
             # '|| exit 1', not '&&': with '&&' the packs ran after a failed first step (27/10 21:52, aspnetcore-af22eff)
-            first = f'./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" {props} || exit 1; ' if app in g['files'] else ''
-            facts.append('shared framework first: ' + ('yes, docs/BuildErrors.md' if first else 'no: App.Runtime project not at the documented path'))
+            first = f'./eng/build.sh --ci -nobl -c Release --projects "$PWD/{app[len(root):]}" {props} || exit 1; ' if app else ''
+            facts.append('shared framework first: ' + (f'yes, {app} (docs/BuildErrors.md)' if first else 'no: App.Runtime project not found under src/Framework/App.Runtime/src'))
             # one --pack call per project: a ';'-joined list loses its quotes in the shell and MSBuild splits it
             packs = ' '.join('"$PWD/' + p['project'][len(root):] + '"' for p in g['products'])
             build = f'{cd}{first}ok=0; for p in {packs}; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" {props} || ok=1; done; exit $ok'
