@@ -1,0 +1,245 @@
+start 2026-10-28T00:19:18+01:00
+repository build dotnet-efcore-95017c7 in /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-28T00:19:18+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src remote add origin https://github.com/dotnet/dotnet
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_dotnet.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_dotnet.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_dotnet.git 95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src -c advice.detachedHead=false checkout -q 95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src rev-parse HEAD
+95017c711e6afc1085133d440e42b4bd78155701
+--- submodules 2026-10-28T00:20:40+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src submodule update --init --recursive --depth 1
+--- build 2026-10-28T00:20:40+01:00
+$ bash -c cd src/efcore && ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=001bfac21c1910cdf1110ca256c9ea0a06f374ca
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/tmp/Release
+Downloading 'https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v10.0.110' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.110/dotnet-sdk-10.0.110-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.110/dotnet-sdk-10.0.110-linux-x64.tar.gz size is 239679745 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.110/dotnet-sdk-10.0.110-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 239679745 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 10.0.110
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/nuget/microsoft.dotnet.arcade.sdk/10.0.0-beta.26411.108/tools/Tools.proj (in 2.97 sec).
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26411.108' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.12-servicing.26411.108/dotnet-runtime-10.0.12-servicing.26411.108-linux-x64.tar.gz
+dotnet-install: The resource at primary link 'https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.12-servicing.26411.108/dotnet-runtime-10.0.12-servicing.26411.108-linux-x64.tar.gz' is not available.
+dotnet-install: Attempting to download using primary link https://ci.dot.net/public/Runtime/10.0.12-servicing.26411.108/dotnet-runtime-10.0.12-linux-x64.tar.gz
+dotnet-install: Remote file https://ci.dot.net/public/Runtime/10.0.12-servicing.26411.108/dotnet-runtime-10.0.12-linux-x64.tar.gz size is 36636677 bytes.
+dotnet-install: Extracting archive from https://ci.dot.net/public/Runtime/10.0.12-servicing.26411.108/dotnet-runtime-10.0.12-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 36636677 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 10.0.12
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/dotnet-ef.Tests/dotnet-ef.Tests.csproj (in 4.6 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Sqlite.NTS/EFCore.Sqlite.NTS.csproj (in 5.34 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj (in 6.38 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Relational.Specification.Tests/EFCore.Relational.Specification.Tests.csproj (in 5.87 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Sqlite.FunctionalTests/EFCore.Sqlite.FunctionalTests.csproj (in 11.21 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Sqlite.Tests/EFCore.Sqlite.Tests.csproj (in 11.21 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Relational.Tests/EFCore.Relational.Tests.csproj (in 6.61 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.InMemory.Tests/EFCore.InMemory.Tests.csproj (in 4.83 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Tests/EFCore.Tests.csproj (in 11.21 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Sqlite.Core/EFCore.Sqlite.Core.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Relational/EFCore.Relational.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Specification.Tests/EFCore.Specification.Tests.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Proxies/EFCore.Proxies.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Proxies.Tests/EFCore.Proxies.Tests.csproj (in 18 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/Microsoft.Data.Sqlite.Tests/Microsoft.Data.Sqlite.e_sqlcipher.Tests.csproj (in 11.39 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/Microsoft.Data.Sqlite.Tests/Microsoft.Data.Sqlite.winsqlite3.Tests.csproj (in 11.39 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/Microsoft.Data.Sqlite.Tests/Microsoft.Data.Sqlite.sqlite3.Tests.csproj (in 11.39 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Sqlite/EFCore.Sqlite.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/Microsoft.Data.Sqlite.Tests/Microsoft.Data.Sqlite.Tests.csproj (in 11.42 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/Microsoft.Data.Sqlite.Tests/Microsoft.Data.Sqlite.sqlite3mc.Tests.csproj (in 11.64 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Design/EFCore.Design.csproj (in 630 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Analyzers/EFCore.Analyzers.csproj (in 1.06 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Abstractions/EFCore.Abstractions.csproj (in 1.57 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.InMemory.FunctionalTests/EFCore.InMemory.FunctionalTests.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.SqlServer/EFCore.SqlServer.csproj (in 2.08 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.SqlServer.NTS/EFCore.SqlServer.NTS.csproj (in 13.31 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.SqlServer.HierarchyId/EFCore.SqlServer.HierarchyId.csproj (in 1.89 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.OData.FunctionalTests/EFCore.OData.FunctionalTests.csproj (in 2.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/ef.Tests/ef.Tests.csproj (in 13.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.SqlServer.HierarchyId.Tests/EFCore.SqlServer.HierarchyId.Tests.csproj (in 13.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.SqlServer.FunctionalTests/EFCore.SqlServer.FunctionalTests.csproj (in 13.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.VisualBasic.FunctionalTests/EFCore.VisualBasic.FunctionalTests.vbproj (in 13.85 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.SqlServer.Tests/EFCore.SqlServer.Tests.csproj (in 2.63 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Design.Tests/EFCore.Design.Tests.csproj (in 537 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.SqlServer.Abstractions/EFCore.SqlServer.Abstractions.csproj (in 2.59 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.FSharp.FunctionalTests/EFCore.FSharp.FunctionalTests.fsproj (in 1.79 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/Microsoft.Data.Sqlite/Microsoft.Data.Sqlite.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore/EFCore.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Cosmos/EFCore.Cosmos.csproj (in 3.66 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Templates/EFCore.Templates.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Tasks/EFCore.Tasks.csproj (in 3.8 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/EFCore.Tools/EFCore.Tools.csproj (in 721 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/ef/ef.csproj (in 2.09 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/benchmark/EFCore.Benchmarks/EFCore.Benchmarks.csproj (in 3.76 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/benchmark/EFCore.Sqlite.Benchmarks/EFCore.Sqlite.Benchmarks.csproj (in 4.44 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/benchmark/EFCore.SqlServer.Benchmarks/EFCore.SqlServer.Benchmarks.csproj (in 4.19 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Cosmos.FunctionalTests/EFCore.Cosmos.FunctionalTests.csproj (in 3.37 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Cosmos.Tests/EFCore.Cosmos.Tests.csproj (in 3.37 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.CrossStore.FunctionalTests/EFCore.CrossStore.FunctionalTests.csproj (in 3.37 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.Analyzers.Tests/EFCore.Analyzers.Tests.csproj (in 3.78 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.AspNet.SqlServer.FunctionalTests/EFCore.AspNet.SqlServer.FunctionalTests.csproj (in 5.08 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.AspNet.Specification.Tests/EFCore.AspNet.Specification.Tests.csproj (in 5.58 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.AspNet.InMemory.FunctionalTests/EFCore.AspNet.InMemory.FunctionalTests.csproj (in 5.04 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/test/EFCore.AspNet.Sqlite.FunctionalTests/EFCore.AspNet.Sqlite.FunctionalTests.csproj (in 5.6 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/src/dotnet-ef/dotnet-ef.csproj (in 7.14 sec).
+  EFCore.Templates -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Templates/Release/netstandard2.0/EFCore.Templates.dll
+  EFCore.SqlServer.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer.Abstractions/Release/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.Abstractions.dll
+  ef -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/ef/Release/net472/ef.exe
+  EFCore.Analyzers -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Analyzers/Release/netstandard2.0/Microsoft.EntityFrameworkCore.Analyzers.dll
+  Microsoft.Data.Sqlite.Core -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.dll
+  ef -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/ef/x86/Release/net472/ef.exe
+  ef -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/ef/ARM64/Release/net472/ef.exe
+  ef -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/ef/Release/net8.0/ef.dll
+  EFCore.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Abstractions/Release/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+  EFCore.Tasks -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Tasks/Release/net10.0/Microsoft.EntityFrameworkCore.Tasks.dll
+  Microsoft.Data.Sqlite.Core -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.dll
+  dotnet-ef -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/dotnet-ef/Release/net8.0/dotnet-ef.dll
+  Microsoft.Data.Sqlite.sqlite3.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.sqlite3.Tests/Release/net481/Microsoft.Data.Sqlite.sqlite3.Tests.dll
+  Microsoft.Data.Sqlite.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Tests/Release/net481/win-x64/Microsoft.Data.Sqlite.Tests.dll
+  Microsoft.Data.Sqlite.e_sqlcipher.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.e_sqlcipher.Tests/Release/net481/Microsoft.Data.Sqlite.e_sqlcipher.Tests.dll
+  Microsoft.Data.Sqlite.winsqlite3.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.winsqlite3.Tests/Release/net481/Microsoft.Data.Sqlite.winsqlite3.Tests.dll
+  Microsoft.Data.Sqlite.winsqlite3.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.winsqlite3.Tests/Release/net10.0/Microsoft.Data.Sqlite.winsqlite3.Tests.dll
+  Microsoft.Data.Sqlite.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Tests/Release/net10.0/Microsoft.Data.Sqlite.Tests.dll
+  Microsoft.Data.Sqlite.sqlite3mc.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.sqlite3mc.Tests/Release/net481/Microsoft.Data.Sqlite.sqlite3mc.Tests.dll
+  Microsoft.Data.Sqlite.e_sqlcipher.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.e_sqlcipher.Tests/Release/net10.0/Microsoft.Data.Sqlite.e_sqlcipher.Tests.dll
+  Microsoft.Data.Sqlite.sqlite3.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.sqlite3.Tests/Release/net10.0/Microsoft.Data.Sqlite.sqlite3.Tests.dll
+  Microsoft.Data.Sqlite.sqlite3mc.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.sqlite3mc.Tests/Release/net10.0/Microsoft.Data.Sqlite.sqlite3mc.Tests.dll
+  dotnet-ef.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/dotnet-ef.Tests/Release/net10.0/dotnet-ef.Tests.dll
+  EFCore.Tasks -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Tasks/Release/net472/Microsoft.EntityFrameworkCore.Tasks.dll
+  EFCore -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore/Release/net10.0/Microsoft.EntityFrameworkCore.dll
+  EFCore.Proxies -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Proxies/Release/net10.0/Microsoft.EntityFrameworkCore.Proxies.dll
+  EFCore.InMemory -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.InMemory/Release/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll
+  EFCore.Cosmos -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Cosmos/Release/net10.0/Microsoft.EntityFrameworkCore.Cosmos.dll
+  EFCore.Relational -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Relational/Release/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
+  EFCore.Sqlite.Core -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Sqlite.Core/Release/net10.0/Microsoft.EntityFrameworkCore.Sqlite.dll
+  EFCore.Design -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Design/Release/net10.0/Microsoft.EntityFrameworkCore.Design.dll
+  EFCore.Sqlite.NTS -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Sqlite.NTS/Release/net10.0/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite.dll
+  EFCore.SqlServer -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer/Release/net10.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+  EFCore.SqlServer.HierarchyId -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer.HierarchyId/Release/net10.0/Microsoft.EntityFrameworkCore.SqlServer.HierarchyId.dll
+  EFCore.SqlServer.NTS -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer.NTS/Release/net10.0/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+  EFCore.Benchmarks -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Benchmarks/Release/net10.0/EFCore.Benchmarks.dll
+  EFCore.SqlServer.Benchmarks -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer.Benchmarks/Release/net10.0/EFCore.SqlServer.Benchmarks.dll
+  EFCore.Sqlite.Benchmarks -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Sqlite.Benchmarks/Release/net10.0/EFCore.Sqlite.Benchmarks.dll
+  EFCore.Specification.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Specification.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Specification.Tests.dll
+  ef.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/ef.Tests/Release/net10.0/ef.Tests.dll
+  EFCore.AspNet.Specification.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.AspNet.Specification.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.AspNet.Specification.Tests.dll
+  EFCore.InMemory.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.InMemory.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.InMemory.FunctionalTests.dll
+  EFCore.Cosmos.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Cosmos.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.Cosmos.FunctionalTests.dll
+  EFCore.AspNet.InMemory.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.AspNet.InMemory.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.AspNet.InMemory.FunctionalTests.dll
+  EFCore.Relational.Specification.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Relational.Specification.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Relational.Specification.Tests.dll
+  EFCore.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Tests.dll
+  EFCore.InMemory.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.InMemory.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.InMemory.Tests.dll
+  EFCore.Analyzers.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Analyzers.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Analyzers.Tests.dll
+  EFCore.Proxies.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Proxies.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Proxies.Tests.dll
+  EFCore.Cosmos.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Cosmos.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Cosmos.Tests.dll
+  EFCore.Sqlite.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Sqlite.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.Sqlite.FunctionalTests.dll
+  EFCore.AspNet.Sqlite.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.AspNet.Sqlite.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.AspNet.Sqlite.FunctionalTests.dll
+  EFCore.Relational.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Relational.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Relational.Tests.dll
+  EFCore.Sqlite.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Sqlite.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Sqlite.Tests.dll
+  EFCore.SqlServer.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.SqlServer.FunctionalTests.dll
+  EFCore.AspNet.SqlServer.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.AspNet.SqlServer.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.AspNet.SqlServer.FunctionalTests.dll
+  EFCore.CrossStore.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.CrossStore.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.CrossStore.FunctionalTests.dll
+  EFCore.OData.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.OData.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.OData.FunctionalTests.dll
+  EFCore.SqlServer.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.SqlServer.Tests.dll
+  EFCore.FSharp.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.FSharp.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.FSharp.FunctionalTests.dll
+  EFCore.VisualBasic.FunctionalTests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.VisualBasic.FunctionalTests/Release/net10.0/Microsoft.EntityFrameworkCore.VisualBasic.FunctionalTests.dll
+  EFCore.Design.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.Design.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.Design.Tests.dll
+  EFCore.SqlServer.HierarchyId.Tests -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/EFCore.SqlServer.HierarchyId.Tests/Release/net10.0/Microsoft.EntityFrameworkCore.SqlServer.HierarchyId.Tests.dll
+  dotnet-ef -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/dotnet-ef/Release/net8.0/dotnet-ef.dll
+  dotnet-ef -> /private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/bin/dotnet-ef/Release/net8.0/publish/
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Tools.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.Abstractions.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.Abstractions.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Tools.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Abstractions.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Abstractions.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/dotnet-ef.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/dotnet-ef.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.InMemory.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Proxies.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Sqlite.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.InMemory.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Proxies.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Sqlite.Core.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Cosmos.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Sqlite.Core.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Cosmos.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Analyzers.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Analyzers.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Relational.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Design.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Design.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Relational.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.HierarchyId.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.HierarchyId.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.10.0.12.nupkg'.
+  The package Microsoft.Data.Sqlite.Core.10.0.12 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.Data.Sqlite.Core.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Tasks.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.Data.Sqlite.Core.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/NonShipping/Microsoft.EntityFrameworkCore.AspNet.Specification.Tests.10.0.12-servicing.26422.108.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/NonShipping/Microsoft.EntityFrameworkCore.AspNet.Specification.Tests.10.0.12-servicing.26422.108.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Relational.Specification.Tests.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Relational.Specification.Tests.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Specification.Tests.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Templates.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.EntityFrameworkCore.Specification.Tests.10.0.12.symbols.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-efcore-95017c7/A/src/src/efcore/artifacts/packages/Release/Shipping/Microsoft.Data.Sqlite.10.0.12.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:03:02.17
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-28T00:24:00+01:00
