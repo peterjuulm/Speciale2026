@@ -1,0 +1,171 @@
+start 2026-10-28T00:46:53+01:00
+repository build msbuild-02bf662 in /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-28T00:46:53+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src remote add origin https://github.com/dotnet/msbuild
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git 02bf66295b64ab368d12933041f7281aad186a2d
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src -c advice.detachedHead=false checkout -q 02bf66295b64ab368d12933041f7281aad186a2d
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src rev-parse HEAD
+02bf66295b64ab368d12933041f7281aad186a2d
+--- submodules 2026-10-28T00:47:00+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src submodule update --init --recursive --depth 1
+--- build 2026-10-28T00:47:00+01:00
+$ bash -c ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20250916.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/tmp/Release
+Downloading 'https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v8.0.201' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.201/dotnet-sdk-8.0.201-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.201/dotnet-sdk-8.0.201-linux-x64.tar.gz size is 226357468 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.201/dotnet-sdk-8.0.201-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 226357468 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 8.0.201
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src//.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_SKIP_FIRST_TIME_EXPERIENCE;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/nuget/microsoft.dotnet.arcade.sdk/8.0.0-beta.25455.3/tools/Tools.proj (in 4.3 sec).
+  Determining projects to restore...
+  Retrying 'FindPackagesByIdAsync' for source 'https://pkgs.dev.azure.com/dnceng/9ee6d478-d288-47f7-aacc-f6e6d082ae6d/_packaging/a65e5cb4-26c0-410f-9457-06db3c5254be/nuget/v3/flat2/microsoft.buildxl.processes/index.json'.
+  The SSL connection could not be established, see inner exception.
+    Unable to read data from the transport connection: Connection reset by peer.
+    Connection reset by peer
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/StringTools.UnitTests/StringTools.UnitTests.net35.csproj (in 6.36 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/StringTools/StringTools.csproj (in 9.12 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Utilities/Microsoft.Build.Utilities.csproj (in 2.76 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/BuildCheck.UnitTests/TestAssets/CustomAnalyzer2/CustomAnalyzer2.csproj (in 9.13 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/BuildCheck.UnitTests/TestAssets/CustomAnalyzer/CustomAnalyzer.csproj (in 9.13 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/StringTools.Benchmark/StringTools.Benchmark.csproj (in 9.14 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Samples/TaskWithDependency/TaskWithDependency.csproj (in 9.16 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Xunit.NetCore.Extensions/Xunit.NetCore.Extensions.csproj (in 9.25 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/UnitTests.Shared/Microsoft.Build.UnitTests.Shared.csproj (in 9.25 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Samples/TaskUsageLogger/TaskUsageLogger.csproj (in 125 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Samples/XmlFileLogger/XmlFileLogger.csproj (in 9.25 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Package/MSBuild.VSSetup/MSBuild.VSSetup.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Framework/Microsoft.Build.Framework.csproj (in 9.27 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Package/DevDivPackage/DevDivPackage.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Build/Microsoft.Build.csproj (in 9.74 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/template_feed/Microsoft.Build.Templates.csproj (in 726 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/MSBuildTaskHost/MSBuildTaskHost.csproj (in 762 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Package/MSBuild.VSSetup.Arm64/MSBuild.VSSetup.Arm64.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/StringTools.UnitTests/StringTools.UnitTests.csproj (in 10.32 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/BuildCheck.UnitTests/TestAssets/InvalidCustomAnalyzer/InvalidCustomAnalyzer.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Samples/ProjectCachePlugin/ProjectCachePlugin.csproj (in 1.25 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Samples/Dependency/Dependency.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Package/Localization/Localization.csproj (in 10.61 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/MSBuild.Bootstrap/MSBuild.Bootstrap.csproj (in 10.62 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/BuildCheck.UnitTests/Microsoft.Build.BuildCheck.UnitTests.csproj (in 10.62 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Utilities.UnitTests/Microsoft.Build.Utilities.UnitTests.csproj (in 10.63 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Package/Microsoft.Build.UnGAC/Microsoft.Build.UnGAC.csproj (in 1.46 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Framework.UnitTests/Microsoft.Build.Framework.UnitTests.csproj (in 1.26 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Build.OM.UnitTests/Microsoft.Build.Engine.OM.UnitTests.csproj (in 1.87 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Deprecated/Conversion/Microsoft.Build.Conversion.csproj (in 1.1 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Deprecated/Engine/Microsoft.Build.Engine.csproj (in 1.3 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Tasks/Microsoft.Build.Tasks.csproj (in 3.29 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Build.UnitTests/Microsoft.Build.Engine.UnitTests.csproj (in 3.2 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/MSBuild.UnitTests/Microsoft.Build.CommandLine.UnitTests.csproj (in 3.83 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Tasks.UnitTests/Microsoft.Build.Tasks.UnitTests.csproj (in 3.86 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/Samples/PortableTask/PortableTask.csproj (in 4.64 sec).
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/src/MSBuild/MSBuild.csproj (in 12.64 sec).
+  Dependency -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/Dependency/Release/netstandard2.0/Dependency.dll
+  Xunit.NetCore.Extensions -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Xunit.NetCore.Extensions/Release/netstandard2.0/Xunit.NetCore.Extensions.dll
+  TaskUsageLogger -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/TaskUsageLogger/Release/netstandard2.0/TaskUsageLogger.dll
+  XmlFileLogger -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/XmlFileLogger/Release/netstandard2.0/XmlFileLogger.dll
+  Dependency -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/Dependency/Release/net472/Dependency.dll
+  XmlFileLogger -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/XmlFileLogger/Release/net472/XmlFileLogger.dll
+  Microsoft.Build.Templates -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Templates/Release/net8.0/Microsoft.Build.Templates.dll
+  PortableTask -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/PortableTask/Release/netstandard2.0/PortableTask.dll
+  Dependency -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/Dependency/Release/net8.0/Dependency.dll
+  Microsoft.Build.UnGAC -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.UnGAC/Release/net45/Microsoft.Build.UnGAC.exe
+  TaskUsageLogger -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/TaskUsageLogger/Release/net472/TaskUsageLogger.dll
+  Xunit.NetCore.Extensions -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Xunit.NetCore.Extensions/Release/net472/Xunit.NetCore.Extensions.dll
+  TaskUsageLogger -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/TaskUsageLogger/Release/net8.0/TaskUsageLogger.dll
+  XmlFileLogger -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/XmlFileLogger/Release/net8.0/XmlFileLogger.dll
+  Xunit.NetCore.Extensions -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Xunit.NetCore.Extensions/Release/net8.0/Xunit.NetCore.Extensions.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/Shipping/Microsoft.Build.Templates.17.11.48.nupkg'.
+  Microsoft.Build.Framework -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Framework/Release/netstandard2.0/Microsoft.Build.Framework.dll
+  Microsoft.Build.Framework -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Framework/Release/net472/Microsoft.Build.Framework.dll
+  Microsoft.Build.Framework -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Framework/Release/net8.0/Microsoft.Build.Framework.dll
+  StringTools -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/StringTools/Release/netstandard2.0/Microsoft.NET.StringTools.dll
+  StringTools -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/StringTools/Release/net472/Microsoft.NET.StringTools.dll
+  StringTools -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/StringTools/Release/net8.0/Microsoft.NET.StringTools.dll
+  StringTools.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/StringTools.UnitTests/Release/net8.0/Microsoft.NET.StringTools.UnitTests.dll
+  StringTools.Benchmark -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/StringTools.Benchmark/Release/net8.0/StringTools.Benchmark.dll
+  Microsoft.Build.Utilities -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Utilities/Release/net472/Microsoft.Build.Utilities.Core.dll
+  Microsoft.Build.Utilities -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Utilities/Release/net8.0/Microsoft.Build.Utilities.Core.dll
+  TaskWithDependency -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/TaskWithDependency/Release/net472/TaskWithDependency.dll
+  TaskWithDependency -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/TaskWithDependency/Release/net8.0/TaskWithDependency.dll
+  Microsoft.Build.Utilities -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Utilities/Release/netstandard2.0/Microsoft.Build.Utilities.Core.dll
+  Microsoft.Build.Tasks -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Tasks/Release/netstandard2.0/Microsoft.Build.Tasks.Core.dll
+  Microsoft.Build.Tasks -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Tasks/Release/net472/Microsoft.Build.Tasks.Core.dll
+  TaskWithDependency -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/TaskWithDependency/Release/netstandard2.0/TaskWithDependency.dll
+  Microsoft.Build.Tasks -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Tasks/Release/net8.0/Microsoft.Build.Tasks.Core.dll
+  Microsoft.Build -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build/Release/net472/Microsoft.Build.dll
+  Microsoft.Build -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build/Release/net8.0/Microsoft.Build.dll
+  ProjectCachePlugin -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Samples/ProjectCachePlugin/Release/net8.0/ProjectCachePlugin.dll
+  MSBuild -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/MSBuild/Release/net8.0/MSBuild.dll
+  MSBuild.Bootstrap -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/MSBuild.Bootstrap/Release/net8.0/MSBuild.Bootstrap.dll
+  Localization -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Localization/Release/net8.0/Localization.dll
+  MSBuild.Bootstrap -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/MSBuild.Bootstrap/Release/net8.0/net8.0/publish/
+  Microsoft.Build.UnitTests.Shared -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.UnitTests.Shared/Release/net8.0/Microsoft.Build.UnitTests.Shared.dll
+  InvalidCustomAnalyzer -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/InvalidCustomAnalyzer/Debug/netstandard2.0/InvalidCustomAnalyzer.dll
+  CustomAnalyzer2 -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/CustomAnalyzer2/Debug/netstandard2.0/CustomAnalyzer2.dll
+  CustomAnalyzer -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/CustomAnalyzer/Debug/netstandard2.0/CustomAnalyzer.dll
+  Adding DLLs from the following packages: 
+  Adding DLLs from the following packages: 
+  Adding DLLs from the following packages: 
+  Microsoft.Build.Framework.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Framework.UnitTests/Release/net8.0/Microsoft.Build.Framework.UnitTests.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.BuildCheck.UnitTests/CustomAnalyzers/CustomAnalyzer2.1.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.BuildCheck.UnitTests/CustomAnalyzers/CustomAnalyzer.1.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.BuildCheck.UnitTests/CustomAnalyzers/InvalidCustomAnalyzer.1.0.0.nupkg'.
+  Microsoft.Build.Engine.OM.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Engine.OM.UnitTests/Release/net8.0/Microsoft.Build.Engine.OM.UnitTests.dll
+  Microsoft.Build.CommandLine.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.CommandLine.UnitTests/Release/net8.0/Microsoft.Build.CommandLine.UnitTests.dll
+  Microsoft.Build.Utilities.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Utilities.UnitTests/Release/net8.0/Microsoft.Build.Utilities.UnitTests.dll
+  Microsoft.Build.Engine.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Engine.UnitTests/Release/net8.0/Microsoft.Build.Engine.UnitTests.dll
+  Microsoft.Build.Tasks.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.Tasks.UnitTests/Release/net8.0/Microsoft.Build.Tasks.UnitTests.dll
+  Microsoft.Build.BuildCheck.UnitTests -> /private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/bin/Microsoft.Build.BuildCheck.UnitTests/Release/net8.0/Microsoft.Build.BuildCheck.UnitTests.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/Shipping/Microsoft.NET.StringTools.17.11.48.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/Shipping/Microsoft.Build.Framework.17.11.48.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/NonShipping/Microsoft.Build.Localization.17.11.48-servicing-25466-05.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/Shipping/Microsoft.Build.17.11.48.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/Shipping/Microsoft.Build.Runtime.17.11.48.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/Shipping/Microsoft.Build.Utilities.Core.17.11.48.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/msbuild-02bf662/A/src/artifacts/packages/Release/Shipping/Microsoft.Build.Tasks.Core.17.11.48.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:56.63
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-28T00:49:13+01:00
