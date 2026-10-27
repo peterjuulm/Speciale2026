@@ -300,8 +300,12 @@ version 1's batch.
 
 Expectation `[I]`: the ten aspnetcore packages move to level 3 (the
 attributes were the only difference besides build identity in nine of
-them; Identity.UI also differs in IL and #US, to read). efcore and
-runtime do not change (their DLLs carry no such attributes, and
-`RepositoryUrl` already matched through Source Link), so their version-2
-rows should equal their version-1 rows; they are in the batch as that
-check, runtime last so it is the one dropped if the night runs out.
+them; Identity.UI also differs in IL and #US, to read). efcore does not
+change (its DLLs matched on `RepositoryUrl` through Source Link; its one
+level-4 row is IL). Amended 22:35, after build 5 and before any
+version-2 run: runtime's 34 packages also came out level 4 with
+`RepositoryUrl` = dotnet/runtime against the shipped dotnet/dotnet
+(`src/runtime/Directory.Build.props` sets it), so they are expected to
+move as well, except that most of them also differ in the managed
+resources by 8 bytes (1296 against 1288 in Logging), which version 2
+does not touch; those stay at level 4 until that is read.
