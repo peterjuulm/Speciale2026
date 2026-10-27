@@ -127,6 +127,13 @@ def main():
             code = 'clone failed'
         if code is None:
             run(log, ['git', '-C', src, 'rev-parse', 'HEAD'], env)
+            # the source at the commit includes its submodules (aspnetcore: MessagePack-CSharp, googletest), as the
+            # publisher's checkout had them; rebuild.clone does not take them (27/10 21:52: CS2001 in App.Runtime)
+            log.write(f'--- submodules {now()}\n')
+            if run(log, ['git', '-C', src, 'submodule', 'update', '--init', '--recursive', '--depth', '1'], env):
+                log.write('submodule checkout failed\n')
+                code = 'submodule checkout failed'
+        if code is None:
             edits = strip_internal_feeds(src, inner, log) if r.get('strip_internal_feeds') else []
             open(os.path.join(out, 'nuget-config-edits.txt'), 'w', encoding='utf-8').write('\n'.join(edits) + ('\n' if edits else 'no internal feeds removed\n'))
             log.write(f'--- build {now()}\n')
