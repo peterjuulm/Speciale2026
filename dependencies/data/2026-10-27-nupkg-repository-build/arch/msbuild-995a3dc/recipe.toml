@@ -1,0 +1,20 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "msbuild-995a3dc"
+repo = "https://github.com/dotnet/msbuild"
+commit = "995a3dce41788caebf2b8ca6602a7431f08bfd06"
+inner = ""
+kind = "arcade"
+official_build_id = "20251021.2"
+shell = "bash"
+build = '''./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20251021.2 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Build.Framework"
+version = "18.0.2"
+ships = "lib/net10.0/Microsoft.Build.Framework.dll"
+project = "src/Framework/Microsoft.Build.Framework.csproj"
+file_version = "18.0.2.52102"

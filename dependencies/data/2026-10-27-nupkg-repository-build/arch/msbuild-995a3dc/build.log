@@ -1,0 +1,74 @@
+start 2026-10-27T22:28:19+01:00
+repository build msbuild-995a3dc in /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-27T22:28:19+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src remote add origin https://github.com/dotnet/msbuild
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_msbuild.git 995a3dce41788caebf2b8ca6602a7431f08bfd06
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src rev-parse HEAD
+995a3dce41788caebf2b8ca6602a7431f08bfd06
+--- submodules 2026-10-27T22:28:28+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src submodule update --init --recursive --depth 1
+--- build 2026-10-27T22:28:28+01:00
+$ bash -c ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20251021.2 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/artifacts/tmp/Release
+Downloading 'https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v10.0.100-rc.1.25451.107' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.100-rc.1.25451.107/dotnet-sdk-10.0.100-rc.1.25451.107-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.100-rc.1.25451.107/dotnet-sdk-10.0.100-rc.1.25451.107-linux-x64.tar.gz size is 248007885 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.100-rc.1.25451.107/dotnet-sdk-10.0.100-rc.1.25451.107-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 248007885 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 10.0.100-rc.1.25451.107
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/nuget/microsoft.dotnet.arcade.sdk/10.0.0-beta.25469.2/tools/Tools.proj (in 6.41 sec).
+  Determining projects to restore...
+/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/eng/common/internal/Tools.csproj : error NU1301: Unable to load the service index for source https://pkgs.dev.azure.com/devdiv/_packaging/dotnet-core-internal-tooling/nuget/v3/index.json.
+/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/eng/common/internal/Tools.csproj : error NU1301:   Response status code does not indicate success: 401 (Unauthorized).
+##vso[task.logissue type=error;sourcepath=/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/eng/common/internal/Tools.csproj;linenumber=0;columnnumber=0;code=NU1301;](NETCORE_ENGINEERING_TELEMETRY=Restore) Unable to load the service index for source https://pkgs.dev.azure.com/devdiv/_packaging/dotnet-core-internal-tooling/nuget/v3/index.json.%0A  Response status code does not indicate success: 401 (Unauthorized).
+  Failed to restore /private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/eng/common/internal/Tools.csproj (in 8.69 sec).
+
+Build FAILED.
+
+/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/eng/common/internal/Tools.csproj : error NU1301: Unable to load the service index for source https://pkgs.dev.azure.com/devdiv/_packaging/dotnet-core-internal-tooling/nuget/v3/index.json.
+/private/tmp/nupkg-repobuild/build/msbuild-995a3dc/A/src/eng/common/internal/Tools.csproj : error NU1301:   Response status code does not indicate success: 401 (Unauthorized).
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:15.85
+Build failed with exit code 1. Check errors above.
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 1
+end 2026-10-27T22:28:57+01:00
