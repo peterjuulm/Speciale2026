@@ -110,6 +110,7 @@ def main():
     os.makedirs(home); os.makedirs(nuget)
     env = rebuild.build_env(r, '', home, nuget, src)
     env['PATH'] = '/usr/bin'
+    env.update(GIT_HTTP_LOW_SPEED_LIMIT='1000', GIT_HTTP_LOW_SPEED_TIME='120')   # a stalled fetch aborts instead of hanging
     env['DOTNET_INSTALL_DIR'] = os.path.join(src, inner, '.dotnet') if inner else os.path.join(src, '.dotnet')
     code = None
     with open(os.path.join(out, 'build.log'), 'w', encoding='utf-8') as log:

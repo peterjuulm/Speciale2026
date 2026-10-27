@@ -47,9 +47,14 @@ def mirror_of(url, lab):
         subprocess.run(['git', '-C', m, 'config', '--replace-all', 'remote.origin.fetch', '+refs/heads/*:refs/heads/*'], check=True)
         subprocess.run(['git', '-C', m, 'config', '--add', 'remote.origin.fetch', '+refs/tags/*:refs/tags/*'], check=True)
         subprocess.run(['git', '-C', m, 'config', 'remote.origin.mirror', 'true'], check=True)
-        if subprocess.run(['git', '-C', m, 'fetch', '-q', '--prune', 'origin']).returncode:
+        # a stalled connection aborts after 120 s under 1 KB/s instead of hanging (27/10: one hung for six hours)
+        for attempt in range(3):
+            if subprocess.run(['git', '-C', m, '-c', 'http.lowSpeedLimit=1000', '-c', 'http.lowSpeedTime=120', 'fetch', '-q', '--prune', 'origin']).returncode == 0:
+                break
+            print(f'mirror of {url}: fetch failed (attempt {attempt + 1})', flush=True)
+        else:
             shutil.rmtree(m, ignore_errors=True)
-            raise RuntimeError(f'mirror of {url} failed')
+            raise RuntimeError(f'mirror of {url} failed three times')
     return m
 
 
