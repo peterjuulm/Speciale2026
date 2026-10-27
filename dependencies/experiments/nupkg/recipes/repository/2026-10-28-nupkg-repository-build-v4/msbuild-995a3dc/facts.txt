@@ -1,0 +1,13 @@
+msbuild-995a3dc: repository build derivation
+repository: https://github.com/dotnet/msbuild
+commit: 995a3dce41788caebf2b8ca6602a7431f08bfd06
+inner repository: none (the repository itself)
+kind: arcade
+product Microsoft.Build.Framework 18.0.2: ships lib/net10.0/Microsoft.Build.Framework.dll; project src/Framework/Microsoft.Build.Framework.csproj; file version 18.0.2.52102 -> 20251021.2 [inferred: FILE_PATCH 2 does not fit the Arcade scheme for patch 2 (the repository sets its own); year 25 from the nuget.org publish date; FILE_REVISION 52102 = (50*10+21)*100 + 2; from release-only facts]
+official build id: 20251021.2  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
+command: ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20251021.2 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 17
+version 4, R6b: core.autocrlf=false, core.eol=lf (sources as committed; .gitattributes of the tree still apply)  [rule]

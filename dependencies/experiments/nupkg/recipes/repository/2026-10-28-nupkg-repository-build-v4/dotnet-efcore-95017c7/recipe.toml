@@ -1,0 +1,76 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "dotnet-efcore-95017c7"
+repo = "https://github.com/dotnet/dotnet"
+commit = "95017c711e6afc1085133d440e42b4bd78155701"
+inner = "src/efcore"
+kind = "arcade"
+official_build_id = "20260822.108"
+shell = "bash"
+build = '''cd src/efcore && ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=001bfac21c1910cdf1110ca256c9ea0a06f374ca'''
+packages = "src/efcore/artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Data.Sqlite.Core"
+version = "10.0.12"
+ships = "lib/net8.0/Microsoft.Data.Sqlite.dll"
+project = "src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.EntityFrameworkCore"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.dll"
+project = "src/efcore/src/EFCore/EFCore.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.EntityFrameworkCore.Abstractions"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll"
+project = "src/efcore/src/EFCore.Abstractions/EFCore.Abstractions.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.EntityFrameworkCore.Design"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.Design.dll"
+project = "src/efcore/src/EFCore.Design/EFCore.Design.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.EntityFrameworkCore.InMemory"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll"
+project = "src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.EntityFrameworkCore.Relational"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll"
+project = "src/efcore/src/EFCore.Relational/EFCore.Relational.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.EntityFrameworkCore.SqlServer"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.SqlServer.dll"
+project = "src/efcore/src/EFCore.SqlServer/EFCore.SqlServer.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "Microsoft.EntityFrameworkCore.Sqlite.Core"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.Sqlite.dll"
+project = "src/efcore/src/EFCore.Sqlite.Core/EFCore.Sqlite.Core.csproj"
+file_version = "10.0.1226.42308"
+
+[[products]]
+package = "dotnet-ef"
+version = "10.0.12"
+ships = "tools/net8.0/any/dotnet-ef.dll"
+project = "src/efcore/src/dotnet-ef/dotnet-ef.csproj"
+file_version = "10.0.1226.42308"

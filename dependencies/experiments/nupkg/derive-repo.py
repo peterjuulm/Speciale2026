@@ -143,7 +143,8 @@ NODE_BY_SDK = {8: '18.20.8', 9: '22.23.4'}   # R3d: the Node LTS line each aspne
 
 def main():
     lst, census, facts_dir, lab, out = sys.argv[1:6]
-    v3 = '--v3' in sys.argv[6:]
+    v4 = '--v4' in sys.argv[6:]
+    v3 = v4 or '--v3' in sys.argv[6:]
     v2 = v3 or '--v2' in sys.argv[6:]
     vmr_identity = v2 or '--vmr-identity' in sys.argv[6:]
     os.makedirs(out, exist_ok=True)
@@ -319,10 +320,16 @@ def main():
         toml = [f'# Derived by derive-repo.py (repository-build method), see facts.txt beside it.',
                 f'name = "{name}"', f'repo = "{url}"', f'commit = "{commit}"', f'inner = "{inner}"', f'kind = "{g["kind"]}"',
                 f'official_build_id = "{bid}"', 'shell = "bash"', f"build = '''{build}'''",
-                f'packages = "{root}artifacts/packages/Release/Shipping"', 'os = "windows"', 'git_config = ["core.autocrlf=true"]',
+                f'packages = "{root}artifacts/packages/Release/Shipping"', 'os = "windows"',
+                # R6: autocrlf=true stood for a Windows checkout; version 4, R6b: sources as committed (LF) with the
+                # attributes the tree carries, because the shipped Identity.UI's Razor tag-helper ids (character
+                # offsets into .cshtml) are those of LF files (28/10 00:25) - the official checkout does not convert
+                ('git_config = ["core.autocrlf=false", "core.eol=lf"]' if v4 else 'git_config = ["core.autocrlf=true"]'),
                 'strip_internal_feeds = true']
         major = sdk_major(mirror_of(url, lab), commit, root)
         facts.append(f'sdk major from global.json: {major if major else "unreadable"}')
+        if v4:
+            facts.append('version 4, R6b: core.autocrlf=false, core.eol=lf (sources as committed; .gitattributes of the tree still apply)  [rule]')
         if v3 and g['kind'] == 'aspnetcore' and not inner and major in NODE_BY_SDK:
             # version 3, R3d: the standalone aspnetcore build runs its npm projects (eng/Build.props adds NodeJsProjects
             # whenever node is on PATH; Components.Server references Web.JS.npmproj, so they cannot be left out) and the

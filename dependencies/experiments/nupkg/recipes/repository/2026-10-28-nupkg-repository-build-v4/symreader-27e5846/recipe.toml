@@ -1,0 +1,20 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "symreader-27e5846"
+repo = "https://github.com/dotnet/symreader"
+commit = "27e584661980ee6d82c419a2a471ae505b7d122e"
+inner = ""
+kind = "arcade"
+official_build_id = "20230428.4"
+shell = "bash"
+build = '''./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.DiaSymReader"
+version = "2.0.0"
+ships = "lib/netstandard2.0/Microsoft.DiaSymReader.dll"
+project = "src/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj"
+file_version = "2.0.23.22804"

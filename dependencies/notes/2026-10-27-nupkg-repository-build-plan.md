@@ -426,3 +426,29 @@ contains JavaScript. The .NET 6 tree is not covered: its build stops
 earlier, at a build-tool package gone from the feeds (build 14). The
 version-3 order gains `aspnetcore-3f1acb5`; `aspnetcore-af22eff`
 joins it if its version-1 rerun fails the same way.
+
+## Version 4: sources as committed (written 28 October 00:35, after version 2's build 1, before any version-4 run)
+
+Version 2's `dotnet-aspnetcore-95017c7` came out as expected: nine
+packages at level 3, `Microsoft.AspNetCore.Identity.UI` at level 4 with
+IL bodies and `#US` differing and nothing else. Read: the `#US` strings
+that differ are Razor's tag-helper ids, a checksum followed by the
+character offset of the tag in the `.cshtml` file; ours are larger by
+one per line that precedes the tag (5457 against 5314, 9226 against
+9129). Our checkout had CRLF in the `.cshtml` files, the official
+build's had LF. R6 set `core.autocrlf=true` to stand for a Windows
+checkout; the shipped bytes say the official checkout does not convert
+(`src/aspnetcore/.gitattributes` has `* text=auto`; the files are
+committed with LF). R6b, version 4, every recipe: `core.autocrlf=false`
+and `core.eol=lf`, sources as committed, the tree's `.gitattributes`
+still applying. Everything else is version 3. Batch
+`2026-10-28-nupkg-repository-build-v4`, recipes derived with `--v4`,
+order `order-2026-10-28-v4.txt`, run after version 3 and the
+aspnetcore reruns.
+
+Expectation `[I]`: Identity.UI moves to level 3. The runtime packages
+that stay at level 4 in version 2 do so because of a file generated at
+build time with the build machine's newline, which R6b does not touch;
+they stay. The order lists the VMR aspnetcore build; efcore joins it
+if version 2 leaves `Microsoft.EntityFrameworkCore` at level 4 with a
+difference of the same kind.
