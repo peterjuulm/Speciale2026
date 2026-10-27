@@ -1,0 +1,237 @@
+2026-10-27T12:56:22+01:00 $ git -C /home/leos/Dev/Speciale2026 rev-parse --short HEAD
+2026-10-27T12:56:22+01:00 batch 2026-10-27-nupkg-release-only-batch2-v3: list /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/batch-third-party.txt, lab /private/tmp/nupkg-batch2v3, repo at 66aefc7, 70 GB free under the lab, push on
+2026-10-27T12:56:22+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/derive-batch.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/batch-third-party.txt /home/leos/Dev/Speciale2026/dependencies/data/2026-10-13-dependency-census/mac/census.files.csv /private/tmp/nupkg-batch2v3 /private/tmp/nupkg-batch2v3/derive
+2026-10-27T13:23:16+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/check-batch.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/batch-third-party.txt /private/tmp/nupkg-batch2v3/derive
+2026-10-27T13:23:16+01:00 check-batch: OK: 59 pairs, 58 names, 1 names in more than one version; batch.txt 59 rows, 54 derived, one folder per pair
+2026-10-27T13:23:16+01:00 derived 54 of 59; skipped: ClosedXML-0.104.2, Newtonsoft.Json-13.0.3, Newtonsoft.Json-13.0.4, SixLabors.ImageSharp-1.0.4, System.Reactive-5.0.0
+2026-10-27T13:23:16+01:00 $ git -C /home/leos/Dev/Speciale2026 add /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3
+2026-10-27T13:23:16+01:00 $ git -C /home/leos/Dev/Speciale2026 commit -q -m Release-only recipes, batch 2026-10-27-nupkg-release-only-batch2-v3 -m Derived by derive.py, 54 of 59 packages in the list; the facts are in the batch data folder.
+2026-10-27T13:23:16+01:00 $ git -C /home/leos/Dev/Speciale2026 pull --rebase --autostash -q
+2026-10-27T13:23:17+01:00 $ git -C /home/leos/Dev/Speciale2026 push -q origin main
+2026-10-27T13:23:20+01:00 $ git -C /home/leos/Dev/Speciale2026 rev-parse --short HEAD
+2026-10-27T13:23:20+01:00 recipes at 7f1eb7b
+2026-10-27T13:23:20+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/ardalis.specification-8.0.0.toml -f runner=windows-2022
+2026-10-27T13:23:25+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/ardalis.specification.entityframeworkcore-8.0.0.toml -f runner=windows-2022
+2026-10-27T13:23:30+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/automapper-13.0.1.toml -f runner=windows-2022
+2026-10-27T13:23:36+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/csvhelper-33.1.0.toml -f runner=windows-2022
+2026-10-27T13:23:41+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/dapper-2.0.123.toml -f runner=windows-2022
+2026-10-27T13:23:46+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/fluentmodbus-5.3.2.toml -f runner=ubuntu-24.04
+2026-10-27T13:23:51+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/google.protobuf-3.21.9.toml -f runner=windows-2022
+2026-10-27T13:23:57+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/hangfire.aspnetcore-1.8.25.toml -f runner=windows-2022
+2026-10-27T13:24:02+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/hangfire.inmemory-1.0.0.toml -f runner=windows-2022
+2026-10-27T13:24:07+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/hangfire.netcore-1.8.25.toml -f runner=windows-2022
+2026-10-27T13:24:13+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/humanizer.core-2.14.1.toml -f runner=windows-2022
+2026-10-27T13:24:18+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/markdig-1.2.0.toml -f runner=ubuntu-24.04
+2026-10-27T13:24:23+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/mediatr.contracts-2.0.1.toml -f runner=windows-2022
+2026-10-27T13:24:28+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/mediatr.extensions.microsoft.dependencyinjection-11.1.0.toml -f runner=windows-2022
+2026-10-27T13:24:33+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/mono.texttemplating-3.0.0.toml -f runner=windows-2022
+2026-10-27T13:24:38+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/nodatime-3.2.0.toml -f runner=windows-2022
+2026-10-27T13:24:44+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/portable.bouncycastle-1.9.0.toml -f runner=windows-2022
+2026-10-27T13:24:49+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/quartz-3.13.1.toml -f runner=windows-2022
+2026-10-27T13:24:54+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/quartz.aspnetcore-3.13.1.toml -f runner=windows-2022
+2026-10-27T13:25:00+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/quartz.extensions.dependencyinjection-3.13.1.toml -f runner=windows-2022
+2026-10-27T13:25:05+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/quartz.extensions.hosting-3.13.1.toml -f runner=windows-2022
+2026-10-27T13:25:15+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/scottplot-5.1.57.toml -f runner=windows-2022
+2026-10-27T13:25:20+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/sendgrid-9.29.3.toml -f runner=windows-2022
+2026-10-27T13:25:26+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/serilog.settings.configuration-8.0.4.toml -f runner=windows-2022
+2026-10-27T13:25:31+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/serilog.sinks.file-6.0.0.toml -f runner=windows-2022
+2026-10-27T13:25:36+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/serilog.sinks.seq-9.0.0.toml -f runner=windows-2022
+2026-10-27T13:25:41+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/sharpziplib-1.4.2.toml -f runner=windows-2022
+2026-10-27T13:25:47+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/stateless-5.16.0.toml -f runner=windows-2022
+2026-10-27T13:25:53+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/swashbuckle.aspnetcore.annotations-7.2.0.toml -f runner=windows-2022
+2026-10-27T13:25:58+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/swashbuckle.aspnetcore.redoc-7.2.0.toml -f runner=windows-2022
+2026-10-27T13:26:03+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/swashbuckle.aspnetcore.swagger-7.2.0.toml -f runner=windows-2022
+2026-10-27T13:26:09+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/swashbuckle.aspnetcore.swaggergen-7.2.0.toml -f runner=windows-2022
+2026-10-27T13:26:14+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/swashbuckle.aspnetcore.swaggerui-7.2.0.toml -f runner=windows-2022
+2026-10-27T13:26:19+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/unitsnet-6.0.0-pre012.toml -f runner=windows-2022
+2026-10-27T13:26:24+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/yamldotnet-16.2.1.toml -f runner=windows-2022
+2026-10-27T13:26:30+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/serilog-4.2.0.toml -f runner=windows-2022
+2026-10-27T13:26:35+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/ardalis.guardclauses-5.0.0.toml -f runner=windows-2022
+2026-10-27T13:26:40+01:00 $ gh workflow run nupkg-rebuild.yml -R peterjuulm/Speciale2026 -f recipe=release-only/2026-10-27-nupkg-release-only-batch2-v3/cronos-0.9.0.toml -f runner=windows-2022
+2026-10-27T13:27:02+01:00 runner runs: Ardalis.Specification-8.0.0=40503357833, Ardalis.Specification.EntityFrameworkCore-8.0.0=40503369430, AutoMapper-13.0.1=40503381234, CsvHelper-33.1.0=40503393009, Dapper-2.0.123=40503405056, FluentModbus-5.3.2=40503416785, Google.Protobuf-3.21.9=40503428406, Hangfire.AspNetCore-1.8.25=40503439860, Hangfire.InMemory-1.0.0=40503451821, Hangfire.NetCore-1.8.25=40503463772, Humanizer.Core-2.14.1=40503475176, Markdig-1.2.0=40503486515, MediatR.Contracts-2.0.1=40503498485, MediatR.Extensions.Microsoft.DependencyInjection-11.1.0=40503509867, Mono.TextTemplating-3.0.0=40503520632, NodaTime-3.2.0=40503531876, Portable.BouncyCastle-1.9.0=40503542203, Quartz-3.13.1=40503553005, Quartz.AspNetCore-3.13.1=40503564339, Quartz.Extensions.DependencyInjection-3.13.1=40503575302, Quartz.Extensions.Hosting-3.13.1=40503598371, ScottPlot-5.1.57=40503610014, SendGrid-9.29.3=40503622440, Serilog.Settings.Configuration-8.0.4=40503633324, Serilog.Sinks.File-6.0.0=40503644303, Serilog.Sinks.Seq-9.0.0=40503656209, SharpZipLib-1.4.2=40503668459, Stateless-5.16.0=40503680470, Swashbuckle.AspNetCore.Annotations-7.2.0=40503692633, Swashbuckle.AspNetCore.ReDoc-7.2.0=40503703706, Swashbuckle.AspNetCore.Swagger-7.2.0=40503715135, Swashbuckle.AspNetCore.SwaggerGen-7.2.0=40503726214, Swashbuckle.AspNetCore.SwaggerUI-7.2.0=40503736374, UnitsNet-6.0.0-pre012=40503748610, YamlDotNet-16.2.1=40503759388, Serilog-4.2.0=40503770815, Ardalis.GuardClauses-5.0.0=40503782073, Cronos-0.9.0=40503792676
+2026-10-27T13:27:02+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/bogus-35.6.1.toml /private/tmp/nupkg-batch2v3/build/Bogus-35.6.1
+2026-10-27T13:27:53+01:00   exit 1:                          '_open', req)
+  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.14/urllib/request.py", line 1381, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 1336, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>
+2026-10-27T13:27:53+01:00 Bogus-35.6.1: ogus 35.6.1 from https://github.com/bchavez/Bogus at 905a7e753ed2d7bfd42fc5099a50278adf45b467, SDK 8.0.300, start 2026-10-27T13:27:02+01:00 | build A in /private/tmp/nupkg-batch2v3/build/Bogus-35.6.1/A/src: exit 0, packages ['Bogus.35.6.1.nupkg', 'Bogus.35.6.1.snupkg'] | build A2 in /private/tmp/nupkg-batch2v3/build/Bogus-35.6.1/A/src: exit 0, packages ['Bogus.35.6.1.nupkg', 'Bogus.35.6.1.snupkg']
+2026-10-27T13:27:54+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/excss-4.3.1.toml /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1
+2026-10-27T13:28:52+01:00 ExCSS-4.3.1: 2 in /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src: exit 0, packages ['ExCSS.4.3.1.nupkg', 'ExCSS.4.3.1.snupkg'] | ExCSS 4.3.1: builds A exit 0, A2 exit 0 | nupkg: lib/net8.0/ExCSS.dll A vs nuget.org: differs | nupkg: lib/net8.0/ExCSS.dll A vs A2: identical | snupkg: lib/net8.0/ExCSS.pdb A vs nuget.org: differs | snupkg: lib/net8.0/ExCSS.pdb A vs A2: identical | end 2026-10-27T13:28:52+01:00
+2026-10-27T13:28:53+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/fluentvalidation.dependencyinjectionextensions-11.11.0.toml /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0
+2026-10-27T13:29:40+01:00 FluentValidation.DependencyInjectionExtensions-11.11.0: tionExtensions/11.11.0: HTTP 404 | FluentValidation.DependencyInjectionExtensions 11.11.0: builds A exit 0, A2 exit 0 | nupkg: lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll A vs nuget.org: identical | nupkg: lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll A vs A2: identical | snupkg: not compared, fewer than two packages | end 2026-10-27T13:29:40+01:00
+2026-10-27T13:29:40+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/mediatr-12.4.1.toml /private/tmp/nupkg-batch2v3/build/MediatR-12.4.1
+2026-10-27T13:30:19+01:00 MediatR-12.4.1: pkg-batch2v3/build/MediatR-12.4.1/A/src: exit 0, packages ['MediatR.12.4.1.nupkg', 'MediatR.12.4.1.snupkg'] | MediatR 12.4.1: builds A exit 0, A2 exit 0 | nupkg: lib/net6.0/MediatR.dll A vs nuget.org: differs | nupkg: lib/net6.0/MediatR.dll A vs A2: identical | snupkg: lib/net6.0/MediatR.pdb A vs nuget.org: differs | snupkg: lib/net6.0/MediatR.pdb A vs A2: identical | end 2026-10-27T13:30:19+01:00
+2026-10-27T13:30:20+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/npgsql-10.0.3.toml /private/tmp/nupkg-batch2v3/build/Npgsql-10.0.3
+2026-10-27T13:31:39+01:00 Npgsql-10.0.3: pkg-batch2v3/build/Npgsql-10.0.3/A/src: exit 0, packages ['Npgsql.10.0.3.nupkg', 'Npgsql.10.0.3.snupkg'] | Npgsql 10.0.3: builds A exit 0, A2 exit 0 | nupkg: lib/net10.0/Npgsql.dll A vs nuget.org: identical | nupkg: lib/net10.0/Npgsql.dll A vs A2: identical | snupkg: lib/net10.0/Npgsql.pdb A vs nuget.org: identical | snupkg: lib/net10.0/Npgsql.pdb A vs A2: identical | end 2026-10-27T13:31:39+01:00
+2026-10-27T13:31:40+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/npgsql.entityframeworkcore.postgresql-10.0.3.toml /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3
+2026-10-27T13:32:26+01:00 Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3: ilds A exit 0, A2 exit 0 | nupkg: lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll A vs nuget.org: identical | nupkg: lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll A vs A2: identical | snupkg: lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.pdb A vs nuget.org: identical | snupkg: lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.pdb A vs A2: identical | end 2026-10-27T13:32:26+01:00
+2026-10-27T13:32:27+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/shimskiasharp-5.1.1.toml /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1
+2026-10-27T13:34:07+01:00 ShimSkiaSharp-5.1.1: /ShimSkiaSharp-5.1.1/A/src: exit 0, packages ['ShimSkiaSharp.5.1.1.nupkg'] | https://www.nuget.org/api/v2/symbolpackage/ShimSkiaSharp/5.1.1: HTTP 404 | ShimSkiaSharp 5.1.1: builds A exit 0, A2 exit 0 | nupkg: lib/net10.0/ShimSkiaSharp.dll A vs nuget.org: differs | nupkg: lib/net10.0/ShimSkiaSharp.dll A vs A2: identical | snupkg: not compared, fewer than two packages | end 2026-10-27T13:34:07+01:00
+2026-10-27T13:34:08+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/sixlabors.fonts-1.0.0.toml /private/tmp/nupkg-batch2v3/build/SixLabors.Fonts-1.0.0
+2026-10-27T13:44:17+01:00   exit 1: /Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py", line 214, in main
+    must(log, [sys.executable, '-I', os.path.join(HERE, 'install-sdk.py'), r['sdk'], sdk])
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py", line 75, in must
+    raise RuntimeError(f'{" ".join(cmd)} exited {code}')
+RuntimeError: /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/install-sdk.py 7.0.304 /private/tmp/nupkg-batch2v3/build/SixLabors.Fonts-1.0.0/sdk exited 1
+2026-10-27T13:44:17+01:00 SixLabors.Fonts-1.0.0: SixLabors.Fonts 1.0.0 from https://github.com/SixLabors/Fonts at 32bef42997adb10268369ca149777f00e4241ce9, SDK 7.0.304, start 2026-10-27T13:34:08+01:00
+2026-10-27T13:44:17+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/svg.animation-5.1.1.toml /private/tmp/nupkg-batch2v3/build/Svg.Animation-5.1.1
+2026-10-27T13:45:51+01:00 Svg.Animation-5.1.1: /build/Svg.Animation-5.1.1/A/src: exit 1, packages [] | build A2 in /private/tmp/nupkg-batch2v3/build/Svg.Animation-5.1.1/A/src: exit 1, packages [] | https://www.nuget.org/api/v2/symbolpackage/Svg.Animation/5.1.1: HTTP 404 | Svg.Animation 5.1.1: builds A exit 1, A2 exit 1 | nupkg: not compared, fewer than two packages | snupkg: not compared, fewer than two packages | end 2026-10-27T13:45:51+01:00
+2026-10-27T13:45:52+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/svg.custom-5.1.1.toml /private/tmp/nupkg-batch2v3/build/Svg.Custom-5.1.1
+2026-10-27T13:46:52+01:00 Svg.Custom-5.1.1: pkg-batch2v3/build/Svg.Custom-5.1.1/A/src: exit 1, packages [] | build A2 in /private/tmp/nupkg-batch2v3/build/Svg.Custom-5.1.1/A/src: exit 1, packages [] | https://www.nuget.org/api/v2/symbolpackage/Svg.Custom/5.1.1: HTTP 404 | Svg.Custom 5.1.1: builds A exit 1, A2 exit 1 | nupkg: not compared, fewer than two packages | snupkg: not compared, fewer than two packages | end 2026-10-27T13:46:52+01:00
+2026-10-27T13:46:53+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/svg.model-5.1.1.toml /private/tmp/nupkg-batch2v3/build/Svg.Model-5.1.1
+2026-10-27T13:48:06+01:00 Svg.Model-5.1.1: p/nupkg-batch2v3/build/Svg.Model-5.1.1/A/src: exit 1, packages [] | build A2 in /private/tmp/nupkg-batch2v3/build/Svg.Model-5.1.1/A/src: exit 1, packages [] | https://www.nuget.org/api/v2/symbolpackage/Svg.Model/5.1.1: HTTP 404 | Svg.Model 5.1.1: builds A exit 1, A2 exit 1 | nupkg: not compared, fewer than two packages | snupkg: not compared, fewer than two packages | end 2026-10-27T13:48:06+01:00
+2026-10-27T13:48:06+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/svg.scenegraph-5.1.1.toml /private/tmp/nupkg-batch2v3/build/Svg.SceneGraph-5.1.1
+2026-10-27T13:49:09+01:00 Svg.SceneGraph-5.1.1: ld/Svg.SceneGraph-5.1.1/A/src: exit 1, packages [] | build A2 in /private/tmp/nupkg-batch2v3/build/Svg.SceneGraph-5.1.1/A/src: exit 1, packages [] | https://www.nuget.org/api/v2/symbolpackage/Svg.SceneGraph/5.1.1: HTTP 404 | Svg.SceneGraph 5.1.1: builds A exit 1, A2 exit 1 | nupkg: not compared, fewer than two packages | snupkg: not compared, fewer than two packages | end 2026-10-27T13:49:09+01:00
+2026-10-27T13:49:10+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/svg.skia-5.1.1.toml /private/tmp/nupkg-batch2v3/build/Svg.Skia-5.1.1
+2026-10-27T13:50:29+01:00 Svg.Skia-5.1.1: e/tmp/nupkg-batch2v3/build/Svg.Skia-5.1.1/A/src: exit 1, packages [] | build A2 in /private/tmp/nupkg-batch2v3/build/Svg.Skia-5.1.1/A/src: exit 1, packages [] | https://www.nuget.org/api/v2/symbolpackage/Svg.Skia/5.1.1: HTTP 404 | Svg.Skia 5.1.1: builds A exit 1, A2 exit 1 | nupkg: not compared, fewer than two packages | snupkg: not compared, fewer than two packages | end 2026-10-27T13:50:29+01:00
+2026-10-27T13:50:30+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/timezoneconverter-7.0.0.toml /private/tmp/nupkg-batch2v3/build/TimeZoneConverter-7.0.0
+2026-10-27T13:51:14+01:00 TimeZoneConverter-7.0.0: verter.7.0.0.nupkg', 'TimeZoneConverter.7.0.0.snupkg'] | TimeZoneConverter 7.0.0: builds A exit 0, A2 exit 0 | nupkg: lib/net9.0/TimeZoneConverter.dll A vs nuget.org: identical | nupkg: lib/net9.0/TimeZoneConverter.dll A vs A2: identical | snupkg: lib/net9.0/TimeZoneConverter.pdb A vs nuget.org: identical | snupkg: lib/net9.0/TimeZoneConverter.pdb A vs A2: identical | end 2026-10-27T13:51:14+01:00
+2026-10-27T13:51:14+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/rbush-4.0.0.toml /private/tmp/nupkg-batch2v3/build/RBush-4.0.0
+2026-10-27T13:51:56+01:00 RBush-4.0.0:  | build A2 in /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src: exit 0, packages ['RBush.4.0.0.nupkg'] | https://www.nuget.org/api/v2/symbolpackage/RBush/4.0.0: HTTP 404 | RBush 4.0.0: builds A exit 0, A2 exit 0 | nupkg: lib/net8.0/RBush.dll A vs nuget.org: identical | nupkg: lib/net8.0/RBush.dll A vs A2: identical | snupkg: not compared, fewer than two packages | end 2026-10-27T13:51:56+01:00
+2026-10-27T13:51:57+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/fluentvalidation-11.11.0.toml /private/tmp/nupkg-batch2v3/build/FluentValidation-11.11.0
+2026-10-27T13:52:41+01:00 FluentValidation-11.11.0: A/src: exit 0, packages ['FluentValidation.11.11.0.nupkg'] | https://www.nuget.org/api/v2/symbolpackage/FluentValidation/11.11.0: HTTP 404 | FluentValidation 11.11.0: builds A exit 0, A2 exit 0 | nupkg: lib/net8.0/FluentValidation.dll A vs nuget.org: identical | nupkg: lib/net8.0/FluentValidation.dll A vs A2: identical | snupkg: not compared, fewer than two packages | end 2026-10-27T13:52:41+01:00
+2026-10-27T13:53:12+01:00 $ gh run download 40503357833 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503357833
+2026-10-27T13:53:14+01:00 Ardalis.Specification-8.0.0: run 40503357833 success
+2026-10-27T13:53:15+01:00 $ gh run download 40503369430 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503369430
+2026-10-27T13:53:16+01:00 Ardalis.Specification.EntityFrameworkCore-8.0.0: run 40503369430 success
+2026-10-27T13:53:17+01:00 $ gh run download 40503381234 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503381234
+2026-10-27T13:53:19+01:00 AutoMapper-13.0.1: run 40503381234 success
+2026-10-27T13:53:20+01:00 $ gh run download 40503393009 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503393009
+2026-10-27T13:53:22+01:00 CsvHelper-33.1.0: run 40503393009 success
+2026-10-27T13:53:23+01:00 $ gh run download 40503405056 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503405056
+2026-10-27T13:53:25+01:00 Dapper-2.0.123: run 40503405056 success
+2026-10-27T13:53:26+01:00 $ gh run download 40503416785 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503416785
+2026-10-27T13:53:28+01:00 FluentModbus-5.3.2: run 40503416785 success
+2026-10-27T13:53:28+01:00 $ gh run download 40503428406 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503428406
+2026-10-27T13:53:31+01:00 Google.Protobuf-3.21.9: run 40503428406 success
+2026-10-27T13:53:31+01:00 $ gh run download 40503439860 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503439860
+2026-10-27T13:53:33+01:00 Hangfire.AspNetCore-1.8.25: run 40503439860 success
+2026-10-27T13:53:34+01:00 $ gh run download 40503451821 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503451821
+2026-10-27T13:53:35+01:00 Hangfire.InMemory-1.0.0: run 40503451821 success
+2026-10-27T13:53:36+01:00 $ gh run download 40503463772 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503463772
+2026-10-27T13:53:38+01:00 Hangfire.NetCore-1.8.25: run 40503463772 success
+2026-10-27T13:53:39+01:00 $ gh run download 40503475176 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503475176
+2026-10-27T13:53:40+01:00 Humanizer.Core-2.14.1: run 40503475176 success
+2026-10-27T13:53:41+01:00 $ gh run download 40503486515 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503486515
+2026-10-27T13:53:44+01:00 Markdig-1.2.0: run 40503486515 success
+2026-10-27T13:53:45+01:00 $ gh run download 40503498485 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503498485
+2026-10-27T13:53:46+01:00 MediatR.Contracts-2.0.1: run 40503498485 success
+2026-10-27T13:53:47+01:00 $ gh run download 40503509867 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503509867
+2026-10-27T13:53:49+01:00 MediatR.Extensions.Microsoft.DependencyInjection-11.1.0: run 40503509867 success
+2026-10-27T13:53:49+01:00 $ gh run download 40503520632 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503520632
+2026-10-27T13:53:51+01:00 Mono.TextTemplating-3.0.0: run 40503520632 success
+2026-10-27T13:53:52+01:00 $ gh run download 40503531876 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503531876
+2026-10-27T13:53:54+01:00 NodaTime-3.2.0: run 40503531876 success
+2026-10-27T13:53:55+01:00 $ gh run download 40503542203 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503542203
+2026-10-27T13:53:57+01:00 Portable.BouncyCastle-1.9.0: run 40503542203 success
+2026-10-27T13:53:58+01:00 $ gh run download 40503553005 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503553005
+2026-10-27T13:54:00+01:00 Quartz-3.13.1: run 40503553005 success
+2026-10-27T13:54:01+01:00 $ gh run download 40503564339 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503564339
+2026-10-27T13:54:03+01:00 Quartz.AspNetCore-3.13.1: run 40503564339 success
+2026-10-27T13:54:03+01:00 $ gh run download 40503575302 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503575302
+2026-10-27T13:54:05+01:00 Quartz.Extensions.DependencyInjection-3.13.1: run 40503575302 success
+2026-10-27T13:54:06+01:00 $ gh run download 40503598371 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503598371
+2026-10-27T13:54:07+01:00 Quartz.Extensions.Hosting-3.13.1: run 40503598371 success
+2026-10-27T13:54:08+01:00 $ gh run download 40503610014 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503610014
+2026-10-27T13:54:20+01:00 ScottPlot-5.1.57: run 40503610014 success
+2026-10-27T13:54:21+01:00 $ gh run download 40503622440 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503622440
+2026-10-27T13:54:22+01:00 SendGrid-9.29.3: run 40503622440 success
+2026-10-27T13:54:23+01:00 $ gh run download 40503633324 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503633324
+2026-10-27T13:54:25+01:00 Serilog.Settings.Configuration-8.0.4: run 40503633324 success
+2026-10-27T13:54:26+01:00 $ gh run download 40503644303 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503644303
+2026-10-27T13:54:33+01:00 Serilog.Sinks.File-6.0.0: run 40503644303 success
+2026-10-27T13:54:33+01:00 $ gh run download 40503656209 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503656209
+2026-10-27T13:54:35+01:00 Serilog.Sinks.Seq-9.0.0: run 40503656209 success
+2026-10-27T13:54:36+01:00 $ gh run download 40503668459 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503668459
+2026-10-27T13:54:38+01:00 SharpZipLib-1.4.2: run 40503668459 success
+2026-10-27T13:54:39+01:00 $ gh run download 40503680470 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503680470
+2026-10-27T13:54:40+01:00 Stateless-5.16.0: run 40503680470 success
+2026-10-27T13:54:41+01:00 $ gh run download 40503692633 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503692633
+2026-10-27T13:54:43+01:00 Swashbuckle.AspNetCore.Annotations-7.2.0: run 40503692633 success
+2026-10-27T13:54:43+01:00 $ gh run download 40503703706 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503703706
+2026-10-27T13:54:46+01:00 Swashbuckle.AspNetCore.ReDoc-7.2.0: run 40503703706 success
+2026-10-27T13:54:46+01:00 $ gh run download 40503715135 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503715135
+2026-10-27T13:54:48+01:00 Swashbuckle.AspNetCore.Swagger-7.2.0: run 40503715135 success
+2026-10-27T13:54:49+01:00 $ gh run download 40503726214 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503726214
+2026-10-27T13:54:51+01:00 Swashbuckle.AspNetCore.SwaggerGen-7.2.0: run 40503726214 success
+2026-10-27T13:54:52+01:00 $ gh run download 40503736374 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503736374
+2026-10-27T13:54:54+01:00 Swashbuckle.AspNetCore.SwaggerUI-7.2.0: run 40503736374 success
+2026-10-27T13:54:55+01:00 $ gh run download 40503748610 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503748610
+2026-10-27T13:54:58+01:00 UnitsNet-6.0.0-pre012: run 40503748610 success
+2026-10-27T13:54:59+01:00 $ gh run download 40503759388 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503759388
+2026-10-27T13:55:01+01:00 YamlDotNet-16.2.1: run 40503759388 success
+2026-10-27T13:55:02+01:00 $ gh run download 40503770815 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503770815
+2026-10-27T13:55:04+01:00 Serilog-4.2.0: run 40503770815 success
+2026-10-27T13:55:05+01:00 $ gh run download 40503782073 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503782073
+2026-10-27T13:55:07+01:00 Ardalis.GuardClauses-5.0.0: run 40503782073 success
+2026-10-27T13:55:07+01:00 $ gh run download 40503792676 -R peterjuulm/Speciale2026 -D /private/tmp/nupkg-batch2v3/gh/40503792676
+2026-10-27T13:55:09+01:00 Cronos-0.9.0: run 40503792676 success
+2026-10-27T13:55:10+01:00 Ardalis.Specification-8.0.0: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:11+01:00 Ardalis.Specification.EntityFrameworkCore-8.0.0: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:12+01:00 AutoMapper-13.0.1: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:12+01:00 Bogus-35.6.1: build rebuild.py exit 1, level -, A=A2 not compared; no package to compare (packed: Bogus.35.6.1.nupkg)
+2026-10-27T13:55:13+01:00 CsvHelper-33.1.0: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:13+01:00 Dapper-2.0.123: build ran (success), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:14+01:00 ExCSS-4.3.1: build ran, level 4, A=A2 yes; 
+2026-10-27T13:55:15+01:00 FluentModbus-5.3.2: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:16+01:00 FluentValidation.DependencyInjectionExtensions-11.11.0: build ran, level 1, A=A2 yes; 
+2026-10-27T13:55:17+01:00 Google.Protobuf-3.21.9: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:17+01:00 Hangfire.AspNetCore-1.8.25: build did not build (exit 1), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:18+01:00 Hangfire.InMemory-1.0.0: build ran (success), level 2, A=A2 yes; 
+2026-10-27T13:55:18+01:00 Hangfire.NetCore-1.8.25: build did not build (exit 1), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:18+01:00 Humanizer.Core-2.14.1: build ran (success), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:19+01:00 Markdig-1.2.0: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:20+01:00 MediatR-12.4.1: build ran, level 3, A=A2 yes; 
+2026-10-27T13:55:21+01:00 MediatR.Contracts-2.0.1: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:22+01:00 MediatR.Extensions.Microsoft.DependencyInjection-11.1.0: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:22+01:00 Mono.TextTemplating-3.0.0: build ran (success), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:22+01:00 NodaTime-3.2.0: build ran (success), level 2, A=A2 yes; 
+2026-10-27T13:55:23+01:00 Npgsql-10.0.3: build ran, level 1, A=A2 yes; 
+2026-10-27T13:55:23+01:00 Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3: build ran, level 1, A=A2 yes; 
+2026-10-27T13:55:23+01:00 Portable.BouncyCastle-1.9.0: build ran (success), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:24+01:00 Quartz-3.13.1: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:24+01:00 Quartz.AspNetCore-3.13.1: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:25+01:00 Quartz.Extensions.DependencyInjection-3.13.1: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:25+01:00 Quartz.Extensions.Hosting-3.13.1: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:26+01:00 ScottPlot-5.1.57: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:27+01:00 SendGrid-9.29.3: build ran (success), level 3, A=A2 yes; 
+2026-10-27T13:55:27+01:00 Serilog.Settings.Configuration-8.0.4: build ran (success), level 4, A=A2 not compared; 
+2026-10-27T13:55:28+01:00 Serilog.Sinks.File-6.0.0: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:28+01:00 Serilog.Sinks.Seq-9.0.0: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:29+01:00 SharpZipLib-1.4.2: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:29+01:00 ShimSkiaSharp-5.1.1: build ran, level 4, A=A2 yes; 
+2026-10-27T13:55:29+01:00 SixLabors.Fonts-1.0.0: build rebuild.py exit 1, level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:30+01:00 Stateless-5.16.0: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:30+01:00 Svg.Animation-5.1.1: build did not build (exit 1), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:30+01:00 Svg.Custom-5.1.1: build did not build (exit 1), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:30+01:00 Svg.Model-5.1.1: build did not build (exit 1), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:30+01:00 Svg.SceneGraph-5.1.1: build did not build (exit 1), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:30+01:00 Svg.Skia-5.1.1: build did not build (exit 1), level -, A=A2 not compared; no package to compare
+2026-10-27T13:55:30+01:00 Swashbuckle.AspNetCore.Annotations-7.2.0: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:31+01:00 Swashbuckle.AspNetCore.ReDoc-7.2.0: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:32+01:00 Swashbuckle.AspNetCore.Swagger-7.2.0: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:32+01:00 Swashbuckle.AspNetCore.SwaggerGen-7.2.0: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:33+01:00 Swashbuckle.AspNetCore.SwaggerUI-7.2.0: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:33+01:00 TimeZoneConverter-7.0.0: build ran, level 1, A=A2 yes; 
+2026-10-27T13:55:34+01:00 UnitsNet-6.0.0-pre012: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:34+01:00 YamlDotNet-16.2.1: build ran (success), level 4, A=A2 yes; 
+2026-10-27T13:55:35+01:00 RBush-4.0.0: build ran, level 1, A=A2 yes; 
+2026-10-27T13:55:35+01:00 FluentValidation-11.11.0: build ran, level 1, A=A2 yes; 
+2026-10-27T13:55:36+01:00 Serilog-4.2.0: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:37+01:00 Ardalis.GuardClauses-5.0.0: build ran (success), level 1, A=A2 yes; 
+2026-10-27T13:55:37+01:00 Cronos-0.9.0: build ran (success), level 2, A=A2 yes; 
+2026-10-27T13:55:37+01:00 done: results in /home/leos/Dev/Speciale2026/dependencies/data/2026-10-27-nupkg-release-only-batch2-v3/results.tsv
+2026-10-27T13:56:42+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/bogus-35.6.1.toml /private/tmp/nupkg-batch2v3/build/Bogus-35.6.1
+2026-10-27T13:57:46+01:00 Bogus-35.6.1 (local build run again by hand): s.35.6.1.snupkg'] | Bogus 35.6.1: builds A exit 0, A2 exit 0 | nupkg: lib/net6.0/Bogus.dll A vs nuget.org: differs | nupkg: lib/net6.0/Bogus.dll A vs A2: identical | snupkg: lib/net6.0/Bogus.pdb A vs nuget.org: differs | snupkg: lib/net6.0/Bogus.pdb A vs A2: identical | end 2026-10-27T13:57:46+01:00
+2026-10-27T13:57:48+01:00 Bogus-35.6.1: build ran (second run), level 4, A=A2 yes; 
+2026-10-27T13:57:48+01:00 $ /usr/bin/python3 -I /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/rebuild.py /home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/recipes/release-only/2026-10-27-nupkg-release-only-batch2-v3/sixlabors.fonts-1.0.0.toml /private/tmp/nupkg-batch2v3/build/SixLabors.Fonts-1.0.0
+2026-10-27T13:58:25+01:00 SixLabors.Fonts-1.0.0 (local build run again by hand): src: exit 1, packages [] | build A2 in /private/tmp/nupkg-batch2v3/build/SixLabors.Fonts-1.0.0/A/src: exit 1, packages [] | SixLabors.Fonts 1.0.0: builds A exit 1, A2 exit 1 | nupkg: not compared, fewer than two packages | snupkg: not compared, fewer than two packages | end 2026-10-27T13:58:25+01:00
+2026-10-27T13:58:26+01:00 SixLabors.Fonts-1.0.0: build did not build (exit 1), second run, level -, A=A2 not compared; no package to compare

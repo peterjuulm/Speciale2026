@@ -1,0 +1,107 @@
+start 2026-10-27T13:51:27+01:00
+build A in /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/sdk:/usr/bin
+--- clone 2026-10-27T13:51:27+01:00
+$ git init -q /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src remote add origin https://github.com/viceroypenguin/RBush
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src config core.eol lf
+$ git clone -q --mirror https://github.com/viceroypenguin/RBush /private/tmp/nupkg-batch2v3/mirrors/https_github.com_viceroypenguin_RBush.git
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src fetch -q --tags /private/tmp/nupkg-batch2v3/mirrors/https_github.com_viceroypenguin_RBush.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src fetch -q /private/tmp/nupkg-batch2v3/mirrors/https_github.com_viceroypenguin_RBush.git b8690322abac35d835baa2fdca4a3918ed77a910
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src -c advice.detachedHead=false checkout -q refs/tags/v4.0.0
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/viceroypenguin/RBush
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src rev-parse HEAD
+b8690322abac35d835baa2fdca4a3918ed77a910
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src tag --points-at HEAD
+v4.0.0
+--- toolchain 2026-10-27T13:51:28+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.404
+ Commit:            7b190310f2
+ Workload version:  8.0.400-manifests.996cfe54
+ MSBuild version:   17.11.9+a69bbaaf5
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/sdk/sdk/8.0.404/
+
+.NET workloads installed:
+Configured to use loose manifests when installing new manifests.
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.11
+  Architecture: x64
+  Commit:       9cb3b725e3
+
+.NET SDKs installed:
+  8.0.404 [/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.11 [/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.11 [/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.11.0-3.24510.3+cfe3bd0a653ebd218fec07ff4cce9a994715a473, sha256 9b8327e5167095664251c71e3feb55792500dcdde7d3dd2a20b3605c61f6bd50 (/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/sdk/sdk/8.0.404/Roslyn/bincore/csc.dll)
+--- build 2026-10-27T13:51:28+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build RBush/RBush.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.0.0 -p:AssemblyVersion=4.0.0.0 -p:FileVersion=4.0.0.0 -p:PackageVersion=4.0.0 && dotnet pack RBush/RBush.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.0.0 -p:AssemblyVersion=4.0.0.0 -p:FileVersion=4.0.0.0 -p:PackageVersion=4.0.0
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src/RBush/RBush.csproj (in 4.05 sec).
+  RBush -> /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src/RBush/bin/Release/net47/RBush.dll
+  RBush -> /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src/RBush/bin/Release/netstandard2.0/RBush.dll
+  RBush -> /private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src/RBush/bin/Release/net8.0/RBush.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.94
+  Successfully created package '/private/tmp/nupkg-batch2v3/build/RBush-4.0.0/A/src/out-nupkg/RBush.4.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T13:51:42+01:00

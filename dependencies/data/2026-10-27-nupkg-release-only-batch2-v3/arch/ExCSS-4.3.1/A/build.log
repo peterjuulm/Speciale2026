@@ -1,0 +1,112 @@
+start 2026-10-27T13:28:08+01:00
+build A in /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/sdk:/usr/bin
+--- clone 2026-10-27T13:28:08+01:00
+$ git init -q /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src remote add origin https://github.com/TylerBrinks/ExCSS
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src config core.eol lf
+$ git clone -q --mirror https://github.com/TylerBrinks/ExCSS /private/tmp/nupkg-batch2v3/mirrors/https_github.com_TylerBrinks_ExCSS.git
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src fetch -q --tags /private/tmp/nupkg-batch2v3/mirrors/https_github.com_TylerBrinks_ExCSS.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src fetch -q /private/tmp/nupkg-batch2v3/mirrors/https_github.com_TylerBrinks_ExCSS.git c97e84d6126bb2e42658cf5af627d52e697c8779
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src -c advice.detachedHead=false checkout -q c97e84d6126bb2e42658cf5af627d52e697c8779
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/TylerBrinks/ExCSS
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src rev-parse HEAD
+c97e84d6126bb2e42658cf5af627d52e697c8779
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src tag --points-at HEAD
+v4.3.1
+--- toolchain 2026-10-27T13:28:15+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.405
+ Commit:            fb1830d421
+ Workload version:  8.0.400-manifests.c7afa696
+ MSBuild version:   17.11.9+a69bbaaf5
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/sdk/sdk/8.0.405/
+
+.NET workloads installed:
+Configured to use loose manifests when installing new manifests.
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.12
+  Architecture: x64
+  Commit:       89ef51c5d8
+
+.NET SDKs installed:
+  8.0.405 [/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.12 [/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.12 [/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.11.0-3.24554.2+bc1c3011064a493b0ca527df6fb7215e2e5cfa96, sha256 58abe4e345a54bca90a955248665ff78f5f44b290df5a71fc4cb74f5bde5f4b1 (/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/sdk/sdk/8.0.405/Roslyn/bincore/csc.dll)
+--- build 2026-10-27T13:28:15+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/ExCSS/ExCSS.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.3.1 -p:VersionSuffix=release.0 -p:AssemblyVersion=4.3.1.0 -p:FileVersion=4.3.1.0 -p:PackageVersion=4.3.1 && dotnet pack src/ExCSS/ExCSS.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.3.1 -p:VersionSuffix=release.0 -p:AssemblyVersion=4.3.1.0 -p:FileVersion=4.3.1.0 -p:PackageVersion=4.3.1
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/ExCSS.csproj (in 8.03 sec).
+  ExCSS -> /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/bin/Release/net48/ExCSS.dll
+  ExCSS -> /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/bin/Release/net6.0/ExCSS.dll
+  ExCSS -> /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/bin/Release/net7.0/ExCSS.dll
+  ExCSS -> /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/bin/Release/netstandard2.1/ExCSS.dll
+  ExCSS -> /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/bin/Release/netstandard2.0/ExCSS.dll
+  ExCSS -> /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/bin/Release/netcoreapp3.1/ExCSS.dll
+  ExCSS -> /private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/src/ExCSS/bin/Release/net8.0/ExCSS.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:15.72
+  Successfully created package '/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/out-nupkg/ExCSS.4.3.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-batch2v3/build/ExCSS-4.3.1/A/src/out-nupkg/ExCSS.4.3.1.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T13:28:35+01:00

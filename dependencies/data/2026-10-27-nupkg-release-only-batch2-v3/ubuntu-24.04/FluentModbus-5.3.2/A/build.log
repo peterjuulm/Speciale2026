@@ -1,0 +1,120 @@
+start 2026-10-27T12:24:13+00:00
+build A in /home/runner/work/FluentModbus/FluentModbus
+runner ImageOS=ubuntu24
+runner ImageVersion=20261026.354.1
+runner RUNNER_OS=Linux
+runner RUNNER_ARCH=X64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/home/runner/work/_temp/nupkg/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/home/runner/work/_temp/nupkg/A/nuget/
+NuGetAudit=false
+PATH=/home/runner/work/_temp/nupkg/sdk:/usr/bin
+--- clone 2026-10-27T12:24:13+00:00
+$ git init -q /home/runner/work/FluentModbus/FluentModbus
+$ git -C /home/runner/work/FluentModbus/FluentModbus remote add origin https://github.com/Apollo3zehn/FluentModbus
+$ git -C /home/runner/work/FluentModbus/FluentModbus config core.autocrlf false
+$ git -C /home/runner/work/FluentModbus/FluentModbus config core.eol lf
+$ git -C /home/runner/work/FluentModbus/FluentModbus fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /home/runner/work/FluentModbus/FluentModbus fetch -q origin 5e44710bbea12d279fac78fb91eaf7081babb0de
+$ git -C /home/runner/work/FluentModbus/FluentModbus -c advice.detachedHead=false checkout -q 5e44710bbea12d279fac78fb91eaf7081babb0de
+$ git -C /home/runner/work/FluentModbus/FluentModbus config --list --show-origin
+file:/etc/gitconfig	safe.directory=*
+file:/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:/etc/gitconfig	filter.lfs.required=true
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/Apollo3zehn/FluentModbus
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /home/runner/work/FluentModbus/FluentModbus rev-parse HEAD
+5e44710bbea12d279fac78fb91eaf7081babb0de
+$ git -C /home/runner/work/FluentModbus/FluentModbus rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /home/runner/work/FluentModbus/FluentModbus tag --points-at HEAD
+v5.3.2
+--- toolchain 2026-10-27T12:24:14+00:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.113
+ Commit:            67977f6ab7
+ Workload version:  8.0.100-manifests.f7661779
+
+Runtime Environment:
+ OS Name:     ubuntu
+ OS Version:  24.04
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /home/runner/work/_temp/nupkg/sdk/sdk/8.0.113/
+
+.NET workloads installed:
+ Workload version: 8.0.100-manifests.f7661779
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.13
+  Architecture: x64
+  Commit:       eba546b0f0
+
+.NET SDKs installed:
+  8.0.113 [/home/runner/work/_temp/nupkg/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.13 [/home/runner/work/_temp/nupkg/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.13 [/home/runner/work/_temp/nupkg/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.8.0-7.25056.18+a77b6e41d030878096fa496e00e4c0dffe5af9f0, sha256 fc0ea9b0ddd4aa213e8482f0b25f2421db6add0e6e7997c35b118c6170aa417b (/home/runner/work/_temp/nupkg/sdk/sdk/8.0.113/Roslyn/bincore/csc.dll)
+--- build 2026-10-27T12:24:14+00:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/FluentModbus/FluentModbus.csproj -c Release -p:VersionPrefix=5.3.2 -p:AssemblyVersion=5.0.0.0 -p:FileVersion=5.3.2.0 -p:PackageVersion=5.3.2 && dotnet pack src/FluentModbus/FluentModbus.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=5.3.2 -p:AssemblyVersion=5.0.0.0 -p:FileVersion=5.3.2.0 -p:PackageVersion=5.3.2
+MSBuild version 17.8.18+31744dfca for .NET
+  Determining projects to restore...
+  Restored /home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/FluentModbus.csproj (in 1.07 sec).
+/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+  FluentModbus -> /home/runner/work/FluentModbus/FluentModbus/artifacts/bin/FluentModbus/release_netstandard2.1/FluentModbus.dll
+  FluentModbus -> /home/runner/work/FluentModbus/FluentModbus/artifacts/bin/FluentModbus/release_netstandard2.0/FluentModbus.dll
+  Successfully created package '/home/runner/work/FluentModbus/FluentModbus/artifacts/package/release/FluentModbus.5.3.2.nupkg'.
+
+Build succeeded.
+
+/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/home/runner/work/FluentModbus/FluentModbus/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.08
+MSBuild version 17.8.18+31744dfca for .NET
+  Successfully created package '/home/runner/work/FluentModbus/FluentModbus/out-nupkg/FluentModbus.5.3.2.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T12:24:20+00:00

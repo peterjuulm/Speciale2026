@@ -1,0 +1,110 @@
+start 2026-10-27T13:29:25+01:00
+build A2 in /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/sdk:/usr/bin
+--- clone 2026-10-27T13:29:25+01:00
+$ git init -q /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src remote add origin https://github.com/FluentValidation/FluentValidation
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch2v3/mirrors/https_github.com_FluentValidation_FluentValidation.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src fetch -q --tags /private/tmp/nupkg-batch2v3/mirrors/https_github.com_FluentValidation_FluentValidation.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src fetch -q /private/tmp/nupkg-batch2v3/mirrors/https_github.com_FluentValidation_FluentValidation.git c8c6400fa2f467d65669b78804613d44066c1c33
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src -c advice.detachedHead=false checkout -q c8c6400fa2f467d65669b78804613d44066c1c33
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/FluentValidation/FluentValidation
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src rev-parse HEAD
+c8c6400fa2f467d65669b78804613d44066c1c33
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src tag --points-at HEAD
+11.11.0
+--- toolchain 2026-10-27T13:29:26+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           8.0.100
+ Commit:            57efcf1350
+ Workload version:  8.0.100-manifests.6c33ef20
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/sdk/sdk/8.0.100/
+
+.NET workloads installed:
+ Workload version: 8.0.100-manifests.6c33ef20
+There are no installed workloads to display.
+
+Host:
+  Version:      8.0.0
+  Architecture: x64
+  Commit:       5535e31a71
+
+.NET SDKs installed:
+  8.0.100 [/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 8.0.0 [/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 8.0.0 [/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  Not set
+
+global.json file:
+  /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 4.8.0-3.23524.11+f43cd10b737b6343956dee421cff8c50b602c788, sha256 b3c1d1404fbc634f19d5e258c5b9f288697d49e2acadf5ec0dd09dd63d379c47 (/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/sdk/sdk/8.0.100/Roslyn/bincore/csc.dll)
+--- build 2026-10-27T13:29:27+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=11.11.0 -p:AssemblyVersion=11.0.0.0 -p:FileVersion=11.11.0.0 -p:PackageVersion=11.11.0 && dotnet pack src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=11.11.0 -p:AssemblyVersion=11.0.0.0 -p:FileVersion=11.11.0.0 -p:PackageVersion=11.11.0
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj (in 1.61 sec).
+  Restored /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/src/FluentValidation/FluentValidation.csproj (in 3.09 sec).
+  FluentValidation -> /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/src/FluentValidation/bin/Release/netstandard2.1/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/src/FluentValidation/bin/Release/netstandard2.0/FluentValidation.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.85
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Successfully created package '/private/tmp/nupkg-batch2v3/build/FluentValidation.DependencyInjectionExtensions-11.11.0/A/src/out-nupkg/FluentValidation.DependencyInjectionExtensions.11.11.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T13:29:39+01:00

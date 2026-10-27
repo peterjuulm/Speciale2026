@@ -1,0 +1,108 @@
+start 2026-10-27T13:32:11+01:00
+build A2 in /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/sdk:/usr/bin
+--- clone 2026-10-27T13:32:11+01:00
+$ git init -q /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src remote add origin https://github.com/npgsql/efcore.pg
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch2v3/mirrors/https_github.com_npgsql_efcore.pg.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src fetch -q --tags /private/tmp/nupkg-batch2v3/mirrors/https_github.com_npgsql_efcore.pg.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src fetch -q /private/tmp/nupkg-batch2v3/mirrors/https_github.com_npgsql_efcore.pg.git 5e912bf071068a44e5abbdab497b313ba99d3ee1
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src -c advice.detachedHead=false checkout -q 5e912bf071068a44e5abbdab497b313ba99d3ee1
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/npgsql/efcore.pg
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src rev-parse HEAD
+5e912bf071068a44e5abbdab497b313ba99d3ee1
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src tag --points-at HEAD
+v10.0.3
+--- toolchain 2026-10-27T13:32:13+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           10.0.301
+ Commit:            96856fd726
+ Workload version:  10.0.300-manifests.b0c14421
+ MSBuild version:   18.6.4+96856fd72
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/sdk/sdk/10.0.301/
+
+.NET workloads installed:
+There are no installed workloads to display.
+Configured to use workload sets when installing new manifests.
+No workload sets are installed. Run "dotnet workload restore" to install a workload set.
+
+Host:
+  Version:      10.0.9
+  Architecture: x64
+  Commit:       901ca94124
+
+.NET SDKs installed:
+  10.0.301 [/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 10.0.9 [/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 10.0.9 [/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  DOTNET_CLI_TELEMETRY_OPTOUT              [1]
+  DOTNET_NOLOGO                            [1]
+
+global.json file:
+  /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src/global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 5.6.0-2.26270.133+96856fd726ffd058fb3dfef0851dbafc7ef3b011, sha256 c1a10beaae5d2abbc7cdca00ae6dd1c20a14b2683612198ccd209c2564f34645 (/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/sdk/sdk/10.0.301/Roslyn/bincore/csc.dll)
+--- build 2026-10-27T13:32:13+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/EFCore.PG/EFCore.PG.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=10.0.3 -p:AssemblyVersion=10.0.3.0 -p:FileVersion=10.0.3.0 -p:PackageVersion=10.0.3 && dotnet pack src/EFCore.PG/EFCore.PG.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=10.0.3 -p:AssemblyVersion=10.0.3.0 -p:FileVersion=10.0.3.0 -p:PackageVersion=10.0.3
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src/src/EFCore.PG/EFCore.PG.csproj (in 1.68 sec).
+  EFCore.PG -> /private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src/src/EFCore.PG/bin/Release/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.79
+  Successfully created package '/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src/out-nupkg/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.nupkg'.
+  Successfully created package '/private/tmp/nupkg-batch2v3/build/Npgsql.EntityFrameworkCore.PostgreSQL-10.0.3/A/src/out-nupkg/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T13:32:24+01:00

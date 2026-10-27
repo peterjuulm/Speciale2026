@@ -1,0 +1,113 @@
+start 2026-10-27T13:33:45+01:00
+build A2 in /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/sdk:/usr/bin
+--- clone 2026-10-27T13:33:45+01:00
+$ git init -q /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src remote add origin https://github.com/wieslawsoltes/Svg.Skia
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch2v3/mirrors/https_github.com_wieslawsoltes_Svg.Skia.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src fetch -q --tags /private/tmp/nupkg-batch2v3/mirrors/https_github.com_wieslawsoltes_Svg.Skia.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src fetch -q /private/tmp/nupkg-batch2v3/mirrors/https_github.com_wieslawsoltes_Svg.Skia.git 3261e036769d0deba1f621265c7ab7000e3ce470
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src -c advice.detachedHead=false checkout -q 3261e036769d0deba1f621265c7ab7000e3ce470
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/wieslawsoltes/Svg.Skia
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src rev-parse HEAD
+3261e036769d0deba1f621265c7ab7000e3ce470
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src tag --points-at HEAD
+v5.1.1
+--- toolchain 2026-10-27T13:33:54+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           10.0.300
+ Commit:            caa81fa497
+ Workload version:  10.0.300-manifests.b47d7e23
+ MSBuild version:   18.6.3+caa81fa49
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/sdk/sdk/10.0.300/
+
+.NET workloads installed:
+There are no installed workloads to display.
+Configured to use workload sets when installing new manifests.
+No workload sets are installed. Run "dotnet workload restore" to install a workload set.
+
+Host:
+  Version:      10.0.8
+  Architecture: x64
+  Commit:       94ea82652c
+
+.NET SDKs installed:
+  10.0.300 [/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 10.0.8 [/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 10.0.8 [/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  DOTNET_CLI_TELEMETRY_OPTOUT              [1]
+  DOTNET_NOLOGO                            [1]
+
+global.json file:
+  /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 5.6.0-2.26230.102+caa81fa4971f74880cdab61990cb1b11420939ec, sha256 cb8c8a97358c2052fdd3dc992ee359f2060a32cafe7c194e2c6396f491b95bfe (/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/sdk/sdk/10.0.300/Roslyn/bincore/csc.dll)
+--- build 2026-10-27T13:33:54+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/ShimSkiaSharp/ShimSkiaSharp.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=5.1.1 -p:AssemblyVersion=5.1.1.0 -p:FileVersion=5.1.1.0 -p:PackageVersion=5.1.1 && dotnet pack src/ShimSkiaSharp/ShimSkiaSharp.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=5.1.1 -p:AssemblyVersion=5.1.1.0 -p:FileVersion=5.1.1.0 -p:PackageVersion=5.1.1
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/src/ShimSkiaSharp/ShimSkiaSharp.csproj (in 2.94 sec).
+  ShimSkiaSharp -> /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/src/ShimSkiaSharp/bin/Release/net461/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/src/ShimSkiaSharp/bin/Release/netstandard2.0/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/src/ShimSkiaSharp/bin/Release/net6.0/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/src/ShimSkiaSharp/bin/Release/net8.0/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/src/ShimSkiaSharp/bin/Release/net10.0/ShimSkiaSharp.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.23
+/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/sdk/sdk/10.0.300/NuGet.Build.Tasks.Pack.targets(222,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/src/ShimSkiaSharp/ShimSkiaSharp.csproj]
+  The package ShimSkiaSharp.5.1.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-batch2v3/build/ShimSkiaSharp-5.1.1/A/src/out-nupkg/ShimSkiaSharp.5.1.1.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-27T13:34:06+01:00
