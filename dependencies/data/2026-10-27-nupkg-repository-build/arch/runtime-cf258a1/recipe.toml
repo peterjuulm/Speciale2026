@@ -1,0 +1,22 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-cf258a1"
+repo = "https://github.com/dotnet/runtime"
+commit = "cf258a14b70ad9069470a108f13765e0e5988f51"
+inner = ""
+kind = "runtime"
+official_build_id = "20201019.4"
+shell = "bash"
+build = '''./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+[env]
+DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"
+
+[[products]]
+package = "System.IO.Ports"
+version = "5.0.0"
+ships = "runtimes/linux/lib/netstandard2.0/System.IO.Ports.dll"
+project = "src/libraries/System.IO.Ports/src/System.IO.Ports.csproj"
+file_version = "5.0.20.51904"

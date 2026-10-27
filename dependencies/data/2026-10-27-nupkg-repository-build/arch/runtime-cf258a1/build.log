@@ -1,0 +1,52 @@
+start 2026-10-27T23:36:38+01:00
+repository build runtime-cf258a1 in /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/.dotnet
+DOTNET_NOLOGO=1
+DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-27T23:36:38+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src remote add origin https://github.com/dotnet/runtime
+$ git -C /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src config core.autocrlf true
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_runtime.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_runtime.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_runtime.git cf258a14b70ad9069470a108f13765e0e5988f51
+$ git -C /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src -c advice.detachedHead=false checkout -q cf258a14b70ad9069470a108f13765e0e5988f51
+$ git -C /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src rev-parse HEAD
+cf258a14b70ad9069470a108f13765e0e5988f51
+--- submodules 2026-10-27T23:37:49+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src submodule update --init --recursive --depth 1
+--- build 2026-10-27T23:37:49+01:00
+$ bash -c ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release
+__DistroRid: linux-x64
+__RuntimeId: linux-x64
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/artifacts/tmp/Release
+dotnet_install: Warning: Unable to locate liblttng. Probable prerequisite missing; install libcurl.
+dotnet-install: Downloading link: https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rc.2.20479.15/dotnet-sdk-5.0.100-rc.2.20479.15-linux-x64.tar.gz
+dotnet-install: Extracting zip from https://dotnetcli.azureedge.net/dotnet/Sdk/5.0.100-rc.2.20479.15/dotnet-sdk-5.0.100-rc.2.20479.15-linux-x64.tar.gz
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_SKIP_FIRST_TIME_EXPERIENCE;isSecret=false;isOutput=true]1
+No usable version of libssl was found
+/private/tmp/nupkg-repobuild/build/runtime-cf258a1/A/src/eng/common/tools.sh: line 446: 781420 Aborted                    (core dumped) "$_InitializeBuildTool" "$@"
+##vso[task.logissue type=error]Build failed (exit code '134').
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+No usable version of libssl was found
+/usr/bin/bash: line 1: 781454 Aborted                    (core dumped) "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown
+build exit code 134
+end 2026-10-27T23:38:46+01:00
