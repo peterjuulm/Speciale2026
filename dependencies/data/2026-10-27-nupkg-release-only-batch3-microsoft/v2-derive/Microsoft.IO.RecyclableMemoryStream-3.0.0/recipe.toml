@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Microsoft.IO.RecyclableMemoryStream"
+version = "3.0.0"
+ships = "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll"
+repo = "https://github.com/microsoft/Microsoft.IO.RecyclableMemoryStream"
+commit = "2dbbc0713628c2a7963a04cb92b420024445e81c"
+project = "src/Microsoft.IO.RecyclableMemoryStream.csproj"
+sdk = "8.0.100"
+shell = "bash"
+build = "dotnet build src/Microsoft.IO.RecyclableMemoryStream.csproj -c Release -p:ContinuousIntegrationBuild=true -p:PackageVersion=3.0.0 && dotnet pack src/Microsoft.IO.RecyclableMemoryStream.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:PackageVersion=3.0.0"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=true"]

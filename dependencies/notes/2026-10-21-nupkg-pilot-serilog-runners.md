@@ -478,3 +478,5 @@ Roslyn repository.
 - Any Microsoft package build; the compile-step rebuild above.
 - Newtonsoft.Json, whose compiler ran on .NET Framework 4.8: that needs
   Windows with Visual Studio's MSBuild.
+
+Labs under `/private/tmp` (`nupkg-pilot`, `nupkg-release-only`, `nupkg-batch2`, `nupkg-batch3`) were removed on 27 October 2026 to free 60 GB; every text output named in this note is in the data folder.

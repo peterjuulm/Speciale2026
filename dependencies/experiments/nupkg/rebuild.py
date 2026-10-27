@@ -145,6 +145,8 @@ def build(r, name, src, work, sdk, out):
         for k in ('ImageOS', 'ImageVersion', 'RUNNER_OS', 'RUNNER_ARCH'):   # GitHub's runner image, before it is dropped
             if k in os.environ:
                 log.write(f'runner {k}={os.environ[k]}\n')
+        if 'ImageOS' not in os.environ:   # not a GitHub runner: the machine's kernel and distribution
+            u = os.uname(); log.write(f'kernel {u.sysname} {u.release} {u.machine}\n')
         log.write('--- environment\n')
         for k in sorted(env):
             log.write(f'{k}={"<redacted>" if SECRET.search(k) else env[k]}\n')

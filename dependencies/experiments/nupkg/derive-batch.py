@@ -3,7 +3,7 @@
 Usage: python3 -I derive-batch.py LIST CENSUS_FILES_CSV LAB OUT
 
 LIST has one "Package Version" per line (# comments allowed). Each package
-goes through derive.py into OUT/<Package>/; a derivation that raises stops
+goes through derive.py into OUT/<Package>-<version>/; a derivation that raises stops
 nothing: its error is recorded as "skipped (derive.py failed: ...)". A
 package with a facts.txt from an earlier run is kept as it is; one with
 none (a failed derivation) is derived again, so a rerun redoes failures. The
@@ -27,11 +27,7 @@ def main():
         if not raw:
             continue
         pkg, ver = raw.split()
-        dest = os.path.join(out, pkg)
-        if any(l.startswith(f'{pkg} ') for l in lines):   # one folder and one recipe per package name
-            lines.append(f'{pkg} {ver}\tnot derived: {pkg} is already in the list with another version\t\t\t')
-            print(lines[-1], flush=True)
-            continue
+        dest = os.path.join(out, f'{pkg}-{ver}')   # one folder per package and version (27/10: ten Microsoft packages come in two versions)
         if os.path.exists(os.path.join(dest, 'facts.txt')):
             r = None   # derived in an earlier run of the list; only failed ones are redone
         else:

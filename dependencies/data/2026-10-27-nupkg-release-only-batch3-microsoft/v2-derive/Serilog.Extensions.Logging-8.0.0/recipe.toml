@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Serilog.Extensions.Logging"
+version = "8.0.0"
+ships = "lib/net8.0/Serilog.Extensions.Logging.dll"
+repo = "https://github.com/serilog/serilog-extensions-logging"
+commit = "2138e8cad250ef15369a26ba577d61a8b4f0912e"
+project = "src/Serilog.Extensions.Logging/Serilog.Extensions.Logging.csproj"
+sdk = "8.0.100"
+shell = "bash"
+build = "dotnet build src/Serilog.Extensions.Logging/Serilog.Extensions.Logging.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=8.0.0 -p:PackageVersion=8.0.0 && dotnet pack src/Serilog.Extensions.Logging/Serilog.Extensions.Logging.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=8.0.0 -p:PackageVersion=8.0.0"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]

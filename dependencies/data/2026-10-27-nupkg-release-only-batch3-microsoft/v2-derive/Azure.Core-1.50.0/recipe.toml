@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Azure.Core"
+version = "1.50.0"
+ships = "lib/net8.0/Azure.Core.dll"
+repo = "https://github.com/Azure/azure-sdk-for-net"
+commit = "724366b17b92e657d2136d470077c769e89818c7"
+project = "sdk/core/Azure.Core/src/Azure.Core.csproj"
+sdk = "9.0.306"
+shell = "bash"
+build = "dotnet build sdk/core/Azure.Core/src/Azure.Core.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=1.50.0 -p:PackageVersion=1.50.0 && dotnet pack sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=1.50.0 -p:PackageVersion=1.50.0"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]

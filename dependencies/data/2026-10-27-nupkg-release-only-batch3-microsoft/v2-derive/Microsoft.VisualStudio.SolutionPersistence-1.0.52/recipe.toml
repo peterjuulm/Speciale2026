@@ -1,0 +1,14 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Microsoft.VisualStudio.SolutionPersistence"
+version = "1.0.52"
+ships = "lib/net8.0/Microsoft.VisualStudio.SolutionPersistence.dll"
+repo = "https://github.com/microsoft/vs-solutionpersistence"
+commit = "19c3ca7dc997dba2b3a86f6c666e9f717f34c8fe"
+project = "src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj"
+sdk = "9.0.200"
+shell = "bash"
+build = "dotnet build src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj -c Release -p:VersionPrefix=1.0.52 -p:PackageVersion=1.0.52 && dotnet pack src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=1.0.52 -p:PackageVersion=1.0.52"
+packages = "out-nupkg"
+os = "windows"
+clone_dir = "D:\\a\\_work\\1\\s"
+git_config = ["core.autocrlf=true"]

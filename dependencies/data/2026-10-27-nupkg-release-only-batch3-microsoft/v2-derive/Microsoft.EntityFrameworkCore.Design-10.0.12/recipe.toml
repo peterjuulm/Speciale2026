@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Microsoft.EntityFrameworkCore.Design"
+version = "10.0.12"
+ships = "lib/net10.0/Microsoft.EntityFrameworkCore.Design.dll"
+repo = "https://github.com/dotnet/dotnet"
+commit = "95017c711e6afc1085133d440e42b4bd78155701"
+project = "src/efcore/src/EFCore.Design/EFCore.Design.csproj"
+sdk = "10.0.111"
+shell = "bash"
+build = "dotnet build src/efcore/src/EFCore.Design/EFCore.Design.csproj -c Release -p:VersionPrefix=10.0.12 -p:PackageVersion=10.0.12 && dotnet pack src/efcore/src/EFCore.Design/EFCore.Design.csproj -c Release --no-build -o out-nupkg -p:VersionPrefix=10.0.12 -p:PackageVersion=10.0.12"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=true"]

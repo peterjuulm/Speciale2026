@@ -1,0 +1,121 @@
+start 2026-10-27T10:35:35+01:00
+build A2 in /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_NOLOGO=1
+HOME=/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/nuget/
+NuGetAudit=false
+PATH=/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk:/usr/bin
+--- clone 2026-10-27T10:35:35+01:00
+$ git init -q /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src remote add origin https://github.com/dotnet/dotnet
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-batch3/mirrors/https_github.com_dotnet_dotnet.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src fetch -q --tags /private/tmp/nupkg-batch3/mirrors/https_github.com_dotnet_dotnet.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src fetch -q /private/tmp/nupkg-batch3/mirrors/https_github.com_dotnet_dotnet.git 95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src -c advice.detachedHead=false checkout -q 95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src config --list --show-origin
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.autocrlf=false
+file:.git/config	core.eol=lf
+file:.git/config	remote.origin.url=https://github.com/dotnet/dotnet
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src rev-parse HEAD
+95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src rev-parse --abbrev-ref HEAD
+HEAD
+$ git -C /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src tag --points-at HEAD
+v10.0.112
+v10.0.12
+--- toolchain 2026-10-27T10:36:39+01:00
+$ dotnet --info
+.NET SDK:
+ Version:           10.0.111
+ Commit:            e2f47b0110
+ Workload version:  10.0.100-manifests.330ea142
+ MSBuild version:   18.0.11+e2f47b011
+
+Runtime Environment:
+ OS Name:     endeavouros
+ OS Version:  
+ OS Platform: Linux
+ RID:         linux-x64
+ Base Path:   /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/
+
+.NET workloads installed:
+There are no installed workloads to display.
+Configured to use workload sets when installing new manifests.
+No workload sets are installed. Run "dotnet workload restore" to install a workload set.
+
+Host:
+  Version:      10.0.11
+  Architecture: x64
+  Commit:       e2f47b0110
+
+.NET SDKs installed:
+  10.0.111 [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 10.0.11 [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 10.0.11 [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/shared/Microsoft.NETCore.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  DOTNET_CLI_TELEMETRY_OPTOUT              [1]
+  DOTNET_NOLOGO                            [1]
+
+global.json file:
+  /private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/global.json
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
+csc.dll 5.0.0-2.26373.116+e2f47b0110ed922f21a1522da67279133ce28f32, sha256 a962f6e888cacc51f9aa0ab8d61f69583dcb60acfb2860eecad695c4311fb290 (/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Roslyn/bincore/csc.dll)
+--- build 2026-10-27T10:36:39+01:00
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/aspnetcore/src/Antiforgery/src/Microsoft.AspNetCore.Antiforgery.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=10.0.12 -p:PackageVersion=10.0.12 && dotnet pack src/aspnetcore/src/Antiforgery/src/Microsoft.AspNetCore.Antiforgery.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=10.0.12 -p:PackageVersion=10.0.12
+
+  Determining projects to restore...
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj::TargetFramework=net10.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/sdk/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-batch3/build/Microsoft.AspNetCore.App.Runtime.linux-x64-10.0.12/A/src/src/aspnetcore/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj::TargetFramework=net10.0]
+    0 Warning(s)
+    7 Error(s)
+
+Time Elapsed 00:00:10.98
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 1
+end 2026-10-27T10:36:52+01:00

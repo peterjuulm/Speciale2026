@@ -18,19 +18,34 @@ The rules, in the order they run (dependencies/notes/2026-10-26-nupkg-release-on
  1. Package: the .nupkg from nuget.org; the shipped file from the census
     (census.files.csv); the PDB from the package, else from the .snupkg, else
     from the NuGet symbol server by the DLL's CodeView key.
- 2. Source: the .nuspec's commit; the clone URL from the PDB's Source Link,
-    else the .nuspec's URL; a branch or tag only if the .nuspec names one.
- 3. SDK: the SDK release whose csc.dll has the PDB's compiler version, among
-    the SDKs that bundle the PDB's runtime version. Candidates are installed
-    into LAB/sdk/<version> and their csc.dll read. No match: skipped.
+ 2. Source: the .nuspec's commit; the clone URL from the PDB's Source Link
+    (version 3: the entry at that commit; a PDB can also map generated code
+    to another repository), else the .nuspec's URL; a branch or tag only if
+    the .nuspec names one. A commit not reachable at the URL: skipped.
+ 3. SDK: the SDK release whose csc.dll has the PDB's compiler version.
+    Version 3 (27 October): global.json's sdk.version first, verified in
+    that SDK's csc.dll (read); else every public SDK of the channel,
+    previews included, whose bundled runtime is not newer than the one the
+    compiler ran on (the SDK host rolls forward to the newest patch
+    installed, so the recorded runtime does not name the SDK), lowest
+    match taken (inferred). csc.dll is read from the SDK archive without
+    installing, once per SDK (sdk-csc.json). Also: a project that references the package
+    Microsoft.Net.Compilers.Toolset compiles with that package's csc; its
+    csc.dll is read the same way, and the SDK is then the lowest with the
+    runtime (it only hosts the build). The SDKs not read are listed as an
+    uncertainty.
  4. OS: Windows if the PDB's SDK-generated files have CRLF, else Linux; no
     such file embedded: Linux by default.
  5. Build folder and NuGet cache: the PDB's document paths when absolute.
  6. Line endings of the checkout: the ones whose checksums the PDB has, from
     a shallow clone at the commit; no decision possible: the OS's default.
- 7. Project: the .csproj whose assembly name is the DLL's; none or several:
-    skipped.
- 8. Command, the same for all (version 2, 26 October, after GuardClauses):
+ 7. Project: the .csproj whose assembly name is the DLL's. Version 3: of
+    several, reference-assembly projects (ref/, referencePackages/) are
+    dropped, and the one named like the package id wins; still none or
+    several: skipped.
+ 8. Command, the same for all (version 3, 27 October: AssemblyVersion and
+    FileVersion from the DLL's own attributes as well; version 2, 26 October,
+    after GuardClauses):
     dotnet build PROJECT -c Release, then dotnet pack PROJECT -c Release
     --no-build, with ContinuousIntegrationBuild when the PDB's paths start
     with /_/, the version prefix and suffix from the DLL's informational
@@ -41,7 +56,7 @@ The rules, in the order they run (dependencies/notes/2026-10-26-nupkg-release-on
 OUT gets recipe.toml (for rebuild.py), facts.txt (one line per rule, with
 its mark) and the report of the published DLL. Written 26 October 2026.
 """
-import hashlib, json, os, re, subprocess, sys, tomllib, urllib.error, urllib.request, zipfile
+import hashlib, json, os, re, shutil, subprocess, sys, tomllib, urllib.error, urllib.request, zipfile
 import xml.etree.ElementTree as ET
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -77,6 +92,52 @@ def download(url, path):
 
 def sha256(b):
     return hashlib.sha256(b).hexdigest()
+
+
+def vkey(v):
+    """Sort key for .NET versions: 9.0.0-rc.1.24431.7 sorts before 9.0.0, which sorts before 9.0.1."""
+    core, _, pre = v.partition('-')
+    return [int(x) for x in core.split('.')] + [0 if pre else 1, pre]
+
+
+CSC_TABLE = os.path.join(HERE, 'sdk-csc.json')   # SDK version -> the version string in its csc.dll, read once per SDK
+
+
+def csc_of(sdk_version, meta):
+    """The compiler version string of one SDK release, read from the csc.dll in its linux-x64 archive
+    (streamed, nothing installed), remembered in sdk-csc.json. None when the archive has no csc.dll."""
+    table = json.load(open(CSC_TABLE, encoding='utf-8')) if os.path.exists(CSC_TABLE) else {}
+    if sdk_version in table:
+        return table[sdk_version]
+    url = next((f['url'] for r in meta['releases'] for sd in r.get('sdks', []) if sd['version'] == sdk_version
+                for f in sd.get('files', []) if f.get('rid') == 'linux-x64' and f['name'].endswith('.tar.gz')), None)
+    found = None
+    if url:
+        import tarfile
+        with urllib.request.urlopen(url, timeout=600) as r, tarfile.open(fileobj=r, mode='r|gz') as tar:
+            for member in tar:
+                if member.name.endswith('/Roslyn/bincore/csc.dll'):
+                    data = tar.extractfile(member).read()
+                    v = re.search(rb'\x01\x00.(\d+\.\d+\.\d+-[0-9.]+\+[0-9a-f]{40})', data, re.S)
+                    found = v.group(1).decode() if v else 'unreadable'
+                    break
+    table[sdk_version] = found
+    json.dump(dict(sorted(table.items(), key=lambda kv: vkey(kv[0]))), open(CSC_TABLE, 'w', encoding='utf-8'), indent=1)
+    return found
+
+
+def toolset_ref(tracked, src):
+    """(file, version) of a Microsoft.Net.Compilers.Toolset reference in the project files, else None."""
+    for t in tracked:
+        if t.endswith(('.props', '.csproj', '.targets')):
+            try:
+                body = open(os.path.join(src, t), encoding='utf-8', errors='replace').read()
+            except OSError:
+                continue
+            m = re.search(r'Microsoft\.Net\.Compilers\.Toolset"[^>]*?Version="([^"]+)"', body)
+            if m:
+                return (t, m.group(1))
+    return None
 
 
 def main():
@@ -149,10 +210,13 @@ def main():
     fact('commit', commit, 'read: .nuspec repository/@commit')
     url = None
     if sl:
-        m = re.search(r'https://raw\.githubusercontent\.com/([^/]+)/([^/]+)/', sl.group(1))
+        # version 3 (27/10): the entry whose commit is the manifest's; a PDB can also map generated
+        # sources to another repository (Azure.Storage.Blobs: autorest.csharp), which is not the source
+        repos = re.findall(r'https://raw\.githubusercontent\.com/([^/]+)/([^/]+)/([0-9a-f]{40})/', sl.group(1))
+        m = next((r for r in repos if r[2] == commit), None)
         if m:
-            url = f'https://github.com/{m.group(1)}/{m.group(2)}'
-            fact('clone url', url, 'read: PDB Source Link')
+            url = f'https://github.com/{m[0]}/{m[1]}'
+            fact('clone url', url, 'read: PDB Source Link, the entry at the .nuspec commit' + (f' (other entries: {", ".join(sorted({r[0] + "/" + r[1] for r in repos if r[2] != commit}))})' if len(repos) > 1 else ''))
     if not url:
         url = re.sub(r'\.git$', '', repo_el.get('url', ''))
         fact('clone url', url, 'default: no Source Link in the PDB, the .nuspec URL')
@@ -167,6 +231,22 @@ def main():
     else:
         fact('branch or tag', 'none, the commit detached', 'read: .nuspec has no branch')
 
+    # a shallow clone at the commit, for rules 3 and 5 to 7 (no conversion of line endings)
+    src = os.path.join(lab, 'src', commit)   # one checkout per commit: packages from one repository build share it
+    if not os.path.isdir(os.path.join(src, '.git')) or subprocess.run(['git', '-C', src, 'rev-parse', '--verify', '-q', commit + '^{commit}'], capture_output=True).returncode:
+        shutil.rmtree(src, ignore_errors=True)
+        subprocess.run(['git', 'init', '-q', src], check=True)
+        subprocess.run(['git', '-C', src, 'config', 'core.autocrlf', 'false'], check=True)
+        subprocess.run(['git', '-C', src, 'remote', 'add', 'origin', url], check=True)
+        f = subprocess.run(['git', '-C', src, 'fetch', '-q', '--depth=1', 'origin', commit], capture_output=True, text=True)
+        if f.returncode:
+            shutil.rmtree(src, ignore_errors=True)
+            skip('source', f'commit {commit} is not reachable at {url} ({f.stderr.strip().splitlines()[-1] if f.stderr.strip() else "git exit " + str(f.returncode)})')
+            return finish(out, pkg, ver, None)
+        subprocess.run(['git', '-C', src, '-c', 'advice.detachedHead=false', 'checkout', '-q', commit], check=True)
+    tracked = subprocess.run(['git', '-C', src, 'ls-files', '-z'], capture_output=True, check=True).stdout.decode().split('\0')
+    tracked = [t for t in tracked if t]
+
     # 3. SDK
     rt = runtime.split('+')[0].split('-')[0]
     channel = '.'.join(rt.split('.')[:2])
@@ -180,25 +260,67 @@ def main():
         except urllib.error.HTTPError as e:
             meta = {'releases': []}
             skip('sdk', f'no release metadata for runtime channel {channel} (HTTP {e.code})')
-    cands = sorted({s['version'] for r in meta['releases'] for s in r.get('sdks', []) if s.get('runtime-version') == rt and '-' not in s['version']},
-                   key=lambda v: [int(x) for x in v.split('.')])
+    # version 3 (27/10): the compiler record's runtime is the one the compiler ran on, which the SDK
+    # host rolls forward to the newest patch installed, so it does not name the SDK's own runtime;
+    # candidates are every public SDK of the channel, previews included, with a bundled runtime not
+    # newer than the recorded one. global.json, a standard file of the source, is read first.
+    cands = sorted({s['version'] for r in meta['releases'] for s in r.get('sdks', [])
+                    if s.get('runtime-version') and vkey(s['runtime-version']) <= vkey(rt)}, key=vkey)
     sdk = None
-    for c in cands:
-        d = os.path.join(lab, 'sdk', c)
-        if not os.path.isdir(d):
-            subprocess.run([sys.executable, '-I', os.path.join(HERE, 'install-sdk.py'), c, d], check=True, stdout=subprocess.DEVNULL)
-        csc = os.path.join(d, 'sdk', c, 'Roslyn', 'bincore', 'csc.dll')
-        data = open(csc, 'rb').read()
+    pinned = None
+    gj = os.path.join(src, 'global.json')
+    if os.path.exists(gj):
+        try:
+            pinned = (json.load(open(gj, encoding='utf-8-sig')).get('sdk') or {}).get('version')
+        except (ValueError, AttributeError):
+            pinned = None
+    if pinned:
+        pc = csc_of(pinned, meta) if any(s['version'] == pinned for r in meta['releases'] for s in r.get('sdks', [])) else None
+        if pc == compiler:
+            sdk = pinned
+            fact('sdk', f'{pinned} (csc {compiler}, runtime {rt}; global.json)', 'read: global.json sdk.version, verified in that SDK\'s csc.dll')
+        else:
+            fact('global.json', f'sdk.version {pinned}', f'read, but its csc is {pc or "not a public SDK"}, not the PDB\'s; the build rolled forward or used another SDK')
+    # version 3 (27/10): a project that references Microsoft.Net.Compilers.Toolset compiles with that
+    # package's csc, whatever the SDK's; the reference is in the source (an allowed input), the package
+    # is public, and its csc.dll is read like an SDK's. The SDK is then chosen by runtime alone.
+    toolset = toolset_ref(tracked, src)
+    if toolset and '$(' in toolset[1]:
+        # Arcade's Compiler.props references the package through a property, under a condition; the
+        # rule does not evaluate MSBuild, so the reference is noted and the SDK rules decide
+        fact('compiler package', f'{toolset[0]} references Microsoft.Net.Compilers.Toolset {toolset[1]}', 'noted: an MSBuild property the rule does not evaluate; the SDK rules decide')
+        toolset = None
+    if toolset and cands and not sdk:
+        t, tv = toolset
+        tdir = os.path.join(lab, 'toolset'); os.makedirs(tdir, exist_ok=True)
+        tpkg = os.path.join(tdir, f'microsoft.net.compilers.toolset.{tv.lower()}.nupkg')
+        if not os.path.exists(tpkg) and not download(f'https://api.nuget.org/v3-flatcontainer/microsoft.net.compilers.toolset/{tv.lower()}/microsoft.net.compilers.toolset.{tv.lower()}.nupkg', tpkg):
+            skip('sdk', f'{t} pins Microsoft.Net.Compilers.Toolset {tv}, which nuget.org does not have')
+            return finish(out, pkg, ver, None)
+        try:
+            data = zipfile.ZipFile(tpkg).read('tasks/netcore/bincore/csc.dll')
+        except KeyError:
+            skip('sdk', f'Microsoft.Net.Compilers.Toolset {tv} has no tasks/netcore/bincore/csc.dll')
+            return finish(out, pkg, ver, None)
         v = re.search(rb'\x01\x00.(\d+\.\d+\.\d+-[0-9.]+\+[0-9a-f]{40})', data, re.S)
-        if v and v.group(1).decode() == compiler:
+        found = v.group(1).decode() if v else 'unreadable'
+        if found != compiler:
+            skip('sdk', f'{t} pins Microsoft.Net.Compilers.Toolset {tv} (csc {found}), not the PDB\'s {compiler}')
+            return finish(out, pkg, ver, None)
+        sdk = cands[0]
+        fact('compiler package', f'Microsoft.Net.Compilers.Toolset {tv} (csc {compiler})', f'read: {t} references it; verified in the package\'s csc.dll')
+        fact('sdk', f'{sdk} (runtime {rt}; candidates {", ".join(cands)}; the lowest is taken, not read: {", ".join(cands[1:]) or "none"})',
+             'inferred: the SDK only hosts the build; the compiler is the package\'s, so any SDK with the runtime fits, and the lowest is taken')
+    for c in ([] if sdk else cands):
+        if csc_of(c, meta) == compiler:
             sdk = c
             break
-    if sdk:
+    if sdk and not toolset and sdk != pinned:
         same = [c for c in cands if c >= sdk]   # later candidates were not read; the rule stops at the first match
         fact('sdk', f'{sdk} (csc {compiler}, runtime {rt}; candidates {", ".join(cands)}; the lowest match is taken, not read: {", ".join(same[1:]) or "none"})',
-             'read: PDB compiler record, verified in csc.dll' if len(cands) == 1 else 'inferred: the lowest SDK whose csc.dll has the compiler')
-    else:
-        skip('sdk', f'no public SDK with runtime {rt} has csc {compiler} (tried {", ".join(cands) or "none"})')
+             'read: PDB compiler record, verified in csc.dll' if len(cands) == 1 else 'inferred: the lowest SDK whose csc.dll has the compiler; the ones not read may bundle it too (an uncertainty, not a match)')
+    elif not sdk:
+        skip('sdk', f'no public SDK of channel {channel} with a runtime up to {rt} has csc {compiler} (read {len(cands)}: {", ".join(cands) or "none"})')
         return finish(out, pkg, ver, None)
 
     # 4. OS, from the SDK-generated files embedded in the PDB
@@ -211,16 +333,6 @@ def main():
         win = False
         fact('os', 'linux', 'default: no SDK-generated file embedded in the PDB')
 
-    # a shallow clone at the commit, for rules 5 to 7 (no conversion of line endings)
-    src = os.path.join(lab, 'src', commit)   # one checkout per commit: packages from one repository build share it
-    if not os.path.isdir(src):
-        subprocess.run(['git', 'init', '-q', src], check=True)
-        subprocess.run(['git', '-C', src, 'config', 'core.autocrlf', 'false'], check=True)
-        subprocess.run(['git', '-C', src, 'remote', 'add', 'origin', url], check=True)
-        subprocess.run(['git', '-C', src, 'fetch', '-q', '--depth=1', 'origin', commit], check=True)
-        subprocess.run(['git', '-C', src, '-c', 'advice.detachedHead=false', 'checkout', '-q', commit], check=True)
-    tracked = subprocess.run(['git', '-C', src, 'ls-files', '-z'], capture_output=True, check=True).stdout.decode().split('\0')
-    tracked = [t for t in tracked if t]
 
     # 5. build folder and NuGet cache
     paths = [p for p, *_ in docs]
@@ -291,10 +403,24 @@ def main():
             name = an[-1] if an else os.path.basename(t)[:-7]
             if name == asm:
                 projects.append(t)
+    chosen_by = 'read: .csproj assembly name = the DLL name'
+    if len(projects) > 1:
+        # version 3 (27/10): a reference-assembly project (ref/, or the source-build reference packages)
+        # ships in ref/, not in lib/ where the census found the DLL; among the rest, the .csproj named
+        # like the package id (a .nuspec fact) wins
+        impl = [t for t in projects if not re.search(r'(^|/)ref/|(^|/)referencePackages/', t)]
+        if len(impl) == 1:
+            chosen_by = f'inferred: of {len(projects)} .csproj with the assembly name, the one that is not a reference-assembly project'
+        elif impl:
+            named = [t for t in impl if os.path.basename(t).lower() == f'{pkg.lower()}.csproj']
+            if len(named) == 1:
+                chosen_by = f'inferred: of {len(projects)} .csproj with the assembly name, the one named like the package id'
+                impl = named
+        projects = impl if len(impl) == 1 else projects
     if len(projects) != 1:
         skip('project', f'{len(projects)} .csproj with assembly name {asm}: {projects}')
         return finish(out, pkg, ver, None)
-    fact('project', projects[0], 'read: .csproj assembly name = the DLL name')
+    fact('project', projects[0], chosen_by)
 
     # 8. command
     props = []
@@ -312,10 +438,24 @@ def main():
         fact('version', 'none passed', f'default: the informational version {info.group(1)!r} is not a semantic version (Bogus, 26/10: "35.6.1 built on ...")')
     else:
         fact('version', 'none passed', 'default: the DLL has no informational version')
+    # version 3 (27/10): the assembly version and file version are attributes of the shipped DLL, so
+    # the release states them; batch 2 reached level 4 on these two values in 15 of 20 cases
+    asmver = re.search(r'^name: \S+?, version (\d+\.\d+\.\d+\.\d+),', text, re.M)
+    filever = re.search(r'^attribute: AssemblyFileVersionAttribute\(([^)]+)\)$', text, re.M)
+    if asmver:
+        props.append(f'-p:AssemblyVersion={asmver.group(1)}')
+        fact('assembly version', asmver.group(1), 'read: the DLL\'s assembly definition')
+    else:
+        fact('assembly version', 'none passed', 'default: not read from the DLL')
+    if filever and re.match(r'^[0-9][0-9A-Za-z.+-]*$', filever.group(1)):
+        props.append(f'-p:FileVersion={filever.group(1)}')
+        fact('file version', filever.group(1), 'read: the DLL\'s AssemblyFileVersionAttribute')
+    else:
+        fact('file version', 'none passed', 'default: no AssemblyFileVersionAttribute in the DLL' if not filever else f'default: {filever.group(1)!r} is not a version')
     props.append(f'-p:PackageVersion={ver}')
     proj = projects[0].replace('\\', '/')
     build = f'dotnet build {proj} -c Release {" ".join(props)} && dotnet pack {proj} -c Release --no-build -o out-nupkg {" ".join(props)}'
-    fact('command', build, 'rule 8, version 2')
+    fact('command', build, 'rule 8, version 3')
 
     recipe = {'package': pkg, 'version': ver, 'ships': ship, 'repo': url, 'commit': commit, 'project': proj,
               'sdk': sdk, 'shell': 'bash', 'build': build, 'packages': 'out-nupkg', 'os': 'windows' if win else 'linux'}

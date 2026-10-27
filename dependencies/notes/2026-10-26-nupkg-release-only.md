@@ -281,3 +281,5 @@ and here it stays so under variation.
 - The wrapper's first version classified RBush's failed `locales` build as
   "not run"; the summary file carries the correction, the logs are as
   written.
+
+Labs under `/private/tmp` (`nupkg-pilot`, `nupkg-release-only`, `nupkg-batch2`, `nupkg-batch3`) were removed on 27 October 2026 to free 60 GB; every text output named in this note is in the data folder.

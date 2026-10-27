@@ -236,3 +236,20 @@ where the project's own version logic, not the release, decides.
 - Three runs were classified by hand after the batch, with the same code.
 - The Linux builds run on `arch`, with `/usr/bin` on PATH; the Windows runs
   on the runner image of the day. Both are recorded per build.
+
+## Corrections, 27 October
+
+- "A equals A2 for every build that packed a package" and "A equals A2 for
+  all 44 builds that packed" (Result, Interpretation 5) overstate by
+  three. `results.tsv` has 44 builds that ran and 41 with `a_eq_a2 = yes`;
+  Dapper, Humanizer.Core and Mono.TextTemplating built but packed under
+  another version or id, so `rebuild.py` found no `<id>.<version>.nupkg`
+  and compared nothing, DLLs included. Correct statement: **A = A2 for 41
+  of the 41 compared; 3 builds not compared.** The expectation above is
+  left as written.
+- The batch keyed derivations, recipes and result rows by package name;
+  a package listed in two versions would have lost one. Here only
+  Newtonsoft.Json was, both versions rule-3 skips. From 27 October the
+  scripts key by name and version (`check-batch.py` verifies it).
+
+Labs under `/private/tmp` (`nupkg-pilot`, `nupkg-release-only`, `nupkg-batch2`, `nupkg-batch3`) were removed on 27 October 2026 to free 60 GB; every text output named in this note is in the data folder.

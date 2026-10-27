@@ -1,0 +1,13 @@
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet-ghsa-97f9-wg23-8r98/'
+Traceback (most recent call last):
+  File "/home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/derive.py", line 360, in <module>
+    main()
+    ~~~~^^
+  File "/home/leos/Dev/Speciale2026/dependencies/experiments/nupkg/derive.py", line 220, in main
+    subprocess.run(['git', '-C', src, 'fetch', '-q', '--depth=1', 'origin', commit], check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', '-C', '/private/tmp/nupkg-batch3/src/25d90ed3f48854036d444541a049089ccd198707', 'fetch', '-q', '--depth=1', 'origin', '25d90ed3f48854036d444541a049089ccd198707']' returned non-zero exit status 128.

@@ -90,3 +90,5 @@ run holds the whole batch.
   the symbol-server PDBs are the ones fetched then.
 - `arch` has 46 GB free at the start; the VMR mirror alone may take ten.
   The run log records any build that fails for lack of space.
+
+Labs under `/private/tmp` (`nupkg-pilot`, `nupkg-release-only`, `nupkg-batch2`, `nupkg-batch3`) were removed on 27 October 2026 to free 60 GB; every text output named in this note is in the data folder.
