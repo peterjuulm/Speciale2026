@@ -282,12 +282,21 @@ def main():
             # Libs.Sfx/Libs.Oob exist from .NET 7, .NET 5 and 6 have Libs.Ref/Libs.Src/Libs.Packages instead.
             # The README's /p:BuildNative=false is not consumed by any project file at 9.0.0 (git grep "(BuildNative)").
             subsets_props = sh(['git', '-C', mirror_of(url, lab), 'show', f'{commit}:eng/Subsets.props']).stdout
-            subset = 'libs.sfx+libs.oob' if 'SubsetName Include="Libs.Sfx"' in subsets_props else 'libs.ref+libs.src+libs.packages'
+            # .NET 5 maps libs.packages to libraries-packages.proj (pkgproj); .NET 6 keeps the name without a mapping
+            # (packing moved into the source projects); neither has a tools subset, and an unknown subset fails
+            # eng/SubsetValidation.targets (second opinion 27/10 23:10, checked in the files)
+            if 'SubsetName Include="Libs.Sfx"' in subsets_props:
+                subset = 'libs.sfx+libs.oob'
+            elif "'+libs.packages+'" in subsets_props:
+                subset = 'libs.ref+libs.src+libs.packages'
+            else:
+                subset = 'libs.ref+libs.src'
+            tools = 'tools+' if 'SubsetName Include="Tools' in subsets_props else ''
             # -allconfigurations: eng/packaging.targets generates the out-of-band packages only with BuildAllConfigurations
             # (.NET 6 to 9; 27/10 22:49, build 10 packed nothing), and the official build packs them in its
             # "Libraries_AllConfigurations" leg, "-s tools+libs -allConfigurations" on windows_x64 (eng/pipelines/runtime-official.yml)
-            build = f'{cd}./build.sh tools+{subset} -allconfigurations -c Release -ci -nobl -pack {props}'
-            facts.append(f'version 3, R3c: subset tools+{subset} -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]')
+            build = f'{cd}./build.sh {tools}{subset} -allconfigurations -c Release -ci -nobl -pack {props}'
+            facts.append(f'version 3, R3c: subset {tools}{subset} -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]')
         elif g['kind'] == 'runtime':
             build = f'{cd}./build.sh libs -c Release -ci -nobl -pack {props}'
         elif g['kind'] == 'roslyn':

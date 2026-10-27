@@ -390,3 +390,20 @@ effect of build 5 applies to every package that embeds a generated
 file. The derivation also no longer picks `src/libraries/shims/stubs/*.csproj`
 as a package's project (rule 7 took the shorter path; four recipes
 named a stub). Recipes regenerated.
+
+Amended 23:15 after a second opinion, checked in the files, before any
+version-3 run: .NET 5 and 6 have no `tools` subset (an unknown subset
+fails `eng/SubsetValidation.targets`), so `tools+` is passed only where
+`eng/Subsets.props` defines it; .NET 6 keeps the name `libs.packages`
+without a project mapping (packing moved into the source projects), so
+6.0.0 gets `libs.ref+libs.src` and 5.0.0 `libs.ref+libs.src+libs.packages`.
+Two results to expect rather than fix: (1) in .NET 8 servicing
+(bf5e279, 81cabf2) `eng/packaging.targets` withholds
+`GeneratePackageOnBuild` unless the project sets it, and at these
+commits the four projects in scope do not (Microsoft.Bcl.TimeProvider
+at 81cabf2 even sets it to `false` with `ServicingVersion=1`), so the
+commit's own build cannot produce the shipped package: the package
+authoring that produced it is not at the commit the DLL names.
+(2) Some .NET 5 `pkgproj` files harvest assets from an earlier
+package instead of building them, so a match there shows reuse, not a
+rebuild. Both go in the result note if they occur.

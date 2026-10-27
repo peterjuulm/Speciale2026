@@ -6,7 +6,7 @@ inner = ""
 kind = "runtime"
 official_build_id = "20211022.10"
 shell = "bash"
-build = '''./build.sh tools+libs.ref+libs.src+libs.packages -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20211022.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+build = '''./build.sh libs.ref+libs.src -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20211022.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]

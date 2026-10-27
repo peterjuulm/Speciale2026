@@ -7,8 +7,8 @@ product System.IO.Hashing 7.0.0: ships lib/net7.0/System.IO.Hashing.dll; project
 official build id: 20221018.5  [rule R4]
 release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
 version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
-version 3, R3c: subset tools+libs.sfx+libs.oob -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]
-command: ./build.sh tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20221018.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false  [rule R3]
+version 3, R3c: subset libs.sfx+libs.oob -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]
+command: ./build.sh libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20221018.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false  [rule R3]
 sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
 sdk major from global.json: 7
 env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK 7.x on Arch's ICU 78 does not start; nothing the compiler emits depends on it)
