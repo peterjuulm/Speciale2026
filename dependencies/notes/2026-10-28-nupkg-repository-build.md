@@ -124,8 +124,8 @@ mean (`[I]`).
 
 ### 1. The VMR identity attributes (version 1 to 2)
 
-`[V]` Under version 1 every package from a VMR inner build came out at
-level 4 (aspnetcore 10, runtime 34, Bcl.Cryptography 1, efcore 1 of 9)
+`[V]` Under version 1 the packages from the VMR inner builds came out at
+level 4 with one exception: 46 of 54 (aspnetcore 10, runtime 34, Bcl.Cryptography 1, efcore 1 of 9; the other 8 efcore packages were level 3)
 with `#Blob` and `#~` differing. The attributes differ: the shipped DLLs
 say `RepositoryUrl=https://github.com/dotnet/dotnet` and carry
 `OriginalRepoCommitHash`; ours said `dotnet/aspnetcore`, `dotnet/runtime`
@@ -224,7 +224,9 @@ holds a file and a subfolder whose names share a prefix. Every token
 that points at a shifted row changes, so hundreds of method bodies
 differ although no instruction does. The compiler is deterministic; the
 list it was given is an environment-dependent input that no standard
-and no build log records. To confirm: build once with the Compile items
+names, and the publisher's ordered compiler inputs are not available to
+read (28/10 08:10: softened after a second opinion; whether a build log
+records the order was not checked). To confirm: build once with the Compile items
 sorted, or walk the two orders with MSBuild's `FileMatcher`.
 
 `[V]` (added 28 October 07:35) The Linux half of the walk: `globorder/globorder.proj`
@@ -332,7 +334,9 @@ optimization data to show as level 4 with equal IL; it did not.
    predicted (generated assembly-info files) was not read; the newline
    carriers found are in reading 2.
 3. Held: no row differs in a version attribute; the file versions
-   matched wherever compared, so the build-id decoding (R4) is right.
+   matched wherever compared, so the build-id decoding (R4) is consistent
+   with the shipped file versions (the decoding admits two ids per
+   package; consistency, not proof: softened 28/10 08:10).
 4. Held, and it is the cause of readings 1 and 5.
 5. Not held: Roslyn's eight packages are level 4 for reading 3, not the
    compiler.

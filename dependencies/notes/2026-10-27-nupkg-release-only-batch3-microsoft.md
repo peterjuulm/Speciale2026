@@ -168,7 +168,9 @@ Against the expectation:
 
 1. **Failed in part.** 103 derived, not 120: 25 packages were compiled by
    SDK builds Microsoft never published. The release names a compiler the
-   public cannot obtain; no rule can fix that.
+   public cannot obtain as far as this search found (the public SDKs and
+   their compiler records were searched; the Microsoft.Net.Compilers.Toolset
+   packages were not: softened 28/10 08:10); no rule in this method fixes that.
 2. **Held.** Every VMR and runtime package that built at all built on
    Arcade's terms, and 37 did not build; a single project in those
    repositories cannot be built without the repository's bootstrap.
