@@ -1,0 +1,27 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-5535e31"
+repo = "https://github.com/dotnet/runtime"
+commit = "5535e31a712343a63f5d7d796cd874e563e5ac14"
+inner = ""
+kind = "runtime"
+official_build_id = "20231031.3"
+shell = "bash"
+build = '''./build.sh tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20231031.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Bcl.AsyncInterfaces"
+version = "8.0.0"
+ships = "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll"
+project = "src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj"
+file_version = "8.0.23.53103"
+
+[[products]]
+package = "System.Reflection.MetadataLoadContext"
+version = "8.0.0"
+ships = "lib/net8.0/System.Reflection.MetadataLoadContext.dll"
+project = "src/libraries/System.Reflection.MetadataLoadContext/src/System.Reflection.MetadataLoadContext.csproj"
+file_version = "8.0.23.53103"
