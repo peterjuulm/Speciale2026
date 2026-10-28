@@ -104,7 +104,14 @@ Each entry: what it is, what it did to the bytes, where it is read
    packages that left the feeds (symreader, Razor 6.0.24), the signing
    keys, optimization data. These are the hard floor of third-party
    verification, and a finding in themselves.
-8. **Nondeterminism proper.** Only the IdentityModel clock. Everything
+8. **The runtime under the compiler.** The compiler records the version
+   of the runtime it ran on in the PDB's compiler record, and the PDB
+   feeds the identity hash. Where the repository pins its SDK the value
+   is fixed; where the build uses the desktop engine (msbuild) it is the
+   host's .NET Framework patch level (4.8.9315 on the official agent,
+   4.8.9363 on the runner: Microsoft.Build 17.11.48, read 08:10). Named
+   nowhere.
+9. **Nondeterminism proper.** Only the IdentityModel clock. Everything
    else in the catalogue is an uncontrolled input, in Lamb and
    Zacchiroli's sense, not randomness.
 
@@ -135,8 +142,9 @@ the publisher knew. That is the red thread in one table.
 - Roslyn's one remaining difference named a new catalogue entry (the
   repack route of the version string); version 5 tests it.
 - Four packages stay at level 3 on Windows (Microsoft.Build 17.11.48,
-  CodeDom 6.0.0, IO.Hashing 7.0.0, IO.Ports 5.0.0): the next thing to
-  read is their PDBs, since the identity hash covers the PDB.
+  CodeDom 6.0.0, IO.Hashing 7.0.0, IO.Ports 5.0.0). Microsoft.Build's
+  PDB was read at 08:10: one field, the runtime under the compiler
+  (entry 8 above). The other three ship no PDB; not read.
 
 ## 6. What to present, and where
 
@@ -207,7 +215,8 @@ from forensic traces in the release.
 1. One denominator figure with reconciled counts (an hour, and the first
    thing a reader checks).
 2. The Windows note (this morning's data) and Roslyn version 5 in it.
-3. The PDBs of the four Windows level-3 rows, Microsoft.Build first.
+3. The PDBs of the three remaining Windows level-3 rows (no symbols
+   package on nuget.org; Microsoft's symbol server is the next place).
 4. The three unread Identity.Web level-4 rows of batch 3.
 5. reprotest beyond two runs, with `fileordering`, on the third-party
    level-1 and 2 builds (five minutes each).

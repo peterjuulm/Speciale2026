@@ -149,12 +149,26 @@ level 2 (result below).
 timestamp, PDB guid and checksum; Microsoft.Build:
 `arch/msbuild-02bf662/…/level/`).
 
-`[I]` Not read. Candidates: the PDB's contents (compiler record,
-embedded sources, source link) for the older SDKs (.NET 5, 6, 7) and
-msbuild's own versioning; a PDB comparison is the test. Reading 6 of the
-Linux note ("optimization data leaves nothing in the bytes") rests on
-Microsoft.Build staying level 3 on both hosts and is weakened until
-that PDB is read.
+`[V]` (08:10) Microsoft.Build ships its portable PDB in the package
+(`lib/net8.0/Microsoft.Build.pdb`, both sides). `pdbdump.cs` on the two
+(`arch/msbuild-02bf662/Microsoft.Build-17.11.48/pdb-*.txt`): 585
+documents with the same hashes, the same source link, the same metadata
+references (9452 bytes, equal), and one differing field in the compiler
+record: `runtime-version 4.8.9315.0` shipped, `4.8.9363.0` ours. The
+PDB id differs, and with it the CodeView entry, the MVID and the
+timestamp of the DLL.
+
+`[I]` msbuild builds with the Visual Studio engine, so its compiler runs
+on the host's .NET Framework, and the compiler writes that runtime's
+version into the PDB; the identity hash covers the PDB. The official
+agent had .NET Framework 4.8.9315, the runner image 4.8.9363. One more
+input that no release record names: the patch level of the runtime
+under the compiler, which the repository-pinned SDK fixes for the
+level-2 rows (their compiler ran on the SDK's own runtime) and the
+desktop engine does not. Reading 6 of the Linux note stands: with the
+PDB field as the only difference, optimization data left nothing in the
+bytes. CodeDom 6.0.0, IO.Hashing 7.0.0 and IO.Ports 5.0.0 ship no PDB in
+the package and nuget.org has no symbols package for them; not read.
 
 ### 5. What the Windows builds themselves said
 
