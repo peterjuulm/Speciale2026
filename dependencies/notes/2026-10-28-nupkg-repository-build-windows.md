@@ -189,6 +189,12 @@ the package and nuget.org has no symbols package for them; not read.
   Linux; the package was produced anyway (level 3).
 - `[V]` symreader and aspnetcore 6.0.24 fail at restore on Windows as on
   Linux: NU1603 for Arcade tool packages that have left the feeds.
+- `[V]` The runtime 9.0.0 job (runtime-9d5a6a9) stayed in its build step
+  for two hours where 9.0.11 took 17 minutes; cancelled at 09:15, its
+  log (879 lines, uploaded on cancel) ends after the IL build of
+  System.Private.CoreLib with no error. Not read further; the recipe was
+  started again at 09:16 (its rows and run id are in `results.tsv` and
+  `run.log` once collected).
 - `[V]` System.IO.Ports 5.0.0 builds on Windows (the .NET 5 SDK runs
   there without OpenSSL 1.1) and packs; level 3.
 
