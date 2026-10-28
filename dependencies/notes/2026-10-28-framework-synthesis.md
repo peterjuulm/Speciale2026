@@ -1,0 +1,222 @@
+# The nupkg experiment in one frame: question, layers, findings, gaps
+
+Written 28 October 2026, 08:05 to 08:45, for the working session with
+Peter the same day. Basis: every note under `dependencies/notes/` from
+21 to 28 October, the four `results.tsv` of the repository-build method,
+the Windows runner run of this morning (its own note:
+[2026-10-28-nupkg-repository-build-windows.md](2026-10-28-nupkg-repository-build-windows.md)),
+and two independent reads of the same material by other agents whose
+points were checked against the files before they were taken in. This
+note proposes; nothing in it is decided.
+
+## 1. The one question
+
+> Given a shipped binary and the source commit it names, what else does
+> a third party need to know to produce the same bytes, and does any
+> record of the release name it?
+
+Everything that was run in the past week is one attempt at answering
+that question for one real product's dependency closure. The standards
+in the domain (EN 17255, EN 14181, CEN/TS 17198) say "same source, same
+build" and stop there. The experiment turns the unnamed remainder into a
+list, with a measured size for each entry.
+
+## 2. Three layers, no special cases
+
+Every batch, method version, host and result lands in one of three
+layers. The layers are the structure for the thesis chapter.
+
+**Layer A, the observation.** One package-version pair, the one DLL of it
+that Phoenix ships, rebuilt once from the declared commit and compared
+with the DLL on nuget.org. The outcome is one of: *not derivable* (a rule
+could not name the inputs), *did not build*, *built but no package*, or a
+level 1 to 4. The levels stay as they are, but get names:
+
+| level | name | what differs |
+|---|---|---|
+| 1 | identical | nothing |
+| 2 | signed only | the Authenticode block, the strong-name slot, and what they move (checksum, size, hash) |
+| 3 | same code | only the build identity: MVID, timestamp, PDB id and checksum |
+| 4 | different code | something in IL, metadata tables, strings, blobs or resources; the note says which |
+
+For a headline the four collapse to three: reproduced (1 and 2), same
+code (3), differs (4). Level 2 is the practical ceiling for a signed
+vendor ecosystem: the signature needs the vendor's key, nothing else.
+
+**Layer B, what the rebuilder was allowed to read.** This is the axis the
+two "methods" and the versions sit on. It is a ladder, and each step up
+reads one more thing the publisher knew:
+
+| rung | reads | our name until today |
+|---|---|---|
+| R | the release: nuspec, the DLL's attributes and PDB, Source Link, the source tree at the commit | release-only method |
+| R+S | plus the repository's own build script at the commit | repository-build method, version 1 |
+| R+S+P | plus the official pipeline definition (subset names, switches, which properties the official job passes) | repository-build versions 3 and 5 |
+| R+S+P+H | plus the official host (Windows) | the Windows run |
+
+Every version of either method is a rung, or a rule within a rung. The
+"detours" of the week are this ladder being climbed one rung at a time,
+each time because the rung below left a difference that only the next
+rung could explain. Written this way the week reads as one procedure.
+
+**Layer C, the input catalogue.** Every residual difference, and every
+failure to build, is attributed to one named input. This layer is the
+contribution: the list of inputs that "same source, same build" does not
+name, with the bytes each one moved.
+
+## 3. The input catalogue as it stands tonight
+
+Each entry: what it is, what it did to the bytes, where it is read
+(`[V]` in the notes), and whether any release record names it.
+
+1. **The version string.** The dominant level-4 cause under rung R, in
+   both third-party and Microsoft packages: assembly-info written by a
+   script, MinVer, a date suffix, Arcade's dev-build `42.42.42.42424`,
+   a clock in the version (IdentityModel), the build-year copyright, and
+   today Roslyn's informational version that the official build leaves
+   prerelease while the package is repacked to 5.0.0. Named nowhere; the
+   version is a self-declared string. This is the entry that speaks
+   directly to EN 17255's version requirement.
+2. **The checkout's text conversion.** `core.autocrlf` on the official
+   agent turns LF sources into CRLF; the compiler embeds some of them
+   (multi-line descriptions, Razor literals, an embedded script). Named
+   nowhere; read from the shipped bytes.
+3. **The build host's OS.** Two effects, both read in the bytes and both
+   closed by the Windows run: build-generated files get the platform
+   newline (46 rows, one cause, down to the `FieldRVA` addresses the
+   longer resource shifts), and MSBuild's glob hands the compiler the
+   source files in the OS's walk order (9 rows: Roslyn, EFCore). Named
+   nowhere. A third effect sits under it: on Linux the build identity
+   (MVID, PDB id) never matched, on Windows it did, for the same code.
+4. **Companion toolchains the repository build pulls in by itself.**
+   Node (aspnetcore 8.0 wants Node 18), the Razor compiler (the VMR builds
+   with its own, standalone with the pinned one: Identity.UI), clang
+   (clang 23 rejects runtime shims below 9.0.11). Named only in the
+   repository's own pins, never in the release.
+5. **Orchestration above the repository.** The VMR passes the inner
+   repository two identity properties it cannot know (18 rows moved from
+   4 to 3 when passed). The release names the VMR commit, not what the
+   VMR passed.
+6. **The set of source roots.** One path-map index (`/_3/` against `/_1/`)
+   in Build.Framework on Linux; gone on Windows. Named nowhere.
+7. **Inputs the public cannot obtain.** Compilers from internal SDK
+   builds (25 packages under rung R), internal feeds, Arcade tool
+   packages that left the feeds (symreader, Razor 6.0.24), the signing
+   keys, optimization data. These are the hard floor of third-party
+   verification, and a finding in themselves.
+8. **Nondeterminism proper.** Only the IdentityModel clock. Everything
+   else in the catalogue is an uncontrolled input, in Lamb and
+   Zacchiroli's sense, not randomness.
+
+## 4. What the week's numbers say, by rung
+
+| rung | packages tried | reproduced (1 or 2) | same code (3) | differs (4) | no package or not built | not derivable |
+|---|---|---|---|---|---|---|
+| R, third-party (batch 2, version 3) | 59 | 17 | 9 | 16 | 12 | 5 |
+| R, Microsoft (batch 3, version 3) | 139 | 5 | 0 | 39 | 59 | 36 |
+| R+S / R+S+P, Linux (repository build, best of versions 1 to 4) | 99 | 0 | 35 | 57 | 4 | 3 |
+| R+S+P+H, windows-2022 (16 standalone repositories) | see the Windows note | | | | | |
+
+`[V]` the first three rows from the batch notes' result sections; the
+Windows row from `dependencies/data/2026-10-28-nupkg-repository-build-windows/results.tsv`.
+
+Read down the table: the same packages move from "differs" to "same
+code" to "reproduced" as the rebuilder is allowed to read more of what
+the publisher knew. That is the red thread in one table.
+
+## 5. What the Windows run settled this morning
+
+- The Linux level-3 rows were a host effect: the same recipes on
+  windows-2022 give identical MVID, timestamp and PDB identity. The
+  plan's prediction of 07:40 (that they would stay at 3) was wrong and
+  is recorded as such in the Windows note.
+- All resource rows (reading 2) and the glob-order rows (reading 3)
+  closed as predicted: Roslyn's IL and table order match on Windows.
+- Roslyn's one remaining difference named a new catalogue entry (the
+  repack route of the version string); version 5 tests it.
+- Four packages stay at level 3 on Windows (Microsoft.Build 17.11.48,
+  CodeDom 6.0.0, IO.Hashing 7.0.0, IO.Ports 5.0.0): the next thing to
+  read is their PDBs, since the identity hash covers the PDB.
+
+## 6. What to present, and where
+
+Main text, one section each: the question and the ladder (sections 1
+and 2 here); the catalogue (section 3) with one paragraph per entry and
+the bytes it moved; the table of section 4; the host comparison as a
+controlled one-factor experiment (same recipes, Linux against Windows,
+per package); repeatability (A equals A2 everywhere except the clock)
+in one paragraph; the floor of unobtainable inputs as the limit of what
+a third party can ever verify.
+
+Appendix or tables: the rules of both rungs in full; the OfficialBuildId
+decoding; the level classifier and its one correction; the script
+faults; the toolchain findings (clang, Node, OpenSSL 1.1, NETSDK1188,
+Arcade's `--ci` exit code); mirrors, disk guards, long paths; the
+`FieldRVA` and source-root mechanics.
+
+## 7. Threats and honest caveats to write down
+
+- **Injected attributes.** OfficialBuildId, RepositoryUrl, the VMR commit
+  and the assembly version are read from the shipped DLL and passed in.
+  A match on those fields proves nothing; the evidence is IL, tables and
+  resources, and the text must say so.
+- **No held-out set.** Rules were refined on the same packages they were
+  then measured on. Each version is written before its run and earlier
+  rows are kept, which makes the iteration auditable, not blind. Say it.
+- **Case study, not a sample.** The population is one product's
+  dependency closure; Benedetti's random samples generalise, ours
+  describes.
+- **Counts to reconcile before writing.** The VMR package count appears
+  as 62, 56 and 54 across notes; the plan says "75 of 139 did not
+  build" where the batch note gives 55 plus 36 skipped; the runtime
+  packs are in the 99 denominator although rule R8 puts them out of
+  scope. One denominator figure (census, declared, derived, built,
+  level) fixes all of these.
+- **The CI files became an input.** The plan said pipeline definitions
+  are cited, not executed; versions 3 and 5 take their switches from
+  them. That is rung P, and it should be named as a rung rather than
+  denied.
+- **Glob order within Linux.** The Windows run shows the shipped order is
+  the Windows walk; whether the Linux walk is stable across filesystems
+  was not tested (reprotest's `fileordering` axis).
+
+## 8. Against the neighbours
+
+Benedetti et al. keep one default build command per ecosystem, one
+outcome, cumulative intervention categories (as is, with configuration,
+with patched tooling, external causes) and one figure per research
+question. The ladder of section 2 is their cumulative categories with
+the categories named by what is read, and the table of section 4 is
+their one figure. They explicitly do not compare against the uploaded
+artifact, because the commit is hard to identify and environment
+differences are orthogonal to their question; in .NET the nuspec commit
+and Source Link remove the first reason, and the second reason is our
+object of study. That paragraph is the positioning.
+
+Lamb and Zacchiroli's reader expects, up front: their definition (same
+source and designated build dependencies give bit-identical output
+"regardless of the environment"); what artifact, source, build
+dependencies and environment mean here; that levels 2 and 3 are not
+reproducible in their sense; and that nearly everything found is an
+uncontrolled input, not nondeterminism. Their `.buildinfo` is the record
+NuGet lacks, and rung R is a reconstruction of an implicit buildinfo
+from forensic traces in the release.
+
+## 9. What is left, by value per hour
+
+1. One denominator figure with reconciled counts (an hour, and the first
+   thing a reader checks).
+2. The Windows note (this morning's data) and Roslyn version 5 in it.
+3. The PDBs of the four Windows level-3 rows, Microsoft.Build first.
+4. The three unread Identity.Web level-4 rows of batch 3.
+5. reprotest beyond two runs, with `fileordering`, on the third-party
+   level-1 and 2 builds (five minutes each).
+6. One A2 build of a small Arcade repository.
+7. A VMR inner build on Windows (efcore) if a larger runner is ever
+   available; otherwise the 54 VMR packages are stated as Linux-only.
+
+Explicitly out of scope: runtime packs (full product build), SkiaSharp
+and HarfBuzz (Apple workloads), .NET Framework compilers (no public
+SDK), the packages with no declared source (the count is the finding),
+a full VMR build (resources), the sorted-Compile test (superseded by the
+Windows run), and the rest of the `.nupkg` (the unit is the DLL).
