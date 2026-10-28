@@ -129,9 +129,13 @@ Each entry: what it is, what it did to the bytes, where it is read
 batch 2 v3 and batch 3; repository-build v1 to v4; Windows), keyed by
 package and version. The census (`2026-10-13-dependency-census/mac/census.csv`)
 has 341 package-versions; 198 entered a batch (59 third-party,
-139 Microsoft) and 143 did not, mostly packages the census
-lists without a usable source declaration (breakdown in the census
-note). The "best rung" row counts each package once at its best level;
+139 Microsoft) and 143 did not, by the census's own classes: 29 ship no
+files (meta or build-time packages), 8 native code only, 9 name no
+repository, 13 a repository but no commit, 45 no PDB at all, 36 a PDB
+that is neither in the package nor was found, 2 a PDB without a
+compiler record, 1 runtime pack (`census.md`, classes N0 to C2c). Those
+are the first finding of the chapter: for 143 of 341 the release names
+nothing a rebuild could start from. The "best rung" row counts each package once at its best level;
 of the 41 reproduced (level 1 or 2), 22 were reproduced
 at rung R and 19 only on the official host. The Windows row grows
 by the runtime 9.0.0 job and Roslyn version 5 when they land; the
