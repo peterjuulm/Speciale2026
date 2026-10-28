@@ -45,7 +45,10 @@ def main():
         level = 1
     elif set(diff) <= SIGN:
         level = 2
-    elif not any(k in diff or k.startswith('resource') for k in CODE) and not any(k.startswith('resource') for k in diff):
+    elif not any(k in diff for k in CODE) and not any(k == 'managed resources' or k.startswith('resource') for k in diff):
+        # 'managed resources' is the report's label for the resource blob; until 28 October 01:30 only labels starting
+        # with 'resource' were checked, so a differing resource blob was let through as level 3 (found on
+        # System.Diagnostics.EventLog 9.0.11, repository build version 3); every stored row was re-derived from its reports
         level = 3
     else:
         level = 4
