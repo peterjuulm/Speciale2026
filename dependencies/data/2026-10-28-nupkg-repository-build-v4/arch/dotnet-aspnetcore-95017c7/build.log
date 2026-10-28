@@ -1,0 +1,1132 @@
+start 2026-10-28T02:36:22+01:00
+repository build dotnet-aspnetcore-95017c7 in /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src
+kernel Linux 7.2.11-arch1-1 x86_64
+--- environment
+DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_INSTALL_DIR=/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+DOTNET_NOLOGO=1
+GIT_HTTP_LOW_SPEED_LIMIT=1000
+GIT_HTTP_LOW_SPEED_TIME=120
+HOME=/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/home
+LANG=C.UTF-8
+NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/nuget/
+NuGetAudit=false
+PATH=/usr/bin
+--- clone 2026-10-28T02:36:22+01:00
+$ git init -q /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src remote add origin https://github.com/dotnet/dotnet
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src config core.autocrlf false
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src config core.eol lf
+$ git -C /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_dotnet.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src fetch -q --tags /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_dotnet.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src fetch -q /private/tmp/nupkg-repobuild/mirrors/https_github.com_dotnet_dotnet.git 95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src -c advice.detachedHead=false checkout -q 95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src rev-parse HEAD
+95017c711e6afc1085133d440e42b4bd78155701
+--- submodules 2026-10-28T02:37:38+01:00
+$ git -C /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src submodule update --init --recursive --depth 1
+--- build 2026-10-28T02:37:38+01:00
+$ bash -c cd src/aspnetcore && L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; s ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj" /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=cb21a42eafcd44cc35fad48d99dc82ff7512ce2f || exit 1; ok=0; for p in "$PWD/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj" "$PWD/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj" "$PWD/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj" "$PWD/src/Middleware/Diagnostics.EntityFrameworkCore/src/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.csproj" "$PWD/src/Identity/EntityFrameworkCore/src/Microsoft.AspNetCore.Identity.EntityFrameworkCore.csproj" "$PWD/src/Identity/UI/src/Microsoft.AspNetCore.Identity.UI.csproj" "$PWD/src/Middleware/Spa/SpaProxy/src/Microsoft.AspNetCore.SpaProxy.csproj" "$PWD/src/FileProviders/Embedded/src/Microsoft.Extensions.FileProviders.Embedded.csproj" "$PWD/src/Identity/Extensions.Core/src/Microsoft.Extensions.Identity.Core.csproj" "$PWD/src/Identity/Extensions.Stores/src/Microsoft.Extensions.Identity.Stores.csproj"; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=cb21a42eafcd44cc35fad48d99dc82ff7512ce2f || ok=1; done; exit $ok
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+Downloading 'https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh'
+  Attempting to install 'sdk v10.0.111' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.111/dotnet-sdk-10.0.111-linux-x64.tar.gz
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.111/dotnet-sdk-10.0.111-linux-x64.tar.gz size is 239732427 bytes.
+dotnet-install: Extracting archive from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.111/dotnet-sdk-10.0.111-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 239732427 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 10.0.111
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/nuget/microsoft.dotnet.arcade.sdk/10.0.0-beta.26412.103/tools/Tools.proj (in 2.61 sec).
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/eng/tools/GenerateFiles/GenerateFiles.csproj (in 787 ms).
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: Attempting to download using primary link https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.12-servicing.26412.103/dotnet-runtime-10.0.12-servicing.26412.103-linux-x64.tar.gz
+dotnet-install: The resource at primary link 'https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.12-servicing.26412.103/dotnet-runtime-10.0.12-servicing.26412.103-linux-x64.tar.gz' is not available.
+dotnet-install: Attempting to download using primary link https://ci.dot.net/public/Runtime/10.0.12-servicing.26412.103/dotnet-runtime-10.0.12-linux-x64.tar.gz
+dotnet-install: Remote file https://ci.dot.net/public/Runtime/10.0.12-servicing.26412.103/dotnet-runtime-10.0.12-linux-x64.tar.gz size is 36639056 bytes.
+dotnet-install: Extracting archive from https://ci.dot.net/public/Runtime/10.0.12-servicing.26412.103/dotnet-runtime-10.0.12-linux-x64.tar.gz
+dotnet-install: Downloaded file size is 36639056 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Installed version is 10.0.12
+dotnet-install: Adding to current process PATH: `/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet`. Note: This change will be visible only when sourcing script.
+dotnet-install: Note that the script does not resolve dependencies during installation.
+dotnet-install: To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the "Dependencies" section.
+dotnet-install: Installation finished successfully.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/eng/tools/RepoTasks/RepoTasks.csproj (in 3.66 sec).
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/Kestrel/Transport.Quic/src/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/Authorization/Policy/src/Microsoft.AspNetCore.Authorization.Policy.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Authentication.Abstractions/src/Microsoft.AspNetCore.Authentication.Abstractions.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/Kestrel/Transport.Sockets/src/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/Kestrel/Core/src/Microsoft.AspNetCore.Server.Kestrel.Core.csproj (in 4.06 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/CookiePolicy/src/Microsoft.AspNetCore.CookiePolicy.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/Authentication/Cookies/src/Microsoft.AspNetCore.Authentication.Cookies.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/Kestrel/Transport.NamedPipes/src/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/SignalR/server/Core/src/Microsoft.AspNetCore.SignalR.Core.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Razor/Razor/src/Microsoft.AspNetCore.Razor.csproj (in 26 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/SignalR/common/Http.Connections/src/Microsoft.AspNetCore.Http.Connections.csproj (in 4.07 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Components/Forms/src/Microsoft.AspNetCore.Components.Forms.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Components/Components/src/Microsoft.AspNetCore.Components.csproj (in 20 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Components/Authorization/src/Microsoft.AspNetCore.Components.Authorization.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/Authentication/BearerToken/src/Microsoft.AspNetCore.Authentication.BearerToken.csproj (in 61 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Antiforgery/src/Microsoft.AspNetCore.Antiforgery.csproj (in 51 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/Kestrel/Kestrel/src/Microsoft.AspNetCore.Server.Kestrel.csproj (in 4.34 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Components/Endpoints/src/Microsoft.AspNetCore.Components.Endpoints.csproj (in 156 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.Abstractions/src/Microsoft.AspNetCore.Mvc.Abstractions.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/WebSockets/src/Microsoft.AspNetCore.WebSockets.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/StaticFiles/src/Microsoft.AspNetCore.StaticFiles.csproj (in 17 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/SignalR/common/Protocols.Json/src/Microsoft.AspNetCore.SignalR.Protocols.Json.csproj (in 4.52 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/SignalR/common/SignalR.Common/src/Microsoft.AspNetCore.SignalR.Common.csproj (in 4.52 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/Connections.Abstractions/src/Microsoft.AspNetCore.Connections.Abstractions.csproj (in 4.52 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/SignalR/common/Http.Connections.Common/src/Microsoft.AspNetCore.Http.Connections.Common.csproj (in 4.52 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Razor/Razor.Runtime/src/Microsoft.AspNetCore.Razor.Runtime.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Rewrite/src/Microsoft.AspNetCore.Rewrite.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/ResponseCompression/src/Microsoft.AspNetCore.ResponseCompression.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/ResponseCaching.Abstractions/src/Microsoft.AspNetCore.ResponseCaching.Abstractions.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/RequestDecompression/src/Microsoft.AspNetCore.RequestDecompression.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/Authorization/Core/src/Microsoft.AspNetCore.Authorization.csproj (in 35 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Identity/Extensions.Core/src/Microsoft.Extensions.Identity.Core.csproj (in 377 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/Authentication/OAuth/src/Microsoft.AspNetCore.Authentication.OAuth.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/Authentication/Core/src/Microsoft.AspNetCore.Authentication.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Localization/src/Microsoft.AspNetCore.Localization.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Localization.Routing/src/Microsoft.AspNetCore.Localization.Routing.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/HttpsPolicy/src/Microsoft.AspNetCore.HttpsPolicy.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/HttpOverrides/src/Microsoft.AspNetCore.HttpOverrides.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/HttpLogging/src/Microsoft.AspNetCore.HttpLogging.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/HostFiltering/src/Microsoft.AspNetCore.HostFiltering.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/HealthChecks/src/Microsoft.AspNetCore.Diagnostics.HealthChecks.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Diagnostics/src/Microsoft.AspNetCore.Diagnostics.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Diagnostics.Abstractions/src/Microsoft.AspNetCore.Diagnostics.Abstractions.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/CORS/src/Microsoft.AspNetCore.Cors.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Localization/Localization/src/Microsoft.Extensions.Localization.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Identity/Core/src/Microsoft.AspNetCore.Identity.csproj (in 533 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/ResponseCaching/src/Microsoft.AspNetCore.ResponseCaching.csproj (in 339 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/OutputCaching/src/Microsoft.AspNetCore.OutputCaching.csproj (in 217 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Session/src/Microsoft.AspNetCore.Session.csproj (in 381 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.Formatters.Json/src/Microsoft.AspNetCore.Mvc.Formatters.Json.csproj (in 650 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.Core/src/Microsoft.AspNetCore.Mvc.Core.csproj (in 562 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.DataAnnotations/src/Microsoft.AspNetCore.Mvc.DataAnnotations.csproj (in 649 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.Cors/src/Microsoft.AspNetCore.Mvc.Cors.csproj (in 641 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/JSInterop/Microsoft.JSInterop/src/Microsoft.JSInterop.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Localization/Abstractions/src/Microsoft.Extensions.Localization.Abstractions.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.ApiExplorer/src/Microsoft.AspNetCore.Mvc.ApiExplorer.csproj (in 516 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Metadata/src/Microsoft.AspNetCore.Metadata.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Routing.Abstractions/src/Microsoft.AspNetCore.Routing.Abstractions.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Components/Server/src/Microsoft.AspNetCore.Components.Server.csproj (in 707 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Http/src/Microsoft.AspNetCore.Http.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.TagHelpers/src/Microsoft.AspNetCore.Mvc.TagHelpers.csproj (in 723 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.Formatters.Xml/src/Microsoft.AspNetCore.Mvc.Formatters.Xml.csproj (in 24 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Html.Abstractions/src/Microsoft.AspNetCore.Html.Abstractions.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.Razor/src/Microsoft.AspNetCore.Mvc.Razor.csproj (in 91 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.Localization/src/Microsoft.AspNetCore.Mvc.Localization.csproj (in 65 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.ViewFeatures/src/Microsoft.AspNetCore.Mvc.ViewFeatures.csproj (in 723 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Http.Results/src/Microsoft.AspNetCore.Http.Results.csproj (in 26 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Hosting/Server.Abstractions/src/Microsoft.AspNetCore.Hosting.Server.Abstractions.csproj (in 29 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc/src/Microsoft.AspNetCore.Mvc.csproj (in 353 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Mvc/Mvc.RazorPages/src/Microsoft.AspNetCore.Mvc.RazorPages.csproj (in 707 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Routing/src/Microsoft.AspNetCore.Routing.csproj (in 35 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Identity/Extensions.Stores/src/Microsoft.Extensions.Identity.Stores.csproj (in 73 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Components/Web/src/Microsoft.AspNetCore.Components.Web.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Headers/src/Microsoft.Net.Http.Headers.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/SignalR/server/SignalR/src/Microsoft.AspNetCore.SignalR.csproj (in 37 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/RateLimiting/src/Microsoft.AspNetCore.RateLimiting.csproj (in 435 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Validation/src/Microsoft.Extensions.Validation.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/StaticAssets/src/Microsoft.AspNetCore.StaticAssets.csproj (in 68 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Configuration.KeyPerFile/src/Microsoft.Extensions.Configuration.KeyPerFile.csproj (in 44 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Hosting/Hosting/src/Microsoft.AspNetCore.Hosting.csproj (in 56 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Hosting/Abstractions/src/Microsoft.AspNetCore.Hosting.Abstractions.csproj (in 20 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Authentication.Core/src/Microsoft.AspNetCore.Authentication.Core.csproj (in 21 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/WebEncoders/src/Microsoft.Extensions.WebEncoders.csproj (in 21 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/IIS/IISIntegration/src/Microsoft.AspNetCore.Server.IISIntegration.csproj (in 39 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj (in 25 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/FileProviders/Embedded/src/Microsoft.Extensions.FileProviders.Embedded.csproj (in 17 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Extensions/Features/src/Microsoft.Extensions.Features.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/DefaultBuilder/src/Microsoft.AspNetCore.csproj (in 25 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/FileProviders/Manifest.MSBuildTask/src/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.csproj (in 849 ms).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/DataProtection/Extensions/src/Microsoft.AspNetCore.DataProtection.Extensions.csproj (in 1.48 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj (in 1.57 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Http/Http.Extensions/gen/Microsoft.AspNetCore.Http.RequestDelegateGenerator/Microsoft.AspNetCore.Http.RequestDelegateGenerator.csproj (in 2.21 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Validation/gen/Microsoft.Extensions.Validation.ValidationsGenerator.csproj (in 2.19 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.sfxproj (in 5.46 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/HttpSys/src/Microsoft.AspNetCore.Server.HttpSys.csproj (in 7.1 sec).
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Servers/IIS/IIS/src/Microsoft.AspNetCore.Server.IIS.csproj (in 7.1 sec).
+  Microsoft.AspNetCore.Http.RequestDelegateGenerator -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.RequestDelegateGenerator/Release/netstandard2.0/Microsoft.AspNetCore.Http.RequestDelegateGenerator.dll
+  Microsoft.AspNetCore.ResponseCaching.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.ResponseCaching.Abstractions/Release/net10.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+  Microsoft.AspNetCore.Metadata -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Metadata/Release/net10.0/Microsoft.AspNetCore.Metadata.dll
+  Microsoft.AspNetCore.Html.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Html.Abstractions/Release/net10.0/Microsoft.AspNetCore.Html.Abstractions.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Features/Release/net10.0/Microsoft.Extensions.Features.dll
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net10.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Net.Http.Headers/Release/net10.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.JSInterop -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.JSInterop/Release/net10.0/Microsoft.JSInterop.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net10.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net10.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net10.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.Extensions.Validation.ValidationsGenerator -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Validation.ValidationsGenerator/Release/netstandard2.0/Microsoft.Extensions.Validation.ValidationsGenerator.dll
+  Microsoft.AspNetCore.Components -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components/Release/net10.0/Microsoft.AspNetCore.Components.dll
+  Microsoft.AspNetCore.Hosting.Server.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Server.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+  Microsoft.Extensions.Validation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Validation/Release/net10.0/Microsoft.Extensions.Validation.dll
+  Microsoft.AspNetCore.Razor -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Razor/Release/net10.0/Microsoft.AspNetCore.Razor.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net10.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Authorization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authorization/Release/net10.0/Microsoft.AspNetCore.Authorization.dll
+  Microsoft.AspNetCore.Components.Forms -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Forms/Release/net10.0/Microsoft.AspNetCore.Components.Forms.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Razor.Runtime -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Razor.Runtime/Release/net10.0/Microsoft.AspNetCore.Razor.Runtime.dll
+  Microsoft.AspNetCore.Components.Web -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Web/Release/net10.0/Microsoft.AspNetCore.Components.Web.dll
+  Microsoft.AspNetCore.Diagnostics.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics.Abstractions/Release/net10.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+  Microsoft.AspNetCore.RateLimiting -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.RateLimiting/Release/net10.0/Microsoft.AspNetCore.RateLimiting.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net10.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.HttpLogging -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HttpLogging/Release/net10.0/Microsoft.AspNetCore.HttpLogging.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net10.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Session -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Session/Release/net10.0/Microsoft.AspNetCore.Session.dll
+  Microsoft.AspNetCore.Hosting.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Abstractions.dll
+  Microsoft.AspNetCore.Routing.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Routing.Abstractions/Release/net10.0/Microsoft.AspNetCore.Routing.Abstractions.dll
+  Microsoft.AspNetCore.Components.Authorization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Authorization/Release/net10.0/Microsoft.AspNetCore.Components.Authorization.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http/Release/net10.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Antiforgery -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Antiforgery/Release/net10.0/Microsoft.AspNetCore.Antiforgery.dll
+  Microsoft.AspNetCore.HttpsPolicy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HttpsPolicy/Release/net10.0/Microsoft.AspNetCore.HttpsPolicy.dll
+  Microsoft.AspNetCore.HostFiltering -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HostFiltering/Release/net10.0/Microsoft.AspNetCore.HostFiltering.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Quic -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
+  Microsoft.AspNetCore.HttpOverrides -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HttpOverrides/Release/net10.0/Microsoft.AspNetCore.HttpOverrides.dll
+  Microsoft.AspNetCore.ResponseCompression -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.ResponseCompression/Release/net10.0/Microsoft.AspNetCore.ResponseCompression.dll
+  Microsoft.Extensions.Localization.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Localization.Abstractions/Release/net10.0/Microsoft.Extensions.Localization.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net10.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll
+  Microsoft.AspNetCore.RequestDecompression -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.RequestDecompression/Release/net10.0/Microsoft.AspNetCore.RequestDecompression.dll
+  Microsoft.AspNetCore.Hosting -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting/Release/net10.0/Microsoft.AspNetCore.Hosting.dll
+  Microsoft.AspNetCore.Server.IISIntegration -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.IISIntegration/Release/net10.0/Microsoft.AspNetCore.Server.IISIntegration.dll
+  Microsoft.AspNetCore.OutputCaching -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.OutputCaching/Release/net10.0/Microsoft.AspNetCore.OutputCaching.dll
+  Microsoft.AspNetCore.CookiePolicy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.CookiePolicy/Release/net10.0/Microsoft.AspNetCore.CookiePolicy.dll
+  Microsoft.AspNetCore.ResponseCaching -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.ResponseCaching/Release/net10.0/Microsoft.AspNetCore.ResponseCaching.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net10.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.AspNetCore.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Localization/Release/net10.0/Microsoft.AspNetCore.Localization.dll
+  Microsoft.AspNetCore.WebSockets -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebSockets/Release/net10.0/Microsoft.AspNetCore.WebSockets.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net10.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Routing -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Routing/Release/net10.0/Microsoft.AspNetCore.Routing.dll
+  Microsoft.AspNetCore.Mvc.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Abstractions/Release/net10.0/Microsoft.AspNetCore.Mvc.Abstractions.dll
+  Microsoft.AspNetCore.Cors -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cors/Release/net10.0/Microsoft.AspNetCore.Cors.dll
+  Microsoft.AspNetCore.Rewrite -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Rewrite/Release/net10.0/Microsoft.AspNetCore.Rewrite.dll
+  Microsoft.AspNetCore.Authentication.Cookies -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Cookies/Release/net10.0/Microsoft.AspNetCore.Authentication.Cookies.dll
+  Microsoft.AspNetCore.Authentication.BearerToken -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.BearerToken/Release/net10.0/Microsoft.AspNetCore.Authentication.BearerToken.dll
+  Microsoft.AspNetCore.StaticFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.StaticFiles/Release/net10.0/Microsoft.AspNetCore.StaticFiles.dll
+  Microsoft.AspNetCore.Server.Kestrel.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Core/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Core.dll
+  Microsoft.AspNetCore.Authorization.Policy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authorization.Policy/Release/net10.0/Microsoft.AspNetCore.Authorization.Policy.dll
+  Microsoft.AspNetCore.Http.Results -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Results/Release/net10.0/Microsoft.AspNetCore.Http.Results.dll
+  Microsoft.AspNetCore.Authentication.OAuth -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.OAuth/Release/net10.0/Microsoft.AspNetCore.Authentication.OAuth.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/Release/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+  Microsoft.AspNetCore.SignalR.Common -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR.Common/Release/net10.0/Microsoft.AspNetCore.SignalR.Common.dll
+  Microsoft.AspNetCore.StaticAssets -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.StaticAssets/Release/net10.0/Microsoft.AspNetCore.StaticAssets.dll
+  Microsoft.AspNetCore.Http.Connections.Common -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Connections.Common/Release/net10.0/Microsoft.AspNetCore.Http.Connections.Common.dll
+  Microsoft.AspNetCore.Server.Kestrel -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks/Release/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.Server.HttpSys -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.HttpSys/Release/net10.0/Microsoft.AspNetCore.Server.HttpSys.dll
+  Microsoft.AspNetCore.SignalR.Protocols.Json -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR.Protocols.Json/Release/net10.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.Http.Connections -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Connections/Release/net10.0/Microsoft.AspNetCore.Http.Connections.dll
+  Microsoft.AspNetCore.Diagnostics -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics/Release/net10.0/Microsoft.AspNetCore.Diagnostics.dll
+  Microsoft.AspNetCore.SignalR.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR.Core/Release/net10.0/Microsoft.AspNetCore.SignalR.Core.dll
+  Microsoft.AspNetCore.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics.HealthChecks/Release/net10.0/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.DataProtection.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection.Extensions/Release/net10.0/Microsoft.AspNetCore.DataProtection.Extensions.dll
+  Microsoft.AspNetCore.Localization.Routing -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Localization.Routing/Release/net10.0/Microsoft.AspNetCore.Localization.Routing.dll
+  Microsoft.AspNetCore.Mvc.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Core/Release/net10.0/Microsoft.AspNetCore.Mvc.Core.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net10.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Json -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Json/Release/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+  Microsoft.Extensions.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Localization/Release/net10.0/Microsoft.Extensions.Localization.dll
+  Microsoft.AspNetCore.SignalR -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR/Release/net10.0/Microsoft.AspNetCore.SignalR.dll
+  Microsoft.AspNetCore.Mvc.Cors -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Cors/Release/net10.0/Microsoft.AspNetCore.Mvc.Cors.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Xml -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Xml/Release/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll
+  Microsoft.AspNetCore.Mvc.ApiExplorer -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.ApiExplorer/Release/net10.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+  Microsoft.AspNetCore.Mvc.DataAnnotations -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.DataAnnotations/Release/net10.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+  Microsoft.AspNetCore.Server.IIS -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.IIS/Release/net10.0/Microsoft.AspNetCore.Server.IIS.dll
+  Microsoft.AspNetCore -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore/Release/net10.0/Microsoft.AspNetCore.dll
+  Microsoft.AspNetCore.Components.Endpoints -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Endpoints/Release/net10.0/Microsoft.AspNetCore.Components.Endpoints.dll
+  Microsoft.AspNetCore.Identity -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Identity/Release/net10.0/Microsoft.AspNetCore.Identity.dll
+  Microsoft.AspNetCore.Mvc.ViewFeatures -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.ViewFeatures/Release/net10.0/Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+  Microsoft.AspNetCore.Components.Server -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Server/Release/net10.0/Microsoft.AspNetCore.Components.Server.dll
+  Microsoft.AspNetCore.Mvc.Razor -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Razor/Release/net10.0/Microsoft.AspNetCore.Mvc.Razor.dll
+  Microsoft.AspNetCore.Mvc.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Localization/Release/net10.0/Microsoft.AspNetCore.Mvc.Localization.dll
+  Microsoft.AspNetCore.Mvc.TagHelpers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.TagHelpers/Release/net10.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll
+  Microsoft.AspNetCore.Mvc.RazorPages -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.RazorPages/Release/net10.0/Microsoft.AspNetCore.Mvc.RazorPages.dll
+  Microsoft.AspNetCore.Mvc -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc/Release/net10.0/Microsoft.AspNetCore.Mvc.dll
+  Microsoft.Extensions.Configuration.KeyPerFile -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Configuration.KeyPerFile/Release/net10.0/Microsoft.Extensions.Configuration.KeyPerFile.dll
+  Microsoft.Extensions.FileProviders.Embedded.Manifest.Task -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task/Release/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll
+  Microsoft.Extensions.Identity.Stores -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Stores/Release/net10.0/Microsoft.Extensions.Identity.Stores.dll
+  Microsoft.Extensions.FileProviders.Embedded -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded/Release/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll
+  Microsoft.AspNetCore.App.Runtime -> 
+  The package Microsoft.AspNetCore.App.Runtime.linux-x64.10.0.12 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.App.Runtime.linux-x64.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.App.Runtime.linux-x64.10.0.12.symbols.nupkg'.
+  Successfully wrote compatibility suppressions to '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Framework/App.Runtime/src/CompatibilitySuppressions.xml'.
+  Microsoft.AspNetCore.Html.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Html.Abstractions/Release/net10.0/Microsoft.AspNetCore.Html.Abstractions.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Features/Release/net10.0/Microsoft.Extensions.Features.dll
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Net.Http.Headers/Release/net10.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.AspNetCore.ResponseCaching.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.ResponseCaching.Abstractions/Release/net10.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+  Microsoft.AspNetCore.Metadata -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Metadata/Release/net10.0/Microsoft.AspNetCore.Metadata.dll
+  Microsoft.AspNetCore.Http.RequestDelegateGenerator -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.RequestDelegateGenerator/Release/netstandard2.0/Microsoft.AspNetCore.Http.RequestDelegateGenerator.dll
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net10.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Components -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components/Release/net10.0/Microsoft.AspNetCore.Components.dll
+  Microsoft.JSInterop -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.JSInterop/Release/net10.0/Microsoft.JSInterop.dll
+  Microsoft.Extensions.Validation.ValidationsGenerator -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Validation.ValidationsGenerator/Release/netstandard2.0/Microsoft.Extensions.Validation.ValidationsGenerator.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net10.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Authorization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authorization/Release/net10.0/Microsoft.AspNetCore.Authorization.dll
+  Microsoft.Extensions.Validation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Validation/Release/net10.0/Microsoft.Extensions.Validation.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net10.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net10.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net10.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Hosting.Server.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Server.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+  Microsoft.AspNetCore.Razor -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Razor/Release/net10.0/Microsoft.AspNetCore.Razor.dll
+  Microsoft.AspNetCore.Routing.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Routing.Abstractions/Release/net10.0/Microsoft.AspNetCore.Routing.Abstractions.dll
+  Microsoft.AspNetCore.RateLimiting -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.RateLimiting/Release/net10.0/Microsoft.AspNetCore.RateLimiting.dll
+  Microsoft.AspNetCore.Diagnostics.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics.Abstractions/Release/net10.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net10.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Components.Forms -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Forms/Release/net10.0/Microsoft.AspNetCore.Components.Forms.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net10.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Session -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Session/Release/net10.0/Microsoft.AspNetCore.Session.dll
+  Microsoft.AspNetCore.Mvc.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Abstractions/Release/net10.0/Microsoft.AspNetCore.Mvc.Abstractions.dll
+  Microsoft.AspNetCore.Razor.Runtime -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Razor.Runtime/Release/net10.0/Microsoft.AspNetCore.Razor.Runtime.dll
+  Microsoft.AspNetCore.HttpLogging -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HttpLogging/Release/net10.0/Microsoft.AspNetCore.HttpLogging.dll
+  Microsoft.AspNetCore.Hosting.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Abstractions.dll
+  Microsoft.Extensions.Localization.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Localization.Abstractions/Release/net10.0/Microsoft.Extensions.Localization.Abstractions.dll
+  Microsoft.AspNetCore.HttpOverrides -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HttpOverrides/Release/net10.0/Microsoft.AspNetCore.HttpOverrides.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http/Release/net10.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll
+  Microsoft.AspNetCore.Antiforgery -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Antiforgery/Release/net10.0/Microsoft.AspNetCore.Antiforgery.dll
+  Microsoft.AspNetCore.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Localization/Release/net10.0/Microsoft.AspNetCore.Localization.dll
+  Microsoft.AspNetCore.OutputCaching -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.OutputCaching/Release/net10.0/Microsoft.AspNetCore.OutputCaching.dll
+  Microsoft.AspNetCore.ResponseCaching -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.ResponseCaching/Release/net10.0/Microsoft.AspNetCore.ResponseCaching.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net10.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.AspNetCore.RequestDecompression -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.RequestDecompression/Release/net10.0/Microsoft.AspNetCore.RequestDecompression.dll
+  Microsoft.AspNetCore.ResponseCompression -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.ResponseCompression/Release/net10.0/Microsoft.AspNetCore.ResponseCompression.dll
+  Microsoft.AspNetCore.CookiePolicy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.CookiePolicy/Release/net10.0/Microsoft.AspNetCore.CookiePolicy.dll
+  Microsoft.AspNetCore.WebSockets -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebSockets/Release/net10.0/Microsoft.AspNetCore.WebSockets.dll
+  Microsoft.AspNetCore.Components.Web -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Web/Release/net10.0/Microsoft.AspNetCore.Components.Web.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
+  Microsoft.AspNetCore.Server.Kestrel.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Core/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Core.dll
+  Microsoft.AspNetCore.HostFiltering -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HostFiltering/Release/net10.0/Microsoft.AspNetCore.HostFiltering.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net10.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.AspNetCore.Components.Authorization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Authorization/Release/net10.0/Microsoft.AspNetCore.Components.Authorization.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Quic -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
+  Microsoft.AspNetCore.Localization.Routing -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Localization.Routing/Release/net10.0/Microsoft.AspNetCore.Localization.Routing.dll
+  Microsoft.AspNetCore.Hosting -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting/Release/net10.0/Microsoft.AspNetCore.Hosting.dll
+  Microsoft.AspNetCore.Server.IISIntegration -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.IISIntegration/Release/net10.0/Microsoft.AspNetCore.Server.IISIntegration.dll
+  Microsoft.AspNetCore.Routing -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Routing/Release/net10.0/Microsoft.AspNetCore.Routing.dll
+  Microsoft.AspNetCore.HttpsPolicy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.HttpsPolicy/Release/net10.0/Microsoft.AspNetCore.HttpsPolicy.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net10.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/Release/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+  Microsoft.AspNetCore.StaticFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.StaticFiles/Release/net10.0/Microsoft.AspNetCore.StaticFiles.dll
+  Microsoft.AspNetCore.Server.Kestrel -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.Kestrel/Release/net10.0/Microsoft.AspNetCore.Server.Kestrel.dll
+  Microsoft.AspNetCore.Server.HttpSys -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.HttpSys/Release/net10.0/Microsoft.AspNetCore.Server.HttpSys.dll
+  Microsoft.AspNetCore.Authentication.Cookies -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Cookies/Release/net10.0/Microsoft.AspNetCore.Authentication.Cookies.dll
+  Microsoft.AspNetCore.Authorization.Policy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authorization.Policy/Release/net10.0/Microsoft.AspNetCore.Authorization.Policy.dll
+  Microsoft.AspNetCore.Authentication.BearerToken -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.BearerToken/Release/net10.0/Microsoft.AspNetCore.Authentication.BearerToken.dll
+  Microsoft.AspNetCore.Authentication.OAuth -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.OAuth/Release/net10.0/Microsoft.AspNetCore.Authentication.OAuth.dll
+  Microsoft.AspNetCore.Rewrite -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Rewrite/Release/net10.0/Microsoft.AspNetCore.Rewrite.dll
+  Microsoft.AspNetCore.Http.Results -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Results/Release/net10.0/Microsoft.AspNetCore.Http.Results.dll
+  Microsoft.AspNetCore.Cors -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cors/Release/net10.0/Microsoft.AspNetCore.Cors.dll
+  Microsoft.AspNetCore.Diagnostics -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics/Release/net10.0/Microsoft.AspNetCore.Diagnostics.dll
+  Microsoft.AspNetCore.Server.IIS -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Server.IIS/Release/net10.0/Microsoft.AspNetCore.Server.IIS.dll
+  Microsoft.AspNetCore.StaticAssets -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.StaticAssets/Release/net10.0/Microsoft.AspNetCore.StaticAssets.dll
+  Microsoft.AspNetCore.Mvc.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Core/Release/net10.0/Microsoft.AspNetCore.Mvc.Core.dll
+  Microsoft.AspNetCore.Http.Connections.Common -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Connections.Common/Release/net10.0/Microsoft.AspNetCore.Http.Connections.Common.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Diagnostics.HealthChecks/Release/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.SignalR.Common -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR.Common/Release/net10.0/Microsoft.AspNetCore.SignalR.Common.dll
+  Microsoft.Extensions.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Localization/Release/net10.0/Microsoft.Extensions.Localization.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.DataProtection.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection.Extensions/Release/net10.0/Microsoft.AspNetCore.DataProtection.Extensions.dll
+  Microsoft.AspNetCore.Diagnostics.HealthChecks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics.HealthChecks/Release/net10.0/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.Http.Connections -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Connections/Release/net10.0/Microsoft.AspNetCore.Http.Connections.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Xml -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Xml/Release/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Json -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Json/Release/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+  Microsoft.AspNetCore.Mvc.ApiExplorer -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.ApiExplorer/Release/net10.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+  Microsoft.AspNetCore.SignalR.Protocols.Json -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR.Protocols.Json/Release/net10.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+  Microsoft.AspNetCore.Mvc.DataAnnotations -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.DataAnnotations/Release/net10.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+  Microsoft.AspNetCore.Mvc.Cors -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Cors/Release/net10.0/Microsoft.AspNetCore.Mvc.Cors.dll
+  Microsoft.AspNetCore -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore/Release/net10.0/Microsoft.AspNetCore.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net10.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.AspNetCore.SignalR.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR.Core/Release/net10.0/Microsoft.AspNetCore.SignalR.Core.dll
+  Microsoft.AspNetCore.Components.Endpoints -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Endpoints/Release/net10.0/Microsoft.AspNetCore.Components.Endpoints.dll
+  Microsoft.AspNetCore.SignalR -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SignalR/Release/net10.0/Microsoft.AspNetCore.SignalR.dll
+  Microsoft.AspNetCore.Mvc.ViewFeatures -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.ViewFeatures/Release/net10.0/Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+  Microsoft.AspNetCore.Identity -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Identity/Release/net10.0/Microsoft.AspNetCore.Identity.dll
+  Microsoft.AspNetCore.Components.Server -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Server/Release/net10.0/Microsoft.AspNetCore.Components.Server.dll
+  Microsoft.AspNetCore.Mvc.Razor -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Razor/Release/net10.0/Microsoft.AspNetCore.Mvc.Razor.dll
+  Microsoft.AspNetCore.Mvc.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Localization/Release/net10.0/Microsoft.AspNetCore.Mvc.Localization.dll
+  Microsoft.AspNetCore.Mvc.TagHelpers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.TagHelpers/Release/net10.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll
+  Microsoft.AspNetCore.Mvc.RazorPages -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.RazorPages/Release/net10.0/Microsoft.AspNetCore.Mvc.RazorPages.dll
+  Microsoft.AspNetCore.Mvc -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc/Release/net10.0/Microsoft.AspNetCore.Mvc.dll
+  Microsoft.Extensions.Configuration.KeyPerFile -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Configuration.KeyPerFile/Release/net10.0/Microsoft.Extensions.Configuration.KeyPerFile.dll
+  Microsoft.Extensions.Identity.Stores -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Stores/Release/net10.0/Microsoft.Extensions.Identity.Stores.dll
+  Microsoft.Extensions.FileProviders.Embedded.Manifest.Task -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task/Release/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll
+  Microsoft.Extensions.FileProviders.Embedded -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded/Release/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:03.01
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj (in 4.81 sec).
+  16 of 17 projects are up-to-date for restore.
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net10.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Features/Release/net10.0/Microsoft.Extensions.Features.dll
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Net.Http.Headers/Release/net10.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net10.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net10.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net10.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net10.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http/Release/net10.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net10.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net10.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net10.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net10.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net10.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Authentication.JwtBearer -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.JwtBearer/Release/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Authentication.JwtBearer.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Authentication.JwtBearer.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:30.31
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net462/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  The package Microsoft.AspNetCore.Cryptography.Internal.10.0.12 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Cryptography.Internal.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Cryptography.Internal.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.01
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net462/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net462/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  The package Microsoft.AspNetCore.Cryptography.KeyDerivation.10.0.12 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Cryptography.KeyDerivation.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Cryptography.KeyDerivation.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.10
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Diagnostics.EntityFrameworkCore/src/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.csproj (in 3.39 sec).
+  8 of 9 projects are up-to-date for restore.
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Net.Http.Headers/Release/net10.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Features/Release/net10.0/Microsoft.Extensions.Features.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net10.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net10.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Diagnostics.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics.Abstractions/Release/net10.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net10.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/Release/net10.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:20.53
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Identity/EntityFrameworkCore/src/Microsoft.AspNetCore.Identity.EntityFrameworkCore.csproj (in 133 ms).
+  4 of 5 projects are up-to-date for restore.
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net10.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.Extensions.Identity.Stores -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Stores/Release/net10.0/Microsoft.Extensions.Identity.Stores.dll
+  Microsoft.AspNetCore.Identity.EntityFrameworkCore -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Identity.EntityFrameworkCore/Release/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Identity.EntityFrameworkCore.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Identity.EntityFrameworkCore.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:15.23
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Identity/UI/src/Microsoft.AspNetCore.Identity.UI.csproj (in 777 ms).
+  69 of 70 projects are up-to-date for restore.
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Features/Release/net10.0/Microsoft.Extensions.Features.dll
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net10.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.JSInterop -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.JSInterop/Release/net10.0/Microsoft.JSInterop.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection.Abstractions/Release/net10.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.Metadata -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Metadata/Release/net10.0/Microsoft.AspNetCore.Metadata.dll
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Net.Http.Headers/Release/net10.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.AspNetCore.Html.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Html.Abstractions/Release/net10.0/Microsoft.AspNetCore.Html.Abstractions.dll
+  Microsoft.AspNetCore.Http.RequestDelegateGenerator -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.RequestDelegateGenerator/Release/netstandard2.0/Microsoft.AspNetCore.Http.RequestDelegateGenerator.dll
+  Microsoft.Extensions.Validation.ValidationsGenerator -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Validation.ValidationsGenerator/Release/netstandard2.0/Microsoft.Extensions.Validation.ValidationsGenerator.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Authorization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authorization/Release/net10.0/Microsoft.AspNetCore.Authorization.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net10.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Razor -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Razor/Release/net10.0/Microsoft.AspNetCore.Razor.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.Components -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components/Release/net10.0/Microsoft.AspNetCore.Components.dll
+  Microsoft.Extensions.Validation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Validation/Release/net10.0/Microsoft.Extensions.Validation.dll
+  Microsoft.AspNetCore.ResponseCaching.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.ResponseCaching.Abstractions/Release/net10.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+  Microsoft.AspNetCore.Razor.Runtime -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Razor.Runtime/Release/net10.0/Microsoft.AspNetCore.Razor.Runtime.dll
+  Microsoft.AspNetCore.DataProtection -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection/Release/net10.0/Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net10.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Components.Forms -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Forms/Release/net10.0/Microsoft.AspNetCore.Components.Forms.dll
+  Microsoft.AspNetCore.Hosting.Server.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Server.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+  Microsoft.AspNetCore.Components.Authorization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Authorization/Release/net10.0/Microsoft.AspNetCore.Components.Authorization.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Components.Web -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Web/Release/net10.0/Microsoft.AspNetCore.Components.Web.dll
+  Microsoft.AspNetCore.Diagnostics.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics.Abstractions/Release/net10.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+  Microsoft.AspNetCore.Hosting.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Abstractions.dll
+  Microsoft.AspNetCore.Routing.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Routing.Abstractions/Release/net10.0/Microsoft.AspNetCore.Routing.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Abstractions/Release/net10.0/Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Mvc.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Abstractions/Release/net10.0/Microsoft.AspNetCore.Mvc.Abstractions.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net10.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.Extensions.Localization.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Localization.Abstractions/Release/net10.0/Microsoft.Extensions.Localization.Abstractions.dll
+  Microsoft.AspNetCore.Antiforgery -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Antiforgery/Release/net10.0/Microsoft.AspNetCore.Antiforgery.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http/Release/net10.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Authentication.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Core/Release/net10.0/Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.AspNetCore.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Localization/Release/net10.0/Microsoft.AspNetCore.Localization.dll
+  Microsoft.Extensions.WebEncoders -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.WebEncoders/Release/net10.0/Microsoft.Extensions.WebEncoders.dll
+  Microsoft.AspNetCore.OutputCaching -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.OutputCaching/Release/net10.0/Microsoft.AspNetCore.OutputCaching.dll
+  Microsoft.AspNetCore.Authentication -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication/Release/net10.0/Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Authentication.BearerToken -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.BearerToken/Release/net10.0/Microsoft.AspNetCore.Authentication.BearerToken.dll
+  Microsoft.AspNetCore.Authentication.Cookies -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authentication.Cookies/Release/net10.0/Microsoft.AspNetCore.Authentication.Cookies.dll
+  Microsoft.AspNetCore.Routing -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Routing/Release/net10.0/Microsoft.AspNetCore.Routing.dll
+  Microsoft.AspNetCore.Cors -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cors/Release/net10.0/Microsoft.AspNetCore.Cors.dll
+  Microsoft.AspNetCore.Authorization.Policy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Authorization.Policy/Release/net10.0/Microsoft.AspNetCore.Authorization.Policy.dll
+  Microsoft.AspNetCore.StaticFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.StaticFiles/Release/net10.0/Microsoft.AspNetCore.StaticFiles.dll
+  Microsoft.AspNetCore.Http.Results -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Results/Release/net10.0/Microsoft.AspNetCore.Http.Results.dll
+  Microsoft.AspNetCore.Diagnostics -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Diagnostics/Release/net10.0/Microsoft.AspNetCore.Diagnostics.dll
+  Microsoft.AspNetCore.Hosting -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting/Release/net10.0/Microsoft.AspNetCore.Hosting.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.StaticAssets -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.StaticAssets/Release/net10.0/Microsoft.AspNetCore.StaticAssets.dll
+  Microsoft.AspNetCore.DataProtection.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.DataProtection.Extensions/Release/net10.0/Microsoft.AspNetCore.DataProtection.Extensions.dll
+  Microsoft.AspNetCore.Mvc.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Core/Release/net10.0/Microsoft.AspNetCore.Mvc.Core.dll
+  Microsoft.Extensions.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Localization/Release/net10.0/Microsoft.Extensions.Localization.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net10.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.AspNetCore.Components.Endpoints -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Components.Endpoints/Release/net10.0/Microsoft.AspNetCore.Components.Endpoints.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Json -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Formatters.Json/Release/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+  Microsoft.AspNetCore.Mvc.Cors -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Cors/Release/net10.0/Microsoft.AspNetCore.Mvc.Cors.dll
+  Microsoft.AspNetCore.Mvc.DataAnnotations -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.DataAnnotations/Release/net10.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+  Microsoft.AspNetCore.Mvc.ApiExplorer -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.ApiExplorer/Release/net10.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+  Microsoft.AspNetCore.Mvc.ViewFeatures -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.ViewFeatures/Release/net10.0/Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+  Microsoft.AspNetCore.Identity -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Identity/Release/net10.0/Microsoft.AspNetCore.Identity.dll
+  Microsoft.AspNetCore.Mvc.Razor -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Razor/Release/net10.0/Microsoft.AspNetCore.Mvc.Razor.dll
+  Microsoft.AspNetCore.Mvc.Localization -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.Localization/Release/net10.0/Microsoft.AspNetCore.Mvc.Localization.dll
+  Microsoft.AspNetCore.Mvc.TagHelpers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.TagHelpers/Release/net10.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll
+  Microsoft.AspNetCore.Mvc.RazorPages -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc.RazorPages/Release/net10.0/Microsoft.AspNetCore.Mvc.RazorPages.dll
+  Microsoft.AspNetCore.Mvc -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Mvc/Release/net10.0/Microsoft.AspNetCore.Mvc.dll
+  Microsoft.Extensions.FileProviders.Embedded.Manifest.Task -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task/Release/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll
+  Microsoft.Extensions.Identity.Stores -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Stores/Release/net10.0/Microsoft.Extensions.Identity.Stores.dll
+  Microsoft.Extensions.FileProviders.Embedded -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded/Release/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll
+  Microsoft.AspNetCore.Identity.UI -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Identity.UI/Release/net10.0/Microsoft.AspNetCore.Identity.UI.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Identity.UI.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.Identity.UI.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:02.03
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/Middleware/Spa/SpaProxy/src/Microsoft.AspNetCore.SpaProxy.csproj (in 270 ms).
+  12 of 13 projects are up-to-date for restore.
+  Microsoft.Extensions.ObjectPool -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.ObjectPool/Release/net10.0/Microsoft.Extensions.ObjectPool.dll
+  Microsoft.Extensions.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Features/Release/net10.0/Microsoft.Extensions.Features.dll
+  Microsoft.Net.Http.Headers -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Net.Http.Headers/Release/net10.0/Microsoft.Net.Http.Headers.dll
+  Microsoft.AspNetCore.Connections.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Connections.Abstractions/Release/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.WebUtilities -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.WebUtilities/Release/net10.0/Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.AspNetCore.Http.Features -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Features/Release/net10.0/Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Hosting.Server.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Server.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+  Microsoft.AspNetCore.Http.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Abstractions/Release/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Hosting.Abstractions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting.Abstractions/Release/net10.0/Microsoft.AspNetCore.Hosting.Abstractions.dll
+  Microsoft.AspNetCore.Http.Extensions -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http.Extensions/Release/net10.0/Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Http -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Http/Release/net10.0/Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Hosting -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Hosting/Release/net10.0/Microsoft.AspNetCore.Hosting.dll
+  Microsoft.AspNetCore.SpaProxy -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.SpaProxy/Release/net10.0/Microsoft.AspNetCore.SpaProxy.dll
+  The package Microsoft.AspNetCore.SpaProxy.10.0.12 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.SpaProxy.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.AspNetCore.SpaProxy.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:23.01
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Microsoft.Extensions.FileProviders.Embedded.Manifest.Task -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task/Release/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll
+  Microsoft.Extensions.FileProviders.Embedded -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded/Release/net462/Microsoft.Extensions.FileProviders.Embedded.dll
+  Microsoft.Extensions.FileProviders.Embedded -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded/Release/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.dll
+  Microsoft.Extensions.FileProviders.Embedded -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.FileProviders.Embedded/Release/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.Extensions.FileProviders.Embedded.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.Extensions.FileProviders.Embedded.10.0.12.symbols.nupkg'.
+  Successfully wrote compatibility suppressions to '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/src/FileProviders/Embedded/src/CompatibilitySuppressions.xml'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.69
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net462/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net462/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net462/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/netstandard2.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net10.0/Microsoft.Extensions.Identity.Core.dll
+  The package Microsoft.Extensions.Identity.Core.10.0.12 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.Extensions.Identity.Core.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.Extensions.Identity.Core.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.28
+##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts
+##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/toolset
+##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/log/Release
+##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/tmp/Release
+##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.dotnet
+##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
+##vso[task.setvariable variable=DOTNET_NOLOGO;isSecret=false;isOutput=true]1
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RepoTasks -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/RepoTasks/Release/net10.0/RepoTasks.dll
+##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
+  Determining projects to restore...
+  Tool 'dotnet-dump' (version '6.0.322601') was restored. Available commands: dotnet-dump
+  Tool 'dotnet-ef' (version '10.0.12') was restored. Available commands: dotnet-ef
+  Tool 'dotnet-serve' (version '1.10.93') was restored. Available commands: dotnet-serve
+  Tool 'microsoft.playwright.cli' (version '1.2.3') was restored. Available commands: playwright
+  
+  Restore was successful.
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.props
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/GenerateFiles/Directory.Build.targets
+  GenerateFiles -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/.config/dotnet-tools.json
+  Attempting to install runtime toolset 'dotnet/x64 v10.0.12-servicing.26412.103' from public_location.
+dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net462/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net462/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.Cryptography.Internal -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.Internal/Release/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.AspNetCore.Cryptography.KeyDerivation/Release/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net462/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.Extensions.Identity.Stores -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Stores/Release/net462/Microsoft.Extensions.Identity.Stores.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/net10.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.Extensions.Identity.Core -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Core/Release/netstandard2.0/Microsoft.Extensions.Identity.Core.dll
+  Microsoft.Extensions.Identity.Stores -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Stores/Release/net10.0/Microsoft.Extensions.Identity.Stores.dll
+  Microsoft.Extensions.Identity.Stores -> /private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/bin/Microsoft.Extensions.Identity.Stores/Release/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll
+  The package Microsoft.Extensions.Identity.Stores.10.0.12 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.Extensions.Identity.Stores.10.0.12.nupkg'.
+  Successfully created package '/private/tmp/nupkg-repobuild/build/dotnet-aspnetcore-95017c7/A/src/src/aspnetcore/artifacts/packages/Release/Shipping/Microsoft.Extensions.Identity.Stores.10.0.12.symbols.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:16.08
+$ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+build exit code 0
+end 2026-10-28T02:44:58+01:00
