@@ -6,8 +6,8 @@ inner = ""
 kind = "runtime"
 official_build_id = "20201019.4"
 shell = "bash"
-build = '''./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'''
-build_windows = '''./build.cmd -subset libs -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release; exit $LASTEXITCODE'''
+build = '''./build.sh libs.ref+libs.src+libs.packages -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+build_windows = '''./build.cmd -subset libs.ref+libs.src+libs.packages -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]

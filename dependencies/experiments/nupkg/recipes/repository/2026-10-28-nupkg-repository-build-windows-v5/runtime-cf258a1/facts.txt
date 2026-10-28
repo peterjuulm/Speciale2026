@@ -6,8 +6,10 @@ kind: runtime
 product System.IO.Ports 5.0.0: ships runtimes/linux/lib/netstandard2.0/System.IO.Ports.dll; project src/libraries/System.IO.Ports/src/System.IO.Ports.csproj; file version 5.0.20.51904 -> 20201019.4 [inferred: FILE_PATCH 20 = (patch 0 mod 100)*100 + yy 20; FILE_REVISION 51904 = (50*10+19)*100 + 4; from dllreport on the nupkg]
 official build id: 20201019.4  [rule R4]
 release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
-command: ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
-command on a Windows runner (pwsh): ./build.cmd -subset libs -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release; exit $LASTEXITCODE  [rule R3]
+version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
+version 3, R3c: subset libs.ref+libs.src+libs.packages -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]
+command: ./build.sh libs.ref+libs.src+libs.packages -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false  [rule R3]
+command on a Windows runner (pwsh): ./build.cmd -subset libs.ref+libs.src+libs.packages -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20201019.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE  [rule R3]
 sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
 sdk major from global.json: 5
 env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK 5.x: assumed not to start on Arch's ICU 78; version 4 limits this to .NET 5)

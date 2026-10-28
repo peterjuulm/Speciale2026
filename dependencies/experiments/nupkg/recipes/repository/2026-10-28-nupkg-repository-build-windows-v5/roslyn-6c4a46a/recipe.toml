@@ -6,8 +6,8 @@ inner = ""
 kind = "roslyn"
 official_build_id = "20251117.12"
 shell = "bash"
-build = '''./build.sh --restore --build --pack --ci -bl -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'''
-build_windows = '''./Build.cmd -restore -pack -ci -bl -c Release /p:OfficialBuildId=20251117.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release; exit $LASTEXITCODE'''
+build = '''./build.sh --restore --build --pack --ci -bl -c Release /p:OfficialBuildId=20251117.12 /p:EnableNgenOptimization=false'''
+build_windows = '''./Build.cmd -restore -pack -ci -bl -c Release /p:OfficialBuildId=20251117.12 /p:EnableNgenOptimization=false; exit $LASTEXITCODE'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]

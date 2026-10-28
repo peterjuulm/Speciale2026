@@ -9,7 +9,9 @@ product System.Security.Cryptography.Pkcs 9.0.11: ships lib/net9.0/System.Securi
 product System.Security.Cryptography.ProtectedData 9.0.11: ships lib/net9.0/System.Security.Cryptography.ProtectedData.dll; project src/libraries/System.Security.Cryptography.ProtectedData/src/System.Security.Cryptography.ProtectedData.csproj; file version 9.0.1125.51716 -> 20251017.16 [inferred: FILE_PATCH 1125 = (patch 11 mod 100)*100 + yy 25; FILE_REVISION 51716 = (50*10+17)*100 + 16; from dllreport on the nupkg]
 official build id: 20251017.16  [rule R4]
 release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
-command: ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20251017.16 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
-command on a Windows runner (pwsh): ./build.cmd -subset libs -c Release -ci -nobl -pack /p:OfficialBuildId=20251017.16 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release; exit $LASTEXITCODE  [rule R3]
+version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
+version 3, R3c: subset tools+libs.sfx+libs.oob -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]
+command: ./build.sh tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20251017.16 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false  [rule R3]
+command on a Windows runner (pwsh): ./build.cmd -subset tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20251017.16 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE  [rule R3]
 sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
 sdk major from global.json: 9

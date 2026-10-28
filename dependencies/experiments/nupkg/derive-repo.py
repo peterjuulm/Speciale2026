@@ -1,6 +1,6 @@
 """Derive repository-build recipes: one per repository and commit, for the packages in a list.
 
-Usage: python3 -I derive-repo.py LIST CENSUS_FILES_CSV FACTS_DIR LAB OUT [--vmr-identity | --v2 | --v3]
+Usage: python3 -I derive-repo.py LIST CENSUS_FILES_CSV FACTS_DIR LAB OUT [--vmr-identity | --v2 | --v3 | --v4 | --v5]
 
 --vmr-identity is version 2 of the method (28 October, written after build 4 of version 1): only the VMR's
 inner repositories are derived, and each gets the two identity properties the VMR orchestration passes and
@@ -155,8 +155,9 @@ NODE_BY_SDK = {8: '18.20.8', 9: '22.23.4'}   # R3d: the Node LTS line each aspne
 
 def main():
     lst, census, facts_dir, lab, out = sys.argv[1:6]
+    v5 = '--v5' in sys.argv[6:]
     v4 = '--v4' in sys.argv[6:]
-    v3 = v4 or '--v3' in sys.argv[6:]
+    v3 = v4 or v5 or '--v3' in sys.argv[6:]
     v2 = v3 or '--v2' in sys.argv[6:]
     vmr_identity = v2 or '--vmr-identity' in sys.argv[6:]
     os.makedirs(out, exist_ok=True)
@@ -254,7 +255,13 @@ def main():
         # Arcade repositories gate DotNetFinalVersionKind=release on StabilizePackageVersion (eng/Versions.props)
         stable = all(not re.search(r'-', p['version']) for p in g['products'])
         if stable:
-            props += ' /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'
+            if v5 and g['kind'] == 'roslyn':
+                # version 5 (28/10 07:50): Roslyn's official pipeline passes -officialBuildId only (azure-pipelines-official.yml at
+                # the commit); the shipped assembly keeps the prerelease informational version (5.0.0-2.25567.12+sha, Windows run of
+                # version 3) and the package is stabilised by repacking, so the two properties are not the official build's input here
+                facts.append('version 5: no StabilizePackageVersion/DotNetFinalVersionKind for Roslyn (the official build passes OfficialBuildId only; the package is repacked to its release version)  [read]')
+            else:
+                props += ' /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release'
             facts.append('release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]')
         else:
             facts.append('release branding: none passed (a shipped version has a prerelease label)')

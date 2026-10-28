@@ -6,7 +6,7 @@ inner = "src/runtime"
 kind = "runtime"
 official_build_id = "20260822.108"
 shell = "bash"
-build = '''cd src/runtime && ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false'''
+build = '''cd src/runtime && ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20260822.108 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:UsingToolMicrosoftNetCompilers=false /p:EnableNgenOptimization=false /p:RepositoryUrl=https://github.com/dotnet/dotnet /p:RepoOriginalSourceRevisionId=4271d88e0aebf3d04f188f1334c2220d80555ef6'''
 packages = "src/runtime/artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]
