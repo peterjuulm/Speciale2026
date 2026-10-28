@@ -26,6 +26,7 @@ differ; 3 same IL, metadata streams and managed resources, build identity
 | 40642458858 | the 16 standalone recipes of the Windows set | 07:12 | version 3 on `windows-2022` |
 | 40642659531 | msbuild ×2, reverse-proxy, symreader | 07:14 | rerun after the `-restore -build` fault (below) |
 | 40645930765 | roslyn-6c4a46a | 07:47 | version 5 (no stabilising properties) |
+| 40655532332 | runtime-9d5a6a9 | 09:16 | rerun of the runtime 9.0.0 job, hung in the first run (reading 5) |
 
 Not run on Windows: the four VMR inner builds (`dotnet-*`, 54 packages):
 a `dotnet/dotnet` clone and build does not fit a 4-core runner with a
@@ -34,16 +35,17 @@ a `dotnet/dotnet` clone and build does not fit a 4-core runner with a
 `[V]` the runs and their jobs: `run.log` and
 `https://github.com/peterjuulm/Speciale2026/actions/runs/<run>`.
 Build times on the runner: aspnetcore 6 to 10 min, runtime 8.0.x 12 to
-18 min, runtime 9.0.11 17 min, Roslyn 28 min (one 4-core runner each).
+18 min, runtime 9.0.11 17 min, runtime 9.0.0 18 min on its second job,
+Roslyn 28 min (one 4-core runner each).
 
 ## Result
 
-`[V]` `results.tsv` of the Windows set (34 rows from 15 recipes; the
-runtime 9.0.0 job, 8 rows, is added below when it lands).
+`[V]` `results.tsv` of the Windows set (42 rows from 16 recipes, final
+at 09:35).
 
 | state | rows |
 |---|---|
-| level 2 | 19 |
+| level 2 | 27 (all 27 whole-file equal with the signatures removed, `signature-stripped.txt`) |
 | level 3 | 4 |
 | level 4 | 8 (Roslyn, version 3; the same 8 are level 2 under version 5, next section) |
 | no package | 3 (symreader; the two Razor 6.0.24 packages) |
@@ -60,6 +62,7 @@ Per package, the Linux best level against Windows:
 | Microsoft.Bcl.AsyncInterfaces 8.0.0, System.Reflection.MetadataLoadContext 8.0.0 | 3 / 4 | 2 |
 | System.IO.Hashing 6.0.0 | 3 | 2 |
 | System.Configuration.ConfigurationManager, System.Diagnostics.EventLog, System.Security.Cryptography.Pkcs, .ProtectedData 9.0.11 | 4 / 4 / 4 / 3 | 2 |
+| System.Composition.AttributedModel, .Convention, .Hosting, .Runtime, .TypedParts 9.0.0; Microsoft.Extensions.FileProviders.Abstractions, Hosting.Abstractions 9.0.0; System.Security.Cryptography.Xml 9.0.0 | 3 or 4 (v3) | 2 |
 | Microsoft.Build.Framework 18.0.2 | 4 (source-root index) | 2 |
 | Yarp.ReverseProxy 2.1.0 | 4 | 2 |
 | Microsoft.Build 17.11.48 | 3 | 3 |
@@ -93,8 +96,9 @@ timestamp and PDB identity for the same IL (version 3,
 `[V]` (08:02) Level 2 checked on the whole file, not on report lines:
 `stripsign.cs` zeroes the PE checksum, cuts the Authenticode block and
 its directory entry, zeroes the strong-name signature bytes, and hashes
-the rest. All 19 level-2 pairs hash equal
-(`signature-stripped.txt` in the data folder); Microsoft.Build 17.11.48
+the rest. All 27 level-2 pairs hash equal
+(`signature-stripped.txt` in the data folder; 19 at 08:02, the 8 of
+runtime 9.0.0 at 09:34); Microsoft.Build 17.11.48
 (level 3) differs from byte `0x88`, the PE timestamp.
 
 `[I]` The deterministic compiler's identity hash includes something the
@@ -193,8 +197,8 @@ the package and nuget.org has no symbols package for them; not read.
   for two hours where 9.0.11 took 17 minutes; cancelled at 09:15, its
   log (879 lines, uploaded on cancel) ends after the IL build of
   System.Private.CoreLib with no error. Not read further; the recipe was
-  started again at 09:16 (its rows and run id are in `results.tsv` and
-  `run.log` once collected).
+  started again at 09:16 (run 40655532332): built in 18 minutes, all
+  eight packages level 2. The hang is a one-off that is not explained.
 - `[V]` System.IO.Ports 5.0.0 builds on Windows (the .NET 5 SDK runs
   there without OpenSSL 1.1) and packs; level 3.
 

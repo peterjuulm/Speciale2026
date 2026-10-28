@@ -124,10 +124,10 @@ Each entry: what it is, what it did to the bytes, where it is read
 | R, third-party (batch 2, version 3) | 59 | 14 | 3 | 9 | 16 | 12 | 5 |
 | R, Microsoft (batch 3, version 3) | 139 | 0 | 5 | 0 | 39 | 59 | 36 |
 | R+S and R+S+P, Linux (repository build, best of versions 1 to 4) | 96 | 0 | 0 | 35 | 57 | 4 | 0 |
-| R+S+P+H, windows-2022 (standalone repositories, version 3) | 34 | 0 | 19 | 4 | 8 | 3 | 0 |
-| best rung per package (the 198 tried) | 198 | 14 | 27 | 39 | 83 | 22 | 13 |
+| R+S+P+H, windows-2022 (standalone repositories, best of versions 3 and 5) | 42 | 0 | 35 | 4 | 0 | 3 | 0 |
+| best rung per package (the 198 tried) | 198 | 14 | 43 | 38 | 68 | 22 | 13 |
 
-`[V]` computed 28 October 08:15 from the five `results.tsv` (release-only
+`[V]` computed 28 October 09:40 (final) from the five `results.tsv` (release-only
 batch 2 v3 and batch 3; repository-build v1 to v4; Windows), keyed by
 package and version. The census (`2026-10-13-dependency-census/mac/census.csv`)
 has 341 package-versions; 198 entered a batch (59 third-party,
@@ -138,9 +138,8 @@ that is neither in the package nor was found, 2 a PDB without a
 compiler record, 1 runtime pack (`census.md`, classes N0 to C2c). Those
 are the first finding of the chapter: for 143 of 341 the release names
 nothing a rebuild could start from. The "best rung" row counts each package once at its best level;
-of the 41 reproduced (level 1 or 2), 22 were reproduced
-at rung R and 19 only on the official host. The Windows row grows
-by the runtime 9.0.0 job and Roslyn version 5 when they land; the
+of the 57 reproduced (level 1 or 2), 22 were reproduced
+at rung R and 35 only on the official host; the
 earlier "75 of 139", "62/56/54" and "33/34" figures in the notes should
 be replaced by this table's numbers.
 

@@ -1,4 +1,4 @@
-# Windows run of version 3 of the repository-build method, 28 October 2026, 07:12 to about 08:00 CET, on GitHub-hosted
+# Windows run of version 3 of the repository-build method, 28 October 2026, 07:12 to 09:45 CET, on GitHub-hosted
 # windows-2022 standard runners of this repository (free on a public repository). Plan: dependencies/notes/2026-10-27-nupkg-repository-build-plan.md
 # (section "Windows run of version 3"). Recipes: the version-3 derivation plus build_windows (derive-repo.py).
 cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
@@ -10,3 +10,6 @@ gh workflow run nupkg-repository-build.yml -f runner=windows-2022               
 gh workflow run nupkg-repository-build.yml -f runner=windows-2022 -f recipes='["msbuild-02bf662", "msbuild-995a3dc", "reverse-proxy-77f78d4", "symreader-27e5846"]'   # run 40642659531, 07:14 CET
 # collect: download every artifact, classify with level.py on arch, write results.tsv and arch/<recipe>/ (later run wins per recipe)
 python3 -I collect-runner.py 2026-10-28-nupkg-repository-build-windows 40642458858 40642659531
+# the runtime 9.0.0 job of the first run hung after two hours (cancelled 09:15, its log is under arch/ in the lab download); the recipe rerun alone
+gh workflow run nupkg-repository-build.yml -f runner=windows-2022 -f recipes='["runtime-9d5a6a9"]'   # run 40655532332, 09:16 CET
+python3 -I collect-runner.py 2026-10-28-nupkg-repository-build-windows 40642458858 40642659531 40655532332
