@@ -227,7 +227,7 @@ list it was given is an environment-dependent input that no standard
 and no build log records. To confirm: build once with the Compile items
 sorted, or walk the two orders with MSBuild's `FileMatcher`.
 
-`[V]` (added 28 October 07:35) The Linux half of the walk: `globorder.proj`
+`[V]` (added 28 October 07:35) The Linux half of the walk: `globorder/globorder.proj`
 (MSBuild 10, `**/*.cs` over `src/Compilers/CSharp/Portable` of Roslyn at
 the commit, exported from the mirror) lists 1140 files with
 `Symbols/SymbolEqualityComparer.cs` at 853, the subfolder

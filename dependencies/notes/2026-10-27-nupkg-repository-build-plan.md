@@ -499,3 +499,26 @@ still names a different runtime build than the official one).
 - Data: `dependencies/data/2026-10-28-nupkg-repository-build-windows/`,
   the artifacts downloaded and classified on arch with the same
   `level.py`.
+
+## Version 5: Roslyn without the stabilising properties
+
+Added 28 October 2026, 07:50, before its run. The Windows run of version 3
+brought Roslyn's eight packages to equal IL, strings and table order, with
+one difference left in the bytes: the shipped assembly's informational
+version is `5.0.0-2.25567.12+<sha>`, ours `5.0.0+<sha>` (the `#Blob`,
+`CustomAttribute` indices, the version resource and the `FieldRVA`
+addresses follow from that one string). Roslyn's official pipeline
+(`azure-pipelines-official.yml` at the commit) passes `-officialBuildId`
+only; the package reaches nuget.org as 5.0.0 by repacking, not by building
+with a release version kind. So for this repository the two properties of
+rule R4 (`StabilizePackageVersion=true`, `DotNetFinalVersionKind=release`)
+are not the official build's input.
+
+- Rule: for Roslyn, pass `OfficialBuildId` and `EnableNgenOptimization=false`
+  only. Every other repository unchanged (version 3).
+- Prediction, written before the run: Roslyn's eight packages reach
+  level 2 on `windows-2022`.
+- Recipes: `recipes/repository/2026-10-28-nupkg-repository-build-windows-v5/`
+  (derived with `--v5`; only `roslyn-6c4a46a` differs from the Windows
+  set). Run: the same workflow, that one recipe. Data:
+  `dependencies/data/2026-10-28-nupkg-repository-build-windows-v5/`.

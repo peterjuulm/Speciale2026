@@ -1,0 +1,12 @@
+symreader-27e5846: repository build derivation
+repository: https://github.com/dotnet/symreader
+commit: 27e584661980ee6d82c419a2a471ae505b7d122e
+inner repository: none (the repository itself)
+kind: arcade
+product Microsoft.DiaSymReader 2.0.0: ships lib/netstandard2.0/Microsoft.DiaSymReader.dll; project src/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj; file version 2.0.23.22804 -> 20230428.4 [inferred: FILE_PATCH 23 = (patch 0 mod 100)*100 + yy 23; FILE_REVISION 22804 = (50*4+28)*100 + 4; from release-only facts]
+official build id: 20230428.4  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+command: ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+command on a Windows runner (pwsh): ./Build.cmd -pack -ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release; exit $LASTEXITCODE  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: unreadable

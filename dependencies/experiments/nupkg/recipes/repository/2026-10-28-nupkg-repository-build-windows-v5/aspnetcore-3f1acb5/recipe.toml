@@ -1,0 +1,28 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "aspnetcore-3f1acb5"
+repo = "https://github.com/dotnet/aspnetcore"
+commit = "3f1acb59718cadf111a0a796681e3d3509bb3381"
+inner = ""
+kind = "aspnetcore"
+official_build_id = "20231031.12"
+shell = "bash"
+build = '''L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; s ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || exit 1; ok=0; for p in "$PWD/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj" "$PWD/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok'''
+build_windows = '''function s { $t = New-TemporaryFile; $a = @($args[1..($args.Count - 1)]); & $args[0] @a 2>&1 | Tee-Object -FilePath $t | Out-Host; $c = $LASTEXITCODE; if (Select-String -Quiet -Path $t -Pattern 'task.complete result=Failed') { $c = 1 }; return $c }; if (s ./eng/build.cmd -ci -nobl -c Release -projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release) { exit 1 }; $ok = 0; foreach ($p in @("$PWD/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj", "$PWD/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj")) { if (s ./eng/build.cmd -ci -nobl -c Release -pack -projects $p /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release) { $ok = 1 } }; exit $ok'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+
+[[products]]
+package = "Microsoft.Extensions.Diagnostics.HealthChecks"
+version = "8.0.0"
+ships = "lib/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll"
+project = "src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj"
+file_version = "8.0.23.53112"
+
+[[products]]
+package = "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions"
+version = "8.0.0"
+ships = "lib/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll"
+project = "src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"
+file_version = "8.0.23.53112"

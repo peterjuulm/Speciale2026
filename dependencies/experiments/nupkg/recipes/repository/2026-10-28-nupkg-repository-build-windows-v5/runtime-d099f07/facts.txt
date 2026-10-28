@@ -1,0 +1,13 @@
+runtime-d099f07: repository build derivation
+repository: https://github.com/dotnet/runtime
+commit: d099f075e45d2aa6007a22b71b45a08758559f80
+inner repository: none (the repository itself)
+kind: runtime
+product System.IO.Hashing 7.0.0: ships lib/net7.0/System.IO.Hashing.dll; project src/libraries/System.IO.Hashing/src/System.IO.Hashing.csproj; file version 7.0.22.51805 -> 20221018.5 [inferred: FILE_PATCH 22 = (patch 0 mod 100)*100 + yy 22; FILE_REVISION 51805 = (50*10+18)*100 + 5; from dllreport on the nupkg]
+official build id: 20221018.5  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+command: ./build.sh libs -c Release -ci -nobl -pack /p:OfficialBuildId=20221018.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release  [rule R3]
+command on a Windows runner (pwsh): ./build.cmd -subset libs -c Release -ci -nobl -pack /p:OfficialBuildId=20221018.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release; exit $LASTEXITCODE  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 7
+env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK 7.x: assumed not to start on Arch's ICU 78; version 4 limits this to .NET 5)
