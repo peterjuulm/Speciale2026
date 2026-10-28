@@ -1,0 +1,28 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "aspnetcore-3f1acb5"
+repo = "https://github.com/dotnet/aspnetcore"
+commit = "3f1acb59718cadf111a0a796681e3d3509bb3381"
+inner = ""
+kind = "aspnetcore"
+official_build_id = "20231031.12"
+shell = "bash"
+build = '''L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; s ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || exit 1; ok=0; for p in "$PWD/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj" "$PWD/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231031.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false || ok=1; done; exit $ok'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=true"]
+strip_internal_feeds = true
+path_prepend = ["/private/tmp/nupkg-repobuild/node/node-v18.20.8-linux-x64/bin"]
+
+[[products]]
+package = "Microsoft.Extensions.Diagnostics.HealthChecks"
+version = "8.0.0"
+ships = "lib/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll"
+project = "src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj"
+file_version = "8.0.23.53112"
+
+[[products]]
+package = "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions"
+version = "8.0.0"
+ships = "lib/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll"
+project = "src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj"
+file_version = "8.0.23.53112"
