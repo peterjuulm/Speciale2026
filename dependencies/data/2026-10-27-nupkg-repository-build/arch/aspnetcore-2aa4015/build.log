@@ -1,4 +1,4 @@
-start 2026-10-27T23:11:22+01:00
+start 2026-10-28T02:32:35+01:00
 repository build aspnetcore-2aa4015 in /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src
 kernel Linux 7.2.11-arch1-1 x86_64
 --- environment
@@ -13,7 +13,7 @@ LANG=C.UTF-8
 NUGET_PACKAGES=/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/
 NuGetAudit=false
 PATH=/usr/bin
---- clone 2026-10-27T23:11:22+01:00
+--- clone 2026-10-28T02:32:35+01:00
 $ git init -q /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src
 $ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src remote add origin https://github.com/dotnet/aspnetcore
 $ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src config core.autocrlf true
@@ -23,7 +23,7 @@ $ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src fetch -q /p
 $ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src -c advice.detachedHead=false checkout -q 2aa401550574f93402eba13ff9a4827ef01a2f3a
 $ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src rev-parse HEAD
 2aa401550574f93402eba13ff9a4827ef01a2f3a
---- submodules 2026-10-27T23:11:39+01:00
+--- submodules 2026-10-28T02:32:52+01:00
 $ git -C /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src submodule update --init --recursive --depth 1
 Submodule 'src/submodules/MessagePack-CSharp' (https://github.com/aspnet/MessagePack-CSharp.git) registered for path 'src/submodules/MessagePack-CSharp'
 Submodule 'src/submodules/googletest' (https://github.com/google/googletest) registered for path 'src/submodules/googletest'
@@ -41,8 +41,8 @@ From https://github.com/dotnet/spa-templates
  * branch            1d1834bbb3607012c08eae31f771f10e29889f53 -> FETCH_HEAD
 Submodule path 'src/submodules/spa-templates': checked out '1d1834bbb3607012c08eae31f771f10e29889f53'
 nuget.config edit: NuGet.config: removed internal feeds darc-int-dotnet-runtime-e7b8488, darc-int-dotnet-efcore-113214d
---- build 2026-10-27T23:11:48+01:00
-$ bash -c ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || exit 1; ok=0; for p in "$PWD/src/Razor/Microsoft.AspNetCore.Razor.Language/src/Microsoft.AspNetCore.Razor.Language.csproj" "$PWD/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj"; do ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok
+--- build 2026-10-28T02:33:01+01:00
+$ bash -c L=$(mktemp); s() { "$@" > "$L" 2>&1; c=$?; cat "$L"; grep -q "task.complete result=Failed" "$L" && return 1; return $c; }; s ./eng/build.sh --ci -nobl -c Release --projects "$PWD/src/Framework/App.Runtime/src/Microsoft.AspNetCore.App.Runtime.csproj" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || exit 1; ok=0; for p in "$PWD/src/Razor/Microsoft.AspNetCore.Razor.Language/src/Microsoft.AspNetCore.Razor.Language.csproj" "$PWD/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj"; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" /p:OfficialBuildId=20231018.12 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release || ok=1; done; exit $ok
 ##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts
 ##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/toolset
 ##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/log/Release
@@ -75,53 +75,7 @@ dotnet-install: Installation finished successfully.
   Restore was successful.
 /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj : error NU1603: Tools depends on Microsoft.DotNet.Build.Tasks.VisualStudio (>= 6.0.0-beta.23408.5) but Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.23408.5 was not found. An approximate best match of Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.24459.5 was resolved.
 ##vso[task.logissue type=error;sourcepath=/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj;linenumber=0;columnnumber=0;code=NU1603;](NETCORE_ENGINEERING_TELEMETRY=Restore) Tools depends on Microsoft.DotNet.Build.Tasks.VisualStudio (>= 6.0.0-beta.23408.5) but Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.23408.5 was not found. An approximate best match of Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.24459.5 was resolved.
-  Failed to restore /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj (in 5.02 sec).
-Build failed with exit code 1. Check errors above.
-##vso[task.complete result=Failed;]msbuild execution failed.
-##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts
-##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/toolset
-##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/log/Release
-##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/tmp/Release
-##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/tmp/Release
-##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/.dotnet
-##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
-##vso[task.setvariable variable=DOTNET_SKIP_FIRST_TIME_EXPERIENCE;isSecret=false;isOutput=true]1
-##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
-##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
-##vso[task.setvariable variable=NUGET_ENABLE_EXPERIMENTAL_HTTP_RETRY;isSecret=false;isOutput=true]true
-##vso[task.setvariable variable=NUGET_EXPERIMENTAL_MAX_NETWORK_TRY_COUNT;isSecret=false;isOutput=true]6
-##vso[task.setvariable variable=NUGET_EXPERIMENTAL_NETWORK_RETRY_DELAY_MILLISECONDS;isSecret=false;isOutput=true]1000
-  Determining projects to restore...
-  Tool 'dotnet-serve' (version '1.7.139') was restored. Available commands: dotnet-serve
-  Tool 'playwright-sharp-tool' (version '0.170.2') was restored. Available commands: playwright-sharp
-  
-  Restore was successful.
-/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj : error NU1603: Tools depends on Microsoft.DotNet.Build.Tasks.VisualStudio (>= 6.0.0-beta.23408.5) but Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.23408.5 was not found. An approximate best match of Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.24459.5 was resolved.
-##vso[task.logissue type=error;sourcepath=/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj;linenumber=0;columnnumber=0;code=NU1603;](NETCORE_ENGINEERING_TELEMETRY=Restore) Tools depends on Microsoft.DotNet.Build.Tasks.VisualStudio (>= 6.0.0-beta.23408.5) but Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.23408.5 was not found. An approximate best match of Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.24459.5 was resolved.
-  Failed to restore /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj (in 1.15 sec).
-Build failed with exit code 1. Check errors above.
-##vso[task.complete result=Failed;]msbuild execution failed.
-##vso[task.setvariable variable=Artifacts;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts
-##vso[task.setvariable variable=Artifacts.Toolset;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/toolset
-##vso[task.setvariable variable=Artifacts.Log;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/log/Release
-##vso[task.setvariable variable=Temp;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/tmp/Release
-##vso[task.setvariable variable=TMP;isSecret=false;isOutput=true]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/artifacts/tmp/Release
-##vso[task.prependpath]/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/src/.dotnet
-##vso[task.setvariable variable=DOTNET_MULTILEVEL_LOOKUP;isSecret=false;isOutput=true]0
-##vso[task.setvariable variable=DOTNET_SKIP_FIRST_TIME_EXPERIENCE;isSecret=false;isOutput=true]1
-##vso[task.setvariable variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
-##vso[task.setvariable variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isSecret=false;isOutput=true]20
-##vso[task.setvariable variable=NUGET_ENABLE_EXPERIMENTAL_HTTP_RETRY;isSecret=false;isOutput=true]true
-##vso[task.setvariable variable=NUGET_EXPERIMENTAL_MAX_NETWORK_TRY_COUNT;isSecret=false;isOutput=true]6
-##vso[task.setvariable variable=NUGET_EXPERIMENTAL_NETWORK_RETRY_DELAY_MILLISECONDS;isSecret=false;isOutput=true]1000
-  Determining projects to restore...
-  Tool 'dotnet-serve' (version '1.7.139') was restored. Available commands: dotnet-serve
-  Tool 'playwright-sharp-tool' (version '0.170.2') was restored. Available commands: playwright-sharp
-  
-  Restore was successful.
-/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj : error NU1603: Tools depends on Microsoft.DotNet.Build.Tasks.VisualStudio (>= 6.0.0-beta.23408.5) but Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.23408.5 was not found. An approximate best match of Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.24459.5 was resolved.
-##vso[task.logissue type=error;sourcepath=/private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj;linenumber=0;columnnumber=0;code=NU1603;](NETCORE_ENGINEERING_TELEMETRY=Restore) Tools depends on Microsoft.DotNet.Build.Tasks.VisualStudio (>= 6.0.0-beta.23408.5) but Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.23408.5 was not found. An approximate best match of Microsoft.DotNet.Build.Tasks.VisualStudio 6.0.0-beta.24459.5 was resolved.
-  Failed to restore /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj (in 1.16 sec).
+  Failed to restore /private/tmp/nupkg-repobuild/build/aspnetcore-2aa4015/A/nuget/microsoft.dotnet.arcade.sdk/6.0.0-beta.23408.5/tools/Tools.proj (in 2.76 sec).
 Build failed with exit code 1. Check errors above.
 ##vso[task.complete result=Failed;]msbuild execution failed.
 $ bash -c [ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true
@@ -129,5 +83,5 @@ Shutting down MSBuild server...
 Shutting down VB/C# compiler server...
 VB/C# compiler server shut down successfully.
 MSBuild server shut down successfully.
-build exit code 0
-end 2026-10-27T23:12:46+01:00
+build exit code 1
+end 2026-10-28T02:33:27+01:00
