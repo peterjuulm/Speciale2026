@@ -1,0 +1,5 @@
+# Version 5 of the repository-build method (Roslyn without StabilizePackageVersion/DotNetFinalVersionKind), windows-2022, 28 October 2026 07:47. Plan: dependencies/notes/2026-10-27-nupkg-repository-build-plan.md (section "Version 5").
+cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
+python3 -I derive-repo.py recipes/repository/batch-arcade.txt ../../data/2026-10-13-dependency-census/mac/census.files.csv ../../data/2026-10-27-nupkg-release-only-batch3-microsoft/derive /private/tmp/nupkg-repobuild recipes/repository/2026-10-28-nupkg-repository-build-windows-v5 --v5
+gh workflow run nupkg-repository-build.yml -f runner=windows-2022 -f set=2026-10-28-nupkg-repository-build-windows-v5 -f recipes='["roslyn-6c4a46a"]'   # run 40645930765
+python3 -I collect-runner.py 2026-10-28-nupkg-repository-build-windows-v5 40645930765

@@ -74,7 +74,9 @@ Each entry: what it is, what it did to the bytes, where it is read
    script, MinVer, a date suffix, Arcade's dev-build `42.42.42.42424`,
    a clock in the version (IdentityModel), the build-year copyright, and
    today Roslyn's informational version that the official build leaves
-   prerelease while the package is repacked to 5.0.0. Named nowhere; the
+   prerelease while the package is repacked to 5.0.0 (confirmed by
+   version 5: without the stabilising properties the eight packages are
+   level 2). Named nowhere; the
    version is a self-declared string. This is the entry that speaks
    directly to EN 17255's version requirement.
 2. **The checkout's text conversion.** `core.autocrlf` on the official
@@ -155,7 +157,10 @@ the publisher knew. That is the red thread in one table.
 - All resource rows (reading 2) and the glob-order rows (reading 3)
   closed as predicted: Roslyn's IL and table order match on Windows.
 - Roslyn's one remaining difference named a new catalogue entry (the
-  repack route of the version string); version 5 tests it.
+  repack route of the version string); version 5 tested it at 07:47 and
+  all eight packages reached level 2, whole-file equal without the
+  signatures, packed under the prerelease version the official build
+  also produced before repacking.
 - Four packages stay at level 3 on Windows (Microsoft.Build 17.11.48,
   CodeDom 6.0.0, IO.Hashing 7.0.0, IO.Ports 5.0.0). Microsoft.Build's
   PDB was read at 08:10: one field, the runtime under the compiler

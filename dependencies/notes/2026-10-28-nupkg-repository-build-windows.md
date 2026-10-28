@@ -45,7 +45,7 @@ runtime 9.0.0 job, 8 rows, is added below when it lands).
 |---|---|
 | level 2 | 19 |
 | level 3 | 4 |
-| level 4 | 8 (Roslyn, version 3) |
+| level 4 | 8 (Roslyn, version 3; the same 8 are level 2 under version 5, next section) |
 | no package | 3 (symreader; the two Razor 6.0.24 packages) |
 
 Per package, the Linux best level against Windows:
@@ -66,7 +66,7 @@ Per package, the Linux best level against Windows:
 | System.CodeDom 6.0.0 | 4 | 3 |
 | System.IO.Hashing 7.0.0 | not built (v3), 3 (v4) | 3 |
 | System.IO.Ports 5.0.0 | no package (SDK needs OpenSSL 1.1) | 3 |
-| Microsoft.CodeAnalysis ×8 5.0.0 | 4 (type order) | 4 (version string), version 5 below |
+| Microsoft.CodeAnalysis ×8 5.0.0 | 4 (type order) | 4 under version 3 (version string); 2 under version 5 |
 | Microsoft.DiaSymReader 2.0.0, Razor.Language and CodeAnalysis.Razor 6.0.24 | no package | no package |
 
 `[V]` each Linux level from the `results.tsv` of the respective batch,
@@ -194,7 +194,23 @@ the package and nuget.org has no symbols package for them; not read.
 
 ## Version 5 (Roslyn without the stabilising properties)
 
-Pending: run 40645930765 started 07:47.
+`[V]` Run 40645930765 (07:47 to 08:09), data
+`dependencies/data/2026-10-28-nupkg-repository-build-windows-v5/`: all
+eight Microsoft.CodeAnalysis packages at level 2, and whole-file equal
+with the signatures removed (`signature-stripped.txt`, eight pairs,
+2.2 to 6.8 MB each). The build packed them as
+`microsoft.codeanalysis.*.5.0.0-2.25567.12.nupkg`; the comparison took
+the DLL from that package (`results.tsv`, note column). The build still
+exits 1 after packing (the VS insertion targets, reading 5).
+
+`[I]` The prediction of the plan's version-5 section held. The shipped
+Roslyn DLLs are the bytes of a prerelease build; the release version
+exists only in the package name and nuspec, written by a repack step
+after the build. "Release" is therefore not one thing across Arcade
+repositories: runtime and aspnetcore build with the release version
+kind, Roslyn repacks. For the catalogue this is one input (the route by
+which the version string reaches the assembly) with two values, and the
+release names neither.
 
 ## Caveats and not tested
 
