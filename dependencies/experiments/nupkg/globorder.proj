@@ -1,0 +1,3 @@
+<!-- The order in which MSBuild's glob hands a folder's .cs files to the compiler on this host: -->
+<!-- dotnet msbuild globorder.proj -t:Dump -p:Root=<folder>  writes order.txt. 28 October 2026 (reading 3). -->
+<Project><ItemGroup><Compile Include="$(Root)/**/*.cs" /></ItemGroup><Target Name="Dump"><WriteLinesToFile File="order.txt" Lines="@(Compile)" Overwrite="true" /></Target></Project>

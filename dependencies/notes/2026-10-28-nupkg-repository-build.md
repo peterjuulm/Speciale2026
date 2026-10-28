@@ -53,8 +53,9 @@ retention; System.IO.Ports 5.0.0: the SDK), and 92 were compared. Level
 1 and 2: none (every official build was signed and ran on Windows).
 Level 3 in at least one version: 35. Level 4 in every version: 57, of
 which 36 differ from the shipped bytes in nothing but the newline of a
-generated resource (reading 2), 10 in that resource and the metadata
-tables `#~` (not read, see caveats), 9 in the order of their type table
+generated resource (reading 2), 10 in that resource and, through its
+length, the `FieldRVA` table (reading 2, read 28 October morning), 9 in
+the order of their type table
 (reading 3: the eight Roslyn packages and EFCore), 1 in a source-root
 index (reading 4) and 1 in Razor positions (reading 5).
 
@@ -172,6 +173,24 @@ shipped bytes decided it:
   writes LF; `--ci` turns the warning into an error. Under version 4 (LF
   checkout) the same builds exited 0.
 
+- `[V]` (added 28 October 07:30) The ten runtime rows that differ in
+  the resource and in `#~` (`tabledump.cs` on the kept DLL pairs:
+  DependencyModel, Logging, Logging.Abstractions 10.0.12 from version
+  2; ConfigurationManager, Pkcs 9.0.11 and Cryptography.Xml 9.0.0 from
+  version 3; DependencyModel 8.0.2, IO.Packaging, MetadataLoadContext,
+  CodeDom from the version-4 output, the lab keeps one per recipe):
+  the type and method tables are in the same order in every pair; the
+  only `#~` rows that differ in the version-2 and version-3 pairs are
+  the `FieldRVA` rows. The resource blob is 8 or 16 bytes longer in the
+  shipped DLL (the CRLF substitutions file, padded), and the
+  strong-name slot and the static data fields that follow it in `.text`
+  sit that much higher (Logging 10.0.12: resources end `0xB4A4` against
+  `0xB49C`, the one static field at `0xB680` against `0xB678`). The
+  four version-4 pairs also show the `CustomAttribute` blob indices
+  shifted by the LF description attribute of the bullet above. So all
+  46 resource rows are one effect: the newline of one generated file,
+  and what its length moves.
+
 `[I]` The official build checks the sources out with conversion to CRLF
 (`* text=auto` on Windows) and runs on Windows. Our Linux build with
 `core.autocrlf=true` gets the same source bytes; the remaining newline
@@ -207,6 +226,15 @@ differ although no instruction does. The compiler is deterministic; the
 list it was given is an environment-dependent input that no standard
 and no build log records. To confirm: build once with the Compile items
 sorted, or walk the two orders with MSBuild's `FileMatcher`.
+
+`[V]` (added 28 October 07:35) The Linux half of the walk: `globorder.proj`
+(MSBuild 10, `**/*.cs` over `src/Compilers/CSharp/Portable` of Roslyn at
+the commit, exported from the mirror) lists 1140 files with
+`Symbols/SymbolEqualityComparer.cs` at 853, the subfolder
+`Symbols/Synthesized/` at 860 to 936 and `Symbols/SynthesizedNamespaceSymbol.cs`
+at 937: the order our DLL's type table has. The Windows half is the
+shipped DLL's order, and the Windows run below rebuilds Roslyn on the
+host that produced it.
 
 ### 4. The deterministic source-root index
 
@@ -348,11 +376,10 @@ optimization data to show as level 4 with equal IL; it did not.
   release-only batches did that.
 - The 28 packages outside Arcade repositories and the runtime packs
   (R8) are not in these numbers.
-- The runtime rows that differ in `#~` besides the resource
-  (System.Security.Cryptography.Xml 9.0.0, DependencyModel 8.0.2,
-  System.IO.Packaging, MetadataLoadContext, CodeDom,
-  ConfigurationManager and Pkcs 9.0.11) were not read; reading 3 is
-  the likely cause, not confirmed.
+- The ten runtime rows that differ in `#~` besides the resource were
+  read on the morning of 28 October (reading 2, `FieldRVA`); four of
+  the ten pairs on disk are version-4 outputs, the version-3 DLLs of
+  those four were not kept.
 
 ## Next
 
