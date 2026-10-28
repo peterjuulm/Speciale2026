@@ -1,0 +1,20 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-d099f07"
+repo = "https://github.com/dotnet/runtime"
+commit = "d099f075e45d2aa6007a22b71b45a08758559f80"
+inner = ""
+kind = "runtime"
+official_build_id = "20221018.5"
+shell = "bash"
+build = '''./build.sh libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20221018.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]
+strip_internal_feeds = true
+
+[[products]]
+package = "System.IO.Hashing"
+version = "7.0.0"
+ships = "lib/net7.0/System.IO.Hashing.dll"
+project = "src/libraries/System.IO.Hashing/src/System.IO.Hashing.csproj"
+file_version = "7.0.22.51805"
