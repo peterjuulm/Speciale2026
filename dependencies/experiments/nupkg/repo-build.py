@@ -90,7 +90,7 @@ def toolchain(src, inner):
     for rt in sorted(glob.glob(os.path.join(dn, 'shared', '*', '*'))):
         lines.append(f'runtime {os.path.basename(os.path.dirname(rt))} {os.path.basename(rt)}')
     for tool in ('clang', 'cmake', 'ninja', 'git', 'curl', 'openssl'):
-        p = shutil.which(tool, path='/usr/bin')
+        p = shutil.which(tool, path=None if WINDOWS else '/usr/bin')   # Windows: the runner's PATH
         ver = subprocess.run([p, '--version'], capture_output=True, text=True).stdout.split('\n')[0] if p else 'missing'
         lines.append(f'{tool}: {ver}')
     for pkg in ('icu', 'openssl', 'glibc', 'krb5', 'zlib') if shutil.which('pacman') else ():

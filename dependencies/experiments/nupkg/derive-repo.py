@@ -138,6 +138,18 @@ def report_attr(nupkg, ships, lab, name):
     return r.stdout
 
 
+def win_entry(url, commit, lab, flags):
+    """The repository's Windows entry script at the commit (build.cmd or Build.cmd) with the flags it does not add itself.
+
+    Arcade's standard build.cmd calls eng/common/build.ps1 with -restore -build already (msbuild: -build -restore;
+    Roslyn's Build.cmd adds -build only), and PowerShell refuses a switch given twice (28/10 07:20, reverse-proxy on
+    windows-2022: "parameter 'restore' is specified more than once")."""
+    mirror = mirror_of(url, lab)
+    name = next((f for f in sh(['git', '-C', mirror, 'ls-tree', '--name-only', commit]).stdout.split('\n') if f.lower() == 'build.cmd'), 'build.cmd')
+    text = sh(['git', '-C', mirror, 'show', f'{commit}:{name}']).stdout.lower()
+    return name + ''.join(f' {f}' for f in flags if f'{f} ' not in text and f'{f}"' not in text and not text.rstrip().endswith(f))
+
+
 NODE_BY_SDK = {8: '18.20.8', 9: '22.23.4'}   # R3d: the Node LTS line each aspnetcore tree's npm tooling accepts (8.0: <=19; 9.0: engines >=20.9)
 
 
@@ -321,10 +333,10 @@ def main():
             # Roslyn's eng/build.sh has no -nobl, and Arcade's tools.sh refuses a CI build without a binary log
             # unless opted out, so the log is written (-bl); it does not change what is built (27/10 22:28)
             build = f'{cd}./build.sh --restore --build --pack --ci -bl -c Release {props}'
-            win = f'./Build.cmd -restore -pack -ci -bl -c Release {props}; exit $LASTEXITCODE'   # Build.cmd adds -build
+            win = f'./{win_entry(url, commit, lab, ("-restore", "-pack"))} -ci -bl -c Release {props}; exit $LASTEXITCODE'
         else:
             build = f'{cd}./build.sh --restore --build --pack --ci -nobl -c Release {props}'
-            win = f'./build.cmd -restore -build -pack -ci -nobl -c Release {props}; exit $LASTEXITCODE'
+            win = f'./{win_entry(url, commit, lab, ("-restore", "-build", "-pack"))} -ci -nobl -c Release {props}; exit $LASTEXITCODE'
         facts.append(f'command: {build}  [rule R3]')
         if inner:   # the VMR is built on Linux only here: its Windows build needs Visual Studio's native toolchain and hours
             win = ''
