@@ -1,0 +1,27 @@
+# Derived by derive-repo.py (repository-build method), see facts.txt beside it.
+name = "runtime-4822e3c"
+repo = "https://github.com/dotnet/runtime"
+commit = "4822e3c3aa77eb82b2fb33c9321f923cf11ddde6"
+inner = ""
+kind = "runtime"
+official_build_id = "20211022.10"
+shell = "bash"
+build = '''./build.sh libs.ref+libs.src -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20211022.10 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
+packages = "artifacts/packages/Release/Shipping"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]
+strip_internal_feeds = true
+
+[[products]]
+package = "System.CodeDom"
+version = "6.0.0"
+ships = "lib/net6.0/System.CodeDom.dll"
+project = "src/libraries/System.CodeDom/src/System.CodeDom.csproj"
+file_version = "6.0.21.52210"
+
+[[products]]
+package = "System.IO.Hashing"
+version = "6.0.0"
+ships = "lib/net6.0/System.IO.Hashing.dll"
+project = "src/libraries/System.IO.Hashing/src/System.IO.Hashing.csproj"
+file_version = "6.0.21.52210"
