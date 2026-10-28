@@ -1,0 +1,6 @@
+# Version 2 of the repository-build method (VMR identity properties, EnableNgenOptimization=false); run 28 October 00:10 to 01:08 by after.sh. Plan: dependencies/notes/2026-10-27-nupkg-repository-build-plan.md (section "Version 2"). Same lab and mirrors as version 1.
+cd ~/Dev/Speciale2026/dependencies/experiments/nupkg
+# derive the recipes (one per repository and commit)
+python3 -I derive-repo.py recipes/repository/batch-arcade.txt ../../data/2026-10-13-dependency-census/mac/census.files.csv ../../data/2026-10-27-nupkg-release-only-batch3-microsoft/derive /private/tmp/nupkg-repobuild recipes/repository/2026-10-28-nupkg-repository-build-v2 --v2
+# run the batch, one build at a time
+nohup python3 -I run-repo-batch.py 2026-10-28-nupkg-repository-build-v2 recipes/repository/order-2026-10-28-v2.txt /private/tmp/nupkg-repobuild > /private/tmp/nupkg-repobuild/console-v2.log 2>&1 &
