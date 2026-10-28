@@ -7,7 +7,7 @@ kind = "arcade"
 official_build_id = "20230428.4"
 shell = "bash"
 build = '''./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false'''
-build_windows = '''./build.cmd -restore -build -pack -ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE'''
+build_windows = '''./Build.cmd -pack -ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE'''
 packages = "artifacts/packages/Release/Shipping"
 os = "windows"
 git_config = ["core.autocrlf=true"]

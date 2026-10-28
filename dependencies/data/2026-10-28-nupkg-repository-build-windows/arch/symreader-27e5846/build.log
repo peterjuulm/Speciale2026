@@ -1,4 +1,4 @@
-start 2026-10-28T06:12:47+00:00
+start 2026-10-28T06:14:50+00:00
 repository build symreader-27e5846 in D:\w\A\src
 kernel Windows 2022Server AMD64
 runner ImageOS=win22
@@ -82,9 +82,9 @@ PKG_CONFIG_PATH=C:\hostedtoolcache\windows\Python\3.13.17\x64/lib/pkgconfig
 POWERSHELL_DISTRIBUTION_CHANNEL=GitHub-Actions-win22
 POWERSHELL_UPDATECHECK=Off
 PROCESSOR_ARCHITECTURE=AMD64
-PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 17 Stepping 1, AuthenticAMD
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 1 Stepping 1, AuthenticAMD
 PROCESSOR_LEVEL=25
-PROCESSOR_REVISION=1101
+PROCESSOR_REVISION=0101
 PROGRAMDATA=C:\ProgramData
 PROGRAMFILES=C:\Program Files
 PROGRAMFILES(X86)=C:\Program Files (x86)
@@ -112,7 +112,7 @@ VCPKG_INSTALLATION_ROOT=C:\vcpkg
 WINDIR=C:\Windows
 WIX=C:\Program Files (x86)\WiX Toolset v3.14\
 WORK=D:\w
---- clone 2026-10-28T06:12:48+00:00
+--- clone 2026-10-28T06:14:50+00:00
 $ git init -q D:\w\A\src
 $ git -C D:\w\A\src remote add origin https://github.com/dotnet/symreader
 $ git -C D:\w\A\src config core.longpaths true
@@ -122,18 +122,63 @@ $ git -C D:\w\A\src fetch -q origin 27e584661980ee6d82c419a2a471ae505b7d122e
 $ git -C D:\w\A\src -c advice.detachedHead=false checkout -q 27e584661980ee6d82c419a2a471ae505b7d122e
 $ git -C D:\w\A\src rev-parse HEAD
 27e584661980ee6d82c419a2a471ae505b7d122e
---- submodules 2026-10-28T06:12:50+00:00
+--- submodules 2026-10-28T06:14:52+00:00
 $ git -C D:\w\A\src submodule update --init --recursive --depth 1
---- build 2026-10-28T06:12:50+00:00
-$ pwsh -NoProfile -NonInteractive -Command ./build.cmd -restore -build -pack -ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE
-D:\w\A\src\eng\common\Build.ps1 : Cannot bind parameter because parameter 'restore' is specified more than once. To 
-provide multiple values to parameters that can accept multiple values, use the array syntax. For example, "-parameter 
-value1,value2,value3".
-At line:1 char:53
-+ & "D:\w\A\src\eng\common\Build.ps1" -restore -build -restore -build - ...
-+                                                     ~~~~~~~~
-    + CategoryInfo          : InvalidArgument: (:) [Build.ps1], ParameterBindingException
-    + FullyQualifiedErrorId : ParameterAlreadyBound,Build.ps1
- 
+--- build 2026-10-28T06:14:52+00:00
+$ pwsh -NoProfile -NonInteractive -Command ./Build.cmd -pack -ci -nobl -c Release /p:OfficialBuildId=20230428.4 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE
+##vso[task.setvariable isSecret=False;variable=Artifacts;isOutput=True]D:\w\A\src\artifacts
+##vso[task.setvariable isSecret=False;variable=Artifacts.Toolset;isOutput=True]D:\w\A\src\artifacts\toolset
+##vso[task.setvariable isSecret=False;variable=Artifacts.Log;isOutput=True]D:\w\A\src\artifacts\log\Release
+##vso[task.setvariable isSecret=False;variable=TEMP;isOutput=True]D:\w\A\src\artifacts\tmp\Release
+##vso[task.setvariable isSecret=False;variable=TMP;isOutput=True]D:\w\A\src\artifacts\tmp\Release
+GET https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.ps1
+Attempting to install dotnet from public location.
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.100-preview.3.23178.7/dotnet-sdk-8.0.100-preview.3.23178.7-win-x64.zip size is 258178740 bytes.
+dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.100-preview.3.23178.7/dotnet-sdk-8.0.100-preview.3.23178.7-win-x64.zip size is 258178740 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Extracting the archive.
+dotnet-install: Adding to current process PATH: "D:\w\A\src\.dotnet\". Note: This change will not be visible if PowerShell was run as a child process.
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 8.0.100-preview.3.23178.7
+dotnet-install: Installation finished
+##vso[task.prependpath]D:\w\A\src\.dotnet
+##vso[task.setvariable isSecret=False;variable=DOTNET_MULTILEVEL_LOOKUP;isOutput=True]0
+##vso[task.setvariable isSecret=False;variable=DOTNET_SKIP_FIRST_TIME_EXPERIENCE;isOutput=True]1
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isOutput=True]20
+##vso[task.setvariable isSecret=False;variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isOutput=True]20
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+  Determining projects to restore...
+D:\w\A\nuget\microsoft.dotnet.arcade.sdk\8.0.0-beta.23226.4\tools\Tools.proj : error NU1603: Warning As Error: Tools depends on Microsoft.DotNet.NuGetRepack.Tasks (>= 8.0.0-beta.23226.4) but Microsoft.DotNet.NuGetRepack.Tasks 8.0.0-beta.23226.4 was not found. An approximate best match of Microsoft.DotNet.NuGetRepack.Tasks 8.0.0-beta.23330.1 was resolved.
+##vso[task.logissue type=error;sourcepath=D:\w\A\nuget\microsoft.dotnet.arcade.sdk\8.0.0-beta.23226.4\tools\Tools.proj;linenumber=0;columnnumber=0;code=NU1603;](NETCORE_ENGINEERING_TELEMETRY=Restore) Warning As Error: Tools depends on Microsoft.DotNet.NuGetRepack.Tasks (>= 8.0.0-beta.23226.4) but Microsoft.DotNet.NuGetRepack.Tasks 8.0.0-beta.23226.4 was not found. An approximate best match of Microsoft.DotNet.NuGetRepack.Tasks 8.0.0-beta.23330.1 was resolved.
+  Failed to restore D:\w\A\nuget\microsoft.dotnet.arcade.sdk\8.0.0-beta.23226.4\tools\Tools.proj (in 2.78 sec).
+
+Build FAILED.
+
+D:\w\A\nuget\microsoft.dotnet.arcade.sdk\8.0.0-beta.23226.4\tools\Tools.proj : error NU1603: Warning As Error: Tools depends on Microsoft.DotNet.NuGetRepack.Tasks (>= 8.0.0-beta.23226.4) but Microsoft.DotNet.NuGetRepack.Tasks 8.0.0-beta.23226.4 was not found. An approximate best match of Microsoft.DotNet.NuGetRepack.Tasks 8.0.0-beta.23330.1 was resolved.
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:03.23
+Build failed with exit code 1. Check errors above.
+$ D:\w\A\src\.dotnet\dotnet.exe build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
 build exit code 1
-end 2026-10-28T06:12:56+00:00
+end 2026-10-28T06:15:30+00:00

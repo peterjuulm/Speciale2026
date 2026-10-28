@@ -1,4 +1,4 @@
-start 2026-10-28T06:12:45+00:00
+start 2026-10-28T06:14:51+00:00
 repository build msbuild-995a3dc in D:\w\A\src
 kernel Windows 2022Server AMD64
 runner ImageOS=win22
@@ -82,9 +82,9 @@ PKG_CONFIG_PATH=C:\hostedtoolcache\windows\Python\3.13.17\x64/lib/pkgconfig
 POWERSHELL_DISTRIBUTION_CHANNEL=GitHub-Actions-win22
 POWERSHELL_UPDATECHECK=Off
 PROCESSOR_ARCHITECTURE=AMD64
-PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 207 Stepping 2, GenuineIntel
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 173 Stepping 1, GenuineIntel
 PROCESSOR_LEVEL=6
-PROCESSOR_REVISION=cf02
+PROCESSOR_REVISION=ad01
 PROGRAMDATA=C:\ProgramData
 PROGRAMFILES=C:\Program Files
 PROGRAMFILES(X86)=C:\Program Files (x86)
@@ -112,7 +112,7 @@ VCPKG_INSTALLATION_ROOT=C:\vcpkg
 WINDIR=C:\Windows
 WIX=C:\Program Files (x86)\WiX Toolset v3.14\
 WORK=D:\w
---- clone 2026-10-28T06:12:45+00:00
+--- clone 2026-10-28T06:14:51+00:00
 $ git init -q D:\w\A\src
 $ git -C D:\w\A\src remote add origin https://github.com/dotnet/msbuild
 $ git -C D:\w\A\src config core.longpaths true
@@ -122,18 +122,207 @@ $ git -C D:\w\A\src fetch -q origin 995a3dce41788caebf2b8ca6602a7431f08bfd06
 $ git -C D:\w\A\src -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
 $ git -C D:\w\A\src rev-parse HEAD
 995a3dce41788caebf2b8ca6602a7431f08bfd06
---- submodules 2026-10-28T06:12:59+00:00
+--- submodules 2026-10-28T06:15:02+00:00
 $ git -C D:\w\A\src submodule update --init --recursive --depth 1
---- build 2026-10-28T06:13:00+00:00
-$ pwsh -NoProfile -NonInteractive -Command ./build.cmd -restore -build -pack -ci -nobl -c Release /p:OfficialBuildId=20251021.2 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE
-D:\w\A\src\eng\common\build.ps1 : Cannot bind parameter because parameter 'restore' is specified more than once. To 
-provide multiple values to parameters that can accept multiple values, use the array syntax. For example, "-parameter 
-value1,value2,value3".
-At line:1 char:53
-+ & "D:\w\A\src\eng\common\build.ps1" -build -restore -restore -build - ...
-+                                                     ~~~~~~~~
-    + CategoryInfo          : InvalidArgument: (:) [build.ps1], ParameterBindingException
-    + FullyQualifiedErrorId : ParameterAlreadyBound,build.ps1
- 
+--- build 2026-10-28T06:15:02+00:00
+$ pwsh -NoProfile -NonInteractive -Command ./build.cmd -pack -ci -nobl -c Release /p:OfficialBuildId=20251021.2 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE
+##vso[task.setvariable isSecret=False;variable=Artifacts;isOutput=True]D:\w\A\src\artifacts
+##vso[task.setvariable isSecret=False;variable=Artifacts.Toolset;isOutput=True]D:\w\A\src\artifacts\toolset
+##vso[task.setvariable isSecret=False;variable=Artifacts.Log;isOutput=True]D:\w\A\src\artifacts\log\Release
+##vso[task.setvariable isSecret=False;variable=TEMP;isOutput=True]D:\w\A\src\artifacts\tmp\Release
+##vso[task.setvariable isSecret=False;variable=TMP;isOutput=True]D:\w\A\src\artifacts\tmp\Release
+GET https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.ps1
+  Attempting to install 'sdk v10.0.100-rc.1.25451.107' from public location.
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.100-rc.1.25451.107/dotnet-sdk-10.0.100-rc.1.25451.107-win-x64.zip size is 312395417 bytes.
+dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.100-rc.1.25451.107/dotnet-sdk-10.0.100-rc.1.25451.107-win-x64.zip size is 312395417 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Extracting the archive.
+dotnet-install: Adding to current process PATH: "D:\w\A\src\.dotnet\". Note: This change will not be visible if PowerShell was run as a child process.
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 10.0.100-rc.1.25451.107
+dotnet-install: Installation finished
+##vso[task.prependpath]D:\w\A\src\.dotnet
+##vso[task.setvariable isSecret=False;variable=DOTNET_MULTILEVEL_LOOKUP;isOutput=True]0
+##vso[task.setvariable isSecret=False;variable=DOTNET_NOLOGO;isOutput=True]1
+Downloading vswhere 3.1.7
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+
+  Determining projects to restore...
+  Restored D:\w\A\nuget\microsoft.dotnet.arcade.sdk\10.0.0-beta.25469.2\tools\Tools.proj (in 2.48 sec).
+  Determining projects to restore...
+  Restored D:\w\A\src\src\BuildCheck.UnitTests\TestAssets\ErrorCustomCheck\ErrorCustomCheck.csproj (in 2.9 sec).
+  Restored D:\w\A\src\src\BuildCheck.UnitTests\TestAssets\CustomCheck\CustomCheck.csproj (in 2.9 sec).
+  Restored D:\w\A\src\src\BuildCheck.UnitTests\TestAssets\CustomCheck2\CustomCheck2.csproj (in 2.9 sec).
+  Restored D:\w\A\src\src\StringTools.UnitTests\StringTools.UnitTests.csproj (in 3.47 sec).
+  Restored D:\w\A\src\src\Build.UnitTests\TestAssets\ExampleNetTask\ExampleTask\ExampleTask.csproj (in 713 ms).
+  Restored D:\w\A\src\src\Build.OM.UnitTests\Microsoft.Build.Engine.OM.UnitTests.csproj (in 353 ms).
+  Restored D:\w\A\src\src\BuildCheck.UnitTests\Microsoft.Build.BuildCheck.UnitTests.csproj (in 808 ms).
+  Restored D:\w\A\src\src\Package\Localization\Localization.csproj (in 4 ms).
+  Restored D:\w\A\src\src\Package\DevDivPackage\DevDivPackage.csproj (in 6 ms).
+  Restored D:\w\A\src\src\MSBuildTaskHost\MSBuildTaskHost.csproj (in 103 ms).
+  Restored D:\w\A\src\src\MSBuild.UnitTests\Microsoft.Build.CommandLine.UnitTests.csproj (in 593 ms).
+  Restored D:\w\A\src\src\Build.UnitTests\Microsoft.Build.Engine.UnitTests.csproj (in 2.97 sec).
+  Restored D:\w\A\src\src\Framework\Microsoft.Build.Framework.csproj (in 1.53 sec).
+  Restored D:\w\A\src\src\Framework.UnitTests\Microsoft.Build.Framework.UnitTests.csproj (in 9 ms).
+  Restored D:\w\A\src\src\Package\Microsoft.Build.UnGAC\Microsoft.Build.UnGAC.csproj (in 4.11 sec).
+  Restored D:\w\A\src\src\MSBuild.Bootstrap\MSBuild.Bootstrap.csproj (in 3.69 sec).
+  Restored D:\w\A\src\template_feed\Microsoft.Build.Templates.csproj (in 745 ms).
+  Restored D:\w\A\src\src\MSBuild\MSBuild.csproj (in 5.23 sec).
+  Restored D:\w\A\src\src\StringTools.Benchmark\StringTools.Benchmark.csproj (in 2.34 sec).
+  Restored D:\w\A\src\src\Samples\XmlFileLogger\XmlFileLogger.csproj (in 3.53 sec).
+  Restored D:\w\A\src\src\Samples\ProjectCachePlugin\ProjectCachePlugin.csproj (in 1.07 sec).
+  Restored D:\w\A\src\src\Samples\TaskUsageLogger\TaskUsageLogger.csproj (in 1.68 sec).
+  Restored D:\w\A\src\src\Samples\TaskWithDependency\TaskWithDependency.csproj (in 3.45 sec).
+  Restored D:\w\A\src\src\Samples\Dependency\Dependency.csproj (in 2 ms).
+  Restored D:\w\A\src\src\Package\MSBuild.VSSetup\MSBuild.VSSetup.csproj (in 6 ms).
+  Restored D:\w\A\src\src\BuildCheck.UnitTests\TestAssets\InvalidCustomCheck\InvalidCustomCheck.csproj (in 3 ms).
+  Restored D:\w\A\src\src\Package\MSBuild.VSSetup.Arm64\MSBuild.VSSetup.Arm64.csproj (in 6 ms).
+  Restored D:\w\A\src\src\Xunit.NetCore.Extensions\Xunit.NetCore.Extensions.csproj (in 3 ms).
+  Restored D:\w\A\src\src\Utilities.UnitTests\Microsoft.Build.Utilities.UnitTests.csproj (in 12 ms).
+  Restored D:\w\A\src\src\UnitTests.Shared\Microsoft.Build.UnitTests.Shared.csproj (in 8 ms).
+  Restored D:\w\A\src\src\Utilities\Microsoft.Build.Utilities.csproj (in 130 ms).
+  Restored D:\w\A\src\src\Tasks.UnitTests\Microsoft.Build.Tasks.UnitTests.csproj (in 13 ms).
+  Restored D:\w\A\src\src\StringTools\StringTools.csproj (in 81 ms).
+  Restored D:\w\A\src\src\StringTools.UnitTests\StringTools.UnitTests.net35.csproj (in 4 ms).
+  Restored D:\w\A\src\src\Samples\PortableTask\PortableTask.csproj (in 390 ms).
+  Restored D:\w\A\src\src\Build\Microsoft.Build.csproj (in 411 ms).
+  Restored D:\w\A\src\src\Tasks\Microsoft.Build.Tasks.csproj (in 1.79 sec).
+  Dependency -> D:\w\A\src\artifacts\bin\Samples\Dependency\Release\net472\Dependency.dll
+  Microsoft.Build.Framework -> D:\w\A\src\artifacts\bin\Microsoft.Build.Framework\Release\netstandard2.0\Microsoft.Build.Framework.dll
+  Microsoft.Build.Framework -> D:\w\A\src\artifacts\bin\Microsoft.Build.Framework\Release\net10.0\Microsoft.Build.Framework.dll
+  TaskUsageLogger -> D:\w\A\src\artifacts\bin\Samples\TaskUsageLogger\Release\net472\TaskUsageLogger.dll
+  Dependency -> D:\w\A\src\artifacts\bin\Samples\Dependency\Release\net10.0\Dependency.dll
+  Microsoft.Build.Framework -> D:\w\A\src\artifacts\bin\Microsoft.Build.Framework\Release\net472\Microsoft.Build.Framework.dll
+  TaskUsageLogger -> D:\w\A\src\artifacts\bin\Samples\TaskUsageLogger\Release\net10.0\TaskUsageLogger.dll
+  TaskUsageLogger -> D:\w\A\src\artifacts\bin\Samples\TaskUsageLogger\Release\netstandard2.0\TaskUsageLogger.dll
+  Dependency -> D:\w\A\src\artifacts\bin\Samples\Dependency\Release\netstandard2.0\Dependency.dll
+  XmlFileLogger -> D:\w\A\src\artifacts\bin\Samples\XmlFileLogger\Release\net472\XmlFileLogger.dll
+  XmlFileLogger -> D:\w\A\src\artifacts\bin\Samples\XmlFileLogger\Release\netstandard2.0\XmlFileLogger.dll
+  XmlFileLogger -> D:\w\A\src\artifacts\bin\Samples\XmlFileLogger\Release\net10.0\XmlFileLogger.dll
+  PortableTask -> D:\w\A\src\artifacts\bin\Samples\PortableTask\Release\netstandard2.0\PortableTask.dll
+  Xunit.NetCore.Extensions -> D:\w\A\src\artifacts\bin\Xunit.NetCore.Extensions\Release\net10.0\Xunit.NetCore.Extensions.dll
+  Xunit.NetCore.Extensions -> D:\w\A\src\artifacts\bin\Xunit.NetCore.Extensions\Release\net472\Xunit.NetCore.Extensions.dll
+  Microsoft.Build.UnGAC -> D:\w\A\src\artifacts\bin\Microsoft.Build.UnGAC\Release\net45\Microsoft.Build.UnGAC.exe
+  StringTools -> D:\w\A\src\artifacts\bin\StringTools\Release\net10.0\Microsoft.NET.StringTools.dll
+  StringTools -> D:\w\A\src\artifacts\bin\StringTools\Release\net472\Microsoft.NET.StringTools.dll
+  StringTools -> D:\w\A\src\artifacts\bin\StringTools\Release\net35\Microsoft.NET.StringTools.net35.dll
+  VisualStudio.SetupPackage -> D:\w\A\src\artifacts\obj\Microsoft.Build.UnGAC\Release\net45\Microsoft.Build.UnGAC.json
+  Microsoft.Build.Templates -> D:\w\A\src\artifacts\bin\Microsoft.Build.Templates\Release\net10.0\Microsoft.Build.Templates.dll
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Templates.18.0.2.nupkg'.
+  ProjectCachePlugin -> D:\w\A\src\artifacts\bin\Samples\ProjectCachePlugin\Release\net472\ProjectCachePlugin.dll
+  ProjectCachePlugin -> D:\w\A\src\artifacts\bin\Samples\ProjectCachePlugin\Release\net10.0\ProjectCachePlugin.dll
+  StringTools.Benchmark -> D:\w\A\src\artifacts\bin\StringTools.Benchmark\Release\net10.0\StringTools.Benchmark.dll
+  StringTools.UnitTests -> D:\w\A\src\artifacts\bin\StringTools.UnitTests\Release\net10.0\Microsoft.NET.StringTools.UnitTests.dll
+  StringTools.Benchmark -> D:\w\A\src\artifacts\bin\StringTools.Benchmark\Release\net472\StringTools.Benchmark.exe
+  StringTools.UnitTests -> D:\w\A\src\artifacts\bin\StringTools.UnitTests\Release\net472\Microsoft.NET.StringTools.UnitTests.dll
+  StringTools.UnitTests.net35 -> D:\w\A\src\artifacts\bin\StringTools.UnitTests.net35\Release\net472\Microsoft.NET.StringTools.net35.UnitTests.dll
+  MSBuildTaskHost -> D:\w\A\src\artifacts\bin\MSBuildTaskHost\Release\net35\MSBuildTaskHost.exe
+  StringTools -> D:\w\A\src\artifacts\bin\StringTools\Release\netstandard2.0\Microsoft.NET.StringTools.dll
+  Xunit.NetCore.Extensions -> D:\w\A\src\artifacts\bin\Xunit.NetCore.Extensions\Release\netstandard2.0\Xunit.NetCore.Extensions.dll
+  Microsoft.Build.Utilities -> D:\w\A\src\artifacts\bin\Microsoft.Build.Utilities\Release\net10.0\Microsoft.Build.Utilities.Core.dll
+  Microsoft.Build.Utilities -> D:\w\A\src\artifacts\bin\Microsoft.Build.Utilities\Release\net472\Microsoft.Build.Utilities.Core.dll
+  Microsoft.Build.Utilities -> D:\w\A\src\artifacts\bin\Microsoft.Build.Utilities\Release\netstandard2.0\Microsoft.Build.Utilities.Core.dll
+  Microsoft.Build -> D:\w\A\src\artifacts\bin\Microsoft.Build\Release\net10.0\Microsoft.Build.dll
+  Microsoft.Build.Tasks -> D:\w\A\src\artifacts\bin\Microsoft.Build.Tasks\Release\net472\Microsoft.Build.Tasks.Core.dll
+  Microsoft.Build.Tasks -> D:\w\A\src\artifacts\bin\Microsoft.Build.Tasks\Release\netstandard2.0\Microsoft.Build.Tasks.Core.dll
+  TaskWithDependency -> D:\w\A\src\artifacts\bin\Samples\TaskWithDependency\Release\netstandard2.0\TaskWithDependency.dll
+  TaskWithDependency -> D:\w\A\src\artifacts\bin\Samples\TaskWithDependency\Release\net472\TaskWithDependency.dll
+  Microsoft.Build -> D:\w\A\src\artifacts\bin\Microsoft.Build\Release\net472\Microsoft.Build.dll
+  MSBuild.VSSetup.Arm64 -> D:\w\A\src\artifacts\bin\MSBuild.VSSetup.Arm64\Release\net472\MSBuild.VSSetup.Arm64.dll
+  TaskWithDependency -> D:\w\A\src\artifacts\bin\Samples\TaskWithDependency\Release\net10.0\TaskWithDependency.dll
+  MSBuild -> D:\w\A\src\artifacts\bin\MSBuild\Release\net472\MSBuild.exe
+  Microsoft.Build.Tasks -> D:\w\A\src\artifacts\bin\Microsoft.Build.Tasks\Release\net10.0\Microsoft.Build.Tasks.Core.dll
+  MSBuild -> D:\w\A\src\artifacts\bin\MSBuild\arm64\Release\net472\MSBuild.exe
+  DevDivPackage -> D:\w\A\src\artifacts\bin\DevDivPackage\Release\net472\DevDivPackage.dll
+  MSBuild.VSSetup -> D:\w\A\src\artifacts\bin\MSBuild.VSSetup\Release\net472\MSBuild.VSSetup.dll
+  MSBuild -> D:\w\A\src\artifacts\bin\MSBuild\Release\net10.0\MSBuild.dll
+  Localization -> D:\w\A\src\artifacts\bin\Localization\Release\net10.0\Localization.dll
+  VisualStudio.SetupPackage -> D:\w\A\src\artifacts\obj\MSBuild.VSSetup.Arm64\Release\net472\Microsoft.Build.Arm64.vsix
+  MSBuild -> D:\w\A\src\artifacts\bin\MSBuild\x64\Release\net472\MSBuild.exe
+  MSBuild.Bootstrap -> D:\w\A\src\artifacts\bin\MSBuild.Bootstrap\Release\net10.0\MSBuild.Bootstrap.dll
+  Microsoft.Build.UnitTests.Shared -> D:\w\A\src\artifacts\bin\Microsoft.Build.UnitTests.Shared\Release\net10.0\Microsoft.Build.UnitTests.Shared.dll
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.18.0.2.nupkg'.
+  MSBuildTaskHost -> D:\w\A\src\artifacts\bin\MSBuildTaskHost\x64\Release\net35\MSBuildTaskHost.exe
+  CustomCheck -> D:\w\A\src\artifacts\bin\CustomCheck\Debug\netstandard2.0\CustomCheck.dll
+  CustomCheck2 -> D:\w\A\src\artifacts\bin\CustomCheck2\Debug\netstandard2.0\CustomCheck2.dll
+  InvalidCustomCheck -> D:\w\A\src\artifacts\bin\InvalidCustomCheck\Debug\netstandard2.0\InvalidCustomCheck.dll
+  MSBuild.Bootstrap -> D:\w\A\src\artifacts\bin\MSBuild.Bootstrap\Release\net472\MSBuild.Bootstrap.dll
+  ErrorCustomCheck -> D:\w\A\src\artifacts\bin\ErrorCustomCheck\Debug\netstandard2.0\ErrorCustomCheck.dll
+  ExampleTask -> D:\w\A\src\artifacts\bin\ExampleTask\Debug\net10.0\ExampleTask.dll
+  VisualStudio.SetupPackage -> D:\w\A\src\artifacts\obj\MSBuild.VSSetup\Release\net472\Microsoft.Build.vsix
+  Microsoft.Build.Utilities.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Utilities.UnitTests\Release\net10.0\Microsoft.Build.Utilities.UnitTests.dll
+  Microsoft.Build.CommandLine.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.CommandLine.UnitTests\Release\net10.0\Microsoft.Build.CommandLine.UnitTests.dll
+  Microsoft.Build.Framework.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Framework.UnitTests\Release\net10.0\Microsoft.Build.Framework.UnitTests.dll
+  Microsoft.Build.Engine.OM.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Engine.OM.UnitTests\Release\net10.0\Microsoft.Build.Engine.OM.UnitTests.dll
+  Microsoft.Build.Tasks.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Tasks.UnitTests\Release\net10.0\Microsoft.Build.Tasks.UnitTests.dll
+  Microsoft.Build.UnitTests.Shared -> D:\w\A\src\artifacts\bin\Microsoft.Build.UnitTests.Shared\Release\net472\Microsoft.Build.UnitTests.Shared.dll
+  Microsoft.Build.Engine.OM.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Engine.OM.UnitTests\Release\net472\Microsoft.Build.Engine.OM.UnitTests.dll
+  Microsoft.Build.Engine.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Engine.UnitTests\Release\net10.0\Microsoft.Build.Engine.UnitTests.dll
+  Microsoft.Build.Framework.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Framework.UnitTests\Release\net472\Microsoft.Build.Framework.UnitTests.dll
+  Microsoft.Build.Tasks.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Tasks.UnitTests\Release\net472\Microsoft.Build.Tasks.UnitTests.dll
+  Microsoft.Build.CommandLine.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.CommandLine.UnitTests\Release\net472\Microsoft.Build.CommandLine.UnitTests.dll
+  Microsoft.Build.Utilities.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Utilities.UnitTests\Release\net472\Microsoft.Build.Utilities.UnitTests.dll
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Framework.18.0.2.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\bin\Microsoft.Build.BuildCheck.UnitTests\CustomChecks\CustomCheck.1.0.0.nupkg'.
+  Microsoft.Build.Engine.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.Engine.UnitTests\Release\net472\Microsoft.Build.Engine.UnitTests.dll
+  Microsoft.Build.BuildCheck.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.BuildCheck.UnitTests\Release\net472\Microsoft.Build.BuildCheck.UnitTests.dll
+  Successfully created package 'D:\w\A\src\artifacts\bin\Microsoft.Build.BuildCheck.UnitTests\CustomChecks\ErrorCustomCheck.1.0.0.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\bin\Microsoft.Build.BuildCheck.UnitTests\CustomChecks\InvalidCustomCheck.1.0.0.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.NET.StringTools.18.0.2.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\bin\Microsoft.Build.BuildCheck.UnitTests\CustomChecks\CustomCheck2.1.0.0.nupkg'.
+  Microsoft.Build.BuildCheck.UnitTests -> D:\w\A\src\artifacts\bin\Microsoft.Build.BuildCheck.UnitTests\Release\net10.0\Microsoft.Build.BuildCheck.UnitTests.dll
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Utilities.Core.18.0.2.nupkg'.
+  The package VS.ExternalAPIs.MSBuild.18.0.2-servicing-25521-02 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\NonShipping\VS.ExternalAPIs.MSBuild.18.0.2-servicing-25521-02.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Runtime.18.0.2.nupkg'.
+  Could not resolve reference 'System.Security.Permissions.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Utilities.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Utilities.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Security.Permissions.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Utilities.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Utilities.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Security.Permissions.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\nuget\microsoft.build.utilities.core\17.14.8\microsoft.build.utilities.core.17.14.8.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\nuget\microsoft.build.utilities.core\17.14.8\microsoft.build.utilities.core.17.14.8.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Security.Permissions.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Utilities.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Utilities.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Utilities.Core.18.0.2.nupkg) in any of the provided search directories.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\NonShipping\Microsoft.Build.Localization.18.0.2-servicing-25521-02.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Tasks.Core.18.0.2.nupkg'.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Tasks.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Configuration.ConfigurationManager.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Tasks.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Tasks.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Configuration.ConfigurationManager.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Tasks.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\nuget\microsoft.build.tasks.core\17.14.8\microsoft.build.tasks.core.17.14.8.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Configuration.ConfigurationManager.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\nuget\microsoft.build.tasks.core\17.14.8\microsoft.build.tasks.core.17.14.8.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Diagnostics.DiagnosticSource.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Tasks.Core.18.0.2.nupkg) in any of the provided search directories.
+  Could not resolve reference 'System.Configuration.ConfigurationManager.dll' directly or transitively referenced by 'ref/netstandard2.0/Microsoft.Build.Tasks.Core.dll' (D:\w\A\src\artifacts\packages\Release\Shipping\Microsoft.Build.Tasks.Core.18.0.2.nupkg) in any of the provided search directories.
+D:\w\A\nuget\microsoft.dotnet.arcade.sdk\10.0.0-beta.25469.2\tools\VisualStudio.BuildIbcTrainingInputs.targets(18,5): error : Properties VisualStudioDropName and RepositoryName must be specified in official build that produces Visual Studio insertion components. [D:\w\A\nuget\microsoft.dotnet.arcade.sdk\10.0.0-beta.25469.2\tools\AfterSigning.proj]
+##vso[task.logissue type=error;sourcepath=D:\w\A\nuget\microsoft.dotnet.arcade.sdk\10.0.0-beta.25469.2\tools\VisualStudio.BuildIbcTrainingInputs.targets;linenumber=18;columnnumber=5;code=;](NETCORE_ENGINEERING_TELEMETRY=Sign) Properties VisualStudioDropName and RepositoryName must be specified in official build that produces Visual Studio insertion components.
+
+Build FAILED.
+
+D:\w\A\nuget\microsoft.dotnet.arcade.sdk\10.0.0-beta.25469.2\tools\VisualStudio.BuildIbcTrainingInputs.targets(18,5): error : Properties VisualStudioDropName and RepositoryName must be specified in official build that produces Visual Studio insertion components. [D:\w\A\nuget\microsoft.dotnet.arcade.sdk\10.0.0-beta.25469.2\tools\AfterSigning.proj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:03:08.35
+Build failed with exit code 1. Check errors above.
+$ D:\w\A\src\.dotnet\dotnet.exe build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
 build exit code 1
-end 2026-10-28T06:13:03+00:00
+end 2026-10-28T06:20:30+00:00

@@ -1,4 +1,4 @@
-start 2026-10-28T06:12:48+00:00
+start 2026-10-28T06:14:49+00:00
 repository build reverse-proxy-77f78d4 in D:\w\A\src
 kernel Windows 2022Server AMD64
 runner ImageOS=win22
@@ -82,9 +82,9 @@ PKG_CONFIG_PATH=C:\hostedtoolcache\windows\Python\3.13.17\x64/lib/pkgconfig
 POWERSHELL_DISTRIBUTION_CHANNEL=GitHub-Actions-win22
 POWERSHELL_UPDATECHECK=Off
 PROCESSOR_ARCHITECTURE=AMD64
-PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 207 Stepping 2, GenuineIntel
-PROCESSOR_LEVEL=6
-PROCESSOR_REVISION=cf02
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 1 Stepping 1, AuthenticAMD
+PROCESSOR_LEVEL=25
+PROCESSOR_REVISION=0101
 PROGRAMDATA=C:\ProgramData
 PROGRAMFILES=C:\Program Files
 PROGRAMFILES(X86)=C:\Program Files (x86)
@@ -112,7 +112,7 @@ VCPKG_INSTALLATION_ROOT=C:\vcpkg
 WINDIR=C:\Windows
 WIX=C:\Program Files (x86)\WiX Toolset v3.14\
 WORK=D:\w
---- clone 2026-10-28T06:12:48+00:00
+--- clone 2026-10-28T06:14:49+00:00
 $ git init -q D:\w\A\src
 $ git -C D:\w\A\src remote add origin https://github.com/microsoft/reverse-proxy
 $ git -C D:\w\A\src config core.longpaths true
@@ -122,18 +122,257 @@ $ git -C D:\w\A\src fetch -q origin 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
 $ git -C D:\w\A\src -c advice.detachedHead=false checkout -q 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
 $ git -C D:\w\A\src rev-parse HEAD
 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
---- submodules 2026-10-28T06:12:51+00:00
+--- submodules 2026-10-28T06:14:51+00:00
 $ git -C D:\w\A\src submodule update --init --recursive --depth 1
---- build 2026-10-28T06:12:52+00:00
-$ pwsh -NoProfile -NonInteractive -Command ./build.cmd -restore -build -pack -ci -nobl -c Release /p:OfficialBuildId=20231117.1 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE
-D:\w\A\src\eng\common\Build.ps1 : Cannot bind parameter because parameter 'restore' is specified more than once. To 
-provide multiple values to parameters that can accept multiple values, use the array syntax. For example, "-parameter 
-value1,value2,value3".
-At line:1 char:53
-+ & "D:\w\A\src\eng\common\Build.ps1" -restore -build -restore -build - ...
-+                                                     ~~~~~~~~
-    + CategoryInfo          : InvalidArgument: (:) [Build.ps1], ParameterBindingException
-    + FullyQualifiedErrorId : ParameterAlreadyBound,Build.ps1
- 
+--- build 2026-10-28T06:14:52+00:00
+$ pwsh -NoProfile -NonInteractive -Command ./build.cmd -pack -ci -nobl -c Release /p:OfficialBuildId=20231117.1 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE
+##vso[task.setvariable isSecret=False;variable=Artifacts;isOutput=True]D:\w\A\src\artifacts
+##vso[task.setvariable isSecret=False;variable=Artifacts.Toolset;isOutput=True]D:\w\A\src\artifacts\toolset
+##vso[task.setvariable isSecret=False;variable=Artifacts.Log;isOutput=True]D:\w\A\src\artifacts\log\Release
+##vso[task.setvariable isSecret=False;variable=TEMP;isOutput=True]D:\w\A\src\artifacts\tmp\Release
+##vso[task.setvariable isSecret=False;variable=TMP;isOutput=True]D:\w\A\src\artifacts\tmp\Release
+GET https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.ps1
+  Attempting to install 'sdk v8.0.100-rtm.23506.1' from public location.
+dotnet-install: Remote file https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-win-x64.zip size is 282683126 bytes.
+dotnet-install: Downloaded file https://ci.dot.net/public/Sdk/8.0.100-rtm.23506.1/dotnet-sdk-8.0.100-rtm.23506.1-win-x64.zip size is 282683126 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Extracting the archive.
+dotnet-install: Adding to current process PATH: "D:\w\A\src\.dotnet\". Note: This change will not be visible if PowerShell was run as a child process.
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 8.0.100-rtm.23506.1
+dotnet-install: Installation finished
+##vso[task.prependpath]D:\w\A\src\.dotnet
+##vso[task.setvariable isSecret=False;variable=DOTNET_MULTILEVEL_LOOKUP;isOutput=True]0
+##vso[task.setvariable isSecret=False;variable=DOTNET_NOLOGO;isOutput=True]1
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_PLUGIN_HANDSHAKE_TIMEOUT_IN_SECONDS;isOutput=True]20
+##vso[task.setvariable isSecret=False;variable=NUGET_PLUGIN_REQUEST_TIMEOUT_IN_SECONDS;isOutput=True]20
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+Setting NUGET enhanced retry environment variables
+##vso[task.setvariable isSecret=False;variable=NUGET_ENABLE_ENHANCED_HTTP_RETRY;isOutput=True]true
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_MAX_NETWORK_TRY_COUNT;isOutput=True]6
+##vso[task.setvariable isSecret=False;variable=NUGET_ENHANCED_NETWORK_RETRY_DELAY_MILLISECONDS;isOutput=True]1000
+##vso[task.setvariable isSecret=False;variable=NUGET_RETRY_HTTP_429;isOutput=True]true
+  Determining projects to restore...
+  Restored D:\w\A\nuget\microsoft.dotnet.arcade.sdk\9.0.0-beta.23560.1\tools\Tools.proj (in 2.83 sec).
+  Attempting to install runtime toolset 'dotnet/x64 v6.0.14' from public location.
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Runtime/6.0.14/dotnet-runtime-6.0.14-win-x64.zip size is 32781670 bytes.
+dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Runtime/6.0.14/dotnet-runtime-6.0.14-win-x64.zip size is 32781670 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Extracting the archive.
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 6.0.14
+dotnet-install: Installation finished
+  Attempting to install runtime toolset 'dotnet/x64 v7.0.3' from public location.
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.3/dotnet-runtime-7.0.3-win-x64.zip size is 32992565 bytes.
+dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.3/dotnet-runtime-7.0.3-win-x64.zip size is 32992565 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Extracting the archive.
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 7.0.3
+dotnet-install: Installation finished
+  Attempting to install runtime toolset 'aspnetcore/x64 v6.0.14' from public location.
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/6.0.14/aspnetcore-runtime-6.0.14-win-x64.zip size is 43205410 bytes.
+dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/6.0.14/aspnetcore-runtime-6.0.14-win-x64.zip size is 43205410 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Extracting the archive.
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 6.0.14
+dotnet-install: Installation finished
+  Attempting to install runtime toolset 'aspnetcore/x64 v7.0.3' from public location.
+dotnet-install: Remote file https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.3/aspnetcore-runtime-7.0.3-win-x64.zip size is 44143481 bytes.
+dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.3/aspnetcore-runtime-7.0.3-win-x64.zip size is 44143481 bytes.
+dotnet-install: The remote and local file sizes are equal.
+dotnet-install: Extracting the archive.
+dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+dotnet-install: Installed version is 7.0.3
+dotnet-install: Installation finished
+  Determining projects to restore...
+  Restored D:\w\A\src\samples\ReverseProxy.HttpSysDelegation.Sample\SampleHttpSysServer\SampleHttpSysServer.csproj (in 2.96 sec).
+  Restored D:\w\A\src\samples\ReverseProxy.HttpSysDelegation.Sample\ReverseProxy\ReverseProxy.HttpSysDelegation.Sample.csproj (in 2.96 sec).
+  Restored D:\w\A\src\samples\ReverseProxy.Direct.Sample\ReverseProxy.Direct.Sample.csproj (in 12 ms).
+  Restored D:\w\A\src\samples\ReverseProxy.ConfigFilter.Sample\ReverseProxy.ConfigFilter.Sample.csproj (in 6 ms).
+  Restored D:\w\A\src\samples\ReverseProxy.Code.Sample\ReverseProxy.Code.Sample.csproj (in 5 ms).
+  Restored D:\w\A\src\samples\ReverseProxy.Config.Sample\ReverseProxy.Config.Sample.csproj (in 6 ms).
+  Restored D:\w\A\src\samples\ReverseProxy.Auth.Sample\ReverseProxy.Auth.Sample.csproj (in 5 ms).
+  Restored D:\w\A\src\samples\Prometheus\HttpLoadApp\HttpLoadApp.csproj (in 3 ms).
+  Restored D:\w\A\src\samples\ReverseProxy.LetsEncrypt.Sample\ReverseProxy.LetsEncrypt.Sample.csproj (in 3.18 sec).
+  Restored D:\w\A\src\samples\Prometheus\ReverseProxy.Metrics-Prometheus.Sample\ReverseProxy.Metrics.Prometheus.Sample.csproj (in 1.05 sec).
+  Restored D:\w\A\src\test\Tests.Common\Yarp.Tests.Common.csproj (in 6.37 sec).
+  Restored D:\w\A\src\samples\KubernetesIngress.Sample\backend\backend.csproj (in 4 ms).
+  Restored D:\w\A\src\samples\BasicYarpSample\BasicYarpSample.csproj (in 5 ms).
+  Restored D:\w\A\src\samples\KubernetesIngress.Sample\Ingress\Yarp.Kubernetes.Ingress.csproj (in 4.39 sec).
+  Restored D:\w\A\src\samples\KubernetesIngress.Sample\Monitor\Yarp.Kubernetes.Monitor.csproj (in 4.4 sec).
+  Restored D:\w\A\src\samples\KubernetesIngress.Sample\Combined\Yarp.Kubernetes.IngressController.csproj (in 3.19 sec).
+  Restored D:\w\A\src\test\ReverseProxy.Tests\Yarp.ReverseProxy.Tests.csproj (in 622 ms).
+  Restored D:\w\A\src\testassets\TestServer\TestServer.csproj (in 3 ms).
+  Restored D:\w\A\src\testassets\TestClient\TestClient.csproj (in 3 ms).
+  Restored D:\w\A\src\testassets\ReverseProxy.Direct\ReverseProxy.Direct.csproj (in 4 ms).
+  Restored D:\w\A\src\testassets\ReverseProxy.Config\ReverseProxy.Config.csproj (in 4 ms).
+  Restored D:\w\A\src\testassets\ReverseProxy.Code\ReverseProxy.Code.csproj (in 4 ms).
+  Restored D:\w\A\src\test\ReverseProxy.FunctionalTests\Yarp.ReverseProxy.FunctionalTests.csproj (in 765 ms).
+  Restored D:\w\A\src\testassets\BenchmarkApp\BenchmarkApp.csproj (in 199 ms).
+  Restored D:\w\A\src\test\Kubernetes.Tests\Yarp.Kubernetes.Tests.csproj (in 1.12 sec).
+  Restored D:\w\A\src\src\Kubernetes.Controller\Yarp.Kubernetes.Controller.csproj (in 24 ms).
+  Restored D:\w\A\src\samples\SampleServer\SampleServer.csproj (in 3 ms).
+  Restored D:\w\A\src\samples\ReverseProxy.Transforms.Sample\ReverseProxy.Transforms.Sample.csproj (in 4 ms).
+  Restored D:\w\A\src\samples\ReverseProxy.Metrics.Sample\ReverseProxy.Metrics.Sample.csproj (in 6 ms).
+  Restored D:\w\A\src\docs\docfx\docfx.csproj (in 2.55 sec).
+  Restored D:\w\A\src\src\TelemetryConsumption\Yarp.Telemetry.Consumption.csproj (in 883 ms).
+  Restored D:\w\A\src\src\ReverseProxy\Yarp.ReverseProxy.csproj (in 713 ms).
+  Yarp.ReverseProxy -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy\Release\net7.0\Yarp.ReverseProxy.dll
+  Yarp.ReverseProxy -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy\Release\net6.0\Yarp.ReverseProxy.dll
+  backend -> D:\w\A\src\artifacts\bin\backend\Release\net6.0\backend.dll
+  backend -> D:\w\A\src\artifacts\bin\backend\Release\net7.0\backend.dll
+  backend -> D:\w\A\src\artifacts\bin\backend\Release\net8.0\backend.dll
+  Yarp.ReverseProxy -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy\Release\net8.0\Yarp.ReverseProxy.dll
+  HttpLoadApp -> D:\w\A\src\artifacts\bin\HttpLoadApp\Release\net6.0\HttpLoadApp.dll
+  HttpLoadApp -> D:\w\A\src\artifacts\bin\HttpLoadApp\Release\net7.0\HttpLoadApp.dll
+  HttpLoadApp -> D:\w\A\src\artifacts\bin\HttpLoadApp\Release\net8.0\HttpLoadApp.dll
+  SampleHttpSysServer -> D:\w\A\src\artifacts\bin\SampleHttpSysServer\Release\net6.0\SampleHttpSysServer.dll
+  Yarp.Telemetry.Consumption -> D:\w\A\src\artifacts\bin\Yarp.Telemetry.Consumption\Release\net6.0\Yarp.Telemetry.Consumption.dll
+  ReverseProxy.Direct.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Direct.Sample\Release\net6.0\ReverseProxy.Direct.Sample.dll
+  ReverseProxy.ConfigFilter.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.ConfigFilter.Sample\Release\net6.0\ReverseProxy.ConfigFilter.Sample.dll
+  ReverseProxy.Transforms.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Transforms.Sample\Release\net6.0\ReverseProxy.Transforms.Sample.dll
+  Yarp.Kubernetes.Controller -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Controller\Release\net8.0\Yarp.Kubernetes.Controller.dll
+  ReverseProxy.Config.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Config.Sample\Release\net6.0\ReverseProxy.Config.Sample.dll
+  Yarp.Tests.Common -> D:\w\A\src\artifacts\bin\Yarp.Tests.Common\Release\net6.0\Yarp.Tests.Common.dll
+  SampleServer -> D:\w\A\src\artifacts\bin\SampleServer\Release\net7.0\SampleServer.dll
+  SampleServer -> D:\w\A\src\artifacts\bin\SampleServer\Release\net8.0\SampleServer.dll
+  Yarp.Telemetry.Consumption -> D:\w\A\src\artifacts\bin\Yarp.Telemetry.Consumption\Release\net7.0\Yarp.Telemetry.Consumption.dll
+  ReverseProxy.Metrics.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Metrics.Sample\Release\net6.0\ReverseProxy.Metrics.Sample.dll
+  SampleServer -> D:\w\A\src\artifacts\bin\SampleServer\Release\net6.0\SampleServer.dll
+  ReverseProxy.HttpSysDelegation.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.HttpSysDelegation.Sample\Release\net7.0\ReverseProxy.HttpSysDelegation.Sample.dll
+  ReverseProxy.Metrics.Prometheus.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Metrics.Prometheus.Sample\Release\net7.0\ReverseProxy.Metrics.Prometheus.Sample.dll
+  Yarp.Tests.Common -> D:\w\A\src\artifacts\bin\Yarp.Tests.Common\Release\net7.0\Yarp.Tests.Common.dll
+  ReverseProxy.LetsEncrypt.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.LetsEncrypt.Sample\Release\net6.0\ReverseProxy.LetsEncrypt.Sample.dll
+  ReverseProxy.Auth.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Auth.Sample\Release\net6.0\ReverseProxy.Auth.Sample.dll
+  BasicYarpSample -> D:\w\A\src\artifacts\bin\BasicYarpSample\Release\net6.0\BasicYarpSample.dll
+  Yarp.Kubernetes.Controller -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Controller\Release\net6.0\Yarp.Kubernetes.Controller.dll
+  ReverseProxy.Direct -> D:\w\A\src\artifacts\bin\ReverseProxy.Direct\Release\net6.0\ReverseProxy.Direct.dll
+  TestClient -> D:\w\A\src\artifacts\bin\TestClient\Release\net6.0\TestClient.dll
+  ReverseProxy.HttpSysDelegation.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.HttpSysDelegation.Sample\Release\net6.0\ReverseProxy.HttpSysDelegation.Sample.dll
+  ReverseProxy.Code.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Code.Sample\Release\net6.0\ReverseProxy.Code.Sample.dll
+  TestClient -> D:\w\A\src\artifacts\bin\TestClient\Release\net7.0\TestClient.dll
+  TestClient -> D:\w\A\src\artifacts\bin\TestClient\Release\net8.0\TestClient.dll
+  Yarp.Telemetry.Consumption -> D:\w\A\src\artifacts\bin\Yarp.Telemetry.Consumption\Release\net8.0\Yarp.Telemetry.Consumption.dll
+  docfx -> D:\w\A\src\artifacts\bin\docfx\Release\netstandard2.0\docfx.dll
+  TestServer -> D:\w\A\src\artifacts\bin\TestServer\Release\net6.0\TestServer.dll
+  ReverseProxy.Direct.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Direct.Sample\Release\net8.0\ReverseProxy.Direct.Sample.dll
+  ReverseProxy.HttpSysDelegation.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.HttpSysDelegation.Sample\Release\net8.0\ReverseProxy.HttpSysDelegation.Sample.dll
+  ReverseProxy.ConfigFilter.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.ConfigFilter.Sample\Release\net8.0\ReverseProxy.ConfigFilter.Sample.dll
+  ReverseProxy.Code.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Code.Sample\Release\net8.0\ReverseProxy.Code.Sample.dll
+  Yarp.Tests.Common -> D:\w\A\src\artifacts\bin\Yarp.Tests.Common\Release\net8.0\Yarp.Tests.Common.dll
+  [26-10-28 06:16:41.956]Info:[MetadataCommand.ExtractMetadata]Using msbuild C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin as inner compiler.
+  TestServer -> D:\w\A\src\artifacts\bin\TestServer\Release\net7.0\TestServer.dll
+  ReverseProxy.Auth.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Auth.Sample\Release\net8.0\ReverseProxy.Auth.Sample.dll
+  BasicYarpSample -> D:\w\A\src\artifacts\bin\BasicYarpSample\Release\net8.0\BasicYarpSample.dll
+  [26-10-28 06:16:42.628]Info:[MetadataCommand.ExtractMetadata]Loading projects...
+  ReverseProxy.Metrics.Prometheus.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Metrics.Prometheus.Sample\Release\net6.0\ReverseProxy.Metrics.Prometheus.Sample.dll
+  Yarp.ReverseProxy.FunctionalTests -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy.FunctionalTests\Release\net7.0\Yarp.ReverseProxy.FunctionalTests.dll
+  TestServer -> D:\w\A\src\artifacts\bin\TestServer\Release\net8.0\TestServer.dll
+  ReverseProxy.Transforms.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Transforms.Sample\Release\net8.0\ReverseProxy.Transforms.Sample.dll
+  Yarp.Kubernetes.IngressController -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.IngressController\Release\net8.0\Yarp.Kubernetes.IngressController.dll
+  ReverseProxy.Config.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Config.Sample\Release\net8.0\ReverseProxy.Config.Sample.dll
+  Yarp.ReverseProxy.Tests -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy.Tests\Release\net8.0\Yarp.ReverseProxy.Tests.dll
+  Yarp.ReverseProxy.Tests -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy.Tests\Release\net7.0\Yarp.ReverseProxy.Tests.dll
+  BasicYarpSample -> D:\w\A\src\artifacts\bin\BasicYarpSample\Release\net7.0\BasicYarpSample.dll
+  Yarp.Kubernetes.Controller -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Controller\Release\net7.0\Yarp.Kubernetes.Controller.dll
+  ReverseProxy.Auth.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Auth.Sample\Release\net7.0\ReverseProxy.Auth.Sample.dll
+  ReverseProxy.ConfigFilter.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.ConfigFilter.Sample\Release\net7.0\ReverseProxy.ConfigFilter.Sample.dll
+  ReverseProxy.Config.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Config.Sample\Release\net7.0\ReverseProxy.Config.Sample.dll
+  ReverseProxy.Code.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Code.Sample\Release\net7.0\ReverseProxy.Code.Sample.dll
+  ReverseProxy.Direct.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Direct.Sample\Release\net7.0\ReverseProxy.Direct.Sample.dll
+  [26-10-28 06:16:46.725]Warning:[MetadataCommand.ExtractMetadata](D:/w/A/src/src/ReverseProxy/Yarp.ReverseProxy.csproj)Error opening project D:/w/A/src/src/ReverseProxy/Yarp.ReverseProxy.csproj: Method 'DisposeAsync' in type 'Microsoft.Build.Experimental.ProjectCache.ProjectCacheService' from assembly 'Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' does not have an implementation.. Ignored.
+  [26-10-28 06:16:46.725]Warning:[MetadataCommand.ExtractMetadata](D:/w/A/src/src/TelemetryConsumption/Yarp.Telemetry.Consumption.csproj)Error opening project D:/w/A/src/src/TelemetryConsumption/Yarp.Telemetry.Consumption.csproj: Method 'DisposeAsync' in type 'Microsoft.Build.Experimental.ProjectCache.ProjectCacheService' from assembly 'Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' does not have an implementation.. Ignored.
+  [26-10-28 06:16:46.772]Info:[MetadataCommand]Completed Scope:MetadataCommand in 5062.8944 milliseconds.
+  [26-10-28 06:16:46.772]Error:Error extracting metadata for D:/w/A/src/src/ReverseProxy/Yarp.ReverseProxy.csproj,D:/w/A/src/src/TelemetryConsumption/Yarp.Telemetry.Consumption.csproj: System.NullReferenceException: Object reference not set to an instance of an object.
+     at Microsoft.DocAsCode.Metadata.ManagedReference.ExtractMetadataWorker.<SaveAllMembersFromCacheAsync>d__13.MoveNext()
+  --- End of stack trace from previous location where exception was thrown ---
+     at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+     at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+     at Microsoft.DocAsCode.Metadata.ManagedReference.ExtractMetadataWorker.<ExtractMetadataAsync>d__11.MoveNext()
+  [26-10-28 06:16:46.772]Info:Completed in 5076.0455 milliseconds
+  
+  
+  Build failed.
+  [26-10-28 06:16:46.819]Warning:[MetadataCommand.ExtractMetadata](D:/w/A/src/src/ReverseProxy/Yarp.ReverseProxy.csproj)Error opening project D:/w/A/src/src/ReverseProxy/Yarp.ReverseProxy.csproj: Method 'DisposeAsync' in type 'Microsoft.Build.Experimental.ProjectCache.ProjectCacheService' from assembly 'Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' does not have an implementation.. Ignored.
+  [26-10-28 06:16:46.819]Warning:[MetadataCommand.ExtractMetadata](D:/w/A/src/src/TelemetryConsumption/Yarp.Telemetry.Consumption.csproj)Error opening project D:/w/A/src/src/TelemetryConsumption/Yarp.Telemetry.Consumption.csproj: Method 'DisposeAsync' in type 'Microsoft.Build.Experimental.ProjectCache.ProjectCacheService' from assembly 'Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' does not have an implementation.. Ignored.
+  [26-10-28 06:16:46.819]Error:Error extracting metadata for D:/w/A/src/src/ReverseProxy/Yarp.ReverseProxy.csproj,D:/w/A/src/src/TelemetryConsumption/Yarp.Telemetry.Consumption.csproj: System.NullReferenceException: Object reference not set to an instance of an object.
+     at Microsoft.DocAsCode.Metadata.ManagedReference.ExtractMetadataWorker.<SaveAllMembersFromCacheAsync>d__13.MoveNext()
+  --- End of stack trace from previous location where exception was thrown ---
+     at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+     at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+     at Microsoft.DocAsCode.Metadata.ManagedReference.ExtractMetadataWorker.<ExtractMetadataAsync>d__11.MoveNext()
+  	2 Warning(s)
+  	1 Error(s)
+D:\w\A\nuget\docfx.console\2.59.4\build\docfx.console.targets(59,5): error MSB3073: The command ""D:\w\A\nuget\docfx.console\2.59.4\build\..\tools\docfx.exe" "D:\w\A\src\docs\docfx/docfx.json" -o "" -l "log.txt" --logLevel "Info"" exited with code 1. [D:\w\A\src\docs\docfx\docfx.csproj]
+  ReverseProxy.Code -> D:\w\A\src\artifacts\bin\ReverseProxy.Code\Release\net7.0\ReverseProxy.Code.dll
+##vso[task.logissue type=error;sourcepath=D:\w\A\nuget\docfx.console\2.59.4\build\docfx.console.targets;linenumber=59;columnnumber=5;code=MSB3073;](NETCORE_ENGINEERING_TELEMETRY=Build) The command ""D:\w\A\nuget\docfx.console\2.59.4\build\..\tools\docfx.exe" "D:\w\A\src\docs\docfx/docfx.json" -o "" -l "log.txt" --logLevel "Info"" exited with code 1.
+  SampleHttpSysServer -> D:\w\A\src\artifacts\bin\SampleHttpSysServer\Release\net7.0\SampleHttpSysServer.dll
+  Yarp.Kubernetes.Tests -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Tests\Release\net8.0\Yarp.Kubernetes.Tests.dll
+  SampleHttpSysServer -> D:\w\A\src\artifacts\bin\SampleHttpSysServer\Release\net8.0\SampleHttpSysServer.dll
+  ReverseProxy.LetsEncrypt.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.LetsEncrypt.Sample\Release\net7.0\ReverseProxy.LetsEncrypt.Sample.dll
+  ReverseProxy.Transforms.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Transforms.Sample\Release\net7.0\ReverseProxy.Transforms.Sample.dll
+  Yarp.Kubernetes.Monitor -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Monitor\Release\net8.0\Yarp.Kubernetes.Monitor.dll
+  Yarp.Kubernetes.Ingress -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Ingress\Release\net8.0\Yarp.Kubernetes.Ingress.dll
+  ReverseProxy.LetsEncrypt.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.LetsEncrypt.Sample\Release\net8.0\ReverseProxy.LetsEncrypt.Sample.dll
+  ReverseProxy.Metrics.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Metrics.Sample\Release\net7.0\ReverseProxy.Metrics.Sample.dll
+  Yarp.ReverseProxy.Tests -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy.Tests\Release\net6.0\Yarp.ReverseProxy.Tests.dll
+  Yarp.Kubernetes.Ingress -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Ingress\Release\net6.0\Yarp.Kubernetes.Ingress.dll
+  Yarp.Kubernetes.Tests -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Tests\Release\net6.0\Yarp.Kubernetes.Tests.dll
+  BenchmarkApp -> D:\w\A\src\artifacts\bin\BenchmarkApp\Release\net6.0\BenchmarkApp.dll
+  ReverseProxy.Config -> D:\w\A\src\artifacts\bin\ReverseProxy.Config\Release\net8.0\ReverseProxy.Config.dll
+  ReverseProxy.Config -> D:\w\A\src\artifacts\bin\ReverseProxy.Config\Release\net6.0\ReverseProxy.Config.dll
+  Yarp.Kubernetes.Monitor -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Monitor\Release\net6.0\Yarp.Kubernetes.Monitor.dll
+  ReverseProxy.Code -> D:\w\A\src\artifacts\bin\ReverseProxy.Code\Release\net6.0\ReverseProxy.Code.dll
+  ReverseProxy.Direct -> D:\w\A\src\artifacts\bin\ReverseProxy.Direct\Release\net8.0\ReverseProxy.Direct.dll
+  Yarp.Kubernetes.IngressController -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.IngressController\Release\net6.0\Yarp.Kubernetes.IngressController.dll
+  ReverseProxy.Code -> D:\w\A\src\artifacts\bin\ReverseProxy.Code\Release\net8.0\ReverseProxy.Code.dll
+  Yarp.ReverseProxy.FunctionalTests -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy.FunctionalTests\Release\net6.0\Yarp.ReverseProxy.FunctionalTests.dll
+  ReverseProxy.Metrics.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Metrics.Sample\Release\net8.0\ReverseProxy.Metrics.Sample.dll
+  Yarp.ReverseProxy.FunctionalTests -> D:\w\A\src\artifacts\bin\Yarp.ReverseProxy.FunctionalTests\Release\net8.0\Yarp.ReverseProxy.FunctionalTests.dll
+  The package Yarp.Kubernetes.Controller.2.1.0-rtw.23567.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\NonShipping\Yarp.Kubernetes.Controller.2.1.0-rtw.23567.1.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\NonShipping\Yarp.Kubernetes.Controller.2.1.0-rtw.23567.1.symbols.nupkg'.
+  ReverseProxy.Metrics.Prometheus.Sample -> D:\w\A\src\artifacts\bin\ReverseProxy.Metrics.Prometheus.Sample\Release\net8.0\ReverseProxy.Metrics.Prometheus.Sample.dll
+  BenchmarkApp -> D:\w\A\src\artifacts\bin\BenchmarkApp\Release\net7.0\BenchmarkApp.dll
+  Yarp.Kubernetes.Tests -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Tests\Release\net7.0\Yarp.Kubernetes.Tests.dll
+  ReverseProxy.Direct -> D:\w\A\src\artifacts\bin\ReverseProxy.Direct\Release\net7.0\ReverseProxy.Direct.dll
+  Yarp.Kubernetes.IngressController -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.IngressController\Release\net7.0\Yarp.Kubernetes.IngressController.dll
+  Yarp.Kubernetes.Monitor -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Monitor\Release\net7.0\Yarp.Kubernetes.Monitor.dll
+  Yarp.Kubernetes.Ingress -> D:\w\A\src\artifacts\bin\Yarp.Kubernetes.Ingress\Release\net7.0\Yarp.Kubernetes.Ingress.dll
+  ReverseProxy.Config -> D:\w\A\src\artifacts\bin\ReverseProxy.Config\Release\net7.0\ReverseProxy.Config.dll
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Yarp.Telemetry.Consumption.2.1.0.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Yarp.Telemetry.Consumption.2.1.0.symbols.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Yarp.ReverseProxy.2.1.0.nupkg'.
+  Successfully created package 'D:\w\A\src\artifacts\packages\Release\Shipping\Yarp.ReverseProxy.2.1.0.symbols.nupkg'.
+
+Build FAILED.
+
+D:\w\A\nuget\docfx.console\2.59.4\build\docfx.console.targets(59,5): error MSB3073: The command ""D:\w\A\nuget\docfx.console\2.59.4\build\..\tools\docfx.exe" "D:\w\A\src\docs\docfx/docfx.json" -o "" -l "log.txt" --logLevel "Info"" exited with code 1. [D:\w\A\src\docs\docfx\docfx.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:01:29.81
+Build failed with exit code 1. Check errors above.
+$ D:\w\A\src\.dotnet\dotnet.exe build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
 build exit code 1
-end 2026-10-28T06:12:57+00:00
+end 2026-10-28T06:16:56+00:00
