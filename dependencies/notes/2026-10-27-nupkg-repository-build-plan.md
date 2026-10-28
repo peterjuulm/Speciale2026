@@ -469,3 +469,33 @@ and .NET 6 runtime recipes join the version-4 order; so do the three
 in the `AsnXml` check (the regenerated files are diffed against the
 checked-in ones, CRLF after R6's conversion against the generator's
 LF), which R6b removes.
+
+## Windows run of version 3
+
+Added 28 October 2026, 07:40, before the run. Not a new version of the
+method: the version-3 rules unchanged, on the host the official builds
+use. The result note of the overnight run (readings 2 and 3) attributes
+36 level-4 rows to the newline of a build-generated resource and 9 to the
+source-file glob order, both properties of the build host's OS. The
+prediction, written here before the run: those rows reach level 3 on
+Windows; the level-3 rows stay at level 3 (the PDB's compiler record
+still names a different runtime build than the official one).
+
+- Host: GitHub-hosted standard runner `windows-2022` in this repository
+  (free on a public repository; never Weel-Sandvig's runners or minutes).
+  Workflow `.github/workflows/nupkg-repository-build.yml`, one job per
+  recipe, started by hand.
+- Recipes: `recipes/repository/2026-10-28-nupkg-repository-build-windows/`,
+  derived with `--v3` like version 3; the only addition is
+  `build_windows`, the same steps through the repository's own
+  `build.cmd` or `eng/build.cmd` (Windows PowerShell, as the official
+  pipeline), and `node` for the aspnetcore trees. The VMR inner builds
+  (`dotnet-*`) have no Windows command: a VMR build on a 4-core runner
+  with a 14 GB disk is not attempted.
+- `repo-build.py` on Windows keeps the runner's environment minus its own
+  .NET (as `rebuild.py` does), runs `build_windows` with pwsh, and reads
+  Arcade's failure marker as on Linux. No mirror: every job clones from
+  GitHub.
+- Data: `dependencies/data/2026-10-28-nupkg-repository-build-windows/`,
+  the artifacts downloaded and classified on arch with the same
+  `level.py`.

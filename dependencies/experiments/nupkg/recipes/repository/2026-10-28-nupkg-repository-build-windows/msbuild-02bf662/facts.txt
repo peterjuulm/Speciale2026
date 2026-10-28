@@ -1,0 +1,13 @@
+msbuild-02bf662: repository build derivation
+repository: https://github.com/dotnet/msbuild
+commit: 02bf66295b64ab368d12933041f7281aad186a2d
+inner repository: none (the repository itself)
+kind: arcade
+product Microsoft.Build 17.11.48: ships lib/net8.0/Microsoft.Build.dll; project src/Build/Microsoft.Build.csproj; file version 17.11.48.46605 -> 20250916.5 [inferred: FILE_PATCH 48 does not fit the Arcade scheme for patch 48 (the repository sets its own); year 25 from the nuget.org publish date; FILE_REVISION 46605 = (50*9+16)*100 + 5; from dllreport on the nupkg]
+official build id: 20250916.5  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
+command: ./build.sh --restore --build --pack --ci -nobl -c Release /p:OfficialBuildId=20250916.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false  [rule R3]
+command on a Windows runner (pwsh): ./build.cmd -restore -build -pack -ci -nobl -c Release /p:OfficialBuildId=20250916.5 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 17

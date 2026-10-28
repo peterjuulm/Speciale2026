@@ -1,0 +1,15 @@
+runtime-5535e31: repository build derivation
+repository: https://github.com/dotnet/runtime
+commit: 5535e31a712343a63f5d7d796cd874e563e5ac14
+inner repository: none (the repository itself)
+kind: runtime
+product Microsoft.Bcl.AsyncInterfaces 8.0.0: ships lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll; project src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj; file version 8.0.23.53103 -> 20231031.3 [inferred: FILE_PATCH 23 = (patch 0 mod 100)*100 + yy 23; FILE_REVISION 53103 = (50*10+31)*100 + 3; from dllreport on the nupkg]
+product System.Reflection.MetadataLoadContext 8.0.0: ships lib/net8.0/System.Reflection.MetadataLoadContext.dll; project src/libraries/System.Reflection.MetadataLoadContext/src/System.Reflection.MetadataLoadContext.csproj; file version 8.0.23.53103 -> 20231031.3 [inferred: FILE_PATCH 23 = (patch 0 mod 100)*100 + yy 23; FILE_REVISION 53103 = (50*10+31)*100 + 3; from dllreport on the nupkg]
+official build id: 20231031.3  [rule R4]
+release branding: StabilizePackageVersion=true, DotNetFinalVersionKind=release  [read: the shipped versions have no prerelease label; rule R4b]
+version 2, R5b: EnableNgenOptimization=false (the optimization-data step needs a Microsoft-internal drop; its tools restore from a 401 feed)  [rule]
+version 3, R3c: subset tools+libs.sfx+libs.oob -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]
+command: ./build.sh tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20231031.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false  [rule R3]
+command on a Windows runner (pwsh): ./build.cmd -subset tools+libs.sfx+libs.oob -allconfigurations -c Release -ci -nobl -pack /p:OfficialBuildId=20231031.3 /p:StabilizePackageVersion=true /p:DotNetFinalVersionKind=release /p:EnableNgenOptimization=false; exit $LASTEXITCODE  [rule R3]
+sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
+sdk major from global.json: 8

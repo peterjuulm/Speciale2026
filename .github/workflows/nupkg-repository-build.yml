@@ -1,0 +1,88 @@
+name: Nupkg repository build
+run-name: ${{ inputs.set }} on ${{ inputs.runner }}
+
+# Builds Microsoft's Arcade repositories at the commits Phoenix's packages
+# declare, with each repository's own Windows build script, on standard
+# GitHub-hosted runners, and compares the packages with nuget.org
+# (dependencies/experiments/nupkg/repo-build.py; the recipes are derived by
+# derive-repo.py, one folder per repository and commit). Started by hand.
+# One job per recipe, in parallel; a failed build is a result, not a failed
+# job. Written 28 October 2026 for the Windows run of version 3 of the
+# repository-build method (dependencies/notes/2026-10-27-nupkg-repository-build-plan.md).
+#
+# Standard runners are free on public repositories; larger runners are always
+# billed, so the runner input offers standard labels only. Logs and artifacts
+# are public: open-source repositories only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      set:
+        description: Recipe folder in dependencies/experiments/nupkg/recipes/repository
+        required: true
+        default: 2026-10-28-nupkg-repository-build-windows
+        type: string
+      recipes:
+        description: Recipe names, a JSON list
+        required: true
+        default: '["aspnetcore-2aa4015", "aspnetcore-3f1acb5", "aspnetcore-af22eff", "msbuild-02bf662", "msbuild-995a3dc", "reverse-proxy-77f78d4", "roslyn-6c4a46a", "runtime-4822e3c", "runtime-5535e31", "runtime-81cabf2", "runtime-9d5a6a9", "runtime-bf5e279", "runtime-cf258a1", "runtime-d099f07", "runtime-fa7cdde", "symreader-27e5846"]'
+        type: string
+      runner:
+        description: Runner image
+        required: true
+        default: windows-2022
+        type: choice
+        options:
+          - windows-2022
+          - windows-2025
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: ${{ matrix.recipe }} on ${{ inputs.runner }}
+    runs-on: ${{ inputs.runner }}
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        recipe: ${{ fromJSON(inputs.recipes) }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Read the recipe
+        id: recipe
+        shell: pwsh
+        env:
+          RECIPE: dependencies/experiments/nupkg/recipes/repository/${{ inputs.set }}/${{ matrix.recipe }}/recipe.toml
+        run: |
+          $node = python -I -c "import os, tomllib; print(tomllib.load(open(os.environ['RECIPE'], 'rb')).get('node', ''))"
+          "node=$node" >> $env:GITHUB_OUTPUT
+          $drive = (Get-PSDrive -PSProvider FileSystem | Where-Object Free | Sort-Object Free -Descending)[0]
+          Get-PSDrive -PSProvider FileSystem | Where-Object Free | Format-Table Name, @{n='FreeGB'; e={[int]($_.Free / 1GB)}}
+          "work=$($drive.Root)w" >> $env:GITHUB_OUTPUT
+      - name: Set up the recipe's Node line
+        if: steps.recipe.outputs.node != ''
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: ${{ steps.recipe.outputs.node }}
+      - name: Build and compare
+        shell: pwsh
+        env:
+          RECIPE: dependencies/experiments/nupkg/recipes/repository/${{ inputs.set }}/${{ matrix.recipe }}/recipe.toml
+          WORK: ${{ steps.recipe.outputs.work }}
+        run: python -I dependencies/experiments/nupkg/repo-build.py $env:RECIPE $env:WORK
+      - name: Upload the results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ${{ matrix.recipe }}-${{ inputs.runner }}
+          path: ${{ steps.recipe.outputs.work }}/out
+          if-no-files-found: error

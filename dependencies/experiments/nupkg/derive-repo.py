@@ -283,6 +283,13 @@ def main():
             # one --pack call per project: a ';'-joined list loses its quotes in the shell and MSBuild splits it
             packs = ' '.join('"$PWD/' + p['project'][len(root):] + '"' for p in g['products'])
             build = f'{cd}{wrap}{first}ok=0; for p in {packs}; do s ./eng/build.sh --ci -nobl -c Release --pack --projects "$p" {props} || ok=1; done; exit $ok'
+            # the same steps for a Windows runner (28/10 07:30): eng/build.cmd, the official entry point, runs
+            # eng/build.ps1 under Windows PowerShell; s() reads each step's output for Arcade's failure marker as above
+            wrap_w = ("function s { $t = New-TemporaryFile; $a = @($args[1..($args.Count - 1)]); & $args[0] @a 2>&1 | Tee-Object -FilePath $t | Out-Host; "
+                      "$c = $LASTEXITCODE; if (Select-String -Quiet -Path $t -Pattern 'task.complete result=Failed') { $c = 1 }; return $c }; ")
+            first_w = f'if (s ./eng/build.cmd -ci -nobl -c Release -projects "$PWD/{app[len(root):]}" {props}) {{ exit 1 }}; ' if app else ''
+            packs_w = ', '.join('"$PWD/' + p['project'][len(root):] + '"' for p in g['products'])
+            win = f'{wrap_w}{first_w}$ok = 0; foreach ($p in @({packs_w})) {{ if (s ./eng/build.cmd -ci -nobl -c Release -pack -projects $p {props}) {{ $ok = 1 }} }}; exit $ok'
         elif g['kind'] == 'runtime' and v3 and not inner:
             # version 3, R3c: the standalone dotnet/runtime commits without the native shims (libs.native), which do
             # not compile with this machine's clang 23 at 9.0.0 (27/10 22:40, eleven C-to-C++ compatibility
@@ -305,21 +312,31 @@ def main():
             # (.NET 6 to 9; 27/10 22:49, build 10 packed nothing), and the official build packs them in its
             # "Libraries_AllConfigurations" leg, "-s tools+libs -allConfigurations" on windows_x64 (eng/pipelines/runtime-official.yml)
             build = f'{cd}./build.sh {tools}{subset} -allconfigurations -c Release -ci -nobl -pack {props}'
+            win = f'./build.cmd -subset {tools}{subset} -allconfigurations -c Release -ci -nobl -pack {props}; exit $LASTEXITCODE'
             facts.append(f'version 3, R3c: subset {tools}{subset} -allconfigurations (eng/Subsets.props at the commit names these; libs.native and libs.pretest left out; the official leg Libraries_AllConfigurations builds tools+libs -allConfigurations on windows_x64)  [read]')
         elif g['kind'] == 'runtime':
             build = f'{cd}./build.sh libs -c Release -ci -nobl -pack {props}'
+            win = f'./build.cmd -subset libs -c Release -ci -nobl -pack {props}; exit $LASTEXITCODE'
         elif g['kind'] == 'roslyn':
             # Roslyn's eng/build.sh has no -nobl, and Arcade's tools.sh refuses a CI build without a binary log
             # unless opted out, so the log is written (-bl); it does not change what is built (27/10 22:28)
             build = f'{cd}./build.sh --restore --build --pack --ci -bl -c Release {props}'
+            win = f'./Build.cmd -restore -pack -ci -bl -c Release {props}; exit $LASTEXITCODE'   # Build.cmd adds -build
         else:
             build = f'{cd}./build.sh --restore --build --pack --ci -nobl -c Release {props}'
+            win = f'./build.cmd -restore -build -pack -ci -nobl -c Release {props}; exit $LASTEXITCODE'
         facts.append(f'command: {build}  [rule R3]')
+        if inner:   # the VMR is built on Linux only here: its Windows build needs Visual Studio's native toolchain and hours
+            win = ''
+            facts.append('no Windows command: a VMR inner build is not run on a Windows runner (no build_windows)')
+        else:
+            facts.append(f'command on a Windows runner (pwsh): {win}  [rule R3]')
         gj = f'{root}global.json'
         facts.append(f'sdk: from {gj}, installed by the repository\'s own eng/common/tools.sh into {root}.dotnet  [rule R2]')
         toml = [f'# Derived by derive-repo.py (repository-build method), see facts.txt beside it.',
                 f'name = "{name}"', f'repo = "{url}"', f'commit = "{commit}"', f'inner = "{inner}"', f'kind = "{g["kind"]}"',
                 f'official_build_id = "{bid}"', 'shell = "bash"', f"build = '''{build}'''",
+                *([f"build_windows = '''{win}'''"] if win else []),
                 f'packages = "{root}artifacts/packages/Release/Shipping"', 'os = "windows"',
                 # R6: autocrlf=true stood for a Windows checkout; version 4, R6b: sources as committed (LF) with the
                 # attributes the tree carries, because the shipped Identity.UI's Razor tag-helper ids (character
@@ -337,6 +354,7 @@ def main():
             # The build gets the Node LTS line of the tree's era from nodejs.org, first on PATH; nothing compared contains JS.
             node = os.path.join(lab, 'node', f'node-v{NODE_BY_SDK[major]}-linux-x64', 'bin')
             toml.append(f'path_prepend = ["{node}"]')
+            toml.append(f'node = "{NODE_BY_SDK[major]}"')   # the same line for a Windows runner, installed by the workflow
             facts.append(f'version 3, R3d: Node {NODE_BY_SDK[major]} (nodejs.org, sha256 checked) first on PATH for the npm projects of the .NET {major} tree  [rule]')
         # version 4, R2b: invariant globalization only below .NET 6. The .NET 7 SDK starts on this machine's ICU 78
         # (tested 28/10 02:25, 7.0.100-rc.1.22431.11), and in invariant mode the SDK's resource-locale check (NETSDK1188)

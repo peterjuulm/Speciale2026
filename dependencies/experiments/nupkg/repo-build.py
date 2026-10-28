@@ -21,13 +21,14 @@ WORKDIR/out/build.log; the toolchain the script installed is in WORKDIR/out/tool
 One build only: A against A2 is not measured here (a second run of the small repositories is
 the follow-up). Exit code 0 when the script ran to the end, whatever the verdicts.
 """
-import glob, hashlib, importlib.util, os, re, shutil, subprocess, sys, tomllib
+import glob, hashlib, importlib.util, os, platform, re, shutil, subprocess, sys, tomllib
 import xml.etree.ElementTree as ET
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 spec = importlib.util.spec_from_file_location('rebuild', os.path.join(HERE, 'rebuild.py'))
 rebuild = importlib.util.module_from_spec(spec); spec.loader.exec_module(rebuild)
 now, run, download = rebuild.now, rebuild.run, rebuild.download
+WINDOWS = os.name == 'nt'
 
 
 def strip_internal_feeds(src, inner, log):
@@ -92,7 +93,7 @@ def toolchain(src, inner):
         p = shutil.which(tool, path='/usr/bin')
         ver = subprocess.run([p, '--version'], capture_output=True, text=True).stdout.split('\n')[0] if p else 'missing'
         lines.append(f'{tool}: {ver}')
-    for pkg in ('icu', 'openssl', 'glibc', 'krb5', 'zlib'):
+    for pkg in ('icu', 'openssl', 'glibc', 'krb5', 'zlib') if shutil.which('pacman') else ():
         r = subprocess.run(['pacman', '-Q', pkg], capture_output=True, text=True)
         lines.append(f'system package {r.stdout.strip() or pkg + ": not installed"}')
     return lines
@@ -109,15 +110,22 @@ def main():
     src, home, nuget = os.path.join(work, 'A', 'src'), os.path.join(work, 'A', 'home'), os.path.join(work, 'A', 'nuget') + os.sep
     os.makedirs(home); os.makedirs(nuget)
     env = rebuild.build_env(r, '', home, nuget, src)
-    env['PATH'] = '/usr/bin'
-    for d in reversed(r.get('path_prepend', [])):   # a toolchain the recipe names (version 3, R3d: a Node line the tree accepts)
-        env['PATH'] = d + os.pathsep + env['PATH']
+    if WINDOWS:   # the runner's environment minus its own dotnet (rebuild.build_env); the recipe's Node line is the workflow's job
+        env['PATH'] = os.pathsep.join(p for p in env['PATH'].split(os.pathsep) if p)
+    else:
+        env['PATH'] = '/usr/bin'
+        for d in reversed(r.get('path_prepend', [])):   # a toolchain the recipe names (version 3, R3d: a Node line the tree accepts)
+            env['PATH'] = d + os.pathsep + env['PATH']
     env.update(GIT_HTTP_LOW_SPEED_LIMIT='1000', GIT_HTTP_LOW_SPEED_TIME='120')   # a stalled fetch aborts instead of hanging
     env['DOTNET_INSTALL_DIR'] = os.path.join(src, inner, '.dotnet') if inner else os.path.join(src, '.dotnet')
+    env['DOTNET_ROOT'] = env['DOTNET_INSTALL_DIR']
     code = None
     with open(os.path.join(out, 'build.log'), 'w', encoding='utf-8') as log:
         log.write(f'start {now()}\nrepository build {r["name"]} in {src}\n')
-        u = os.uname(); log.write(f'kernel {u.sysname} {u.release} {u.machine}\n')
+        u = platform.uname(); log.write(f'kernel {u.system} {u.release} {u.machine}\n')
+        for k in ('ImageOS', 'ImageVersion'):   # a GitHub-hosted runner names its image so; run-batch.py reads these lines
+            if os.environ.get(k):
+                log.write(f'runner {k}={os.environ[k]}\n')
         log.write('--- environment\n')
         for k in sorted(env):
             log.write(f'{k}={"<redacted>" if rebuild.SECRET.search(k) else env[k]}\n')
@@ -139,8 +147,16 @@ def main():
             edits = strip_internal_feeds(src, inner, log) if r.get('strip_internal_feeds') else []
             open(os.path.join(out, 'nuget-config-edits.txt'), 'w', encoding='utf-8').write('\n'.join(edits) + ('\n' if edits else 'no internal feeds removed\n'))
             log.write(f'--- build {now()}\n')
-            code = run(log, ['bash', '-c', r['build']], env, src)
-            run(log, ['bash', '-c', '[ -x "$DOTNET_INSTALL_DIR/dotnet" ] && "$DOTNET_INSTALL_DIR/dotnet" build-server shutdown; true'], env, src)
+            if WINDOWS and not r.get('build_windows'):
+                log.write('no build_windows in the recipe: not built on Windows\n')
+                code = 'no Windows command'
+            elif WINDOWS:   # the recipe's Windows command, pwsh (28/10 07:30)
+                code = run(log, ['pwsh', '-NoProfile', '-NonInteractive', '-Command', r['build_windows']], env, src)
+            else:
+                code = run(log, ['bash', '-c', r['build']], env, src)
+            dotnet = os.path.join(env['DOTNET_INSTALL_DIR'], 'dotnet.exe' if WINDOWS else 'dotnet')
+            if os.path.exists(dotnet):
+                run(log, [dotnet, 'build-server', 'shutdown'], env, src)
             # Arcade's tools.sh exits 0 after a failed build in --ci mode and writes ##vso[task.complete result=Failed;]
             # instead (27/10 23:13); that marker is the build's own verdict, so it sets the exit code here
             log.flush()
