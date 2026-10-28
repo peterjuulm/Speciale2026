@@ -220,3 +220,59 @@ and HarfBuzz (Apple workloads), .NET Framework compilers (no public
 SDK), the packages with no declared source (the count is the finding),
 a full VMR build (resources), the sorted-Compile test (superseded by the
 Windows run), and the rest of the `.nupkg` (the unit is the DLL).
+
+## 10. The two second opinions, checked (08:05)
+
+Two independent reads of the notes were asked the questions of sections
+1 to 9 (one Claude agent, one Codex run). Their points, kept where they
+held up against the files:
+
+- **Level 2 rested on report fields, not on the file.** Codex read
+  `level.py` and `dllreport.cs`: the report hashes IL and the streams,
+  and level 2 was "the differing report lines are the signature lines".
+  Fixed the same hour: `stripsign.cs` compares the whole file with the
+  signatures removed, and all 19 Windows level-2 pairs hash equal
+  (`signature-stripped.txt`). Level 2 now means what it says.
+- **Level 3 is a symptom, not a class** (both): under deterministic
+  compilation the identity is a hash of content that the report does not
+  compare (the PDB above all). The Windows run showed it: the Linux
+  level-3 rows closed. For the four rows still at 3, diff the PDBs.
+- **The ladder, not two methods** (both, in different words): present
+  release-only and repository-build as rungs of what the rebuilder may
+  read; name rung P, because versions 3 and 5 took their switches from
+  the official pipeline files although the plan said those are "cited,
+  not executed".
+- **Versions are protocol revisions, not Benedetti's variations** (both):
+  a variation perturbs the environment with the protocol fixed; our
+  versions changed the protocol. Report each package at the first rung
+  where it reaches level 2, and keep refuted versions (version 4) in a
+  protocol log.
+- **No held-out set, and injected attributes** (Claude): rules were
+  refined on the packages they were measured on; OfficialBuildId,
+  RepositoryUrl, the VMR commit are read from the shipped DLL and passed
+  in, so a match on those fields is not evidence. Both go into the
+  threats section.
+- **Counts to reconcile** (both): the VMR count (62, 56, 54), "75 of 139"
+  against 55 plus 36, build 5 as 33 against 34, the runtime packs in the
+  99 denominator. One manifest table fixes it.
+- **Wording that overclaims** (both, verified in the files): "every VMR
+  package came out at level 4" while the same sentence says efcore 1 of
+  9; "no build log records" the source order (unsupported: say the
+  publisher's ordered compiler inputs are unavailable); "the decoding
+  is right" for the build id (the decoding admits two ids; the file
+  version is consistent with one, not proof); "the public cannot obtain;
+  no rule can fix that" for the internal compilers (say: not found by
+  this search). To be edited in the Linux note.
+- **The regulatory claim needs clause-level evidence** (Codex): that the
+  standards do not name the build's inputs must be shown from the
+  clauses (EN 17255-2 §6.5.1, §6.8.5, §6.7.2 and the others in the
+  thesis repository's notes), not inferred from the experiment.
+- **Positioning against Benedetti** (both): they exclude publisher
+  matching and hold toolchain, dependencies and OS fixed; our question is
+  the one their design sets aside. Do not copy their replacement of
+  failed builds; a product's closure is a census, not a sample.
+- **Not taken over:** Claude's suggestion to extend reprotest beyond two
+  runs before writing (a separate question, Codex agrees); Codex's call
+  for fixtures with exception-handler and static-data changes to
+  validate the report (worth doing for the instrument appendix, not
+  before the meeting).

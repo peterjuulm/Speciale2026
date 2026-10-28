@@ -90,6 +90,13 @@ The only differing lines are `authenticode`, `pe checksum`, `size`,
 timestamp and PDB identity for the same IL (version 3,
 `…-v3/arch/aspnetcore-3f1acb5/…/level/`).
 
+`[V]` (08:02) Level 2 checked on the whole file, not on report lines:
+`stripsign.cs` zeroes the PE checksum, cuts the Authenticode block and
+its directory entry, zeroes the strong-name signature bytes, and hashes
+the rest. All 19 level-2 pairs hash equal
+(`signature-stripped.txt` in the data folder); Microsoft.Build 17.11.48
+(level 3) differs from byte `0x88`, the PE timestamp.
+
 `[I]` The deterministic compiler's identity hash includes something the
 host supplies, and on the official host it is the official value. The
 plan's prediction of 07:40 ("the level-3 rows stay at level 3 because
