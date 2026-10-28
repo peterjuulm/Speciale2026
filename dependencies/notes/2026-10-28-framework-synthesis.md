@@ -117,15 +117,26 @@ Each entry: what it is, what it did to the bytes, where it is read
 
 ## 4. What the week's numbers say, by rung
 
-| rung | packages tried | reproduced (1 or 2) | same code (3) | differs (4) | no package or not built | not derivable |
-|---|---|---|---|---|---|---|
-| R, third-party (batch 2, version 3) | 59 | 17 | 9 | 16 | 12 | 5 |
-| R, Microsoft (batch 3, version 3) | 139 | 5 | 0 | 39 | 59 | 36 |
-| R+S / R+S+P, Linux (repository build, best of versions 1 to 4) | 99 | 0 | 35 | 57 | 4 | 3 |
-| R+S+P+H, windows-2022 (16 standalone repositories) | see the Windows note | | | | | |
+| rung | packages tried | 1 | 2 | 3 | 4 | no package or did not build | not derivable |
+|---|---|---|---|---|---|---|---|
+| R, third-party (batch 2, version 3) | 59 | 14 | 3 | 9 | 16 | 12 | 5 |
+| R, Microsoft (batch 3, version 3) | 139 | 0 | 5 | 0 | 39 | 59 | 36 |
+| R+S and R+S+P, Linux (repository build, best of versions 1 to 4) | 96 | 0 | 0 | 35 | 57 | 4 | 0 |
+| R+S+P+H, windows-2022 (standalone repositories, version 3) | 34 | 0 | 19 | 4 | 8 | 3 | 0 |
+| best rung per package (the 198 tried) | 198 | 14 | 27 | 39 | 83 | 22 | 13 |
 
-`[V]` the first three rows from the batch notes' result sections; the
-Windows row from `dependencies/data/2026-10-28-nupkg-repository-build-windows/results.tsv`.
+`[V]` computed 28 October 08:15 from the five `results.tsv` (release-only
+batch 2 v3 and batch 3; repository-build v1 to v4; Windows), keyed by
+package and version. The census (`2026-10-13-dependency-census/mac/census.csv`)
+has 341 package-versions; 198 entered a batch (59 third-party,
+139 Microsoft) and 143 did not, mostly packages the census
+lists without a usable source declaration (breakdown in the census
+note). The "best rung" row counts each package once at its best level;
+of the 41 reproduced (level 1 or 2), 22 were reproduced
+at rung R and 19 only on the official host. The Windows row grows
+by the runtime 9.0.0 job and Roslyn version 5 when they land; the
+earlier "75 of 139", "62/56/54" and "33/34" figures in the notes should
+be replaced by this table's numbers.
 
 Read down the table: the same packages move from "differs" to "same
 code" to "reproduced" as the rebuilder is allowed to read more of what
