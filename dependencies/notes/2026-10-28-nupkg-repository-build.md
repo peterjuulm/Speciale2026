@@ -45,17 +45,18 @@ measured rows means the packages were produced and a later step failed
 version 3: the AsnXml check of reading 2). The version-1 rows of the four
 recipes rerun after script fixes are the rerun's rows.
 
-Across the versions, the best row per package: of the 99 packages in
-scope, 3 were not derived (two runtime packs, R8; Microsoft.NET.StringTools,
-rule 7), 4 never got a package (symreader, aspnetcore 6.0.24 Razor:
-feed retention; System.IO.Ports 5.0.0: the SDK), and 92 were compared.
-Level 1 and 2: none (every official build was signed and ran on
-Windows). Level 3: 48 packages at least once. Level 4 only: 44, of which
-32 differ from the shipped bytes in nothing but the newline of a
-generated resource (reading 2), 9 in the order of their type table
-(reading 3, Roslyn and EFCore), 1 in a source-root index (reading 4),
-1 in Razor positions (reading 5), and 1 (Identity.UI) in both newline
-and positions.
+Across the versions, the best row per package `[V]` (computed from the
+four files): of the 99 packages in scope, 3 were not derived (two
+runtime packs, R8; Microsoft.NET.StringTools, rule 7), 4 never got a
+package (symreader; the two aspnetcore 6.0.24 Razor packages: feed
+retention; System.IO.Ports 5.0.0: the SDK), and 92 were compared. Level
+1 and 2: none (every official build was signed and ran on Windows).
+Level 3 in at least one version: 35. Level 4 in every version: 57, of
+which 36 differ from the shipped bytes in nothing but the newline of a
+generated resource (reading 2), 10 in that resource and the metadata
+tables `#~` (not read, see caveats), 9 in the order of their type table
+(reading 3: the eight Roslyn packages and EFCore), 1 in a source-root
+index (reading 4) and 1 in Razor positions (reading 5).
 
 ### Version 1, `2026-10-27-nupkg-repository-build`: 96 rows, levels -: 29, 3: 13, 4: 54
 | recipe | products | level 3 | level 4 | not compared | build |
