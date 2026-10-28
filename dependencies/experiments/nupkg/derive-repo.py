@@ -338,9 +338,14 @@ def main():
             node = os.path.join(lab, 'node', f'node-v{NODE_BY_SDK[major]}-linux-x64', 'bin')
             toml.append(f'path_prepend = ["{node}"]')
             facts.append(f'version 3, R3d: Node {NODE_BY_SDK[major]} (nodejs.org, sha256 checked) first on PATH for the npm projects of the .NET {major} tree  [rule]')
-        if major and major < 8:
+        # version 4, R2b: invariant globalization only below .NET 6. The .NET 7 SDK starts on this machine's ICU 78
+        # (tested 28/10 02:25, 7.0.100-rc.1.22431.11), and in invariant mode the SDK's resource-locale check (NETSDK1188)
+        # fails every build under --ci warnAsError (version 3, runtime-d099f07: 1384 errors). .NET 5 is untested.
+        if major and major < (6 if v4 else 8):
             toml.append('[env]'); toml.append('DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"')
-            facts.append(f'env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK {major}.x on Arch\'s ICU 78 does not start; nothing the compiler emits depends on it)')
+            facts.append(f'env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK {major}.x: assumed not to start on Arch\'s ICU 78; version 4 limits this to .NET 5)')
+        elif major and major < 8 and v4:
+            facts.append(f'version 4, R2b: no invariant globalization for the .NET {major} SDK (it starts on ICU 78; invariant mode turns NETSDK1188 into a build error)  [rule]')
         for p in g['products']:
             toml += ['', '[[products]]', f'package = "{p["package"]}"', f'version = "{p["version"]}"', f'ships = "{p["ships"]}"', f'project = "{p["project"]}"', f'file_version = "{p["file_version"]}"']
         d = os.path.join(out, name); os.makedirs(d, exist_ok=True)

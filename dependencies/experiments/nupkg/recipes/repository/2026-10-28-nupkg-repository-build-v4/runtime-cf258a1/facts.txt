@@ -12,4 +12,4 @@ command: ./build.sh libs.ref+libs.src+libs.packages -allconfigurations -c Releas
 sdk: from global.json, installed by the repository's own eng/common/tools.sh into .dotnet  [rule R2]
 sdk major from global.json: 5
 version 4, R6b: core.autocrlf=false, core.eol=lf (sources as committed; .gitattributes of the tree still apply)  [rule]
-env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK 5.x on Arch's ICU 78 does not start; nothing the compiler emits depends on it)
+env: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 (SDK 5.x: assumed not to start on Arch's ICU 78; version 4 limits this to .NET 5)

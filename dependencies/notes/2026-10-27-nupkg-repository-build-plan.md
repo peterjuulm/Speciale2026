@@ -452,3 +452,20 @@ build time with the build machine's newline, which R6b does not touch;
 they stay. The order lists the VMR aspnetcore build; efcore joins it
 if version 2 leaves `Microsoft.EntityFrameworkCore` at level 4 with a
 difference of the same kind.
+
+Amended 02:30, after version 3's build 8 (`runtime-d099f07`, 7.0.0)
+and before any version-4 run. That build dies with 1384 `NETSDK1188`
+errors ("package ... has a resource with the locale 'cs'. This locale
+is not recognized by .NET"): the recipe runs the .NET 7 SDK in
+invariant globalization mode (R2's note said the SDK does not start
+on this machine's ICU 78), and in that mode the SDK's locale check
+fails for every satellite resource, a warning that `--ci` turns into
+an error. Tested at 02:25: the .NET 7 SDK the build installed
+(7.0.100-rc.1.22431.11) starts on ICU 78 without the variable. R2b,
+version 4: `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT` only for SDKs below
+.NET 6 (untested there; .NET 5 fails earlier on OpenSSL). The .NET 7
+and .NET 6 runtime recipes join the version-4 order; so do the three
+.NET 8 ones, whose packages version 3 produced before the build died
+in the `AsnXml` check (the regenerated files are diffed against the
+checked-in ones, CRLF after R6's conversion against the generator's
+LF), which R6b removes.
