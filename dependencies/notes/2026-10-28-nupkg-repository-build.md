@@ -387,10 +387,8 @@ optimization data to show as level 4 with equal IL; it did not.
 
 ## Next
 
-- A Windows run of the version-3 recipes (aspnetcore 9.0.0 and 8.0,
-  efcore, runtime 9.0.11 and 9.0.0) on the free standard runners of this
-  repository, to measure reading 2's claim.
-- A sorted-Compile-items build of Roslyn or EFCore on Linux (one build)
-  to confirm reading 3.
-- Fold readings 1 to 7 into the thesis text as the list of inputs the
-  standards' "same source, same build" assumption does not name.
+Superseded 28 October 09:45: the Windows run
+([2026-10-28-nupkg-repository-build-windows.md](2026-10-28-nupkg-repository-build-windows.md))
+closed the three items that stood here, and
+[2026-10-28-framework-synthesis.md](2026-10-28-framework-synthesis.md)
+section 9 records the closed state of the whole experiment.

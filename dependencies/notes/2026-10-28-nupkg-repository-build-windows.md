@@ -222,11 +222,15 @@ kind, Roslyn repacks. For the catalogue this is one input (the route by
 which the version string reaches the assembly) with two values, and the
 release names neither.
 
-## Caveats and not tested
+## Closed
 
-- The VMR inner builds (54 packages) were not built on Windows.
-- Four level-3 rows are not read (reading 4).
-- One build per package: A against A2 was not measured on the runner.
-- The first version-5 derivation ran without the flag (a patch that had
-  not applied) and its job was cancelled within a minute; the recipes
-  were regenerated and the job restarted (commit history 07:45 to 07:47).
+The repository-build method is closed with this run (09:45). Not done,
+by decision: the VMR inner builds on Windows (54 packages keep their
+Linux result; the free runners cannot build `dotnet/dotnet`); the PDBs
+of the three level-3 rows without a shipped PDB (no symbols package on
+nuget.org; the mechanism is read on Microsoft.Build); a second build
+per package on the runner (level 2 against the publisher subsumes it).
+The first version-5 derivation ran without its flag and its job was
+cancelled within a minute; the recipes were regenerated and the job
+restarted (commits 07:45 to 07:47). The runtime 9.0.0 job of the first
+run hung once and was rerun (reading 5).

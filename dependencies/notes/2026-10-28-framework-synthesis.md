@@ -229,25 +229,28 @@ uncontrolled input, not nondeterminism. Their `.buildinfo` is the record
 NuGet lacks, and rung R is a reconstruction of an implicit buildinfo
 from forensic traces in the release.
 
-## 9. What is left, by value per hour
+## 9. Closed state, 28 October 2026 09:45
 
-1. One denominator figure with reconciled counts (an hour, and the first
-   thing a reader checks).
-2. The Windows note (this morning's data) and Roslyn version 5 in it.
-3. The PDBs of the three remaining Windows level-3 rows (no symbols
-   package on nuget.org; Microsoft's symbol server is the next place).
-4. The three unread Identity.Web level-4 rows of batch 3.
-5. reprotest beyond two runs, with `fileordering`, on the third-party
-   level-1 and 2 builds (five minutes each).
-6. One A2 build of a small Arcade repository.
-7. A VMR inner build on Windows (efcore) if a larger runner is ever
-   available; otherwise the 54 VMR packages are stated as Linux-only.
+The experiment is closed. Every item that was open this morning has a
+decision; none is carried forward as work.
 
-Explicitly out of scope: runtime packs (full product build), SkiaSharp
-and HarfBuzz (Apple workloads), .NET Framework compilers (no public
-SDK), the packages with no declared source (the count is the finding),
-a full VMR build (resources), the sorted-Compile test (superseded by the
-Windows run), and the rest of the `.nupkg` (the unit is the DLL).
+| item | decision | reason |
+|---|---|---|
+| The 54 VMR packages on the official host | closed, Linux result stands (level 3 or 4, causes read) | a `dotnet/dotnet` build does not fit the free runners; a larger runner is a cost decision, not an experiment |
+| Three level-3 rows without a shipped PDB (CodeDom 6.0.0, IO.Hashing 7.0.0, IO.Ports 5.0.0) | closed as level 3 | no symbols package on nuget.org; the mechanism is read on Microsoft.Build (the runtime under the compiler) and stated for all four |
+| The three unread Identity.Web rows of batch 3 | closed as level 4, cause unread | release-only rung, outside the repository-build scope; the catalogue does not depend on them |
+| reprotest beyond two runs, `fileordering` | closed, not run | variation is a different question (Benedetti's); repeatability was measured as A = A2 in the release-only batches |
+| A2 build of an Arcade repository | closed, not run | the Windows run gives level 2 against the publisher, which subsumes repeat-against-self |
+| Sorted-Compile build | closed, superseded | the Windows run reproduced the shipped type order |
+| MSAL, IdentityModel, SqlClient rebuilds | closed, not derivable | .NET Framework compiler, commits not in the public repository, no compiler record |
+| Runtime packs, SkiaSharp/HarfBuzz, packages with no declared source | closed, out of scope by rule | full product build, Apple workloads, nothing to start from (the count is the finding) |
+| The hung runtime 9.0.0 job | closed | a one-off; the rerun built in 18 minutes with all eight packages at level 2 |
+| Count reconciliation | closed | the table of section 4 is the one set of numbers; the earlier figures in the notes are superseded by it |
+| Instrument validation (fixtures for exception handlers, static data) | closed, not needed | level 2 is now checked on the whole file (`stripsign.cs`); level 3 and 4 are read per row, not trusted from the report |
+
+What remains is writing: the catalogue into the thesis, the clause-level
+reading of the standards for the regulatory claim, and the figures from
+the table of section 4.
 
 ## 10. The two second opinions, checked (08:05)
 
