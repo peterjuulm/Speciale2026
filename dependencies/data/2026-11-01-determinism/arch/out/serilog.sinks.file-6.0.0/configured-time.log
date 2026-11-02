@@ -1,0 +1,34 @@
+start 2026-11-01T14:49:58+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1719096142 && dotnet pack src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1719096142; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Serilog.Sinks.File -> /tmp/reprotest.NY5mH8/const_build_path/src/Serilog.Sinks.File/bin/Release/net8.0/Serilog.Sinks.File.dll
+  Serilog.Sinks.File -> /tmp/reprotest.NY5mH8/const_build_path/src/Serilog.Sinks.File/bin/Release/net6.0/Serilog.Sinks.File.dll
+  Serilog.Sinks.File -> /tmp/reprotest.NY5mH8/const_build_path/src/Serilog.Sinks.File/bin/Release/netstandard2.0/Serilog.Sinks.File.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.53
+  Successfully created package '/tmp/reprotest.NY5mH8/const_build_path/out/Serilog.Sinks.File.6.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.NY5mH8/const_build_path/out/Serilog.Sinks.File.6.0.0.snupkg'.
+  Serilog.Sinks.File -> /tmp/reprotest.NY5mH8/const_build_path/src/Serilog.Sinks.File/bin/Release/net8.0/Serilog.Sinks.File.dll
+  Serilog.Sinks.File -> /tmp/reprotest.NY5mH8/const_build_path/src/Serilog.Sinks.File/bin/Release/net6.0/Serilog.Sinks.File.dll
+  Serilog.Sinks.File -> /tmp/reprotest.NY5mH8/const_build_path/src/Serilog.Sinks.File/bin/Release/netstandard2.0/Serilog.Sinks.File.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.51
+  Successfully created package '/tmp/reprotest.NY5mH8/const_build_path/out/Serilog.Sinks.File.6.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.NY5mH8/const_build_path/out/Serilog.Sinks.File.6.0.0.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+d7975383aafd4a43bb4cb0309b4e6d772ee63b74afaa71ef0a3edbcccda0c394  ./out/Serilog.Sinks.File.6.0.0.snupkg
+8db6930dfc25832ac5945a098b4379ba757f2c25520645b0ef6763eef23aa3cc  ./out/Serilog.Sinks.File.6.0.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T14:50:15+01:00 exit 0

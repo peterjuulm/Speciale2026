@@ -1,0 +1,53 @@
+start 2026-11-01T11:08:31+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12 checkout -q -- .
+$ dotnet restore src/efcore/src/EFCore.Design/EFCore.Design.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Analyzers/EFCore.Analyzers.csproj (in 214 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Abstractions/EFCore.Abstractions.csproj (in 214 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore/EFCore.csproj (in 214 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Design/EFCore.Design.csproj (in 219 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Relational/EFCore.Relational.csproj (in 214 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/efcore/src/EFCore.Design/EFCore.Design.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/efcore/src/EFCore.Design/EFCore.Design.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  EFCore.Analyzers -> /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/artifacts/bin/EFCore.Analyzers/Release/netstandard2.0/Microsoft.EntityFrameworkCore.Analyzers.dll
+  EFCore.Abstractions -> /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/artifacts/bin/EFCore.Abstractions/Release/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+  EFCore -> /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/artifacts/bin/EFCore/Release/net10.0/Microsoft.EntityFrameworkCore.dll
+  EFCore.Relational -> /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/artifacts/bin/EFCore.Relational/Release/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
+  EFCore.Design -> /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/artifacts/bin/EFCore.Design/Release/net10.0/Microsoft.EntityFrameworkCore.Design.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:26.08
+
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/out/Microsoft.EntityFrameworkCore.Design.10.0.12-dev.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/out/Microsoft.EntityFrameworkCore.Design.10.0.12-dev.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T11:09:06+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12 checkout -q -- .
+$ dotnet restore src/efcore/src/EFCore.Design/EFCore.Design.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore/EFCore.csproj (in 208 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Analyzers/EFCore.Analyzers.csproj (in 208 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Abstractions/EFCore.Abstractions.csproj (in 208 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Design/EFCore.Design.csproj (in 213 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.entityframeworkcore.design-10.0.12/src/efcore/src/EFCore.Relational/EFCore.Relational.csproj (in 208 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

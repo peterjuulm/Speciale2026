@@ -1,0 +1,41 @@
+start 2026-11-01T10:29:13+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/mediatr-12.4.1
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 remote add origin https://github.com/jbogard/MediatR
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 config core.autocrlf false
+$ git clone -q --mirror https://github.com/jbogard/MediatR /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.git
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.git fb309026775ef953a64fb5339d074426c1ad2c37
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 -c advice.detachedHead=false checkout -q fb309026775ef953a64fb5339d074426c1ad2c37
+global.json: none
+start 2026-11-01T12:40:22+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.git /private/tmp/nupkg-determinism/src/mediatr-12.4.1
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 remote set-url origin https://github.com/jbogard/MediatR
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 -c advice.detachedHead=false checkout -q fb309026775ef953a64fb5339d074426c1ad2c37
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 checkout -q -- .
+$ dotnet restore src/MediatR/MediatR.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/mediatr-12.4.1/src/MediatR/MediatR.csproj (in 130 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T14:44:02+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.git /private/tmp/nupkg-determinism/src/mediatr-12.4.1
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 remote set-url origin https://github.com/jbogard/MediatR
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 -c advice.detachedHead=false checkout -q fb309026775ef953a64fb5339d074426c1ad2c37
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/mediatr-12.4.1 checkout -q -- .
+$ dotnet restore src/MediatR/MediatR.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/mediatr-12.4.1/src/MediatR/MediatR.csproj (in 143 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

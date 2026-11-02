@@ -1,0 +1,58 @@
+start 2026-11-01T12:26:07+01:00
+$ git -C /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0 checkout -q -- .
+$ dotnet restore sdk/core/System.ClientModel/src/System.ClientModel.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/sdk/core/System.ClientModel/src/System.ClientModel.csproj (in 2,78 sec).
+  Restored /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/sdk/core/System.ClientModel/gen/System.ClientModel.SourceGeneration.csproj (in 9,16 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build sdk/core/System.ClientModel/src/System.ClientModel.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack sdk/core/System.ClientModel/src/System.ClientModel.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  InheritDocTask replaced 3 of 3 inheritdoc tags and removed 1 private member docs in /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/obj/System.ClientModel.SourceGeneration/Release/netstandard2.0/System.ClientModel.SourceGeneration.xml
+  System.ClientModel.SourceGeneration -> /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/bin/System.ClientModel.SourceGeneration/Release/netstandard2.0/System.ClientModel.SourceGeneration.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/netstandard2.0/System.ClientModel.dll using assemblies from /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/obj/System.ClientModel/Release/netstandard2.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/obj/System.ClientModel/Release/netstandard2.0/System.ClientModel.xml
+  System.ClientModel -> /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/bin/System.ClientModel/Release/netstandard2.0/System.ClientModel.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/netstandard2.0/System.ClientModel.dll using assemblies from /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/obj/System.ClientModel/Release/net8.0/
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/net8.0/System.ClientModel.dll using assemblies from /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/obj/System.ClientModel/Release/net9.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/obj/System.ClientModel/Release/net8.0/System.ClientModel.xml
+  System.ClientModel -> /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/bin/System.ClientModel/Release/net8.0/System.ClientModel.dll
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/obj/System.ClientModel/Release/net9.0/System.ClientModel.xml
+  System.ClientModel -> /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/artifacts/bin/System.ClientModel/Release/net9.0/System.ClientModel.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.65
+  Found the following change log entry for version '1.8.0' in [/private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/sdk/core/System.ClientModel/CHANGELOG.md].
+  -----
+  ## 1.8.0 (2025-10-31)
+  
+  ### Features Added
+  
+  - Added `ClientRequestId` property to `PipelineRequest` which exposes the value that is used in logging and distributed tracing.
+  
+  -----
+  Successfully created package '/private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/out/System.ClientModel.1.8.0-alpha.20261101.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/out/System.ClientModel.1.8.0-alpha.20261101.1.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:26:30+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0 checkout -q -- .
+$ dotnet restore sdk/core/System.ClientModel/src/System.ClientModel.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/sdk/core/System.ClientModel/gen/System.ClientModel.SourceGeneration.csproj (in 122 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.clientmodel-1.8.0/sdk/core/System.ClientModel/src/System.ClientModel.csproj (in 122 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

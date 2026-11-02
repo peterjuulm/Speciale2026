@@ -1,0 +1,32 @@
+start 2026-11-01T10:29:40+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 remote add origin https://github.com/dotnet/dotnet
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_dotnet.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_dotnet.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_dotnet.git 95017c711e6afc1085133d440e42b4bd78155701
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 -c advice.detachedHead=false checkout -q 95017c711e6afc1085133d440e42b4bd78155701
+global.json: sdk-removed (pinned 10.0.110)
+start 2026-11-01T12:46:04+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_dotnet.git /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 remote set-url origin https://github.com/dotnet/dotnet
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 -c advice.detachedHead=false checkout -q 95017c711e6afc1085133d440e42b4bd78155701
+global.json: sdk-removed (pinned 10.0.110)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12 checkout -q -- .
+$ dotnet restore src/aspnetcore/src/Antiforgery/src/Microsoft.AspNetCore.Antiforgery.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12/src/aspnetcore/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12/src/aspnetcore/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12/src/aspnetcore/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12/src/aspnetcore/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12/src/aspnetcore/src/Http/Headers/src/Microsoft.Net.Http.Headers.csproj]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12/src/aspnetcore/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.app.runtime.linux-x64-10.0.12/src/aspnetcore/src/Servers/Connections.Abstractions/src/Microsoft.AspNetCore.Connections.Abstractions.csproj::TargetFramework=net10.0]
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

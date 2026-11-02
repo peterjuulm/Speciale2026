@@ -1,0 +1,39 @@
+start 2026-11-01T11:36:14+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 checkout -q -- .
+$ dotnet restore src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2/src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj (in 136 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Microsoft.Identity.Web.Certificateless -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2/src/Microsoft.Identity.Web.Certificateless/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.67
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2/out/Microsoft.Identity.Web.Certificateless.3.8.2.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2/out/Microsoft.Identity.Web.Certificateless.3.8.2.snupkg'.
+  Could not resolve reference 'Azure.Core.dll' directly or transitively referenced by 'lib/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll' (/private/tmp/nupkg-determinism/nuget/microsoft.identity.web.certificateless/2.7.0/microsoft.identity.web.certificateless.2.7.0.nupkg) in any of the provided search directories.
+  Could not resolve reference 'Azure.Identity.dll' directly or transitively referenced by 'lib/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll' (/private/tmp/nupkg-determinism/nuget/microsoft.identity.web.certificateless/2.7.0/microsoft.identity.web.certificateless.2.7.0.nupkg) in any of the provided search directories.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T11:36:20+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 checkout -q -- .
+$ dotnet restore src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2/src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj (in 137 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

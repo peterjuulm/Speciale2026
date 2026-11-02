@@ -1,0 +1,60 @@
+start 2026-11-01T10:25:14+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 remote add origin https://github.com/protocolbuffers/protobuf
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/mirrors/https_github.com_protocolbuffers_protobuf.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_protocolbuffers_protobuf.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_protocolbuffers_protobuf.git d96db0e9d8ef9e9c754ee1ffac58654969f3b662
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 -c advice.detachedHead=false checkout -q d96db0e9d8ef9e9c754ee1ffac58654969f3b662
+global.json: sdk-removed (pinned 6.0.100)
+start 2026-11-01T12:45:25+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_protocolbuffers_protobuf.git /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 remote set-url origin https://github.com/protocolbuffers/protobuf
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 -c advice.detachedHead=false checkout -q d96db0e9d8ef9e9c754ee1ffac58654969f3b662
+global.json: sdk-removed (pinned 6.0.100)
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 checkout -q -- .
+$ dotnet restore csharp/src/Google.Protobuf/Google.Protobuf.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard1.1]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard1.1]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard1.1]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net45]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net45]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net50]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net50]
+  Restored /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj (in 177 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T15:25:17+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_protocolbuffers_protobuf.git /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 remote set-url origin https://github.com/protocolbuffers/protobuf
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 -c advice.detachedHead=false checkout -q d96db0e9d8ef9e9c754ee1ffac58654969f3b662
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 submodule update --init --recursive -q
+global.json: sdk-removed (pinned 6.0.100)
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9 checkout -q -- .
+$ dotnet restore csharp/src/Google.Protobuf/Google.Protobuf.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard1.1]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard1.1]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard1.1]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net45]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net45]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: IsTrimmable and EnableTrimAnalyzer are not supported for the target framework. Consider multi-targeting to a supported framework to enable trimming, and set IsTrimmable only for the supported frameworks. For example: [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net50]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(120,5): warning NETSDK1212: <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsTrimmable> [/private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj::TargetFramework=net50]
+  Restored /private/tmp/nupkg-determinism/src/google.protobuf-3.21.9/csharp/src/Google.Protobuf/Google.Protobuf.csproj (in 222 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

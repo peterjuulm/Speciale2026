@@ -1,0 +1,79 @@
+start 2026-11-01T10:17:18+01:00
+$ git -C /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0 checkout -q -- .
+$ dotnet restore sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj (in 4,06 sec).
+  Restored /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj (in 4,06 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=net6.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.storage.common/12.18.1/lib/netstandard2.0/Azure.Storage.Common.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Common/Release/netstandard2.0/
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.storage.common/12.18.1/lib/net6.0/Azure.Storage.Common.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Common/Release/net6.0/
+  InheritDocTask replaced 22 of 22 inheritdoc tags and removed 56 private member docs in /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Common/Release/netstandard2.0/Azure.Storage.Common.xml
+  Azure.Storage.Common -> /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/bin/Azure.Storage.Common/Release/netstandard2.0/Azure.Storage.Common.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj::TargetFramework=netstandard2.1]
+  InheritDocTask replaced 22 of 22 inheritdoc tags and removed 56 private member docs in /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Common/Release/net6.0/Azure.Storage.Common.xml
+  Azure.Storage.Common -> /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/bin/Azure.Storage.Common/Release/net6.0/Azure.Storage.Common.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj::TargetFramework=net6.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.storage.blobs/12.19.1/lib/netstandard2.0/Azure.Storage.Blobs.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Blobs/Release/netstandard2.0/
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.storage.blobs/12.19.1/lib/netstandard2.1/Azure.Storage.Blobs.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Blobs/Release/netstandard2.1/
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.storage.blobs/12.19.1/lib/net6.0/Azure.Storage.Blobs.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Blobs/Release/net6.0/
+  InheritDocTask replaced 80 of 80 inheritdoc tags and removed 243 private member docs in /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Blobs/Release/netstandard2.0/Azure.Storage.Blobs.xml
+  Azure.Storage.Blobs -> /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/bin/Azure.Storage.Blobs/Release/netstandard2.0/Azure.Storage.Blobs.dll
+  InheritDocTask replaced 80 of 80 inheritdoc tags and removed 239 private member docs in /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Blobs/Release/netstandard2.1/Azure.Storage.Blobs.xml
+  Azure.Storage.Blobs -> /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/bin/Azure.Storage.Blobs/Release/netstandard2.1/Azure.Storage.Blobs.dll
+  InheritDocTask replaced 80 of 80 inheritdoc tags and removed 239 private member docs in /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/obj/Azure.Storage.Blobs/Release/net6.0/Azure.Storage.Blobs.xml
+  Azure.Storage.Blobs -> /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/artifacts/bin/Azure.Storage.Blobs/Release/net6.0/Azure.Storage.Blobs.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj::TargetFramework=netstandard2.1]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj::TargetFramework=net6.0]
+    5 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:12.97
+  Found the following change log entry for version '12.20.0' in [/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/CHANGELOG.md].
+  -----
+  ## 12.20.0 (2024-05-13)
+  - Includes all features from 12.20.0-beta.1 and 12.20.0-beta.2.
+  - Fixed bug where `BlobContainerClient` and `BlobBaseClient` did not throw an exception on empty/null container names and blob names, respectively, when constructing a client. 
+  
+  -----
+  [31;1mLogError: [0m/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/eng/common/scripts/ChangeLog-Operations.ps1:446[0m
+  [31;1m[0m[36;1mLine |[0m
+  [31;1m[0m[36;1m[36;1m 446 | [0m       [36;1mLogError "$($ChangeLogStatus.Message)"[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mThe changelog entry did not contain any of the recommended sections[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m     | [31;1m(Features Added, Breaking Changes, Bugs Fixed, Other Changes), please[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1madd at least one. See https://aka.ms/azsdk/guideline/changelogs for more[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1minfo.[0m
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/out/Azure.Storage.Blobs.12.20.0-alpha.20261101.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/out/Azure.Storage.Blobs.12.20.0-alpha.20261101.1.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:17:43+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0 checkout -q -- .
+$ dotnet restore sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj (in 152 ms).
+  Restored /private/tmp/nupkg-determinism/src/azure.storage.blobs-12.20.0/sdk/storage/Azure.Storage.Blobs/src/Azure.Storage.Blobs.csproj (in 152 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,54 @@
+start 2026-11-01T10:28:09+01:00
+$ git -C /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1 checkout -q -- .
+$ dotnet restore binding/HarfBuzzSharp/HarfBuzzSharp.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.Win32/HarfBuzzSharp.NativeAssets.Win32.csproj (in 124 ms).
+  Restored /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.macOS/HarfBuzzSharp.NativeAssets.macOS.csproj (in 124 ms).
+  Restored /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp/HarfBuzzSharp.csproj (in 124 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build binding/HarfBuzzSharp/HarfBuzzSharp.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack binding/HarfBuzzSharp/HarfBuzzSharp.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  HarfBuzzSharp.NativeAssets.macOS -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.macOS/bin/Release/netstandard2.0/HarfBuzzSharp.NativeAssets.macOS.dll
+  HarfBuzzSharp.NativeAssets.Win32 -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.Win32/bin/Release/netstandard2.0/HarfBuzzSharp.NativeAssets.Win32.dll
+  HarfBuzzSharp.NativeAssets.Win32 -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.Win32/bin/Release/netstandard2.1/HarfBuzzSharp.NativeAssets.Win32.dll
+  HarfBuzzSharp.NativeAssets.macOS -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.macOS/bin/Release/net462/HarfBuzzSharp.NativeAssets.macOS.dll
+  HarfBuzzSharp.NativeAssets.macOS -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.macOS/bin/Release/netstandard2.1/HarfBuzzSharp.NativeAssets.macOS.dll
+  HarfBuzzSharp.NativeAssets.Win32 -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.Win32/bin/Release/net6.0/HarfBuzzSharp.NativeAssets.Win32.dll
+  HarfBuzzSharp.NativeAssets.macOS -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.macOS/bin/Release/net6.0/HarfBuzzSharp.NativeAssets.macOS.dll
+  HarfBuzzSharp.NativeAssets.Win32 -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.Win32/bin/Release/net462/HarfBuzzSharp.NativeAssets.Win32.dll
+  HarfBuzzSharp.NativeAssets.Win32 -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.Win32/bin/Release/net8.0/HarfBuzzSharp.NativeAssets.Win32.dll
+  HarfBuzzSharp.NativeAssets.macOS -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.macOS/bin/Release/net8.0/HarfBuzzSharp.NativeAssets.macOS.dll
+  HarfBuzzSharp -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp/bin/Release/netstandard2.1/HarfBuzzSharp.dll
+  HarfBuzzSharp -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp/bin/Release/net6.0/HarfBuzzSharp.dll
+  HarfBuzzSharp -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp/bin/Release/net462/HarfBuzzSharp.dll
+  HarfBuzzSharp -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp/bin/Release/netstandard2.0/HarfBuzzSharp.dll
+  HarfBuzzSharp -> /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp/bin/Release/net8.0/HarfBuzzSharp.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.28
+  Successfully created package '/private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/out/HarfBuzzSharp.8.3.1.1.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:28:22+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1 checkout -q -- .
+$ dotnet restore binding/HarfBuzzSharp/HarfBuzzSharp.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.macOS/HarfBuzzSharp.NativeAssets.macOS.csproj (in 114 ms).
+  Restored /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp.NativeAssets.Win32/HarfBuzzSharp.NativeAssets.Win32.csproj (in 114 ms).
+  Restored /private/tmp/nupkg-determinism/src/harfbuzzsharp-8.3.1.1/binding/HarfBuzzSharp/HarfBuzzSharp.csproj (in 114 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

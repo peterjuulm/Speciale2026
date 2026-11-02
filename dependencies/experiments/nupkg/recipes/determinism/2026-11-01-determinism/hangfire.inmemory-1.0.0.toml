@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Hangfire.InMemory"
+version = "1.0.0"
+ships = "lib/netstandard2.0/Hangfire.InMemory.dll"
+repo = "https://github.com/HangfireIO/Hangfire.InMemory"
+commit = "c1db106a0ecd38836316e8634966cf1d80ae888e"
+project = "src/Hangfire.InMemory/Hangfire.InMemory.csproj"
+sdk = "8.0.400"
+shell = "bash"
+build = "dotnet build src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release -p:ContinuousIntegrationBuild=true -p:AssemblyVersion=1.0.0.0 -p:PackageVersion=1.0.0 && dotnet pack src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:AssemblyVersion=1.0.0.0 -p:PackageVersion=1.0.0"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=false", "core.eol=lf"]

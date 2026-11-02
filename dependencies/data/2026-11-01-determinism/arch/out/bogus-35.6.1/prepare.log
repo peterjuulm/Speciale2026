@@ -1,0 +1,43 @@
+start 2026-11-01T09:54:49+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/bogus-35.6.1
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 remote add origin https://github.com/bchavez/Bogus
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 fetch -q origin 905a7e753ed2d7bfd42fc5099a50278adf45b467
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 -c advice.detachedHead=false checkout -q 905a7e753ed2d7bfd42fc5099a50278adf45b467
+start 2026-11-01T12:40:37+01:00
+$ git clone -q --mirror https://github.com/bchavez/Bogus /private/tmp/nupkg-determinism/mirrors/https_github.com_bchavez_Bogus.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_bchavez_Bogus.git /private/tmp/nupkg-determinism/src/bogus-35.6.1
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 remote set-url origin https://github.com/bchavez/Bogus
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 -c advice.detachedHead=false checkout -q 905a7e753ed2d7bfd42fc5099a50278adf45b467
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 checkout -q -- .
+$ dotnet restore Source/Bogus/Bogus.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/bogus-35.6.1/Source/Bogus/Bogus.csproj::TargetFramework=netstandard1.3]
+  Restored /private/tmp/nupkg-determinism/src/bogus-35.6.1/Source/Bogus/Bogus.csproj (in 182 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T14:50:15+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_bchavez_Bogus.git /private/tmp/nupkg-determinism/src/bogus-35.6.1
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 remote set-url origin https://github.com/bchavez/Bogus
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 -c advice.detachedHead=false checkout -q 905a7e753ed2d7bfd42fc5099a50278adf45b467
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 submodule update --init --recursive -q
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/bogus-35.6.1 checkout -q -- .
+$ dotnet restore Source/Bogus/Bogus.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/bogus-35.6.1/Source/Bogus/Bogus.csproj::TargetFramework=netstandard1.3]
+  Restored /private/tmp/nupkg-determinism/src/bogus-35.6.1/Source/Bogus/Bogus.csproj (in 203 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

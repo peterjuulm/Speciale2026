@@ -1,0 +1,41 @@
+start 2026-11-01T10:19:44+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/cronos-0.9.0
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 remote add origin https://github.com/HangfireIO/Cronos
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 config core.autocrlf false
+$ git clone -q --mirror https://github.com/HangfireIO/Cronos /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Cronos.git
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Cronos.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Cronos.git 14ca2b146d55f8d16a36eded60a74425b1b00f51
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 -c advice.detachedHead=false checkout -q 14ca2b146d55f8d16a36eded60a74425b1b00f51
+global.json: none
+start 2026-11-01T12:41:07+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Cronos.git /private/tmp/nupkg-determinism/src/cronos-0.9.0
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 remote set-url origin https://github.com/HangfireIO/Cronos
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 -c advice.detachedHead=false checkout -q 14ca2b146d55f8d16a36eded60a74425b1b00f51
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 checkout -q -- .
+$ dotnet restore src/Cronos/Cronos.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/cronos-0.9.0/src/Cronos/Cronos.csproj (in 172 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T15:04:15+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Cronos.git /private/tmp/nupkg-determinism/src/cronos-0.9.0
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 remote set-url origin https://github.com/HangfireIO/Cronos
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 -c advice.detachedHead=false checkout -q 14ca2b146d55f8d16a36eded60a74425b1b00f51
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/cronos-0.9.0 checkout -q -- .
+$ dotnet restore src/Cronos/Cronos.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/cronos-0.9.0/src/Cronos/Cronos.csproj (in 191 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

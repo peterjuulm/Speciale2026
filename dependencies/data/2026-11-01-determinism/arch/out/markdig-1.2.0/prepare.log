@@ -1,0 +1,41 @@
+start 2026-11-01T10:28:57+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/markdig-1.2.0
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 remote add origin https://github.com/xoofx/markdig
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 config core.autocrlf false
+$ git clone -q --mirror https://github.com/xoofx/markdig /private/tmp/nupkg-determinism/mirrors/https_github.com_xoofx_markdig.git
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_xoofx_markdig.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_xoofx_markdig.git be4da8b42dfdf4d5009c372d814ac2b9f968a8d2
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 -c advice.detachedHead=false checkout -q be4da8b42dfdf4d5009c372d814ac2b9f968a8d2
+global.json: none
+start 2026-11-01T12:47:18+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_xoofx_markdig.git /private/tmp/nupkg-determinism/src/markdig-1.2.0
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 remote set-url origin https://github.com/xoofx/markdig
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 -c advice.detachedHead=false checkout -q be4da8b42dfdf4d5009c372d814ac2b9f968a8d2
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 checkout -q -- .
+$ dotnet restore src/Markdig/Markdig.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/markdig-1.2.0/src/Markdig/Markdig.csproj (in 129 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T15:49:11+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_xoofx_markdig.git /private/tmp/nupkg-determinism/src/markdig-1.2.0
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 remote set-url origin https://github.com/xoofx/markdig
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 -c advice.detachedHead=false checkout -q be4da8b42dfdf4d5009c372d814ac2b9f968a8d2
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/markdig-1.2.0 checkout -q -- .
+$ dotnet restore src/Markdig/Markdig.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/markdig-1.2.0/src/Markdig/Markdig.csproj (in 150 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

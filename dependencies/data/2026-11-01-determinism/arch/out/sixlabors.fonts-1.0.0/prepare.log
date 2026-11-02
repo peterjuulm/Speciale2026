@@ -1,0 +1,7 @@
+start 2026-11-01T14:10:19+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_SixLabors_Fonts.git /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 remote set-url origin https://github.com/SixLabors/Fonts
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 -c advice.detachedHead=false checkout -q 32bef42997adb10268369ca149777f00e4241ce9
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 submodule update --init --recursive -q
+global.json: none

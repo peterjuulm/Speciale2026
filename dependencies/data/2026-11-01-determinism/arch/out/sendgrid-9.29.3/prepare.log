@@ -1,0 +1,24 @@
+start 2026-11-01T12:12:52+01:00
+$ git clone -q --mirror https://github.com/sendgrid/sendgrid-csharp /private/tmp/nupkg-determinism/mirrors/https_github.com_sendgrid_sendgrid-csharp.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_sendgrid_sendgrid-csharp.git /private/tmp/nupkg-determinism/src/sendgrid-9.29.3
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 remote set-url origin https://github.com/sendgrid/sendgrid-csharp
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 -c advice.detachedHead=false checkout -q 4a315350e910ef10c6579ca5291ed7f82ad9d376
+global.json: none
+start 2026-11-01T15:17:48+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_sendgrid_sendgrid-csharp.git /private/tmp/nupkg-determinism/src/sendgrid-9.29.3
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 remote set-url origin https://github.com/sendgrid/sendgrid-csharp
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 -c advice.detachedHead=false checkout -q 4a315350e910ef10c6579ca5291ed7f82ad9d376
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 checkout -q -- .
+$ dotnet restore src/SendGrid/SendGrid.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+  Restored /private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj (in 224 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

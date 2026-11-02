@@ -1,0 +1,41 @@
+start 2026-11-01T10:30:59+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 remote add origin https://github.com/dotnet/aspnetcore
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 config core.autocrlf false
+$ git clone -q --mirror https://github.com/dotnet/aspnetcore /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_aspnetcore.git
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_aspnetcore.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_aspnetcore.git af22effae4069a5dfb9b0735859de48820104f5b
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 -c advice.detachedHead=false checkout -q af22effae4069a5dfb9b0735859de48820104f5b
+global.json: sdk-removed (pinned 9.0.100-rc.1.24452.12)
+start 2026-11-01T12:53:12+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_aspnetcore.git /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 remote set-url origin https://github.com/dotnet/aspnetcore
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 -c advice.detachedHead=false checkout -q af22effae4069a5dfb9b0735859de48820104f5b
+global.json: sdk-removed (pinned 9.0.100-rc.1.24452.12)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0 checkout -q -- .
+$ dotnet restore src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Extensions/Features/src/Microsoft.Extensions.Features.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/Headers/src/Microsoft.Net.Http.Headers.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/WebEncoders/src/Microsoft.Extensions.WebEncoders.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/Authentication.Abstractions/src/Microsoft.AspNetCore.Authentication.Abstractions.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Servers/Connections.Abstractions/src/Microsoft.AspNetCore.Connections.Abstractions.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/Authentication.Core/src/Microsoft.AspNetCore.Authentication.Core.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Http/Http/src/Microsoft.AspNetCore.Http.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Security/Authentication/JwtBearer/src/Microsoft.AspNetCore.Authentication.JwtBearer.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/Security/Authentication/Core/src/Microsoft.AspNetCore.Authentication.csproj (in 306 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.jwtbearer-9.0.0/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj (in 52 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

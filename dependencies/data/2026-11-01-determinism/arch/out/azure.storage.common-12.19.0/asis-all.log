@@ -1,0 +1,75 @@
+start 2026-11-01T12:44:39+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/const_build_path/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.storage.common/12.18.1/lib/netstandard2.0/Azure.Storage.Common.dll using assemblies from /tmp/reprotest.IdTn5Y/const_build_path/artifacts/obj/Azure.Storage.Common/Release/netstandard2.0/
+  InheritDocTask replaced 22 of 22 inheritdoc tags and removed 56 private member docs in /tmp/reprotest.IdTn5Y/const_build_path/artifacts/obj/Azure.Storage.Common/Release/netstandard2.0/Azure.Storage.Common.xml
+  Azure.Storage.Common -> /tmp/reprotest.IdTn5Y/const_build_path/artifacts/bin/Azure.Storage.Common/Release/netstandard2.0/Azure.Storage.Common.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/const_build_path/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=net6.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.storage.common/12.18.1/lib/net6.0/Azure.Storage.Common.dll using assemblies from /tmp/reprotest.IdTn5Y/const_build_path/artifacts/obj/Azure.Storage.Common/Release/net6.0/
+  InheritDocTask replaced 22 of 22 inheritdoc tags and removed 56 private member docs in /tmp/reprotest.IdTn5Y/const_build_path/artifacts/obj/Azure.Storage.Common/Release/net6.0/Azure.Storage.Common.xml
+  Azure.Storage.Common -> /tmp/reprotest.IdTn5Y/const_build_path/artifacts/bin/Azure.Storage.Common/Release/net6.0/Azure.Storage.Common.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/const_build_path/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/const_build_path/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=net6.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.05
+  Found the following change log entry for version '12.19.0' in [/tmp/reprotest.IdTn5Y/const_build_path/sdk/storage/Azure.Storage.Common/CHANGELOG.md].
+  -----
+  ## 12.19.0 (2024-05-13)
+  - This release contains bug fixes to improve quality.
+  
+  -----
+  [31;1mLogError: [0m/tmp/reprotest.IdTn5Y/const_build_path/eng/common/scripts/ChangeLog-Operations.ps1:446[0m
+  [31;1m[0m[36;1mLine |[0m
+  [31;1m[0m[36;1m[36;1m 446 | [0m       [36;1mLogError "$($ChangeLogStatus.Message)"[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mThe changelog entry did not contain any of the recommended sections[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m     | [31;1m(Features Added, Breaking Changes, Bugs Fixed, Other Changes), please[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1madd at least one. See https://aka.ms/azsdk/guideline/changelogs for more[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1minfo.[0m
+  Successfully created package '/tmp/reprotest.IdTn5Y/const_build_path/out/Azure.Storage.Common.12.19.0-alpha.20261101.1.nupkg'.
+  Successfully created package '/tmp/reprotest.IdTn5Y/const_build_path/out/Azure.Storage.Common.12.19.0-alpha.20261101.1.symbols.nupkg'.
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/build-experiment-1/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.storage.common/12.18.1/lib/netstandard2.0/Azure.Storage.Common.dll using assemblies from /tmp/reprotest.IdTn5Y/build-experiment-1/artifacts/obj/Azure.Storage.Common/Release/netstandard2.0/
+  InheritDocTask replaced 22 of 22 inheritdoc tags and removed 56 private member docs in /tmp/reprotest.IdTn5Y/build-experiment-1/artifacts/obj/Azure.Storage.Common/Release/netstandard2.0/Azure.Storage.Common.xml
+  Azure.Storage.Common -> /tmp/reprotest.IdTn5Y/build-experiment-1/artifacts/bin/Azure.Storage.Common/Release/netstandard2.0/Azure.Storage.Common.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/build-experiment-1/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=net6.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.storage.common/12.18.1/lib/net6.0/Azure.Storage.Common.dll using assemblies from /tmp/reprotest.IdTn5Y/build-experiment-1/artifacts/obj/Azure.Storage.Common/Release/net6.0/
+  InheritDocTask replaced 22 of 22 inheritdoc tags and removed 56 private member docs in /tmp/reprotest.IdTn5Y/build-experiment-1/artifacts/obj/Azure.Storage.Common/Release/net6.0/Azure.Storage.Common.xml
+  Azure.Storage.Common -> /tmp/reprotest.IdTn5Y/build-experiment-1/artifacts/bin/Azure.Storage.Common/Release/net6.0/Azure.Storage.Common.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/build-experiment-1/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.IdTn5Y/build-experiment-1/sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj::TargetFramework=net6.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.21
+  Found the following change log entry for version '12.19.0' in [/tmp/reprotest.IdTn5Y/build-experiment-1/sdk/storage/Azure.Storage.Common/CHANGELOG.md].
+  -----
+  ## 12.19.0 (2024-05-13)
+  - This release contains bug fixes to improve quality.
+  
+  -----
+  [31;1mLogError: [0m/tmp/reprotest.IdTn5Y/build-experiment-1/eng/common/scripts/ChangeLog-Operations.ps1:446[0m
+  [31;1m[0m[36;1mLine |[0m
+  [31;1m[0m[36;1m[36;1m 446 | [0m       [36;1mLogError "$($ChangeLogStatus.Message)"[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mThe changelog entry did not contain any of the recommended sections[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m     | [31;1m(Features Added, Breaking Changes, Bugs Fixed, Other Changes), please[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1madd at least one. See https://aka.ms/azsdk/guideline/changelogs for more[0m
+  [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m[31;1m[36;1m     | [31;1minfo.[0m
+  Successfully created package '/tmp/reprotest.IdTn5Y/build-experiment-1/out/Azure.Storage.Common.12.19.0-alpha.20271204.1.nupkg'.
+  Successfully created package '/tmp/reprotest.IdTn5Y/build-experiment-1/out/Azure.Storage.Common.12.19.0-alpha.20271204.1.symbols.nupkg'.
+Kun i /private/tmp/nupkg-determinism/out/azure.storage.common-12.19.0/asis-all-store/control/source-root/out: Azure.Storage.Common.12.19.0-alpha.20261101.1.nupkg
+Kun i /private/tmp/nupkg-determinism/out/azure.storage.common-12.19.0/asis-all-store/control/source-root/out: Azure.Storage.Common.12.19.0-alpha.20261101.1.symbols.nupkg
+Kun i /private/tmp/nupkg-determinism/out/azure.storage.common-12.19.0/asis-all-store/experiment-1/source-root/out: Azure.Storage.Common.12.19.0-alpha.20271204.1.nupkg
+Kun i /private/tmp/nupkg-determinism/out/azure.storage.common-12.19.0/asis-all-store/experiment-1/source-root/out: Azure.Storage.Common.12.19.0-alpha.20271204.1.symbols.nupkg
+end 2026-11-01T12:45:23+01:00 exit 1

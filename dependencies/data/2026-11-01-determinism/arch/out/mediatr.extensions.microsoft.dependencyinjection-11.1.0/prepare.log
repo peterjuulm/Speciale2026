@@ -1,0 +1,41 @@
+start 2026-11-01T10:29:31+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 remote add origin https://github.com/jbogard/MediatR.Extensions.Microsoft.DependencyInjection
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 config core.autocrlf false
+$ git clone -q --mirror https://github.com/jbogard/MediatR.Extensions.Microsoft.DependencyInjection /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.Extensions.Microsoft.DependencyInjection.git
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.Extensions.Microsoft.DependencyInjection.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.Extensions.Microsoft.DependencyInjection.git 238a3770f16174f3585c58c390914ca58c7acf25
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 -c advice.detachedHead=false checkout -q 238a3770f16174f3585c58c390914ca58c7acf25
+global.json: none
+start 2026-11-01T12:39:57+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.Extensions.Microsoft.DependencyInjection.git /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 remote set-url origin https://github.com/jbogard/MediatR.Extensions.Microsoft.DependencyInjection
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 -c advice.detachedHead=false checkout -q 238a3770f16174f3585c58c390914ca58c7acf25
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 checkout -q -- .
+$ dotnet restore src/MediatR.Extensions.Microsoft.DependencyInjection/MediatR.Extensions.Microsoft.DependencyInjection.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0/src/MediatR.Extensions.Microsoft.DependencyInjection/MediatR.Extensions.Microsoft.DependencyInjection.csproj (in 110 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T14:42:39+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_jbogard_MediatR.Extensions.Microsoft.DependencyInjection.git /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 remote set-url origin https://github.com/jbogard/MediatR.Extensions.Microsoft.DependencyInjection
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 -c advice.detachedHead=false checkout -q 238a3770f16174f3585c58c390914ca58c7acf25
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0 checkout -q -- .
+$ dotnet restore src/MediatR.Extensions.Microsoft.DependencyInjection/MediatR.Extensions.Microsoft.DependencyInjection.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/mediatr.extensions.microsoft.dependencyinjection-11.1.0/src/MediatR.Extensions.Microsoft.DependencyInjection/MediatR.Extensions.Microsoft.DependencyInjection.csproj (in 122 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

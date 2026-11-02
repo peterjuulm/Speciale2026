@@ -1,0 +1,34 @@
+start 2026-11-01T08:43:42+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/GuardClauses/GuardClauses.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/GuardClauses/GuardClauses.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  GuardClauses -> /tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/bin/Release/net8.0/Ardalis.GuardClauses.dll
+/tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/GuardAgainstNullExtensions.cs(217,48): warning CS8604: Possible null reference argument for parameter 'x' in 'bool EqualityComparer<T>.Equals(T x, T y)'. [/tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/GuardClauses.csproj::TargetFramework=netstandard2.1]
+  GuardClauses -> /tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/bin/Release/netstandard2.1/Ardalis.GuardClauses.dll
+  GuardClauses -> /tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/bin/Release/netstandard2.0/Ardalis.GuardClauses.dll
+  Successfully created package '/tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/bin/Release/Ardalis.GuardClauses.5.0.0.nupkg'.
+
+Build succeeded.
+
+/tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/GuardAgainstNullExtensions.cs(217,48): warning CS8604: Possible null reference argument for parameter 'x' in 'bool EqualityComparer<T>.Equals(T x, T y)'. [/tmp/reprotest.3Psa6v/const_build_path/src/GuardClauses/GuardClauses.csproj::TargetFramework=netstandard2.1]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.77
+  Successfully created package '/tmp/reprotest.3Psa6v/const_build_path/out/Ardalis.GuardClauses.5.0.0.nupkg'.
+  GuardClauses -> /tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/bin/Release/net8.0/Ardalis.GuardClauses.dll
+/tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/GuardAgainstNullExtensions.cs(217,48): warning CS8604: Possible null reference argument for parameter 'x' in 'bool EqualityComparer<T>.Equals(T x, T y)'. [/tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/GuardClauses.csproj::TargetFramework=netstandard2.1]
+  GuardClauses -> /tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/bin/Release/netstandard2.1/Ardalis.GuardClauses.dll
+  GuardClauses -> /tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/bin/Release/netstandard2.0/Ardalis.GuardClauses.dll
+  Successfully created package '/tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/bin/Release/Ardalis.GuardClauses.5.0.0.nupkg'.
+
+Build succeeded.
+
+/tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/GuardAgainstNullExtensions.cs(217,48): warning CS8604: Possible null reference argument for parameter 'x' in 'bool EqualityComparer<T>.Equals(T x, T y)'. [/tmp/reprotest.3Psa6v/build-experiment-1/src/GuardClauses/GuardClauses.csproj::TargetFramework=netstandard2.1]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.36
+  Successfully created package '/tmp/reprotest.3Psa6v/build-experiment-1/out/Ardalis.GuardClauses.5.0.0.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/ardalis.guardclauses-5.0.0/asis-all-store/control/source-root/out/Ardalis.GuardClauses.5.0.0.nupkg og /private/tmp/nupkg-determinism/out/ardalis.guardclauses-5.0.0/asis-all-store/experiment-1/source-root/out/Ardalis.GuardClauses.5.0.0.nupkg er forskellige
+end 2026-11-01T08:44:05+01:00 exit 1

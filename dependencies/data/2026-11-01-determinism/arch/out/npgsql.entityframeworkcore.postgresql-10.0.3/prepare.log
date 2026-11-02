@@ -1,0 +1,23 @@
+start 2026-11-01T12:03:40+01:00
+$ git clone -q --mirror https://github.com/npgsql/efcore.pg /private/tmp/nupkg-determinism/mirrors/https_github.com_npgsql_efcore.pg.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_npgsql_efcore.pg.git /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 remote set-url origin https://github.com/npgsql/efcore.pg
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 -c advice.detachedHead=false checkout -q 5e912bf071068a44e5abbdab497b313ba99d3ee1
+global.json: sdk-removed (pinned 10.0.100)
+start 2026-11-01T15:11:57+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_npgsql_efcore.pg.git /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 remote set-url origin https://github.com/npgsql/efcore.pg
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 -c advice.detachedHead=false checkout -q 5e912bf071068a44e5abbdab497b313ba99d3ee1
+global.json: sdk-removed (pinned 10.0.100)
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 checkout -q -- .
+$ dotnet restore src/EFCore.PG/EFCore.PG.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3/src/EFCore.PG/EFCore.PG.csproj (in 161 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

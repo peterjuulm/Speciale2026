@@ -1,0 +1,23 @@
+start 2026-11-01T12:14:44+01:00
+$ git clone -q --mirror https://github.com/serilog/serilog-settings-configuration /private/tmp/nupkg-determinism/mirrors/https_github.com_serilog_serilog-settings-configuration.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_serilog_serilog-settings-configuration.git /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 remote set-url origin https://github.com/serilog/serilog-settings-configuration
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 -c advice.detachedHead=false checkout -q 71ba0e33a2cfb9802be163fcc6438a8104a54d6d
+global.json: sdk-removed (pinned 8.0.100)
+start 2026-11-01T14:56:05+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_serilog_serilog-settings-configuration.git /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 remote set-url origin https://github.com/serilog/serilog-settings-configuration
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 -c advice.detachedHead=false checkout -q 71ba0e33a2cfb9802be163fcc6438a8104a54d6d
+global.json: sdk-removed (pinned 8.0.100)
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4 checkout -q -- .
+$ dotnet restore src/Serilog.Settings.Configuration/Serilog.Settings.Configuration.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.settings.configuration-8.0.4/src/Serilog.Settings.Configuration/Serilog.Settings.Configuration.csproj (in 180 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

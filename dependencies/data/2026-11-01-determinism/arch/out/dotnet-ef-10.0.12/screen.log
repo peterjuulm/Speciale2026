@@ -1,0 +1,44 @@
+start 2026-11-01T10:23:20+01:00
+$ git -C /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12 checkout -q -- .
+$ dotnet restore src/efcore/src/dotnet-ef/dotnet-ef.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/src/ef/ef.csproj (in 5,56 sec).
+  Restored /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/src/dotnet-ef/dotnet-ef.csproj (in 12,25 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/efcore/src/dotnet-ef/dotnet-ef.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/efcore/src/dotnet-ef/dotnet-ef.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  ef -> /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/artifacts/bin/ef/Release/net8.0/ef.dll
+  dotnet-ef -> /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/artifacts/bin/dotnet-ef/Release/net8.0/dotnet-ef.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.40
+
+  dotnet-ef -> /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/artifacts/bin/dotnet-ef/Release/net8.0/publish/
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): error : Could not find a part of the path '/private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/artifacts/bin/ef/Release/net472'. [/private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/src/dotnet-ef/dotnet-ef.csproj]
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:23:50+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12 checkout -q -- .
+$ dotnet restore src/efcore/src/dotnet-ef/dotnet-ef.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/src/ef/ef.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/dotnet-ef-10.0.12/src/efcore/src/dotnet-ef/dotnet-ef.csproj (in 183 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

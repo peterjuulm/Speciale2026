@@ -1,0 +1,38 @@
+start 2026-11-01T12:15:44+01:00
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Sinks.Seq/Serilog.Sinks.Seq.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0/src/Serilog.Sinks.Seq/Serilog.Sinks.Seq.csproj (in 449 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Serilog.Sinks.Seq/Serilog.Sinks.Seq.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Serilog.Sinks.Seq/Serilog.Sinks.Seq.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Serilog.Sinks.Seq -> /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0/src/Serilog.Sinks.Seq/bin/Release/netstandard2.0/Serilog.Sinks.Seq.dll
+  Serilog.Sinks.Seq -> /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0/src/Serilog.Sinks.Seq/bin/Release/net6.0/Serilog.Sinks.Seq.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.82
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0/out/Serilog.Sinks.Seq.9.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0/out/Serilog.Sinks.Seq.9.0.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:15:51+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Sinks.Seq/Serilog.Sinks.Seq.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.sinks.seq-9.0.0/src/Serilog.Sinks.Seq/Serilog.Sinks.Seq.csproj (in 130 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

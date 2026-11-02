@@ -1,0 +1,43 @@
+start 2026-11-01T10:26:16+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 remote add origin https://github.com/HangfireIO/Hangfire
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Hangfire.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Hangfire.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Hangfire.git 1d4778c23410b365b5f9ce35458202efe0b0f3ea
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 -c advice.detachedHead=false checkout -q 1d4778c23410b365b5f9ce35458202efe0b0f3ea
+global.json: none
+start 2026-11-01T12:54:18+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Hangfire.git /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 remote set-url origin https://github.com/HangfireIO/Hangfire
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 -c advice.detachedHead=false checkout -q 1d4778c23410b365b5f9ce35458202efe0b0f3ea
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.NetCore/Hangfire.NetCore.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 208 ms).
+  Restored /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25/src/Hangfire.NetCore/Hangfire.NetCore.csproj (in 208 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T17:36:48+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_HangfireIO_Hangfire.git /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 remote set-url origin https://github.com/HangfireIO/Hangfire
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 -c advice.detachedHead=false checkout -q 1d4778c23410b365b5f9ce35458202efe0b0f3ea
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.NetCore/Hangfire.NetCore.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 291 ms).
+  Restored /private/tmp/nupkg-determinism/src/hangfire.netcore-1.8.25/src/Hangfire.NetCore/Hangfire.NetCore.csproj (in 291 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

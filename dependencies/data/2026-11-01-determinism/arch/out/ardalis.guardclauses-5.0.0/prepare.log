@@ -1,0 +1,71 @@
+start 2026-11-01T08:43:27+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 remote add origin https://github.com/ardalis/GuardClauses
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 fetch -q origin ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 -c advice.detachedHead=false checkout -q ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5
+start 2026-11-01T11:05:18+01:00
+$ git clone -q --mirror https://github.com/ardalis/GuardClauses /private/tmp/nupkg-determinism/mirrors/https_github.com_ardalis_GuardClauses.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_ardalis_GuardClauses.git /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 -c advice.detachedHead=false checkout -q ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 checkout -q -- .
+$ dotnet restore src/GuardClauses/GuardClauses.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj (in 124 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T11:08:15+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_ardalis_GuardClauses.git /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 remote set-url origin https://github.com/ardalis/GuardClauses
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 -c advice.detachedHead=false checkout -q ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 checkout -q -- .
+$ dotnet restore src/GuardClauses/GuardClauses.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj (in 117 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T14:10:12+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_ardalis_GuardClauses.git /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 remote set-url origin https://github.com/ardalis/GuardClauses
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 -c advice.detachedHead=false checkout -q ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 checkout -q -- .
+$ dotnet restore src/GuardClauses/GuardClauses.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj (in 114 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T14:42:36+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_ardalis_GuardClauses.git /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 remote set-url origin https://github.com/ardalis/GuardClauses
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 -c advice.detachedHead=false checkout -q ad43aa02babf3bc8aee8efc2258f5ad3571c8ec5
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 checkout -q -- .
+$ dotnet restore src/GuardClauses/GuardClauses.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj (in 133 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

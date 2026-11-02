@@ -1,0 +1,43 @@
+start 2026-11-01T10:26:07+01:00
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0 checkout -q -- .
+$ dotnet restore src/Hangfire.InMemory/Hangfire.InMemory.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/Hangfire.InMemory.csproj (in 670 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=netstandard2.0]
+  Hangfire.InMemory -> /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/bin/Release/net451/Hangfire.InMemory.dll
+  Hangfire.InMemory -> /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/bin/Release/netstandard2.0/Hangfire.InMemory.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=netstandard2.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.96
+  The package Hangfire.InMemory.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/out/Hangfire.InMemory.1.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:26:14+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0 checkout -q -- .
+$ dotnet restore src/Hangfire.InMemory/Hangfire.InMemory.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.inmemory-1.0.0/src/Hangfire.InMemory/Hangfire.InMemory.csproj (in 131 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,23 @@
+start 2026-11-01T12:04:19+01:00
+$ git clone -q --mirror https://github.com/novotnyllc/bc-csharp /private/tmp/nupkg-determinism/mirrors/https_github.com_novotnyllc_bc-csharp.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_novotnyllc_bc-csharp.git /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 remote set-url origin https://github.com/novotnyllc/bc-csharp
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 -c advice.detachedHead=false checkout -q 0f827cc3e74a8f45669fba5c525adacd6b897503
+global.json: none
+start 2026-11-01T15:44:58+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_novotnyllc_bc-csharp.git /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 remote set-url origin https://github.com/novotnyllc/bc-csharp
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 -c advice.detachedHead=false checkout -q 0f827cc3e74a8f45669fba5c525adacd6b897503
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0 checkout -q -- .
+$ dotnet restore crypto/src/crypto.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/portable.bouncycastle-1.9.0/crypto/src/crypto.csproj (in 136 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

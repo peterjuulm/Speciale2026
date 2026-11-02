@@ -1,0 +1,39 @@
+start 2026-11-01T11:51:17+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0 checkout -q -- .
+$ dotnet restore src/Microsoft.IdentityModel.LoggingExtensions/Microsoft.IdentityModel.LoggingExtensions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj (in 111 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.LoggingExtensions/Microsoft.IdentityModel.LoggingExtensions.csproj (in 111 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Microsoft.IdentityModel.LoggingExtensions/Microsoft.IdentityModel.LoggingExtensions.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Microsoft.IdentityModel.LoggingExtensions/Microsoft.IdentityModel.LoggingExtensions.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.Abstractions/obj/Release/netstandard2.0/Microsoft.IdentityModel.Abstractions.AssemblyInfo.cs(17,59): error CS7035: The specified version string '8.6.2.71101' does not conform to the recommended format - major.minor.build.revision [/private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj::TargetFramework=netstandard2.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.Abstractions/obj/Release/netstandard2.0/Microsoft.IdentityModel.Abstractions.AssemblyInfo.cs(17,59): error CS7035: The specified version string '8.6.2.71101' does not conform to the recommended format - major.minor.build.revision [/private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj::TargetFramework=netstandard2.0]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:02.30
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T11:51:24+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0 checkout -q -- .
+$ dotnet restore src/Microsoft.IdentityModel.LoggingExtensions/Microsoft.IdentityModel.LoggingExtensions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj (in 113 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.loggingextensions-8.7.0/src/Microsoft.IdentityModel.LoggingExtensions/Microsoft.IdentityModel.LoggingExtensions.csproj (in 113 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

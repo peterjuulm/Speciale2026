@@ -1,0 +1,42 @@
+start 2026-11-01T09:23:04+01:00
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0 checkout -q -- .
+$ dotnet restore Specification/src/Ardalis.Specification/Ardalis.Specification.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/Specification/src/Ardalis.Specification/Ardalis.Specification.csproj (in 1,48 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build Specification/src/Ardalis.Specification/Ardalis.Specification.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack Specification/src/Ardalis.Specification/Ardalis.Specification.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Ardalis.Specification -> /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/Specification/src/Ardalis.Specification/bin/Release/net6.0/Ardalis.Specification.dll
+  Ardalis.Specification -> /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/Specification/src/Ardalis.Specification/bin/Release/netstandard2.0/Ardalis.Specification.dll
+  Ardalis.Specification -> /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/Specification/src/Ardalis.Specification/bin/Release/net7.0/Ardalis.Specification.dll
+  Ardalis.Specification -> /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/Specification/src/Ardalis.Specification/bin/Release/net8.0/Ardalis.Specification.dll
+  The package Ardalis.Specification.8.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/Specification/src/Ardalis.Specification/bin/Release/Ardalis.Specification.8.0.0.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.57
+  The package Ardalis.Specification.8.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/out/Ardalis.Specification.8.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T09:23:20+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0 checkout -q -- .
+$ dotnet restore Specification/src/Ardalis.Specification/Ardalis.Specification.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.specification-8.0.0/Specification/src/Ardalis.Specification/Ardalis.Specification.csproj (in 293 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

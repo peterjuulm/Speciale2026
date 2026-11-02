@@ -1,0 +1,99 @@
+start 2026-11-01T09:12:21+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Framework/Microsoft.Build.Framework.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1761040175 && dotnet pack src/Framework/Microsoft.Build.Framework.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1761040175; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(172,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(195,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(220,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(374,37): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(35,96): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(58,50): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+  Microsoft.Build.Framework -> /tmp/reprotest.JbCrKx/const_build_path/artifacts/bin/Microsoft.Build.Framework/Release/net472/Microsoft.Build.Framework.dll
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/FileClassifier.cs(299,74): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/NativeMethods.cs(1499,21): warning IDE0380: 'unsafe' modifier is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0380) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+  Microsoft.Build.Framework -> /tmp/reprotest.JbCrKx/const_build_path/artifacts/bin/Microsoft.Build.Framework/Release/net10.0/Microsoft.Build.Framework.dll
+  Microsoft.Build.Framework -> /tmp/reprotest.JbCrKx/const_build_path/artifacts/bin/Microsoft.Build.Framework/Release/netstandard2.0/Microsoft.Build.Framework.dll
+  Successfully created package '/tmp/reprotest.JbCrKx/const_build_path/artifacts/packages/Release/Shipping/Microsoft.Build.Framework.18.0.2.nupkg'.
+
+Build succeeded.
+
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(172,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(195,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(220,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(374,37): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(35,96): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(58,50): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/FileClassifier.cs(299,74): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/NativeMethods.cs(1499,21): warning IDE0380: 'unsafe' modifier is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0380) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+    12 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:01.75
+
+  Successfully created package '/tmp/reprotest.JbCrKx/const_build_path/out/Microsoft.Build.Framework.18.0.2.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.42
+
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(172,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(195,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(220,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(374,37): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(35,96): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(58,50): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+  Microsoft.Build.Framework -> /tmp/reprotest.JbCrKx/const_build_path/artifacts/bin/Microsoft.Build.Framework/Release/net472/Microsoft.Build.Framework.dll
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/FileClassifier.cs(299,74): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/NativeMethods.cs(1499,21): warning IDE0380: 'unsafe' modifier is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0380) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+  Microsoft.Build.Framework -> /tmp/reprotest.JbCrKx/const_build_path/artifacts/bin/Microsoft.Build.Framework/Release/net10.0/Microsoft.Build.Framework.dll
+  Microsoft.Build.Framework -> /tmp/reprotest.JbCrKx/const_build_path/artifacts/bin/Microsoft.Build.Framework/Release/netstandard2.0/Microsoft.Build.Framework.dll
+  Successfully created package '/tmp/reprotest.JbCrKx/const_build_path/artifacts/packages/Release/Shipping/Microsoft.Build.Framework.18.0.2.nupkg'.
+
+Build succeeded.
+
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(172,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(195,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/BuildCheck/BuildCheckEventArgs.cs(220,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(374,37): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(35,96): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/SerializableMetadata.cs(58,50): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/FileClassifier.cs(299,74): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/NativeMethods.cs(1499,21): warning IDE0380: 'unsafe' modifier is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0380) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/tmp/reprotest.JbCrKx/const_build_path/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.JbCrKx/const_build_path/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+    12 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:01.49
+
+  Successfully created package '/tmp/reprotest.JbCrKx/const_build_path/out/Microsoft.Build.Framework.18.0.2.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.36
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+6aed57a61e0363fbf7886b053d7f4b1f05168ee5d5a0e701656065c6a9ca7f51  ./out/Microsoft.Build.Framework.18.0.2.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T09:14:35+01:00 exit 0

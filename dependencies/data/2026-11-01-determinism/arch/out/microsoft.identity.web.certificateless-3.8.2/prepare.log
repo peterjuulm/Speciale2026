@@ -1,0 +1,22 @@
+start 2026-11-01T11:36:14+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_AzureAD_microsoft-identity-web.git /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 remote set-url origin https://github.com/AzureAD/microsoft-identity-web
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 -c advice.detachedHead=false checkout -q 99ab1ad7b5d47fe3160422b7360e27f6961185d1
+global.json: sdk-removed (pinned 9.0.102)
+start 2026-11-01T14:44:21+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_AzureAD_microsoft-identity-web.git /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 remote set-url origin https://github.com/AzureAD/microsoft-identity-web
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 -c advice.detachedHead=false checkout -q 99ab1ad7b5d47fe3160422b7360e27f6961185d1
+global.json: sdk-removed (pinned 9.0.102)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2 checkout -q -- .
+$ dotnet restore src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificateless-3.8.2/src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj (in 152 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

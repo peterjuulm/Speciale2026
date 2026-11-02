@@ -1,0 +1,48 @@
+start 2026-11-01T10:56:03+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 checkout -q -- .
+$ dotnet restore src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj (in 175 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj (in 175 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  Microsoft.CodeAnalysis -> /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/artifacts/bin/Microsoft.CodeAnalysis/Release/netstandard2.0/Microsoft.CodeAnalysis.dll
+  Microsoft.CodeAnalysis -> /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/artifacts/bin/Microsoft.CodeAnalysis/Release/net8.0/Microsoft.CodeAnalysis.dll
+  Microsoft.CodeAnalysis -> /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/artifacts/bin/Microsoft.CodeAnalysis/Release/net9.0/Microsoft.CodeAnalysis.dll
+  Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler -> /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/artifacts/bin/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler/Release/net8.0/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
+  Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler -> /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/artifacts/bin/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler/Release/netstandard2.0/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
+  Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler -> /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/artifacts/bin/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler/Release/net9.0/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:25.55
+
+  The package Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.5.0.0-dev is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/out/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.5.0.0-dev.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:56:35+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 checkout -q -- .
+$ dotnet restore src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj (in 192 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj (in 192 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

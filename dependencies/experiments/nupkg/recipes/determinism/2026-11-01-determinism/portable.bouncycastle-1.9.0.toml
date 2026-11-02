@@ -1,0 +1,13 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "Portable.BouncyCastle"
+version = "1.9.0"
+ships = "lib/netstandard2.0/BouncyCastle.Crypto.dll"
+repo = "https://github.com/novotnyllc/bc-csharp"
+commit = "0f827cc3e74a8f45669fba5c525adacd6b897503"
+project = "crypto/src/crypto.csproj"
+sdk = "6.0.100-rc.2.21505.57"
+shell = "bash"
+build = "dotnet build crypto/src/crypto.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=1.9.0 -p:AssemblyVersion=1.9.0.0 -p:FileVersion=1.9.0.1 -p:PackageVersion=1.9.0 && dotnet pack crypto/src/crypto.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=1.9.0 -p:AssemblyVersion=1.9.0.0 -p:FileVersion=1.9.0.1 -p:PackageVersion=1.9.0"
+packages = "out-nupkg"
+os = "windows"
+git_config = ["core.autocrlf=true"]

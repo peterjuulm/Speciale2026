@@ -1,0 +1,70 @@
+start 2026-11-01T10:13:39+01:00
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 3,83 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.security.keyvault.certificates/4.5.0/lib/netstandard2.0/Azure.Security.KeyVault.Certificates.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/
+  InheritDocTask replaced 65 of 65 inheritdoc tags and removed 6 private member docs in /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.xml
+  Azure.Security.KeyVault.Certificates -> /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/artifacts/bin/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.90
+  Found the following change log entry for version '4.6.0' in [/private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/CHANGELOG.md].
+  -----
+  ## 4.6.0 (2024-02-14)
+  
+  Changes from both the last release and the last beta include:
+  
+  ### Features Added
+  
+  - Added `CertificateProperties.X509ThumbprintString` to return the hexadecimal string representation of the SHA-1 hash of the certificate.
+    `CertificateProperties.X509Thumbprint` has been hidden but is still available.
+  
+  ### Breaking Changes
+  
+  - Renamed tags reported on `CertificateClient` activities to following OpenTelemetry attribute naming conventions:
+    - `certificate` to `az.keyvault.certificate.name`
+    - `version` to `az.keyvault.certificate.version`
+    - `issuer` to `az.keyvault.certificate.issuer.name`
+  
+  ### Bugs Fixed
+  
+  - When a Key Vault is moved to another tenant, the client is reauthenticated.
+  
+  ### Other Changes
+  
+  - The default service version is now "7.5".
+  - Distributed tracing with `ActivitySource` is stable and no longer requires the [Experimental feature-flag](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md).
+  
+  -----
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261101.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261101.1.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:13:53+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 135 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

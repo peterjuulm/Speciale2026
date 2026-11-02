@@ -1,0 +1,95 @@
+start 2026-11-01T22:30:01+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/System.IdentityModel.Tokens.Jwt/System.IdentityModel.Tokens.Jwt.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1788449642 && dotnet pack src/System.IdentityModel.Tokens.Jwt/System.IdentityModel.Tokens.Jwt.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1788449642; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net462/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net462/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net462/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net462/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net462/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net472/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net472/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net472/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net472/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net472/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/netstandard2.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/netstandard2.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net6.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net6.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net6.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net6.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net8.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net8.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net8.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net8.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net9.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net9.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net9.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net9.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net10.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net10.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net10.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net10.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net10.0/System.IdentityModel.Tokens.Jwt.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:03:14.82
+  Successfully created package '/tmp/reprotest.wVyPLh/const_build_path/out/System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213316.nupkg'.
+  Successfully created package '/tmp/reprotest.wVyPLh/const_build_path/out/System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213316.snupkg'.
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net462/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net462/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net462/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net462/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net462/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net472/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net472/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net472/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net472/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net472/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/netstandard2.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/netstandard2.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net6.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net6.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net6.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net6.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net8.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net8.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net8.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net8.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net9.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net9.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net9.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net9.0/System.IdentityModel.Tokens.Jwt.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net10.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Logging -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Logging/bin/Release/net10.0/Microsoft.IdentityModel.Logging.dll
+  Microsoft.IdentityModel.Tokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.Tokens/bin/Release/net10.0/Microsoft.IdentityModel.Tokens.dll
+  Microsoft.IdentityModel.JsonWebTokens -> /tmp/reprotest.wVyPLh/const_build_path/src/Microsoft.IdentityModel.JsonWebTokens/bin/Release/net10.0/Microsoft.IdentityModel.JsonWebTokens.dll
+  System.IdentityModel.Tokens.Jwt -> /tmp/reprotest.wVyPLh/const_build_path/src/System.IdentityModel.Tokens.Jwt/bin/Release/net10.0/System.IdentityModel.Tokens.Jwt.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:03:53.22
+  Successfully created package '/tmp/reprotest.wVyPLh/const_build_path/out/System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213714.nupkg'.
+  Successfully created package '/tmp/reprotest.wVyPLh/const_build_path/out/System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213714.snupkg'.
+Kun i /private/tmp/nupkg-determinism/out/system.identitymodel.tokens.jwt-8.23.0/configured-environment-store/control/source-root/out: System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213316.nupkg
+Kun i /private/tmp/nupkg-determinism/out/system.identitymodel.tokens.jwt-8.23.0/configured-environment-store/control/source-root/out: System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213316.snupkg
+Kun i /private/tmp/nupkg-determinism/out/system.identitymodel.tokens.jwt-8.23.0/configured-environment-store/experiment-1/source-root/out: System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213714.nupkg
+Kun i /private/tmp/nupkg-determinism/out/system.identitymodel.tokens.jwt-8.23.0/configured-environment-store/experiment-1/source-root/out: System.IdentityModel.Tokens.Jwt.8.22.1-preview-71101213714.snupkg
+end 2026-11-01T22:37:17+01:00 exit 1

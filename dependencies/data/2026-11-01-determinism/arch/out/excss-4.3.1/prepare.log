@@ -1,0 +1,41 @@
+start 2026-11-01T10:24:56+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/excss-4.3.1
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 remote add origin https://github.com/TylerBrinks/ExCSS
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/mirrors/https_github.com_TylerBrinks_ExCSS.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_TylerBrinks_ExCSS.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_TylerBrinks_ExCSS.git c97e84d6126bb2e42658cf5af627d52e697c8779
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 -c advice.detachedHead=false checkout -q c97e84d6126bb2e42658cf5af627d52e697c8779
+global.json: none
+start 2026-11-01T12:52:05+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_TylerBrinks_ExCSS.git /private/tmp/nupkg-determinism/src/excss-4.3.1
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 remote set-url origin https://github.com/TylerBrinks/ExCSS
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 -c advice.detachedHead=false checkout -q c97e84d6126bb2e42658cf5af627d52e697c8779
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 checkout -q -- .
+$ dotnet restore src/ExCSS/ExCSS.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/excss-4.3.1/src/ExCSS/ExCSS.csproj (in 122 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T16:33:45+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_TylerBrinks_ExCSS.git /private/tmp/nupkg-determinism/src/excss-4.3.1
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 remote set-url origin https://github.com/TylerBrinks/ExCSS
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 -c advice.detachedHead=false checkout -q c97e84d6126bb2e42658cf5af627d52e697c8779
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/excss-4.3.1 checkout -q -- .
+$ dotnet restore src/ExCSS/ExCSS.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/excss-4.3.1/src/ExCSS/ExCSS.csproj (in 178 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

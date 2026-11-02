@@ -1,0 +1,29 @@
+start 2026-11-01T12:00:54+01:00
+$ git clone -q --mirror https://github.com/jskeet/nodatime /private/tmp/nupkg-determinism/mirrors/https_github.com_jskeet_nodatime.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_jskeet_nodatime.git /private/tmp/nupkg-determinism/src/nodatime-3.2.0
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 remote set-url origin https://github.com/jskeet/nodatime
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 -c advice.detachedHead=false checkout -q 4d0e4c04dd5f09304a7e53a0675dce1597ea0143
+fatal: unable to read tree (4d0e4c04dd5f09304a7e53a0675dce1597ea0143)
+start 2026-11-01T12:02:34+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_jskeet_nodatime.git /private/tmp/nupkg-determinism/src/nodatime-3.2.0
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 remote set-url origin https://github.com/jskeet/nodatime
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 -c advice.detachedHead=false checkout -q 4d0e4c04dd5f09304a7e53a0675dce1597ea0143
+global.json: sdk-removed (pinned 8.0.100)
+start 2026-11-01T16:00:00+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_jskeet_nodatime.git /private/tmp/nupkg-determinism/src/nodatime-3.2.0
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 remote set-url origin https://github.com/jskeet/nodatime
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 -c advice.detachedHead=false checkout -q 4d0e4c04dd5f09304a7e53a0675dce1597ea0143
+global.json: sdk-removed (pinned 8.0.100)
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nodatime-3.2.0 checkout -q -- .
+$ dotnet restore src/NodaTime/NodaTime.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nodatime-3.2.0/src/NodaTime/NodaTime.csproj (in 130 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

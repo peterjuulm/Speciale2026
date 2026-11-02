@@ -1,0 +1,60 @@
+start 2026-11-01T11:59:10+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 checkout -q -- .
+$ dotnet restore src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52/src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj (in 7,14 sec).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.73
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  Microsoft.VisualStudio.SolutionPersistence -> /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52/bin/Microsoft.VisualStudio.SolutionPersistence/Release/net472/Microsoft.VisualStudio.SolutionPersistence.dll
+  Microsoft.VisualStudio.SolutionPersistence -> /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52/bin/Microsoft.VisualStudio.SolutionPersistence/Release/net8.0/Microsoft.VisualStudio.SolutionPersistence.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.80
+
+  The package Microsoft.VisualStudio.SolutionPersistence.1.0.52-g19c3ca7dc9 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52/out/Microsoft.VisualStudio.SolutionPersistence.1.0.52-g19c3ca7dc9.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.09
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T11:59:26+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 checkout -q -- .
+$ dotnet restore src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52/src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj (in 134 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.72
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

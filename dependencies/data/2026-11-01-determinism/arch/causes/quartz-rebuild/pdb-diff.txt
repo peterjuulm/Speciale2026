@@ -1,0 +1,42 @@
+# PDBs from the two symbol packages (A: short path, B: deep path), cmp -l byte count and differing offsets
+== lib/netstandard2.0/Quartz.pdb: 36 bytes differ at 125-144 145115-145130
+== lib/net6.0/Quartz.pdb: 36 bytes differ at 125-144 143451-143466
+== lib/net472/Quartz.pdb: 36 bytes differ at 125-144 145863-145878
+== lib/net462/Quartz.pdb: 35 bytes differ at 125-141 143-144 145707-145722
+
+# strings differing (net6.0)
+778c778
+< 9917C68F5A74CEA5
+---
+> 37F2B1329D3E1CC3
+
+# document name context (A then B, net6.0, offset 143451)
+00023028: 61bb 2cec 5bb6 9eb0 80d7 15e7 c8b7 25d9  a.,.[.........%.
+00023038: 2852 14c5 11b3 a4ef 036f 626a 0752 656c  (R.......obj.Rel
+00023048: 6561 7365 066e 6574 362e 3005 4e75 4765  ease.net6.0.NuGe
+00023058: 7410 3939 3137 4336 3846 3541 3734 4345  t.9917C68F5A74CE
+00023068: 4135 064c 6962 4c6f 6705 352e 302e 3807  A5.LibLog.5.0.8.
+00023078: 494c 6f67 2e63 7315 2f00 0103 07bb 30bb  ILog.cs./.....0.
+00023088: 34bb 3cbb 43bb 49bb 5abb 61bb 6720 6e1f  4.<.C.I.Z.a.g n.
+
+00023028: 61bb 2cec 5bb6 9eb0 80d7 15e7 c8b7 25d9  a.,.[.........%.
+00023038: 2852 14c5 11b3 a4ef 036f 626a 0752 656c  (R.......obj.Rel
+00023048: 6561 7365 066e 6574 362e 3005 4e75 4765  ease.net6.0.NuGe
+00023058: 7410 3337 4632 4231 3332 3944 3345 3143  t.37F2B1329D3E1C
+00023068: 4333 064c 6962 4c6f 6705 352e 302e 3807  C3.LibLog.5.0.8.
+00023078: 494c 6f67 2e63 7315 2f00 0103 07bb 30bb  ILog.cs./.....0.
+00023088: 34bb 3cbb 43bb 49bb 5abb 61bb 6720 6e1f  4.<.C.I.Z.a.g n.
+
+# PE debug directories of the two net6.0 DLLs from the stored configured build_path run
+c/lib/net6.0/Quartz.dll size 955904 TimeDateStamp cefacf1b CheckSum 000f5a41
+  CodeView guid b4a39fdbb97fa74ab864ddcc616629cc age 1 path /_/src/Quartz/obj/Release/net6.0/Quartz.pdb
+  PdbChecksum SHA256 b4a39fdbb97fa7baf864ddcc616629cc366c3f83395e550a86962f6069f636e8
+  Reproducible
+  StrongNameSig rva ea790 size 128 fileoff 952720
+  Metadata fileoff 360736 size 559000
+e/lib/net6.0/Quartz.dll size 955904 TimeDateStamp a8cdb5c9 CheckSum 000f281d
+  CodeView guid 7ee62a386092da4291751bb22560fbae age 1 path /_/src/Quartz/obj/Release/net6.0/Quartz.pdb
+  PdbChecksum SHA256 7ee62a386092da7251751bb22560fbae271d03731c54addd1642af807e4d4d6e
+  Reproducible
+  StrongNameSig rva ea790 size 128 fileoff 952720
+  Metadata fileoff 360736 size 559000

@@ -1,0 +1,51 @@
+start 2026-11-01T10:44:55+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 remote add origin https://github.com/dotnet/roslyn
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_roslyn.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_roslyn.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_roslyn.git 6c4a46a31302167b425d5e0a31ea83c9a9aa1d09
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 -c advice.detachedHead=false checkout -q 6c4a46a31302167b425d5e0a31ea83c9a9aa1d09
+global.json: sdk-removed (pinned 10.0.100-rc.1.25451.107)
+start 2026-11-01T13:39:58+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_roslyn.git /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 remote set-url origin https://github.com/dotnet/roslyn
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 -c advice.detachedHead=false checkout -q 6c4a46a31302167b425d5e0a31ea83c9a9aa1d09
+global.json: sdk-removed (pinned 10.0.100-rc.1.25451.107)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 checkout -q -- .
+$ dotnet restore src/Workspaces/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Workspaces.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Tools/Source/CompilerGeneratorTools/Source/CSharpSyntaxGenerator/CSharpSyntaxGenerator.csproj (in 198 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj (in 198 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Compilers/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.csproj (in 198 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj (in 198 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Workspaces/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Workspaces.csproj (in 198 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T02:04:59+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_roslyn.git /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 remote set-url origin https://github.com/dotnet/roslyn
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 -c advice.detachedHead=false checkout -q 6c4a46a31302167b425d5e0a31ea83c9a9aa1d09
+global.json: sdk-removed (pinned 10.0.100-rc.1.25451.107)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0 checkout -q -- .
+$ dotnet restore src/Workspaces/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Workspaces.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Tools/Source/CompilerGeneratorTools/Source/CSharpSyntaxGenerator/CSharpSyntaxGenerator.csproj (in 193 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj (in 193 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj (in 193 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Compilers/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.csproj (in 193 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.csharp.workspaces-5.0.0/src/Workspaces/CSharp/Portable/Microsoft.CodeAnalysis.CSharp.Workspaces.csproj (in 193 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

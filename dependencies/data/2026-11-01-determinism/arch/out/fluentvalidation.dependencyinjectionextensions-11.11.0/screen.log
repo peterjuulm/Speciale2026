@@ -1,0 +1,41 @@
+start 2026-11-01T10:24:32+01:00
+$ git -C /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0 checkout -q -- .
+$ dotnet restore src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation/FluentValidation.csproj (in 141 ms).
+  Restored /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj (in 574 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  FluentValidation -> /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation/bin/Release/netstandard2.0/FluentValidation.dll
+  FluentValidation -> /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation/bin/Release/netstandard2.1/FluentValidation.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll
+  FluentValidation.DependencyInjectionExtensions -> /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation.DependencyInjectionExtensions/bin/Release/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.19
+  Successfully created package '/private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/out/FluentValidation.DependencyInjectionExtensions.11.11.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:24:41+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0 checkout -q -- .
+$ dotnet restore src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation.DependencyInjectionExtensions/FluentValidation.DependencyInjectionExtensions.csproj (in 123 ms).
+  Restored /private/tmp/nupkg-determinism/src/fluentvalidation.dependencyinjectionextensions-11.11.0/src/FluentValidation/FluentValidation.csproj (in 123 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

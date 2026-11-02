@@ -1,0 +1,37 @@
+start 2026-11-01T08:45:24+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22 checkout -q -- .
+$ dotnet restore src/Microsoft.OpenApi/Microsoft.OpenApi.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22/src/Microsoft.OpenApi/Microsoft.OpenApi.csproj (in 884 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Microsoft.OpenApi/Microsoft.OpenApi.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Microsoft.OpenApi/Microsoft.OpenApi.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Microsoft.OpenApi -> /private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22/src/Microsoft.OpenApi/bin/Release/netstandard2.0/Microsoft.OpenApi.dll
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22/src/Microsoft.OpenApi/bin/Release/Microsoft.OpenApi.1.6.22.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.11
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22/out/Microsoft.OpenApi.1.6.22.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T08:45:34+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22 checkout -q -- .
+$ dotnet restore src/Microsoft.OpenApi/Microsoft.OpenApi.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.openapi-1.6.22/src/Microsoft.OpenApi/Microsoft.OpenApi.csproj (in 255 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

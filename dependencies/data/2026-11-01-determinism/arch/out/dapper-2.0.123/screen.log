@@ -1,0 +1,73 @@
+start 2026-11-01T10:20:22+01:00
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 checkout -q -- .
+$ dotnet restore Dapper/Dapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/dapper-2.0.123/Dapper/Dapper.csproj (in 3,89 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build Dapper/Dapper.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack Dapper/Dapper.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018: The "Nerdbank.GitVersioning.Tasks.GetBuildVersion" task failed unexpectedly.
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018: System.TypeInitializationException: The type initializer for 'LibGit2Sharp.Core.NativeMethods' threw an exception.
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:  ---> System.PlatformNotSupportedException: endeavouros-x64
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.RuntimeIdMap.GetNativeLibraryDirectoryName(String runtimeIdentifier)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.GitLoaderContext.GetNativeLibraryDirectory()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.GitLoaderContext.LoadUnmanagedDll(String unmanagedDllName)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.git_libgit2_init()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.InitializeNativeLibrary()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.InitializeNativeLibrary()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods..cctor()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    --- End of inner exception stack trace ---
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.git_libgit2_opts(Int32 option, UInt32 level, String path)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.Proxy.git_libgit2_opts_set_search_path(ConfigurationLevel level, String path)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.GlobalSettings.SetConfigSearchPaths(ConfigurationLevel level, String[] paths)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.GitExtensions.OpenGitRepo(String pathUnderGitRepo, Boolean useDefaultConfigSearchPaths)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.VersionOracle.Create(String projectDirectory, String gitRepoDirectory, ICloudBuild cloudBuild, Nullable`1 overrideBuildNumberOffset, String projectPathRelativeToGitRepoRoot)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.Tasks.GetBuildVersion.ExecuteInner()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018: The "Nerdbank.GitVersioning.Tasks.GetBuildVersion" task failed unexpectedly.
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018: System.TypeInitializationException: The type initializer for 'LibGit2Sharp.Core.NativeMethods' threw an exception.
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:  ---> System.PlatformNotSupportedException: endeavouros-x64
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.RuntimeIdMap.GetNativeLibraryDirectoryName(String runtimeIdentifier)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.GitLoaderContext.GetNativeLibraryDirectory()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.GitLoaderContext.LoadUnmanagedDll(String unmanagedDllName)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.git_libgit2_init()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.InitializeNativeLibrary()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.InitializeNativeLibrary()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods..cctor()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    --- End of inner exception stack trace ---
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.NativeMethods.git_libgit2_opts(Int32 option, UInt32 level, String path)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.Core.Proxy.git_libgit2_opts_set_search_path(ConfigurationLevel level, String path)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at LibGit2Sharp.GlobalSettings.SetConfigSearchPaths(ConfigurationLevel level, String[] paths)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.GitExtensions.OpenGitRepo(String pathUnderGitRepo, Boolean useDefaultConfigSearchPaths)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.VersionOracle.Create(String projectDirectory, String gitRepoDirectory, ICloudBuild cloudBuild, Nullable`1 overrideBuildNumberOffset, String projectPathRelativeToGitRepoRoot)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at Nerdbank.GitVersioning.Tasks.GetBuildVersion.ExecuteInner()
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+/private/tmp/nupkg-determinism/nuget/nerdbank.gitversioning/3.3.37/build/Nerdbank.GitVersioning.Inner.targets(17,5): error MSB4018:    at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.83
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:20:30+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 checkout -q -- .
+$ dotnet restore Dapper/Dapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/dapper-2.0.123/Dapper/Dapper.csproj (in 130 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

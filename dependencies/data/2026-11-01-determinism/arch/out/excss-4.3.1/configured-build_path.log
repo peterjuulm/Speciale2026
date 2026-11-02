@@ -1,0 +1,42 @@
+start 2026-11-01T16:47:38+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/ExCSS/ExCSS.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1753300339 && dotnet pack src/ExCSS/ExCSS.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1753300339; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  ExCSS -> /tmp/reprotest.mK3xun/const_build_path/src/ExCSS/bin/Release/net8.0/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/const_build_path/src/ExCSS/bin/Release/net7.0/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/const_build_path/src/ExCSS/bin/Release/net6.0/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/const_build_path/src/ExCSS/bin/Release/netcoreapp3.1/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/const_build_path/src/ExCSS/bin/Release/net48/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/const_build_path/src/ExCSS/bin/Release/netstandard2.1/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/const_build_path/src/ExCSS/bin/Release/netstandard2.0/ExCSS.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:04.01
+  Successfully created package '/tmp/reprotest.mK3xun/const_build_path/out/ExCSS.1.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.mK3xun/const_build_path/out/ExCSS.1.0.0.snupkg'.
+  ExCSS -> /tmp/reprotest.mK3xun/build-experiment-1/src/ExCSS/bin/Release/net8.0/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/build-experiment-1/src/ExCSS/bin/Release/net7.0/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/build-experiment-1/src/ExCSS/bin/Release/net6.0/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/build-experiment-1/src/ExCSS/bin/Release/netcoreapp3.1/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/build-experiment-1/src/ExCSS/bin/Release/net48/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/build-experiment-1/src/ExCSS/bin/Release/netstandard2.1/ExCSS.dll
+  ExCSS -> /tmp/reprotest.mK3xun/build-experiment-1/src/ExCSS/bin/Release/netstandard2.0/ExCSS.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:43.92
+  Successfully created package '/tmp/reprotest.mK3xun/build-experiment-1/out/ExCSS.1.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.mK3xun/build-experiment-1/out/ExCSS.1.0.0.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+92d16b4aeb5cf1836e8c41676ad8fe248fc81cc23ce16e72be054b39ba21f9cd  ./out/ExCSS.1.0.0.nupkg
+8f9d797497feba1b5ca7d9f79934998ae743237b74749deb2a97fb702a51d5f4  ./out/ExCSS.1.0.0.snupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T16:49:34+01:00 exit 0

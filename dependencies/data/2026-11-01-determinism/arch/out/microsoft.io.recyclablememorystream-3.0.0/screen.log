@@ -1,0 +1,38 @@
+start 2026-11-01T11:56:46+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0 checkout -q -- .
+$ dotnet restore src/Microsoft.IO.RecyclableMemoryStream.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0/src/Microsoft.IO.RecyclableMemoryStream.csproj (in 116 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Microsoft.IO.RecyclableMemoryStream.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Microsoft.IO.RecyclableMemoryStream.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Microsoft.IO.RecyclableMemoryStream -> /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0/src/bin/Release/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.dll
+  Microsoft.IO.RecyclableMemoryStream -> /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0/src/bin/Release/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.dll
+  Microsoft.IO.RecyclableMemoryStream -> /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0/src/bin/Release/net6.0/Microsoft.IO.RecyclableMemoryStream.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.03
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0/out/Microsoft.IO.RecyclableMemoryStream.3.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T11:56:53+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0 checkout -q -- .
+$ dotnet restore src/Microsoft.IO.RecyclableMemoryStream.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.io.recyclablememorystream-3.0.0/src/Microsoft.IO.RecyclableMemoryStream.csproj (in 118 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

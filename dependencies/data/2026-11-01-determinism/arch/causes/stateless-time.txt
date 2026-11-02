@@ -1,0 +1,950 @@
+--- control/source-root/out/Stateless.5.16.0.nupkg
++++ experiment-1/source-root/out/Stateless.5.16.0.nupkg
+├── zipinfo {}
+│ @@ -1,14 +1,14 @@
+│ -Zip file size: 192797 bytes, number of entries: 12
+│ +Zip file size: 192798 bytes, number of entries: 12
+│  -rw-r--r--  2.0 unx      472 b- defN 24-May-24 12:17 _rels/.rels
+│  -rw-r--r--  2.0 unx     1027 b- defN 24-May-24 12:17 Stateless.nuspec
+│  -rw-r--r--  2.0 unx     1972 b- defN 24-May-24 12:17 README.md
+│  -rw-r--r--  2.0 unx     4699 b- defN 24-May-24 12:17 Stateless.png
+│  -rw-r--r--  2.0 unx   131072 b- defN 24-May-24 12:17 lib/net462/Stateless.dll
+│  -rw-r--r--  2.0 unx   169505 b- defN 24-May-24 12:17 lib/net462/Stateless.xml
+│  -rw-r--r--  2.0 unx   132096 b- defN 24-May-24 12:17 lib/net8.0/Stateless.dll
+│  -rw-r--r--  2.0 unx   169505 b- defN 24-May-24 12:17 lib/net8.0/Stateless.xml
+│  -rw-r--r--  2.0 unx   130560 b- defN 24-May-24 12:17 lib/netstandard2.0/Stateless.dll
+│  -rw-r--r--  2.0 unx   169505 b- defN 24-May-24 12:17 lib/netstandard2.0/Stateless.xml
+│  -rw-r--r--  2.0 unx      644 b- defN 24-May-24 12:17 [Content_Types].xml
+│  -rw-r--r--  2.0 unx      690 b- defN 24-May-24 12:17 package/services/metadata/core-properties/nuget.psmdcp
+│ -12 files, 911747 bytes uncompressed, 191299 bytes compressed:  79.0%
+│ +12 files, 911747 bytes uncompressed, 191300 bytes compressed:  79.0%
+├── zipdetails --redact --walk --utc {}
+│ @@ -17,15 +17,15 @@
+│  0012B LOCAL HEADER #2       04034B50 (67324752)
+│  0012F Extract Zip Spec      14 (20) '2.0'
+│  00130 Extract OS            00 (0) 'MS-DOS'
+│  00131 General Purpose Flag  0000 (0)
+│        [Bits 1-2]            0 'Normal Compression'
+│  00133 Compression Method    0008 (8) 'Deflated'
+│  00135 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -00139 CRC                   820E952E (2181993774)
+│ +00139 CRC                   E47109F1 (3832613361)
+│  0013D Compressed Size       00000208 (520)
+│  00141 Uncompressed Size     00000403 (1027)
+│  00145 Filename Length       0010 (16)
+│  00147 Extra Length          0000 (0)
+│  00149 Filename              'XXXXXXXXXXXXXXXX'
+│  00159 PAYLOAD
+│  
+│ @@ -62,15 +62,15 @@
+│  019C4 LOCAL HEADER #5       04034B50 (67324752)
+│  019C8 Extract Zip Spec      14 (20) '2.0'
+│  019C9 Extract OS            00 (0) 'MS-DOS'
+│  019CA General Purpose Flag  0000 (0)
+│        [Bits 1-2]            0 'Normal Compression'
+│  019CC Compression Method    0008 (8) 'Deflated'
+│  019CE Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -019D2 CRC                   CA870535 (3397846325)
+│ +019D2 CRC                   29B0AEE5 (699444965)
+│  019D6 Compressed Size       0000C29B (49819)
+│  019DA Uncompressed Size     00020000 (131072)
+│  019DE Filename Length       0018 (24)
+│  019E0 Extra Length          0000 (0)
+│  019E2 Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│  019FA PAYLOAD
+│  
+│ @@ -92,389 +92,389 @@
+│  10977 LOCAL HEADER #7       04034B50 (67324752)
+│  1097B Extract Zip Spec      14 (20) '2.0'
+│  1097C Extract OS            00 (0) 'MS-DOS'
+│  1097D General Purpose Flag  0000 (0)
+│        [Bits 1-2]            0 'Normal Compression'
+│  1097F Compression Method    0008 (8) 'Deflated'
+│  10981 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -10985 CRC                   D0F0F13A (3505451322)
+│ -10989 Compressed Size       0000C491 (50321)
+│ +10985 CRC                   81D478FC (2178185468)
+│ +10989 Compressed Size       0000C493 (50323)
+│  1098D Uncompressed Size     00020400 (132096)
+│  10991 Filename Length       0018 (24)
+│  10993 Extra Length          0000 (0)
+│  10995 Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│  109AD PAYLOAD
+│  
+│ -1CE3E LOCAL HEADER #8       04034B50 (67324752)
+│ -1CE42 Extract Zip Spec      14 (20) '2.0'
+│ -1CE43 Extract OS            00 (0) 'MS-DOS'
+│ -1CE44 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -1CE46 Compression Method    0008 (8) 'Deflated'
+│ -1CE48 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -1CE4C CRC                   44454A0E (1145391630)
+│ -1CE50 Compressed Size       00002CAC (11436)
+│ -1CE54 Uncompressed Size     00029621 (169505)
+│ -1CE58 Filename Length       0018 (24)
+│ -1CE5A Extra Length          0000 (0)
+│ -1CE5C Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ -1CE74 PAYLOAD
+│ -
+│ -1FB20 LOCAL HEADER #9       04034B50 (67324752)
+│ -1FB24 Extract Zip Spec      14 (20) '2.0'
+│ -1FB25 Extract OS            00 (0) 'MS-DOS'
+│ -1FB26 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -1FB28 Compression Method    0008 (8) 'Deflated'
+│ -1FB2A Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -1FB2E CRC                   07A7771C (128415516)
+│ -1FB32 Compressed Size       0000C281 (49793)
+│ -1FB36 Uncompressed Size     0001FE00 (130560)
+│ -1FB3A Filename Length       0020 (32)
+│ -1FB3C Extra Length          0000 (0)
+│ -1FB3E Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ -1FB5E PAYLOAD
+│ -
+│ -2BDDF LOCAL HEADER #10      04034B50 (67324752)
+│ -2BDE3 Extract Zip Spec      14 (20) '2.0'
+│ -2BDE4 Extract OS            00 (0) 'MS-DOS'
+│ -2BDE5 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2BDE7 Compression Method    0008 (8) 'Deflated'
+│ -2BDE9 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2BDED CRC                   44454A0E (1145391630)
+│ -2BDF1 Compressed Size       00002CAC (11436)
+│ -2BDF5 Uncompressed Size     00029621 (169505)
+│ -2BDF9 Filename Length       0020 (32)
+│ -2BDFB Extra Length          0000 (0)
+│ -2BDFD Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ -2BE1D PAYLOAD
+│ -
+│ -2EAC9 LOCAL HEADER #11      04034B50 (67324752)
+│ -2EACD Extract Zip Spec      14 (20) '2.0'
+│ -2EACE Extract OS            00 (0) 'MS-DOS'
+│ -2EACF General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EAD1 Compression Method    0008 (8) 'Deflated'
+│ -2EAD3 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EAD7 CRC                   EEFFCCC9 (4009741513)
+│ -2EADB Compressed Size       000000E0 (224)
+│ -2EADF Uncompressed Size     00000284 (644)
+│ -2EAE3 Filename Length       0013 (19)
+│ -2EAE5 Extra Length          0000 (0)
+│ -2EAE7 Filename              'XXXXXXXXXXXXXXXXXXX'
+│ -2EAFA PAYLOAD               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+│ +1CE40 LOCAL HEADER #8       04034B50 (67324752)
+│ +1CE44 Extract Zip Spec      14 (20) '2.0'
+│ +1CE45 Extract OS            00 (0) 'MS-DOS'
+│ +1CE46 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +1CE48 Compression Method    0008 (8) 'Deflated'
+│ +1CE4A Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +1CE4E CRC                   44454A0E (1145391630)
+│ +1CE52 Compressed Size       00002CAC (11436)
+│ +1CE56 Uncompressed Size     00029621 (169505)
+│ +1CE5A Filename Length       0018 (24)
+│ +1CE5C Extra Length          0000 (0)
+│ +1CE5E Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ +1CE76 PAYLOAD
+│ +
+│ +1FB22 LOCAL HEADER #9       04034B50 (67324752)
+│ +1FB26 Extract Zip Spec      14 (20) '2.0'
+│ +1FB27 Extract OS            00 (0) 'MS-DOS'
+│ +1FB28 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +1FB2A Compression Method    0008 (8) 'Deflated'
+│ +1FB2C Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +1FB30 CRC                   B01140D9 (2953920729)
+│ +1FB34 Compressed Size       0000C280 (49792)
+│ +1FB38 Uncompressed Size     0001FE00 (130560)
+│ +1FB3C Filename Length       0020 (32)
+│ +1FB3E Extra Length          0000 (0)
+│ +1FB40 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ +1FB60 PAYLOAD
+│ +
+│ +2BDE0 LOCAL HEADER #10      04034B50 (67324752)
+│ +2BDE4 Extract Zip Spec      14 (20) '2.0'
+│ +2BDE5 Extract OS            00 (0) 'MS-DOS'
+│ +2BDE6 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2BDE8 Compression Method    0008 (8) 'Deflated'
+│ +2BDEA Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2BDEE CRC                   44454A0E (1145391630)
+│ +2BDF2 Compressed Size       00002CAC (11436)
+│ +2BDF6 Uncompressed Size     00029621 (169505)
+│ +2BDFA Filename Length       0020 (32)
+│ +2BDFC Extra Length          0000 (0)
+│ +2BDFE Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ +2BE1E PAYLOAD
+│ +
+│ +2EACA LOCAL HEADER #11      04034B50 (67324752)
+│ +2EACE Extract Zip Spec      14 (20) '2.0'
+│ +2EACF Extract OS            00 (0) 'MS-DOS'
+│ +2EAD0 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EAD2 Compression Method    0008 (8) 'Deflated'
+│ +2EAD4 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EAD8 CRC                   EEFFCCC9 (4009741513)
+│ +2EADC Compressed Size       000000E0 (224)
+│ +2EAE0 Uncompressed Size     00000284 (644)
+│ +2EAE4 Filename Length       0013 (19)
+│ +2EAE6 Extra Length          0000 (0)
+│ +2EAE8 Filename              'XXXXXXXXXXXXXXXXXXX'
+│ +2EAFB PAYLOAD               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+│                              XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+│  
+│ -2EBDA LOCAL HEADER #12      04034B50 (67324752)
+│ -2EBDE Extract Zip Spec      14 (20) '2.0'
+│ -2EBDF Extract OS            00 (0) 'MS-DOS'
+│ -2EBE0 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EBE2 Compression Method    0008 (8) 'Deflated'
+│ -2EBE4 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EBE8 CRC                   AE712458 (2926650456)
+│ -2EBEC Compressed Size       00000197 (407)
+│ -2EBF0 Uncompressed Size     000002B2 (690)
+│ -2EBF4 Filename Length       0036 (54)
+│ -2EBF6 Extra Length          0000 (0)
+│ -2EBF8 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ -2EC2E PAYLOAD
+│ -
+│ -2EDC5 CENTRAL HEADER #1     02014B50 (33639248)
+│ -2EDC9 Created Zip Spec      14 (20) '2.0'
+│ -2EDCA Created OS            03 (3) 'Unix'
+│ -2EDCB Extract Zip Spec      14 (20) '2.0'
+│ -2EDCC Extract OS            00 (0) 'MS-DOS'
+│ -2EDCD General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EDCF Compression Method    0008 (8) 'Deflated'
+│ -2EDD1 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EDD5 CRC                   7A3AFD61 (2050686305)
+│ -2EDD9 Compressed Size       00000102 (258)
+│ -2EDDD Uncompressed Size     000001D8 (472)
+│ -2EDE1 Filename Length       000B (11)
+│ -2EDE3 Extra Length          0000 (0)
+│ -2EDE5 Comment Length        0000 (0)
+│ -2EDE7 Disk Start            0000 (0)
+│ -2EDE9 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EDEB Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EDEF Local Header Offset   00000000 (0)
+│ -2EDF3 Filename              'XXXXXXXXXXX'
+│ -
+│ -2EDFE CENTRAL HEADER #2     02014B50 (33639248)
+│ -2EE02 Created Zip Spec      14 (20) '2.0'
+│ -2EE03 Created OS            03 (3) 'Unix'
+│ -2EE04 Extract Zip Spec      14 (20) '2.0'
+│ -2EE05 Extract OS            00 (0) 'MS-DOS'
+│ -2EE06 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EE08 Compression Method    0008 (8) 'Deflated'
+│ -2EE0A Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EE0E CRC                   820E952E (2181993774)
+│ -2EE12 Compressed Size       00000208 (520)
+│ -2EE16 Uncompressed Size     00000403 (1027)
+│ -2EE1A Filename Length       0010 (16)
+│ -2EE1C Extra Length          0000 (0)
+│ -2EE1E Comment Length        0000 (0)
+│ -2EE20 Disk Start            0000 (0)
+│ -2EE22 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EE24 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EE28 Local Header Offset   0000012B (299)
+│ -2EE2C Filename              'XXXXXXXXXXXXXXXX'
+│ -
+│ -2EE3C CENTRAL HEADER #3     02014B50 (33639248)
+│ -2EE40 Created Zip Spec      14 (20) '2.0'
+│ -2EE41 Created OS            03 (3) 'Unix'
+│ -2EE42 Extract Zip Spec      14 (20) '2.0'
+│ -2EE43 Extract OS            00 (0) 'MS-DOS'
+│ -2EE44 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EE46 Compression Method    0008 (8) 'Deflated'
+│ -2EE48 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EE4C CRC                   654525B7 (1699030455)
+│ -2EE50 Compressed Size       000003B1 (945)
+│ -2EE54 Uncompressed Size     000007B4 (1972)
+│ -2EE58 Filename Length       0009 (9)
+│ -2EE5A Extra Length          0000 (0)
+│ -2EE5C Comment Length        0000 (0)
+│ -2EE5E Disk Start            0000 (0)
+│ -2EE60 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EE62 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EE66 Local Header Offset   00000361 (865)
+│ -2EE6A Filename              'XXXXXXXXX'
+│ -
+│ -2EE73 CENTRAL HEADER #4     02014B50 (33639248)
+│ -2EE77 Created Zip Spec      14 (20) '2.0'
+│ -2EE78 Created OS            03 (3) 'Unix'
+│ -2EE79 Extract Zip Spec      14 (20) '2.0'
+│ -2EE7A Extract OS            00 (0) 'MS-DOS'
+│ -2EE7B General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EE7D Compression Method    0008 (8) 'Deflated'
+│ -2EE7F Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EE83 CRC                   635C309F (1666986143)
+│ -2EE87 Compressed Size       00001260 (4704)
+│ -2EE8B Uncompressed Size     0000125B (4699)
+│ -2EE8F Filename Length       000D (13)
+│ -2EE91 Extra Length          0000 (0)
+│ -2EE93 Comment Length        0000 (0)
+│ -2EE95 Disk Start            0000 (0)
+│ -2EE97 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EE99 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EE9D Local Header Offset   00000739 (1849)
+│ -2EEA1 Filename              'XXXXXXXXXXXXX'
+│ -
+│ -2EEAE CENTRAL HEADER #5     02014B50 (33639248)
+│ -2EEB2 Created Zip Spec      14 (20) '2.0'
+│ -2EEB3 Created OS            03 (3) 'Unix'
+│ -2EEB4 Extract Zip Spec      14 (20) '2.0'
+│ -2EEB5 Extract OS            00 (0) 'MS-DOS'
+│ -2EEB6 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EEB8 Compression Method    0008 (8) 'Deflated'
+│ -2EEBA Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EEBE CRC                   CA870535 (3397846325)
+│ -2EEC2 Compressed Size       0000C29B (49819)
+│ -2EEC6 Uncompressed Size     00020000 (131072)
+│ -2EECA Filename Length       0018 (24)
+│ -2EECC Extra Length          0000 (0)
+│ -2EECE Comment Length        0000 (0)
+│ -2EED0 Disk Start            0000 (0)
+│ -2EED2 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EED4 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EED8 Local Header Offset   000019C4 (6596)
+│ -2EEDC Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2EEF4 CENTRAL HEADER #6     02014B50 (33639248)
+│ -2EEF8 Created Zip Spec      14 (20) '2.0'
+│ -2EEF9 Created OS            03 (3) 'Unix'
+│ -2EEFA Extract Zip Spec      14 (20) '2.0'
+│ -2EEFB Extract OS            00 (0) 'MS-DOS'
+│ -2EEFC General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EEFE Compression Method    0008 (8) 'Deflated'
+│ -2EF00 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EF04 CRC                   44454A0E (1145391630)
+│ -2EF08 Compressed Size       00002CAC (11436)
+│ -2EF0C Uncompressed Size     00029621 (169505)
+│ -2EF10 Filename Length       0018 (24)
+│ -2EF12 Extra Length          0000 (0)
+│ -2EF14 Comment Length        0000 (0)
+│ -2EF16 Disk Start            0000 (0)
+│ -2EF18 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EF1A Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EF1E Local Header Offset   0000DC95 (56469)
+│ -2EF22 Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2EF3A CENTRAL HEADER #7     02014B50 (33639248)
+│ -2EF3E Created Zip Spec      14 (20) '2.0'
+│ -2EF3F Created OS            03 (3) 'Unix'
+│ -2EF40 Extract Zip Spec      14 (20) '2.0'
+│ -2EF41 Extract OS            00 (0) 'MS-DOS'
+│ -2EF42 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EF44 Compression Method    0008 (8) 'Deflated'
+│ -2EF46 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EF4A CRC                   D0F0F13A (3505451322)
+│ -2EF4E Compressed Size       0000C491 (50321)
+│ -2EF52 Uncompressed Size     00020400 (132096)
+│ -2EF56 Filename Length       0018 (24)
+│ -2EF58 Extra Length          0000 (0)
+│ -2EF5A Comment Length        0000 (0)
+│ -2EF5C Disk Start            0000 (0)
+│ -2EF5E Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EF60 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EF64 Local Header Offset   00010977 (67959)
+│ -2EF68 Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2EF80 CENTRAL HEADER #8     02014B50 (33639248)
+│ -2EF84 Created Zip Spec      14 (20) '2.0'
+│ -2EF85 Created OS            03 (3) 'Unix'
+│ -2EF86 Extract Zip Spec      14 (20) '2.0'
+│ -2EF87 Extract OS            00 (0) 'MS-DOS'
+│ -2EF88 General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EF8A Compression Method    0008 (8) 'Deflated'
+│ -2EF8C Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EF90 CRC                   44454A0E (1145391630)
+│ -2EF94 Compressed Size       00002CAC (11436)
+│ -2EF98 Uncompressed Size     00029621 (169505)
+│ -2EF9C Filename Length       0018 (24)
+│ -2EF9E Extra Length          0000 (0)
+│ -2EFA0 Comment Length        0000 (0)
+│ -2EFA2 Disk Start            0000 (0)
+│ -2EFA4 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EFA6 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EFAA Local Header Offset   0001CE3E (118334)
+│ -2EFAE Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2EFC6 CENTRAL HEADER #9     02014B50 (33639248)
+│ -2EFCA Created Zip Spec      14 (20) '2.0'
+│ -2EFCB Created OS            03 (3) 'Unix'
+│ -2EFCC Extract Zip Spec      14 (20) '2.0'
+│ -2EFCD Extract OS            00 (0) 'MS-DOS'
+│ -2EFCE General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2EFD0 Compression Method    0008 (8) 'Deflated'
+│ -2EFD2 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2EFD6 CRC                   07A7771C (128415516)
+│ -2EFDA Compressed Size       0000C281 (49793)
+│ -2EFDE Uncompressed Size     0001FE00 (130560)
+│ -2EFE2 Filename Length       0020 (32)
+│ -2EFE4 Extra Length          0000 (0)
+│ -2EFE6 Comment Length        0000 (0)
+│ -2EFE8 Disk Start            0000 (0)
+│ -2EFEA Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2EFEC Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2EFF0 Local Header Offset   0001FB20 (129824)
+│ -2EFF4 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2F014 CENTRAL HEADER #10    02014B50 (33639248)
+│ -2F018 Created Zip Spec      14 (20) '2.0'
+│ -2F019 Created OS            03 (3) 'Unix'
+│ -2F01A Extract Zip Spec      14 (20) '2.0'
+│ -2F01B Extract OS            00 (0) 'MS-DOS'
+│ -2F01C General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2F01E Compression Method    0008 (8) 'Deflated'
+│ -2F020 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2F024 CRC                   44454A0E (1145391630)
+│ -2F028 Compressed Size       00002CAC (11436)
+│ -2F02C Uncompressed Size     00029621 (169505)
+│ -2F030 Filename Length       0020 (32)
+│ -2F032 Extra Length          0000 (0)
+│ -2F034 Comment Length        0000 (0)
+│ -2F036 Disk Start            0000 (0)
+│ -2F038 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2F03A Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2F03E Local Header Offset   0002BDDF (179679)
+│ -2F042 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2F062 CENTRAL HEADER #11    02014B50 (33639248)
+│ -2F066 Created Zip Spec      14 (20) '2.0'
+│ -2F067 Created OS            03 (3) 'Unix'
+│ -2F068 Extract Zip Spec      14 (20) '2.0'
+│ -2F069 Extract OS            00 (0) 'MS-DOS'
+│ -2F06A General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2F06C Compression Method    0008 (8) 'Deflated'
+│ -2F06E Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2F072 CRC                   EEFFCCC9 (4009741513)
+│ -2F076 Compressed Size       000000E0 (224)
+│ -2F07A Uncompressed Size     00000284 (644)
+│ -2F07E Filename Length       0013 (19)
+│ -2F080 Extra Length          0000 (0)
+│ -2F082 Comment Length        0000 (0)
+│ -2F084 Disk Start            0000 (0)
+│ -2F086 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2F088 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2F08C Local Header Offset   0002EAC9 (191177)
+│ -2F090 Filename              'XXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2F0A3 CENTRAL HEADER #12    02014B50 (33639248)
+│ -2F0A7 Created Zip Spec      14 (20) '2.0'
+│ -2F0A8 Created OS            03 (3) 'Unix'
+│ -2F0A9 Extract Zip Spec      14 (20) '2.0'
+│ -2F0AA Extract OS            00 (0) 'MS-DOS'
+│ -2F0AB General Purpose Flag  0000 (0)
+│ -      [Bits 1-2]            0 'Normal Compression'
+│ -2F0AD Compression Method    0008 (8) 'Deflated'
+│ -2F0AF Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ -2F0B3 CRC                   AE712458 (2926650456)
+│ -2F0B7 Compressed Size       00000197 (407)
+│ -2F0BB Uncompressed Size     000002B2 (690)
+│ -2F0BF Filename Length       0036 (54)
+│ -2F0C1 Extra Length          0000 (0)
+│ -2F0C3 Comment Length        0000 (0)
+│ -2F0C5 Disk Start            0000 (0)
+│ -2F0C7 Int File Attributes   0000 (0)
+│ -      [Bit 0]               0 'Binary Data'
+│ -2F0C9 Ext File Attributes   81A40000 (2175008768)
+│ -      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ -      [Bits 28-31]          08 (8) 'Regular File'
+│ -2F0CD Local Header Offset   0002EBDA (191450)
+│ -2F0D1 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ -
+│ -2F107 END CENTRAL HEADER    06054B50 (101010256)
+│ -2F10B Number of this disk   0000 (0)
+│ -2F10D Central Dir Disk no   0000 (0)
+│ -2F10F Entries in this disk  000C (12)
+│ -2F111 Total Entries         000C (12)
+│ -2F113 Size of Central Dir   00000342 (834)
+│ -2F117 Offset to Central Dir 0002EDC5 (191941)
+│ -2F11B Comment Length        0000 (0)
+│ +2EBDB LOCAL HEADER #12      04034B50 (67324752)
+│ +2EBDF Extract Zip Spec      14 (20) '2.0'
+│ +2EBE0 Extract OS            00 (0) 'MS-DOS'
+│ +2EBE1 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EBE3 Compression Method    0008 (8) 'Deflated'
+│ +2EBE5 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EBE9 CRC                   AE712458 (2926650456)
+│ +2EBED Compressed Size       00000197 (407)
+│ +2EBF1 Uncompressed Size     000002B2 (690)
+│ +2EBF5 Filename Length       0036 (54)
+│ +2EBF7 Extra Length          0000 (0)
+│ +2EBF9 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ +2EC2F PAYLOAD
+│ +
+│ +2EDC6 CENTRAL HEADER #1     02014B50 (33639248)
+│ +2EDCA Created Zip Spec      14 (20) '2.0'
+│ +2EDCB Created OS            03 (3) 'Unix'
+│ +2EDCC Extract Zip Spec      14 (20) '2.0'
+│ +2EDCD Extract OS            00 (0) 'MS-DOS'
+│ +2EDCE General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EDD0 Compression Method    0008 (8) 'Deflated'
+│ +2EDD2 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EDD6 CRC                   7A3AFD61 (2050686305)
+│ +2EDDA Compressed Size       00000102 (258)
+│ +2EDDE Uncompressed Size     000001D8 (472)
+│ +2EDE2 Filename Length       000B (11)
+│ +2EDE4 Extra Length          0000 (0)
+│ +2EDE6 Comment Length        0000 (0)
+│ +2EDE8 Disk Start            0000 (0)
+│ +2EDEA Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EDEC Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EDF0 Local Header Offset   00000000 (0)
+│ +2EDF4 Filename              'XXXXXXXXXXX'
+│ +
+│ +2EDFF CENTRAL HEADER #2     02014B50 (33639248)
+│ +2EE03 Created Zip Spec      14 (20) '2.0'
+│ +2EE04 Created OS            03 (3) 'Unix'
+│ +2EE05 Extract Zip Spec      14 (20) '2.0'
+│ +2EE06 Extract OS            00 (0) 'MS-DOS'
+│ +2EE07 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EE09 Compression Method    0008 (8) 'Deflated'
+│ +2EE0B Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EE0F CRC                   E47109F1 (3832613361)
+│ +2EE13 Compressed Size       00000208 (520)
+│ +2EE17 Uncompressed Size     00000403 (1027)
+│ +2EE1B Filename Length       0010 (16)
+│ +2EE1D Extra Length          0000 (0)
+│ +2EE1F Comment Length        0000 (0)
+│ +2EE21 Disk Start            0000 (0)
+│ +2EE23 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EE25 Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EE29 Local Header Offset   0000012B (299)
+│ +2EE2D Filename              'XXXXXXXXXXXXXXXX'
+│ +
+│ +2EE3D CENTRAL HEADER #3     02014B50 (33639248)
+│ +2EE41 Created Zip Spec      14 (20) '2.0'
+│ +2EE42 Created OS            03 (3) 'Unix'
+│ +2EE43 Extract Zip Spec      14 (20) '2.0'
+│ +2EE44 Extract OS            00 (0) 'MS-DOS'
+│ +2EE45 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EE47 Compression Method    0008 (8) 'Deflated'
+│ +2EE49 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EE4D CRC                   654525B7 (1699030455)
+│ +2EE51 Compressed Size       000003B1 (945)
+│ +2EE55 Uncompressed Size     000007B4 (1972)
+│ +2EE59 Filename Length       0009 (9)
+│ +2EE5B Extra Length          0000 (0)
+│ +2EE5D Comment Length        0000 (0)
+│ +2EE5F Disk Start            0000 (0)
+│ +2EE61 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EE63 Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EE67 Local Header Offset   00000361 (865)
+│ +2EE6B Filename              'XXXXXXXXX'
+│ +
+│ +2EE74 CENTRAL HEADER #4     02014B50 (33639248)
+│ +2EE78 Created Zip Spec      14 (20) '2.0'
+│ +2EE79 Created OS            03 (3) 'Unix'
+│ +2EE7A Extract Zip Spec      14 (20) '2.0'
+│ +2EE7B Extract OS            00 (0) 'MS-DOS'
+│ +2EE7C General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EE7E Compression Method    0008 (8) 'Deflated'
+│ +2EE80 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EE84 CRC                   635C309F (1666986143)
+│ +2EE88 Compressed Size       00001260 (4704)
+│ +2EE8C Uncompressed Size     0000125B (4699)
+│ +2EE90 Filename Length       000D (13)
+│ +2EE92 Extra Length          0000 (0)
+│ +2EE94 Comment Length        0000 (0)
+│ +2EE96 Disk Start            0000 (0)
+│ +2EE98 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EE9A Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EE9E Local Header Offset   00000739 (1849)
+│ +2EEA2 Filename              'XXXXXXXXXXXXX'
+│ +
+│ +2EEAF CENTRAL HEADER #5     02014B50 (33639248)
+│ +2EEB3 Created Zip Spec      14 (20) '2.0'
+│ +2EEB4 Created OS            03 (3) 'Unix'
+│ +2EEB5 Extract Zip Spec      14 (20) '2.0'
+│ +2EEB6 Extract OS            00 (0) 'MS-DOS'
+│ +2EEB7 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EEB9 Compression Method    0008 (8) 'Deflated'
+│ +2EEBB Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EEBF CRC                   29B0AEE5 (699444965)
+│ +2EEC3 Compressed Size       0000C29B (49819)
+│ +2EEC7 Uncompressed Size     00020000 (131072)
+│ +2EECB Filename Length       0018 (24)
+│ +2EECD Extra Length          0000 (0)
+│ +2EECF Comment Length        0000 (0)
+│ +2EED1 Disk Start            0000 (0)
+│ +2EED3 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EED5 Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EED9 Local Header Offset   000019C4 (6596)
+│ +2EEDD Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2EEF5 CENTRAL HEADER #6     02014B50 (33639248)
+│ +2EEF9 Created Zip Spec      14 (20) '2.0'
+│ +2EEFA Created OS            03 (3) 'Unix'
+│ +2EEFB Extract Zip Spec      14 (20) '2.0'
+│ +2EEFC Extract OS            00 (0) 'MS-DOS'
+│ +2EEFD General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EEFF Compression Method    0008 (8) 'Deflated'
+│ +2EF01 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EF05 CRC                   44454A0E (1145391630)
+│ +2EF09 Compressed Size       00002CAC (11436)
+│ +2EF0D Uncompressed Size     00029621 (169505)
+│ +2EF11 Filename Length       0018 (24)
+│ +2EF13 Extra Length          0000 (0)
+│ +2EF15 Comment Length        0000 (0)
+│ +2EF17 Disk Start            0000 (0)
+│ +2EF19 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EF1B Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EF1F Local Header Offset   0000DC95 (56469)
+│ +2EF23 Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2EF3B CENTRAL HEADER #7     02014B50 (33639248)
+│ +2EF3F Created Zip Spec      14 (20) '2.0'
+│ +2EF40 Created OS            03 (3) 'Unix'
+│ +2EF41 Extract Zip Spec      14 (20) '2.0'
+│ +2EF42 Extract OS            00 (0) 'MS-DOS'
+│ +2EF43 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EF45 Compression Method    0008 (8) 'Deflated'
+│ +2EF47 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EF4B CRC                   81D478FC (2178185468)
+│ +2EF4F Compressed Size       0000C493 (50323)
+│ +2EF53 Uncompressed Size     00020400 (132096)
+│ +2EF57 Filename Length       0018 (24)
+│ +2EF59 Extra Length          0000 (0)
+│ +2EF5B Comment Length        0000 (0)
+│ +2EF5D Disk Start            0000 (0)
+│ +2EF5F Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EF61 Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EF65 Local Header Offset   00010977 (67959)
+│ +2EF69 Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2EF81 CENTRAL HEADER #8     02014B50 (33639248)
+│ +2EF85 Created Zip Spec      14 (20) '2.0'
+│ +2EF86 Created OS            03 (3) 'Unix'
+│ +2EF87 Extract Zip Spec      14 (20) '2.0'
+│ +2EF88 Extract OS            00 (0) 'MS-DOS'
+│ +2EF89 General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EF8B Compression Method    0008 (8) 'Deflated'
+│ +2EF8D Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EF91 CRC                   44454A0E (1145391630)
+│ +2EF95 Compressed Size       00002CAC (11436)
+│ +2EF99 Uncompressed Size     00029621 (169505)
+│ +2EF9D Filename Length       0018 (24)
+│ +2EF9F Extra Length          0000 (0)
+│ +2EFA1 Comment Length        0000 (0)
+│ +2EFA3 Disk Start            0000 (0)
+│ +2EFA5 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EFA7 Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EFAB Local Header Offset   0001CE40 (118336)
+│ +2EFAF Filename              'XXXXXXXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2EFC7 CENTRAL HEADER #9     02014B50 (33639248)
+│ +2EFCB Created Zip Spec      14 (20) '2.0'
+│ +2EFCC Created OS            03 (3) 'Unix'
+│ +2EFCD Extract Zip Spec      14 (20) '2.0'
+│ +2EFCE Extract OS            00 (0) 'MS-DOS'
+│ +2EFCF General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2EFD1 Compression Method    0008 (8) 'Deflated'
+│ +2EFD3 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2EFD7 CRC                   B01140D9 (2953920729)
+│ +2EFDB Compressed Size       0000C280 (49792)
+│ +2EFDF Uncompressed Size     0001FE00 (130560)
+│ +2EFE3 Filename Length       0020 (32)
+│ +2EFE5 Extra Length          0000 (0)
+│ +2EFE7 Comment Length        0000 (0)
+│ +2EFE9 Disk Start            0000 (0)
+│ +2EFEB Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2EFED Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2EFF1 Local Header Offset   0001FB22 (129826)
+│ +2EFF5 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2F015 CENTRAL HEADER #10    02014B50 (33639248)
+│ +2F019 Created Zip Spec      14 (20) '2.0'
+│ +2F01A Created OS            03 (3) 'Unix'
+│ +2F01B Extract Zip Spec      14 (20) '2.0'
+│ +2F01C Extract OS            00 (0) 'MS-DOS'
+│ +2F01D General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2F01F Compression Method    0008 (8) 'Deflated'
+│ +2F021 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2F025 CRC                   44454A0E (1145391630)
+│ +2F029 Compressed Size       00002CAC (11436)
+│ +2F02D Uncompressed Size     00029621 (169505)
+│ +2F031 Filename Length       0020 (32)
+│ +2F033 Extra Length          0000 (0)
+│ +2F035 Comment Length        0000 (0)
+│ +2F037 Disk Start            0000 (0)
+│ +2F039 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2F03B Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2F03F Local Header Offset   0002BDE0 (179680)
+│ +2F043 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2F063 CENTRAL HEADER #11    02014B50 (33639248)
+│ +2F067 Created Zip Spec      14 (20) '2.0'
+│ +2F068 Created OS            03 (3) 'Unix'
+│ +2F069 Extract Zip Spec      14 (20) '2.0'
+│ +2F06A Extract OS            00 (0) 'MS-DOS'
+│ +2F06B General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2F06D Compression Method    0008 (8) 'Deflated'
+│ +2F06F Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2F073 CRC                   EEFFCCC9 (4009741513)
+│ +2F077 Compressed Size       000000E0 (224)
+│ +2F07B Uncompressed Size     00000284 (644)
+│ +2F07F Filename Length       0013 (19)
+│ +2F081 Extra Length          0000 (0)
+│ +2F083 Comment Length        0000 (0)
+│ +2F085 Disk Start            0000 (0)
+│ +2F087 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2F089 Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2F08D Local Header Offset   0002EACA (191178)
+│ +2F091 Filename              'XXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2F0A4 CENTRAL HEADER #12    02014B50 (33639248)
+│ +2F0A8 Created Zip Spec      14 (20) '2.0'
+│ +2F0A9 Created OS            03 (3) 'Unix'
+│ +2F0AA Extract Zip Spec      14 (20) '2.0'
+│ +2F0AB Extract OS            00 (0) 'MS-DOS'
+│ +2F0AC General Purpose Flag  0000 (0)
+│ +      [Bits 1-2]            0 'Normal Compression'
+│ +2F0AE Compression Method    0008 (8) 'Deflated'
+│ +2F0B0 Modification Time     58B86225 (1488478757) 'Fri May 24 12:17:10 2024'
+│ +2F0B4 CRC                   AE712458 (2926650456)
+│ +2F0B8 Compressed Size       00000197 (407)
+│ +2F0BC Uncompressed Size     000002B2 (690)
+│ +2F0C0 Filename Length       0036 (54)
+│ +2F0C2 Extra Length          0000 (0)
+│ +2F0C4 Comment Length        0000 (0)
+│ +2F0C6 Disk Start            0000 (0)
+│ +2F0C8 Int File Attributes   0000 (0)
+│ +      [Bit 0]               0 'Binary Data'
+│ +2F0CA Ext File Attributes   81A40000 (2175008768)
+│ +      [Bits 16-24]          01A4 (420) 'Unix attrib: rw-r--r--'
+│ +      [Bits 28-31]          08 (8) 'Regular File'
+│ +2F0CE Local Header Offset   0002EBDB (191451)
+│ +2F0D2 Filename              'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+│ +
+│ +2F108 END CENTRAL HEADER    06054B50 (101010256)
+│ +2F10C Number of this disk   0000 (0)
+│ +2F10E Central Dir Disk no   0000 (0)
+│ +2F110 Entries in this disk  000C (12)
+│ +2F112 Total Entries         000C (12)
+│ +2F114 Size of Central Dir   00000342 (834)
+│ +2F118 Offset to Central Dir 0002EDC6 (191942)
+│ +2F11C Comment Length        0000 (0)
+│  #
+│  # Done
+├── Stateless.nuspec
+│ ├── Stateless.nuspec
+│ │ @@ -6,15 +6,15 @@
+│ │      <authors>Stateless Contributors</authors>
+│ │      <license type="expression">Apache-2.0</license>
+│ │      <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+│ │      <icon>Stateless.png</icon>
+│ │      <readme>README.md</readme>
+│ │      <projectUrl>https://github.com/dotnet-state-machine/stateless</projectUrl>
+│ │      <description>Create state machines and lightweight state machine-based workflows directly in .NET code</description>
+│ │ -    <copyright>Copyright © Stateless Contributors 2009-2026</copyright>
+│ │ +    <copyright>Copyright © Stateless Contributors 2009-2027</copyright>
+│ │      <repository type="git" url="https://github.com/dotnet-state-machine/stateless" commit="a8f169d2fb4e4a8afa32ab85ed2c562ce144f7b8"/>
+│ │      <dependencies>
+│ │        <group targetFramework=".NETFramework4.6.2"/>
+│ │        <group targetFramework="net8.0"/>
+│ │        <group targetFramework=".NETStandard2.0"/>
+│ │      </dependencies>
+│ │    </metadata>
+├── lib/net462/Stateless.dll
+│ ├── pedump {}
+│ │ @@ -35,15 +35,15 @@
+│ │  === PE Header ===
+│ │  
+│ │                       signature:             "PE\x00\x00"
+│ │  
+│ │  # IMAGE_FILE_HEADER:
+│ │                         Machine:        332           14c  x86
+│ │                NumberOfSections:                        3
+│ │ -                 TimeDateStamp:    "2043-11-10 08:53:11"
+│ │ +                 TimeDateStamp:    "2052-03-02 22:23:00"
+│ │            PointerToSymbolTable:                        0
+│ │                 NumberOfSymbols:                        0
+│ │            SizeOfOptionalHeader:        224            e0
+│ │                 Characteristics:       8226          2022  EXECUTABLE_IMAGE, LARGE_ADDRESS_AWARE, DLL
+│ │  
+│ │  # IMAGE_OPTIONAL_HEADER32:
+│ │                           Magic:        267           10b  32-bit executable
+│ │ @@ -1055,16 +1055,16 @@
+│ │  
+│ │  # StringTable 000004b0:
+│ │    Comments            :  "Create state machines and lightweight state machine-based workflows directly in .NET code"
+│ │    CompanyName         :  "Stateless Contributors"
+│ │    FileDescription     :  "Stateless"
+│ │    FileVersion         :  "5.16.0.0"
+│ │    InternalName        :  "Stateless.dll"
+│ │ -  LegalCopyright      :  "Copyright © Stateless Contributors 2009-2026"
+│ │ +  LegalCopyright      :  "Copyright © Stateless Contributors 2009-2027"
+│ │    OriginalFilename    :  "Stateless.dll"
+│ │    ProductName         :  "Stateless"
+│ │    ProductVersion      :  "5.16.0+a8f169d2fb4e4a8afa32ab85ed2c562ce144f7b8"
+│ │    Assembly Version    :  "4.0.0.0"
+│ │  
+│ │  === imphash ===
+│ │  
+│ │ -dae02f32a21e03ce65412f6e56942daa /tmp/diffoscope_kwu4540x_out/tmphizg77_j_ZipContainer/Stateless.dll
+│ │ +dae02f32a21e03ce65412f6e56942daa /tmp/diffoscope_kwu4540x_out/tmp60b56qxx_ZipContainer/Stateless.dll
+├── lib/net8.0/Stateless.dll
+│ ├── pedump {}
+│ │ @@ -35,15 +35,15 @@
+│ │  === PE Header ===
+│ │  
+│ │                       signature:             "PE\x00\x00"
+│ │  
+│ │  # IMAGE_FILE_HEADER:
+│ │                         Machine:        332           14c  x86
+│ │                NumberOfSections:                        3
+│ │ -                 TimeDateStamp:    "2105-07-22 05:53:42"
+│ │ +                 TimeDateStamp:    "2101-04-17 01:02:19"
+│ │            PointerToSymbolTable:                        0
+│ │                 NumberOfSymbols:                        0
+│ │            SizeOfOptionalHeader:        224            e0
+│ │                 Characteristics:       8226          2022  EXECUTABLE_IMAGE, LARGE_ADDRESS_AWARE, DLL
+│ │  
+│ │  # IMAGE_OPTIONAL_HEADER32:
+│ │                           Magic:        267           10b  32-bit executable
+│ │ @@ -1060,16 +1060,16 @@
+│ │  
+│ │  # StringTable 000004b0:
+│ │    Comments            :  "Create state machines and lightweight state machine-based workflows directly in .NET code"
+│ │    CompanyName         :  "Stateless Contributors"
+│ │    FileDescription     :  "Stateless"
+│ │    FileVersion         :  "5.16.0.0"
+│ │    InternalName        :  "Stateless.dll"
+│ │ -  LegalCopyright      :  "Copyright © Stateless Contributors 2009-2026"
+│ │ +  LegalCopyright      :  "Copyright © Stateless Contributors 2009-2027"
+│ │    OriginalFilename    :  "Stateless.dll"
+│ │    ProductName         :  "Stateless"
+│ │    ProductVersion      :  "5.16.0+a8f169d2fb4e4a8afa32ab85ed2c562ce144f7b8"
+│ │    Assembly Version    :  "4.0.0.0"
+│ │  
+│ │  === imphash ===
+│ │  
+│ │ -dae02f32a21e03ce65412f6e56942daa /tmp/diffoscope_kwu4540x_out/tmp02cz3akt_ZipContainer/Stateless.dll
+│ │ +dae02f32a21e03ce65412f6e56942daa /tmp/diffoscope_kwu4540x_out/tmpmh8ewddq_ZipContainer/Stateless.dll
+├── lib/netstandard2.0/Stateless.dll
+│ ├── pedump {}
+│ │ @@ -35,15 +35,15 @@
+│ │  === PE Header ===
+│ │  
+│ │                       signature:             "PE\x00\x00"
+│ │  
+│ │  # IMAGE_FILE_HEADER:
+│ │                         Machine:        332           14c  x86
+│ │                NumberOfSections:                        3
+│ │ -                 TimeDateStamp:    "2043-06-09 13:16:24"
+│ │ +                 TimeDateStamp:    "2092-04-14 20:29:59"
+│ │            PointerToSymbolTable:                        0
+│ │                 NumberOfSymbols:                        0
+│ │            SizeOfOptionalHeader:        224            e0
+│ │                 Characteristics:       8226          2022  EXECUTABLE_IMAGE, LARGE_ADDRESS_AWARE, DLL
+│ │  
+│ │  # IMAGE_OPTIONAL_HEADER32:
+│ │                           Magic:        267           10b  32-bit executable
+│ │ @@ -1055,16 +1055,16 @@
+│ │  
+│ │  # StringTable 000004b0:
+│ │    Comments            :  "Create state machines and lightweight state machine-based workflows directly in .NET code"
+│ │    CompanyName         :  "Stateless Contributors"
+│ │    FileDescription     :  "Stateless"
+│ │    FileVersion         :  "5.16.0.0"
+│ │    InternalName        :  "Stateless.dll"
+│ │ -  LegalCopyright      :  "Copyright © Stateless Contributors 2009-2026"
+│ │ +  LegalCopyright      :  "Copyright © Stateless Contributors 2009-2027"
+│ │    OriginalFilename    :  "Stateless.dll"
+│ │    ProductName         :  "Stateless"
+│ │    ProductVersion      :  "5.16.0+a8f169d2fb4e4a8afa32ab85ed2c562ce144f7b8"
+│ │    Assembly Version    :  "4.0.0.0"
+│ │  
+│ │  === imphash ===
+│ │  
+│ │ -dae02f32a21e03ce65412f6e56942daa /tmp/diffoscope_kwu4540x_out/tmpj5224glw_ZipContainer/Stateless.dll
+│ │ +dae02f32a21e03ce65412f6e56942daa /tmp/diffoscope_kwu4540x_out/tmpg397shzo_ZipContainer/Stateless.dll

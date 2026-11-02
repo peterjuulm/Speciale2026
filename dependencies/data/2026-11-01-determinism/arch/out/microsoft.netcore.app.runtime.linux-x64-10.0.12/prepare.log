@@ -1,0 +1,6 @@
+start 2026-11-01T11:57:08+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_dotnet.git /private/tmp/nupkg-determinism/src/microsoft.netcore.app.runtime.linux-x64-10.0.12
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.netcore.app.runtime.linux-x64-10.0.12 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.netcore.app.runtime.linux-x64-10.0.12 remote set-url origin https://github.com/dotnet/dotnet
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.netcore.app.runtime.linux-x64-10.0.12 -c advice.detachedHead=false checkout -q 95017c711e6afc1085133d440e42b4bd78155701
+global.json: sdk-removed (pinned 10.0.110)

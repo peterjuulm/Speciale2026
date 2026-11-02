@@ -1,0 +1,30 @@
+start 2026-11-01T11:59:08+01:00
+$ git clone -q --mirror https://github.com/microsoft/vs-solutionpersistence /private/tmp/nupkg-determinism/mirrors/https_github.com_microsoft_vs-solutionpersistence.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_microsoft_vs-solutionpersistence.git /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 remote set-url origin https://github.com/microsoft/vs-solutionpersistence
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 -c advice.detachedHead=false checkout -q 19c3ca7dc997dba2b3a86f6c666e9f717f34c8fe
+global.json: sdk-removed (pinned 9.0.200)
+start 2026-11-01T17:24:33+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_microsoft_vs-solutionpersistence.git /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 remote set-url origin https://github.com/microsoft/vs-solutionpersistence
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 -c advice.detachedHead=false checkout -q 19c3ca7dc997dba2b3a86f6c666e9f717f34c8fe
+global.json: sdk-removed (pinned 9.0.200)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52 checkout -q -- .
+$ dotnet restore src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.solutionpersistence-1.0.52/src/Microsoft.VisualStudio.SolutionPersistence/Microsoft.VisualStudio.SolutionPersistence.csproj (in 190 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.02
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

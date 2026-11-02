@@ -1,0 +1,39 @@
+start 2026-11-01T12:15:20+01:00
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/Serilog.Sinks.File.csproj (in 481 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Serilog.Sinks.File -> /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/bin/Release/netstandard2.0/Serilog.Sinks.File.dll
+  Serilog.Sinks.File -> /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/bin/Release/net6.0/Serilog.Sinks.File.dll
+  Serilog.Sinks.File -> /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/bin/Release/net8.0/Serilog.Sinks.File.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.14
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/out/Serilog.Sinks.File.6.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/out/Serilog.Sinks.File.6.0.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:15:27+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/Serilog.Sinks.File.csproj (in 136 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,14 @@
+# Derived by derive.py (release-only method), see facts.txt beside it.
+package = "RBush"
+version = "4.0.0"
+ships = "lib/net8.0/RBush.dll"
+repo = "https://github.com/viceroypenguin/RBush"
+commit = "b8690322abac35d835baa2fdca4a3918ed77a910"
+project = "RBush/RBush.csproj"
+sdk = "8.0.404"
+shell = "bash"
+build = "dotnet build RBush/RBush.csproj -c Release -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.0.0 -p:AssemblyVersion=4.0.0.0 -p:FileVersion=4.0.0.0 -p:PackageVersion=4.0.0 && dotnet pack RBush/RBush.csproj -c Release --no-build -o out-nupkg -p:ContinuousIntegrationBuild=true -p:VersionPrefix=4.0.0 -p:AssemblyVersion=4.0.0.0 -p:FileVersion=4.0.0.0 -p:PackageVersion=4.0.0"
+packages = "out-nupkg"
+os = "linux"
+tag = "v4.0.0"
+git_config = ["core.autocrlf=false", "core.eol=lf"]
