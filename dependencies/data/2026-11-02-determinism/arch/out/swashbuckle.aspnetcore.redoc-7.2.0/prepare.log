@@ -1,0 +1,50 @@
+start 2026-11-01T12:20:54+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_domaindrivendev_Swashbuckle.AspNetCore.git /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 remote set-url origin https://github.com/domaindrivendev/Swashbuckle.AspNetCore
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+global.json: sdk-removed (pinned 9.0.101)
+start 2026-11-01T18:26:08+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_domaindrivendev_Swashbuckle.AspNetCore.git /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 remote set-url origin https://github.com/domaindrivendev/Swashbuckle.AspNetCore
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+global.json: sdk-removed (pinned 9.0.101)
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj (in 197 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T23:21:10+01:00
+$ git clone -q --no-checkout https://github.com/domaindrivendev/Swashbuckle.AspNetCore /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj (in 261 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T05:49:35+01:00
+$ git clone -q --no-checkout https://github.com/domaindrivendev/Swashbuckle.AspNetCore /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj (in 178 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

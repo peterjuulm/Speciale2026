@@ -1,0 +1,112 @@
+start 2026-11-02T23:27:32+01:00
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11 checkout -q -- .
+$ dotnet restore src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj (in 188 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 196 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.Numerics/ref/System.Runtime.Numerics.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj (in 187 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/linker/Mono.Linker.csproj (in 196 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Collections/ref/System.Collections.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj (in 183 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj (in 216 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  ILLink.RoslynAnalyzer -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/ILLink.RoslynAnalyzer/Release/netstandard2.0/ILLink.RoslynAnalyzer.dll
+  ILLink.CodeFixProvider -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/ILLink.CodeFixProvider/Release/netstandard2.0/ILLink.CodeFixProvider.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/Mono.Linker/ref/Release/net9.0/illink.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/Mono.Linker/Release/net9.0/illink.dll
+  ILLink.Tasks -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/ILLink.Tasks/Release/net9.0/ILLink.Tasks.dll
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/eng/targetingpacks.targets(129,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj::TargetFramework=net9.0]
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Formats.Asn1/ref/Release/net8.0/System.Formats.Asn1.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Formats.Asn1/Release/net8.0/System.Formats.Asn1.dll
+  Microsoft.Interop.SourceGeneration -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/Microsoft.Interop.SourceGeneration/Release/netstandard2.0/Microsoft.Interop.SourceGeneration.dll
+  Microsoft.Bcl.Cryptography -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/Microsoft.Bcl.Cryptography/Release/net8.0/Microsoft.Bcl.Cryptography.dll
+  LibraryImportGenerator -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/LibraryImportGenerator/Release/netstandard2.0/Microsoft.Interop.LibraryImportGenerator.dll
+  ComInterfaceGenerator -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/ComInterfaceGenerator/Release/netstandard2.0/Microsoft.Interop.ComInterfaceGenerator.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Formats.Asn1/ref/Release/net462/System.Formats.Asn1.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Formats.Asn1/ref/Release/netstandard2.0/System.Formats.Asn1.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/ref/Release/net8.0/System.Security.Cryptography.Pkcs.dll
+  System.Runtime -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Runtime/ref/Release/net9.0/System.Runtime.dll
+  System.Collections -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Collections/ref/Release/net9.0/System.Collections.dll
+  System.Runtime.Numerics -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Runtime.Numerics/ref/Release/net9.0/System.Runtime.Numerics.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Formats.Asn1/Release/net462/System.Formats.Asn1.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Formats.Asn1/Release/netstandard2.0/System.Formats.Asn1.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/Release/net8.0/System.Security.Cryptography.Pkcs.dll
+  Microsoft.Bcl.Cryptography -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/Microsoft.Bcl.Cryptography/Release/net462/Microsoft.Bcl.Cryptography.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/Release/net8.0-windows/System.Security.Cryptography.Pkcs.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/ref/Release/net462/System.Security.Cryptography.Pkcs.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Formats.Asn1/ref/Release/net9.0/System.Formats.Asn1.dll
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnCharacterStringEncodings.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnDecoder.Integer.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnDecoder.Oid.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnWriter.Integer.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnCharacterStringEncodings.cs(14,33): error CS0246: The type or namespace name 'UTF8Encoding' could not be found (are you missing a using directive or an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnCharacterStringEncodings.cs(420,33): error CS0246: The type or namespace name 'UTF8Encoding' could not be found (are you missing a using directive or an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/Release/net462/System.Security.Cryptography.Pkcs.dll
+  Microsoft.Bcl.Cryptography -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/Microsoft.Bcl.Cryptography/Release/netstandard2.0/Microsoft.Bcl.Cryptography.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/ref/Release/netstandard2.0/System.Security.Cryptography.Pkcs.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/ref/Release/netstandard2.1/System.Security.Cryptography.Pkcs.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/Release/netstandard2.1/System.Security.Cryptography.Pkcs.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/artifacts/bin/System.Security.Cryptography.Pkcs/Release/netstandard2.0/System.Security.Cryptography.Pkcs.dll
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/eng/targetingpacks.targets(129,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnCharacterStringEncodings.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnDecoder.Integer.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnDecoder.Oid.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnWriter.Integer.cs(4,22): error CS0234: The type or namespace name 'Binary' does not exist in the namespace 'System.Buffers' (are you missing an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnCharacterStringEncodings.cs(14,33): error CS0246: The type or namespace name 'UTF8Encoding' could not be found (are you missing a using directive or an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System/Formats/Asn1/AsnCharacterStringEncodings.cs(420,33): error CS0246: The type or namespace name 'UTF8Encoding' could not be found (are you missing a using directive or an assembly reference?) [/private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj::TargetFramework=net9.0]
+    0 Warning(s)
+    7 Error(s)
+
+Time Elapsed 00:01:05.46
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T23:28:42+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11 checkout -q -- .
+$ dotnet restore src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Collections/ref/System.Collections.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 289 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.Numerics/ref/System.Runtime.Numerics.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj (in 298 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/linker/Mono.Linker.csproj (in 301 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 289 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 289 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj (in 300 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 303 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj (in 288 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.pkcs-9.0.11/src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj (in 342 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

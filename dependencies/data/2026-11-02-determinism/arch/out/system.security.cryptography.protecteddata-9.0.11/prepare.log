@@ -1,0 +1,4 @@
+start 2026-11-02T23:40:28+01:00
+$ git clone -q --no-checkout https://github.com/dotnet/runtime /private/tmp/nupkg-determinism/src/system.security.cryptography.protecteddata-9.0.11
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.protecteddata-9.0.11 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.protecteddata-9.0.11 -c advice.detachedHead=false checkout -q fa7cdded37981a97cec9a3e233c4a6af58a91c57

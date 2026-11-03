@@ -1,0 +1,37 @@
+start 2026-11-01T14:10:19+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_SixLabors_Fonts.git /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 remote set-url origin https://github.com/SixLabors/Fonts
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 -c advice.detachedHead=false checkout -q 32bef42997adb10268369ca149777f00e4241ce9
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 submodule update --init --recursive -q
+global.json: none
+start 2026-11-02T23:20:20+01:00
+$ git clone -q --no-checkout https://github.com/SixLabors/Fonts /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 -c advice.detachedHead=false checkout -q 32bef42997adb10268369ca149777f00e4241ce9
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 submodule update --init --recursive -q
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 checkout -q -- .
+$ dotnet restore src/SixLabors.Fonts/SixLabors.Fonts.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0/src/SixLabors.Fonts/SixLabors.Fonts.csproj (in 179 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T05:39:33+01:00
+$ git clone -q --no-checkout https://github.com/SixLabors/Fonts /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 -c advice.detachedHead=false checkout -q 32bef42997adb10268369ca149777f00e4241ce9
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 submodule update --init --recursive -q
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0 checkout -q -- .
+$ dotnet restore src/SixLabors.Fonts/SixLabors.Fonts.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/sixlabors.fonts-1.0.0/src/SixLabors.Fonts/SixLabors.Fonts.csproj (in 154 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

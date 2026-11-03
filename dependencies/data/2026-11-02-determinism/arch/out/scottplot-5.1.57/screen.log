@@ -1,0 +1,40 @@
+start 2026-11-01T12:11:14+01:00
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 checkout -q -- .
+$ dotnet restore src/ScottPlot5/ScottPlot5/ScottPlot.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/ScottPlot.csproj (in 2,41 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/ScottPlot5/ScottPlot5/ScottPlot.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/ScottPlot5/ScottPlot5/ScottPlot.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  ScottPlot -> /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/bin/Release/net462/ScottPlot.dll
+  ScottPlot -> /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/bin/Release/netstandard2.0/ScottPlot.dll
+  ScottPlot -> /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/bin/Release/net9.0/ScottPlot.dll
+  ScottPlot -> /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/bin/Release/net8.0/ScottPlot.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.10
+  Successfully created package '/private/tmp/nupkg-determinism/src/scottplot-5.1.57/out/ScottPlot.5.1.57.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/scottplot-5.1.57/out/ScottPlot.5.1.57.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:11:28+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 checkout -q -- .
+$ dotnet restore src/ScottPlot5/ScottPlot5/ScottPlot.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/ScottPlot.csproj (in 145 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

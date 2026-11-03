@@ -1,0 +1,46 @@
+start 2026-11-01T12:12:54+01:00
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 checkout -q -- .
+$ dotnet restore src/SendGrid/SendGrid.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+  Restored /private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj (in 2,77 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/SendGrid/SendGrid.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/SendGrid/SendGrid.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+  SendGrid -> /private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/bin/Release/netstandard1.3/SendGrid.dll
+  SendGrid -> /private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/bin/Release/net40/SendGrid.dll
+  SendGrid -> /private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/bin/Release/net452/SendGrid.dll
+  SendGrid -> /private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/bin/Release/netstandard2.0/SendGrid.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.83
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj]
+  The package SendGrid.9.29.3 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/sendgrid-9.29.3/out/SendGrid.9.29.3.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:13:03+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/sendgrid-9.29.3 checkout -q -- .
+$ dotnet restore src/SendGrid/SendGrid.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+  Restored /private/tmp/nupkg-determinism/src/sendgrid-9.29.3/src/SendGrid/SendGrid.csproj (in 193 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

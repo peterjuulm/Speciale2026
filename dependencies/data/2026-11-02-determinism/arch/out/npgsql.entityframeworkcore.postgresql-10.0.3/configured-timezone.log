@@ -1,0 +1,30 @@
+start 2026-11-02T22:45:16+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/EFCore.PG/EFCore.PG.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1783671786 && dotnet pack src/EFCore.PG/EFCore.PG.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1783671786; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  EFCore.PG -> /tmp/reprotest.Y6umJb/const_build_path/src/EFCore.PG/bin/Release/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:12.40
+  Successfully created package '/tmp/reprotest.Y6umJb/const_build_path/out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.nupkg'.
+  Successfully created package '/tmp/reprotest.Y6umJb/const_build_path/out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.snupkg'.
+  EFCore.PG -> /tmp/reprotest.Y6umJb/const_build_path/src/EFCore.PG/bin/Release/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:18.89
+  Successfully created package '/tmp/reprotest.Y6umJb/const_build_path/out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.nupkg'.
+  Successfully created package '/tmp/reprotest.Y6umJb/const_build_path/out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+b1b9d4b21b228174a46d562c705290845fee442c2370d0fef62f8c55f8f9197f  ./out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.nupkg
+57b5ae29108ba27c5ec71f43ba9decf9f0c93cfd31215091eadfa9eb69e16fad  ./out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.snupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T22:45:53+01:00 exit 0

@@ -1,0 +1,100 @@
+start 2026-11-03T05:57:54+01:00
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0 checkout -q -- .
+$ dotnet restore src/libraries/System.Security.Cryptography.Xml/src/System.Security.Cryptography.Xml.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 237 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Collections/ref/System.Collections.csproj (in 220 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 220 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 237 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.Numerics/ref/System.Runtime.Numerics.csproj (in 220 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 237 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Xml/ref/System.Security.Cryptography.Xml.csproj (in 220 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 220 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj (in 220 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 237 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj (in 220 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 244 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 246 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj (in 252 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/linker/Mono.Linker.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Xml/src/System.Security.Cryptography.Xml.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj (in 39 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/libraries/System.Security.Cryptography.Xml/src/System.Security.Cryptography.Xml.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/libraries/System.Security.Cryptography.Xml/src/System.Security.Cryptography.Xml.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  ILLink.RoslynAnalyzer -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/ILLink.RoslynAnalyzer/Release/netstandard2.0/ILLink.RoslynAnalyzer.dll
+  ILLink.CodeFixProvider -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/ILLink.CodeFixProvider/Release/netstandard2.0/ILLink.CodeFixProvider.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/Mono.Linker/ref/Release/net9.0/illink.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/Mono.Linker/Release/net9.0/illink.dll
+  ILLink.Tasks -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/ILLink.Tasks/Release/net9.0/ILLink.Tasks.dll
+/private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/eng/targetingpacks.targets(129,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj::TargetFramework=net9.0]
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Formats.Asn1/ref/Release/net8.0/System.Formats.Asn1.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Formats.Asn1/Release/net8.0/System.Formats.Asn1.dll
+  Microsoft.Interop.SourceGeneration -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/Microsoft.Interop.SourceGeneration/Release/netstandard2.0/Microsoft.Interop.SourceGeneration.dll
+  Microsoft.Bcl.Cryptography -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/Microsoft.Bcl.Cryptography/Release/net8.0/Microsoft.Bcl.Cryptography.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Pkcs/ref/Release/net8.0/System.Security.Cryptography.Pkcs.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Pkcs/Release/net8.0/System.Security.Cryptography.Pkcs.dll
+  LibraryImportGenerator -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/LibraryImportGenerator/Release/netstandard2.0/Microsoft.Interop.LibraryImportGenerator.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Formats.Asn1/ref/Release/netstandard2.0/System.Formats.Asn1.dll
+  System.Security.Cryptography.Xml -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Xml/ref/Release/net8.0/System.Security.Cryptography.Xml.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Formats.Asn1/ref/Release/net462/System.Formats.Asn1.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Formats.Asn1/Release/netstandard2.0/System.Formats.Asn1.dll
+  System.Formats.Asn1 -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Formats.Asn1/Release/net462/System.Formats.Asn1.dll
+  System.Security.Cryptography.Xml -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Xml/Release/net8.0/System.Security.Cryptography.Xml.dll
+  Microsoft.Bcl.Cryptography -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/Microsoft.Bcl.Cryptography/Release/netstandard2.0/Microsoft.Bcl.Cryptography.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Pkcs/ref/Release/netstandard2.0/System.Security.Cryptography.Pkcs.dll
+  Microsoft.Bcl.Cryptography -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/Microsoft.Bcl.Cryptography/Release/net462/Microsoft.Bcl.Cryptography.dll
+  System.Security.Cryptography.Xml -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Xml/ref/Release/net462/System.Security.Cryptography.Xml.dll
+  System.Security.Cryptography.Pkcs -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Pkcs/Release/netstandard2.0/System.Security.Cryptography.Pkcs.dll
+  System.Security.Cryptography.Xml -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Xml/ref/Release/netstandard2.0/System.Security.Cryptography.Xml.dll
+  System.Security.Cryptography.Xml -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Xml/Release/net462/System.Security.Cryptography.Xml.dll
+  System.Security.Cryptography.Xml -> /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/artifacts/bin/System.Security.Cryptography.Xml/Release/netstandard2.0/System.Security.Cryptography.Xml.dll
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/eng/targetingpacks.targets(129,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj::TargetFramework=net9.0]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:54.91
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-03T05:58:58+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0 checkout -q -- .
+$ dotnet restore src/libraries/System.Security.Cryptography.Xml/src/System.Security.Cryptography.Xml.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 209 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj (in 210 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 201 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj (in 210 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Collections/ref/System.Collections.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Xml/ref/System.Security.Cryptography.Xml.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Xml/src/System.Security.Cryptography.Xml.csproj (in 210 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 209 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.Numerics/ref/System.Runtime.Numerics.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Pkcs/ref/System.Security.Cryptography.Pkcs.csproj (in 202 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 201 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Security.Cryptography.Pkcs/src/System.Security.Cryptography.Pkcs.csproj (in 230 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.security.cryptography.xml-9.0.0/src/tools/illink/src/linker/Mono.Linker.csproj (in 4 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

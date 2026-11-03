@@ -1,0 +1,604 @@
+start 2026-11-02T21:47:33+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971 && dotnet pack src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Versioning -> /tmp/reprotest.RGzSlv/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.89
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.RGzSlv/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 168 ms).
+  Successfully created package '/tmp/reprotest.RGzSlv/const_build_path/out/NuGet.Versioning.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.55
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/PackageManagerToolWindowPane.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Resources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/NuGet.PackageManagement.UI.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/PackageLicenseUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Telemetry/UpgradeInformationTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Automation/ListBoxToggleableItemsAutomationPeer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Automation/ToggleableItemAutomationPeer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Automation/ISelectableItemsControl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Automation/ListViewToggleableItemsAutomationPeer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Automation/ISelectableItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Automation/ButtonHyperlinkAutomationPeer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/IItemLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Design/LoadingStatusViewModelSampleData.xaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Design/PackageItemListViewSampleData.xaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/NuGetPackageManagerControlSearchTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/IPackageItemLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/PackageLoadContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/FilterItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageLicenseInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageDependencySetMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/DetailControlModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/DependencyBehaviorItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/IText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/ItemsChangeObservableCollectionBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageDependencyMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageSearchStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/ProjectVersionConstraint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/FreeText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/LicenseText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageIconMonikers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageManagerModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/LicenseFileData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageSolutionDetailControlModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/WarningText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/ItemFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PreviewWindowModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/NuGetProjectUpgradeDependencyItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/FileConflictActionOptionItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/IconBitmapStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/LicenseFileText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/NuGetProjectUpgradeWindowModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageDetailControlModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/DetailedPackageMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Models/PackageItemDeprecationLabelState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Styles/LastItemToVisibilityConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/NativeMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Common/ErrorFloodGate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Resources.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/StyleKeyConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/BooleanToGridRowHeightConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/SummaryToStringConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/PackageLevelToGroupNameConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/GreaterThanThresholdToVisibilityConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/AccessibleConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/NotNullToBooleanConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/TooltipConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/BooleanToFontWeightConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/InverseBooleanConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/RadioBoolToIntConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/NuGetFrameworkToStringConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/NullToVisibilityConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/FontSizeConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/SubstractionConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/IntToVulnerabilitySeverityConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/NotNullOrTrueToBooleanConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/ProjectAndSolutionViewHeightConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/NullToBooleanConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/ProjectAndSolutionViewMinHeightConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/StringFormatConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/DeprecationToDeprecationLabelStateConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/NotEqualConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/NuGetFrameworkToVisibilityConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/EnumerableToVisibilityConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/FormattedStringPartConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/InverseNullToVisibilityConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/AdditionConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/ParametersToHyperlinkTupleConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/SummaryToFontStyleConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/PackageLevelGroupToBooleanConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/VersionToStringConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/CollectionToStringConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/EnumDescriptionValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Converters/InstalledVersionsCountConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/ShowUpdatePackageOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/PackageItemLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Themes/generic.xaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/DisplayVersion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/PackageInstallationInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/LoadingStatusIndicator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Actions/UpgradeLogger.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Actions/UIActionEngine.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Actions/UpdatePreviewResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Actions/PackagesConfigToPackageReferenceMigrator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Actions/PreviewResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.UI/Actions/AccessiblePackageIdentity.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/NuGetClientPackage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/Resources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/NuGetClientPackage.vsct: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/NuGet.VisualStudio.OnlineEnvironment.Client.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/GuidList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/SolutionExplorer/RestoreCommandHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/SolutionExplorer/PackageManagerUICommandHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/SolutionExplorer/NuGetWorkspaceCommandHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/SolutionExplorer/NuGetNodeExtender.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/OnlineEnvironment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/Resources.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/Input/CommandGroup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.OnlineEnvironment.Client/Input/PkgCmdIDList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Strings.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsTargetFrameworks2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsSolutionRestoreService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsTargetFrameworkInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsProjectRestoreInfo2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsSolutionRestoreService5.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsTargetFrameworkInfo3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsReferenceItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsProjectProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsSolutionRestoreStatusProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsTargetFrameworkInfo2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsTargetFrameworkInfo4.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsSolutionRestoreService4.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsProjectRestoreInfoSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsSolutionRestoreService3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsReferenceItems.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsReferenceProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsReferenceItem2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsTargetFrameworks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsProjectRestoreInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsProjectProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsProjectRestoreInfo3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsSolutionRestoreService2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/SolutionRestoreManager/IVsReferenceProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/IVsPackageManagerProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/LegacyTypes/IPackage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/LegacyTypes/SemanticVersion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/LegacyTypes/IPackageFile.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/LegacyTypes/IPackageAssemblyReference.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/LegacyTypes/PackageSaveModes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/LegacyTypes/IPackageRepository.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/LegacyTypes/IFileSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/PublicAPI.Unshipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/IVsTemplateWizard.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/IRegistryKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Strings.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/NuGet.VisualStudio.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageInstallerEvents.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageInstaller.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsSemanticVersionComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsFrameworkCompatibility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsProjectJsonToPackageReferenceMigrateResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsFrameworkCompatibility3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageInstallerServices.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsProjectJsonToPackageReferenceMigrator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPathContextProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsFrameworkParser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageUninstaller.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageInstaller2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsNuGetProjectUpdateEvents.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsGlobalPackagesInitScriptExecutor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsCredentialProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPathContext2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPathContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPathContextProvider2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageInstallerProjectEvents.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsNuGetFramework.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageRestorer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/VsPackageEventHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageProjectMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsFrameworkCompatibility2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsFrameworkParser2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/Extensibility/IVsPackageSourceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio/PublicAPI.Shipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IConsoleInitializer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/ConsoleInitializer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Xamls/ConsoleContainer.xaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Xamls/ConsoleContainer.xaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IHostMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/PowerConsoleToolWindow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/WpfConsole/WpfConsoleClassifier.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/WpfConsole/WpfConsoleService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/WpfConsole/WpfConsoleCompletionSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/WpfConsole/WpfConsoleKeyProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/WpfConsole/WpfConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/ICommandTokenizerProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IPowerConsoleService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IHostInitializer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Token.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IPSNuGetProjectContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/SimpleExpansion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Utils/CommandUiUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Utils/Marshaler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Utils/UtilityMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Utils/CommonExtensionMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Utils/ExtensionMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Utils/ObjectWithFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/ICommandExpansionProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/PowerConsole/ClassifierProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/PowerConsole/CompletionSourceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/PowerConsole/HostInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/PowerConsole/PowerConsoleWindow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IPathExpansion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/ICommandTokenizer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/DisplayNameAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Resources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/OutputConsole/OutputConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/OutputConsole/BuildOutputConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/OutputConsole/OutputConsoleProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/OutputConsole/ChannelOutputConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/OutputConsole/BaseOutputConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/OutputConsole/SharedOutputConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IHostProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Guids.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/HostNameAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IWpfConsoleService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/PkgCmdID.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/ICommandExpansion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Console/ConsoleDispatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Console/TextFormatClassifier.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Console/IPrivateConsoleStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Console/InputHistory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Console/OleCommandFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Console/IHostNameMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Console/OrderedSpans.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IWpfConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/ScriptExecutor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/IPowerConsoleWindow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/NuGet.Console.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/NativeMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/Resources.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/ITabExpansion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Console/TokenType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/NuGetStaticSearchResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/NuGetSearchTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/ProvideExpressLoadKeyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/Resources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/NuGetSearchProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/PackageManagerLaunchService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/ProvideSearchProviderAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/Guids.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/FontAndColorsRegistrationAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/PkgCmdID.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/VSPackage.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/NuGet.Tools.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/NuGetTools.vsct: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/NuGetBrokeredServiceFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/NuGetPackage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/Resources.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.Tools/Commands/ShowErrorsCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/VisualStudioCredentialProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Migrate/ProjectJsonToPackageRefMigrator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/FileWatchers/SolutionConfigFileWatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/FileWatchers/IFileWatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/FileWatchers/IFileWatcherFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/FileWatchers/UserConfigFileWatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/FileWatchers/FileWatcherFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/NuGetProjectUpgradeUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/EnvDTESolutionUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/EnvDTEProjectUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/FrameworkAssemblyResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/VCProjectHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/GetPackageReferenceUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/RegistrySettingUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/RuntimeHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/FrameworkAssembly.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/TaskCombinators.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/RefreshFileUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/IProjectContextInfoUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/SolutionUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/MicrosoftBuildEvaluationProjectUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/NativeMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/ProjectRetargetingUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/ProjectInstalledPackage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/SettingsHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Utility/VSRestoreSettingsUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/CommonResources.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/NuGet.PackageManagement.VisualStudio.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/DefaultVSCredentialServiceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/VSSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/VsCredentialProviderAdapter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/VsProjectJsonNuGetProject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/VsProjectAdapterProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/CpsPackageReferenceProject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/VsMSBuildProjectSystemServices.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/VsProjectAdapter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/ProjectPackages.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/INuGetProjectProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/ProjectSystemCache.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/CpsPackageReferenceProjectProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/ProjectProviderContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/VsMSBuildNuGetProject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/ProjectJsonProjectProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/LegacyPackageReferenceProject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/MSBuildNuGetProjectProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/LegacyPackageReferenceProjectProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/NuGetProjectFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/FrameworkInstalledPackages.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/PackageReferenceProject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/IVsProjectAdapterProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Projects/IPackageReferenceProject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Strings.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/VisualStudioActivityLogger.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/VSMachineWideSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/SourceControl/DefaultTFSSourceControlManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/SourceControl/VsSourceControlTracker.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/SourceControl/VSSourceControlManagerProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/SourceControl/DTESourceControlUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Prompts/DotnetDeprecatedPrompt.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Prompts/DeprecatedFrameworkModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/NativeProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/FSharpProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/WixProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/JsProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/VsCoreProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/WindowsStoreProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/WebSiteProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/MSBuildNuGetProjectSystemFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/CpsProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/WebProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectSystems/VsMSBuildProjectSystem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Setting/IWritableSettingsStore.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Setting/SettingsManagerWrapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Setting/ISettingsStore.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Setting/ISettingsManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Setting/WritableSettingsStoreWrapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Setting/SettingsStoreWrapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Setting/SettingsManagerBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/OptionsPageActivator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Exceptions/ProjectNotNominatedException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/GetInstalledPackagesAsyncTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/PackageManagerUIRefreshEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/PackageManagerInstalledTabData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/ProjectTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/HyperlinkType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/PackageSourceMappingStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/NavigationType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/DiagnosticTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/CacheMissException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/SourceTelemetry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/NavigatedTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/VsProjectBuildPropertiesTelemetry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/SearchPageTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/NavigationOrigin.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/IVsProjectBuildPropertiesTelemetry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/PackageManagerCloseEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/TelemetryOnceEmitter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/NuGetProjectType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/SearchSelectionTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/SearchTelemetryEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Telemetry/VSTelemetryServiceUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/INuGetUIOptionsContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ICredentialServiceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetPackageFileService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetProjectUpgraderService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/PackageSearchMetadataCacheItemEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/PackageSearchMetadataCacheItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetSolutionManagerService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/BrokeredServicesUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/DefaultProjectThreadingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/ISharedServiceState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetPackageSearchService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/SharedServiceState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/IVsProjectThreadingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetSourcesService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/PackageVulnerabilityService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/IPackageVulnerabilityService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetProjectManagerService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/SearchObject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetLockService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Services/NuGetProjectManagerServiceState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/SearchResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/MultiSourceAutoCompleteProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/PackageSourceMoniker.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/InstalledPackageFeed.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/MultiSourcePackageMetadataProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/ConsolidatePackageFeed.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/ContinuationToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/PackageFeedEnumerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/RecommenderPackageFeed.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/PackageSearchMetadataCache.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/MultiSourcePackageFeed.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/LoadingStatusExtensionMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/UpdatePackageFeed.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/RefreshToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/IPackageFeed.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/PlainPackageFeedBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/InstalledAndTransitivePackageFeed.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/IPackageMetadataProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/IAutoCompleteProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/PackageFeeds/SourceRepositoryExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/CommonResources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/IDE/ExtensibleSourceRepositoryProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/IDE/VSDeleteOnRestartManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/IDE/VSProductUpdateService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/IDE/VsCommonOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/IDE/VSPackageRestoreManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/IDE/VSSolutionManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Handlers/ProjectUpgradeHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Handlers/ProjectRetargetingHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Runtime/BindingRedirectManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Runtime/BindingRedirectResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Runtime/RemoteAssembly.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/PackageCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/AsyncLockAwaiter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/PackageCollectionItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/IProjectContextInfoExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/IAsyncLockAwaitable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/PackageCollectionExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/AsyncLockReleaser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/VersionCollectionExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/InstalledAndTransitivePackageCollections.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Common/PackageCollectionItemExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/NuGetUIOptionsContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/Strings.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/CpsProjectSystemServices.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/VsProjectScriptHostService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/NativeProjectSystemReferencesReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/VsCoreProjectSystemReferenceReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/VsProjectBuildProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/CpsProjectSystemReferenceReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/VsCoreProjectSystemServices.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/ProjectServices/VsManagedLanguagesProjectSystemServices.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.PackageManagement.VisualStudio/VsCredentialProviderImporter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/NuGet.VisualStudio.Contracts.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/NuGetContractsFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/InstalledPackagesResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/NuGetInstalledPackage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/InstalledPackageResultStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/PublicAPI.Unshipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/INuGetProjectService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/PublicAPI.Shipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Contracts/NuGetServices.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Interop/NuGet.VisualStudio.Interop.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Interop/TemplateWizard.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Client/.vsixignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Client/.vsixinclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Client/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Client/extension.vsixlangpack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Client/source.extension.vsixmanifest: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.VisualStudio.Client/NuGet.VisualStudio.Client.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/MSSignCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/NuGetMSSignCommand.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/RepoSignCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/NuGet.MSSigning.Extensions.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/MSSignAbstract.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/NuGetMSSignCommand.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet.Clients/NuGet.MSSigning.Extensions/ilmerge.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet-Src.slnf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/restorehelper.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/loc.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/common.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/symbols.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/xunit.runsettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/config.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/test.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/common.legacy.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/tests.dev17.vsconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/common.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/UpdateNuGetModuleManifest.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/publish.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/docs.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/sign.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/common.project.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/RequiredModifierAttributes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/vs-threading.MainThreadAssertingMethods.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/HashCodeCombiner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/SimplePool.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/EqualityUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/NoAllocEnumerateExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/TaskResultCache.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/EncodingUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/DeconstructionExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/vs-threading.MembersRequiringMainThread.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/vs-threading.MainThreadSwitchingMethods.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/XmlUtility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/NullableAttributes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/SharedExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/TaskResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/IsExternalInit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Shared/StringBuilderPool.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/NOTICES.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/BuildValidator.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/build.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/OptProfV2.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/DotNetSdkVersions.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/common.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/TestShared/RequiredModifierAttributes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/TestShared/CommonAssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/TestShared/IsExternalInit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/runsettings.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/sign.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/ignorecodesign.csv: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/tests.optprof.dev17.vsconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/template.runsettingsproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/BannedSymbols.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/DotNetSdkTestVersions.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet-Src-Commandline.slnf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T21:47:43+01:00 exit 125

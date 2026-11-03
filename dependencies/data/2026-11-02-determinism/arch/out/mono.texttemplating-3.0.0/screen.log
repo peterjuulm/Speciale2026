@@ -1,0 +1,54 @@
+start 2026-11-01T12:00:13+01:00
+$ git -C /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0 checkout -q -- .
+$ dotnet restore Mono.TextTemplating/Mono.TextTemplating.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj (in 1,26 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build Mono.TextTemplating/Mono.TextTemplating.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack Mono.TextTemplating/Mono.TextTemplating.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/ParsedTemplate.cs(98,14): warning CA1859: Change type of variable 'seg' from 'Mono.TextTemplating.ISegment' to 'Mono.TextTemplating.TemplateSegment?' for improved performance (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1859) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/TemplatingEngine.CodeGeneration.cs(205,8): warning CA2263: Prefer the generic overload 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default<T>()' instead of 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=netstandard2.0]
+  Mono.TextTemplating -> /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/bin/Release/netstandard2.0/Mono.TextTemplating.dll
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/TemplatingEngine.CodeGeneration.cs(205,8): warning CA2263: Prefer the generic overload 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default<T>()' instead of 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/ParsedTemplate.cs(98,14): warning CA1859: Change type of variable 'seg' from 'Mono.TextTemplating.ISegment' to 'Mono.TextTemplating.TemplateSegment?' for improved performance (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1859) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net472]
+  Mono.TextTemplating -> /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/bin/Release/net472/Mono.TextTemplating.dll
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/DirectoryHelper.cs(51,51): warning CA2263: Prefer the generic overload 'System.Reflection.MethodInfo.CreateDelegate<T>()' instead of 'System.Reflection.MethodInfo.CreateDelegate(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/TemplatingEngine.CodeGeneration.cs(205,8): warning CA2263: Prefer the generic overload 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default<T>()' instead of 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/ParsedTemplate.cs(98,14): warning CA1859: Change type of variable 'seg' from 'Mono.TextTemplating.ISegment' to 'Mono.TextTemplating.TemplateSegment?' for improved performance (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1859) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net6.0]
+  Mono.TextTemplating -> /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/bin/Release/net6.0/Mono.TextTemplating.dll
+  Successfully created package '/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/packages/Release/Mono.TextTemplating.3.0.0-gcb559e2032.nupkg'.
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/ParsedTemplate.cs(98,14): warning CA1859: Change type of variable 'seg' from 'Mono.TextTemplating.ISegment' to 'Mono.TextTemplating.TemplateSegment?' for improved performance (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1859) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/TemplatingEngine.CodeGeneration.cs(205,8): warning CA2263: Prefer the generic overload 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default<T>()' instead of 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/TemplatingEngine.CodeGeneration.cs(205,8): warning CA2263: Prefer the generic overload 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default<T>()' instead of 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/ParsedTemplate.cs(98,14): warning CA1859: Change type of variable 'seg' from 'Mono.TextTemplating.ISegment' to 'Mono.TextTemplating.TemplateSegment?' for improved performance (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1859) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/DirectoryHelper.cs(51,51): warning CA2263: Prefer the generic overload 'System.Reflection.MethodInfo.CreateDelegate<T>()' instead of 'System.Reflection.MethodInfo.CreateDelegate(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/TemplatingEngine.CodeGeneration.cs(205,8): warning CA2263: Prefer the generic overload 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default<T>()' instead of 'Mono.TextTemplating.CodeDomBuilder.TypeReference.Default(System.Type)' (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2263) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating/ParsedTemplate.cs(98,14): warning CA1859: Change type of variable 'seg' from 'Mono.TextTemplating.ISegment' to 'Mono.TextTemplating.TemplateSegment?' for improved performance (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1859) [/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj::TargetFramework=net6.0]
+    7 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.50
+  Successfully created package '/private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/out/Mono.TextTemplating.3.0.0-gcb559e2032.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:00:23+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0 checkout -q -- .
+$ dotnet restore Mono.TextTemplating/Mono.TextTemplating.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/mono.texttemplating-3.0.0/Mono.TextTemplating/Mono.TextTemplating.csproj (in 126 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,5 @@
+start 2026-11-02T19:02:23+01:00
+$ git clone -q --no-checkout https://github.com/dotnet/aspnetcore /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0 -c advice.detachedHead=false checkout -q 3f1acb59718cadf111a0a796681e3d3509bb3381
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0 submodule update --init --recursive -q

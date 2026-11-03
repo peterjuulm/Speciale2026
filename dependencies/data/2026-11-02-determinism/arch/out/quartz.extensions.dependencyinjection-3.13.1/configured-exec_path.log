@@ -1,0 +1,38 @@
+start 2026-11-03T06:34:58+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1730541062 && dotnet pack src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1730541062; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Quartz -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz/bin/Release/net6.0/Quartz.dll
+  Quartz.Extensions.DependencyInjection -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz.Extensions.DependencyInjection/bin/Release/net6.0/Quartz.Extensions.DependencyInjection.dll
+  Quartz.Extensions.DependencyInjection -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz.Extensions.DependencyInjection/bin/Release/net8.0/Quartz.Extensions.DependencyInjection.dll
+  Quartz -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz/bin/Release/netstandard2.0/Quartz.dll
+  Quartz.Extensions.DependencyInjection -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz.Extensions.DependencyInjection/bin/Release/netstandard2.0/Quartz.Extensions.DependencyInjection.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:17.68
+  Successfully created package '/tmp/reprotest.cOVQYr/const_build_path/out/Quartz.Extensions.DependencyInjection.3.13.1.nupkg'.
+  Successfully created package '/tmp/reprotest.cOVQYr/const_build_path/out/Quartz.Extensions.DependencyInjection.3.13.1.snupkg'.
+  Quartz -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz/bin/Release/net6.0/Quartz.dll
+  Quartz.Extensions.DependencyInjection -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz.Extensions.DependencyInjection/bin/Release/net6.0/Quartz.Extensions.DependencyInjection.dll
+  Quartz.Extensions.DependencyInjection -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz.Extensions.DependencyInjection/bin/Release/net8.0/Quartz.Extensions.DependencyInjection.dll
+  Quartz -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz/bin/Release/netstandard2.0/Quartz.dll
+  Quartz.Extensions.DependencyInjection -> /tmp/reprotest.cOVQYr/const_build_path/src/Quartz.Extensions.DependencyInjection/bin/Release/netstandard2.0/Quartz.Extensions.DependencyInjection.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:18.55
+  Successfully created package '/tmp/reprotest.cOVQYr/const_build_path/out/Quartz.Extensions.DependencyInjection.3.13.1.nupkg'.
+  Successfully created package '/tmp/reprotest.cOVQYr/const_build_path/out/Quartz.Extensions.DependencyInjection.3.13.1.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+7d950f55eb21e3de9a8bf9f13cb4dc8b850106ea60601c33c4cefc469232363b  ./out/Quartz.Extensions.DependencyInjection.3.13.1.nupkg
+c8c1942f9fd433096e08bd5ceef09f0ec1b300846e9e124f8b9035a0d1cb271a  ./out/Quartz.Extensions.DependencyInjection.3.13.1.snupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T06:35:38+01:00 exit 0

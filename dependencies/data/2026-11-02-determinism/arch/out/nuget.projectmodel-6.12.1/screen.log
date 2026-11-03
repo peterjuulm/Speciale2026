@@ -1,0 +1,79 @@
+start 2026-11-02T22:48:37+01:00
+$ git -C /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1 checkout -q -- .
+$ dotnet restore src/NuGet.Core/NuGet.ProjectModel/NuGet.ProjectModel.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Protocol/NuGet.Protocol.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.ProjectModel/NuGet.ProjectModel.csproj (in 167 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/NuGet.DependencyResolver.Core.csproj (in 167 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.16
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/NuGet.Core/NuGet.ProjectModel/NuGet.ProjectModel.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.ProjectModel/NuGet.ProjectModel.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  NuGet.Versioning -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.Frameworks -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.LibraryModel -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.LibraryModel/bin/Release/netstandard2.0/NuGet.LibraryModel.dll
+  NuGet.Configuration -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Configuration/bin/Release/netstandard2.0/NuGet.Configuration.dll
+  NuGet.Packaging -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Packaging/bin/Release/netstandard2.0/NuGet.Packaging.dll
+  NuGet.Packaging -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Packaging/bin/Release/netcoreapp5.0/NuGet.Packaging.dll
+  NuGet.Protocol -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Protocol/bin/Release/netstandard2.0/NuGet.Protocol.dll
+/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/GraphModel/GraphOperations.cs(871,14): error IDE0055: Fix formatting (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0055) [/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/NuGet.DependencyResolver.Core.csproj::TargetFramework=netstandard2.0]
+  NuGet.Protocol -> /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/artifacts/NuGet.Protocol/bin/Release/netcoreapp5.0/NuGet.Protocol.dll
+/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/GraphModel/GraphOperations.cs(871,14): error IDE0055: Fix formatting (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0055) [/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/NuGet.DependencyResolver.Core.csproj::TargetFramework=netcoreapp5.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/GraphModel/GraphOperations.cs(871,14): error IDE0055: Fix formatting (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0055) [/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/NuGet.DependencyResolver.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/GraphModel/GraphOperations.cs(871,14): error IDE0055: Fix formatting (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0055) [/private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/NuGet.DependencyResolver.Core.csproj::TargetFramework=netcoreapp5.0]
+    0 Warning(s)
+    2 Error(s)
+
+Time Elapsed 00:00:38.92
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T22:49:22+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1 checkout -q -- .
+$ dotnet restore src/NuGet.Core/NuGet.ProjectModel/NuGet.ProjectModel.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 174 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Protocol/NuGet.Protocol.csproj (in 175 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 174 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj (in 174 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 174 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 174 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 175 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.DependencyResolver.Core/NuGet.DependencyResolver.Core.csproj (in 175 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.projectmodel-6.12.1/src/NuGet.Core/NuGet.ProjectModel/NuGet.ProjectModel.csproj (in 175 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.44
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

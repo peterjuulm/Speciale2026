@@ -1,0 +1,143 @@
+start 2026-11-03T00:19:59+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072 && dotnet pack sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.dyIuRC/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.security.keyvault.certificates/4.5.0/lib/netstandard2.0/Azure.Security.KeyVault.Certificates.dll using assemblies from /tmp/reprotest.dyIuRC/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/
+  InheritDocTask replaced 65 of 65 inheritdoc tags and removed 6 private member docs in /tmp/reprotest.dyIuRC/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.xml
+  Azure.Security.KeyVault.Certificates -> /tmp/reprotest.dyIuRC/const_build_path/artifacts/bin/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.dyIuRC/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.99
+  Found the following change log entry for version '4.6.0' in [/tmp/reprotest.dyIuRC/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/CHANGELOG.md].
+  -----
+  ## 4.6.0 (2024-02-14)
+  
+  Changes from both the last release and the last beta include:
+  
+  ### Features Added
+  
+  - Added `CertificateProperties.X509ThumbprintString` to return the hexadecimal string representation of the SHA-1 hash of the certificate.
+    `CertificateProperties.X509Thumbprint` has been hidden but is still available.
+  
+  ### Breaking Changes
+  
+  - Renamed tags reported on `CertificateClient` activities to following OpenTelemetry attribute naming conventions:
+    - `certificate` to `az.keyvault.certificate.name`
+    - `version` to `az.keyvault.certificate.version`
+    - `issuer` to `az.keyvault.certificate.issuer.name`
+  
+  ### Bugs Fixed
+  
+  - When a Key Vault is moved to another tenant, the client is reauthenticated.
+  
+  ### Other Changes
+  
+  - The default service version is now "7.5".
+  - Distributed tracing with `ActivitySource` is stable and no longer requires the [Experimental feature-flag](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md).
+  
+  -----
+  Successfully created package '/tmp/reprotest.dyIuRC/const_build_path/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.nupkg'.
+  Successfully created package '/tmp/reprotest.dyIuRC/const_build_path/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.symbols.nupkg'.
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.dyIuRC/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.security.keyvault.certificates/4.5.0/lib/netstandard2.0/Azure.Security.KeyVault.Certificates.dll using assemblies from /tmp/reprotest.dyIuRC/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/
+  InheritDocTask replaced 65 of 65 inheritdoc tags and removed 6 private member docs in /tmp/reprotest.dyIuRC/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.xml
+  Azure.Security.KeyVault.Certificates -> /tmp/reprotest.dyIuRC/const_build_path/artifacts/bin/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.dyIuRC/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.84
+  Found the following change log entry for version '4.6.0' in [/tmp/reprotest.dyIuRC/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/CHANGELOG.md].
+  -----
+  ## 4.6.0 (2024-02-14)
+  
+  Changes from both the last release and the last beta include:
+  
+  ### Features Added
+  
+  - Added `CertificateProperties.X509ThumbprintString` to return the hexadecimal string representation of the SHA-1 hash of the certificate.
+    `CertificateProperties.X509Thumbprint` has been hidden but is still available.
+  
+  ### Breaking Changes
+  
+  - Renamed tags reported on `CertificateClient` activities to following OpenTelemetry attribute naming conventions:
+    - `certificate` to `az.keyvault.certificate.name`
+    - `version` to `az.keyvault.certificate.version`
+    - `issuer` to `az.keyvault.certificate.issuer.name`
+  
+  ### Bugs Fixed
+  
+  - When a Key Vault is moved to another tenant, the client is reauthenticated.
+  
+  ### Other Changes
+  
+  - The default service version is now "7.5".
+  - Distributed tracing with `ActivitySource` is stable and no longer requires the [Experimental feature-flag](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md).
+  
+  -----
+/tmp/reprotest.dyIuRC/const_build_path/eng/Directory.Build.Common.targets(77,5): error MSB3491: Could not write lines to file "/tmp/reprotest.dyIuRC/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/README.md". Failed to create '/tmp/reprotest.dyIuRC/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/a5xny3wi.cra~' with allocation size '17751' because the disk was full.  [/tmp/reprotest.dyIuRC/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj]
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.dyIuRC/build-experiment-1-aux && \
+    mv /tmp/reprotest.dyIuRC/build-experiment-1/ /tmp/reprotest.dyIuRC/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0002 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.dyIuRC/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072 && dotnet pack sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.dyIuRC/const_build_path /tmp/reprotest.dyIuRC/build-experiment-1/ || __c=$?; \
+    rm -rf /tmp/reprotest.dyIuRC/build-experiment-1-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-11-03T00:20:54+01:00 exit 125

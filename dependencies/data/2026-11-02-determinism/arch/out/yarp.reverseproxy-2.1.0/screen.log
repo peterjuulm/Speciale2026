@@ -1,0 +1,46 @@
+start 2026-11-02T22:52:54+01:00
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 checkout -q -- .
+$ dotnet restore src/ReverseProxy/Yarp.ReverseProxy.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj (in 1,71 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/ReverseProxy/Yarp.ReverseProxy.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/ReverseProxy/Yarp.ReverseProxy.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net6.0]
+  Yarp.ReverseProxy -> /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/artifacts/bin/Yarp.ReverseProxy/Release/net6.0/Yarp.ReverseProxy.dll
+/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net7.0]
+  Yarp.ReverseProxy -> /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/artifacts/bin/Yarp.ReverseProxy/Release/net7.0/Yarp.ReverseProxy.dll
+/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net8.0]
+  Yarp.ReverseProxy -> /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/artifacts/bin/Yarp.ReverseProxy/Release/net8.0/Yarp.ReverseProxy.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net7.0]
+/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net8.0]
+    3 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.73
+  Successfully created package '/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/out/Yarp.ReverseProxy.2.1.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/out/Yarp.ReverseProxy.2.1.0.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T22:53:12+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 checkout -q -- .
+$ dotnet restore src/ReverseProxy/Yarp.ReverseProxy.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj (in 233 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,32 @@
+start 2026-11-01T15:01:03+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/ICSharpCode.SharpZipLib/ICSharpCode.SharpZipLib.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/ICSharpCode.SharpZipLib/ICSharpCode.SharpZipLib.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  ICSharpCode.SharpZipLib -> /tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/netstandard2.0/ICSharpCode.SharpZipLib.dll
+  ICSharpCode.SharpZipLib -> /tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/netstandard2.1/ICSharpCode.SharpZipLib.dll
+  ICSharpCode.SharpZipLib -> /tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/net6.0/ICSharpCode.SharpZipLib.dll
+  The package SharpZipLib.1.4.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/SharpZipLib.1.4.2.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.99
+  The package SharpZipLib.1.4.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.EQ8jK0/const_build_path/out/SharpZipLib.1.4.2.nupkg'.
+  ICSharpCode.SharpZipLib -> /tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/netstandard2.0/ICSharpCode.SharpZipLib.dll
+  ICSharpCode.SharpZipLib -> /tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/netstandard2.1/ICSharpCode.SharpZipLib.dll
+  ICSharpCode.SharpZipLib -> /tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/net6.0/ICSharpCode.SharpZipLib.dll
+  The package SharpZipLib.1.4.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.EQ8jK0/const_build_path/src/ICSharpCode.SharpZipLib/bin/Release/SharpZipLib.1.4.2.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:17.46
+  The package SharpZipLib.1.4.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.EQ8jK0/const_build_path/out/SharpZipLib.1.4.2.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/sharpziplib-1.4.2/asis-timezone-store/control/source-root/out/SharpZipLib.1.4.2.nupkg og /private/tmp/nupkg-determinism/out/sharpziplib-1.4.2/asis-timezone-store/experiment-1/source-root/out/SharpZipLib.1.4.2.nupkg er forskellige
+end 2026-11-01T15:01:41+01:00 exit 1

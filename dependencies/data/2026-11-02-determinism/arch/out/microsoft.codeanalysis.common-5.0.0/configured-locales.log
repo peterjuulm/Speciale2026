@@ -1,0 +1,37 @@
+start 2026-11-03T01:51:38+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763419468 && dotnet pack src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763419468; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  Microsoft.CodeAnalysis -> /tmp/reprotest.rpPO8W/const_build_path/artifacts/bin/Microsoft.CodeAnalysis/Release/net8.0/Microsoft.CodeAnalysis.dll
+  Microsoft.CodeAnalysis -> /tmp/reprotest.rpPO8W/const_build_path/artifacts/bin/Microsoft.CodeAnalysis/Release/net9.0/Microsoft.CodeAnalysis.dll
+  Microsoft.CodeAnalysis -> /tmp/reprotest.rpPO8W/const_build_path/artifacts/bin/Microsoft.CodeAnalysis/Release/netstandard2.0/Microsoft.CodeAnalysis.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:14.11
+
+  The package Microsoft.CodeAnalysis.Common.5.0.0-ci is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.rpPO8W/const_build_path/out/Microsoft.CodeAnalysis.Common.5.0.0-ci.nupkg'.
+
+  Microsoft.CodeAnalysis -> /tmp/reprotest.rpPO8W/const_build_path/artifacts/bin/Microsoft.CodeAnalysis/Release/net8.0/Microsoft.CodeAnalysis.dll
+  Microsoft.CodeAnalysis -> /tmp/reprotest.rpPO8W/const_build_path/artifacts/bin/Microsoft.CodeAnalysis/Release/net9.0/Microsoft.CodeAnalysis.dll
+  Microsoft.CodeAnalysis -> /tmp/reprotest.rpPO8W/const_build_path/artifacts/bin/Microsoft.CodeAnalysis/Release/netstandard2.0/Microsoft.CodeAnalysis.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:47.86
+
+  The package Microsoft.CodeAnalysis.Common.5.0.0-ci is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.rpPO8W/const_build_path/out/Microsoft.CodeAnalysis.Common.5.0.0-ci.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+b30eca0d620c41dc1e414cf1c9a68ac1f0d694ff380ca0fdb597583ca061dc2f  ./out/Microsoft.CodeAnalysis.Common.5.0.0-ci.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T01:55:57+01:00 exit 0

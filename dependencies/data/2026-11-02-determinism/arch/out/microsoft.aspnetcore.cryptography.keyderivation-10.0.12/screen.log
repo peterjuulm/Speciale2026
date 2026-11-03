@@ -1,0 +1,24 @@
+start 2026-11-02T18:08:54+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.cryptography.keyderivation-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.cryptography.keyderivation-10.0.12 checkout -q -- .
+$ dotnet restore src/aspnetcore/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.cryptography.keyderivation-10.0.12/src/aspnetcore/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj::TargetFramework=net10.0]
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:08:58+01:00 restore failed
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.cryptography.keyderivation-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.cryptography.keyderivation-10.0.12 checkout -q -- .
+$ dotnet restore src/aspnetcore/src/DataProtection/Cryptography.KeyDerivation/src/Microsoft.AspNetCore.Cryptography.KeyDerivation.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.FrameworkReferenceResolution.targets(66,5): error NETSDK1226: Prune Package data not found .NETCoreApp 10.0 Microsoft.NETCore.App.  To ignore this error, set the AllowMissingPrunePackageData to true. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.cryptography.keyderivation-10.0.12/src/aspnetcore/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj::TargetFramework=net10.0]
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

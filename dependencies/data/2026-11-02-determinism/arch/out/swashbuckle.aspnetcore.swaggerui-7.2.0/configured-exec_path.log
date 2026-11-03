@@ -1,0 +1,56 @@
+start 2026-11-03T05:02:00+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733741965 && dotnet pack src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733741965; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  npm notice run swashbuckle@1.0.0 postinstall
+  npm notice run node scripts/remove-source-map-links.js
+  
+  added 2 packages, and audited 3 packages in 2s
+  
+  found 0 vulnerabilities
+  npm warn install-scripts 1 package had install scripts blocked because they are not covered by allowScripts:
+  npm warn install-scripts   @scarf/scarf@1.4.0 (postinstall: node ./report.js)
+  npm warn install-scripts
+  npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:20.83
+  Successfully created package '/tmp/reprotest.dTvcGx/const_build_path/out/Swashbuckle.AspNetCore.SwaggerUI.7.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.dTvcGx/const_build_path/out/Swashbuckle.AspNetCore.SwaggerUI.7.2.0.snupkg'.
+  npm notice run swashbuckle@1.0.0 postinstall
+  npm notice run node scripts/remove-source-map-links.js
+  
+  added 2 packages, and audited 3 packages in 791ms
+  
+  found 0 vulnerabilities
+  npm warn install-scripts 1 package had install scripts blocked because they are not covered by allowScripts:
+  npm warn install-scripts   @scarf/scarf@1.4.0 (postinstall: node ./report.js)
+  npm warn install-scripts
+  npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+  Swashbuckle.AspNetCore.SwaggerUI -> /tmp/reprotest.dTvcGx/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.SwaggerUI/release_netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.32
+  Successfully created package '/tmp/reprotest.dTvcGx/const_build_path/out/Swashbuckle.AspNetCore.SwaggerUI.7.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.dTvcGx/const_build_path/out/Swashbuckle.AspNetCore.SwaggerUI.7.2.0.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+61294d080f40d91b44e8728dab601cea0a76c8ee352095b51b7d121f493230f7  ./out/Swashbuckle.AspNetCore.SwaggerUI.7.2.0.snupkg
+1b2e92eb4c8cb2d6c7c56ee92afdb99daab1be2fcef5132ae326f90c63ea267a  ./out/Swashbuckle.AspNetCore.SwaggerUI.7.2.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T05:02:40+01:00 exit 0

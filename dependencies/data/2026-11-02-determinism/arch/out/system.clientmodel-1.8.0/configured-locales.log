@@ -1,0 +1,68 @@
+start 2026-11-03T05:19:50+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/core/System.ClientModel/src/System.ClientModel.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762189204 && dotnet pack sdk/core/System.ClientModel/src/System.ClientModel.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762189204; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  InheritDocTask replaced 3 of 3 inheritdoc tags and removed 1 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel.SourceGeneration/Release/netstandard2.0/System.ClientModel.SourceGeneration.xml
+  System.ClientModel.SourceGeneration -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel.SourceGeneration/Release/netstandard2.0/System.ClientModel.SourceGeneration.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/netstandard2.0/System.ClientModel.dll using assemblies from /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/netstandard2.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/netstandard2.0/System.ClientModel.xml
+  System.ClientModel -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel/Release/netstandard2.0/System.ClientModel.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/netstandard2.0/System.ClientModel.dll using assemblies from /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net8.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net8.0/System.ClientModel.xml
+  System.ClientModel -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel/Release/net8.0/System.ClientModel.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/net8.0/System.ClientModel.dll using assemblies from /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net9.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net9.0/System.ClientModel.xml
+  System.ClientModel -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel/Release/net9.0/System.ClientModel.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:46.25
+  Found the following change log entry for version '1.8.0' in [/tmp/reprotest.d5PZ49/const_build_path/sdk/core/System.ClientModel/CHANGELOG.md].
+  -----
+  ## 1.8.0 (2025-10-31)
+  
+  ### Features Added
+  
+  - Added `ClientRequestId` property to `PipelineRequest` which exposes the value that is used in logging and distributed tracing.
+  
+  -----
+  Successfully created package '/tmp/reprotest.d5PZ49/const_build_path/out/System.ClientModel.1.8.0-alpha.20261103.1.nupkg'.
+  Successfully created package '/tmp/reprotest.d5PZ49/const_build_path/out/System.ClientModel.1.8.0-alpha.20261103.1.symbols.nupkg'.
+  InheritDocTask replaced 3 of 3 inheritdoc tags and removed 1 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel.SourceGeneration/Release/netstandard2.0/System.ClientModel.SourceGeneration.xml
+  System.ClientModel.SourceGeneration -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel.SourceGeneration/Release/netstandard2.0/System.ClientModel.SourceGeneration.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/netstandard2.0/System.ClientModel.dll using assemblies from /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/netstandard2.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/netstandard2.0/System.ClientModel.xml
+  System.ClientModel -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel/Release/netstandard2.0/System.ClientModel.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/netstandard2.0/System.ClientModel.dll using assemblies from /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net8.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net8.0/System.ClientModel.xml
+  System.ClientModel -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel/Release/net8.0/System.ClientModel.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//system.clientmodel/1.7.0/lib/net8.0/System.ClientModel.dll using assemblies from /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net9.0/
+  InheritDocTask replaced 32 of 32 inheritdoc tags and removed 10 private member docs in /tmp/reprotest.d5PZ49/const_build_path/artifacts/obj/System.ClientModel/Release/net9.0/System.ClientModel.xml
+  System.ClientModel -> /tmp/reprotest.d5PZ49/const_build_path/artifacts/bin/System.ClientModel/Release/net9.0/System.ClientModel.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:28.24
+  Found the following change log entry for version '1.8.0' in [/tmp/reprotest.d5PZ49/const_build_path/sdk/core/System.ClientModel/CHANGELOG.md].
+  -----
+  ## 1.8.0 (2025-10-31)
+  
+  ### Features Added
+  
+  - Added `ClientRequestId` property to `PipelineRequest` which exposes the value that is used in logging and distributed tracing.
+  
+  -----
+  Successfully created package '/tmp/reprotest.d5PZ49/const_build_path/out/System.ClientModel.1.8.0-alpha.20261103.1.nupkg'.
+  Successfully created package '/tmp/reprotest.d5PZ49/const_build_path/out/System.ClientModel.1.8.0-alpha.20261103.1.symbols.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+1aeeb26c3f8a07c3014520ab9f20a12a3b91c2dd1b75a3194305185766488ddd  ./out/System.ClientModel.1.8.0-alpha.20261103.1.nupkg
+f59a28d58142ffb2f200e0ab1b799190866cc3473720e8098c55bff3ec405898  ./out/System.ClientModel.1.8.0-alpha.20261103.1.symbols.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T05:21:39+01:00 exit 0

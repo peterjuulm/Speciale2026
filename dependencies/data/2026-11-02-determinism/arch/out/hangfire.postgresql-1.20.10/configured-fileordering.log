@@ -1,0 +1,33 @@
+start 2026-11-03T01:07:11+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1728894443 && dotnet pack src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1728894443; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Hangfire.PostgreSql -> /tmp/reprotest.qt4rxH/const_build_path/src/Hangfire.PostgreSql/bin/Release/netstandard2.0/Hangfire.PostgreSql.dll
+  The package Hangfire.PostgreSql.1.20.10 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.qt4rxH/const_build_path/src/Hangfire.PostgreSql/bin/Release/Hangfire.PostgreSql.1.20.10.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.52
+  The package Hangfire.PostgreSql.1.20.10 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.qt4rxH/const_build_path/out/Hangfire.PostgreSql.1.20.10.nupkg'.
+  Hangfire.PostgreSql -> /tmp/reprotest.qt4rxH/const_build_path/src/Hangfire.PostgreSql/bin/Release/netstandard2.0/Hangfire.PostgreSql.dll
+  The package Hangfire.PostgreSql.1.20.10 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.qt4rxH/const_build_path/src/Hangfire.PostgreSql/bin/Release/Hangfire.PostgreSql.1.20.10.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.62
+  The package Hangfire.PostgreSql.1.20.10 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.qt4rxH/const_build_path/out/Hangfire.PostgreSql.1.20.10.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+4c09eb3addf02a8598f12fcb6be75d0041a98c9c1bdcf04b940dfb04b99e21aa  ./out/Hangfire.PostgreSql.1.20.10.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T01:07:23+01:00 exit 0

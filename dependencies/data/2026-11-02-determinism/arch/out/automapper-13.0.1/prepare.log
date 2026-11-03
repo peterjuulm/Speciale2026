@@ -1,0 +1,38 @@
+start 2026-11-01T09:23:52+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/automapper-13.0.1
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 remote add origin https://github.com/AutoMapper/AutoMapper
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 fetch -q origin f13753466880413af7e4b2f642240ee06514544a
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 -c advice.detachedHead=false checkout -q f13753466880413af7e4b2f642240ee06514544a
+start 2026-11-01T12:46:27+01:00
+$ git clone -q --mirror https://github.com/AutoMapper/AutoMapper /private/tmp/nupkg-determinism/mirrors/https_github.com_AutoMapper_AutoMapper.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_AutoMapper_AutoMapper.git /private/tmp/nupkg-determinism/src/automapper-13.0.1
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 remote set-url origin https://github.com/AutoMapper/AutoMapper
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 -c advice.detachedHead=false checkout -q f13753466880413af7e4b2f642240ee06514544a
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 checkout -q -- .
+$ dotnet restore src/AutoMapper/AutoMapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/AutoMapper.csproj (in 116 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T17:43:38+01:00
+$ git clone -q --no-checkout https://github.com/AutoMapper/AutoMapper /private/tmp/nupkg-determinism/src/automapper-13.0.1
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 -c advice.detachedHead=false checkout -q f13753466880413af7e4b2f642240ee06514544a
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 checkout -q -- .
+$ dotnet restore src/AutoMapper/AutoMapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/AutoMapper.csproj (in 124 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

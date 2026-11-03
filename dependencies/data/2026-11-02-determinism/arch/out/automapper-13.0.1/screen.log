@@ -1,0 +1,38 @@
+start 2026-11-01T09:23:58+01:00
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 checkout -q -- .
+$ dotnet restore src/AutoMapper/AutoMapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/AutoMapper.csproj (in 3,06 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/AutoMapper/AutoMapper.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/AutoMapper/AutoMapper.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  /tmp/MSBuildTempbKlIIh/tmp43b5a2da51604ee28c313508b8a2ab7f.exec.cmd: linje 2: /private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/ApiCompat/PreBuild.sh: Adgang nægtet
+/private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/AutoMapper.csproj(49,5): error MSB3073: The command ""/private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/ApiCompat/PreBuild.sh" 13.0.1" exited with code 126. [TargetFramework=net6.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/AutoMapper.csproj(49,5): error MSB3073: The command ""/private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/ApiCompat/PreBuild.sh" 13.0.1" exited with code 126. [TargetFramework=net6.0]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:02.08
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T09:24:09+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/automapper-13.0.1 checkout -q -- .
+$ dotnet restore src/AutoMapper/AutoMapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/automapper-13.0.1/src/AutoMapper/AutoMapper.csproj (in 384 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,37 @@
+start 2026-11-02T18:12:01+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0 checkout -q -- .
+$ dotnet restore src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 497 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/Directory.Build.props(261,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/Directory.Build.props(261,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.35
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:12:08+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0 checkout -q -- .
+$ dotnet restore src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection.abstractions-9.0.0/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 565 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

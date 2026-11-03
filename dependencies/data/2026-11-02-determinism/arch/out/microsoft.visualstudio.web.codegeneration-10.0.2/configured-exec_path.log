@@ -1,0 +1,40 @@
+start 2026-11-02T20:25:28+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Scaffolding/VS.Web.CG/VS.Web.CG.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1767716335 && dotnet pack src/Scaffolding/VS.Web.CG/VS.Web.CG.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1767716335; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.DotNet.Scaffolding.Shared -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/Microsoft.DotNet.Scaffolding.Shared/Release/net9.0/Microsoft.DotNet.Scaffolding.Shared.dll
+  VS.Web.CG.Utils -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.Utils/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+  VS.Web.CG.Templating -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.Templating/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+  VS.Web.CG.Core -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.Core/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+  VS.Web.CG.EFCore -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.EFCore/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+  VS.Web.CG -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:19.72
+  Successfully created package '/tmp/reprotest.PdgEBT/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.nupkg'.
+  Successfully created package '/tmp/reprotest.PdgEBT/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.symbols.nupkg'.
+  Microsoft.DotNet.Scaffolding.Shared -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/Microsoft.DotNet.Scaffolding.Shared/Release/net9.0/Microsoft.DotNet.Scaffolding.Shared.dll
+  VS.Web.CG.Utils -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.Utils/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+  VS.Web.CG.Templating -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.Templating/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+  VS.Web.CG.Core -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.Core/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+  VS.Web.CG.EFCore -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG.EFCore/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+  VS.Web.CG -> /tmp/reprotest.PdgEBT/const_build_path/artifacts/bin/VS.Web.CG/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:21.19
+  Successfully created package '/tmp/reprotest.PdgEBT/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.nupkg'.
+  Successfully created package '/tmp/reprotest.PdgEBT/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.symbols.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+643422c86d128b073c142f4e59c244bae92fcadee6fe5ea53c8ff2bd464857db  ./out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.symbols.nupkg
+f7a3d006572c1b954fc44cc502b717ce057cce49ee45c47e6f5b602b68f7b85d  ./out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T20:26:15+01:00 exit 0

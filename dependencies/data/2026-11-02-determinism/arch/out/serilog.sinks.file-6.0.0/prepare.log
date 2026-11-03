@@ -1,0 +1,51 @@
+start 2026-11-01T12:15:19+01:00
+$ git clone -q --mirror https://github.com/serilog/serilog-sinks-file /private/tmp/nupkg-determinism/mirrors/https_github.com_serilog_serilog-sinks-file.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_serilog_serilog-sinks-file.git /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 remote set-url origin https://github.com/serilog/serilog-sinks-file
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 -c advice.detachedHead=false checkout -q c7b9bc3d87f9bb98572a52286135efda1e608ad6
+global.json: none
+start 2026-11-01T14:47:03+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_serilog_serilog-sinks-file.git /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 remote set-url origin https://github.com/serilog/serilog-sinks-file
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 -c advice.detachedHead=false checkout -q c7b9bc3d87f9bb98572a52286135efda1e608ad6
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/Serilog.Sinks.File.csproj (in 156 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T23:20:13+01:00
+$ git clone -q --no-checkout https://github.com/serilog/serilog-sinks-file /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 -c advice.detachedHead=false checkout -q c7b9bc3d87f9bb98572a52286135efda1e608ad6
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/Serilog.Sinks.File.csproj (in 230 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T04:56:15+01:00
+$ git clone -q --no-checkout https://github.com/serilog/serilog-sinks-file /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 -c advice.detachedHead=false checkout -q c7b9bc3d87f9bb98572a52286135efda1e608ad6
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.sinks.file-6.0.0/src/Serilog.Sinks.File/Serilog.Sinks.File.csproj (in 288 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,37 @@
+start 2026-11-01T12:03:43+01:00
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 checkout -q -- .
+$ dotnet restore src/EFCore.PG/EFCore.PG.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3/src/EFCore.PG/EFCore.PG.csproj (in 987 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/EFCore.PG/EFCore.PG.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/EFCore.PG/EFCore.PG.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  EFCore.PG -> /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3/src/EFCore.PG/bin/Release/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.39
+  Successfully created package '/private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3/out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3/out/Npgsql.EntityFrameworkCore.PostgreSQL.10.0.3.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:03:52+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3 checkout -q -- .
+$ dotnet restore src/EFCore.PG/EFCore.PG.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/npgsql.entityframeworkcore.postgresql-10.0.3/src/EFCore.PG/EFCore.PG.csproj (in 129 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

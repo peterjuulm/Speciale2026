@@ -1,0 +1,504 @@
+start 2026-11-02T17:55:39+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/ExCSS/ExCSS.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1753300339 && dotnet pack src/ExCSS/ExCSS.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1753300339; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./license.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./readme.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-e1c0ae1dfc3a637b53ef529406e4deecd7d1c11e.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-e1c0ae1dfc3a637b53ef529406e4deecd7d1c11e.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-e1c0ae1dfc3a637b53ef529406e4deecd7d1c11e.idx: Wrote only 3072 of 10240 bytes
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Wrote only 3584 of 4386 bytes
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/ci.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/actions/dotnet/nuget/action.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/actions/dotnet/version/action.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/actions/dotnet/test/action.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/actions/dotnet/build/action.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ExCSS.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/Gradient.cs: Wrote only 1536 of 8291 bytes
+tar: ./src/ExCSS.Tests/Color.cs: Wrote only 3072 of 8280 bytes
+tar: ./src/ExCSS.Tests/ConstructionFunctions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/TestExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/DocumentFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/Cases.cs: Wrote only 4096 of 4608 bytes
+tar: ./src/ExCSS.Tests/ObjectSizing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/FontProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/KeyframeRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/SelectorsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/MediaList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/Sheet.cs: Wrote only 4096 of 9728 bytes
+tar: ./src/ExCSS.Tests/Property.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/Debug.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/ListProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/Tokenization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/PaddingProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/TextProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/BorderProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/TransitionProperty.cs: Wrote only 4096 of 6656 bytes
+tar: ./src/ExCSS.Tests/PropertyTests/TransformProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/GapProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/MarginProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/AnimationPropertyTests.cs: Wrote only 3072 of 10240 bytes
+tar: ./src/ExCSS.Tests/PropertyTests/BackgroundProperty.cs: Wrote only 5120 of 10240 bytes
+tar: ./src/ExCSS.Tests/PropertyTests/BoxSizingPropertyTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/CoordinateProperty.cs: Wrote only 4096 of 9216 bytes
+tar: ./src/ExCSS.Tests/PropertyTests/OutlineProperty.cs: Wrote only 3584 of 4967 bytes
+tar: ./src/ExCSS.Tests/PropertyTests/ColumnsProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/FillProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/PropertyTests/BorderImageProperty.cs: Wrote only 2048 of 10240 bytes
+tar: ./src/ExCSS.Tests/PropertyTests/StrokeProperty.cs: Wrote only 1024 of 10240 bytes
+tar: ./src/ExCSS.Tests/Supports.cs: Wrote only 4096 of 8517 bytes
+tar: ./src/ExCSS.Tests/Container.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/Flexbox.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/ObjectArrayComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS.Tests/bootstrap.css: Wrote only 1024 of 10240 bytes
+tar: ./src/ExCSS/Enumerations/StrokeLinecap.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/VerticalAlignment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/JustifyContent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/BackgroundAttachment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/TextDecorationLine.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/Overflow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/UnicodeMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/AlignItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/PointerAccuracy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/PropertyNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/StrokeLinejoin.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/ParseError.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/OverflowWrap.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/ListPosition.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/PseudoElementNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/FlexDirection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/PropertyFlags.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/UnitNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/AnimationDirection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/FunctionNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/FillRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/BlendMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/ContainerType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/ClearMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/ObjectFitting.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/FontVariant.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/FontWeight.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/Colors.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/DisplayMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/TextJustify.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/BoxModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/TextDecorationStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/AnimationFillStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/HorizontalAlignment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/RuleType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/LineStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/Keywords.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/UpdateFrequency.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/BreakMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/Whitespace.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/FeatureNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/TextAlignLast.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/TextTransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/AlignContent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/HoverAbility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/PseudoClassNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/PlayState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/ListStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/QuirksMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/SystemFont.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/DirectionMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/TokenType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/FontStretch.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Enumerations/Visibility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/AspectRatioMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/ScriptingMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/ResolutionMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/MediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/PointerMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/ColorMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/DeviceHeightMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/DeviceWidthMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/ColorIndexMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/HeightMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/WidthMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/GridMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/ScanMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/DeviceAspectRatioMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/MediaFeatures/DevicePixelRatioFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/Url.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/IStyleFormattable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/Map.cs: Wrote only 4096 of 10240 bytes
+tar: ./src/ExCSS/Model/IMediaFeature.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/TextRange.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/ParserExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/MediaList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/Converters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/Pool.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/ISelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/Medium.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/IStyleFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/IStylesheetNode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/TextSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/StylesheetText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/StyleDeclaration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/TaskEx.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/Combinator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/ParserOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Model/StylesheetNode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/UnknownSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/FirstTypeSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/NamespaceSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/FirstColumnSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/AllSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/LastTypeSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/AttrSelectorBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/IdSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/Selectors.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/AttrEndsSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/AttrBeginsSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/ClassSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/AttrListSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/LastChildSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/PseudoClassSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/PseudoElementSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/CompoundSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/ComplexSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/SelectorBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/CombinatorSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/LastColumnSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/FirstChildSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Selectors/KeyframeSelector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Conditions/NotCondition.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Conditions/GroupCondition.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Extensions/CharExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Extensions/CollectionExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Extensions/ValueExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Extensions/ValueConverterExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Factories/PropertyFactory.cs: Wrote only 1024 of 1413 bytes
+tar: ./src/ExCSS/Factories/PseudoClassSelectorFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Factories/MediaFeatureFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Factories/AttributeSelectorFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/ConditionRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/ImportRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/ViewportRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/PageRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/IKeyframeRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/FontFaceRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/KeyframeRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/Rule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/IConditionRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/IRuleList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/IRuleCreator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/GroupingRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/KeyframesRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/IFontFaceRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/ContainerRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/SupportsRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/INamespaceRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/ICharsetRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Rules/DeclarationRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/BorderRadiusConverter.cs: Wrote only 4096 of 4200 bytes
+tar: ./src/ExCSS/ValueConverters/OptionValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/ConditionalStartsWithValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/ConstraintValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/PeriodicValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/OrderedOptionsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/StringValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/FunctionValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/UrlValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/UnorderedOptionsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/StructValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/StartsWithValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/GradientConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/DictionaryValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/IdentifierValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/ArgumentsValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/AnyValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ValueConverters/OrValueConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Parser/SelectorConstructor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Parser/StylesheetComposer.cs: Wrote only 4096 of 4608 bytes
+tar: ./src/ExCSS/Parser/TokenizerError.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Parser/Lexer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Parser/LexerBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/Color.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/GradientStop.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/LinearGradient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/RadialGradient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/Length.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/Shadow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/TranslateTransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/ITransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/RotateTransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/SkewTransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/ScaleTransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/IGradient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/MatrixTransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/Angle.cs: Wrote only 4096 of 5637 bytes
+tar: ./src/ExCSS/Values/Time.cs: Wrote only 4096 of 4264 bytes
+tar: ./src/ExCSS/Values/Shape.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/CubicBezierTimingFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/ITimingFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Values/PerspectiveTransform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Stroke/StrokeLinejoinProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Stroke/StrokeDasharrayProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Stroke/StrokeOpacityProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Stroke/StrokeWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Stroke/StrokeDashoffsetProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Stroke/StrokeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Coordinate/MinHeightProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Coordinate/LeftProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Coordinate/BottomProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Coordinate/MaxWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Coordinate/MinWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Coordinate/TopProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Coordinate/HeightProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Container/ContainerNameProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Container/ContainerTypeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/QuotesProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transition/TransitionDelayProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transition/TransitionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transition/TransitionTimingFunctionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transition/TransitionPropertyProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transition/TransitionDurationProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Columns/ColumnRuleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Columns/ColumnRuleColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Columns/ColumnCountProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Columns/ColumnsProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Columns/ColumnGapProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Columns/ColumnRuleStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Columns/ColumnFillProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/CaptionSideProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flow/DisplayProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flow/FloatProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationDelayProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationDurationProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationPlayStateProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationIterationCountProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationTimingFunctionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationFillModeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Animation/AnimationDirectionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/GapProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/PaddingProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/BoxShadowProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/MarginTopProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/PaddingTopProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/PaddingBottomProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/MarginLeftProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/MarginRightProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Box/MarginBottomProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/TableLayoutProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Property.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Fill/FillOpacityProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Fill/FillProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Sizing/ObjectPositionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Sizing/ObjectFitProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Background/BackgroundClipProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Background/BackgroundAttachmentProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Background/BackgroundProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Background/BackgroundImageProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Background/BackgroundRepeatProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Background/BackgroundPositionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/EmptyCellsProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Visibility/OpacityProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Visibility/BackfaceVisibilityProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Visibility/ClipProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Visibility/VisibilityProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/IPropertyValue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/FeatureProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderImage/BorderImageSourceProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderImage/BorderImageWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderImage/BorderImageSliceProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderImage/BorderImageOutsetProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderImage/BorderImageRepeatProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderImage/BorderImageProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/RowGapProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderRadius/BorderBottomLeftRadiusProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderRadius/BorderTopRightRadiusProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderRadius/BorderRadiusProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderRadius/BorderBottomRightRadiusProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/BorderRadius/BorderTopLeftRadiusProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/LetterSpacingProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/FontProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/ColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/FontFamilyProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/WordSpacingProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/FontSizeAdjustProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/FontWeightProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/FontStretchProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/SrcProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/FontVariantProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/LineHeightProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Font/FontSizeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/ContentProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/List/ListStyleTypeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/List/CounterResetProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/List/ListStylePositionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/List/ListStyleImageProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/List/ListStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderBottomProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderTopProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderCollapseProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderRightProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderLeftWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderLeftStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderBottomColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderRightWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderTopStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderBottomStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderLeftColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderTopColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderSpacingProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderRightColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Border/BorderLeftProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Outline/OutlineWidthProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Outline/OutlineStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Outline/OutlineProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Outline/OutlineColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/IProperties .cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/VerticalAlignProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextDecorationLineProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextShadowProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextDecorationColorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextAlignLastProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextAnchorProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextDecorationStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextTransformProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextDecorationProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/DirectionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextIndentProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextAlignProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/TextJustifyProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Text/WordBreakProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Break/BreakAfterProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Break/PageBreakAfterProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Break/BreakInsideProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Break/PageBreakBeforeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Break/BreakBeforeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/AlignSelfProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/JustifyContentProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/FlexDirectionProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/OrderProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/FlexWrapProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/FlexShrinkProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/FlexFlowProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/FlexBasisProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/FlexProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/AlignItemsProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Flexbox/FlexGrowProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transform/TransformOriginProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transform/TransformStyleProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transform/PerspectiveOriginProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/StyleProperties/Transform/PerspectiveProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Functions/IConditionFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Functions/DocumentFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Functions/IDocumentFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Functions/UrlPrefixFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Functions/UrlFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Functions/DomainFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Functions/RegexpFunction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/TextEncoding.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/ExCSS.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/StringToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/FunctionToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/Token.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/KeywordToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/ColorToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/UrlToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/RangeToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/UnitToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/Tokens/CommentToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/obj/ExCSS.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/obj/ExCSS.csproj.nuget.g.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ExCSS/obj/ExCSS.csproj.nuget.g.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./GitVersion.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T17:55:40+01:00 exit 125

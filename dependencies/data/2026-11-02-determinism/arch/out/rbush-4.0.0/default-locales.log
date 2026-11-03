@@ -1,0 +1,36 @@
+start 2026-11-01T15:19:09+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build RBush/RBush.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack RBush/RBush.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=net47]
+  RBush -> /tmp/reprotest.qq9UG0/const_build_path/RBush/bin/Release/net47/RBush.dll
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=netstandard2.0]
+  RBush -> /tmp/reprotest.qq9UG0/const_build_path/RBush/bin/Release/netstandard2.0/RBush.dll
+  RBush -> /tmp/reprotest.qq9UG0/const_build_path/RBush/bin/Release/net8.0/RBush.dll
+
+Build succeeded.
+
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=net47]
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=netstandard2.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.07
+  Successfully created package '/tmp/reprotest.qq9UG0/const_build_path/out/RBush.4.0.0.nupkg'.
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=net47]
+  RBush -> /tmp/reprotest.qq9UG0/const_build_path/RBush/bin/Release/net47/RBush.dll
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=netstandard2.0]
+  RBush -> /tmp/reprotest.qq9UG0/const_build_path/RBush/bin/Release/netstandard2.0/RBush.dll
+  RBush -> /tmp/reprotest.qq9UG0/const_build_path/RBush/bin/Release/net8.0/RBush.dll
+
+Build succeeded.
+
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=net47]
+/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.Utilities.cs(227,49): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/tmp/reprotest.qq9UG0/const_build_path/RBush/RBush.csproj::TargetFramework=netstandard2.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.09
+  Successfully created package '/tmp/reprotest.qq9UG0/const_build_path/out/RBush.4.0.0.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/rbush-4.0.0/asis-locales-store/control/source-root/out/RBush.4.0.0.nupkg og /private/tmp/nupkg-determinism/out/rbush-4.0.0/asis-locales-store/experiment-1/source-root/out/RBush.4.0.0.nupkg er forskellige
+end 2026-11-01T15:19:43+01:00 exit 1

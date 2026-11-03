@@ -1,0 +1,37 @@
+start 2026-11-01T12:17:54+01:00
+$ git clone -q --mirror https://github.com/dotnet-state-machine/stateless /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet-state-machine_stateless.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet-state-machine_stateless.git /private/tmp/nupkg-determinism/src/stateless-5.16.0
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 remote set-url origin https://github.com/dotnet-state-machine/stateless
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 -c advice.detachedHead=false checkout -q a8f169d2fb4e4a8afa32ab85ed2c562ce144f7b8
+global.json: none
+start 2026-11-01T14:48:39+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet-state-machine_stateless.git /private/tmp/nupkg-determinism/src/stateless-5.16.0
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 remote set-url origin https://github.com/dotnet-state-machine/stateless
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 -c advice.detachedHead=false checkout -q a8f169d2fb4e4a8afa32ab85ed2c562ce144f7b8
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 checkout -q -- .
+$ dotnet restore src/Stateless/Stateless.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/stateless-5.16.0/src/Stateless/Stateless.csproj (in 125 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T22:57:21+01:00
+$ git clone -q --no-checkout https://github.com/dotnet-state-machine/stateless /private/tmp/nupkg-determinism/src/stateless-5.16.0
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 -c advice.detachedHead=false checkout -q a8f169d2fb4e4a8afa32ab85ed2c562ce144f7b8
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/stateless-5.16.0 checkout -q -- .
+$ dotnet restore src/Stateless/Stateless.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/stateless-5.16.0/src/Stateless/Stateless.csproj (in 158 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

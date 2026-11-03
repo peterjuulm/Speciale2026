@@ -1,0 +1,46 @@
+start 2026-11-02T19:53:53+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2 checkout -q -- .
+$ dotnet restore src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj (in 182 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj (in 182 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=netstandard2.0]
+  Microsoft.Identity.Client -> /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client/bin/Release/netstandard2.0/Microsoft.Identity.Client.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj]
+  Microsoft.Identity.Client.Broker -> /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client.Broker/bin/Release/netstandard2.0/Microsoft.Identity.Client.Broker.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.16
+  The package Microsoft.Identity.Client.Broker.4.61.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/out/Microsoft.Identity.Client.Broker.4.61.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/out/Microsoft.Identity.Client.Broker.4.61.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T19:54:06+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2 checkout -q -- .
+$ dotnet restore src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client.Broker/Microsoft.Identity.Client.Broker.csproj (in 170 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.client.broker-4.84.2/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj (in 170 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

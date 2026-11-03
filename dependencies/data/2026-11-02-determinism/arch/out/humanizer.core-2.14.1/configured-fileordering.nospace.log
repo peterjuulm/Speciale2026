@@ -1,0 +1,329 @@
+start 2026-11-02T17:56:34+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Humanizer/Humanizer.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1643468243 && dotnet pack src/Humanizer/Humanizer.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1643468243; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.git/objects/pack/pack-fa6194e97b6631e368f8927a520298b84205e350.pack: Wrote only 7680 of 10240 bytes
+tar: ./.git/objects/pack/pack-fa6194e97b6631e368f8927a520298b84205e350.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./release_notes.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.az.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.hy.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.da.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.cs.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.zh-CN.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.uk.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.es.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.fr.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.mt.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuSpecs/Humanizer.Core.zh-Hant.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CNAME: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.ruleset: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/el/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/az/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/zh-HK/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/zh-HK/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/zh-Hant/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/sl/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/ResourcesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/vi/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/sv/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/lv/NumberToWordsTests.cs: Wrote only 512 of 9634 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/he/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/pl/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/id/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/es/TimeSpanHumanizeTests.cs: Wrote only 4096 of 6144 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/es/NumberToWordsTests.cs: Wrote only 7680 of 10240 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/es/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/es/TimeToClockNotationTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/sk/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/ms-MY/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/ru-RU/TimeSpanHumanizeTests.cs: Wrote only 3584 of 5354 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/sr-Latn/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr-BE/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/ta/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/tr/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/tr/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fa/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/nl/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/ro-Ro/CollectionFormatterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr/Bytes/ByteSizeExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr/DateToOrdinalWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr/TimeOnlyHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr/OrdinalizeTests.cs: Wrote only 1536 of 1783 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/is/Bytes/ToStringTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/is/Bytes/ToFullWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/is/NumberToWordsTests.cs: Wrote only 8192 of 9216 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/is/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/is/CollectionFormatterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/is/TimeOnlyHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/is/HeadingTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/cs/NumberToWordsTests.cs: Wrote only 4096 of 7773 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/bg/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/bg/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/bg/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/uz-Cyrl-UZ/NumberToWordsTests.cs: Wrote only 1024 of 2647 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/uz-Latn-UZ/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/uz-Latn-UZ/NumberToWordsTests.cs: Wrote only 1536 of 2206 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/ku/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/sr/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/nb/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/nb/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/nb/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/ar/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/ar/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/bn-BD/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/bn-BD/NumberToWordsTests.cs: Wrote only 512 of 1353 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/bn-BD/DateHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/zh-Hans/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/fr-CH/NumberToWordsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/hy/TimeSpanHumanizeTests.cs: Wrote only 4096 of 5806 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/hy/OrdinalizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/de/TimeSpanHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/de/Bytes/ByteSizeExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/de/NumberToWordsTests.cs: Wrote only 3584 of 8101 bytes
+tar: ./src/Humanizer.Tests.Shared/Localisation/de/CollectionFormatterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Localisation/de/TimeUnitToSymbolTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/DateHumanizeDefaultStrategyTests.cs: Wrote only 3584 of 5718 bytes
+tar: ./src/Humanizer.Tests.Shared/ArticlePrefixSortTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/CasingTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Bytes/CreatingTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/Humanizer.Tests.Shared.projitems: Wrote only 5632 of 10240 bytes
+tar: ./src/Humanizer.Tests.Shared/TruncatorTests.cs: Wrote only 2048 of 10240 bytes
+tar: ./src/Humanizer.Tests.Shared/DateHumanize.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/NumberToWordsTests.cs: Wrote only 1024 of 9906 bytes
+tar: ./src/Humanizer.Tests.Shared/EnumHumanizeWithCustomDescriptionPropertyNamesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/ToQuantityTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/DateTimeHumanizePrecisionStrategyTests.cs: Wrote only 4096 of 6144 bytes
+tar: ./src/Humanizer.Tests.Shared/FluentDate/OnDateTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/InflectorTests.cs: Wrote only 8192 of 10240 bytes
+tar: ./src/Humanizer.Tests.Shared/HeadingTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/StringHumanizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/OrdinalizeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Shared/MetricNumeralTests.cs: Wrote only 5120 of 8920 bytes
+tar: ./src/Humanizer.Tests.Shared/DehumanizeToEnumTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests/Humanizer.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests/ApiApprover/PublicApiApprovalTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests/ApiApprover/DiffPlexReporter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests/ApiApprover/PublicApiApprovalTest.approve_public_api.approved.txt: Wrote only 1536 of 10240 bytes
+tar: ./src/Humanizer/EnumDehumanizeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/TimeToClockNotation/FrTimeOnlyToClockNotationConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/TimeToClockNotation/DefaultTimeOnlyToClockNotationConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/GrammaticalNumber/RussianGrammaticalNumberDetector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/TimeUnit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/DateToOrdinalWords/UsDateOnlyToOrdinalWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/DateToOrdinalWords/UsDateToOrdinalWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/DateToOrdinalWords/EsDateOnlyToOrdinalWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/DateToOrdinalWords/DefaultDateToOrdinalWordConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Resources.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Ordinalizers/ItalianOrdinalizer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Ordinalizers/UkrainianOrdinalizer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Ordinalizers/IOrdinalizer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Ordinalizers/DefaultOrdinalizer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/ResourceKeys.DateHumanize.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/CollectionFormatters/OxfordStyleCollectionFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/CollectionFormatters/DefaultCollectionFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/IndianNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/RomanianNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/SlovenianNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/VietnameseNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/BrazilianPortugueseNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/DefaultNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/MalteseNumberToWordsConvertor.cs: Wrote only 4096 of 8028 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/HebrewNumberToWordsConverter.cs: Wrote only 4096 of 6461 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/ArmenianNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/RussianNumberToWordsConverter.cs: Wrote only 3072 of 10240 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/EnglishNumberToWordsConverter.cs: Wrote only 4096 of 6339 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/CroatianNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/FinnishNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/AfrikaansNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/ArabicNumberToWordsConverter.cs: Wrote only 512 of 3778 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/INumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/LatvianNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/UkrainianNumberToWordsConverter.cs: Wrote only 2048 of 9066 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/PortugueseNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/GermanSwissLiechtensteinNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/Romanian/RomanianOrdinalNumberConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/Romanian/RomanianCardinalNumberConverter.cs: Wrote only 6656 of 10240 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/SerbianCyrlNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/TamilNumberToWordsConverter.cs: Wrote only 6656 of 9639 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/FrenchNumberToWordsConverterBase.cs: Wrote only 4096 of 6117 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/SwedishNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/TurkishNumberToWordConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/GreekNumberToWordsConverter.cs: Wrote only 3584 of 9689 bytes
+tar: ./src/Humanizer/Localisation/NumberToWords/Italian/ItalianCardinalNumberCruncher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/NumberToWords/FrenchNumberToWordsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/ResourceKeys.TimeSpanHumanize.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Formatters/DefaultFormatter.cs: Wrote only 4096 of 6427 bytes
+tar: ./src/Humanizer/Localisation/Formatters/CroatianFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Formatters/UkrainianFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Formatters/IFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Localisation/Formatters/SerbianFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/ArticlePrefixSort.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/StringExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/EnumHumanizeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Configuration/OrdinalizerRegistry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Configuration/Configurator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Configuration/DateOnlyToOrdinalWordsConverterRegistry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Configuration/CollectionFormatterRegistry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.tr.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.hy.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.ro.resx: Wrote only 4096 of 4608 bytes
+tar: ./src/Humanizer/Properties/Resources.zh-CN.resx: Wrote only 512 of 6842 bytes
+tar: ./src/Humanizer/Properties/Resources.fi-FI.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.el.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.uz-Latn-UZ.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.zh-Hans.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.cs.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.it.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.vi.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.de.resx: Wrote only 1024 of 4729 bytes
+tar: ./src/Humanizer/Properties/Resources.ja.resx: Wrote only 3584 of 5792 bytes
+tar: ./src/Humanizer/Properties/Resources.hr.resx: Wrote only 512 of 9486 bytes
+tar: ./src/Humanizer/Properties/Resources.ko-KR.resx: Wrote only 4096 of 10240 bytes
+tar: ./src/Humanizer/Properties/Resources.da.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.az.resx: Wrote only 3584 of 5944 bytes
+tar: ./src/Humanizer/Properties/Resources.ms-MY.resx: Wrote only 4608 of 10240 bytes
+tar: ./src/Humanizer/Properties/Resources.resx: Wrote only 1536 of 5982 bytes
+tar: ./src/Humanizer/Properties/Resources.nb-NO.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.sr.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.ku.resx: Wrote only 1024 of 10240 bytes
+tar: ./src/Humanizer/Properties/Resources.lv.resx: Wrote only 4096 of 9216 bytes
+tar: ./src/Humanizer/Properties/Resources.th-TH.resx: Wrote only 6656 of 6949 bytes
+tar: ./src/Humanizer/Properties/Resources.he.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.sk.resx: Wrote only 4608 of 9357 bytes
+tar: ./src/Humanizer/Properties/Resources.fr.resx: Wrote only 3072 of 4679 bytes
+tar: ./src/Humanizer/Properties/Resources.sl.resx: Wrote only 4096 of 4608 bytes
+tar: ./src/Humanizer/Properties/Resources.nl.resx: Wrote only 4096 of 8704 bytes
+tar: ./src/Humanizer/Properties/Resources.es.resx: Wrote only 5632 of 10240 bytes
+tar: ./src/Humanizer/Properties/Resources.fil-PH.resx: Wrote only 3584 of 10240 bytes
+tar: ./src/Humanizer/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Properties/Resources.af.resx: Wrote only 8192 of 9728 bytes
+tar: ./src/Humanizer/Properties/Resources.is.resx: Wrote only 3584 of 10240 bytes
+tar: ./src/Humanizer/Properties/Resources.sr-Latn.resx: Wrote only 1024 of 5758 bytes
+tar: ./src/Humanizer/Properties/Resources.nb.resx: Wrote only 512 of 7899 bytes
+tar: ./src/Humanizer/Properties/Resources.sv.resx: Wrote only 6656 of 9010 bytes
+tar: ./src/Humanizer/Inflections/Vocabularies.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Bytes/ByteSizeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Bytes/ByteSize.cs: Wrote only 4096 of 6144 bytes
+tar: ./src/Humanizer/MetricNumeralExtensions.cs: Wrote only 8192 of 10240 bytes
+tar: ./src/Humanizer/ClockNotationRounding.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Articles.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/ToQuantityExtensions.cs: Wrote only 1024 of 4747 bytes
+tar: ./src/Humanizer/TimeSpanHumanizeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Truncation/FixedNumberOfWordsTruncator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Truncation/Truncator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/DateHumanizeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/DateTimeHumanizeStrategy/IDateOnlyHumanizeStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/DateTimeHumanizeStrategy/PrecisionTimeOnlyHumanizeStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/DateTimeHumanizeStrategy/ITimeOnlyHumanizeStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/DateTimeHumanizeStrategy/DateTimeHumanizeAlgorithms.cs: Wrote only 2048 of 2888 bytes
+tar: ./src/Humanizer/DateTimeHumanizeStrategy/PrecisionDateTimeHumanizeStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/DateTimeHumanizeStrategy/IDateTimeOffsetHumanizeStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/FluentDate/On.Days.cs: Wrote only 4096 of 8704 bytes
+tar: ./src/Humanizer/FluentDate/InDate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/FluentDate/InDate.SomeTimeFrom.cs: Wrote only 1024 of 10240 bytes
+tar: ./src/Humanizer/FluentDate/In.Months.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/FluentDate/In.SomeTimeFrom.cs: Wrote only 2048 of 10240 bytes
+tar: ./src/Humanizer/FluentDate/OnDate.Days.cs: Wrote only 1024 of 10240 bytes
+tar: ./src/Humanizer/NumberToWordsExtension.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/LetterCasing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/NumberToNumberExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/GrammaticalCase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Transformer/IStringTransformer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Transformer/ToTitleCase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Transformer/ToUpperCase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/Transformer/ICulturedStringTransformer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/RegexOptionsUtil.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer/obj/Humanizer.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp/Properties/UnitTestApp.rd.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp/Assets/StoreLogo.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp/Assets/Square44x44Logo.targetsize-24_altform-unplated.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp/Assets/Square150x150Logo.scale-200.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp/Humanizer.Tests.Uwp.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CodeCoverage.runsettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp.Runner/Properties/Default.rd.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp.Runner/Assets/SplashScreen.scale-200.png: Wrote only 4096 of 7700 bytes
+tar: ./src/Humanizer.Tests.Uwp.Runner/Assets/Square44x44Logo.scale-200.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp.Runner/Assets/LockScreenLogo.scale-200.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Humanizer.Tests.Uwp.Runner/App.xaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T17:56:34+01:00 exit 125

@@ -1,0 +1,90 @@
+start 2026-11-02T18:04:05+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/FluentModbus/FluentModbus.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1743160141 && dotnet pack src/FluentModbus/FluentModbus.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1743160141; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+  FluentModbus -> /tmp/reprotest.tNvcDH/const_build_path/artifacts/bin/FluentModbus/release_netstandard2.0/FluentModbus.dll
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+  FluentModbus -> /tmp/reprotest.tNvcDH/const_build_path/artifacts/bin/FluentModbus/release_netstandard2.1/FluentModbus.dll
+  Successfully created package '/tmp/reprotest.tNvcDH/const_build_path/artifacts/package/release/FluentModbus.1.0.0.nupkg'.
+
+Build succeeded.
+
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.33
+  Successfully created package '/tmp/reprotest.tNvcDH/const_build_path/out/FluentModbus.1.0.0.nupkg'.
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+  FluentModbus -> /tmp/reprotest.tNvcDH/const_build_path/artifacts/bin/FluentModbus/release_netstandard2.0/FluentModbus.dll
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+  FluentModbus -> /tmp/reprotest.tNvcDH/const_build_path/artifacts/bin/FluentModbus/release_netstandard2.1/FluentModbus.dll
+  Successfully created package '/tmp/reprotest.tNvcDH/const_build_path/artifacts/package/release/FluentModbus.1.0.0.nupkg'.
+
+Build succeeded.
+
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.12
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): error : No space left on device : '/tmp/reprotest.tNvcDH/const_build_path/artifacts/obj/FluentModbus/Release/FluentModbus.1.0.0.nuspec' [/tmp/reprotest.tNvcDH/const_build_path/src/FluentModbus/FluentModbus.csproj]
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.tNvcDH/build-experiment-1-aux && \
+    mv /tmp/reprotest.tNvcDH/build-experiment-1/ /tmp/reprotest.tNvcDH/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.tNvcDH/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/FluentModbus/FluentModbus.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1743160141 && dotnet pack src/FluentModbus/FluentModbus.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1743160141; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.tNvcDH/const_build_path /tmp/reprotest.tNvcDH/build-experiment-1/ || __c=$?; \
+    rm -rf /tmp/reprotest.tNvcDH/build-experiment-1-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-11-02T18:04:23+01:00 exit 125

@@ -1,0 +1,46 @@
+start 2026-11-03T04:23:33+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.Common/NuGet.Common.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.Common/NuGet.Common.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Frameworks -> /tmp/reprotest.YoZSdz/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.YoZSdz/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:11.75
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.YoZSdz/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 156 ms).
+  Restored /tmp/reprotest.YoZSdz/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 8 ms).
+  Successfully created package '/tmp/reprotest.YoZSdz/const_build_path/out/NuGet.Common.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.63
+
+  NuGet.Frameworks -> /tmp/reprotest.YoZSdz/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.YoZSdz/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:12.29
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.YoZSdz/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 160 ms).
+  Restored /tmp/reprotest.YoZSdz/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 9 ms).
+  Successfully created package '/tmp/reprotest.YoZSdz/const_build_path/out/NuGet.Common.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.69
+Binære filer /private/tmp/nupkg-determinism/out/nuget.common-6.12.5/default-umask-store/control/source-root/out/NuGet.Common.6.12.5-rc.32767.nupkg og /private/tmp/nupkg-determinism/out/nuget.common-6.12.5/default-umask-store/experiment-1/source-root/out/NuGet.Common.6.12.5-rc.32767.nupkg er forskellige
+end 2026-11-03T04:24:05+01:00 exit 1

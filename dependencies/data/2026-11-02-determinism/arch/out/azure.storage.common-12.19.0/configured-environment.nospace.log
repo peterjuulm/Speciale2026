@@ -1,0 +1,403 @@
+start 2026-11-02T18:05:30+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1715632633 && dotnet pack sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1715632633; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./package.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/PS-VSPrompt.lnk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/MSSharedLibKey.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/HelperUtilities/psScripts/Create-AutoRestCodeGenerationScript.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/HelperUtilities/psScripts/Copy-SessionRecords.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/generateTool.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.Tasks.Core.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/System.Runtime.InteropServices.RuntimeInformation.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.Framework.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/System.Threading.Thread.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.Utilities.Core.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Azure.Build.BootstrapTasks.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/System.Reflection.Metadata.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/System.Collections.Immutable.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/bootstrap.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/Class1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/AutoRest-AzureDotNetSDK.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/__TemplateIcon.ico: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/MyTemplate.vstemplate: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AzureDotNetSDK-TestProject/Class1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AzureDotNetSDK-TestProject/__TemplateIcon.ico: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AzureDotNetSDK-TestProject/MyTemplate.vstemplate: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AzureDotNetSDK-TestProject/AzureDotNetSDK-TestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK.vstman: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/generate.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/NugetExe/NuGet.exe: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/Repo-Tasks.psm1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/DebugSN.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/Repo-Tasks.psd1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/generateMetadata.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/NuGet.exe: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/DisableTestRunParallel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/linuxScripts/runClientRuntimeTests.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/linuxScripts/runNetCoreSdkTests.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/linuxScripts/getBuildTools.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./mgmt.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./SECURITY.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NOTICE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./global.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.vsconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CONTRIBUTING.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Startup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/CloudClipboard.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/js/site.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/images/banner1.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/images/banner3.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/images/banner2.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/favicon.ico: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/bootstrap/.bower.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/bootstrap/LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery/.bower.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery/LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation-unobtrusive/.bower.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation/LICENSE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation/.bower.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/css/site.css: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/css/site.min.css: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Clip.cshtml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Clip.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/_ViewImports.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/_ViewStart.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Index.cshtml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Error.cshtml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Error.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Shared/_CookieConsentPartial.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Shared/_ValidationScriptsPartial.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Shared/_Layout.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Index.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/GarbageCollector/GarbageCollector.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/GarbageCollector/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/iothub-connect-to-eventhubs/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/iothub-connect-to-eventhubs/IotHubConnection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/iothub-connect-to-eventhubs/sample-resources.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/iothub-connect-to-eventhubs/IotHubToEventHubsSample.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/iothub-connect-to-eventhubs/IotHubToEventHubsSample.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/iothub-connect-to-eventhubs/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/azuredeploy.bicep: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Startup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/AppSecretsConfig.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/js/site.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/bootstrap/LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/jquery/LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/jquery-validation/LICENSE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/css/site.css: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/azuredeploy.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/_ViewImports.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/_ViewStart.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/Index.cshtml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/Error.cshtml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/Error.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/Shared/_ValidationScriptsPartial.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/Shared/_Layout.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/Index.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/README.MD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Controllers/HomeController.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/LineCounterService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Properties/launchSettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/LineCounter.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/assets/monitor.PNG: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Views/_ViewImports.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Views/_ViewStart.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Views/Home/Index.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Views/Shared/_Layout.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Views/Shared/_Layout.cshtml.css: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/wwwroot/favicon.ico: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/wwwroot/lib/bootstrap/LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/wwwroot/css/site.css: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/distributed-tracing-sample.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Current/ManagementRecordedTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Current/ResourceGroupCleanupPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/MockTestEnvironment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/ResponseNullFilterPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/AddDeleteAfterTagPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/ManagementRecordedTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/InheritanceCheckTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/ManagementGroupCleanupPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/ResourceGroupCleanupPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/MockTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Redesign/ManagementMockingPatternTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Temp/ModelReaderWriterImplementationValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/HttpClientGetTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Event/MockEventProcessorBaseTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Event/MockEventProcessorEventTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Event/MockEventProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Event/MockEventProcessorOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Event/MockErrorEventArgs.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Event/MockEventArgs.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/UriOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Azure.Sample.Perf.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Batch/MockReceiverTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/ExceptionTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/TimerRunTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/DelayTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/OperationCanceledTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/DisposeTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/HttpPipelineGetTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/LogTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/NoOpTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/BenchmarkOutput.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/CountOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/BenchmarkMeasurement.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/BenchmarkMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/NumberFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/RandomString.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/PerfTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/TestProxyPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/PerfTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/EventPerfTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/SizeOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/ThreadsafeRandom.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/PerfUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/BatchPerfTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/PerfProgram.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/Azure.Test.Perf.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/RandomStream.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/PerfOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/SizeCountOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/IPerfTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/CircularStream.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/RandomByteArray.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/App.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/SmokeTest/SmokeTest.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/SmokeTest/Update-Dependencies.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/SmokeTest/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/SmokeTest.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/smoke-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 93652 lines, excerpt: first and last 200 ...]
+
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmApplicationAuthorization.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmDeploymentTemplateLink.cs: Wrote only 3584 of 4140 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmDependency.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/TemplateSpecVersionsListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmApplicationBillingDetails.Serialization.cs: Wrote only 3072 of 6027 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmDeploymentScriptListResult.Serialization.cs: Wrote only 4096 of 9013 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmDeploymentPropertiesExtended.Serialization.cs: Wrote only 1536 of 4346 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/AzurePowerShellScript.Serialization.cs: Wrote only 3072 of 8920 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ScriptLogsList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmApplicationManagedIdentity.Serialization.cs: Wrote only 3584 of 7190 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmDeploymentOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmApplicationDeploymentPolicy.Serialization.cs: Wrote only 4096 of 6667 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmApplicationDetails.Serialization.cs: Wrote only 4096 of 8987 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/WhatIfChangeType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/UnknownArmDeploymentScript.Serialization.cs: Wrote only 7680 of 10240 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/ArmApplicationResourceData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/TemplateSpecsListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/Models/WhatIfPropertyChange.cs: Wrote only 4096 of 6912 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/ArmApplicationData.Serialization.cs: Wrote only 2048 of 10240 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/TemplateSpecData.cs: Wrote only 512 of 3378 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/ScriptLogData.Serialization.cs: Wrote only 2048 of 9117 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Generated/ArmDeploymentResource.cs: Wrote only 512 of 2081 bytes
+tar: ./sdk/resources/Azure.ResourceManager.Resources/src/Custom/Models/ArmDeploymentScriptPropertiesBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/resources/Azure.ResourceManager.Resources/api/Azure.ResourceManager.Resources.netstandard2.0.cs: Wrote only 6144 of 10240 bytes
+tar: ./sdk/anomalydetector/test-resources.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/tests/Infrastructure/AnomalyDetectorLiveTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/tests/samples/data/sample_data_20_3000.zip: Wrote only 2560 of 10240 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/tests/samples/data/multivariate_sample_data.json: Wrote only 8704 of 10240 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/tests/AnomalyDetectorClient/AnomalyDetectorClientLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/UnivariateDetectionOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/MultivariateLastDetectionOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/MultivariateBatchDetectionOptions.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/MultivariateDetectionResult.cs: Wrote only 4096 of 4185 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/VariableState.Serialization.cs: Wrote only 4096 of 8192 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/UnivariateChangePointDetectionResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/Internal/Argument.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/UnivariateChangePointDetectionOptions.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/DiagnosticsInfo.Serialization.cs: Wrote only 4096 of 7079 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/AnomalyValue.Serialization.cs: Wrote only 2560 of 5876 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/Multivariate.cs: Wrote only 2560 of 5319 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/MultivariateBatchDetectionStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/src/Generated/Docs/Multivariate.xml: Wrote only 6656 of 9779 bytes
+tar: ./sdk/anomalydetector/Azure.AI.AnomalyDetector/api/Azure.AI.AnomalyDetector.netstandard2.0.cs: Wrote only 7680 of 9442 bytes
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/tests/SessionRecords/ObjectAnchorsAccountTests/TestObjectAnchorsAccountOperations.json: Wrote only 9728 of 10240 bytes
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/tests/Microsoft.Azure.Management.MixedReality.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/src/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/src/Generated/SpatialAnchorsAccountsOperationsExtensions.cs: Wrote only 5632 of 8391 bytes
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/src/Generated/SpatialAnchorsAccountsOperations.cs: Wrote only 8704 of 10240 bytes
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/src/Generated/RemoteRenderingAccountsOperations.cs: Wrote only 9728 of 10240 bytes
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/src/Generated/RemoteRenderingAccountsOperationsExtensions.cs: Wrote only 4608 of 7439 bytes
+tar: ./sdk/mixedreality/Microsoft.Azure.Management.MixedReality/src/Generated/Models/Resource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/mixedreality/Azure.ResourceManager.MixedReality/src/Generated/Models/MixedRealityAccountKeys.Serialization.cs: Wrote only 4096 of 5731 bytes
+tar: ./sdk/mixedreality/Azure.MixedReality.Authentication/tests/Azure.MixedReality.Authentication.Tests/MixedRealityTestEnvironment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/mixedreality/Azure.MixedReality.Authentication/tests/Azure.MixedReality.Authentication.Tests/Azure.MixedReality.Authentication.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/mixedreality/Azure.MixedReality.Authentication/src/JwtHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/mixedreality/Azure.MixedReality.Authentication/src/Generated/Internal/Argument.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/mixedreality/Azure.MixedReality.Authentication/src/Generated/MixedRealityStsGetTokenHeaders.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/tests/ApplicationInsightsManagementTestEnvironment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/samples/Generated/Samples/Sample_ApplicationInsightsWorkbookResource.cs: Wrote only 1536 of 10240 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/samples/Generated/Samples/Sample_ApplicationInsightsComponentResource.cs: Wrote only 6656 of 10240 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/samples/Generated/Samples/Sample_ApplicationInsightsWebTestCollection.cs: Wrote only 1024 of 5590 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/ApplicationInsightsComponentResource.cs: Wrote only 8192 of 10240 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/ApplicationInsightsWorkbookRevisionResource.cs: Wrote only 2560 of 7339 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Extensions/MockableApplicationInsightsArmClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/LongRunningOperation/ApplicationInsightsArmOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/ApplicationInsightsWorkbookRevisionCollection.cs: Wrote only 9728 of 10240 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/ApplicationInsightsWorkbookTemplateResource.cs: Wrote only 4608 of 10240 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ComponentPurgeFilters.cs: Wrote only 2048 of 3281 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentQuotaStatus.Serialization.cs: Wrote only 6144 of 7764 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/WebTestGeolocation.Serialization.cs: Wrote only 2048 of 4547 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentProactiveDetectionConfiguration.Serialization.cs: Wrote only 6656 of 9977 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentFeatureCapabilities.Serialization.cs: Wrote only 3072 of 10240 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentAnalyticsItemProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentExportContent.Serialization.cs: Wrote only 6656 of 8648 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentQuotaStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentListResult.Serialization.cs: Wrote only 2048 of 2794 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/WebTestConfiguration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions.Serialization.cs: Wrote only 2560 of 3059 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ComponentPurgeContent.Serialization.cs: Wrote only 4096 of 5882 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/WorkItemConfiguration.Serialization.cs: Wrote only 8192 of 10240 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsWorkbookPatch.Serialization.cs: Wrote only 5120 of 8737 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/Models/ApplicationInsightsComponentApiKeyListResult.Serialization.cs: Wrote only 4096 of 5120 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/ArmApplicationInsightsModelFactory.cs: Wrote only 512 of 1014 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/src/Generated/ApplicationInsightsWorkbookCollection.cs: Wrote only 5120 of 7104 bytes
+tar: ./sdk/applicationinsights/Azure.ResourceManager.ApplicationInsights/api/Azure.ResourceManager.ApplicationInsights.netstandard2.0.cs: Wrote only 6144 of 10240 bytes
+tar: ./sdk/applicationinsights/Microsoft.Azure.Management.ApplicationInsights/tests/ScenarioTests/FeatureAndPricingTests.cs: Wrote only 512 of 1854 bytes
+tar: ./sdk/applicationinsights/Microsoft.Azure.Management.ApplicationInsights/tests/Helpers/RecordedDelegatingHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-37ffb48e94861fa7d30d0495914afb6a297e0211.pack: Wrote only 1024 of 10240 bytes
+tar: ./.git/objects/pack/pack-37ffb48e94861fa7d30d0495914afb6a297e0211.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-37ffb48e94861fa7d30d0495914afb6a297e0211.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/03_question.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/06_learn_feedback.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/04_core_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/02_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/05_mqissue.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/01_bug_report.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/scheduled-event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/pull_request_assignment.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS_baseline_errors.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/event-processor.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/sla.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:06:06+01:00 exit 125

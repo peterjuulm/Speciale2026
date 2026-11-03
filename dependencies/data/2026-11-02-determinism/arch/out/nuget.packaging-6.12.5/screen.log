@@ -1,0 +1,73 @@
+start 2026-11-02T21:16:08+01:00
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 checkout -q -- .
+$ dotnet restore src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 166 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 166 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 166 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 166 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 166 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.70
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  NuGet.Versioning -> /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.Frameworks -> /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Configuration -> /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/artifacts/NuGet.Configuration/bin/Release/netstandard2.0/NuGet.Configuration.dll
+  NuGet.Packaging -> /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/artifacts/NuGet.Packaging/bin/Release/netstandard2.0/NuGet.Packaging.dll
+  NuGet.Packaging -> /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/artifacts/NuGet.Packaging/bin/Release/netcoreapp5.0/NuGet.Packaging.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:19.98
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Successfully created package '/private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/out/NuGet.Packaging.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.19
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T21:16:36+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 checkout -q -- .
+$ dotnet restore src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 168 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 168 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 168 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 168 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 168 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.70
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

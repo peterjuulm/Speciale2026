@@ -1,0 +1,39 @@
+start 2026-11-02T21:27:55+01:00
+$ git -C /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview checkout -q -- .
+$ dotnet restore src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview/src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj (in 693 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  NextjsStaticHosting.AspNetCore -> /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview/src/NextjsStaticHosting.AspNetCore/bin/Release/net6.0/NextjsStaticHosting.AspNetCore.dll
+  NextjsStaticHosting.AspNetCore -> /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview/src/NextjsStaticHosting.AspNetCore/bin/Release/net7.0/NextjsStaticHosting.AspNetCore.dll
+  NextjsStaticHosting.AspNetCore -> /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview/src/NextjsStaticHosting.AspNetCore/bin/Release/net8.0/NextjsStaticHosting.AspNetCore.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.12
+  The package NextjsStaticHosting.AspNetCore.0.9.3-preview is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview/out/NextjsStaticHosting.AspNetCore.0.9.3-preview.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T21:28:03+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview checkout -q -- .
+$ dotnet restore src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nextjsstatichosting.aspnetcore-0.9.3-preview/src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj (in 153 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

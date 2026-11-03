@@ -1,0 +1,55 @@
+start 2026-11-01T11:34:26+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2 checkout -q -- .
+$ dotnet restore src/Microsoft.Identity.Web.Certificate/Microsoft.Identity.Web.Certificate.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj (in 129 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/Microsoft.Identity.Web.Diagnostics.csproj (in 129 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/Microsoft.Identity.Web.Certificate.csproj (in 164 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Microsoft.Identity.Web.Certificate/Microsoft.Identity.Web.Certificate.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Microsoft.Identity.Web.Certificate/Microsoft.Identity.Web.Certificate.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Microsoft.Identity.Web.Certificateless -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificateless/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll
+  Microsoft.Identity.Web.Diagnostics -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/bin/Release/netstandard2.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Diagnostics -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net462/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Diagnostics -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net472/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Diagnostics -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net6.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Diagnostics -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net7.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Diagnostics -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net8.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Diagnostics -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net9.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.Certificate -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/bin/Release/net472/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.Certificate -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/bin/Release/net6.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.Certificate -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/bin/Release/net7.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.Certificate -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/bin/Release/net8.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.Certificate -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/bin/Release/net462/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.Certificate -> /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/bin/Release/net9.0/Microsoft.Identity.Web.Certificate.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.66
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/out/Microsoft.Identity.Web.Certificate.3.8.2.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/out/Microsoft.Identity.Web.Certificate.3.8.2.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T11:34:44+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2 checkout -q -- .
+$ dotnet restore src/Microsoft.Identity.Web.Certificate/Microsoft.Identity.Web.Certificate.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Diagnostics/Microsoft.Identity.Web.Diagnostics.csproj (in 131 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj (in 131 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identity.web.certificate-3.8.2/src/Microsoft.Identity.Web.Certificate/Microsoft.Identity.Web.Certificate.csproj (in 175 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

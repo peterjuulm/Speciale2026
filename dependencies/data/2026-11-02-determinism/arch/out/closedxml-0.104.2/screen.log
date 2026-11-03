@@ -1,0 +1,42 @@
+start 2026-11-02T18:08:42+01:00
+$ git -C /private/tmp/nupkg-determinism/src/closedxml-0.104.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/closedxml-0.104.2 checkout -q -- .
+$ dotnet restore ClosedXML/ClosedXML.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/closedxml-0.104.2/ClosedXML/ClosedXML.csproj (in 1,34 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build ClosedXML/ClosedXML.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack ClosedXML/ClosedXML.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  ClosedXML -> /private/tmp/nupkg-determinism/src/closedxml-0.104.2/ClosedXML/bin/Release/netstandard2.0/ClosedXML.dll
+  ClosedXML -> /private/tmp/nupkg-determinism/src/closedxml-0.104.2/ClosedXML/bin/Release/netstandard2.1/ClosedXML.dll
+  The package ClosedXML.0.104.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/closedxml-0.104.2/ClosedXML/bin/Release/ClosedXML.0.104.2.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/closedxml-0.104.2/ClosedXML/bin/Release/ClosedXML.0.104.2.snupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.95
+  The package ClosedXML.0.104.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/closedxml-0.104.2/out/ClosedXML.0.104.2.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/closedxml-0.104.2/out/ClosedXML.0.104.2.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:08:57+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/closedxml-0.104.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/closedxml-0.104.2 checkout -q -- .
+$ dotnet restore ClosedXML/ClosedXML.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/closedxml-0.104.2/ClosedXML/ClosedXML.csproj (in 174 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

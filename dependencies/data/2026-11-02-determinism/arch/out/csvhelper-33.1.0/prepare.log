@@ -1,0 +1,69 @@
+start 2026-11-01T10:19:57+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/csvhelper-33.1.0
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 remote add origin https://github.com/JoshClose/CsvHelper
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 config core.autocrlf false
+$ git clone -q --mirror https://github.com/JoshClose/CsvHelper /private/tmp/nupkg-determinism/mirrors/https_github.com_JoshClose_CsvHelper.git
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_JoshClose_CsvHelper.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_JoshClose_CsvHelper.git 5dad8b8b1d8b074f8353cfd482e939db788a8927
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 checkout -q -B master 5dad8b8b1d8b074f8353cfd482e939db788a8927
+global.json: none
+start 2026-11-01T12:51:16+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_JoshClose_CsvHelper.git /private/tmp/nupkg-determinism/src/csvhelper-33.1.0
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 remote set-url origin https://github.com/JoshClose/CsvHelper
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 -c advice.detachedHead=false checkout -q 5dad8b8b1d8b074f8353cfd482e939db788a8927
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 checkout -q -- .
+$ dotnet restore src/CsvHelper/CsvHelper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/csvhelper-33.1.0/src/CsvHelper/CsvHelper.csproj (in 168 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T16:32:39+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_JoshClose_CsvHelper.git /private/tmp/nupkg-determinism/src/csvhelper-33.1.0
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 remote set-url origin https://github.com/JoshClose/CsvHelper
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 -c advice.detachedHead=false checkout -q 5dad8b8b1d8b074f8353cfd482e939db788a8927
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 checkout -q -- .
+$ dotnet restore src/CsvHelper/CsvHelper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/csvhelper-33.1.0/src/CsvHelper/CsvHelper.csproj (in 212 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T18:06:54+01:00
+$ git clone -q --no-checkout https://github.com/JoshClose/CsvHelper /private/tmp/nupkg-determinism/src/csvhelper-33.1.0
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 -c advice.detachedHead=false checkout -q 5dad8b8b1d8b074f8353cfd482e939db788a8927
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 checkout -q -- .
+$ dotnet restore src/CsvHelper/CsvHelper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/csvhelper-33.1.0/src/CsvHelper/CsvHelper.csproj (in 202 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T00:31:56+01:00
+$ git clone -q --no-checkout https://github.com/JoshClose/CsvHelper /private/tmp/nupkg-determinism/src/csvhelper-33.1.0
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 -c advice.detachedHead=false checkout -q 5dad8b8b1d8b074f8353cfd482e939db788a8927
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/csvhelper-33.1.0 checkout -q -- .
+$ dotnet restore src/CsvHelper/CsvHelper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/csvhelper-33.1.0/src/CsvHelper/CsvHelper.csproj (in 250 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

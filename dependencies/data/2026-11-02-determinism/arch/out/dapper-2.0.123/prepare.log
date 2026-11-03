@@ -1,0 +1,39 @@
+start 2026-11-01T10:20:18+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/dapper-2.0.123
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 remote add origin https://github.com/DapperLib/Dapper
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 config core.autocrlf false
+$ git clone -q --mirror https://github.com/DapperLib/Dapper /private/tmp/nupkg-determinism/mirrors/https_github.com_DapperLib_Dapper.git
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_DapperLib_Dapper.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_DapperLib_Dapper.git 2a837ad7d036671ac9a75c9945bb970aa41b7de9
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 -c advice.detachedHead=false checkout -q 2a837ad7d036671ac9a75c9945bb970aa41b7de9
+global.json: none
+start 2026-11-01T12:41:05+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_DapperLib_Dapper.git /private/tmp/nupkg-determinism/src/dapper-2.0.123
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 remote set-url origin https://github.com/DapperLib/Dapper
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 -c advice.detachedHead=false checkout -q 2a837ad7d036671ac9a75c9945bb970aa41b7de9
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 checkout -q -- .
+$ dotnet restore Dapper/Dapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/dapper-2.0.123/Dapper/Dapper.csproj (in 128 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T18:09:54+01:00
+$ git clone -q --no-checkout https://github.com/DapperLib/Dapper /private/tmp/nupkg-determinism/src/dapper-2.0.123
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 -c advice.detachedHead=false checkout -q 2a837ad7d036671ac9a75c9945bb970aa41b7de9
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/dapper-2.0.123 checkout -q -- .
+$ dotnet restore Dapper/Dapper.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/dapper-2.0.123/Dapper/Dapper.csproj (in 210 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

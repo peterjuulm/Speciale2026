@@ -1,0 +1,34 @@
+start 2026-11-03T04:55:48+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1718354652 && dotnet pack src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1718354652; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Serilog.Enrichers.Thread -> /tmp/reprotest.QFO46j/const_build_path/src/Serilog.Enrichers.Thread/bin/Release/net8.0/Serilog.Enrichers.Thread.dll
+  Serilog.Enrichers.Thread -> /tmp/reprotest.QFO46j/const_build_path/src/Serilog.Enrichers.Thread/bin/Release/net6.0/Serilog.Enrichers.Thread.dll
+  Serilog.Enrichers.Thread -> /tmp/reprotest.QFO46j/const_build_path/src/Serilog.Enrichers.Thread/bin/Release/netstandard2.0/Serilog.Enrichers.Thread.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.86
+  Successfully created package '/tmp/reprotest.QFO46j/const_build_path/out/Serilog.Enrichers.Thread.4.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.QFO46j/const_build_path/out/Serilog.Enrichers.Thread.4.0.0.snupkg'.
+  Serilog.Enrichers.Thread -> /tmp/reprotest.QFO46j/const_build_path/src/Serilog.Enrichers.Thread/bin/Release/net8.0/Serilog.Enrichers.Thread.dll
+  Serilog.Enrichers.Thread -> /tmp/reprotest.QFO46j/const_build_path/src/Serilog.Enrichers.Thread/bin/Release/net6.0/Serilog.Enrichers.Thread.dll
+  Serilog.Enrichers.Thread -> /tmp/reprotest.QFO46j/const_build_path/src/Serilog.Enrichers.Thread/bin/Release/netstandard2.0/Serilog.Enrichers.Thread.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.22
+  Successfully created package '/tmp/reprotest.QFO46j/const_build_path/out/Serilog.Enrichers.Thread.4.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.QFO46j/const_build_path/out/Serilog.Enrichers.Thread.4.0.0.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+430fa811904ec9e52325feb2e65c9dab0576f754caada18c35d07f3cfe5f58df  ./out/Serilog.Enrichers.Thread.4.0.0.snupkg
+d32173eb0890f0a9f470531fa679f04920b96ada27bff9e5943ad026db4d8183  ./out/Serilog.Enrichers.Thread.4.0.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T04:56:15+01:00 exit 0

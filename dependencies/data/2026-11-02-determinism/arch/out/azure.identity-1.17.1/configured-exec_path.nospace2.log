@@ -1,0 +1,403 @@
+start 2026-11-03T00:17:34+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/identity/Azure.Identity/src/Azure.Identity.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763578819 && dotnet pack sdk/identity/Azure.Identity/src/Azure.Identity.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763578819; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.identity/1.17.0/lib/netstandard2.0/Azure.Identity.dll using assemblies from /tmp/reprotest.WcHipq/const_build_path/artifacts/obj/Azure.Identity/Release/net8.0/
+  InheritDocTask replaced 21 of 21 inheritdoc tags and removed 8 private member docs in /tmp/reprotest.WcHipq/const_build_path/artifacts/obj/Azure.Identity/Release/net8.0/Azure.Identity.xml
+  Azure.Identity -> /tmp/reprotest.WcHipq/const_build_path/artifacts/bin/Azure.Identity/Release/net8.0/Azure.Identity.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.identity/1.17.0/lib/netstandard2.0/Azure.Identity.dll using assemblies from /tmp/reprotest.WcHipq/const_build_path/artifacts/obj/Azure.Identity/Release/netstandard2.0/
+  InheritDocTask replaced 21 of 21 inheritdoc tags and removed 8 private member docs in /tmp/reprotest.WcHipq/const_build_path/artifacts/obj/Azure.Identity/Release/netstandard2.0/Azure.Identity.xml
+  Azure.Identity -> /tmp/reprotest.WcHipq/const_build_path/artifacts/bin/Azure.Identity/Release/netstandard2.0/Azure.Identity.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.19
+  Found the following change log entry for version '1.17.1' in [/tmp/reprotest.WcHipq/const_build_path/sdk/identity/Azure.Identity/CHANGELOG.md].
+  -----
+  ## 1.17.1 (2025-11-18)
+  
+  ### Other Changes
+  
+  - Updated `Microsoft.Identity.Client` and `Microsoft.Identity.Client.Extensions.Msal` dependencies to version 4.78.0.
+  
+  -----
+  Successfully created package '/tmp/reprotest.WcHipq/const_build_path/out/Azure.Identity.1.17.1-alpha.20261102.1.nupkg'.
+  Successfully created package '/tmp/reprotest.WcHipq/const_build_path/out/Azure.Identity.1.17.1-alpha.20261102.1.symbols.nupkg'.
+tar: ./samples/CloudClipboard/CloudClipboard/CloudClipboard.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/images/banner2.svg: Wrote only 1024 of 5322 bytes
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js: Wrote only 512 of 7542 bytes
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/_ViewStart.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/Shared/_Layout.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/ManagementTestShared/Temp/ModelReaderWriterImplementationValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Batch/MockReceiverTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/RandomStream.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Azure.Identity/project.assets.json: Wrote only 6144 of 10240 bytes
+tar: ./artifacts/obj/Azure.Identity/Azure.Identity.csproj.nuget.g.props: Wrote only 8192 of 9216 bytes
+tar: ./eng/pipelines/templates/jobs/ci.yml: Wrote only 2048 of 3394 bytes
+tar: ./eng/pipelines/templates/steps/build.yml: Wrote only 4096 of 4125 bytes
+tar: ./eng/pipelines/templates/steps/stage-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/package-lock.json: Wrote only 1536 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/emitter/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/routes/Configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/routes/src/Generated/PathParametersPathExpansion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/routes/src/Generated/QueryParametersQueryExpansionExplode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/routes/src/Generated/PathParametersPathExpansionStandard.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/routes/tspCodeModel.json: Wrote only 8192 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/SpecialWordsModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/Try.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/SameAsModel.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/Models.cs: Wrote only 4608 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/Parameters.cs: Wrote only 1536 of 5089 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/Except.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/For.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/From.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/Global.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/Def.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/src/Generated/Async.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-words/tspCodeModel.json: Wrote only 3584 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/multipart/src/Generated/MultiPartClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/multipart/tspCodeModel.json: Wrote only 7680 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/pageable/Configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/pageable/src/Generated/ServerDrivenPagination.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/pageable/src/Generated/Pet.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/pageable/tspCodeModel.json: Wrote only 7168 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/content-negotiation/src/Generated/SameBody.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/content-negotiation/src/Generated/Models/PayloadContentNegotiationContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/content-negotiation/src/Generated/DifferentBody.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/media-type/Configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/media-type/src/Payload.MediaType.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/json-merge-patch/Configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/json-merge-patch/src/Generated/Resource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/json-merge-patch/src/Generated/Models/PayloadJsonMergePatchContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/payload/json-merge-patch/src/Payload.JsonMergePatch.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/bytes/src/Generated/BytesClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/bytes/src/Generated/RequestBody.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/bytes/src/Generated/Base64urlArrayBytesProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/bytes/src/Generated/Base64BytesProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/bytes/tspCodeModel.json: Wrote only 2048 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/datetime/src/Generated/DatetimeClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/datetime/src/Generated/Rfc7231DatetimeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/datetime/src/Generated/Header.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/datetime/src/Generated/DefaultDatetimeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/datetime/src/Generated/DefaultDatetimeProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/datetime/tspCodeModel.json: Wrote only 6144 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/duration/src/Generated/FloatMillisecondsDurationProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/duration/src/Generated/EncodeDurationModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/duration/src/Generated/ISO8601DurationProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/duration/src/Generated/FloatSecondsDurationArrayProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/duration/tspCodeModel.json: Wrote only 3584 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/numeric/Encode.Numeric.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/encode/numeric/src/Generated/Uint32AsStringProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-headers/conditional-request/SpecialHeaders.ConditionalRequest.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/special-headers/conditional-request/src/Generated/SpecialHeadersConditionalRequestClientBuilderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/collection-format/src/Generated/Header.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/collection-format/src/Generated/CollectionFormatClientOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/path/src/Generated/PathClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/basic/src/Generated/BasicClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/basic/src/Generated/Models/ParametersBasicContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/basic/tspCodeModel.json: Wrote only 7680 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/spread/src/Parameters.Spread.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/spread/src/Generated/Models/ParametersSpreadContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/spread/tspCodeModel.json: Wrote only 5632 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/parameters/body-optionality/src/Generated/BodyOptionalityClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/server/path/single/Configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/server/path/single/src/Generated/Models/ServerPathSingleContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/server/endpoint/not-defined/src/Generated/Models/ServerEndpointNotDefinedContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/server/versions/not-versioned/src/Generated/NotVersionedClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/server/versions/versioned/src/Server.Versions.Versioned.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/server/versions/versioned/src/Generated/Models/ServerVersionsVersionedContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/enum/extensible/src/Type.Enum.Extensible.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/enum/extensible/Type.Enum.Extensible.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/enum/fixed/tspCodeModel.json: Wrote only 3584 of 6926 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/discriminated/src/Generated/TypeUnionDiscriminatedModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/discriminated/src/Generated/EnvelopeObjectCustomProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/discriminated/src/Type.Union.Discriminated.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/src/Generated/GetResponse3.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/src/Generated/EnumsOnlyCasesLr.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/src/Generated/MixedTypesCases.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/src/Generated/EnumsOnlyCasesUd.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/src/Generated/GetResponse9.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/src/Generated/GetResponse3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/union/tspCodeModel.json: Wrote only 3072 of 4625 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/array/src/Generated/UnknownValue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/array/tspCodeModel.json: Wrote only 2560 of 5688 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/recursive/src/Generated/Element.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/recursive/src/Type.Model.Inheritance.Recursive.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/not-discriminated/src/Generated/Cat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/not-discriminated/tspCodeModel.json: Wrote only 512 of 2779 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/enum-discriminator/src/Generated/Cobra.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/enum-discriminator/src/Generated/EnumDiscriminatorClientOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/enum-discriminator/src/Generated/Snake.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/enum-discriminator/src/Generated/UnknownDog.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/single-discriminator/src/Generated/SeaGull.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/single-discriminator/tspCodeModel.json: Wrote only 8192 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/inheritance/nested-discriminator/Configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/empty/src/Generated/TypeModelEmptyModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/empty/src/Generated/Models/_TypeModelEmptyContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/usage/src/Generated/TypeModelUsageModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/model/usage/src/Type.Model.Usage.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/scalar/src/Generated/Boolean.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/scalar/tspCodeModel.json: Wrote only 4608 of 7770 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/Type.Property.AdditionalProperties.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/IsUnknownAdditionalProperties.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/UnknownExtendsUnknownAdditionalPropertiesDiscriminated.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/DifferentSpreadFloatRecord.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/SpreadRecordForNonDiscriminatedUnion3.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/IsUnknown.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/DifferentSpreadFloatDerived.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/IsFloatAdditionalProperties.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/IsModelAdditionalProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/DifferentSpreadFloatRecord.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/DifferentSpreadModelArrayDerived.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/ExtendsModelAdditionalProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/WidgetData0.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/ExtendsDifferentSpreadFloat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/ExtendsUnknownAdditionalPropertiesDerived.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/src/Generated/IsUnknownAdditionalPropertiesDiscriminatedDerived.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/additional-properties/tspCodeModel.json: Wrote only 1024 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/src/Generated/DatetimeProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/src/Generated/Datetime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/src/Generated/UnionStringLiteralProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/src/Generated/DatetimeProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/src/Generated/UnionFloatLiteralProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/src/Generated/UnionIntLiteralProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/src/Type.Property.Optional.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/optionality/tspCodeModel.json: Wrote only 3584 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/Type.Property.ValueTypes.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/UnknownArray.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/ExtendedEnum.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/IntProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/Model.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/UnionStringLiteralProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/UnionEnumValueProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/UnknownArrayProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/IntLiteral.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/TypePropertyValueTypesModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/Decimal128.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/UnionIntLiteralProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/BytesProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/UnknownDictProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/UnknownIntProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/ValueTypesClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/src/Generated/Boolean.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/value-types/tspCodeModel.json: Wrote only 4608 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/nullable/Configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/nullable/src/Generated/DatetimeProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/nullable/src/Generated/CollectionsByte.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/nullable/src/Generated/CollectionsModelProperty.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/nullable/src/Generated/Models/_TypePropertyNullableContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/nullable/src/Generated/CollectionsByteProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/property/nullable/tspCodeModel.json: Wrote only 3584 of 10240 bytes
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/dictionary/src/Generated/DurationValue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/type/dictionary/src/Generated/Int32Value.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/client/structure/client-operation-group/src/Generated/SubNamespaceSecondClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/client/structure/client-operation-group/Client.Structure.Service.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/client/structure/multi-client/src/Generated/ClientAClientOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/client/structure/multi-client/tspconfig.yaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/client/structure/default/src/Generated/ServiceClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/packages/http-client-csharp/generator/TestProjects/Spector/http/client/naming/src/Generated/ClientNameAndJsonEncodedNameModel.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 10952 lines, excerpt: first and last 200 ...]
+
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/NetezzaPartitionSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/LakeHouseTableDataset.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/MongoDbAtlasSource.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ResponsysObjectDataset.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SqlDWSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/HubspotLinkedService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/OracleServiceCloudSource.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/FileServerReadSettings.Serialization.cs: Wrote only 7680 of 9971 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ServiceNowLinkedService.Serialization.cs: Wrote only 4096 of 8704 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ShopifyLinkedService.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/WarehouseSource.Serialization.cs: Wrote only 4096 of 7168 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/CustomDataSourceLinkedService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/TriggerPipelineReference.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/PostgreSqlV2Source.Serialization.cs: Wrote only 4096 of 6144 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ExecutionActivity.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SftpLocation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SnowflakeLinkedService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/AmazonRdsForSqlServerAuthenticationType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/CouchbaseSource.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/QueryDataFlowDebugSessionsResponse.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SparkJobDefinition.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/VerticaSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DWCopyCommandDefaultValue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ZohoSource.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DatabricksSparkPythonActivity.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SapTableLinkedService.cs: Wrote only 5632 of 6877 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ContinuationSettingsReference.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SftpWriteSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/JsonFormat.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/WebAnonymousAuthentication.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/MongoDbCursorMethodsProperties.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/AzureBatchLinkedService.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/AzureDataLakeStoreDataset.Serialization.cs: Wrote only 8192 of 10240 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DatasetFolder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/HDInsightMapReduceActivity.cs: Wrote only 2560 of 4068 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/JiraObjectDataset.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/CosmosDbMongoDbApiCollectionDataset.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DataFlowDebugResultResponse.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SftpServerLinkedService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/VerticaSource.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/LinkTableRequestSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/FtpServerLinkedService.Serialization.cs: Wrote only 4096 of 8192 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DynamicExecutorAllocation.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/RunNotebookResult.Serialization.cs: Wrote only 4096 of 4151 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ScheduleTriggerRecurrence.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SqlScriptFolder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/RerunTumblingWindowTrigger.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SsisPackageLocation.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/UntilActivity.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/AzureSqlDWTableDataset.Serialization.cs: Wrote only 4096 of 5632 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/GreenplumTableDataset.Serialization.cs: Wrote only 8192 of 9728 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/JsonSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ResponsysLinkedService.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SapOdpResourceDataset.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/LinkTableRequestTarget.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/IntegrationRuntimeDataProxyProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/AmazonS3ReadSettings.Serialization.cs: Wrote only 4096 of 10240 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/AmazonMWSLinkedService.cs: Wrote only 4096 of 8257 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DataFlowDebugResultResponse.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ServiceNowV2ObjectDataset.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SelfHostedIntegrationRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/PipelineResource.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/UnknownDataFlow.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/ServiceNowV2LinkedService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DataFlow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/DelimitedTextReadSettings.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/SftpReadSettings.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/Models/UnknownStoreWriteSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/DataFlowDebugSessionCreateDataFlowDebugSessionHeaders.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/LibraryClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/TriggerRunRestClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/DataFlowDebugSessionExecuteCommandOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/PipelineCreateOrUpdatePipelineOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/SqlScriptRenameSqlScriptOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/TriggerStopTriggerOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/TriggerSubscribeTriggerToEventsOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/TriggerRestClient.cs: Wrote only 1024 of 9516 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/LinkedServiceDeleteLinkedServiceOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/LinkConnectionRestClient.cs: Wrote only 6656 of 10240 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/WorkspaceGitRepoManagementRestClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Generated/DataFlowDebugSessionClient.cs: Wrote only 4096 of 8192 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Customization/LinkedServiceReferenceType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/src/Azure.Analytics.Synapse.Artifacts.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/api/Azure.Analytics.Synapse.Artifacts.netstandard2.0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.Artifacts/api/Azure.Analytics.Synapse.Artifacts.net8.0.cs: Wrote only 512 of 10240 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/tests/Generated/Samples/Samples_RoleAssignmentsClient.cs: Wrote only 3072 of 10240 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/tests/Generated/Samples/Samples_RoleDefinitionsClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/tests/Azure.Analytics.Synapse.AccessControl.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/tests/AccessControlClientLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/tests/samples/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/tests/samples/Sample1_HelloWorld.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/samples/Sample1_HelloWorld.md: Wrote only 1024 of 1621 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/src/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/src/Generated/RoleDefinitionsClient.cs: Wrote only 5120 of 10240 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/src/Generated/RoleAssignmentsClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/src/Generated/AccessControlClientOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/src/Generated/Docs/RoleDefinitionsClient.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/src/Generated/Docs/RoleAssignmentsClient.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/src/Generated/AnalyticsSynapseAccessControlClientBuilderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/api/Azure.Analytics.Synapse.AccessControl.net8.0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.AccessControl/api/Azure.Analytics.Synapse.AccessControl.netstandard2.0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/test-resources-post.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/CHANGELOG.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/tests/ManagedPrivateEndpointsClientTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/tests/ManagedPrivateEndpointsClientLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/tests/Azure.Analytics.Synapse.ManagedPrivateEndpoints.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/src/Generated/ManagedPrivateEndpointsClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/src/Generated/Internal/RequestContentHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/src/Generated/Internal/MultipartFormDataRequestContent.cs: Wrote only 4096 of 5120 bytes
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/src/Generated/Internal/Argument.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/synapse/Azure.Analytics.Synapse.ManagedPrivateEndpoints/src/Generated/Internal/ModelSerializationExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-697162ac032575c063399900d94e5682ea11c45e.idx: Wrote only 9728 of 10240 bytes
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/03_question.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/06_learn_feedback.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/04_core_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/02_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/05_mqissue.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/01_bug_report.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/scheduled-event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-03T00:18:58+01:00 exit 125

@@ -1,0 +1,43 @@
+start 2026-11-01T10:24:04+01:00
+$ git -C /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2 checkout -q -- .
+$ dotnet restore src/FluentModbus/FluentModbus.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/FluentModbus.csproj (in 1,67 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/FluentModbus/FluentModbus.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/FluentModbus/FluentModbus.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+  FluentModbus -> /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/artifacts/bin/FluentModbus/release_netstandard2.0/FluentModbus.dll
+/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+  FluentModbus -> /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/artifacts/bin/FluentModbus/release_netstandard2.1/FluentModbus.dll
+  Successfully created package '/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/artifacts/package/release/FluentModbus.1.0.0.nupkg'.
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/ModbusUtils.cs(79,10): warning CS1030: #warning: 'This method should be improved by validating the total length against the expected length depending on the function code' [/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/FluentModbus.csproj::TargetFramework=netstandard2.1]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.53
+  Successfully created package '/private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/out/FluentModbus.1.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:24:13+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2 checkout -q -- .
+$ dotnet restore src/FluentModbus/FluentModbus.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/fluentmodbus-5.3.2/src/FluentModbus/FluentModbus.csproj (in 137 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

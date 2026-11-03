@@ -80,9 +80,9 @@ because a registry handshake failed under a far-off clock (their section
 III-E); we kept reprotest's default, and the two Node failures below are
 that effect.
 
-**Three boundaries** per pair of builds:
+**Three levels** per pair of builds:
 
-| boundary | compares |
+| level | compares |
 |---|---|
 | 1 whole file | the `.nupkg` byte for byte |
 | 2 content | every archive entry by bytes, except NuGet's packaging files (`nuget.psmdcp`, `_rels/.rels`, `[Content_Types].xml`) |
@@ -98,7 +98,7 @@ compared and the row says so (two cases: Humanizer.Core's project packs
 `Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler`). Symbol packages
 (`.snupkg`) are not compared.
 
-**Per-package category** at each boundary, Benedetti's Figure 3:
+**Per-package category** at each level, Benedetti's Figure 3:
 *as is* when every as-is run is `same`; *with configuration* when every
 as-is difference has a configured run that is `same`; *unreproducible*
 when a configured run still differs or fails. One inference inside
@@ -159,7 +159,7 @@ Packages whose two builds differ, of the 90 with all eight axes run:
 | environment, locales, exec_path, timezone, umask, fileordering (each) | 90 | 5 | 5 | 0 |
 | all eight at once (89 packages) | 87 | 83 | 83 | 2 |
 
-Boundary 1 is never `same` as is: NuGet stamps every ZIP entry with the
+Level 1 is never `same` as is: NuGet stamps every ZIP entry with the
 build's own time, so two unvaried builds already differ there. The four
 packages identical at content and DLL under every axis are CsvHelper
 33.1.0, FluentValidation 11.11.0, FluentValidation.DependencyInjectionExtensions
@@ -171,7 +171,7 @@ are the IdentityModel 8.23.0 family.
 
 ### Per package, Figure-3 category (90 packages)
 
-| boundary | as is | with configuration | unreproducible | not reached |
+| level | as is | with configuration | unreproducible | not reached |
 |---|---|---|---|---|
 | 1 whole file | 0 | 66 | 24 | 0 |
 | 2 content | 4 | 62 | 24 | 0 |
@@ -205,7 +205,7 @@ what it means `[I]`.
 ### 1. `build_path` is the ecosystem's one systematic fault, and the configuration closes it
 
 `[V]` 86 of 90 packages differ at the DLL under `build_path` as is;
-under the configured run 77 of the 86 are identical at every boundary,
+under the configured run 77 of the 86 are identical at every level,
 whole file included, the nine that are not being the five IdentityModel
 (clock) and the four Quartz (reading 6) packages. The as-is difference is
 the PDB path in the CodeView debug entry and the source paths in the
@@ -227,9 +227,9 @@ difference detected", not a proof of invariance. Prediction 4 holds and
 prediction 5 (file ordering reaching content) found zero cases: NuGet's
 sorted entries hold.
 
-### 3. Boundary 1 as is is never reproducible, and the fix is one property
+### 3. Level 1 as is is never reproducible, and the fix is one property
 
-`[V]` 90 of 90 differ at the whole file as is on every axis; on the
+`[V]` no package is `same` at the whole file as is under any axis (88 differ and 2 fail under `time`, 90 differ under every other); on the
 six axes that do not touch path or clock, 85 of the 90 differ on entry
 timestamps only (the other five are IdentityModel); the configured
 `time` run is identical at the whole file for 70 packages, every one
@@ -341,7 +341,7 @@ parallel workers. The running workers had loaded the driver before the
 ## Caveats and not tested
 
 - One machine, one Linux, one SDK. Windows is out (reprotest is
-  Linux-only); the result on 10.0.1xx would differ at boundary 1 on the
+  Linux-only); the result on 10.0.1xx would differ at level 1 on the
   `psmdcp` GUID, stated not measured.
 - The configured run was made per axis only where content differed or
   the build failed; for the axes where only entry timestamps differed,

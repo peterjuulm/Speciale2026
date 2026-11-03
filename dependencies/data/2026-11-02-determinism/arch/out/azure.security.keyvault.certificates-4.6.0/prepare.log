@@ -1,0 +1,97 @@
+start 2026-11-01T10:12:05+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 remote add origin https://github.com/Azure/azure-sdk-for-net
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/mirrors/https_github.com_Azure_azure-sdk-for-net.git fetch -q --prune origin
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_Azure_azure-sdk-for-net.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_Azure_azure-sdk-for-net.git 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 -c advice.detachedHead=false checkout -q 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+global.json: sdk-removed (pinned 7.0.101)
+start 2026-11-01T12:49:19+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_Azure_azure-sdk-for-net.git /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 remote set-url origin https://github.com/Azure/azure-sdk-for-net
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 -c advice.detachedHead=false checkout -q 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+global.json: sdk-removed (pinned 7.0.101)
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 128 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T16:23:33+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_Azure_azure-sdk-for-net.git /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 remote set-url origin https://github.com/Azure/azure-sdk-for-net
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 -c advice.detachedHead=false checkout -q 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+global.json: sdk-removed (pinned 7.0.101)
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 169 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T17:43:45+01:00
+$ git clone -q --no-checkout https://github.com/Azure/azure-sdk-for-net /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 -c advice.detachedHead=false checkout -q 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 224 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T00:06:45+01:00
+$ git clone -q --no-checkout https://github.com/Azure/azure-sdk-for-net /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 -c advice.detachedHead=false checkout -q 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 263 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T06:49:58+01:00
+$ git clone -q --no-checkout https://github.com/Azure/azure-sdk-for-net /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 -c advice.detachedHead=false checkout -q 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 169 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T08:00:30+01:00
+$ git clone -q --no-checkout https://github.com/Azure/azure-sdk-for-net /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 -c advice.detachedHead=false checkout -q 2ba5db394f2d52a490f3e8fb58991dd27f94f3c8
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0 checkout -q -- .
+$ dotnet restore sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.security.keyvault.certificates-4.6.0/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj (in 141 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

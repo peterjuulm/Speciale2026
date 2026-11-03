@@ -1,0 +1,403 @@
+start 2026-11-03T00:17:46+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1692380157 && dotnet pack sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1692380157; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.1/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.1' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.UcDdDH/const_build_path/sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.communication.email/1.0.0/lib/netstandard2.0/Azure.Communication.Email.dll using assemblies from /tmp/reprotest.UcDdDH/const_build_path/artifacts/obj/Azure.Communication.Email/Release/netstandard2.0/
+  InheritDocTask replaced 24 of 24 inheritdoc tags and removed 6 private member docs in /tmp/reprotest.UcDdDH/const_build_path/artifacts/obj/Azure.Communication.Email/Release/netstandard2.0/Azure.Communication.Email.xml
+  Azure.Communication.Email -> /tmp/reprotest.UcDdDH/const_build_path/artifacts/bin/Azure.Communication.Email/Release/netstandard2.0/Azure.Communication.Email.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.1/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.1' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.UcDdDH/const_build_path/sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj::TargetFramework=netstandard2.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.72
+  Found the following change log entry for version '1.0.1' in [/tmp/reprotest.UcDdDH/const_build_path/sdk/communication/Azure.Communication.Email/CHANGELOG.md].
+  -----
+  ## 1.0.1 (2023-08-17)
+  
+  ### Other Changes
+  - Improve memory management for attachment handling
+   
+  -----
+  Successfully created package '/tmp/reprotest.UcDdDH/const_build_path/out/Azure.Communication.Email.1.0.1-alpha.20261102.1.nupkg'.
+  Successfully created package '/tmp/reprotest.UcDdDH/const_build_path/out/Azure.Communication.Email.1.0.1-alpha.20261102.1.symbols.nupkg'.
+tar: ./tools/HelperUtilities/psScripts/Copy-SessionRecords.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.Tasks.Core.dll: Wrote only 512 of 10240 bytes
+tar: ./tools/bootstrapTools/taskBinaries/System.Runtime.InteropServices.RuntimeInformation.dll: Wrote only 9216 of 9704 bytes
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.Framework.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/bootstrapTools/taskBinaries/System.Threading.Thread.dll: Wrote only 2560 of 4320 bytes
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.Utilities.Core.dll: Wrote only 5120 of 10240 bytes
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Azure.Build.BootstrapTasks.dll: Wrote only 512 of 2560 bytes
+tar: ./tools/bootstrapTools/taskBinaries/Microsoft.Build.dll: Wrote only 3072 of 10240 bytes
+tar: ./tools/bootstrapTools/taskBinaries/System.Reflection.Metadata.dll: Wrote only 3584 of 10240 bytes
+tar: ./tools/bootstrapTools/taskBinaries/System.Collections.Immutable.dll: Wrote only 9216 of 10240 bytes
+tar: ./tools/bootstrapTools/bootstrap.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AutoRest-AzureDotNetSDK/__TemplateIcon.ico: Wrote only 5120 of 10240 bytes
+tar: ./tools/ProjectTemplates/AzureDotNetSDK-TestProject/Class1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/ProjectTemplates/AzureDotNetSDK-TestProject/MyTemplate.vstemplate: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/NugetExe/NuGet.exe: Wrote only 2048 of 10240 bytes
+tar: ./tools/DebugSN.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tools/NuGet.exe: Wrote only 512 of 10240 bytes
+tar: ./tools/linuxScripts/runClientRuntimeTests.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./mgmt.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CONTRIBUTING.md: Wrote only 3584 of 10240 bytes
+tar: ./samples/CloudClipboard/CloudClipboard/CloudClipboard.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/images/banner1.svg: Wrote only 4096 of 7680 bytes
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/favicon.ico: Wrote only 4608 of 10240 bytes
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/bootstrap/LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery/.bower.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js: Wrote only 5120 of 10240 bytes
+tar: ./samples/CloudClipboard/CloudClipboard/wwwroot/css/site.css: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/Pages/_ViewImports.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/CloudClipboard/CloudClipboard/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/iothub-connect-to-eventhubs/IotHubConnection.cs: Wrote only 4096 of 6144 bytes
+tar: ./samples/AppSecretsConfig/Startup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/jquery/LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/_ViewStart.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/AppSecretsConfig/Pages/Shared/_ValidationScriptsPartial.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/README.MD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/Startup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/LineCounter.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/linecounter/assets/monitor.PNG: Wrote only 6144 of 6941 bytes
+tar: ./samples/linecounter/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/Event/MockEventProcessorEventTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Sample.Perf/HttpPipelineGetTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/PerfTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/ThreadsafeRandom.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/Perf/Azure.Test.Perf/PerfProgram.cs: Wrote only 6144 of 10240 bytes
+tar: ./common/Perf/Azure.Test.Perf/PerfOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./common/SmokeTests/SmokeTest/Program.cs: Wrote only 4096 of 7168 bytes
+tar: ./common/SmokeTests/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Azure.Communication.Email/Azure.Communication.Email.csproj.nuget.dgspec.json: Wrote only 2048 of 2997 bytes
+tar: ./artifacts/obj/Azure.Communication.Email/project.assets.json: Wrote only 512 of 10240 bytes
+tar: ./eng/pipelines/templates/jobs/mgmt-release.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/jobs/perf.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/jobs/smoke.tests.yml: Wrote only 4096 of 4419 bytes
+tar: ./eng/pipelines/templates/steps/upload-dumps.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/install-dotnet.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/archetype-sdk-tests.yml: Wrote only 1536 of 2847 bytes
+tar: ./eng/pipelines/docindex.yml: Wrote only 4096 of 5632 bytes
+tar: ./eng/xunit.runner.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/dependencies/AnalyzeDeps.ps1: Wrote only 4096 of 8442 bytes
+tar: ./eng/scripts/dependencies/azure-sdk.deps.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/splittestdependencies/assets/test-split-workflow.png: Wrote only 5632 of 10240 bytes
+tar: ./eng/scripts/splittestdependencies/tests/inputs/sync-platform-matrix.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/splittestdependencies/tests/inputs/projects.txt: Wrote only 2560 of 3377 bytes
+tar: ./eng/scripts/splittestdependencies/tests/expectOutputs/expect-matrix3.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/splittestdependencies/tests/expectOutputs/expect-matrix1.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/splittestdependencies/tests/expectOutputs/1-2.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/splittestdependencies/generate-dependency-functions.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/Language-Settings.ps1: Wrote only 2048 of 5715 bytes
+tar: ./eng/scripts/Update-PkgVersion.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/automation/Invoke-TypeSpecDataPlaneGenerateSDKPackage.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/automation/GenerateAndBuildLib.ps1: Wrote only 6144 of 10240 bytes
+tar: ./eng/scripts/automation/MgmtMockTestLib.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/tests/firstOnboardInput.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/tests/updateExistingWithConfigInput.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/docs/tests/inputs/metadata/latest/Azure.Security.KeyVault.Keys.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/scripts/docs/tests/Toc-Generation.Tests.ps1: Wrote only 4096 of 7135 bytes
+tar: ./eng/scripts/ci.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/MSSharedLibKey.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/codegen_to_sdk_config.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Azure.Management.Test.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/dotnet.gdnbaselines: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/signalr_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/netapp_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/operationalinsights_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/datafactory_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/synapse_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/batch_data-plane.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/cognitiveservices_data-plane_CustomVision_Training.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/mixedreality_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/resources_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/containerregistry_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/network_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/datamigration_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/deviceprovisioningservices_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/healthbot_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/vmware_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/peering_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/frontdoor_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/azsadmin_resource-manager_backup.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/cdn_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/kubernetesconfiguration_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/authorization_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/deviceupdate_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/redisenterprise_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/mgmtmetadata/recoveryservicessiterecovery_resource-manager.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/mgmt/Directory.Build.Mgmt.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/templates/Azure.ResourceManager.Template/samples/autorest.tests.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/templates/Azure.ResourceManager.Template/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/jobs/docindex.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/jobs/archetype-sdk-tests-generate.yml: Wrote only 4096 of 4723 bytes
+tar: ./eng/common/pipelines/templates/steps/verify-readme.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/steps/verify-agent-os.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/steps/replace-relative-links.yml: Wrote only 4096 of 8675 bytes
+tar: ./eng/common/pipelines/templates/steps/update-docsms-metadata.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/steps/set-default-branch.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/steps/create-tags-and-git-release.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/steps/retain-run.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipelines/templates/steps/credscan.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/docgeneration/templates/matthews/partials/class.tmpl.partial: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/docgeneration/Generate-DocIndex.ps1: Wrote only 4096 of 6144 bytes
+tar: ./eng/common/docgeneration/docfx.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/Update-DocsMsMetadata.ps1: Wrote only 3072 of 8925 bytes
+tar: ./eng/common/scripts/job-matrix/job-matrix-functions.ps1: Wrote only 3584 of 4173 bytes
+tar: ./eng/common/scripts/Verify-AgentOS.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/get-changedfiles.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/ChangeLog-Operations.ps1: Wrote only 4608 of 5120 bytes
+tar: ./eng/common/scripts/Prepare-Release.ps1: Wrote only 4096 of 5632 bytes
+tar: ./eng/common/scripts/Helpers/Resource-Helpers.ps1: Wrote only 2048 of 6388 bytes
+tar: ./eng/common/scripts/Helpers/ApiView-Helpers.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/Delete-RemoteTag.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/New-ReleaseAsset.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/Create-APIReview.ps1: Wrote only 4096 of 8281 bytes
+tar: ./eng/common/scripts/Invoke-DevOpsAPI.ps1: Wrote only 4096 of 4608 bytes
+tar: ./eng/common/scripts/stress-testing/generate-scenario-matrix.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/get-codeowners.lib.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/scripts/git-branch-push.ps1: Wrote only 3072 of 5921 bytes
+tar: ./eng/common/scripts/Submit-PullRequest.ps1: Wrote only 512 of 855 bytes
+tar: ./eng/common/scripts/Save-Package-Properties.ps1: Wrote only 4096 of 4789 bytes
+tar: ./eng/common/scripts/Update-ChangeLog.ps1: Wrote only 4096 of 4910 bytes
+tar: ./eng/common/scripts/check-spelling-in-changed-files.ps1: Wrote only 5120 of 5419 bytes
+tar: ./eng/common/TestResources/SubConfig-Helpers.ps1: Wrote only 1536 of 4290 bytes
+tar: ./eng/common/TestResources/Remove-TestResources.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/TestResources/Remove-TestResources.ps1.md: Wrote only 4096 of 7313 bytes
+tar: ./eng/common/TestResources/Update-TestResources.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/TestResources/clouds/AzureUSGovernment.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/TestResources/New-TestResources.ps1: Wrote only 5120 of 10240 bytes
+tar: ./eng/common/TestResources/New-TestResources.ps1.md: Wrote only 7680 of 8813 bytes
+tar: ./eng/common/InterdependencyGraph.html: Wrote only 3584 of 8421 bytes
+tar: ./eng/common/testproxy/target_version.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/spelling/package.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/spelling/package-lock.json: Wrote only 3072 of 10240 bytes
+tar: ./eng/Packages.Data.props: Wrote only 6656 of 7587 bytes
+tar: ./eng/ignore-links.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Microsoft.Build.CentralPackageVersions/2.0.46/Sdk/Sdk.targets: Wrote only 8192 of 10240 bytes
+tar: ./eng/AzSdk.reference.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/CodeGeneration.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/stylecop.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/checkenforcer.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/AzSdkTestLibKey.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/Infrastructure/ConversationAnalysisTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/Infrastructure/ConversationAnalysisTestEnvironment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/Generated/Samples/Samples_ConversationAuthoringClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/Generated/Samples/Samples_ConversationAnalysisClient.cs: Wrote only 3584 of 3721 bytes
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/Samples/Sample1_AnalyzeConversation_ConversationPrediction.cs: Wrote only 2560 of 5191 bytes
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/Samples/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/Samples/Sample6_AnalyzeConversation_ConversationSummarization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/tests/ConversationAnalysisClientLiveTests.cs: Wrote only 8704 of 10207 bytes
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/perf/Infrastructure/AnalysisScenarioBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/samples/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/src/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/cognitivelanguage/Azure.AI.Language.Conversations/src/Generated/ConversationAnalysisClientExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 12513 lines, excerpt: first and last 200 ...]
+
+tar: ./sdk/botservice/Azure.ResourceManager.BotService/src/Generated/BotConnectionSettingData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Azure.ResourceManager.BotService/src/Customization/Models/EmailChannelProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Azure.ResourceManager.BotService/api/Azure.ResourceManager.BotService.netstandard2.0.cs: Wrote only 512 of 10240 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/tests/SessionRecords/BotServiceTests/BotCreateEmailChannel.json: Wrote only 512 of 4491 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/tests/SessionRecords/BotServiceTests/BotCreateWebAppBot.json: Wrote only 1024 of 9207 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/tests/SessionRecords/BotServiceTests/BotCreateAndListBySubscriptionTest.json: Wrote only 4608 of 10240 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/tests/SessionRecords/BotServiceTests/BotCreateWithoutResourceGroupShouldFail.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/tests/SessionRecords/BotServiceTests/BotCreateAndListByResourceGroupTest.json: Wrote only 8704 of 10240 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Templates/functionapp.template.json: Wrote only 3072 of 9241 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/AzureBotServiceClient.cs: Wrote only 2560 of 10240 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/BotsOperations.cs: Wrote only 6144 of 10240 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/ChannelsOperations.cs: Wrote only 512 of 1575 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Operations.cs: Wrote only 2048 of 2989 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/CheckNameAvailabilityResponseBody.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/TelegramChannel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/BotProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/Page.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/SlackChannelProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/KikChannel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/KikChannelProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/Models/CheckNameAvailabilityRequestBody.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/src/Generated/BotsOperationsExtensions.cs: Wrote only 1536 of 7881 bytes
+tar: ./sdk/botservice/Microsoft.Azure.Management.BotService/Microsoft.Azure.Management.BotService.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/tests/Scenario/NetworkFabricTests.cs: Wrote only 1536 of 1680 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/tests/Scenario/InternetGatewayTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/tests/Scenario/NetworkToNetworkInterconnectTests.cs: Wrote only 3584 of 4613 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/tests/Scenario/InternalNetworkTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/tests/Scenario/ExternalNetworkTests.cs: Wrote only 4096 of 4989 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricControllerResource.cs: Wrote only 8192 of 9216 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricL2IsolationDomainCollection.cs: Wrote only 4608 of 6768 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricIPCommunityResource.cs: Wrote only 512 of 1864 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricResource.cs: Wrote only 1536 of 9650 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkTapRuleResource.cs: Wrote only 8192 of 9216 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricL3IsolationDomainCollection.cs: Wrote only 7680 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkPacketBrokerCollection.cs: Wrote only 8192 of 9216 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricControllerCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkTapCollection.cs: Wrote only 2048 of 4696 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricInternetGatewayRuleCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricInternalNetworkCollection.cs: Wrote only 4096 of 9216 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricL2IsolationDomainResource.cs: Wrote only 2560 of 2894 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkDeviceCollection.cs: Wrote only 3072 of 4722 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkDeviceSkuCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkToNetworkInterconnectResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/samples/Generated/Samples/Sample_NetworkFabricExternalNetworkResource.cs: Wrote only 1024 of 8891 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricIPPrefixResource.cs: Wrote only 9216 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkToNetworkInterconnectResource.cs: Wrote only 4096 of 5451 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricInternetGatewayResource.cs: Wrote only 3584 of 9579 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkToNetworkInterconnectCollection.cs: Wrote only 4096 of 5952 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkDeviceInterfaceResource.cs: Wrote only 5632 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricResource.cs: Wrote only 6656 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkPacketBrokerResource.cs: Wrote only 6656 of 7737 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricIPPrefixCollection.cs: Wrote only 5632 of 9381 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricInternetGatewayRuleResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricIPCommunityResource.cs: Wrote only 1024 of 6822 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricL2IsolationDomainResource.cs: Wrote only 6656 of 8981 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricIPCommunityData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/ProviderConstants.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkDeviceResource.cs: Wrote only 6656 of 9925 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricControllerResource.cs: Wrote only 6144 of 7853 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Extensions/ManagedNetworkFabricExtensions.cs: Wrote only 3072 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Extensions/SubscriptionResourceExtensionClient.cs: Wrote only 6144 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricCollection.cs: Wrote only 2560 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkTapRuleCollection.cs: Wrote only 3072 of 6485 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/LongRunningOperation/NetworkFabricInternalNetworkOperationSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/LongRunningOperation/NetworkDeviceInterfaceOperationSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/LongRunningOperation/DeviceUpdateCommonPostActionResultOperationSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/LongRunningOperation/NetworkFabricIPPrefixOperationSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/ExternalNetworksRestOperations.cs: Wrote only 1536 of 1542 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkTapsRestOperations.cs: Wrote only 3584 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkFabricsRestOperations.cs: Wrote only 9216 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/InternetGatewayRulesRestOperations.cs: Wrote only 4096 of 7895 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkDeviceSkusRestOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/InternalNetworksRestOperations.cs: Wrote only 9216 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkTapRulesRestOperations.cs: Wrote only 7680 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/RoutePoliciesRestOperations.cs: Wrote only 8704 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkInterfacesRestOperations.cs: Wrote only 3072 of 4451 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkPacketBrokersRestOperations.cs: Wrote only 4608 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkToNetworkInterconnectsRestOperations.cs: Wrote only 7680 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/L3IsolationDomainsRestOperations.cs: Wrote only 2560 of 9249 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkDevicesRestOperations.cs: Wrote only 7168 of 9885 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/AccessControlListsRestOperations.cs: Wrote only 5632 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/RestOperations/NetworkFabricControllersRestOperations.cs: Wrote only 9216 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkRackResource.cs: Wrote only 512 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkRackCollection.cs: Wrote only 4096 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricIPCommunityCollection.cs: Wrote only 2560 of 2776 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricIPExtendedCommunityResource.cs: Wrote only 5120 of 10240 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricInternalNetworkResource.cs: Wrote only 2048 of 5477 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/NetworkFabricExternalNetworkCollection.cs: Wrote only 3072 of 8552 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/NetworkDevicesListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/InternalNetworkBgpConfiguration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/InternetGatewayRuleAction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/NetworkToNetworkInterconnectsList.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/NetworkDevicesListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/AggregateRoute.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/SupportedVersionProperties.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/VpnConfigurationPatchableProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/AddressFamilyType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/NetworkDeviceRole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/IPExtendedCommunityListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/ExternalNetworkOptionAProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/NeighborGroupsListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/IsolationDomainEncapsulationType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/NetworkFabricInternetGatewayRuleData.Serialization.cs: Wrote only 512 of 3332 bytes
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/L2IsolationDomainsListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/NetworkFabricUpdateVersionContent.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/ExportRoutePolicyInformation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/managednetworkfabric/Azure.ResourceManager.ManagedNetworkFabric/src/Generated/Models/VpnConfigurationOptionAProperties.Serialization.cs: Wrote only 4096 of 5293 bytes
+tar: ./.git/objects/pack/pack-697162ac032575c063399900d94e5682ea11c45e.pack: Wrote only 1024 of 10240 bytes
+tar: ./.git/objects/pack/pack-697162ac032575c063399900d94e5682ea11c45e.idx: Wrote only 1536 of 10240 bytes
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Wrote only 4096 of 4898 bytes
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/03_question.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/04_core_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/02_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/05_mqissue.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/scheduled-event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS: Wrote only 3584 of 10240 bytes
+tar: ./.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/event-processor.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/sla.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-03T00:18:45+01:00 exit 125

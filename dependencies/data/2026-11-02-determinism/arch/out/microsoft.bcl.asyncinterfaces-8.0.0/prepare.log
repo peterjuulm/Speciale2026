@@ -1,0 +1,21 @@
+start 2026-11-02T18:05:46+01:00
+$ git clone -q --no-checkout https://github.com/dotnet/runtime /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0 -c advice.detachedHead=false checkout -q 5535e31a712343a63f5d7d796cd874e563e5ac14
+start 2026-11-03T01:06:37+01:00
+$ git clone -q --no-checkout https://github.com/dotnet/runtime /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0 -c advice.detachedHead=false checkout -q 5535e31a712343a63f5d7d796cd874e563e5ac14
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0 checkout -q -- .
+$ dotnet restore src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0/src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj (in 188 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 188 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 188 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.asyncinterfaces-8.0.0/src/libraries/Microsoft.Bcl.AsyncInterfaces/ref/Microsoft.Bcl.AsyncInterfaces.csproj (in 188 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

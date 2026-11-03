@@ -1,0 +1,403 @@
+start 2026-11-02T18:27:22+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914 && dotnet pack src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./es-metadata.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Packages.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./SECURITY.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.sscignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./global.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./prereqs/keys/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./prereqs/keys/Newtonsoft.Json.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./prep-source-build.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CONTRIBUTING.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODE_OF_CONDUCT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/init-cross-build.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/bootstrap/buildBootstrapPreviouslySB.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/allowed-sb-binaries.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/vmr-license-scan.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/source-build-outer-loop.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/vmr-license-scan-unofficial.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/unofficial.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/source-build-sdk-diff-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/jobs/sdk-diff-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/jobs/vmr-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/variables/vmr-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/variables/pipelines.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/run-baseline-update-pr-tool.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-validate-signing.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/create-baseline-update-pr.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-validate-installers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/download-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-compare.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/download-vmr-artifact.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/download-pipeline-artifact.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-download-artifact.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/setup-diagnostics-esrp.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-license-scan.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/source-build-stages.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-validation.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/source-build-sdk-diff-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/source-build-and-validate.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-compare.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-scan.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-verticals.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/source-build-sdk-diff-tests-unofficial.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/vmr-compare.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/scout-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/official.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/pr.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/RuntimeIdentifier.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/init-poison.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Version.Details.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/DetectBinaries.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/BinaryToolKit.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/Modes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/BinaryTool.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/BinaryToolTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver/UnifiedBuildSdkResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/UsageData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/AnnotatedUsage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/XmlParsingHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WriteUsageBurndownData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WritePackageUsageData.cs: Wrote only 8192 of 8704 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WriteUsageReports.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/VersionDetailsHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Microsoft.DotNet.UnifiedBuild.Tasks.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/BuildTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/SignSourceBuiltArtifacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UpdateNuGetConfigPackageSourcesMappings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/static/empty.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/static/Signing.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Config.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/WriteSbrpUsageReport.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/RemoveInternetSourcesFromNuGetConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UpdateJson.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/PdbUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/EnumerableExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/RemoveBlockedAuditSourcesFromNuGetConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/WritePackageVersionsProps.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Services/ProcessService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/GetKnownArtifactsFromAssetManifests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/CreateSourceArtifact.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Models/VersionDetailsXml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Log.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/FileUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/ReadRepoInfoFromSourceManifest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/GetDependencyNamesFromVersionDetails.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/AddSourceToNuGetConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/ReadNuGetPackageInfos.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/CreateSdkSymbolsLayout.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/MarkAndCatalogPackages.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/Utility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/PoisonType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/PoisonMatch.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/CheckForPoison.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/DummyAttributeTypeProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/PoisonedFileEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/CatalogPackageEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/CatalogFileEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CloakedFileScan/CloakedFileScan.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CloakedFileScan/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/AzureDevOpsGitClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/Pipelines.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/CreateBaselineUpdatePR.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/GitHubGitClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/PRCreator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/Log.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/GitClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/Utils.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/Issue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/SigningComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/BaselineEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/BuildComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/BuildComparer.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/SignCheckResults.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/IssueType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/AssetType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/ComparisonReport.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/AssetComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/AssetMapping.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tools.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/EmptySdk/Sdk/Sdk.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/EmptySdk/Sdk/Sdk.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/IValidationStep.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/ChangeValidation.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/ExclusionFileValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/SubmoduleValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/PrInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/ToolingFilesValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/Validation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/clean-shared-components.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/restore-build-edited-files.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/restore-build-edited-files.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/THIRD-PARTY-NOTICES.template.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Version.Details.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Publishing.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/finish-source-only.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/SignCheckExclusionsFile.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/source-build-toolset-init.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Versions.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Tests.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/retain-build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/onelocbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/job.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/publish-build-assets.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/source-index-stage1.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/jobs/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/jobs/jobs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/jobs/codeql-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/post-build/setup-maestro-vars.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/post-build/common-variables.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/post-build/post-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/variables/pool-providers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/get-delegation-sas.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/install-microbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/cleanup-microbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/source-index-stage1-publish.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/enable-internal-runtimes.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-logs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-build-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/retain-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/send-to-helix.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/enable-internal-sources.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/generate-sbom.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/get-federated-access-token.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-pipeline-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipeline-logging-functions.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet-install.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/init-tools-native.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cibuild.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/Tools.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal-feed-operations.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/tizen-build-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-android-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/armel/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/install-debs.py: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/toolchain.cmake: Wrote only 7680 of 10240 bytes
+tar: ./eng/common/cross/build-rootfs.sh: Wrote only 4096 of 8704 bytes
+tar: ./eng/common/init-tools-native.ps1: Wrote only 512 of 4369 bytes
+tar: ./eng/common/PSScriptAnalyzerSettings.psd1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/SetupNugetSources.sh: Wrote only 1536 of 5620 bytes
+
+[... 158284 lines, excerpt: first and last 200 ...]
+
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/xlf/StyleCollectionEditor.tr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/xlf/ToolStripItemEditorForm.cs.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/xlf/StyleCollectionEditor.ru.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/xlf/StyleCollectionEditor.pt-BR.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/xlf/TreeNodeCollectionEditor.de.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/DesignerOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/StringCollectionEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ControlDesigner.DesignerControlCollectionCodeDomSerializer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/DataGridViewColumnTypeEditor.Picker.ListBoxItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/DataMemberListEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/MenuCommands.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/AnchorEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ToolStripItemDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ControlDesigner.DockingActionList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ToolStripItemGlyph.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/RichTextBoxDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ControlDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/MaskedTextBoxDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/CustomMenuItemCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/TreeNodeCollectionEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ScrollableControlDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/NavigationalTableLayoutPanel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/FolderNameEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/StatusCommandUI.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ShortcutKeysEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/DocumentDesigner.DocumentInheritanceService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ListControlUnboundActionList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/FormatStringEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/FormatControl.NoFormattingFormatType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/VsPropertyGrid.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/MaskDescriptor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ListViewDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/MaskDescriptorTemplate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ToolStripActionList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/DataGridViewColumnCollectionEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ContextMenuStripGroupCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/SelectionUIService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/TextBoxActionList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ToolStripDropDownDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/IOleDragClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/NotifyIconDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/TabPageDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ContainerSelectorActiveEventArgsType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/BorderSidesEditor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/ImageListDesigner.OriginalImageCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/TabControlDesigner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System/Windows/Forms/Design/DataGridViewCellStyleBuilder.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/SRDisplayNameAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/GlobalUsings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/GlobalSuppressions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/SRDescriptionAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/System.Windows.Forms.Design.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/DataSourceDescriptor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/src/PublicAPI.Shipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/System.Windows.Forms.Design/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/SystemEventsHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/TrackBarTestHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/ScaleTopLevelFormMinMaxSizeForDpiScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/ScrollBarTestHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/Properties/InternalsVisibleTo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/WinFormsAppContextSwitchNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/ResxHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/CommonTestHelperEx.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/DataGridViewUIAStartRowCountAtZeroScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/DialogHostForm.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/GlobalUsings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/Data/SerializableTestData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/Data/TypedDataObject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/Data/UntypedDataObject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/Data/TypedAndRuntimeDataObject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/Data/DataObjectTestHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/Data/ManagedAndRuntimeDataObject.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/ApplyParentFontToMenusScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/KeyboardSimulator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/System.Windows.Forms.TestUtilities.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/MSGF.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/PropertyGridInternal/SubPropertyGrid.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/TreeNodeCollectionAddRangeRespectsSortOrderScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/NoClientNotificationsScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/AnchorLayoutV2Scope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/ControlExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/util/System.Windows.Forms/ServicePointManagerCheckCrlScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/TrimTest/readme.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/TrimTest/TrimTest.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/TrimTest/Form1.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/TrimTest/Form1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/TrimTest/Form1.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/TrimTest/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/ScratchProjectWithInternals/readme.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/ScratchProjectWithInternals/Form1.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/ScratchProjectWithInternals/ScratchProjectWithInternals.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/ScratchProjectWithInternals/Form1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/ScratchProjectWithInternals/Form1.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/ScratchProjectWithInternals/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/MauiTests/MauiTestsHelper/KeyboardHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/MauiTests/References.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/MauiTests/lib/GenStrings.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/MauiTests/lib/WinformsTestLib.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/MauiTests/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DesignTimeAligned.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ToolStripTests.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ScalingBeforeChanges.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DateTimePicker.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DragDrop.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/Resources/media.mpg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/Resources/OpenDialog.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/app.manifest: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DataGridViewInVirtualModeTest.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ScalingBeforeChanges.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ErrorProviderTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/Dialogs.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/MenuStripAndCheckedListBox.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/MainForm.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/FormBorderStyles.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ComboBoxesWithScrollBars.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/FormOwnerTestForm.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ComboBoxes.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/MessageBoxes.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/TreeViewTest.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DockLayoutTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ErrorProviderTest.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ChartControl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DockLayoutTests.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/PropertyGrid.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/Properties/launchSettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/FormBorderStyles.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DataGridViewInVirtualModeTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/Calendar.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/DesignTimeAligned.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/Buttons.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ChartControl.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/ListBoxes.Designer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/winforms/src/test/integration/WinformsControlsTest/AnchorLayoutTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:28:22+01:00 exit 125

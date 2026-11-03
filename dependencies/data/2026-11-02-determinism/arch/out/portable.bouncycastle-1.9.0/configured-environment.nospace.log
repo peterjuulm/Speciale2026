@@ -1,0 +1,161 @@
+start 2026-11-02T22:06:48+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build crypto/src/crypto.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1634642660 && dotnet pack crypto/src/crypto.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1634642660; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+  crypto -> /tmp/reprotest.ENfpbY/const_build_path/crypto/src/bin/Release/netstandard2.0/BouncyCastle.Crypto.dll
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+  crypto -> /tmp/reprotest.ENfpbY/const_build_path/crypto/src/bin/Release/net4/BouncyCastle.Crypto.dll
+
+Build succeeded.
+
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+    22 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:40.59
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5125: The 'licenseUrl' element will be deprecated. Consider using the 'license' element instead. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj]
+  The package Portable.BouncyCastle.1.9.0.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.ENfpbY/const_build_path/out/Portable.BouncyCastle.1.9.0.1.nupkg'.
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+  crypto -> /tmp/reprotest.ENfpbY/const_build_path/crypto/src/bin/Release/netstandard2.0/BouncyCastle.Crypto.dll
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+  crypto -> /tmp/reprotest.ENfpbY/const_build_path/crypto/src/bin/Release/net4/BouncyCastle.Crypto.dll
+
+Build succeeded.
+
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=netstandard2.0]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/bc/BCObjectIdentifiers.cs(109,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/asn1/ua/UAObjectIdentifiers.cs(11,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/digests/Blake2bDigest.cs(41,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(17,8): warning CS1570: XML comment has badly formed XML -- 'End tag 'description' does not match the start tag 'p'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/generators/OpenSSLPBEParametersGenerator.cs(19,1): warning CS1570: XML comment has badly formed XML -- 'Expected an end tag for element 'description'.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'An identifier was expected.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto/modes/GcmSivBlockCipher.cs(656,47): warning CS1570: XML comment has badly formed XML -- 'The character(s) '=' cannot be used at this location.' [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/DigestInputBuffer.cs(18,23): warning CS0108: 'DigestInputBuffer.CopyTo(Stream)' hides inherited member 'Stream.CopyTo(Stream)'. Use the new keyword if hiding was intended. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/openpgp/PgpObjectFactory.cs(53,66): warning CS0168: The variable 'e' is declared but never used [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/cms/KeyTransRecipientInfoGenerator.cs(22,38): warning CS0649: Field 'KeyTransRecipientInfoGenerator.info' is never assigned to, and will always have its default value null [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+/tmp/reprotest.ENfpbY/const_build_path/crypto/src/tls/TlsProtocol.cs(1202,43): warning CS1574: XML comment has cref attribute 'readInput(byte[], int, int)' that could not be resolved [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj::TargetFramework=net4]
+    22 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:05.12
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5125: The 'licenseUrl' element will be deprecated. Consider using the 'license' element instead. [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/tmp/reprotest.ENfpbY/const_build_path/crypto/src/crypto.csproj]
+  The package Portable.BouncyCastle.1.9.0.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.ENfpbY/const_build_path/out/Portable.BouncyCastle.1.9.0.1.nupkg'.
+cp: fejl ved kopiering af './out/Portable.BouncyCastle.1.9.0.1.nupkg' til '/tmp/reprotest.ENfpbY/artifacts-experiment-1/source-root/./out/Portable.BouncyCastle.1.9.0.1.nupkg': Ikke mere plads på enheden
+cp: kan ikke udføre stat() på './out': Ingen sådan fil eller filkatalog
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 224, in run_build
+    testbed.check_exec2(shell_copy_pattern(dist_base, self.testbed_src, artifact_pattern))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec mkdir -p "/tmp/reprotest.ENfpbY/artifacts-experiment-1/source-root"
+cd "/tmp/reprotest.ENfpbY/build-experiment-1/" && cp --parents -a -t "/tmp/reprotest.ENfpbY/artifacts-experiment-1/source-root" ./out
+" failed with status 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 228, in run_build
+    testbed.check_exec2(shell_copy_pattern(dist_base, build.tree, artifact_pattern))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec mkdir -p "/tmp/reprotest.ENfpbY/artifacts-experiment-1/source-root"
+cd "/tmp/reprotest.ENfpbY/const_build_path/" && cp --parents -a -t "/tmp/reprotest.ENfpbY/artifacts-experiment-1/source-root" ./out
+" failed with status 1
+end 2026-11-02T22:08:46+01:00 exit 125

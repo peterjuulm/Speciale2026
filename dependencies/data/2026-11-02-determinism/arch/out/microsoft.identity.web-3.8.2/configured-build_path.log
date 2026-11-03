@@ -1,0 +1,100 @@
+start 2026-11-01T20:22:36+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Microsoft.Identity.Web/Microsoft.Identity.Web.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1742978045 && dotnet pack src/Microsoft.Identity.Web/Microsoft.Identity.Web.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1742978045; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.Identity.Web.Certificateless -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificateless/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net6.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificate/bin/Release/net6.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenCache/bin/Release/net6.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net6.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web/bin/Release/net6.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net7.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificate/bin/Release/net7.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenCache/bin/Release/net7.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net7.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web/bin/Release/net7.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net8.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificate/bin/Release/net8.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenCache/bin/Release/net8.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net8.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web/bin/Release/net8.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net9.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificate/bin/Release/net9.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenCache/bin/Release/net9.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net9.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web/bin/Release/net9.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net462/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificate/bin/Release/net462/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenCache/bin/Release/net462/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net462/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web/bin/Release/net462/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net472/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificate/bin/Release/net472/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenCache/bin/Release/net472/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net472/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web/bin/Release/net472/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Diagnostics/bin/Release/netstandard2.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.Certificate/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenCache/bin/Release/netstandard2.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/netstandard2.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/const_build_path/src/Microsoft.Identity.Web/bin/Release/netstandard2.0/Microsoft.Identity.Web.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:29.08
+  Successfully created package '/tmp/reprotest.PMMx4K/const_build_path/out/Microsoft.Identity.Web.3.8.2.nupkg'.
+  Successfully created package '/tmp/reprotest.PMMx4K/const_build_path/out/Microsoft.Identity.Web.3.8.2.snupkg'.
+  Microsoft.Identity.Web.Certificateless -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificateless/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net6.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificate/bin/Release/net6.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenCache/bin/Release/net6.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net6.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web/bin/Release/net6.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net7.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificate/bin/Release/net7.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenCache/bin/Release/net7.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net7.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web/bin/Release/net7.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net8.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificate/bin/Release/net8.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenCache/bin/Release/net8.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net8.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web/bin/Release/net8.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net9.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificate/bin/Release/net9.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenCache/bin/Release/net9.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net9.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web/bin/Release/net9.0/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net462/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificate/bin/Release/net462/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenCache/bin/Release/net462/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net462/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web/bin/Release/net462/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Diagnostics/bin/Release/net472/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificate/bin/Release/net472/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenCache/bin/Release/net472/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/net472/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web/bin/Release/net472/Microsoft.Identity.Web.dll
+  Microsoft.Identity.Web.Diagnostics -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Diagnostics/bin/Release/netstandard2.0/Microsoft.Identity.Web.Diagnostics.dll
+  Microsoft.Identity.Web.Certificate -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.Certificate/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificate.dll
+  Microsoft.Identity.Web.TokenCache -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenCache/bin/Release/netstandard2.0/Microsoft.Identity.Web.TokenCache.dll
+  Microsoft.Identity.Web.TokenAcquisition -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web.TokenAcquisition/bin/Release/netstandard2.0/Microsoft.Identity.Web.TokenAcquisition.dll
+  Microsoft.Identity.Web -> /tmp/reprotest.PMMx4K/build-experiment-1/src/Microsoft.Identity.Web/bin/Release/netstandard2.0/Microsoft.Identity.Web.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:42.63
+  Successfully created package '/tmp/reprotest.PMMx4K/build-experiment-1/out/Microsoft.Identity.Web.3.8.2.nupkg'.
+  Successfully created package '/tmp/reprotest.PMMx4K/build-experiment-1/out/Microsoft.Identity.Web.3.8.2.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+79bd59affc6bb42ba069d5e7702342f12772870a9730da77a12fe00765b3d1f0  ./out/Microsoft.Identity.Web.3.8.2.nupkg
+edec336256428d3124f21b875ceadaf3348191df091f0d20256a76584f4b904d  ./out/Microsoft.Identity.Web.3.8.2.snupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T20:28:01+01:00 exit 0

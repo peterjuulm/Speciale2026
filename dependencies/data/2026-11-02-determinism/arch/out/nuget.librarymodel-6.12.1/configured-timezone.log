@@ -1,0 +1,59 @@
+start 2026-11-03T04:47:23+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1729814259 && dotnet pack src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1729814259; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Frameworks -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Versioning -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.LibraryModel -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.LibraryModel/bin/Release/netstandard2.0/NuGet.LibraryModel.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:49.31
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 359 ms).
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj (in 19 ms).
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 5 ms).
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 2 ms).
+  Successfully created package '/tmp/reprotest.9OuJOe/const_build_path/out/NuGet.LibraryModel.6.12.1-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.14
+
+  NuGet.Frameworks -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Versioning -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.LibraryModel -> /tmp/reprotest.9OuJOe/const_build_path/artifacts/NuGet.LibraryModel/bin/Release/netstandard2.0/NuGet.LibraryModel.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:18.41
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 136 ms).
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj (in 7 ms).
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 1 ms).
+  Restored /tmp/reprotest.9OuJOe/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 1 ms).
+  Successfully created package '/tmp/reprotest.9OuJOe/const_build_path/out/NuGet.LibraryModel.6.12.1-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.71
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+60f66d9d3e244581201a63d548f61ef541f9af1a7071022f05c714f5fc0214af  ./out/NuGet.LibraryModel.6.12.1-rc.32767.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T04:48:42+01:00 exit 0

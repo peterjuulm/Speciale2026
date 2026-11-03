@@ -1,0 +1,58 @@
+start 2026-11-02T23:20:01+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 checkout -q -- .
+$ dotnet restore src/Workspaces/MSBuild/Core/Microsoft.CodeAnalysis.Workspaces.MSBuild.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj (in 299 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj (in 299 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj (in 299 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Workspaces/MSBuild/Core/Microsoft.CodeAnalysis.Workspaces.MSBuild.csproj (in 2,92 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Workspaces/MSBuild/BuildHost/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.csproj (in 8,25 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Workspaces/MSBuild/Core/Microsoft.CodeAnalysis.Workspaces.MSBuild.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Workspaces/MSBuild/Core/Microsoft.CodeAnalysis.Workspaces.MSBuild.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempdQCfTA/tmp6ba2b167c2924b589092ac699c04c2d0.rsp' [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTemphLhLRL/tmp8492af0555144811a4f7edfad453adff.rsp' [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempZn1LQ4/tmp9961f821e2004aa8852e0f390a18f567.rsp' [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net8.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempdQCfTA/tmp6ba2b167c2924b589092ac699c04c2d0.rsp' [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTemphLhLRL/tmp8492af0555144811a4f7edfad453adff.rsp' [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempZn1LQ4/tmp9961f821e2004aa8852e0f390a18f567.rsp' [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj::TargetFramework=net8.0]
+    0 Warning(s)
+    6 Error(s)
+
+Time Elapsed 00:00:04.44
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T23:20:20+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0 checkout -q -- .
+$ dotnet restore src/Workspaces/MSBuild/Core/Microsoft.CodeAnalysis.Workspaces.MSBuild.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Workspaces/MSBuild/BuildHost/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.csproj (in 247 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Compilers/Core/Portable/Microsoft.CodeAnalysis.csproj (in 247 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Tools/ExternalAccess/RazorCompiler/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.csproj (in 247 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj (in 252 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.workspaces.msbuild-5.0.0/src/Workspaces/MSBuild/Core/Microsoft.CodeAnalysis.Workspaces.MSBuild.csproj (in 264 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

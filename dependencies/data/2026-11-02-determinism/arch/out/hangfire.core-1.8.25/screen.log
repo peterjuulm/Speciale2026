@@ -1,0 +1,51 @@
+start 2026-11-03T00:51:04+01:00
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.Core/Hangfire.Core.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 611 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Hangfire.Core/Hangfire.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Hangfire.Core/Hangfire.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Hangfire.Core -> /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/bin/Release/net451/Hangfire.Core.dll
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net451]
+  Hangfire.Core -> /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/bin/Release/netstandard2.0/Hangfire.Core.dll
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard2.0]
+  Hangfire.Core -> /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/bin/Release/netstandard1.3/Hangfire.Core.dll
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard1.3]
+  Hangfire.Core -> /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/bin/Release/net46/Hangfire.Core.dll
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net46]
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net451]
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net46]
+/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file
+    5 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:18.56
+  The package Hangfire.Core.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/out/Hangfire.Core.1.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-03T00:51:29+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.Core/Hangfire.Core.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 265 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

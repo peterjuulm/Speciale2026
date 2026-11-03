@@ -1,0 +1,43 @@
+start 2026-11-02T23:42:46+01:00
+$ git -C /private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2 checkout -q -- .
+$ dotnet restore src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj (in 699 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Unchase.Swashbuckle.AspNetCore.Extensions -> /private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/src/Unchase.Swashbuckle.AspNetCore.Extensions/bin/Release/netstandard2.0/Unchase.Swashbuckle.AspNetCore.Extensions.dll
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj]
+  The package Unchase.Swashbuckle.AspNetCore.Extensions.2.7.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/src/Unchase.Swashbuckle.AspNetCore.Extensions/bin/Release/Unchase.Swashbuckle.AspNetCore.Extensions.2.7.2.nupkg'.
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.70
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj]
+  The package Unchase.Swashbuckle.AspNetCore.Extensions.2.7.2 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/out/Unchase.Swashbuckle.AspNetCore.Extensions.2.7.2.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T23:42:52+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2 checkout -q -- .
+$ dotnet restore src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/unchase.swashbuckle.aspnetcore.extensions-2.7.2/src/Unchase.Swashbuckle.AspNetCore.Extensions/Unchase.Swashbuckle.AspNetCore.Extensions.csproj (in 215 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

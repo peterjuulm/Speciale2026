@@ -1,0 +1,5 @@
+start 2026-11-02T18:12:27+01:00
+$ git clone -q --no-checkout https://github.com/dotnet/aspnetcore /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection-9.0.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection-9.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection-9.0.0 -c advice.detachedHead=false checkout -q af22effae4069a5dfb9b0735859de48820104f5b
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.dataprotection-9.0.0 submodule update --init --recursive -q

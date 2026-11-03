@@ -1,0 +1,8 @@
+start 2026-11-02T23:07:48+01:00
+$ git clone -q --no-checkout https://github.com/SixLabors/ImageSharp /private/tmp/nupkg-determinism/src/sixlabors.imagesharp-1.0.4
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.imagesharp-1.0.4 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/sixlabors.imagesharp-1.0.4 -c advice.detachedHead=false checkout -q 5321ca862acc48343de60b2c06f78bbafcac2a03
+git-lfs filter-process: linje 1: git-lfs: command not found
+error: could not read greeting from subprocess 'git-lfs filter-process'
+error: initialization for subprocess 'git-lfs filter-process' failed
+fatal: tests/ImageSharp.Tests/Formats/Jpg/pdfjs/baseline/ycck - Copy.jpg: smudge filter lfs failed

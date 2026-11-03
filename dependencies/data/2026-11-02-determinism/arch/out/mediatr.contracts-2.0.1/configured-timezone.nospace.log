@@ -1,0 +1,250 @@
+start 2026-11-02T18:10:31+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/MediatR.Contracts/MediatR.Contracts.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1676479206 && dotnet pack src/MediatR.Contracts/MediatR.Contracts.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1676479206; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./MediatR.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./BuildContracts.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Push.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/logo/flat_128x128.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/logo/gradient_128x128.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/logo/gradient_32x32.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/logo/flat_64x64.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/logo/flat_32x32.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/logo/gradient_64x64.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Windsor/ContravariantFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Windsor/MediatR.Examples.Windsor.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Windsor/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.DryIoc/MediatR.Examples.DryIoc.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.DryIoc/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.LightInject/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.LightInject/MediatR.Examples.LightInject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.SimpleInjector/MediatR.Examples.SimpleInjector.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.SimpleInjector/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Lamar/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Lamar/MediatR.Examples.Lamar.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Autofac/MediatR.Examples.Autofac.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Autofac/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Stashbox/MediatR.Examples.Stashbox.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.Stashbox/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.AspNetCore/MediatR.Examples.AspNetCore.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.AspNetCore/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.PublishStrategies/SyncPingedHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.PublishStrategies/CustomMediator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.PublishStrategies/AsyncPingedHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.PublishStrategies/Publisher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.PublishStrategies/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.PublishStrategies/MediatR.Examples.PublishStrategies.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples.PublishStrategies/PublishStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/PingedHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/GenericRequestPreProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/GenericRequestPostProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ExceptionHandler/Exceptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ExceptionHandler/LogExceptionAction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ExceptionHandler/Handlers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ExceptionHandler/ExceptionsHandlersOverrides.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ExceptionHandler/ExceptionsHandlers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ExceptionHandler/Requests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ExceptionHandler/RequestsOverrides.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Pong.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Streams/Song.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Streams/GenericStreamPipelineBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Streams/Sing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Streams/SingHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/GenericPipelineBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/GenericHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Ponged.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Ping.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Jing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/PingHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/ConstrainedRequestPostProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Runner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/Pinged.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/MediatR.Examples.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/MediatR.Examples/JingHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet.Config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-9f307eff8efaa394ab2841cc40a2b89db853a330.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-9f307eff8efaa394ab2841cc40a2b89db853a330.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-9f307eff8efaa394ab2841cc40a2b89db853a330.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/release.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/ci.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/triage-issues.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./MediatR.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/UnitTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/SendVoidInterfaceTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/GenericTypeConstraintsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/ServiceFactoryTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/PublishTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/StreamPipelineTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/ExceptionTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/NotificationPublisherTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/DerivingRequestsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/PipeLineMultiCallToConstructorTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/AssemblyResolutionTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/TypeResolutionTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/Handlers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/StreamPipelineTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/CustomMediatorTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/DuplicateAssemblyResolutionTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/NotificationPublisherTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/TypeEvaluatorTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MicrosoftExtensionsDI/PipelineTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/SendTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/Pipeline/RequestPreProcessorTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/Pipeline/Streams/StreamPipelineBehaviorTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/Pipeline/RequestPostProcessorTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/Pipeline/RequestExceptionActionTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/Pipeline/RequestExceptionHandlerTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/PipelineTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/CreateStreamTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/NotificationHandlerTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Tests/MediatR.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/DotTraceDiagnoser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/GenericRequestPreProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/GenericRequestPostProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/MediatR.Benchmarks.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/Benchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/GenericPipelineBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/Ping.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/Pinged.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/MediatR.Benchmarks/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Mediator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/IMediator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/IStreamRequestHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/IRequestHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Wrappers/RequestHandlerWrapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Wrappers/StreamRequestHandlerWrapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Wrappers/NotificationHandlerWrapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/NotificationPublishers/ForeachAwaitPublisher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/NotificationPublishers/TaskWhenAllPublisher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/IStreamPipelineBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/TypeForwardings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/MicrosoftExtensionsDI/ServiceCollectionExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/MicrosoftExtensionsDI/RequestExceptionActionProcessorStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/MicrosoftExtensionsDI/MediatrServiceConfiguration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Internal/ObjectDetails.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Internal/HandlersOrderer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/INotificationPublisher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/IPipelineBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Registration/ServiceRegistrar.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/RequestExceptionActionProcessorBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/RequestExceptionHandlerState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/IRequestExceptionHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/IRequestPostProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/RequestExceptionProcessorBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/IRequestPreProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/RequestPreProcessorBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/IRequestExceptionAction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/Pipeline/RequestPostProcessorBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/NotificationHandlerExecutor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/MediatR.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/ISender.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/INotificationHandler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR/IPublisher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/MediatR.Contracts.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/IStreamRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/INotification.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/IRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/Unit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/obj/MediatR.Contracts.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/obj/MediatR.Contracts.csproj.nuget.g.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/MediatR.Contracts/obj/MediatR.Contracts.csproj.nuget.g.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:10:32+01:00 exit 125

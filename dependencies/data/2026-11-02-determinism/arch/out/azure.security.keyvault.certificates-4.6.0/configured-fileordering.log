@@ -1,0 +1,96 @@
+start 2026-11-03T00:20:54+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072 && dotnet pack sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.UCuHuz/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.security.keyvault.certificates/4.5.0/lib/netstandard2.0/Azure.Security.KeyVault.Certificates.dll using assemblies from /tmp/reprotest.UCuHuz/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/
+  InheritDocTask replaced 65 of 65 inheritdoc tags and removed 6 private member docs in /tmp/reprotest.UCuHuz/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.xml
+  Azure.Security.KeyVault.Certificates -> /tmp/reprotest.UCuHuz/const_build_path/artifacts/bin/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.UCuHuz/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.16
+  Found the following change log entry for version '4.6.0' in [/tmp/reprotest.UCuHuz/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/CHANGELOG.md].
+  -----
+  ## 4.6.0 (2024-02-14)
+  
+  Changes from both the last release and the last beta include:
+  
+  ### Features Added
+  
+  - Added `CertificateProperties.X509ThumbprintString` to return the hexadecimal string representation of the SHA-1 hash of the certificate.
+    `CertificateProperties.X509Thumbprint` has been hidden but is still available.
+  
+  ### Breaking Changes
+  
+  - Renamed tags reported on `CertificateClient` activities to following OpenTelemetry attribute naming conventions:
+    - `certificate` to `az.keyvault.certificate.name`
+    - `version` to `az.keyvault.certificate.version`
+    - `issuer` to `az.keyvault.certificate.issuer.name`
+  
+  ### Bugs Fixed
+  
+  - When a Key Vault is moved to another tenant, the client is reauthenticated.
+  
+  ### Other Changes
+  
+  - The default service version is now "7.5".
+  - Distributed tracing with `ActivitySource` is stable and no longer requires the [Experimental feature-flag](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md).
+  
+  -----
+  Successfully created package '/tmp/reprotest.UCuHuz/const_build_path/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.nupkg'.
+  Successfully created package '/tmp/reprotest.UCuHuz/const_build_path/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.symbols.nupkg'.
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.UCuHuz/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.security.keyvault.certificates/4.5.0/lib/netstandard2.0/Azure.Security.KeyVault.Certificates.dll using assemblies from /tmp/reprotest.UCuHuz/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/
+  InheritDocTask replaced 65 of 65 inheritdoc tags and removed 6 private member docs in /tmp/reprotest.UCuHuz/const_build_path/artifacts/obj/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.xml
+  Azure.Security.KeyVault.Certificates -> /tmp/reprotest.UCuHuz/const_build_path/artifacts/bin/Azure.Security.KeyVault.Certificates/Release/netstandard2.0/Azure.Security.KeyVault.Certificates.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.4/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.4' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/tmp/reprotest.UCuHuz/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/src/Azure.Security.KeyVault.Certificates.csproj::TargetFramework=netstandard2.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:15.73
+  Found the following change log entry for version '4.6.0' in [/tmp/reprotest.UCuHuz/const_build_path/sdk/keyvault/Azure.Security.KeyVault.Certificates/CHANGELOG.md].
+  -----
+  ## 4.6.0 (2024-02-14)
+  
+  Changes from both the last release and the last beta include:
+  
+  ### Features Added
+  
+  - Added `CertificateProperties.X509ThumbprintString` to return the hexadecimal string representation of the SHA-1 hash of the certificate.
+    `CertificateProperties.X509Thumbprint` has been hidden but is still available.
+  
+  ### Breaking Changes
+  
+  - Renamed tags reported on `CertificateClient` activities to following OpenTelemetry attribute naming conventions:
+    - `certificate` to `az.keyvault.certificate.name`
+    - `version` to `az.keyvault.certificate.version`
+    - `issuer` to `az.keyvault.certificate.issuer.name`
+  
+  ### Bugs Fixed
+  
+  - When a Key Vault is moved to another tenant, the client is reauthenticated.
+  
+  ### Other Changes
+  
+  - The default service version is now "7.5".
+  - Distributed tracing with `ActivitySource` is stable and no longer requires the [Experimental feature-flag](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md).
+  
+  -----
+  Successfully created package '/tmp/reprotest.UCuHuz/const_build_path/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.nupkg'.
+  Successfully created package '/tmp/reprotest.UCuHuz/const_build_path/out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.symbols.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+4332bbb6db5078d0c1e459fc8e23030cd1a9382f22a017714f7cd7b429c72b43  ./out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.nupkg
+73e69b7727464c11ca8516e01e0488f23410d549541a083991d378690851dd7d  ./out/Azure.Security.KeyVault.Certificates.4.6.0-alpha.20261102.1.symbols.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T00:22:00+01:00 exit 0

@@ -1,0 +1,36 @@
+start 2026-11-02T20:48:07+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Npgsql/Npgsql.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1779880253 && dotnet pack src/Npgsql/Npgsql.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1779880253; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Npgsql.SourceGenerators -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql.SourceGenerators/bin/Release/netstandard2.0/Npgsql.SourceGenerators.dll
+  Npgsql -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql/bin/Release/net8.0/Npgsql.dll
+  Npgsql -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql/bin/Release/net9.0/Npgsql.dll
+  Npgsql -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql/bin/Release/net10.0/Npgsql.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:20.48
+  Successfully created package '/tmp/reprotest.KbtwCK/const_build_path/out/Npgsql.10.0.3.nupkg'.
+  Successfully created package '/tmp/reprotest.KbtwCK/const_build_path/out/Npgsql.10.0.3.snupkg'.
+  Npgsql.SourceGenerators -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql.SourceGenerators/bin/Release/netstandard2.0/Npgsql.SourceGenerators.dll
+  Npgsql -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql/bin/Release/net8.0/Npgsql.dll
+  Npgsql -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql/bin/Release/net9.0/Npgsql.dll
+  Npgsql -> /tmp/reprotest.KbtwCK/const_build_path/src/Npgsql/bin/Release/net10.0/Npgsql.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:14.03
+  Successfully created package '/tmp/reprotest.KbtwCK/const_build_path/out/Npgsql.10.0.3.nupkg'.
+  Successfully created package '/tmp/reprotest.KbtwCK/const_build_path/out/Npgsql.10.0.3.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+90c54c30cde07c9493b7fa6140f4585ec43aad6906c4aa35867570f3563c5ac3  ./out/Npgsql.10.0.3.nupkg
+873f01eb86f6552fc576dc27ffd7d47e9220df35b085ee924369cff632712f6d  ./out/Npgsql.10.0.3.snupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T20:52:48+01:00 exit 0

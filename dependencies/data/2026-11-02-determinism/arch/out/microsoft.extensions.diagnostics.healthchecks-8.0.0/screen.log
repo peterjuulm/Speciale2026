@@ -1,0 +1,39 @@
+start 2026-11-02T19:03:01+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0 checkout -q -- .
+$ dotnet restore src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj (in 5,04 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj (in 5,04 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/Directory.Build.props(236,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/Directory.Build.props(236,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.38
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T19:03:31+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0 checkout -q -- .
+$ dotnet restore src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/src/HealthChecks/Abstractions/src/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.csproj (in 569 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.diagnostics.healthchecks-8.0.0/src/HealthChecks/HealthChecks/src/Microsoft.Extensions.Diagnostics.HealthChecks.csproj (in 568 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

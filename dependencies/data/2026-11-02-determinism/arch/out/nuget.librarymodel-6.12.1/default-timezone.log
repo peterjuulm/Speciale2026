@@ -1,0 +1,54 @@
+start 2026-11-03T04:37:56+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Frameworks -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Versioning -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.LibraryModel -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.LibraryModel/bin/Release/netstandard2.0/NuGet.LibraryModel.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:31.44
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 216 ms).
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj (in 12 ms).
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 2 ms).
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 2 ms).
+  Successfully created package '/tmp/reprotest.nqOwXc/const_build_path/out/NuGet.LibraryModel.6.12.1-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.90
+
+  NuGet.Frameworks -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Versioning -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.LibraryModel -> /tmp/reprotest.nqOwXc/const_build_path/artifacts/NuGet.LibraryModel/bin/Release/netstandard2.0/NuGet.LibraryModel.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:22.97
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 166 ms).
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj (in 10 ms).
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 2 ms).
+  Restored /tmp/reprotest.nqOwXc/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 2 ms).
+  Successfully created package '/tmp/reprotest.nqOwXc/const_build_path/out/NuGet.LibraryModel.6.12.1-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.03
+Binære filer /private/tmp/nupkg-determinism/out/nuget.librarymodel-6.12.1/default-timezone-store/control/source-root/out/NuGet.LibraryModel.6.12.1-rc.32767.nupkg og /private/tmp/nupkg-determinism/out/nuget.librarymodel-6.12.1/default-timezone-store/experiment-1/source-root/out/NuGet.LibraryModel.6.12.1-rc.32767.nupkg er forskellige
+end 2026-11-03T04:39:00+01:00 exit 1

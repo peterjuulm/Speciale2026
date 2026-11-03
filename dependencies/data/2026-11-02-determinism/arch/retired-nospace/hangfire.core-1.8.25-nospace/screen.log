@@ -1,0 +1,51 @@
+start 2026-11-02T18:10:11+01:00
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.Core/Hangfire.Core.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 295 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Hangfire.Core/Hangfire.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Hangfire.Core/Hangfire.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempGRBLLw/tmpae3ecdbdd28b484f96b5cc4b8ec22ea3.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempl2Wxv3/tmpaefdfba3ffba42bfb4c9a33da65dfdfc.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net46]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempsUhhsm/tmp80b8a50d0dc14f72bd6d99dfb97a4cc8.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net46]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTemp4yH0XV/tmpc9495189b5c34b9d96a357a6e630969c.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempGRBLLw/tmpae3ecdbdd28b484f96b5cc4b8ec22ea3.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempl2Wxv3/tmpaefdfba3ffba42bfb4c9a33da65dfdfc.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net46]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempsUhhsm/tmp80b8a50d0dc14f72bd6d99dfb97a4cc8.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net46]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTemp4yH0XV/tmpc9495189b5c34b9d96a357a6e630969c.rsp' [/private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+    0 Warning(s)
+    8 Error(s)
+
+Time Elapsed 00:00:01.27
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:10:15+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.Core/Hangfire.Core.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.core-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 258 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

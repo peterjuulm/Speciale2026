@@ -1,0 +1,43 @@
+start 2026-11-02T23:15:07+01:00
+$ git -C /private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3 checkout -q -- .
+$ dotnet restore UaClient/Workstation.UaClient.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj (in 895 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build UaClient/Workstation.UaClient.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack UaClient/Workstation.UaClient.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempnqRpGs/tmpb343c2d039b34d1fad21c34c71a9105a.rsp' [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempTVCE5n/tmp50c9caf4303b45f0ba1d0e924b44f593.rsp' [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=net6.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempnqRpGs/tmpb343c2d039b34d1fad21c34c71a9105a.rsp' [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempTVCE5n/tmp50c9caf4303b45f0ba1d0e924b44f593.rsp' [/private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj::TargetFramework=net6.0]
+    0 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:01.15
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T23:15:11+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3 checkout -q -- .
+$ dotnet restore UaClient/Workstation.UaClient.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/workstation.uaclient-3.2.3/UaClient/Workstation.UaClient.csproj (in 235 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

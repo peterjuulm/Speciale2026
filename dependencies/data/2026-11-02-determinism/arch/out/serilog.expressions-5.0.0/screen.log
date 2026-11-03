@@ -1,0 +1,38 @@
+start 2026-11-02T22:44:06+01:00
+$ git -C /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Expressions/Serilog.Expressions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0/src/Serilog.Expressions/Serilog.Expressions.csproj (in 190 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Serilog.Expressions/Serilog.Expressions.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Serilog.Expressions/Serilog.Expressions.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Serilog.Expressions -> /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0/src/Serilog.Expressions/bin/Release/netstandard2.0/Serilog.Expressions.dll
+  Serilog.Expressions -> /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0/src/Serilog.Expressions/bin/Release/net6.0/Serilog.Expressions.dll
+  Serilog.Expressions -> /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0/src/Serilog.Expressions/bin/Release/net8.0/Serilog.Expressions.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.32
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0/out/Serilog.Expressions.5.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T22:44:15+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Expressions/Serilog.Expressions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.expressions-5.0.0/src/Serilog.Expressions/Serilog.Expressions.csproj (in 175 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

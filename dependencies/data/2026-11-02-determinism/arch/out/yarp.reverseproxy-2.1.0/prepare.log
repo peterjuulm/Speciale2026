@@ -1,0 +1,18 @@
+start 2026-11-02T22:52:53+01:00
+$ git clone -q --no-checkout https://github.com/microsoft/reverse-proxy /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 -c advice.detachedHead=false checkout -q 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
+start 2026-11-03T06:47:19+01:00
+$ git clone -q --no-checkout https://github.com/microsoft/reverse-proxy /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 -c advice.detachedHead=false checkout -q 77f78d4709d1c74c78af81f4b4d0c85f5c2e5b43
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0 checkout -q -- .
+$ dotnet restore src/ReverseProxy/Yarp.ReverseProxy.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/yarp.reverseproxy-2.1.0/src/ReverseProxy/Yarp.ReverseProxy.csproj (in 206 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

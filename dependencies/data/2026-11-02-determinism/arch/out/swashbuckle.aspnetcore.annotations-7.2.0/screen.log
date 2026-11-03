@@ -1,0 +1,52 @@
+start 2026-11-01T12:19:37+01:00
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/src/Swashbuckle.AspNetCore.Swagger/Swashbuckle.AspNetCore.Swagger.csproj (in 1,11 sec).
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.csproj (in 1,32 sec).
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/src/Swashbuckle.AspNetCore.SwaggerGen/Swashbuckle.AspNetCore.SwaggerGen.csproj (in 1,32 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Swashbuckle.AspNetCore.Swagger -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net9.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.SwaggerGen -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.SwaggerGen/release_net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+  Swashbuckle.AspNetCore.Annotations -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Annotations/release_net9.0/Swashbuckle.AspNetCore.Annotations.dll
+  Swashbuckle.AspNetCore.Swagger -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net8.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.SwaggerGen -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.SwaggerGen/release_net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+  Swashbuckle.AspNetCore.Annotations -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Annotations/release_net8.0/Swashbuckle.AspNetCore.Annotations.dll
+  Swashbuckle.AspNetCore.Swagger -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net6.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.SwaggerGen -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.SwaggerGen/release_net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+  Swashbuckle.AspNetCore.Annotations -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Annotations/release_net6.0/Swashbuckle.AspNetCore.Annotations.dll
+  Swashbuckle.AspNetCore.Swagger -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.SwaggerGen -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.SwaggerGen/release_netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+  Swashbuckle.AspNetCore.Annotations -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.Annotations/release_netstandard2.0/Swashbuckle.AspNetCore.Annotations.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.76
+  Successfully created package '/private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/out/Swashbuckle.AspNetCore.Annotations.7.2.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/out/Swashbuckle.AspNetCore.Annotations.7.2.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:19:58+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.csproj (in 161 ms).
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/src/Swashbuckle.AspNetCore.Swagger/Swashbuckle.AspNetCore.Swagger.csproj (in 148 ms).
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.annotations-7.2.0/src/Swashbuckle.AspNetCore.SwaggerGen/Swashbuckle.AspNetCore.SwaggerGen.csproj (in 161 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

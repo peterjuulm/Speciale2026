@@ -1,0 +1,104 @@
+start 2026-11-02T21:47:43+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971 && dotnet pack src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Versioning -> /tmp/reprotest.7rQzN0/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:12.08
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.7rQzN0/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 476 ms).
+  Successfully created package '/tmp/reprotest.7rQzN0/const_build_path/out/NuGet.Versioning.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.40
+
+  NuGet.Versioning -> /tmp/reprotest.7rQzN0/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.69
+
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.targets(198,5): error : No space left on device : '/tmp/reprotest.7rQzN0/const_build_path/artifacts/NuGet.Versioning/obj/a20a4414-0933-480d-ac11-e85d6e646ad5.tmp' [/tmp/reprotest.7rQzN0/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.targets(198,5): error : No space left on device : '/tmp/reprotest.7rQzN0/const_build_path/artifacts/NuGet.Versioning/obj/a20a4414-0933-480d-ac11-e85d6e646ad5.tmp' [/tmp/reprotest.7rQzN0/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:01.03
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.7rQzN0/build-experiment-1-aux && \
+    mv /tmp/reprotest.7rQzN0/build-experiment-1/ /tmp/reprotest.7rQzN0/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    mv /tmp/reprotest.7rQzN0/const_build_path/ /tmp/reprotest.7rQzN0/const_build_path-before-disorderfs/ && \
+    mkdir -p /tmp/reprotest.7rQzN0/const_build_path/ && \
+    disorderfs -q --shuffle-dirents=yes /tmp/reprotest.7rQzN0/const_build_path-before-disorderfs/ /tmp/reprotest.7rQzN0/const_build_path/ && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.7rQzN0/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971 && dotnet pack src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc'
+}
+
+cleanup() {
+    __c=0; \
+    export PATH="/tmp/reprotest.7rQzN0/bin:$PATH" || __c=$?; \
+    fusermount -u /tmp/reprotest.7rQzN0/const_build_path/ || __c=$?; \
+    rmdir /tmp/reprotest.7rQzN0/const_build_path/ || __c=$?; \
+    mv /tmp/reprotest.7rQzN0/const_build_path-before-disorderfs/ /tmp/reprotest.7rQzN0/const_build_path/ || __c=$?; \
+    mv /tmp/reprotest.7rQzN0/const_build_path /tmp/reprotest.7rQzN0/build-experiment-1/ || __c=$?; \
+    rm -rf /tmp/reprotest.7rQzN0/build-experiment-1-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-11-02T21:48:09+01:00 exit 125

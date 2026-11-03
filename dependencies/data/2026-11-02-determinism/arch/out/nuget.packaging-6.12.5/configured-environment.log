@@ -1,0 +1,65 @@
+start 2026-11-03T04:38:44+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971 && dotnet pack src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1772758971; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Frameworks -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Configuration -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Configuration/bin/Release/netstandard2.0/NuGet.Configuration.dll
+  NuGet.Versioning -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.Packaging -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Packaging/bin/Release/netstandard2.0/NuGet.Packaging.dll
+  NuGet.Packaging -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Packaging/bin/Release/netcoreapp5.0/NuGet.Packaging.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:57.88
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 134 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 38 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 2 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 2 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 1 ms).
+  Successfully created package '/tmp/reprotest.RIJRF3/const_build_path/out/NuGet.Packaging.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.19
+
+  NuGet.Frameworks -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Configuration -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Configuration/bin/Release/netstandard2.0/NuGet.Configuration.dll
+  NuGet.Versioning -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.Packaging -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Packaging/bin/Release/netstandard2.0/NuGet.Packaging.dll
+  NuGet.Packaging -> /tmp/reprotest.RIJRF3/const_build_path/artifacts/NuGet.Packaging/bin/Release/netcoreapp5.0/NuGet.Packaging.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:57.19
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 161 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 36 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 2 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 2 ms).
+  Restored /tmp/reprotest.RIJRF3/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 2 ms).
+  Successfully created package '/tmp/reprotest.RIJRF3/const_build_path/out/NuGet.Packaging.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.47
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+83c33b78518105caaf8e66706acfe1e17b5067e406fc50fde3888e3305716d3d  ./out/NuGet.Packaging.6.12.5-rc.32767.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T04:40:48+01:00 exit 0

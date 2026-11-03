@@ -1,0 +1,58 @@
+start 2026-11-03T07:14:14+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/identity/Azure.Identity/src/Azure.Identity.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763578819 && dotnet pack sdk/identity/Azure.Identity/src/Azure.Identity.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763578819; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.identity/1.17.0/lib/netstandard2.0/Azure.Identity.dll using assemblies from /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/net8.0/
+  InheritDocTask replaced 21 of 21 inheritdoc tags and removed 8 private member docs in /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/net8.0/Azure.Identity.xml
+  Azure.Identity -> /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/bin/Azure.Identity/Release/net8.0/Azure.Identity.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.identity/1.17.0/lib/netstandard2.0/Azure.Identity.dll using assemblies from /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/netstandard2.0/
+  InheritDocTask replaced 21 of 21 inheritdoc tags and removed 8 private member docs in /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/netstandard2.0/Azure.Identity.xml
+  Azure.Identity -> /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/bin/Azure.Identity/Release/netstandard2.0/Azure.Identity.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:19.04
+  Found the following change log entry for version '1.17.1' in [/private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/sdk/identity/Azure.Identity/CHANGELOG.md].
+  -----
+  ## 1.17.1 (2025-11-18)
+  
+  ### Other Changes
+  
+  - Updated `Microsoft.Identity.Client` and `Microsoft.Identity.Client.Extensions.Msal` dependencies to version 4.78.0.
+  
+  -----
+  Successfully created package '/private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/out/Azure.Identity.1.17.1-alpha.20261103.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/out/Azure.Identity.1.17.1-alpha.20261103.1.symbols.nupkg'.
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.identity/1.17.0/lib/netstandard2.0/Azure.Identity.dll using assemblies from /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/net8.0/
+  InheritDocTask replaced 21 of 21 inheritdoc tags and removed 8 private member docs in /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/net8.0/Azure.Identity.xml
+  Azure.Identity -> /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/bin/Azure.Identity/Release/net8.0/Azure.Identity.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.identity/1.17.0/lib/netstandard2.0/Azure.Identity.dll using assemblies from /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/netstandard2.0/
+  InheritDocTask replaced 21 of 21 inheritdoc tags and removed 8 private member docs in /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/obj/Azure.Identity/Release/netstandard2.0/Azure.Identity.xml
+  Azure.Identity -> /private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/artifacts/bin/Azure.Identity/Release/netstandard2.0/Azure.Identity.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:18.70
+  Found the following change log entry for version '1.17.1' in [/private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/sdk/identity/Azure.Identity/CHANGELOG.md].
+  -----
+  ## 1.17.1 (2025-11-18)
+  
+  ### Other Changes
+  
+  - Updated `Microsoft.Identity.Client` and `Microsoft.Identity.Client.Extensions.Msal` dependencies to version 4.78.0.
+  
+  -----
+  Successfully created package '/private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/out/Azure.Identity.1.17.1-alpha.20261103.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/tmp/reprotest.iapjct/const_build_path/out/Azure.Identity.1.17.1-alpha.20261103.1.symbols.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+fcb6e5a9ef08262bdae52e56aa251c116b8270caac89af9498b67c5c00e816ec  ./out/Azure.Identity.1.17.1-alpha.20261103.1.symbols.nupkg
+916219ef1055ab6251faab8c2299f25cd6fd17599b752fbf48cbef9644641200  ./out/Azure.Identity.1.17.1-alpha.20261103.1.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T07:15:43+01:00 exit 0

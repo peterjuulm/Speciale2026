@@ -1,0 +1,67 @@
+start 2026-11-01T10:09:41+01:00
+$ git -C /private/tmp/nupkg-determinism/src/azure.core-1.50.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.core-1.50.0 checkout -q -- .
+$ dotnet restore sdk/core/Azure.Core/src/Azure.Core.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.core-1.50.0/sdk/core/Azure.Core/src/Azure.Core.csproj (in 10,03 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.core/1.49.0/lib/netstandard2.0/Azure.Core.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/netstandard2.0/
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.core/1.49.0/lib/net462/Azure.Core.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/net462/
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.core/1.49.0/lib/net472/Azure.Core.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/net472/
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.core/1.49.0/lib/netstandard2.0/Azure.Core.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/net8.0/
+  InheritDocTask replaced 195 of 195 inheritdoc tags and removed 33 private member docs in /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/netstandard2.0/Azure.Core.xml
+  Azure.Core -> /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/bin/Azure.Core/Release/netstandard2.0/Azure.Core.dll
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/net462/Azure.Core.xml
+  Azure.Core -> /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/bin/Azure.Core/Release/net462/Azure.Core.dll
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/net472/Azure.Core.xml
+  Azure.Core -> /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/bin/Azure.Core/Release/net472/Azure.Core.dll
+  InheritDocTask replaced 199 of 199 inheritdoc tags and removed 33 private member docs in /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/obj/Azure.Core/Release/net8.0/Azure.Core.xml
+  Azure.Core -> /private/tmp/nupkg-determinism/src/azure.core-1.50.0/artifacts/bin/Azure.Core/Release/net8.0/Azure.Core.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.46
+  Found the following change log entry for version '1.50.0' in [/private/tmp/nupkg-determinism/src/azure.core-1.50.0/sdk/core/Azure.Core/CHANGELOG.md].
+  -----
+  ## 1.50.0 (2025-11-05)
+  
+  ### Acknowledgments
+  
+  Thank you to our developer community members who helped to make the Azure.Core library better with their contributions to this release:
+  
+  - Daniel Marbach  _([GitHub](https://github.com/danielmarbach))_
+  
+  ### Features Added
+  
+  - Adopt System.ClientModel 1.8.0
+  
+  ### Other Changes
+  
+  - Several performance and efficiency improvements were made to how request content is created and managed.   _([#52488](https://github.com/Azure/azure-sdk-for-net/pull/52488), a community contribution, courtesy of [danielmarbach](https://github.com/danielmarbach))_
+  
+  -----
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.core-1.50.0/out/Azure.Core.1.50.0-alpha.20261101.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.core-1.50.0/out/Azure.Core.1.50.0-alpha.20261101.1.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:10:05+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/azure.core-1.50.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.core-1.50.0 checkout -q -- .
+$ dotnet restore sdk/core/Azure.Core/src/Azure.Core.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.core-1.50.0/sdk/core/Azure.Core/src/Azure.Core.csproj (in 166 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

@@ -1,0 +1,340 @@
+start 2026-11-02T18:19:18+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1682704322 && dotnet pack src/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1682704322; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./License.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./azure-pipelines.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./global.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Test.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./SymReader.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./restore.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Restore.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Microsoft.DiaSymReader/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Microsoft.DiaSymReader/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj.nuget.g.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj.nuget.g.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Version.Details.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Publishing.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Versions.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/retain-build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipeline-logging-functions.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet-install.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/init-tools-native.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cibuild.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/Tools.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal-feed-operations.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/tizen-build-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-android-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/tizen-fetch.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/armel/armel.jessie.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/armel/sources.list.jessie: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/armel/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/toolchain.cmake: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/x86/sources.list.focal: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/x86/sources.list.jammy: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/x86/sources.list.xenial: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/x86/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/x86/sources.list.bionic: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/riscv64/sources.list.sid: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/x64/sources.list.xenial: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/x64/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/sources.list.focal: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/sources.list.jammy: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/sources.list.zesty: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/sources.list.xenial: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/sources.list.jessie: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/sources.list.bionic: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/ppc64le/sources.list.bionic: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/s390x/sources.list.bionic: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.focal: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.jammy: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.zesty: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.xenial: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.buster: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.stretch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.bionic: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/armv6/sources.list.buster: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/SetupNugetSources.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/enable-cross-org-publishing.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/generate-sbom-prep.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/init-tools-native.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/PSScriptAnalyzerSettings.psd1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/helixpublish.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/SetupNugetSources.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/tools.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/generate-sbom-prep.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/msbuild.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/onelocbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/execute-sdl.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/job.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/publish-build-assets.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/source-index-stage1.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/jobs/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/jobs/jobs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/jobs/codeql-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/post-build/trigger-subscription.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/post-build/setup-maestro-vars.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/post-build/common-variables.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/post-build/post-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/variables/pool-providers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/variables/sdl-variables.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/add-build-to-channel.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/component-governance.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/execute-sdl.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/publish-logs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/build-reason.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/retain-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/run-script-ifequalelse.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/execute-codeql.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/send-to-helix.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/telemetry-end.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/run-on-windows.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/generate-sbom.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/telemetry-start.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/run-on-unix.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/darc-init.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet-install.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/init-tools-native.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/build.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/loc/P22DotNetHtmlLocalization.lss: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/CommonLibrary.psm1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/install-tool.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/install-cmake.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/install-cmake-test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/init-compiler.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/common-library.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/generate-locproject.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdk-task.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipeline-logging-functions.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/extract-artifact-archives.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/execute-all-sdl-tools.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/init-sdl.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/packages.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/configure-sdl-tool.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/sdl.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/extract-artifact-packages.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/run-sdl.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/BuildConfiguration/build-configuration.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/msbuild.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/sourcelink-validation.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/post-build-utils.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/add-build-to-channel.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/publish-using-darc.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/symbols-validation.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/nuget-validation.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/check-channel-consistency.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/trigger-subscriptions.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/CIBuild.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal-feed-operations.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/darc-init.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/tools.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet-install.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/SourceBuildPrebuiltBaseline.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/SourceBuild.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Signing.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./azure-pipelines-codeql.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-0239f3cf7b722af5f32d1f650103a3b8609a7aa6.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-0239f3cf7b722af5f32d1f650103a3b8609a7aa6.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-0239f3cf7b722af5f32d1f650103a3b8609a7aa6.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Build.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODE-OF-CONDUCT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/SymUnmanagedFactoryTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/SymUnmanagedStreamFactoryTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/SymUnmanagedWriterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/Mocks/SymDocumentMock.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/TestSymWriterMetadataProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/Microsoft.DiaSymReader.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/SymReaderMetadataAdapterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/SymWriterMetadataAdapterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/ComMemoryStreamTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/InteropUtilitiesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Tests/DocumentExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/TestUtilities/DummySymReaderMetadataProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/TestUtilities/AssertEx.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/TestUtilities/DiffUtil.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/TestUtilities/TestUtilities.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/TestUtilities/DummySymWriterMetadataProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/TestUtilities/ConditionalFactAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/PdbTestResources/Resources/SourceLink.pdb: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/PdbTestResources/Resources/SourceLink.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/PdbTestResources/PdbTestResources.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/PdbTestResources/TestResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/PdbTestResources/TestResources.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/PdbTestResources/ResourceLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Native.Tests/Microsoft.DiaSymReader.Native.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader.Native.Tests/SymUnmanagedFactoryNativeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Utilities/HResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Utilities/ComMemoryStream.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Utilities/ComStreamWrapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Utilities/InteropUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Utilities/IUnsafeComStream.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/SymUnmanagedWriterFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/ISymUnmanagedDocumentWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/SymUnmanagedWriterException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/SymUnmanagedWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/SymUnmanagedWriterImpl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/ISymUnmanagedCompilerInfoWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/ISymUnmanagedWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/SymUnmanagedSequencePointsWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/SymUnmanagedWriterCreationOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Writer/ISymUnmanagedAsyncMethodPropertiesWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Microsoft.DiaSymReader.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Method.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Document.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedAsyncStepInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Scope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedStreamFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Binder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Constant.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Variable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Namespace.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedExtensions.Reader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Extensions/SymUnmanagedSequencePoint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedDispose.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedMethod.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedVariable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedReader3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/SymUnmanagedSearchPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedNamespace.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedReader2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedReader6.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedBinder3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymEncUnmanagedMethod.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedBinder2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedDocument.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedSourceServerModule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedEncUpdate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedBinder4.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedReader4.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedMethod2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedAsyncMethod.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/SymUnmanagedReaderFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedBinder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedReader5.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedConstant.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/SymUnmanagedReaderCreationOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/SymUnmanagedLineDelta.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Reader/ISymUnmanagedScope2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/IMetadataImport.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/SymReaderMetadataAdapter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/MetadataAdapterBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/ISymWriterMetadataProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/MetadataImportFieldOffset.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/IMetadataImportProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/SymWriterMetadataAdapter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/IMetadataEmit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/Metadata/ISymReaderMetadataProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Microsoft.DiaSymReader/SymUnmanagedFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:19:18+01:00 exit 125

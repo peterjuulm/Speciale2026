@@ -1,0 +1,403 @@
+start 2026-11-02T17:59:59+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/keyvault/Azure.Security.KeyVault.Secrets/src/Azure.Security.KeyVault.Secrets.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072 && dotnet pack sdk/keyvault/Azure.Security.KeyVault.Secrets/src/Azure.Security.KeyVault.Secrets.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1707954072; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./sdk/kusto/Azure.ResourceManager.Kusto/api/Azure.ResourceManager.Kusto.netstandard2.0.cs: Wrote only 8192 of 10240 bytes
+tar: ./sdk/kusto/Management.Kusto/Generated/DatabasesOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IOperationsResultsLocation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/DataConnectionsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/KustoManagementClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IDataConnectionsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/PrivateEndpointConnectionsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/AttachedDatabaseConfigurationsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/PrivateLinkResourcesOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/OperationsResultsLocation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ClustersOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/SdkInfo_KustoManagementClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IAttachedDatabaseConfigurationsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IClusterPrincipalAssignmentsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/OperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ClusterPrincipalAssignmentsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IClustersOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/OperationsResultsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/OperationsResultsLocationExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IManagedPrivateEndpointsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IDatabasesOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ClusterPrincipalAssignmentsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/DatabasePrincipalAssignmentsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/DatabasePrincipalAssignmentsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ManagedPrivateEndpointsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/DatabasesOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/PrivateLinkResourcesOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IKustoManagementClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/DataConnectionsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IOperationsResults.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Operations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DataConnectionCheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/CheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AttachedDatabaseConfiguration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/KeyVaultProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/SkuLocationInfoItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ClusterPrincipalRole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PrivateEndpointConnection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/EventGridDataFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ManagedPrivateEndpointsCheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ReadOnlyFollowingDatabase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AzureEntityResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PrivateLinkServiceConnectionStateProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PrincipalType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DataConnection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/LanguageExtension.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasePrincipalRole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/EndpointDependency.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/CreatedByType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/TrustedExternalTenant.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/EventHubDataFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/TrackedResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/OperationDisplay.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/OperationResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabaseStatistics.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ProvisioningState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/EndpointDetail.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Cluster.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/IdentityUserAssignedIdentitiesValue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AcceptedAudiences.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Script.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/LanguageExtensionName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/TableLevelSharingProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PublicNetworkAccess.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Status.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Identity.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Resource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AzureCapacity.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Reason.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AttachedDatabaseConfigurationsCheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Database.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AzureScaleType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ClusterPrincipalAssignment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Type.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/LanguageExtensionsList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AzureSkuName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ClusterPrincipalAssignmentCheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DataConnectionValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasePrincipalListRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ClustersUpdateHeaders.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasePrincipalType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ScriptsUpdateHeaders.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Operation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/VirtualNetworkConfiguration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/SystemData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/EventGridDataConnection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DiagnoseVirtualNetworkResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ProxyResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ManagedPrivateEndpoint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ReadWriteDatabase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabaseRouting.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/EngineType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DataConnectionsUpdateHeaders.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Page1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/IotHubDataConnection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Page.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/BlobStorageEventType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PublicIPType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DataConnectionValidationResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PrivateLinkResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DataConnectionValidationListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ClusterUpdate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/OutboundNetworkDependenciesEndpoint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AzureResourceSku.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ClusterCheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PrivateEndpointProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/EventHubDataConnection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasePrincipal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AzureSku.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ClusterNetworkAccessFlag.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DefaultPrincipalsModificationKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/SkuDescription.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/Compression.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ManagedPrivateEndpointsUpdateHeaders.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasePrincipalAssignmentCheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/OptimizedAutoscale.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/AzureSkuTier.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/CheckNameResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/State.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasePrincipalListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/IotHubDataFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasePrincipalAssignment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/DatabasesUpdateHeaders.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/ScriptCheckNameRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/PrincipalsModificationKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/IdentityType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/Models/FollowerDatabaseDefinition.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/PrivateEndpointConnectionsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IPrivateLinkResourcesOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ManagedPrivateEndpointsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ClustersOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ScriptsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/AttachedDatabaseConfigurationsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IScriptsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IDatabasePrincipalAssignmentsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/OperationsResults.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/IPrivateEndpointConnectionsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Management.Kusto/Generated/ScriptsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/ci.mgmt.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/Utils/ResourcesNamesUtils.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/ScenarioTests/KustoOperationsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/ScenarioTests/KustoTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/Helpers/KustoTestUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/Microsoft.Azure.Management.Kusto.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoDatabaseScriptTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoIotHubTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoOptimizedAutoscaleTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoEventGridTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoKeyVaultPropertiesTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoManagedPrivateEndpointsTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoPrivateLinkResourcesTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoAttachedDatabaseConfigurationTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoClusterTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoDatabasePrincipalsTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoIdentityTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoFollowerDatabaseActionsTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoPrivateEndpointConnectionsTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoEventHubTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoPrincipalAssignmentsTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoDatabaseTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoEnableDiskEncryptionTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/KustoStreamingIngestTests.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/tests/SessionRecords/KustoOperationsTests/OperationsTest.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/generate.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/DatabasesOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IOperationsResultsLocation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/DataConnectionsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/KustoManagementClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IDataConnectionsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/PrivateEndpointConnectionsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/AttachedDatabaseConfigurationsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/PrivateLinkResourcesOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/OperationsResultsLocation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/ClustersOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/SdkInfo_KustoManagementClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IAttachedDatabaseConfigurationsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IClusterPrincipalAssignmentsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/OperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/ClusterPrincipalAssignmentsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IClustersOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/OperationsResultsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/OperationsResultsLocationExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IManagedPrivateEndpointsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IDatabasesOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/ClusterPrincipalAssignmentsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/DatabasePrincipalAssignmentsOperationsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/DatabasePrincipalAssignmentsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/ManagedPrivateEndpointsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/DatabasesOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/PrivateLinkResourcesOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IKustoManagementClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/DataConnectionsOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/kusto/Microsoft.Azure.Management.Kusto/src/Generated/IOperationsResults.cs: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 37413 lines, excerpt: first and last 200 ...]
+
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsNSRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsSrvRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsARecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsARecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsAaaaRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsARecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCaaRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCnameRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCnameRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCaaRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsMXRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsTxtRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsPtrRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSrvRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCaaRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsPtrRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsNSRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsBaseRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSrvRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsAaaaRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSoaRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/RecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsARecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsNSRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSoaRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsTxtRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsARecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsAaaaRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCnameRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCnameRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsMXRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsMXRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsNSRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsPtrRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSrvRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCnameRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsTxtRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSoaRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCaaRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCaaRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsARecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsAaaaRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsNSRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsTxtRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCnameRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCaaRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsPtrRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsPtrRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsAaaaRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsSoaRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsBaseRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsTxtRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/api/Azure.ResourceManager.Dns.netstandard2.0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./SUPPORT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/ApiDocGeneration/assets/docgen.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/ApiDocGeneration/assets/toc.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/ApiDocGeneration/Generate-Api-Docs.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/mgmt_preview_quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/DeveloperDrivenEvolution.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/AzureSDKCodeGeneration_DataPlane_Quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Azure_SDK_Package_Ship_Requirements.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/AzureSDKPackage_Setup.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Subclients.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Autorest_DataPlane_Quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/AzureSDKGeneration_Prerequistites.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Add_ProtocolMethods_In_Gen1_Convenience_Client_Generated_SDK.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Create_Samples_Guidance.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/ServiceDrivenEvolution.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/design/GeneratedClientDesign.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/testcase-sample.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/find-example-name.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/trust-certificate.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/test-explorer.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Building.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/CredscanProcess.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/AotRegressionChecks.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Track2TestFramework.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Versioning.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Using-Azure-TestFramework.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/mgmt_quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Using-Mock-Test-Generation.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-f020d33d9113d4856e6c5bf57bc0970edb8dd5c2.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-f020d33d9113d4856e6c5bf57bc0970edb8dd5c2.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-f020d33d9113d4856e6c5bf57bc0970edb8dd5c2.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/03_question.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/06_learn_feedback.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/04_core_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/02_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/05_mqissue.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/01_bug_report.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/scheduled-event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/pull_request_assignment.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS_baseline_errors.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/event-processor.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/sla.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:00:20+01:00 exit 125

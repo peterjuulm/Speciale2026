@@ -1,0 +1,31 @@
+start 2026-11-01T15:35:36+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Swashbuckle.AspNetCore.Swagger/Swashbuckle.AspNetCore.Swagger.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733741965 && dotnet pack src/Swashbuckle.AspNetCore.Swagger/Swashbuckle.AspNetCore.Swagger.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733741965; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net9.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net8.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net6.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.07
+  Successfully created package '/tmp/reprotest.Ic4C2C/const_build_path/out/Swashbuckle.AspNetCore.Swagger.7.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.Ic4C2C/const_build_path/out/Swashbuckle.AspNetCore.Swagger.7.2.0.snupkg'.
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net9.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net8.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_net6.0/Swashbuckle.AspNetCore.Swagger.dll
+  Swashbuckle.AspNetCore.Swagger -> /tmp/reprotest.Ic4C2C/const_build_path/artifacts/bin/Swashbuckle.AspNetCore.Swagger/release_netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.96
+  Successfully created package '/tmp/reprotest.Ic4C2C/const_build_path/out/Swashbuckle.AspNetCore.Swagger.7.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.Ic4C2C/const_build_path/out/Swashbuckle.AspNetCore.Swagger.7.2.0.snupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/swashbuckle.aspnetcore.swagger-7.2.0/configured-time-store/control/source-root/out/Swashbuckle.AspNetCore.Swagger.7.2.0.nupkg og /private/tmp/nupkg-determinism/out/swashbuckle.aspnetcore.swagger-7.2.0/configured-time-store/experiment-1/source-root/out/Swashbuckle.AspNetCore.Swagger.7.2.0.nupkg er forskellige
+Binære filer /private/tmp/nupkg-determinism/out/swashbuckle.aspnetcore.swagger-7.2.0/configured-time-store/control/source-root/out/Swashbuckle.AspNetCore.Swagger.7.2.0.snupkg og /private/tmp/nupkg-determinism/out/swashbuckle.aspnetcore.swagger-7.2.0/configured-time-store/experiment-1/source-root/out/Swashbuckle.AspNetCore.Swagger.7.2.0.snupkg er forskellige
+end 2026-11-01T15:35:58+01:00 exit 1

@@ -1,0 +1,39 @@
+start 2026-11-01T16:33:46+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/CsvHelper/CsvHelper.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/CsvHelper/CsvHelper.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net9.0/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net8.0/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/netstandard2.1/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/netstandard2.0/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net48/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net47/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net462/CsvHelper.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:31.29
+  The package CsvHelper.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.hzCfBc/const_build_path/out/CsvHelper.1.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.hzCfBc/const_build_path/out/CsvHelper.1.0.0.snupkg'.
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net9.0/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net8.0/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/netstandard2.1/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/netstandard2.0/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net48/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net47/CsvHelper.dll
+  CsvHelper -> /tmp/reprotest.hzCfBc/const_build_path/src/CsvHelper/bin/Release/net462/CsvHelper.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:31.46
+  The package CsvHelper.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.hzCfBc/const_build_path/out/CsvHelper.1.0.0.nupkg'.
+  Successfully created package '/tmp/reprotest.hzCfBc/const_build_path/out/CsvHelper.1.0.0.snupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/csvhelper-33.1.0/asis-environment-store/control/source-root/out/CsvHelper.1.0.0.nupkg og /private/tmp/nupkg-determinism/out/csvhelper-33.1.0/asis-environment-store/experiment-1/source-root/out/CsvHelper.1.0.0.nupkg er forskellige
+Binære filer /private/tmp/nupkg-determinism/out/csvhelper-33.1.0/asis-environment-store/control/source-root/out/CsvHelper.1.0.0.snupkg og /private/tmp/nupkg-determinism/out/csvhelper-33.1.0/asis-environment-store/experiment-1/source-root/out/CsvHelper.1.0.0.snupkg er forskellige
+end 2026-11-01T16:34:57+01:00 exit 1

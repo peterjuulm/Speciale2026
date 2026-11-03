@@ -1,0 +1,19 @@
+start 2026-11-02T22:49:26+01:00
+$ git clone -q --no-checkout https://github.com/ststeiger/PdfSharpCore /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67
+$ git -C /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67 -c advice.detachedHead=false checkout -q d6ac8b092129a4f797365bbbf3eea2723d6c3ebd
+start 2026-11-03T06:16:21+01:00
+$ git clone -q --no-checkout https://github.com/ststeiger/PdfSharpCore /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67
+$ git -C /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67 -c advice.detachedHead=false checkout -q d6ac8b092129a4f797365bbbf3eea2723d6c3ebd
+$ git -C /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67 checkout -q -- .
+$ dotnet restore PdfSharpCore.Charting/PdfSharpCore.Charting.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67/PdfSharpCore/PdfSharpCore.csproj (in 168 ms).
+  Restored /private/tmp/nupkg-determinism/src/pdfsharpcore.charting-1.3.67/PdfSharpCore.Charting/PdfSharpCore.Charting.csproj (in 168 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

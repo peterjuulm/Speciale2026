@@ -1,0 +1,41 @@
+start 2026-11-03T01:03:40+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1726632417 && dotnet pack src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1726632417; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=net451]
+  Hangfire.InMemory -> /tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/bin/Release/net451/Hangfire.InMemory.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=netstandard2.0]
+  Hangfire.InMemory -> /tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/bin/Release/netstandard2.0/Hangfire.InMemory.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=netstandard2.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.61
+  The package Hangfire.InMemory.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.i6Oz81/const_build_path/out/Hangfire.InMemory.1.0.0.nupkg'.
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=net451]
+  Hangfire.InMemory -> /tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/bin/Release/net451/Hangfire.InMemory.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=netstandard2.0]
+  Hangfire.InMemory -> /tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/bin/Release/netstandard2.0/Hangfire.InMemory.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.i6Oz81/const_build_path/src/Hangfire.InMemory/Hangfire.InMemory.csproj::TargetFramework=netstandard2.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.84
+  The package Hangfire.InMemory.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.i6Oz81/const_build_path/out/Hangfire.InMemory.1.0.0.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+e3fdc0924b36f5c0aa3b9c4a1a8966a86621837a61c836012a52addc7a5246aa  ./out/Hangfire.InMemory.1.0.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-03T01:03:56+01:00 exit 0

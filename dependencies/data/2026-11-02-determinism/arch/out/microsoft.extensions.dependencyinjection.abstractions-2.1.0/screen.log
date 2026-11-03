@@ -1,0 +1,28 @@
+start 2026-11-02T19:05:02+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0 checkout -q -- .
+$ dotnet restore src/DI.Abstractions/DI.Abstractions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj : error NU1301: Unable to load the service index for source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json.
+/private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj : error NU1301:   The SSL connection could not be established, see inner exception.
+/private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj : error NU1301:   The remote certificate is invalid according to the validation procedure: RemoteCertificateNameMismatch
+  Failed to restore /private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj (in 7,39 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T19:05:11+01:00 restore failed
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0 checkout -q -- .
+$ dotnet restore src/DI.Abstractions/DI.Abstractions.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj : error NU1301: Unable to load the service index for source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json.
+/private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj : error NU1301:   The SSL connection could not be established, see inner exception.
+/private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj : error NU1301:   The remote certificate is invalid according to the validation procedure: RemoteCertificateNameMismatch
+  Failed to restore /private/tmp/nupkg-determinism/src/microsoft.extensions.dependencyinjection.abstractions-2.1.0/src/DI.Abstractions/DI.Abstractions.csproj (in 8,1 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

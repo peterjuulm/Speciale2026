@@ -1,0 +1,5 @@
+start 2026-11-02T18:12:47+01:00
+$ git clone -q --no-checkout https://github.com/dotnet/aspnetcore /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24 -c advice.detachedHead=false checkout -q 2aa401550574f93402eba13ff9a4827ef01a2f3a
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24 submodule update --init --recursive -q

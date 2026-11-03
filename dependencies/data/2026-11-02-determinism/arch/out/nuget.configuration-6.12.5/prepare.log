@@ -1,0 +1,5 @@
+start 2026-11-02T20:59:44+01:00
+$ git clone -q --no-checkout https://github.com/NuGet/NuGet.Client /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5
+$ git -C /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5 -c advice.detachedHead=false checkout -q c92125011405028c945371a89e1a1eb0e735456d
+$ git -C /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5 submodule update --init --recursive -q

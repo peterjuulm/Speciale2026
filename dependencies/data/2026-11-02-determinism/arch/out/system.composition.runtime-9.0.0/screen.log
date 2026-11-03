@@ -1,0 +1,64 @@
+start 2026-11-02T23:34:41+01:00
+$ git -C /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0 checkout -q -- .
+$ dotnet restore src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/linker/Mono.Linker.csproj (in 195 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 187 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj (in 192 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 195 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 192 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 191 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 191 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 190 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  ILLink.RoslynAnalyzer -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/ILLink.RoslynAnalyzer/Release/netstandard2.0/ILLink.RoslynAnalyzer.dll
+  ILLink.CodeFixProvider -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/ILLink.CodeFixProvider/Release/netstandard2.0/ILLink.CodeFixProvider.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/Mono.Linker/ref/Release/net9.0/illink.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/Mono.Linker/Release/net9.0/illink.dll
+  ILLink.Tasks -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/ILLink.Tasks/Release/net9.0/ILLink.Tasks.dll
+/private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/eng/targetingpacks.targets(129,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj::TargetFramework=net9.0]
+  System.Composition.Runtime -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/System.Composition.Runtime/Release/net8.0/System.Composition.Runtime.dll
+  Microsoft.Interop.SourceGeneration -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/Microsoft.Interop.SourceGeneration/Release/netstandard2.0/Microsoft.Interop.SourceGeneration.dll
+  LibraryImportGenerator -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/LibraryImportGenerator/Release/netstandard2.0/Microsoft.Interop.LibraryImportGenerator.dll
+  System.Composition.Runtime -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/System.Composition.Runtime/Release/netstandard2.0/System.Composition.Runtime.dll
+  System.Composition.Runtime -> /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/artifacts/bin/System.Composition.Runtime/Release/net462/System.Composition.Runtime.dll
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/eng/targetingpacks.targets(129,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj::TargetFramework=net9.0]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:33.87
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T23:35:21+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0 checkout -q -- .
+$ dotnet restore src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Composition.Runtime/src/System.Composition.Runtime.csproj (in 182 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/linker/Mono.Linker.csproj (in 187 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 178 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 175 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 187 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 179 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 179 ms).
+  Restored /private/tmp/nupkg-determinism/src/system.composition.runtime-9.0.0/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 179 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

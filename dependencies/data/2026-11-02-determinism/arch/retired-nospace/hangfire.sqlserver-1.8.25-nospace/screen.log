@@ -1,0 +1,49 @@
+start 2026-11-02T18:04:34+01:00
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.SqlServer/Hangfire.SqlServer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 443 ms).
+  Restored /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.SqlServer/Hangfire.SqlServer.csproj (in 1,39 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Hangfire.SqlServer/Hangfire.SqlServer.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Hangfire.SqlServer/Hangfire.SqlServer.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempR76TT5/tmpe7243753d0e0449d8706cdb45ad62c5e.rsp' [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTemp1aUOXm/tmp6ec1084cec234f458bcbee7a38bbdb7e.rsp' [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.targets(1171,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.targets(1171,5): error : No space left on device : '/tmp/MSBuildTemp1Teysb/tmpd9ecc539e22e44b3b592d57fd0fe0aef.rsp' [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTempR76TT5/tmpe7243753d0e0449d8706cdb45ad62c5e.rsp' [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Roslyn/Microsoft.CSharp.Core.targets(97,5): error : No space left on device : '/tmp/MSBuildTemp1aUOXm/tmp6ec1084cec234f458bcbee7a38bbdb7e.rsp' [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=netstandard1.3]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.targets(1171,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.targets(1171,5): error : No space left on device : '/tmp/MSBuildTemp1Teysb/tmpd9ecc539e22e44b3b592d57fd0fe0aef.rsp' [/private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj::TargetFramework=net451]
+    0 Warning(s)
+    6 Error(s)
+
+Time Elapsed 00:00:06.22
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:04:46+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25 checkout -q -- .
+$ dotnet restore src/Hangfire.SqlServer/Hangfire.SqlServer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.SqlServer/Hangfire.SqlServer.csproj (in 609 ms).
+  Restored /private/tmp/nupkg-determinism/src/hangfire.sqlserver-1.8.25/src/Hangfire.Core/Hangfire.Core.csproj (in 609 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

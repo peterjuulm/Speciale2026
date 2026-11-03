@@ -1,0 +1,33 @@
+start 2026-11-01T15:49:14+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Markdig/Markdig.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Markdig/Markdig.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Markdig -> /tmp/reprotest.wew9wh/const_build_path/src/Markdig/bin/Release/net462/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/const_build_path/src/Markdig/bin/Release/netstandard2.0/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/const_build_path/src/Markdig/bin/Release/netstandard2.1/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/const_build_path/src/Markdig/bin/Release/net8.0/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/const_build_path/src/Markdig/bin/Release/net10.0/Markdig.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:36.63
+  Successfully created package '/tmp/reprotest.wew9wh/const_build_path/out/Markdig.1.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.wew9wh/const_build_path/out/Markdig.1.2.0.snupkg'.
+  Markdig -> /tmp/reprotest.wew9wh/build-experiment-1/src/Markdig/bin/Release/net462/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/build-experiment-1/src/Markdig/bin/Release/netstandard2.0/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/build-experiment-1/src/Markdig/bin/Release/netstandard2.1/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/build-experiment-1/src/Markdig/bin/Release/net8.0/Markdig.dll
+  Markdig -> /tmp/reprotest.wew9wh/build-experiment-1/src/Markdig/bin/Release/net10.0/Markdig.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:35.86
+  Successfully created package '/tmp/reprotest.wew9wh/build-experiment-1/out/Markdig.1.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.wew9wh/build-experiment-1/out/Markdig.1.2.0.snupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/markdig-1.2.0/asis-build_path-store/control/source-root/out/Markdig.1.2.0.nupkg og /private/tmp/nupkg-determinism/out/markdig-1.2.0/asis-build_path-store/experiment-1/source-root/out/Markdig.1.2.0.nupkg er forskellige
+Binære filer /private/tmp/nupkg-determinism/out/markdig-1.2.0/asis-build_path-store/control/source-root/out/Markdig.1.2.0.snupkg og /private/tmp/nupkg-determinism/out/markdig-1.2.0/asis-build_path-store/experiment-1/source-root/out/Markdig.1.2.0.snupkg er forskellige
+end 2026-11-01T15:50:34+01:00 exit 1

@@ -1,0 +1,42 @@
+start 2026-11-01T12:01:02+01:00
+$ git -C /private/tmp/nupkg-determinism/src/npgsql-10.0.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/npgsql-10.0.3 checkout -q -- .
+$ dotnet restore src/Npgsql/Npgsql.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql/Npgsql.csproj (in 623 ms).
+  Restored /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql.SourceGenerators/Npgsql.SourceGenerators.csproj (in 636 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Npgsql/Npgsql.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Npgsql/Npgsql.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Npgsql.SourceGenerators -> /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql.SourceGenerators/bin/Release/netstandard2.0/Npgsql.SourceGenerators.dll
+  Npgsql -> /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql/bin/Release/net8.0/Npgsql.dll
+  Npgsql -> /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql/bin/Release/net9.0/Npgsql.dll
+  Npgsql -> /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql/bin/Release/net10.0/Npgsql.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.92
+  Successfully created package '/private/tmp/nupkg-determinism/src/npgsql-10.0.3/out/Npgsql.10.0.3.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/npgsql-10.0.3/out/Npgsql.10.0.3.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:01:21+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/npgsql-10.0.3 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/npgsql-10.0.3 checkout -q -- .
+$ dotnet restore src/Npgsql/Npgsql.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql.SourceGenerators/Npgsql.SourceGenerators.csproj (in 150 ms).
+  Restored /private/tmp/nupkg-determinism/src/npgsql-10.0.3/src/Npgsql/Npgsql.csproj (in 150 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

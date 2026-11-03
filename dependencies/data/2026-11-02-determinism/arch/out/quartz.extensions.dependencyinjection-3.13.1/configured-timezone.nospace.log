@@ -1,0 +1,112 @@
+start 2026-11-02T23:15:17+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1730541062 && dotnet pack src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1730541062; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Unable to use package assets cache due to I/O error. This can occur when the same project is built more than once in parallel. Performance may be degraded, but the build result will not be impacted.
+  Unable to use package assets cache due to I/O error. This can occur when the same project is built more than once in parallel. Performance may be degraded, but the build result will not be impacted.
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: The "ProduceContentAssets" task failed unexpectedly. [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: System.IO.IOException: No space left on device : '/tmp/reprotest.buVete/const_build_path/src/Quartz/obj/Release/net6.0/NuGet/B0521563CD461FEF/LibLog/5.0.8/ILog.cs' [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.RandomAccess.WriteAtOffset(SafeFileHandle handle, ReadOnlySpan`1 buffer, Int64 fileOffset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.File.WriteToFile(String path, FileMode mode, ReadOnlySpan`1 contents, Encoding encoding) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.NugetContentAssetPreprocessor.Process(String originalAssetPath, String relativeOutputPath, String& pathToFinalAsset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ProduceContentAsset(ITaskItem contentFile) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ExecuteCore() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.TaskBase.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskExecutionHost.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskBuilder.ExecuteInstantiatedTask(TaskExecutionHost taskExecutionHost, TaskLoggingContext taskLoggingContext, TaskHost taskHost, ItemBucket bucket, TaskExecutionMode howToExecuteTask) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+  Unable to use package assets cache due to I/O error. This can occur when the same project is built more than once in parallel. Performance may be degraded, but the build result will not be impacted.
+  Unable to use package assets cache due to I/O error. This can occur when the same project is built more than once in parallel. Performance may be degraded, but the build result will not be impacted.
+  Unable to use package assets cache due to I/O error. This can occur when the same project is built more than once in parallel. Performance may be degraded, but the build result will not be impacted.
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: The "ProduceContentAssets" task failed unexpectedly. [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: System.IO.IOException: No space left on device : '/tmp/reprotest.buVete/const_build_path/src/Quartz/obj/Release/netstandard2.0/NuGet/B0521563CD461FEF/LibLog/5.0.8/ILog.cs' [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.RandomAccess.WriteAtOffset(SafeFileHandle handle, ReadOnlySpan`1 buffer, Int64 fileOffset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.File.WriteToFile(String path, FileMode mode, ReadOnlySpan`1 contents, Encoding encoding) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.NugetContentAssetPreprocessor.Process(String originalAssetPath, String relativeOutputPath, String& pathToFinalAsset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ProduceContentAsset(ITaskItem contentFile) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ExecuteCore() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.TaskBase.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskExecutionHost.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskBuilder.ExecuteInstantiatedTask(TaskExecutionHost taskExecutionHost, TaskLoggingContext taskLoggingContext, TaskHost taskHost, ItemBucket bucket, TaskExecutionMode howToExecuteTask) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: The "ProduceContentAssets" task failed unexpectedly. [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: System.IO.IOException: No space left on device : '/tmp/reprotest.buVete/const_build_path/src/Quartz/obj/Release/net6.0/NuGet/B0521563CD461FEF/LibLog/5.0.8/ILog.cs' [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.RandomAccess.WriteAtOffset(SafeFileHandle handle, ReadOnlySpan`1 buffer, Int64 fileOffset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.File.WriteToFile(String path, FileMode mode, ReadOnlySpan`1 contents, Encoding encoding) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.NugetContentAssetPreprocessor.Process(String originalAssetPath, String relativeOutputPath, String& pathToFinalAsset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ProduceContentAsset(ITaskItem contentFile) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ExecuteCore() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.TaskBase.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskExecutionHost.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskBuilder.ExecuteInstantiatedTask(TaskExecutionHost taskExecutionHost, TaskLoggingContext taskLoggingContext, TaskHost taskHost, ItemBucket bucket, TaskExecutionMode howToExecuteTask) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: The "ProduceContentAssets" task failed unexpectedly. [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018: System.IO.IOException: No space left on device : '/tmp/reprotest.buVete/const_build_path/src/Quartz/obj/Release/netstandard2.0/NuGet/B0521563CD461FEF/LibLog/5.0.8/ILog.cs' [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.RandomAccess.WriteAtOffset(SafeFileHandle handle, ReadOnlySpan`1 buffer, Int64 fileOffset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at System.IO.File.WriteToFile(String path, FileMode mode, ReadOnlySpan`1 contents, Encoding encoding) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.NugetContentAssetPreprocessor.Process(String originalAssetPath, String relativeOutputPath, String& pathToFinalAsset) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ProduceContentAsset(ITaskItem contentFile) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.ProduceContentAssets.ExecuteCore() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.NET.Build.Tasks.TaskBase.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskExecutionHost.Execute() [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(410,5): error MSB4018:    at Microsoft.Build.BackEnd.TaskBuilder.ExecuteInstantiatedTask(TaskExecutionHost taskExecutionHost, TaskLoggingContext taskLoggingContext, TaskHost taskHost, ItemBucket bucket, TaskExecutionMode howToExecuteTask) [/tmp/reprotest.buVete/const_build_path/src/Quartz/Quartz.csproj::TargetFramework=netstandard2.0]
+    0 Warning(s)
+    2 Error(s)
+
+Time Elapsed 00:00:00.88
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.buVete/build-control-aux && \
+    mv /tmp/reprotest.buVete/build-control/ /tmp/reprotest.buVete/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.buVete/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1730541062 && dotnet pack src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1730541062; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.buVete/const_build_path /tmp/reprotest.buVete/build-control/ || __c=$?; \
+    rm -rf /tmp/reprotest.buVete/build-control-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-11-02T23:15:19+01:00 exit 125

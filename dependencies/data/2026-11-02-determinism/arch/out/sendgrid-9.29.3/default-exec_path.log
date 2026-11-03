@@ -1,0 +1,38 @@
+start 2026-11-01T15:18:48+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/SendGrid/SendGrid.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/SendGrid/SendGrid.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/netstandard1.3/SendGrid.dll
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/netstandard2.0/SendGrid.dll
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/net452/SendGrid.dll
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/net40/SendGrid.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.74
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/SendGrid.csproj]
+  The package SendGrid.9.29.3 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.3Sh3pn/const_build_path/out/SendGrid.9.29.3.nupkg'.
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/netstandard1.3/SendGrid.dll
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/netstandard2.0/SendGrid.dll
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/net452/SendGrid.dll
+  SendGrid -> /tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/bin/Release/net40/SendGrid.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/SendGrid.csproj::TargetFramework=netstandard1.3]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.94
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/tmp/reprotest.3Sh3pn/const_build_path/src/SendGrid/SendGrid.csproj]
+  The package SendGrid.9.29.3 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.3Sh3pn/const_build_path/out/SendGrid.9.29.3.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/sendgrid-9.29.3/asis-exec_path-store/control/source-root/out/SendGrid.9.29.3.nupkg og /private/tmp/nupkg-determinism/out/sendgrid-9.29.3/asis-exec_path-store/experiment-1/source-root/out/SendGrid.9.29.3.nupkg er forskellige
+end 2026-11-01T15:19:09+01:00 exit 1

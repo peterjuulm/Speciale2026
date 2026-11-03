@@ -1,0 +1,121 @@
+start 2026-11-01T08:44:26+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 remote add origin https://github.com/dotnet/msbuild
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 fetch -q --tags origin +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 fetch -q origin 995a3dce41788caebf2b8ca6602a7431f08bfd06
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
+global.json: sdk-removed (pinned ?)
+start 2026-11-01T11:05:21+01:00
+$ git clone -q --mirror https://github.com/dotnet/msbuild /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_msbuild.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_msbuild.git /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
+global.json: sdk-removed (pinned ?)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 checkout -q -- .
+$ dotnet restore src/Framework/Microsoft.Build.Framework.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj (in 285 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.06
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T11:08:17+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_msbuild.git /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 remote set-url origin https://github.com/dotnet/msbuild
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
+global.json: sdk-removed (pinned ?)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 checkout -q -- .
+$ dotnet restore src/Framework/Microsoft.Build.Framework.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj (in 291 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.08
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T14:10:14+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_msbuild.git /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 remote set-url origin https://github.com/dotnet/msbuild
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
+global.json: sdk-removed (pinned ?)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 checkout -q -- .
+$ dotnet restore src/Framework/Microsoft.Build.Framework.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj (in 282 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.05
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T14:42:35+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_dotnet_msbuild.git /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 remote set-url origin https://github.com/dotnet/msbuild
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
+global.json: sdk-removed (pinned ?)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 checkout -q -- .
+$ dotnet restore src/Framework/Microsoft.Build.Framework.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj (in 304 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.13
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T18:18:48+01:00
+$ git clone -q --no-checkout https://github.com/dotnet/msbuild /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 -c advice.detachedHead=false checkout -q 995a3dce41788caebf2b8ca6602a7431f08bfd06
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 checkout -q -- .
+$ dotnet restore src/Framework/Microsoft.Build.Framework.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj (in 468 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.62
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

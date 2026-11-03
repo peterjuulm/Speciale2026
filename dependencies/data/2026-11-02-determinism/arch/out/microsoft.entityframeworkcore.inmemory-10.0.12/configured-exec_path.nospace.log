@@ -1,0 +1,403 @@
+start 2026-11-02T18:25:25+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914 && dotnet pack src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./es-metadata.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Packages.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./SECURITY.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.sscignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./global.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./prereqs/keys/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./prereqs/keys/Newtonsoft.Json.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./prep-source-build.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CONTRIBUTING.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODE_OF_CONDUCT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/init-cross-build.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/bootstrap/buildBootstrapPreviouslySB.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/allowed-sb-binaries.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/vmr-license-scan.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/source-build-outer-loop.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/vmr-license-scan-unofficial.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/unofficial.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/source-build-sdk-diff-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/jobs/sdk-diff-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/jobs/vmr-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/variables/vmr-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/variables/pipelines.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/run-baseline-update-pr-tool.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-validate-signing.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/create-baseline-update-pr.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-validate-installers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/download-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-compare.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/download-vmr-artifact.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/download-pipeline-artifact.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-download-artifact.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/setup-diagnostics-esrp.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-license-scan.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/source-build-stages.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-validation.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/source-build-sdk-diff-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/source-build-and-validate.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-compare.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-scan.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-verticals.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/source-build-sdk-diff-tests-unofficial.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/vmr-compare.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/scout-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/official.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/pr.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/RuntimeIdentifier.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/init-poison.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Version.Details.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/DetectBinaries.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/BinaryToolKit.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/Modes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/BinaryTool.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/BinaryToolTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BinaryToolKit/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver/UnifiedBuildSdkResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.MSBuildSdkResolver/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/UsageData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/Usage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/AnnotatedUsage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/XmlParsingHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WriteUsageBurndownData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/ValidateUsageAgainstBaseline.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WritePackageUsageData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WriteUsageReports.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/VersionDetailsHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Microsoft.DotNet.UnifiedBuild.Tasks.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/BuildTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/SignSourceBuiltArtifacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UpdateNuGetConfigPackageSourcesMappings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/static/empty.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/static/Signing.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Config.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/WriteSbrpUsageReport.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/RemoveInternetSourcesFromNuGetConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UpdateJson.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/PdbUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/EnumerableExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/RemoveBlockedAuditSourcesFromNuGetConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/WritePackageVersionsProps.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Services/ProcessService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/GetKnownArtifactsFromAssetManifests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/CreateSourceArtifact.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Models/VersionDetailsXml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Log.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/FileUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/ReadRepoInfoFromSourceManifest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/GetDependencyNamesFromVersionDetails.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/AddSourceToNuGetConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/ReadNuGetPackageInfos.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/CreateSdkSymbolsLayout.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/MarkAndCatalogPackages.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/Utility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/PoisonType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/PoisonMatch.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/CheckForPoison.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/DummyAttributeTypeProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/PoisonedFileEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/CatalogPackageEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/CatalogFileEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CloakedFileScan/CloakedFileScan.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CloakedFileScan/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/AzureDevOpsGitClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/Pipelines.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/CreateBaselineUpdatePR.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/GitHubGitClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/PRCreator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/Log.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/GitClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/Utils.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/Issue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/SigningComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/BaselineEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/BuildComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/BuildComparer.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/SignCheckResults.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/IssueType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/AssetType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/ComparisonReport.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/AssetComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/AssetMapping.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tools.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/EmptySdk/Sdk/Sdk.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/EmptySdk/Sdk/Sdk.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/IValidationStep.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/ChangeValidation.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/ExclusionFileValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/SubmoduleValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/PrInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/ToolingFilesValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/Validation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/clean-shared-components.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/restore-build-edited-files.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/restore-build-edited-files.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/THIRD-PARTY-NOTICES.template.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Version.Details.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Publishing.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/finish-source-only.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/SignCheckExclusionsFile.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/source-build-toolset-init.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Versions.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Tests.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/retain-build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/onelocbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/job.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/publish-build-assets.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/source-index-stage1.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/jobs/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/jobs/jobs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/jobs/codeql-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/post-build/setup-maestro-vars.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/post-build/common-variables.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/post-build/post-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/variables/pool-providers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/get-delegation-sas.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/install-microbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/cleanup-microbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/source-index-stage1-publish.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/enable-internal-runtimes.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-logs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-build-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/retain-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/send-to-helix.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/enable-internal-sources.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/generate-sbom.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/get-federated-access-token.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-pipeline-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipeline-logging-functions.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet-install.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/init-tools-native.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cibuild.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/Tools.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal-feed-operations.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/tizen-build-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-android-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/tizen-fetch.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/armel/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/install-debs.py: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/toolchain.cmake: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 137503 lines, excerpt: first and last 200 ...]
+
+tar: ./src/runtime/src/mono/mono/tests/bug-415577.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/exception17.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-81691.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/mis.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/unreachable-code.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/sgen-gshared-vtype.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/test-multi-netmodule-4-exe.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/threadpool.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/TestingReferenceReferenceAssembly.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-46661.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-544446.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/remoting2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-461941.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/suspend-stress-test.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/fsharp-shallowtail.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/fsharp-deeptail.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/readme.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/8273.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/2.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/split-fsharp.cpp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/4.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/3.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall/fsharp-shallownotail.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/thread-signal-wait.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/null-blob-null-blob-assm.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/pinvoke13.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/load-exceptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/appdomain-thread-abort.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/load-missing.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/assemblyresolve_event6.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/generic-unloading-sub.2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/ldtoken_with_byref_typespec.2.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/marshalbyref1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/property.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/delegate17.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/exception20.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/reflection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/custom-modifiers.2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/autoresetevents.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/delegate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/main-returns-abort-resetabort.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/locallocTest.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/iface6.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/dim-sharedgenerics.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/jit-float.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/shift.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/iface2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/internalsvisibleto-library.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/outparm.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/unhandled-exception-legacy-configuration.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-59400.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/tailcall-return-valuetype.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/roslyn-bug-19038.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/itaili1.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug445361.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/threadpool-in-processexit.exe.stdout.expected: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/delegate16.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/assembly-loadfile-bindingredirect.exe.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/allow-synchronous-major.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/t-missing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/finally_guard.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/threadpool-exceptions8.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/null-blob-main.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/unhandled-exception-test-case.2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/gh-13057_mono_local_emulate_ops_av.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/delegate12.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-333798-tb.2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/namedmutex-destroy-race.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/jit-ulong.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/threadpool-exceptions5.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-81673-interface.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/generic-valuetype-newobj2.2.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/bug-18026.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_exception_branch_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_refanyval_null_stack_top.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_ldelema_enum_array.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_stack_merge_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_filter_ends_at_endfilter_1.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_ldtoken_field.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_void_ptr_store_2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_leave_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_void_ptr_store_3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_stelem_ref_boxed_value.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_fallthru_into_catch_block.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_refanytype_invalid_stack_top.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_generic_type_definition_on_boxing_position.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_generic_arg_satisty_constraint_compat_check.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_generic_generic_object_is_boxed.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_bad_catch_clause_type.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_merge_first_value_is_base_type.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_ldftn_no_visibility.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_ptr_ldloc.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_boxed_type_not_compatible_with_string.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_overlapped_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_ref_return_stack_merge.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_empty_try_block.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_stack_2_ret.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_boxed_type_not_compatible_with_valuetype.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_mkrefany.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_void_ptr_store.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_rethrow_doesnt_fallthrough.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_dup_maxstack.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_merge_base_type.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_castclass_to_gtd.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_cmmp_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_merge_boxed_type_3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_try_block_inside_filter_block.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_mvar_is_transitive_compatibility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_fallthru_into_filter_block.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_iface_constant_with_parent_implementing_it.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_ldvirtftn_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_self_nested_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_nested_access_with_array_instance.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_ldfld_valuetype_by_ref.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_local_ref_ref_store.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_unbox_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_delegate_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_ret_with_boxed_value_on_stack.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_ldftn_method_spec_token.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_fallout_of_filter_block.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_load_addr.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_throw_with_unboxed_generic_argument.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_deep_nested_type_visibility.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_isinst_box_generic_arguments.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_inflated_generic_constraint_compatible.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_ldftn_invalid_token_out_of_bounds.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_fallout_of_try_block.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_empty_filter_block.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/invalid_ldvirtftn_invalid_token_type.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/unverifiable_generic_type_field_access.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_merge_boxed_type.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/valid_ref_return_stack_merge.il: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/runtime/src/mono/mono/tests/verifier/make_store_indirect_test.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:26:16+01:00 exit 125

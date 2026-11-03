@@ -1,0 +1,42 @@
+start 2026-11-02T19:58:37+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1780601159 && dotnet pack src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1780601159; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=netstandard2.0]
+  Microsoft.Identity.Client -> /tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/bin/Release/netstandard2.0/Microsoft.Identity.Client.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=net8.0]
+  Microsoft.Identity.Client -> /tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/bin/Release/net8.0/Microsoft.Identity.Client.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=net8.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:33.19
+  Successfully created package '/tmp/reprotest.QMf5qA/const_build_path/out/Microsoft.Identity.Client.4.61.0.nupkg'.
+  Successfully created package '/tmp/reprotest.QMf5qA/const_build_path/out/Microsoft.Identity.Client.4.61.0.snupkg'.
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=netstandard2.0]
+  Microsoft.Identity.Client -> /tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/bin/Release/netstandard2.0/Microsoft.Identity.Client.dll
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=net8.0]
+  Microsoft.Identity.Client -> /tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/bin/Release/net8.0/Microsoft.Identity.Client.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/8.0.0/buildTransitive/Microsoft.CodeAnalysis.NetAnalyzers.targets(648,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '8.0.0' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. You can suppress this warning by setting the MSBuild property '_SkipUpgradeNetAnalyzersNuGetWarning' to 'true'. [/tmp/reprotest.QMf5qA/const_build_path/src/client/Microsoft.Identity.Client/Microsoft.Identity.Client.csproj::TargetFramework=net8.0]
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:35.65
+  Successfully created package '/tmp/reprotest.QMf5qA/const_build_path/out/Microsoft.Identity.Client.4.61.0.nupkg'.
+  Successfully created package '/tmp/reprotest.QMf5qA/const_build_path/out/Microsoft.Identity.Client.4.61.0.snupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+1b079f4891c0474b288a9bb4925527f53fb36fc06ca243fa781d6962a0e3e191  ./out/Microsoft.Identity.Client.4.61.0.nupkg
+e9905ee134e657de51d280dc5a3a08208a697f8f674d3496a5550b526dfb372d  ./out/Microsoft.Identity.Client.4.61.0.snupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T19:59:53+01:00 exit 0

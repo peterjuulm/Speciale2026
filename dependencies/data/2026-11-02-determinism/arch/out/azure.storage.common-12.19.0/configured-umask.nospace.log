@@ -1,0 +1,403 @@
+start 2026-11-02T18:07:13+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1715632633 && dotnet pack sdk/storage/Azure.Storage.Common/src/Azure.Storage.Common.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1715632633; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Generated/WebSiteSlotTriggeredWebJobResource.cs: Wrote only 8704 of 10240 bytes
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Generated/LogsSiteSlotConfigResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Azure.ResourceManager.AppService.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/WebSiteTriggeredwebJobResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/WebSiteTriggeredWebJobHistoryResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/WebSiteSlotTriggeredWebJobHistoryResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/WebSiteSlotResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/WebSiteInstanceStatusData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/AppServiceEnvironmentResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/WebSiteResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/HostNameBindingData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Extensions/MockableAppServiceResourceGroupResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Extensions/MockableAppServiceArmClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Extensions/MockableAppServiceSubscriptionResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Extensions/AppServiceExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/HybridConnectionData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/AppServiceVirtualNetworkData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/AppCertificateData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/RestOperations/WebAppsRestOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppServiceSupportedTlsVersion.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppServiceTableStorageApplicationLogsConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/SiteAuthSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppCertificatePatch.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/WebAppKeyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppServiceVirtualNetworkProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/HostNameSslState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppServiceCertificateDetails.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppCertificateData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppServiceAadRegistration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/Models/AppCertificatePatch.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/PublicCertificateData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/src/Customization/WebSiteSlotTriggeredWebJobResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/websites/Azure.ResourceManager.AppService/api/Azure.ResourceManager.AppService.netstandard2.0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/platform-matrix.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/CHANGELOG.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/MigrationGuide.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/Azure.Security.KeyVault.Keys.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyClientTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/ThrowingCryptographyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/JsonWebKeyTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/LocalCryptographyClientTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/SampleFixture.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/TestExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/CryptographyModelFactoryTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyClientLiveTests.SecureKeyRelease.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/ReleaseKeyOptionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeysTestBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/EcCryptographyProviderTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyVaultOnlyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/ManagedHsmCryptographyClientLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyReleasePolicyTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/AesCryptographyProviderTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/ManagedHsmLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/DecryptParametersTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/AesCbcTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/LocalCryptographyProviderFactoryTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample6_WrapUnwrapAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample5_SignVerify.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample2_BackupAndRestore.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample3_GetKeys.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample4_EncryptDecrypt.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample4_EncryptDecryptAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample2_BackupAndRestoreAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample6_WrapUnwrap.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/SampleSnippets.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample1_HelloWorld.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample3_GetKeysAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample5_SignVerifyAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample7_SerializeJsonWebKeyAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample7_SerializeJsonWebKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample1_HelloWorldAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Track1Snippets.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample8_KeyRotation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/samples/Sample8_KeyRotationAsync.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/RsaCryptographyProviderTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyResolverMockTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/AesKwTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyCurveNameTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/CryptographyClientTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyResolverLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/ByteExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyClientLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyClientLiveTests.KeyRotation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyVaultKeyIdentifierTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/DelayCreateKeyInterceptor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/EncryptParametersTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyResolverTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyPropertiesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/TestExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeyRotationPolicyTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/KeysEventSourceTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/AttestationClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/EncryptionAlgorithmTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/tests/CryptographyClientLiveTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Infrastructure/KeysScenarioBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Infrastructure/CryptographyScenarioBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Infrastructure/PerfTestEnvironment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Scenarios/Sign.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Scenarios/Decrypt.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Scenarios/GetKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Scenarios/Unwrap.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Azure.Security.KeyVault.Keys.Perf.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/perf/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample5_SignVerify.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample3_GetKeys.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample6_WrapUnwrap.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample1_HelloWorld.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample4_EncryptDecrypt.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample2_BackupAndRestore.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample7_SerializeJsonWebKey.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/samples/Sample8_KeyRotation.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/TROUBLESHOOTING.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyCurveName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyRequestParameters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyVaultPipeline.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyBackup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/ImportKeyOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/CreateEcKeyOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/GetRandomBytesRequest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/CreateOctKeyOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/DeletedKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyRotationLifetimeAction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyVaultKeyIdentifier.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/DeleteKeyOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeysEventSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/ReleaseKeyResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyClientOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyVaultKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/RandomBytes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/EncryptionAlgorithm.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/CryptographyClientOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/SecretKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/AesKw.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/KeySignParameters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/RSAKeyVault.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/WrapResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/KeyResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/LocalCryptographyProviderFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/CryptographyClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/AesCryptographyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/UnwrapResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/ByteExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/RemoteCryptographyClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/RsaCryptographyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/EncryptParameters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/SignResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/VerifyResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/Crypto.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/EncryptResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/CryptographyModelFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/EcCryptographyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/DecryptResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/SignatureAlgorithm.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/DecryptParameters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/LocalCryptographyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/ICryptographyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/KeyVerifyParameters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/KeyWrapAlgorithm.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/LocalCryptographyClientOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/KeyWrapParameters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Cryptography/AesCbc.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/CreateKeyOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/RecoverDeletedKeyOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyRotationPolicyAction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyReleasePolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyExportEncryptionAlgorithm.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyClientBuilderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/ReleaseKeyOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyAttributes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/JsonWebKeyConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/JsonWebKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/KeyRotationPolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/CreateRsaKeyOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/src/Azure.Security.KeyVault.Keys.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Keys/api/Azure.Security.KeyVault.Keys.netstandard2.0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/test-resources.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Secrets/CHANGELOG.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Secrets/perf-tests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Secrets/MigrationGuide.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Secrets/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/keyvault/Azure.Security.KeyVault.Secrets/tests/SampleFixture.cs: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 44259 lines, excerpt: first and last 200 ...]
+
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsNSRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsSrvRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsARecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsARecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsAaaaRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsARecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCaaRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCnameRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCnameRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCaaRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsMXRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsTxtRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsPtrRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSrvRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCaaRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsPtrRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsNSRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsBaseRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSrvRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsAaaaRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSoaRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/RecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsARecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsNSRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSoaRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsTxtRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsARecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsAaaaRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCnameRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCnameRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsMXRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsMXRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsNSRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsPtrRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSrvRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCnameRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsTxtRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsSoaRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCaaRecordListResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsCaaRecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsARecordData.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/Models/DnsAaaaRecordListResult.Serialization.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsNSRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsTxtRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCnameRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsCaaRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsPtrRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsPtrRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsAaaaRecordCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsSoaRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsBaseRecordData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/src/Customization/DnsTxtRecordResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./sdk/dns/Azure.ResourceManager.Dns/api/Azure.ResourceManager.Dns.netstandard2.0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./SUPPORT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/ApiDocGeneration/assets/docgen.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/ApiDocGeneration/assets/toc.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/ApiDocGeneration/Generate-Api-Docs.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/mgmt_preview_quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/DeveloperDrivenEvolution.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/AzureSDKCodeGeneration_DataPlane_Quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Azure_SDK_Package_Ship_Requirements.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/AzureSDKPackage_Setup.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Subclients.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Autorest_DataPlane_Quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/AzureSDKGeneration_Prerequistites.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Add_ProtocolMethods_In_Gen1_Convenience_Client_Generated_SDK.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/Create_Samples_Guidance.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/DataPlaneCodeGeneration/ServiceDrivenEvolution.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/design/GeneratedClientDesign.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/testcase-sample.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/find-example-name.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/trust-certificate.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/images/test-explorer.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Building.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/CredscanProcess.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/AotRegressionChecks.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Track2TestFramework.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Versioning.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Using-Azure-TestFramework.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/mgmt_quickstart.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./doc/dev/Using-Mock-Test-Generation.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-37ffb48e94861fa7d30d0495914afb6a297e0211.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-37ffb48e94861fa7d30d0495914afb6a297e0211.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-37ffb48e94861fa7d30d0495914afb6a297e0211.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/03_question.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/06_learn_feedback.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/04_core_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/02_feature_request.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/05_mqissue.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/01_bug_report.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/scheduled-event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event-processor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/event.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/pull_request_assignment.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS_baseline_errors.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/event-processor.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/sla.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:07:59+01:00 exit 125

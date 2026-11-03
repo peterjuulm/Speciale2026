@@ -1,0 +1,39 @@
+start 2026-11-01T15:32:28+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net462/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net472/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net6.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net8.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net9.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net10.0/Microsoft.IdentityModel.Abstractions.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:22.27
+  Successfully created package '/tmp/reprotest.zu23ht/const_build_path/out/Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143251.nupkg'.
+  Successfully created package '/tmp/reprotest.zu23ht/const_build_path/out/Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143251.snupkg'.
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net462/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net472/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net6.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net8.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net9.0/Microsoft.IdentityModel.Abstractions.dll
+  Microsoft.IdentityModel.Abstractions -> /tmp/reprotest.zu23ht/const_build_path/src/Microsoft.IdentityModel.Abstractions/bin/Release/net10.0/Microsoft.IdentityModel.Abstractions.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:20.32
+  Successfully created package '/tmp/reprotest.zu23ht/const_build_path/out/Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143315.nupkg'.
+  Successfully created package '/tmp/reprotest.zu23ht/const_build_path/out/Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143315.snupkg'.
+Kun i /private/tmp/nupkg-determinism/out/microsoft.identitymodel.abstractions-8.23.0/asis-environment-store/control/source-root/out: Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143251.nupkg
+Kun i /private/tmp/nupkg-determinism/out/microsoft.identitymodel.abstractions-8.23.0/asis-environment-store/control/source-root/out: Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143251.snupkg
+Kun i /private/tmp/nupkg-determinism/out/microsoft.identitymodel.abstractions-8.23.0/asis-environment-store/experiment-1/source-root/out: Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143315.nupkg
+Kun i /private/tmp/nupkg-determinism/out/microsoft.identitymodel.abstractions-8.23.0/asis-environment-store/experiment-1/source-root/out: Microsoft.IdentityModel.Abstractions.8.22.1-preview-71101143315.snupkg
+end 2026-11-01T15:33:18+01:00 exit 1

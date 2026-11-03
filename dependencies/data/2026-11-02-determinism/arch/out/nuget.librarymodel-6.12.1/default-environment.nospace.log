@@ -1,0 +1,77 @@
+start 2026-11-02T21:36:25+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Frameworks -> /tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+CSC : error CS1569: Error writing to XML documentation file: No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Common/obj/Release/netstandard2.0/NuGet.Common.xml' [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj::TargetFramework=netstandard2.0]
+CSC : error CS0016: Could not write to output file '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Common/obj/Release/netstandard2.0/NuGet.Common.xml' -- 'No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Common/obj/Release/netstandard2.0/NuGet.Common.xml'' [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(2453,5): error MSB3101: Could not write state file "/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/NuGet.Versioning.csproj.AssemblyReference.cache". No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/NuGet.Versioning.csproj.AssemblyReference.cache' [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(6062,5): error MSB3491: Could not write lines to file "/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/NuGet.Versioning.csproj.FileListAbsolute.txt". No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/433d1x0a.5pp~'  [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj::TargetFramework=netstandard2.0]
+
+Build FAILED.
+
+CSC : error CS1569: Error writing to XML documentation file: No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Common/obj/Release/netstandard2.0/NuGet.Common.xml' [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj::TargetFramework=netstandard2.0]
+CSC : error CS0016: Could not write to output file '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Common/obj/Release/netstandard2.0/NuGet.Common.xml' -- 'No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Common/obj/Release/netstandard2.0/NuGet.Common.xml'' [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(2453,5): error MSB3101: Could not write state file "/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/NuGet.Versioning.csproj.AssemblyReference.cache". No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/NuGet.Versioning.csproj.AssemblyReference.cache' [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(6062,5): error MSB3491: Could not write lines to file "/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/NuGet.Versioning.csproj.FileListAbsolute.txt". No space left on device : '/tmp/reprotest.m8AAtI/const_build_path/artifacts/NuGet.Versioning/obj/Release/netstandard2.0/433d1x0a.5pp~'  [/tmp/reprotest.m8AAtI/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj::TargetFramework=netstandard2.0]
+    0 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:14.37
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.m8AAtI/build-control-aux && \
+    mv /tmp/reprotest.m8AAtI/build-control/ /tmp/reprotest.m8AAtI/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.m8AAtI/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.LibraryModel/NuGet.LibraryModel.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.m8AAtI/const_build_path /tmp/reprotest.m8AAtI/build-control/ || __c=$?; \
+    rm -rf /tmp/reprotest.m8AAtI/build-control-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-11-02T21:36:42+01:00 exit 125

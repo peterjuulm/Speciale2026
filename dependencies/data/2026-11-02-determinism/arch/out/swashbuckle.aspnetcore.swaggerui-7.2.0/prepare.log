@@ -1,0 +1,50 @@
+start 2026-11-01T12:24:23+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_domaindrivendev_Swashbuckle.AspNetCore.git /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 remote set-url origin https://github.com/domaindrivendev/Swashbuckle.AspNetCore
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+global.json: sdk-removed (pinned 9.0.101)
+start 2026-11-01T16:06:06+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_domaindrivendev_Swashbuckle.AspNetCore.git /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 remote set-url origin https://github.com/domaindrivendev/Swashbuckle.AspNetCore
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+global.json: sdk-removed (pinned 9.0.101)
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0/src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj (in 194 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T23:14:59+01:00
+$ git clone -q --no-checkout https://github.com/domaindrivendev/Swashbuckle.AspNetCore /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0/src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj (in 280 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T04:59:11+01:00
+$ git clone -q --no-checkout https://github.com/domaindrivendev/Swashbuckle.AspNetCore /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 -c advice.detachedHead=false checkout -q fc77e5ab963cbd10d5f1fae295ae98f61698acc0
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.swaggerui-7.2.0/src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.csproj (in 224 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

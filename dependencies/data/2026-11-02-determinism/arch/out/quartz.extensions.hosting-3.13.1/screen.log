@@ -1,0 +1,48 @@
+start 2026-11-01T12:09:20+01:00
+$ git -C /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1 checkout -q -- .
+$ dotnet restore src/Quartz.Extensions.Hosting/Quartz.Extensions.Hosting.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.Hosting/Quartz.Extensions.Hosting.csproj (in 142 ms).
+  Restored /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj (in 142 ms).
+  Restored /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz/Quartz.csproj (in 142 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Quartz.Extensions.Hosting/Quartz.Extensions.Hosting.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Quartz.Extensions.Hosting/Quartz.Extensions.Hosting.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Quartz -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz/bin/Release/netstandard2.0/Quartz.dll
+  Quartz -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz/bin/Release/net6.0/Quartz.dll
+  Quartz.Extensions.DependencyInjection -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.DependencyInjection/bin/Release/netstandard2.0/Quartz.Extensions.DependencyInjection.dll
+  Quartz.Extensions.DependencyInjection -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.DependencyInjection/bin/Release/net6.0/Quartz.Extensions.DependencyInjection.dll
+  Quartz.Extensions.DependencyInjection -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.DependencyInjection/bin/Release/net8.0/Quartz.Extensions.DependencyInjection.dll
+  Quartz.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.Hosting/bin/Release/netstandard2.0/Quartz.Extensions.Hosting.dll
+  Quartz.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.Hosting/bin/Release/net6.0/Quartz.Extensions.Hosting.dll
+  Quartz.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.Hosting/bin/Release/net8.0/Quartz.Extensions.Hosting.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.99
+  Successfully created package '/private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/out/Quartz.Extensions.Hosting.3.13.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/out/Quartz.Extensions.Hosting.3.13.1.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:09:34+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1 checkout -q -- .
+$ dotnet restore src/Quartz.Extensions.Hosting/Quartz.Extensions.Hosting.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz/Quartz.csproj (in 145 ms).
+  Restored /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.DependencyInjection/Quartz.Extensions.DependencyInjection.csproj (in 145 ms).
+  Restored /private/tmp/nupkg-determinism/src/quartz.extensions.hosting-3.13.1/src/Quartz.Extensions.Hosting/Quartz.Extensions.Hosting.csproj (in 145 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

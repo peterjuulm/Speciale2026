@@ -1,0 +1,18 @@
+start 2026-11-02T17:55:20+01:00
+$ git clone -q --no-checkout https://github.com/ClosedXML/ClosedXML.Parser /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0
+$ git -C /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0 -c advice.detachedHead=false checkout -q aaf2ade77aa160d7e929088320eab562b2df6851
+start 2026-11-03T00:52:31+01:00
+$ git clone -q --no-checkout https://github.com/ClosedXML/ClosedXML.Parser /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0
+$ git -C /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0 -c advice.detachedHead=false checkout -q aaf2ade77aa160d7e929088320eab562b2df6851
+$ git -C /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0 checkout -q -- .
+$ dotnet restore src/ClosedXML.Parser/ClosedXML.Parser.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/closedxml.parser-1.2.0/src/ClosedXML.Parser/ClosedXML.Parser.csproj (in 155 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

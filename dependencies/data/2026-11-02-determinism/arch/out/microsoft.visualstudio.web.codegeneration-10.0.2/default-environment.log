@@ -1,0 +1,35 @@
+start 2026-11-02T20:14:46+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Scaffolding/VS.Web.CG/VS.Web.CG.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Scaffolding/VS.Web.CG/VS.Web.CG.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.DotNet.Scaffolding.Shared -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/Microsoft.DotNet.Scaffolding.Shared/Release/net9.0/Microsoft.DotNet.Scaffolding.Shared.dll
+  VS.Web.CG.Utils -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.Utils/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+  VS.Web.CG.Templating -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.Templating/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+  VS.Web.CG.Core -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.Core/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+  VS.Web.CG.EFCore -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.EFCore/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+  VS.Web.CG -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:22.85
+  Successfully created package '/tmp/reprotest.msMpAw/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.nupkg'.
+  Successfully created package '/tmp/reprotest.msMpAw/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.symbols.nupkg'.
+  Microsoft.DotNet.Scaffolding.Shared -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/Microsoft.DotNet.Scaffolding.Shared/Release/net9.0/Microsoft.DotNet.Scaffolding.Shared.dll
+  VS.Web.CG.Utils -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.Utils/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+  VS.Web.CG.Templating -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.Templating/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+  VS.Web.CG.Core -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.Core/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+  VS.Web.CG.EFCore -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG.EFCore/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+  VS.Web.CG -> /tmp/reprotest.msMpAw/const_build_path/artifacts/bin/VS.Web.CG/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:02.70
+  Successfully created package '/tmp/reprotest.msMpAw/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.nupkg'.
+  Successfully created package '/tmp/reprotest.msMpAw/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.symbols.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/microsoft.visualstudio.web.codegeneration-10.0.2/default-environment-store/control/source-root/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.nupkg og /private/tmp/nupkg-determinism/out/microsoft.visualstudio.web.codegeneration-10.0.2/default-environment-store/experiment-1/source-root/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.nupkg er forskellige
+Binære filer /private/tmp/nupkg-determinism/out/microsoft.visualstudio.web.codegeneration-10.0.2/default-environment-store/control/source-root/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.symbols.nupkg og /private/tmp/nupkg-determinism/out/microsoft.visualstudio.web.codegeneration-10.0.2/default-environment-store/experiment-1/source-root/out/Microsoft.VisualStudio.Web.CodeGeneration.10.0.2.symbols.nupkg er forskellige
+end 2026-11-02T20:16:26+01:00 exit 1

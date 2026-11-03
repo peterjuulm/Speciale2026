@@ -1,0 +1,34 @@
+start 2026-11-02T20:06:39+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Scaffolding/VS.Web.CG.Templating/VS.Web.CG.Templating.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1767716335 && dotnet pack src/Scaffolding/VS.Web.CG.Templating/VS.Web.CG.Templating.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1767716335; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.DotNet.Scaffolding.Shared -> /tmp/reprotest.qDGLRZ/const_build_path/artifacts/bin/Microsoft.DotNet.Scaffolding.Shared/Release/net9.0/Microsoft.DotNet.Scaffolding.Shared.dll
+  VS.Web.CG.Utils -> /tmp/reprotest.qDGLRZ/const_build_path/artifacts/bin/VS.Web.CG.Utils/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+  VS.Web.CG.Templating -> /tmp/reprotest.qDGLRZ/const_build_path/artifacts/bin/VS.Web.CG.Templating/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.66
+  Successfully created package '/tmp/reprotest.qDGLRZ/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.Templating.10.0.2.nupkg'.
+  Successfully created package '/tmp/reprotest.qDGLRZ/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.Templating.10.0.2.symbols.nupkg'.
+  Microsoft.DotNet.Scaffolding.Shared -> /tmp/reprotest.qDGLRZ/const_build_path/artifacts/bin/Microsoft.DotNet.Scaffolding.Shared/Release/net9.0/Microsoft.DotNet.Scaffolding.Shared.dll
+  VS.Web.CG.Utils -> /tmp/reprotest.qDGLRZ/const_build_path/artifacts/bin/VS.Web.CG.Utils/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+  VS.Web.CG.Templating -> /tmp/reprotest.qDGLRZ/const_build_path/artifacts/bin/VS.Web.CG.Templating/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.59
+  Successfully created package '/tmp/reprotest.qDGLRZ/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.Templating.10.0.2.nupkg'.
+  Successfully created package '/tmp/reprotest.qDGLRZ/const_build_path/out/Microsoft.VisualStudio.Web.CodeGeneration.Templating.10.0.2.symbols.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+c32a2ea95936806a7f2d97b2b60e6ffc7268bce5112ef9595b48fd73484510a2  ./out/Microsoft.VisualStudio.Web.CodeGeneration.Templating.10.0.2.nupkg
+802fa2c82d512cc213cefd03b643f9e12da7e2d016976d396912a72f9ec0ed54  ./out/Microsoft.VisualStudio.Web.CodeGeneration.Templating.10.0.2.symbols.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T20:07:06+01:00 exit 0

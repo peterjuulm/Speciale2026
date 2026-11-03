@@ -1,0 +1,39 @@
+start 2026-11-02T23:16:43+01:00
+$ git -C /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0/src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj (in 144 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Serilog.Enrichers.Thread -> /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0/src/Serilog.Enrichers.Thread/bin/Release/netstandard2.0/Serilog.Enrichers.Thread.dll
+  Serilog.Enrichers.Thread -> /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0/src/Serilog.Enrichers.Thread/bin/Release/net6.0/Serilog.Enrichers.Thread.dll
+  Serilog.Enrichers.Thread -> /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0/src/Serilog.Enrichers.Thread/bin/Release/net8.0/Serilog.Enrichers.Thread.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.30
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0/out/Serilog.Enrichers.Thread.4.0.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0/out/Serilog.Enrichers.Thread.4.0.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T23:16:49+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.enrichers.thread-4.0.0/src/Serilog.Enrichers.Thread/Serilog.Enrichers.Thread.csproj (in 250 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

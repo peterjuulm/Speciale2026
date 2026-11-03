@@ -1,0 +1,49 @@
+start 2026-11-02T20:14:45+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2 checkout -q -- .
+$ dotnet restore src/Scaffolding/VS.Web.CG.EFCore/VS.Web.CG.EFCore.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.Templating/VS.Web.CG.Templating.csproj (in 422 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Shared/Microsoft.DotNet.Scaffolding.Shared/Microsoft.DotNet.Scaffolding.Shared.csproj (in 410 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.Utils/VS.Web.CG.Utils.csproj (in 410 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.Core/VS.Web.CG.Core.csproj (in 410 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.EFCore/VS.Web.CG.EFCore.csproj (in 410 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Scaffolding/VS.Web.CG.EFCore/VS.Web.CG.EFCore.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Scaffolding/VS.Web.CG.EFCore/VS.Web.CG.EFCore.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Microsoft.DotNet.Scaffolding.Shared -> /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/artifacts/bin/Microsoft.DotNet.Scaffolding.Shared/Release/net9.0/Microsoft.DotNet.Scaffolding.Shared.dll
+  VS.Web.CG.Utils -> /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/artifacts/bin/VS.Web.CG.Utils/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+  VS.Web.CG.Templating -> /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/artifacts/bin/VS.Web.CG.Templating/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+  VS.Web.CG.Core -> /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/artifacts/bin/VS.Web.CG.Core/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+  VS.Web.CG.EFCore -> /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/artifacts/bin/VS.Web.CG.EFCore/Release/net10.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.93
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/out/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.10.0.2.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/out/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.10.0.2.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T20:15:05+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2 checkout -q -- .
+$ dotnet restore src/Scaffolding/VS.Web.CG.EFCore/VS.Web.CG.EFCore.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Shared/Microsoft.DotNet.Scaffolding.Shared/Microsoft.DotNet.Scaffolding.Shared.csproj (in 406 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.Templating/VS.Web.CG.Templating.csproj (in 391 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.Utils/VS.Web.CG.Utils.csproj (in 391 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.Core/VS.Web.CG.Core.csproj (in 391 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.visualstudio.web.codegeneration.entityframeworkcore-10.0.2/src/Scaffolding/VS.Web.CG.EFCore/VS.Web.CG.EFCore.csproj (in 391 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

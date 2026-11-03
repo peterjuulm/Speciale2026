@@ -1,0 +1,760 @@
+start 2026-11-02T18:09:39+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build ClosedXML/ClosedXML.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack ClosedXML/ClosedXML.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.git/objects/pack/pack-429ee676069b8266677ad512a635482ee819cab5.pack: Wrote only 9216 of 10240 bytes
+tar: ./.git/objects/pack/pack-429ee676069b8266677ad512a635482ee819cab5.idx: Wrote only 1536 of 10240 bytes
+tar: ./.git/objects/pack/pack-429ee676069b8266677ad512a635482ee819cab5.rev: Wrote only 4096 of 7168 bytes
+tar: ./.git/refs/heads/develop: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Graphics/PictureInfoTests.cs: Wrote only 4096 of 5145 bytes
+tar: ./ClosedXML.Tests/Graphics/FontTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Utils/PackageHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Utils/StreamHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Utils/ExcelDocsComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Utils/ResourceFileExtractor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/TestHelper.cs: Wrote only 3584 of 8459 bytes
+tar: ./ClosedXML.Tests/Examples/PageSetupTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Examples/ConditionalFormattingTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Extensions/ReferenceAreaExtensionsTests.cs: Wrote only 4096 of 7680 bytes
+tar: ./ClosedXML.Tests/Extensions/EnumerableExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Loading/ChangingBasicTable.xlsx: Wrote only 4096 of 7133 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/ShiftingRanges.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/InsertingDeletingRows.xlsx: Wrote only 4096 of 4608 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/Sorting.xlsx: Wrote only 3584 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/SortExample.xlsx: Wrote only 1536 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/DeletingRanges.xlsx: Wrote only 3072 of 5358 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/DefinedNames.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/TransposeRangesPlus.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/WalkingRanges.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Ranges/InsertingDeletingColumns.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/AutoFilter/DynamicAutoFilter.xlsx: Wrote only 1536 of 4900 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/AutoFilter/TopBottomAutoFilter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Columns/ColumnSettings.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Columns/InsertColumns.xlsx: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Columns/ColumnCells.xlsx: Wrote only 4096 of 6418 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Columns/DeletingColumns.xlsx: Wrote only 3072 of 5296 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/PivotTables/PivotTables.xlsx: Wrote only 4096 of 5632 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Tables/UsingTables.xlsx: Wrote only 4096 of 9280 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFDataBarNegative.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFTop.xlsx: Wrote only 4096 of 6367 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFEqualsString.xlsx: Wrote only 4096 of 6144 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFDatesOccurring.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFColorScaleLowMidHigh.xlsx: Wrote only 4096 of 5120 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFIsError.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFEqualsNumber.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFBottom.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFNotBlank.xlsx: Wrote only 4096 of 6422 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFColorScaleLowHigh.xlsx: Wrote only 3072 of 5339 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFNotContains.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFNotEqualsString.xlsx: Wrote only 4096 of 6419 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ConditionalFormatting/CFStartsWith.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/ImageHandling/ImageFormats.xlsx: Wrote only 3584 of 9094 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/ImageHandling/ImageAnchors.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Rows/RowCells.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Rows/InsertRows.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/DataTypes.xlsx: Wrote only 4096 of 7252 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/Outline.xlsx: Wrote only 2560 of 4786 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/DataValidationTextLength.xlsx: Wrote only 4096 of 4608 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/AddingDataTableAsWorksheet.xlsx: Wrote only 4096 of 7393 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/Hyperlinks.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/CopyingRowsAndColumns.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/DataValidation.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/CopyingWorksheets.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/LambdaExpressions.xlsx: Wrote only 4096 of 6951 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/TabColors.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/ShowCase.xlsx: Wrote only 4096 of 6656 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/SheetViews.xlsx: Wrote only 4096 of 8192 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/AddingDataSet.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/InsertingData.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/FreezePanes.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/HideSheets.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/DataValidationTime.xlsx: Wrote only 4096 of 6575 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/AdjustToContentsWithAutoFilter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/HideUnhide.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/BasicTable.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Misc/MergeMoves.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Comments/EditingComments.xlsx: Wrote only 4096 of 5632 bytes
+tar: ./ClosedXML.Tests/Resource/Examples/Comments/AddingComments.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Styles/StyleRowsColumns.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Styles/StyleFont.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Styles/UsingRichText.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Styles/StyleBorder.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Examples/Sparklines/SampleSparklines.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/NumberFormats/NonSequentialNumberFormatsIds-Input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/NumberFormats/NonSequentialNumberFormatsIds-Output.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/SelectedRanges/InvalidSelectedRange.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/InlineStrings/inputfile.xlsx: Wrote only 3072 of 3551 bytes
+tar: ./ClosedXML.Tests/Resource/Other/Charts/PreserveCharts/outputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/AutoFilter/AutoFilterWithThousandsSeparator.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Cubes/CubeFromRange-Output.xlsx: Wrote only 4096 of 5632 bytes
+tar: ./ClosedXML.Tests/Resource/Other/Cubes/CubeFromRange-Input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Shapes/sheet-with-form-controls-input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Unicode/let_it_go_in_emoji.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Unicode/let_it_go_in_emoji-outputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/InlinedRichText/ChangeRichText/inputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/ExternalLinks/WorkbookWithExternalLink.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Parts/WorksheetWithDrawingCanBeModified-input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Parts/WorksheetWithDrawingCanBeModified-output.xlsx: Wrote only 4096 of 8107 bytes
+tar: ./ClosedXML.Tests/Resource/Other/Drawings/picture-webp.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Drawings/NoDrawings/outputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Drawings/Comments/inputfile.xlsx: Wrote only 4096 of 5632 bytes
+tar: ./ClosedXML.Tests/Resource/Other/NoActiveSheet/noactive_negativeId.xlsx: Wrote only 1536 of 5042 bytes
+tar: ./ClosedXML.Tests/Resource/Other/NoActiveSheet/noactive_twoselected.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Pictures/EmfPicture.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Pictures/ImageShapeZOrder-Input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/SourceSheetWithWhitespace/outputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/PivotCacheWithoutSourceData-input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/ChartsheetAndPivotTable.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/PivotSubtotalsSource/input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/VariousDataTypesInTableColumns/output.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/VariousDataTypesInTableColumns/input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/PivotTableWithoutSourceData-output.xlsx: Wrote only 512 of 7571 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/RenamedFieldIsRemovedFromPivotTable-output.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/PivotTableWithNoneTheme/outputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/LongText/outputfile.xlsx: Wrote only 4096 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/VersioningAttributes/outputfile.xlsx: Wrote only 2560 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/VersioningAttributes/inputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/BlankPivotTableField/BlankPivotTableField.xlsx: Wrote only 6144 of 9984 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/ClearPivotTableRenderedRangeWhenLoading/inputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/PivotMixedDataTypesInTableColumn/input.xlsx: Wrote only 3072 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/TwoPivotTablesWithSingleSource/output.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTableReferenceFiles/TwoPivotTablesWithSingleSource/input.xlsx: Wrote only 1536 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/FillAtReservedPosition-MoveFill-Input.xlsx: Wrote only 4096 of 6144 bytes
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/TransparentBackgroundFill/inputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/TransparentBackgroundFill/TransparentBackgroundFill.xlsx: Wrote only 4096 of 4608 bytes
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/RowAndColumnStyles/inputfile.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/ConditionalFormattingOrder/ConditionalFormattingOrder.xlsx: Wrote only 3072 of 7890 bytes
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/ConditionalFormattingOrder/inputfile.xlsx: Wrote only 2560 of 6912 bytes
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/RowColors/output.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/FillAtReservedPosition-MoveFill-Output.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/MergedCellsBorder/inputfile.xlsx: Wrote only 1536 of 7535 bytes
+tar: ./ClosedXML.Tests/Resource/Other/StyleReferenceFiles/FillAtReservedPosition-SavePredefinedValues-Input.xlsx: Wrote only 3072 of 7669 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PageSetup/Negative_first_page_number.xlsx: Wrote only 2560 of 4680 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/TableProps/Property_layout_sets_layout_of_pivot_table_and_all_fields-tabular.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/TableProps/Property_layout_sets_layout_of_pivot_table_and_all_fields-outline.xlsx: Wrote only 3072 of 9020 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Style/Add_grand_row_total_styles.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Style/Set_pivot_field_header_style-compact.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Style/Style_values_at_intersection_of_row_and_column.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Style/Modify_pivot_field_label_style.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Style/Set_pivot_field_subtotals_style.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Style/Style_data_cells_at_intersection_of_value_field_and_axis_field_with_specific_values.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Create/Add_one_column_and_one_value.xlsx: Wrote only 7680 of 9053 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Create/Add_one_column_and_two_values.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Create/Add_empty_table.xlsx: Wrote only 3584 of 8975 bytes
+tar: ./ClosedXML.Tests/Resource/Other/PivotTable/Create/Add_one_column_without_value.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Sparklines/SparklineThemes/inputfile.xlsx: Wrote only 8192 of 9728 bytes
+tar: ./ClosedXML.Tests/Resource/Other/Formulas/DataTableFormula-Output.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Formulas/DataTableFormula-Excel-Input.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Formulas/BooleanFormulaValues.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Cells/EmptyText.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Cells/EmptySi.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Protection/protectstructurewithoutpassword.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Other/Protection/protectstructurewithpassword.xlsx: Wrote only 2560 of 3971 bytes
+tar: ./ClosedXML.Tests/Resource/Fonts/TestFontB.ttf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Fonts/TestFontA.ttf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/CellsWithDateTimeWithLocalePrefix.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/~$LoadPivotTables.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/PrintAreaRefersToExternalWorksheet.xlsx: Wrote only 4096 of 9728 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/FileWithButton.xlsm: Wrote only 4096 of 9216 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/TableHeadersWithLineBreaks.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/PivotTableWithMissingReference.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/NoReferencesOnRowsOrCells.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/DialogSheet.xlsx: Wrote only 1536 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/TableWithCustomTheme.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/EmptyStyles.xlsx: Wrote only 4096 of 5120 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/PivotTableWithTableSource.xlsx: Wrote only 4096 of 6656 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/Date1904System.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/InvalidPrintTitles.xlsx: Wrote only 4096 of 8192 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/EmptyFill.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/CommentAndButton.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/preserve_space.xlsx: Wrote only 3072 of 6151 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/textbox-CharKerningSpace.xlsx: Wrote only 1024 of 6531 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/hyperlink.xlsx: Wrote only 1024 of 6761 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/empty.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/sheet-names.xlsx: Wrote only 4096 of 6656 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/page_scale.xlsx: Wrote only 4096 of 4243 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/database.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/colorscale.xlsx: Wrote only 1024 of 2816 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/condformat_theme_color.xlsx: Wrote only 4096 of 6656 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/customxml.xlsx: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/named-ranges-global.xlsx: Wrote only 512 of 2080 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/TextColor.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_date_field_filter.xlsx: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/row-index-1-based.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/strike-through.xlsx: Wrote only 1024 of 5842 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/track-changes/simple-cell-changes.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/new_cond_format_test.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf104310.xlsx: Wrote only 4096 of 4668 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/column_style.xlsx: Wrote only 4096 of 4646 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_tabular_mode.xlsx: Wrote only 4096 of 4608 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/empty-noconf.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/writingMode.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/preserve-whitespace.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/textbox-CondensedCharacterSpace.xlsx: Wrote only 3584 of 9065 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/column-style-autofilter.xlsx: Wrote only 3584 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/ProtecteSheet1234Pass.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/databar.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/fontSize.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/functions-excel-2010.xlsx: Wrote only 7168 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/new_cond_format_test_export.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf83672.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/cond_parent.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/bnc762542.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_duplicated_member_filter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/hidden_sheets.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf112106.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf89139_pivot_table.xlsx: Wrote only 4096 of 4608 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/cell-borders.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/ceiling-floor.xlsx: Wrote only 4096 of 7680 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/textbox-hyperlink.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/shared-formula/text-results.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/shared-formula/basic.xlsx: Wrote only 1024 of 5912 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/underlineColor.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/cond_format_theme_color2.xlsx: Wrote only 1024 of 5398 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/cell-value.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_rowcolpage_field_filter.xlsx: Wrote only 4096 of 5632 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf105840_allRowsHidden.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/universal-content.xlsx: Wrote only 2048 of 5248 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/ref_string.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf110440.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf104310-2.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf111876.xlsx: Wrote only 3072 of 3899 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot_table_first_header_row.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/complex_icon_set.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/data-table/one-variable.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/data-table/multi-table.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_bool_field_filter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/universal-content-strict.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_string_field_filter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/built-in_ranges.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_double_field_filter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot-table/shared-dategroup.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot-table/shared-group-field.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot-table/two-data-fields.xlsx: Wrote only 3584 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot-table/shared-numgroup.xlsx: Wrote only 4096 of 8192 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot-table/with-strings-integers-and-dates.xlsx: Wrote only 8192 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot-table/shared-nested-dategroup.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivot-table/many-fields-in-cache.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/bug-fixes.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/column-style.xlsx: Wrote only 4096 of 7680 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/external-refs.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/singlecontrol.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf100709.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/cond_format_theme_color3.xlsx: Wrote only 4096 of 6144 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/hyperlinks.xlsx: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/xf_default_values.xlsx: Wrote only 4096 of 8704 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/autofilter.xlsx: Wrote only 4096 of 6299 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/activex_checkbox.xlsx: Wrote only 4096 of 9728 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/cell-anchored-hidden-shapes.xlsx: Wrote only 9728 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/sheet-tab-color.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/tdf81939.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/pivottable_outline_mode.xlsx: Wrote only 4096 of 9216 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/cond_format_formula_listener.xlsx: Wrote only 4096 of 6656 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/different-column-width-excel2010.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/matrix-multiplication.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/formats.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsx/colorscale_num_with_ref.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsm/tdf111974.xlsm: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsm/pass/CVE-2016-0122-1.xlsm: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LO/xlsm/vba-user-function.xlsm: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/PivotTableWithBorder.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LoadImageWithoutTransform2D.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/CellsWithTimeSpanDataTypeOrFormatting.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/InvalidPrintArea.xlsx: Wrote only 4096 of 9728 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/TableWithNameNull.xlsx: Wrote only 4096 of 5632 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/DefaultColumnWidth.xlsx: Wrote only 2560 of 2734 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/SHA512PasswordProtection.xlsx: Wrote only 4096 of 6656 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/EscapedApostrophe.xlsx: Wrote only 1536 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/ExcelProducedWorkbookWithImages.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/WorksheetWithExclamationMark.xlsx: Wrote only 4608 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/FilterPrivacyEnabledWorkbook.xlsx: Wrote only 1024 of 3108 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/CopyRowContents.xlsx: Wrote only 4096 of 6144 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/TemplateWithTableSourcePivotTables.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/DrawingSizeInPx.xlsx: Wrote only 1024 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/InvalidPrintTitles2.xlsx: Wrote only 8704 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/CellsWithDateTimeDataTypeOrFormatting.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/DuplicateImageNames.xlsx: Wrote only 4096 of 7680 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/SingleRowAutoFilter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/NamedRangeWithInvalidCharacter.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LoadFileWithCustomSheetViews.xlsx: Wrote only 5120 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/EmptyTable.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LibreOfficeFileWithDates.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/CommentsWithColorNamesAndIndexes.xlsx: Wrote only 2048 of 4228 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/SheetsWithoutRelId.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/AllShapes.xlsx: Wrote only 3072 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/FileWithDefaultStyleNameNotInEnglish.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/FileWithMismatchSheetIdAndRelId.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LoadSheetsWithCommas.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/ValidationWithSheetReference.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/InvalidColors.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/TryToLoad/BaseColumnWidth.xlsx: Wrote only 1024 of 1080 bytes
+tar: ./ClosedXML.Tests/Resource/TryToLoad/LoadPivotTables.xlsx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/Jpg/SampleImageJfif.jpg: Wrote only 4096 of 6858 bytes
+tar: ./ClosedXML.Tests/Resource/Images/Jpg/jpeg-rgb.jpg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImagePlaceableWmf.wmf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageWebpLossy.webp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageBmpV1.bmp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageGif87a.gif: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImagePng.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageExif.jpg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageEmf.emf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageBmpWin8bit.bmp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageGif89a.gif: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageTiffLittleEndian.tiff: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageBmpWin24bit.bmp: Wrote only 3584 of 10240 bytes
+tar: ./ClosedXML.Tests/Resource/Images/SampleImagePcx.pcx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Resource/Images/SampleImageWebpExtendedFormat.webp: Wrote only 4096 of 4608 bytes
+tar: ./ClosedXML.Tests/OleDb/OleDbTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/XLHelperTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/ExcelDocsComparerTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/OpenXmlTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Ranges/UsedAndUnusedCellsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Ranges/MergedRangesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Ranges/RangeShiftingTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Ranges/InsertingRangesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Columns/ColumnTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/XLPivotTableAxisFieldTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/Style/XLPivotTableStyleFormatsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/Style/XLPivotFieldStyleFormatsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/XLPivotTableTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/XLPivotDataFieldsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/XLPivotTableFiltersTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/XLPivotCacheTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/XLPivotTableFieldsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PivotTables/Create/XLPivotTableAddFieldsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/CalcEngine/CalcEngineListenerTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/CalcEngine/FormulaParserTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/CalcEngine/CalcEngineExceptionTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/CalcEngine/StructuredReferenceTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/CalcEngine/XLCalculationChainTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Misc/HyperlinkTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Misc/FormulaTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Misc/ExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Misc/StylesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Comments/CommentsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/XLFillTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/AlignmentTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/NumberFormatTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/FontTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/StyleChangeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/BorderTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/ColorTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Styles/StyleTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/AutoFilters/AutoFilterTester.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/AutoFilters/RegularFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/AutoFilters/AutoFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/AutoFilters/Top10FilterTests.cs: Wrote only 2048 of 3332 bytes
+tar: ./ClosedXML.Tests/Excel/AutoFilters/DynamicFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/AutoFilters/CustomFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Globalization/GlobalizationTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/RichText/XLRichStringTests.cs: Wrote only 4096 of 9728 bytes
+tar: ./ClosedXML.Tests/Excel/RichText/XLImmutableRichTextTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PageSetup/PageLayoutTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PageSetup/PageBreaksTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/PageSetup/HeaderFooterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Sparklines/SparklineShiftTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Sparklines/SparklinesTests.cs: Wrote only 2048 of 10240 bytes
+tar: ./ClosedXML.Tests/Excel/Coordinates/XLSheetAreaTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Coordinates/XLAddressTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Coordinates/XLSheetRangeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Cells/ValueSliceTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Cells/SliceTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Cells/SharedStringTableTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Cells/XLCellValueTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Tests/Excel/Cells/XLCellTests.cs: Wrote only 8192 of 10240 bytes
+tar: ./LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-a-06.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-b-12.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/readme.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-b-10.png: Wrote only 1536 of 10240 bytes
+tar: ./resources/logo/logotype-b-09.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/favicon-01.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-a-07.png: Wrote only 1024 of 10240 bytes
+tar: ./resources/logo/logotype-b-11.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-a-05.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/favicon-04.png: Wrote only 512 of 8602 bytes
+tar: ./resources/logo/logotype-a-06.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/nuget-logo.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-b-09.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/favicon-02.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-a-08.png: Wrote only 3072 of 10240 bytes
+tar: ./resources/logo/logotype-b-10.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-a-05.png: Wrote only 1536 of 10240 bytes
+tar: ./resources/logo/favicon-01.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/favicon-03.png: Wrote only 4096 of 5632 bytes
+tar: ./resources/logo/favicon-02.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./resources/logo/logotype-a-08.svg: Wrote only 4096 of 4943 bytes
+tar: ./ClosedXML/Graphics/EmfInfoReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/WmfInfoReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/Dpi.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/XLPictureInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/PcxInfoReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/GlyphBox.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/Fonts/CarlitoBare-Regular.ttf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/Fonts/CarlitoBare-Italic.ttf: Wrote only 512 of 10240 bytes
+tar: ./ClosedXML/Graphics/Fonts/CarlitoBare-Bold.ttf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Graphics/Fonts/CarlitoBare-BoldItalic.ttf: Wrote only 5632 of 10240 bytes
+tar: ./ClosedXML/Graphics/DefaultGraphicEngine.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Utils/StreamExtensions.cs: Wrote only 1024 of 1262 bytes
+tar: ./ClosedXML/Utils/DescribedEnumParser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Utils/OpenXmlHelper.cs: Wrote only 5632 of 10240 bytes
+tar: ./ClosedXML/Extensions/FontBaseExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Extensions/TimeSpanExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Extensions/XmlWriterExtensions.cs: Wrote only 2560 of 3667 bytes
+tar: ./ClosedXML/Extensions/TypeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Extensions/DictionaryExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Extensions/ReferenceAreaExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Extensions/XLErrorExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/XLHelper.cs: Wrote only 8192 of 9216 bytes
+tar: ./ClosedXML/FodyWeavers.xsd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/ClosedXML.csproj.DotSettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/IXLCFColorScaleMin.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFConverters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFCellIsConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFNotBlankConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFConvertersExtension.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFTopConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFDataBarConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFIconSetConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFDatesOccuringConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFStartsWithConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ConditionalFormats/Save/XLCFNotErrorConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Caching/XLNumberFormatRepository.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Caching/XLProtectionRepository.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Caching/XLFillRepository.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Caching/XLRepositoryBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Caching/XLBorderRepository.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLWorksheets.cs: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML/Excel/Ranges/XLRangeColumn.cs: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML/Excel/Ranges/IXLRangeRow.cs: Wrote only 1024 of 1712 bytes
+tar: ./ClosedXML/Excel/Ranges/Sort/XLSortElement.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Ranges/XLRangeRow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Ranges/Index/XLRangeIndex.cs: Wrote only 2048 of 2100 bytes
+tar: ./ClosedXML/Excel/Ranges/XLRangeBase.cs: Wrote only 1024 of 10240 bytes
+tar: ./ClosedXML/Excel/Ranges/XLRange.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Ranges/IXLRangeBase.cs: Wrote only 3072 of 9920 bytes
+tar: ./ClosedXML/Excel/Ranges/XLRangeFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Style/XLFillKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Style/XLPredefinedFormat.cs: Wrote only 4096 of 6079 bytes
+tar: ./ClosedXML/Excel/Style/XLFontValue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Style/XLAlignment.cs: Wrote only 4096 of 9325 bytes
+tar: ./ClosedXML/Excel/Style/XLBorder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Style/IXLProtection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Style/IXLFontBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Style/Colors/XLColor_Static.cs: Wrote only 4096 of 10240 bytes
+tar: ./ClosedXML/Excel/Style/Colors/XLColor_Public.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Style/XLFill.cs: Wrote only 4096 of 6288 bytes
+tar: ./ClosedXML/Excel/Style/IXLStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLCellValue.cs: Wrote only 4096 of 6144 bytes
+tar: ./ClosedXML/Excel/XLTheme.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/EnumConverter.cs: Wrote only 1024 of 10240 bytes
+tar: ./ClosedXML/Excel/Patterns/Quadrant.cs: Wrote only 5632 of 7624 bytes
+tar: ./ClosedXML/Excel/Columns/IXLColumn.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Columns/XLColumns.cs: Wrote only 1024 of 5210 bytes
+tar: ./ClosedXML/Excel/Columns/XLColumnCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Columns/IXLColumns.cs: Wrote only 3584 of 3950 bytes
+tar: ./ClosedXML/Excel/IXLWorkbook.cs: Wrote only 2560 of 5172 bytes
+tar: ./ClosedXML/Excel/PivotTables/XLPivotTable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotTables.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotItemType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/Areas/XLPivotTableAxis.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/Areas/IXLPivotFields.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/Areas/XLPivotDataField.cs: Wrote only 8192 of 9769 bytes
+tar: ./ClosedXML/Excel/PivotTables/XLPivotTableField.cs: Wrote only 1024 of 5685 bytes
+tar: ./ClosedXML/Excel/PivotTables/XLPivotCacheValueType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotCfScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotCaches.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotCacheValues.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotValues/XLPivotValueFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotValues/IXLPivotValueFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/XLPivotStyleFormats.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/XLPivotStyleFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/IXLPivotStyleFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/XLPivotStyleFormatBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/IXLPivotTableStyleFormats.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/IXLPivotValueStyleFormat.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/XLPivotTableAxisFieldStyleFormats.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/XLPivotTableStyleFormats.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/PivotStyleFormats/IXLPivotFieldStyleFormats.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotTableEnums.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/IXLPivotCaches.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotReference.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotAreaComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/IXLPivotTable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/XLPivotCacheSharedItems.cs: Wrote only 4096 of 4728 bytes
+tar: ./ClosedXML/Excel/PivotTables/XLPivotAreaType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PivotTables/IXLPivotCache.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IXLWorksheet.cs: Wrote only 4096 of 10240 bytes
+tar: ./ClosedXML/Excel/CalcEngine/FormulaParser.cs: Wrote only 7680 of 10240 bytes
+tar: ./ClosedXML/Excel/CalcEngine/CalcEngineHelpers.cs: Wrote only 4096 of 7386 bytes
+tar: ./ClosedXML/Excel/CalcEngine/XLAddressComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/DependenciesVisitor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Wildcard.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/OneOf.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/ExpressionParseException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Visitors/CollectVisitor.cs: Wrote only 3584 of 4673 bytes
+tar: ./ClosedXML/Excel/CalcEngine/CalcContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/XLCalculationChain.cs: Wrote only 7168 of 10240 bytes
+tar: ./ClosedXML/Excel/CalcEngine/DependencyTree.cs: Wrote only 4096 of 9216 bytes
+tar: ./ClosedXML/Excel/CalcEngine/TimeSpanParser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/XLError.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/CellRangeReference.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Array.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Exceptions/GettingDataException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Exceptions/FormulaErrorException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/AstNode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Reference.cs: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML/Excel/CalcEngine/XLRangeAddressComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/FunctionRegistry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/DependenciesContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Expression.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/Lookup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/DateAndTime.cs: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML/Excel/CalcEngine/Functions/SignatureAdapter.cs: Wrote only 2560 of 5632 bytes
+tar: ./ClosedXML/Excel/CalcEngine/Functions/Text.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/Statistical.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/XLMatrix.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/XLMath.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/Information.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/MathTrig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/Logical.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/Functions/Tally.cs: Wrote only 4096 of 6144 bytes
+tar: ./ClosedXML/Excel/CalcEngine/Functions/Financial.cs: Wrote only 4096 of 7168 bytes
+tar: ./ClosedXML/Excel/CalcEngine/ScalarValueComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/FormulaDependencies.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CalcEngine/AnyValue.cs: Wrote only 1536 of 10240 bytes
+tar: ./ClosedXML/Excel/CalcEngine/ScalarValue.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLWorkbook_Load.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLFileSharing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLCellsUsedOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLWorkbook_Save.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/XLTableRange.cs: Wrote only 4096 of 8192 bytes
+tar: ./ClosedXML/Excel/Tables/XLTable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/XLTables.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/IXLTableRow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/XLTableTheme.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/XLTableRows.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/TableNameGenerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/XLTableField.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/XLTableRow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/IXLTableRange.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Tables/IXLTable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ContentManagers/XLSheetViewContentManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/ContentManagers/XLWorksheetContentManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Hyperlinks/IXLHyperlinks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Hyperlinks/XLHyperlinks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Hyperlinks/XLHyperlink_public.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Hyperlinks/XLHyperlink_Internal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IXLSheetView.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/CommentPartWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/PivotTableCacheDefinitionPartWriter.cs: Wrote only 512 of 5154 bytes
+tar: ./ClosedXML/Excel/IO/PivotTableDefinitionPartWriter2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/PivotTableDefinitionPartReader.cs: Wrote only 6144 of 10240 bytes
+tar: ./ClosedXML/Excel/IO/LoadContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/TablePartWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/ThemePartWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/CustomFilePropertiesPartWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/TextSerializer.cs: Wrote only 4096 of 5101 bytes
+tar: ./ClosedXML/Excel/IO/WorkbookPartWriter.cs: Wrote only 4096 of 9216 bytes
+tar: ./ClosedXML/Excel/IO/PivotTableCacheDefinitionPartReader.cs: Wrote only 1536 of 10240 bytes
+tar: ./ClosedXML/Excel/IO/OpenXmlConst.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/WorkbookStylesPartWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/SharedStringTableWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/VmlDrawingPartWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/WorksheetPartWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IO/PartStructureException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CustomProperties/XLCustomProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CustomProperties/XLCustomProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CustomProperties/IXLCustomProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/CustomProperties/IXLCustomProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Exceptions/InvalidReferenceException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Exceptions/EmptyTableException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IXLOutline.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/NullDataReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/DataRecordReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/ObjectReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/InsertDataReaderFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/IInsertDataReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/SimpleNullableTypeReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/SimpleTypeReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/InsertData/ArrayReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLWorkbook.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLOutline.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IXLWorksheets.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/IXLDrawing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/IXLDrawingProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/IXLDrawingMargins.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/XLDrawingSize.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/XLDrawingProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/XLDrawingAlignment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/XLDrawingProtection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/XLDrawingColorsAndLines.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/XLDrawingMargins.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/XLDrawingFont.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/IXLDrawingAlignment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/Style/IXLDrawingSize.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/XLPictures.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/XLDrawingPosition.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/XLPicture.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/IXLPicture.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Drawings/XLMarker.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Rows/IXLRows.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Rows/XLRows.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Rows/XLRowCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Rows/XLRow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Misc/XLIdManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Misc/XLDictionary.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IXLTheme.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Comments/XLComment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/XLFilterConnector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/IXLFilterConnector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/IXLAutoFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/XLAutoFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/IXLFilteredColumn.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/IXLFilterColumn.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/XLCustomFilteredColumn.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/XLFilterColumn.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/AutoFilters/XLFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLWorkbookProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/IXLFileSharing.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/RichText/XLRichText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/RichText/XLPhonetics.cs: Wrote only 4096 of 7498 bytes
+tar: ./ClosedXML/Excel/RichText/IXLFormattedText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/RichText/IXLRichString.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/RichText/XLFormattedText.cs: Wrote only 3584 of 4525 bytes
+tar: ./ClosedXML/Excel/RichText/IXLPhonetics.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/RichText/XLImmutableRichText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/RichText/IXLRichText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/RichText/XLRichString.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/XLPageSetup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/XLHFText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/XLHeaderFooter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/IXLHeaderFooter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/XLMargins.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/IXLPrintAreas.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/XLPrintAreas.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/PageSetup/IXLPageSetup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/XLWholeNumberCriteria.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/XLValidationCriteria.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/XLWholeNumberCriteriaBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/IXLDataValidations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/XLDateCriteria.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/XLDataValidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/XLTimeCriteria.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DataValidation/XLTextLengthCriteria.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLWorksheet.cs: Wrote only 4608 of 10240 bytes
+tar: ./ClosedXML/Excel/Sparkline/IXLSparkLineGroup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Sparkline/IXLSparkline.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Sparkline/XLSparklineStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Sparkline/XLSparkLineGroup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Sparkline/XLSparkLineGroups.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Sparkline/IXLSparklineVerticalAxis.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Sparkline/XLSparklineVerticalAxis.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Sparkline/IXLSparkLineGroups.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/LoadOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DefinedNames/IXLDefinedName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DefinedNames/XLDefinedName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/DefinedNames/XLDefinedNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/XLSheetView.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Coordinates/XLName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Coordinates/XLSheetRange.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Coordinates/IXLAddress.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Coordinates/XLSheetReference.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Coordinates/XLAddress.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/Slice.cs: Wrote only 1536 of 10240 bytes
+tar: ./ClosedXML/Excel/Cells/XLCells.cs: Wrote only 4096 of 8192 bytes
+tar: ./ClosedXML/Excel/Cells/ISlice.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/Slice.Lut.cs: Wrote only 4096 of 4608 bytes
+tar: ./ClosedXML/Excel/Cells/XLCellCopyOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/XLCellFormula.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/SharedStringTable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/XLCellValueComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/IXLCell.cs: Wrote only 8192 of 8704 bytes
+tar: ./ClosedXML/Excel/Cells/IWorkbookListener.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/XLCellsCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Cells/XLCell.cs: Wrote only 5120 of 10240 bytes
+tar: ./ClosedXML/Excel/Protection/XLSheetProtectionElements.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/Excel/Protection/XLSheetProtection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/FodyWeavers.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/obj/ClosedXML.csproj.nuget.g.props: Wrote only 4096 of 8704 bytes
+tar: ./ClosedXML/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML/obj/ClosedXML.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Sandbox/OneRow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./ClosedXML.Sandbox/test.xlsx: Wrote only 2048 of 2581 bytes
+tar: ./ClosedXML.Sandbox/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:09:39+01:00 exit 125

@@ -1,0 +1,40 @@
+start 2026-11-02T22:07:41+01:00
+$ git -C /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Extensions.Hosting/Serilog.Extensions.Hosting.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/src/Serilog.Extensions.Hosting/Serilog.Extensions.Hosting.csproj (in 558 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Serilog.Extensions.Hosting/Serilog.Extensions.Hosting.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Serilog.Extensions.Hosting/Serilog.Extensions.Hosting.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  Serilog.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/src/Serilog.Extensions.Hosting/bin/Release/net462/Serilog.Extensions.Hosting.dll
+  Serilog.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/src/Serilog.Extensions.Hosting/bin/Release/netstandard2.0/Serilog.Extensions.Hosting.dll
+  Serilog.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/src/Serilog.Extensions.Hosting/bin/Release/net6.0/Serilog.Extensions.Hosting.dll
+  Serilog.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/src/Serilog.Extensions.Hosting/bin/Release/net7.0/Serilog.Extensions.Hosting.dll
+  Serilog.Extensions.Hosting -> /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/src/Serilog.Extensions.Hosting/bin/Release/net8.0/Serilog.Extensions.Hosting.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.46
+  Successfully created package '/private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/out/Serilog.Extensions.Hosting.8.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T22:07:49+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0 checkout -q -- .
+$ dotnet restore src/Serilog.Extensions.Hosting/Serilog.Extensions.Hosting.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/serilog.extensions.hosting-8.0.0/src/Serilog.Extensions.Hosting/Serilog.Extensions.Hosting.csproj (in 197 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

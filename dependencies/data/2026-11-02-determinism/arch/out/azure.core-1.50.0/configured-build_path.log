@@ -1,0 +1,90 @@
+start 2026-11-01T18:40:25+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762446670 && dotnet pack sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762446670; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/netstandard2.0/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/net8.0/
+  InheritDocTask replaced 199 of 199 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/net8.0/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/const_build_path/artifacts/bin/Azure.Core/Release/net8.0/Azure.Core.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/netstandard2.0/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/netstandard2.0/
+  InheritDocTask replaced 195 of 195 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/netstandard2.0/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/const_build_path/artifacts/bin/Azure.Core/Release/netstandard2.0/Azure.Core.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/net462/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/net462/
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/net462/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/const_build_path/artifacts/bin/Azure.Core/Release/net462/Azure.Core.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/net472/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/net472/
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/const_build_path/artifacts/obj/Azure.Core/Release/net472/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/const_build_path/artifacts/bin/Azure.Core/Release/net472/Azure.Core.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:40.28
+  Found the following change log entry for version '1.50.0' in [/tmp/reprotest.tZNlev/const_build_path/sdk/core/Azure.Core/CHANGELOG.md].
+  -----
+  ## 1.50.0 (2025-11-05)
+  
+  ### Acknowledgments
+  
+  Thank you to our developer community members who helped to make the Azure.Core library better with their contributions to this release:
+  
+  - Daniel Marbach  _([GitHub](https://github.com/danielmarbach))_
+  
+  ### Features Added
+  
+  - Adopt System.ClientModel 1.8.0
+  
+  ### Other Changes
+  
+  - Several performance and efficiency improvements were made to how request content is created and managed.   _([#52488](https://github.com/Azure/azure-sdk-for-net/pull/52488), a community contribution, courtesy of [danielmarbach](https://github.com/danielmarbach))_
+  
+  -----
+  Successfully created package '/tmp/reprotest.tZNlev/const_build_path/out/Azure.Core.1.50.0-alpha.20261101.1.nupkg'.
+  Successfully created package '/tmp/reprotest.tZNlev/const_build_path/out/Azure.Core.1.50.0-alpha.20261101.1.symbols.nupkg'.
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/netstandard2.0/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/net8.0/
+  InheritDocTask replaced 199 of 199 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/net8.0/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/build-experiment-1/artifacts/bin/Azure.Core/Release/net8.0/Azure.Core.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/netstandard2.0/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/netstandard2.0/
+  InheritDocTask replaced 195 of 195 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/netstandard2.0/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/build-experiment-1/artifacts/bin/Azure.Core/Release/netstandard2.0/Azure.Core.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/net462/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/net462/
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/net462/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/build-experiment-1/artifacts/bin/Azure.Core/Release/net462/Azure.Core.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/net472/Azure.Core.dll using assemblies from /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/net472/
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.tZNlev/build-experiment-1/artifacts/obj/Azure.Core/Release/net472/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.tZNlev/build-experiment-1/artifacts/bin/Azure.Core/Release/net472/Azure.Core.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:45.06
+  Found the following change log entry for version '1.50.0' in [/tmp/reprotest.tZNlev/build-experiment-1/sdk/core/Azure.Core/CHANGELOG.md].
+  -----
+  ## 1.50.0 (2025-11-05)
+  
+  ### Acknowledgments
+  
+  Thank you to our developer community members who helped to make the Azure.Core library better with their contributions to this release:
+  
+  - Daniel Marbach  _([GitHub](https://github.com/danielmarbach))_
+  
+  ### Features Added
+  
+  - Adopt System.ClientModel 1.8.0
+  
+  ### Other Changes
+  
+  - Several performance and efficiency improvements were made to how request content is created and managed.   _([#52488](https://github.com/Azure/azure-sdk-for-net/pull/52488), a community contribution, courtesy of [danielmarbach](https://github.com/danielmarbach))_
+  
+  -----
+  Successfully created package '/tmp/reprotest.tZNlev/build-experiment-1/out/Azure.Core.1.50.0-alpha.20261101.1.nupkg'.
+  Successfully created package '/tmp/reprotest.tZNlev/build-experiment-1/out/Azure.Core.1.50.0-alpha.20261101.1.symbols.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+737abf8f8c28eae9073a45aa08ec5bf056649dc5250a5ca4687015a4945743ca  ./out/Azure.Core.1.50.0-alpha.20261101.1.nupkg
+1926b1f1095aceca2b47fae7c4789c6e7def839fd5b4fd483bbee57e1cf6c05b  ./out/Azure.Core.1.50.0-alpha.20261101.1.symbols.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T18:42:22+01:00 exit 0

@@ -1,0 +1,43 @@
+start 2026-11-01T10:57:42+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12 checkout -q -- .
+$ dotnet restore src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj (in 5,71 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  Microsoft.Data.Sqlite.Core -> /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.dll
+  Microsoft.Data.Sqlite.Core -> /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.87
+
+  The package Microsoft.Data.Sqlite.Core.10.0.12-dev is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12/out/Microsoft.Data.Sqlite.Core.10.0.12-dev.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12/out/Microsoft.Data.Sqlite.Core.10.0.12-dev.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:57:56+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12 checkout -q -- .
+$ dotnet restore src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.data.sqlite.core-10.0.12/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj (in 204 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

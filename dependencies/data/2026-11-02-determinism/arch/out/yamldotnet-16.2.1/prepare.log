@@ -1,0 +1,54 @@
+start 2026-11-01T12:37:56+01:00
+$ git clone -q --mirror https://github.com/aaubry/YamlDotNet /private/tmp/nupkg-determinism/mirrors/https_github.com_aaubry_YamlDotNet.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_aaubry_YamlDotNet.git /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 remote set-url origin https://github.com/aaubry/YamlDotNet
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 -c advice.detachedHead=false checkout -q 7bed5cf0750c7ca58ba69ad8c07f6eb136080540
+global.json: none
+start 2026-11-01T16:30:44+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_aaubry_YamlDotNet.git /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 remote set-url origin https://github.com/aaubry/YamlDotNet
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 -c advice.detachedHead=false checkout -q 7bed5cf0750c7ca58ba69ad8c07f6eb136080540
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 submodule update --init --recursive -q
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 checkout -q -- .
+$ dotnet restore YamlDotNet/YamlDotNet.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1/YamlDotNet/YamlDotNet.csproj (in 194 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T23:45:25+01:00
+$ git clone -q --no-checkout https://github.com/aaubry/YamlDotNet /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 -c advice.detachedHead=false checkout -q 7bed5cf0750c7ca58ba69ad8c07f6eb136080540
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 submodule update --init --recursive -q
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 checkout -q -- .
+$ dotnet restore YamlDotNet/YamlDotNet.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1/YamlDotNet/YamlDotNet.csproj (in 159 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T05:05:46+01:00
+$ git clone -q --no-checkout https://github.com/aaubry/YamlDotNet /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 -c advice.detachedHead=false checkout -q 7bed5cf0750c7ca58ba69ad8c07f6eb136080540
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 submodule update --init --recursive -q
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1 checkout -q -- .
+$ dotnet restore YamlDotNet/YamlDotNet.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/yamldotnet-16.2.1/YamlDotNet/YamlDotNet.csproj (in 173 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

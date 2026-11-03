@@ -1,0 +1,28 @@
+start 2026-11-01T14:26:48+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/SixLabors.Fonts/SixLabors.Fonts.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/SixLabors.Fonts/SixLabors.Fonts.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  SixLabors.Fonts -> /tmp/reprotest.TjFtJk/const_build_path/artifacts/bin/src/SixLabors.Fonts/Release/netcoreapp3.1/SixLabors.Fonts.dll
+  SixLabors.Fonts -> /tmp/reprotest.TjFtJk/const_build_path/artifacts/bin/src/SixLabors.Fonts/Release/netstandard2.1/SixLabors.Fonts.dll
+  SixLabors.Fonts -> /tmp/reprotest.TjFtJk/const_build_path/artifacts/bin/src/SixLabors.Fonts/Release/netstandard2.0/SixLabors.Fonts.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:06.79
+  The package SixLabors.Fonts.0.0.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.TjFtJk/const_build_path/out/SixLabors.Fonts.0.0.1.nupkg'.
+  SixLabors.Fonts -> /tmp/reprotest.TjFtJk/const_build_path/artifacts/bin/src/SixLabors.Fonts/Release/netcoreapp3.1/SixLabors.Fonts.dll
+  SixLabors.Fonts -> /tmp/reprotest.TjFtJk/const_build_path/artifacts/bin/src/SixLabors.Fonts/Release/netstandard2.1/SixLabors.Fonts.dll
+  SixLabors.Fonts -> /tmp/reprotest.TjFtJk/const_build_path/artifacts/bin/src/SixLabors.Fonts/Release/netstandard2.0/SixLabors.Fonts.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:05.83
+  The package SixLabors.Fonts.0.0.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.TjFtJk/const_build_path/out/SixLabors.Fonts.0.0.1.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/sixlabors.fonts-1.0.0/asis-fileordering-store/control/source-root/out/SixLabors.Fonts.0.0.1.nupkg og /private/tmp/nupkg-determinism/out/sixlabors.fonts-1.0.0/asis-fileordering-store/experiment-1/source-root/out/SixLabors.Fonts.0.0.1.nupkg er forskellige
+end 2026-11-01T14:29:06+01:00 exit 1

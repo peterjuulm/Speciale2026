@@ -1,0 +1,403 @@
+start 2026-11-02T18:12:34+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1698763026 && dotnet pack src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1698763026; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.git/objects/pack/pack-043f0458671a895d552eb6999da1961a36119c19.pack: Wrote only 4096 of 10240 bytes
+tar: ./.git/objects/pack/pack-043f0458671a895d552eb6999da1961a36119c19.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.TXT: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./THIRD-PARTY-NOTICES.TXT: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Solution.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Build.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/02_api_proposal.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/05_blank_issue.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/03_performance_issue.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/04_ci_known_issue.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/01_bug_report.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/move.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/markdownlint-problem-matcher.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/check-service-labels.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/backport.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/aspnetcore-sync-checkdiff.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/markdownlint.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/aspnetcore-sync.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE/servicing_pull_request_template.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/fabricbot.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/scripts/onCreateCommand.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/scripts/postCreateCommand.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/libraries/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/libraries/Dockerfile: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/wasm/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/wasm/Dockerfile: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODE-OF-CONDUCT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./dotnet.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/trimming.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/illink.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/.config/tsaoptions.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Support/IntrinsicAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Support/RemoveAttributeInstancesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectUnresolvedDocumentationSignatureAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/BaseMemberAssertionAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedMemberInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedSymbolsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptSymbolsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptAllTypesAndMembersInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectedInstructionSequenceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedTypeInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptModuleReferenceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/TestRunCharacteristics.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptResourceInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptTypeInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectLocalsModifiedAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectedNoWarningsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptMemberAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/SkipRemainingErrorsValidationAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/IgnoreTestCaseAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptInitializerData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptBackingFieldAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptDelegateCacheFieldAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectGeneratedDocumentationSignatureAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedInterfaceOnTypeInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptEventAddMethodAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/DisplayNameAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectBodyModifiedAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptInterfaceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/SkipPeVerifyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectExceptionHandlersModifiedAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/AddedPseudoAttributeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectedWarningAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/BaseExpectedLinkedBehaviorAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/EnableLoggerAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedOverrideAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptBaseTypeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/LogDoesNotContainAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectNonZeroExitCodeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectResolvedDocumentationSignatureAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectedInstructionSequenceOnMemberInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectExactlyResolvedDocumentationSignatureAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptReferenceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedResourceInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/VerifyMetadataNamesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/Tool.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedPseudoAttributeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptMemberInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptAttributeInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/NoLinkedOutputAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptAttributeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptFixedBufferAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptInterfaceOnTypeInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptSecurityAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedNameValueAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedAssemblyReference.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptReferencesInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/TestCaseRequirementsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptAttributeOnFixedBufferTypeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/BaseInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptByAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedForwarderAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptExportedTypeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/CreatedMemberAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptOverrideAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptResourceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/DependencyRecordedAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptPrivateImplementationDetails.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/RemovedAttributeInAssembly.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/LogContainsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptBaseOnTypeInAssemblyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/SkipKeptItemsValidationAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/ExpectedLocalsSequenceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Assertions/KeptEventRemoveMethodAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Helpers/DataFlowStringExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Helpers/DataFlowTypeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Helpers/PlatformAssemblies.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/ReferenceDependencyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupCompileBeforeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/StripDescriptorsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/IgnoreSubstitutionsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/IgnoreLinkAttributesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SandboxDependencyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerLinkPublicAndFamilyAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupCSharpCompilerToUseAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/StripLinkAttributesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/DefineAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerDefaultActionAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerArgumentAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupCompileAssemblyNameAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkAttributesFile.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/BaseMetadataAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerLinkSymbolsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerActionAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerDescriptorFile.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupCompileArgumentAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupCompileAsLibraryAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerTrimModeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupCompileAfterAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerSubstitutionFileAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/ReferenceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupCompileResourceAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupLinkerResponseFileAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SkipUnresolvedAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/SetupIlcFrameworkCompilationAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/Il8nAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/StripSubstitutionsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/NotATestCaseAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/IgnoreDescriptorsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Metadata/KeepTypeForwarderOnlyAssembliesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/Mono.Linker.Tests.Cases.Expectations/Mono.Linker.Tests.Cases.Expectations.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.Tasks.Tests/Mock.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.Tasks.Tests/CreateRuntimeRootDescriptorFileTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.Tasks.Tests/ILLink.Tasks.Tests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.Tasks.Tests/CombineLinkerXmlFilesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.Tasks.Tests/ILLink.Tasks.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/XmlText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/RequiresAssemblyFilesAnalyzerTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/UnreachableBlockTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/Warnings.WarningSuppressionTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/StaticInterfaceMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/RequiresCapabilityTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/Interop/InternalCalls/ComTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/Interop/InternalCalls/InternalCallsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/Interop/PInvoke/IndividualTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/Interop/PInvoke/ComTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/Interop/PInvoke/Warnings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/Interop/PInvoke/PInvokeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/TopLevelStatementsTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/AttributesTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/Inheritance.Interfaces.OnReferenceType.NoInstanceCtorTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/AdvancedTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/Attributes.OnlyKeepUsedTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/LibrariesTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/Inheritance.Interfaces.OnReferenceType.BaseProvidesInterfaceMemberTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/test/ILLink.RoslynAnalyzer.Tests/generated/ILLink.RoslynAnalyzer.Tests.Generator/ILLink.RoslynAnalyzer.Tests.TestCaseGenerator/References.IndividualTests.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 58013 lines, excerpt: first and last 200 ...]
+
+tar: ./src/mono/wasm/runtime/pthreads/shared/emscripten-replacements.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/shared/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/worker/events.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/worker/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/worker/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/browser/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/v8.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/internal.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/export-types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/consts.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/emscripten.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/node.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/tsconfig.worker.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-opcodes.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/cancelable-promise.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports-linker.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports-internal.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/satelliteAssemblies.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/http.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/cwraps.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-support.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/collations.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/helpers.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/calendar.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/culture-info.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/change-case.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/locales.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/diagnostic-server.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/create-session.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/controller-commands.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/streaming-session.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/protocol-client-commands.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/protocol-socket.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/socket-connection.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/common-socket.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/mock-remote.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/stream-queue.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/base-parser.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/parser.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/base-serializer.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/magic.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/serializer.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/environment.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/export-types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/browser/controller.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/dotnet.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/snapshot.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports-binding.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/.eslintignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/package-lock.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/wasm-config.h.in: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-interp-entry.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/memory.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/corebindings.c: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics-mock.d.ts.sha256: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/CMakeLists.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/queue.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pinvoke.c: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/lazyLoading.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/marshal-to-js.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/invoke-cs.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/gc-lock.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/gc-common.h: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/globals.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/exit.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/icu.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/assets.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/logging.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/polyfills.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/run.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/config.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/promise-controller.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/worker.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/libraryInitializers.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/assetsCache.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/globals.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/startup.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/strings.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/managed-exports.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-feature-detect.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/es6/dotnet.es6.pre.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/es6/dotnet.es6.extpost.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/es6/dotnet.es6.lib.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/dotnet-legacy.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/.eslintrc.cjs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/export-api.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/method-calls.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/corebindings.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/buffers.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/exports-legacy.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/export-types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/method-binding.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/cs-to-js.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/js-to-cs.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/globals.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/strings.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/WasmSymbolicator.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/SymbolicatorWrapperForXHarness.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/WasmSymbolicator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/memory-snapshot.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.LocalBuild.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/ILLink.Substitutions.NoWasmIntrinsics.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/EmSdkRepo.Defaults.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/ILLink.Substitutions.LegacyJsInterop.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.Native.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/ILLink.Substitutions.WasmIntrinsics.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.LocalBuild.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.InTree.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.InTree.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/wasm.code-workspace: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.clang-format: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:12:45+01:00 exit 125

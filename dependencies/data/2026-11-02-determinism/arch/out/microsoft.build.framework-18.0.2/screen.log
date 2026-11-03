@@ -1,0 +1,86 @@
+start 2026-11-01T08:44:42+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 checkout -q -- .
+$ dotnet restore src/Framework/Microsoft.Build.Framework.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj (in 12,1 sec).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:17.98
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Framework/Microsoft.Build.Framework.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Framework/Microsoft.Build.Framework.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/SerializableMetadata.cs(35,96): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/SerializableMetadata.cs(58,50): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/BuildCheck/BuildCheckEventArgs.cs(172,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/BuildCheck/BuildCheckEventArgs.cs(195,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/BuildCheck/BuildCheckEventArgs.cs(220,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ProjectStartedEventArgs.cs(374,37): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+  Microsoft.Build.Framework -> /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/artifacts/bin/Microsoft.Build.Framework/Release/net472/Microsoft.Build.Framework.dll
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/FileClassifier.cs(299,74): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/NativeMethods.cs(1499,21): warning IDE0380: 'unsafe' modifier is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0380) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+  Microsoft.Build.Framework -> /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/artifacts/bin/Microsoft.Build.Framework/Release/net10.0/Microsoft.Build.Framework.dll
+  Microsoft.Build.Framework -> /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/artifacts/bin/Microsoft.Build.Framework/Release/netstandard2.0/Microsoft.Build.Framework.dll
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/artifacts/packages/Release/Shipping/Microsoft.Build.Framework.18.0.2.nupkg'.
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/SerializableMetadata.cs(35,96): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/SerializableMetadata.cs(58,50): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/BuildCheck/BuildCheckEventArgs.cs(172,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/BuildCheck/BuildCheckEventArgs.cs(195,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/BuildCheck/BuildCheckEventArgs.cs(220,32): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ProjectStartedEventArgs.cs(374,37): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net472]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ExtendedCriticalBuildMessageEventArgs.cs(85,159): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/FileClassifier.cs(299,74): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/ProjectStartedEventArgs.cs(550,164): warning IDE0370: Suppression is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0370) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/NativeMethods.cs(1499,21): warning IDE0380: 'unsafe' modifier is unnecessary (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0380) [/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj::TargetFramework=net10.0]
+    12 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:15.17
+
+  Successfully created package '/private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/out/Microsoft.Build.Framework.18.0.2.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.02
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T08:45:20+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2 checkout -q -- .
+$ dotnet restore src/Framework/Microsoft.Build.Framework.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.build.framework-18.0.2/src/Framework/Microsoft.Build.Framework.csproj (in 313 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.19
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

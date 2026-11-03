@@ -1,0 +1,203 @@
+start 2026-11-02T19:20:00+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12 checkout -q -- .
+$ dotnet restore src/runtime/src/libraries/Microsoft.Extensions.Logging/src/Microsoft.Extensions.Logging.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections.Concurrent/src/System.Collections.Concurrent.csproj (in 451 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/DownlevelLibraryImportGenerator/DownlevelLibraryImportGenerator.csproj (in 467 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections/ref/System.Collections.csproj (in 451 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/coreclr/System.Private.CoreLib/System.Private.CoreLib.csproj (in 452 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Linq/src/System.Linq.csproj (in 452 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections.Concurrent/ref/System.Collections.Concurrent.csproj (in 452 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections/src/System.Collections.csproj (in 452 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/gen/Microsoft.Extensions.Logging.Generators.Roslyn3.11.csproj (in 467 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.Overlapped/ref/System.Threading.Overlapped.csproj (in 452 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.csproj (in 452 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Numerics.Vectors/ref/System.Numerics.Vectors.csproj (in 452 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/ref/Microsoft.Extensions.Logging.Abstractions.csproj (in 470 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Options/ref/Microsoft.Extensions.Options.csproj (in 464 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj (in 488 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Linq/ref/System.Linq.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Options/src/Microsoft.Extensions.Options.csproj (in 487 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/ref/System.Diagnostics.DiagnosticSource.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Private.CoreLib/gen/System.Private.CoreLib.Generators.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Numerics.Vectors/src/System.Numerics.Vectors.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Memory/ref/System.Memory.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.Tracing/ref/System.Diagnostics.Tracing.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Memory/src/System.Memory.csproj (in 12 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.Tracing/src/System.Diagnostics.Tracing.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging/src/Microsoft.Extensions.Logging.csproj (in 489 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.Intrinsics/ref/System.Runtime.Intrinsics.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Microsoft.Extensions.DependencyInjection.Abstractions.csproj (in 18 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection/src/Microsoft.Extensions.DependencyInjection.csproj (in 21 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/ref/Microsoft.Extensions.Primitives.csproj (in 25 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/src/System.Runtime.InteropServices.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading/src/System.Threading.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Private.Uri/src/System.Private.Uri.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj (in 33 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj (in 42 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Private.CoreLib/ref/System.Private.CoreLib.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection/ref/Microsoft.Extensions.DependencyInjection.csproj (in 47 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading/ref/System.Threading.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 85 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 23 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/gen/Microsoft.Extensions.Logging.Generators.Roslyn4.4.csproj (in 83 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.Thread/ref/System.Threading.Thread.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.Thread/src/System.Threading.Thread.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.ThreadPool/ref/System.Threading.ThreadPool.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj (in 72 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/gen/Microsoft.Extensions.Logging.Generators.Roslyn4.0.csproj (in 90 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 55 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 53 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.ThreadPool/src/System.Threading.ThreadPool.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.Intrinsics/src/System.Runtime.Intrinsics.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/linker/Mono.Linker.csproj (in 38 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 80 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/src/Microsoft.Extensions.Logging.Abstractions.csproj (in 92 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime/src/System.Runtime.csproj (in 12 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging/ref/Microsoft.Extensions.Logging.csproj (in 105 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 87 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Options/gen/Microsoft.Extensions.Options.SourceGeneration.csproj (in 147 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 79 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/runtime/src/libraries/Microsoft.Extensions.Logging/src/Microsoft.Extensions.Logging.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/runtime/src/libraries/Microsoft.Extensions.Logging/src/Microsoft.Extensions.Logging.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  ILLink.RoslynAnalyzer -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/ILLink.RoslynAnalyzer/Release/netstandard2.0/ILLink.RoslynAnalyzer.dll
+  ILLink.CodeFixProvider -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/ILLink.CodeFixProvider/Release/netstandard2.0/ILLink.CodeFixProvider.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Mono.Linker/ref/Release/net10.0/illink.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Mono.Linker/Release/net10.0/illink.dll
+  ILLink.Tasks -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/ILLink.Tasks/Release/net/ILLink.Tasks.dll
+/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/eng/targetingpacks.targets(106,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net10.0]
+  Microsoft.Extensions.Primitives -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.Primitives/ref/Release/net8.0/Microsoft.Extensions.Primitives.dll
+  Microsoft.Extensions.DependencyInjection.Abstractions -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Release/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net9.0]
+  System.Diagnostics.DiagnosticSource -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/System.Diagnostics.DiagnosticSource/ref/Release/net8.0/System.Diagnostics.DiagnosticSource.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=net8.0]
+  System.Diagnostics.DiagnosticSource -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/System.Diagnostics.DiagnosticSource/ref/Release/net9.0/System.Diagnostics.DiagnosticSource.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=net8.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=net9.0]
+  Microsoft.Extensions.Options.SourceGeneration -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.Options.SourceGeneration/Release/netstandard2.0/Microsoft.Extensions.Options.SourceGeneration.dll
+/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/eng/targetingpacks.targets(106,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/ref/Microsoft.Extensions.Primitives.csproj::TargetFramework=net10.0]
+  Microsoft.Interop.SourceGeneration -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Interop.SourceGeneration/Release/netstandard2.0/Microsoft.Interop.SourceGeneration.dll
+  Microsoft.Extensions.DependencyInjection.Abstractions -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Release/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net8.0]
+  Microsoft.Extensions.Primitives -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.Primitives/ref/Release/net9.0/Microsoft.Extensions.Primitives.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=net9.0]
+  DownlevelLibraryImportGenerator -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/DownlevelLibraryImportGenerator/Release/netstandard2.0/Microsoft.Interop.LibraryImportGenerator.Downlevel.dll
+  System.Diagnostics.DiagnosticSource -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/System.Diagnostics.DiagnosticSource/ref/Release/net462/System.Diagnostics.DiagnosticSource.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=net462]
+  Microsoft.Bcl.AsyncInterfaces -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Bcl.AsyncInterfaces/Release/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll
+  Microsoft.Bcl.AsyncInterfaces -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Bcl.AsyncInterfaces/Release/net462/Microsoft.Bcl.AsyncInterfaces.dll
+  Microsoft.Extensions.Primitives -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.Primitives/ref/Release/net462/Microsoft.Extensions.Primitives.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=net462]
+  Microsoft.Extensions.Primitives -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.Primitives/ref/Release/netstandard2.0/Microsoft.Extensions.Primitives.dll
+  Microsoft.Extensions.DependencyInjection.Abstractions -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Release/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=netstandard2.1]
+  System.Diagnostics.DiagnosticSource -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/System.Diagnostics.DiagnosticSource/ref/Release/netstandard2.0/System.Diagnostics.DiagnosticSource.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=netstandard2.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=netstandard2.0]
+  Microsoft.Extensions.DependencyInjection.Abstractions -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Release/net462/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net462]
+  Microsoft.Extensions.DependencyInjection.Abstractions -> /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/artifacts/bin/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Release/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=netstandard2.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/eng/targetingpacks.targets(106,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net10.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net9.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=net8.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=net8.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/eng/targetingpacks.targets(106,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/ref/Microsoft.Extensions.Primitives.csproj::TargetFramework=net10.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net8.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=net9.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=net462]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=net462]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=netstandard2.1]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj::TargetFramework=netstandard2.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj::TargetFramework=netstandard2.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=net462]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj::TargetFramework=netstandard2.0]
+    0 Warning(s)
+    15 Error(s)
+
+Time Elapsed 00:03:00.14
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T19:23:16+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12 checkout -q -- .
+$ dotnet restore src/runtime/src/libraries/Microsoft.Extensions.Logging/src/Microsoft.Extensions.Logging.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 340 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Numerics.Vectors/src/System.Numerics.Vectors.csproj (in 328 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Private.CoreLib/gen/System.Private.CoreLib.Generators.csproj (in 335 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.Intrinsics/ref/System.Runtime.Intrinsics.csproj (in 328 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/src/System.Runtime.InteropServices.csproj (in 328 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Linq/src/System.Linq.csproj (in 328 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Private.CoreLib/ref/System.Private.CoreLib.csproj (in 327 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Private.Uri/src/System.Private.Uri.csproj (in 328 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Numerics.Vectors/ref/System.Numerics.Vectors.csproj (in 327 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections.Concurrent/ref/System.Collections.Concurrent.csproj (in 328 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Memory/src/System.Memory.csproj (in 328 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/gen/Microsoft.Extensions.Logging.Generators.Roslyn3.11.csproj (in 345 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.csproj (in 327 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/ref/Microsoft.Extensions.Logging.Abstractions.csproj (in 327 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Options/src/Microsoft.Extensions.Options.csproj (in 364 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Linq/ref/System.Linq.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.Tracing/ref/System.Diagnostics.Tracing.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.Tracing/src/System.Diagnostics.Tracing.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.Intrinsics/src/System.Runtime.Intrinsics.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Memory/ref/System.Memory.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging/src/Microsoft.Extensions.Logging.csproj (in 365 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading/src/System.Threading.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections/ref/System.Collections.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime/src/System.Runtime.csproj (in 15 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection/ref/Microsoft.Extensions.DependencyInjection.csproj (in 26 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections.Concurrent/src/System.Collections.Concurrent.csproj (in 23 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging/ref/Microsoft.Extensions.Logging.csproj (in 40 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection/src/Microsoft.Extensions.DependencyInjection.csproj (in 26 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/coreclr/System.Private.CoreLib/System.Private.CoreLib.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj (in 87 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/DownlevelLibraryImportGenerator/DownlevelLibraryImportGenerator.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading/ref/System.Threading.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/src/Microsoft.Extensions.Logging.Abstractions.csproj (in 42 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/ref/Microsoft.Extensions.DependencyInjection.Abstractions.csproj (in 96 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 142 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/linker/Mono.Linker.csproj (in 145 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 150 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.Thread/ref/System.Threading.Thread.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.ThreadPool/ref/System.Threading.ThreadPool.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/gen/Microsoft.Extensions.Logging.Generators.Roslyn4.0.csproj (in 120 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.Thread/src/System.Threading.Thread.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Collections/src/System.Collections.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.Overlapped/ref/System.Threading.Overlapped.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Threading.ThreadPool/src/System.Threading.ThreadPool.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 30 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/ref/Microsoft.Extensions.Primitives.csproj (in 37 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Microsoft.Extensions.DependencyInjection.Abstractions.csproj (in 36 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Primitives/src/Microsoft.Extensions.Primitives.csproj (in 24 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/ref/System.Diagnostics.DiagnosticSource.csproj (in 21 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Options/ref/Microsoft.Extensions.Options.csproj (in 132 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Logging.Abstractions/gen/Microsoft.Extensions.Logging.Generators.Roslyn4.4.csproj (in 164 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 69 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/System.Diagnostics.DiagnosticSource/src/System.Diagnostics.DiagnosticSource.csproj (in 27 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.extensions.logging-10.0.12/src/runtime/src/libraries/Microsoft.Extensions.Options/gen/Microsoft.Extensions.Options.SourceGeneration.csproj (in 180 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

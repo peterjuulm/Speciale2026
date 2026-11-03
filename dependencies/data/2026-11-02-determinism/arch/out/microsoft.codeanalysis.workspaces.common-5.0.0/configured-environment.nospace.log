@@ -1,0 +1,403 @@
+start 2026-11-02T23:24:01+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763419468 && dotnet pack src/Workspaces/Core/Portable/Microsoft.CodeAnalysis.Workspaces.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763419468; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.git/objects/pack/pack-6606bd53cf2643f22ea5116c7859611e9d0f2996.pack: Wrote only 7680 of 10240 bytes
+tar: ./.git/objects/pack/pack-6606bd53cf2643f22ea5116c7859611e9d0f2996.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Solution.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Build.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Ide.slnf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Roslyn.lutconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/policies/resourceManagement.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/api-suggestion.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/analyzer-suggestion.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/z-apidocs-feedback.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/localization-suggestion.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/feature-suggestion.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/bug-report.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/labeler-promote.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/main-merge.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/backport.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/labeler-cache-retention.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/labeler-predict-pulls.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/labeler-train.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/labeler.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/labeler-predict-issues.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./verify.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/devinit.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/Dockerfile: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODE-OF-CONDUCT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./THIRD-PARTY-NOTICES.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Compilers.slnf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/vbi/vbi.vbproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/vbi/vbi.coreclr.rsp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/vbi/vbi.desktop.rsp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/vbi/Vbi.vb: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/vbi/App.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/InteractiveHostEntryPoint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/x86/InteractiveHost32.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/x86/.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/x64/InteractiveHost64.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/x64/Core/CSharpInteractive.rsp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/x64/.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/x64/Desktop/CSharpInteractive.rsp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostProcess/App.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/StressTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/InteractiveHostDesktopTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/InteractiveHostCoreInitTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/Properties/launchSettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/InteractiveHostCoreTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/TestUtils.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/AbstractInteractiveHostTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/InteractiveHost.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/InteractiveHostDesktopInitTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/HostTest/SynchronizedTextWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHostPlatformInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHost.InitializedRemoteService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHostOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHostPlatform.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHost.RemoteService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/RemoteExecutionResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/ProcessExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHost.LazyRemoteService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHost.ShadowCopyReference.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHost.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/InteractiveHost.Service.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Interactive/Core/RemoteInitializationResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/Microsoft.CodeAnalysis.InteractiveHost.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/InteractiveHostResources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/PublicAPI.Unshipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.cs.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.zh-Hans.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.fr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.ru.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.zh-Hant.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.de.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.pl.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.ja.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.tr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.ko.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.it.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.es.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/Host/xlf/InteractiveHostResources.pt-BR.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/csi/csi.coreclr.rsp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/csi/csi.desktop.rsp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/csi/Csi.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/csi/App.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Interactive/csi/csi.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.CodeAnalysis.Package/Microsoft.CodeAnalysis.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/ThirdPartyNotices.rtf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/AnyCpu/Microsoft.Net.Compilers.Toolset.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/AnyCpu/buildMultiTargeting/Microsoft.Net.Compilers.Toolset.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/AnyCpu/build/Microsoft.Net.Compilers.Toolset.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/Framework/buildMultiTargeting/Microsoft.Net.Compilers.Toolset.Framework.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/Framework/Microsoft.Net.Compilers.Toolset.Framework.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/Framework/build/Microsoft.Net.Compilers.Toolset.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/Framework/build/Microsoft.Net.Compilers.Toolset.Framework.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/Framework/build/Microsoft.Net.Compilers.Toolset.Framework.Core.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/DesktopCompilerArtifacts.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/CoreClrCompilerArtifacts.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/arm64/Microsoft.Net.Compilers.Toolset.Arm64.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/arm64/buildMultiTargeting/Microsoft.Net.Compilers.Toolset.Arm64.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.Net.Compilers.Toolset/arm64/build/Microsoft.Net.Compilers.Toolset.Arm64.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.CodeAnalysis.Scripting.Package/Microsoft.CodeAnalysis.Scripting.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/VS.Tools.Roslyn.Package/Init.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/VS.Tools.Roslyn.Package/VS.Tools.Roslyn.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/VS.Tools.Roslyn.Package/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/VS.ExternalAPIs.Roslyn.Package/VS.ExternalAPIs.Roslyn.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.CodeAnalysis.BuildClient.Package/Microsoft.CodeAnalysis.BuildClient.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.CodeAnalysis.BuildClient.Package/Microsoft.CodeAnalysis.BuildClient.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.CodeAnalysis.EditorFeatures.Package/Microsoft.CodeAnalysis.EditorFeatures.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/NuGet/Microsoft.CodeAnalysis.Compilers.Package/Microsoft.CodeAnalysis.Compilers.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildActionTelemetryTable/readme.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildActionTelemetryTable/CodeActionDescriptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildActionTelemetryTable/BuildActionTelemetryTable.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildActionTelemetryTable/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/app.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/Lsp/LspCompletionSerializationBenchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/Lsp/LspCompletionBenchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/RegexClassifierBenchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/InheritanceMargin/InheritanceMarginGlyphBenchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/InheritanceMargin/BenchmarksHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/InheritanceMargin/InheritanceMarginServiceBenchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/FormatterBenchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/StackTraceExplorer/StackTraceExplorerBenchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/IdeBenchmarks.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/SQLitePersistentStorageBenchmark.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/IdeBenchmarks/MemoryDiagnoserConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/PrepareTests/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/PrepareTests/TestDiscovery.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/PrepareTests/PrepareTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/PrepareTests/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/PrepareTests/MinimizeUtil.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/TestDiscoveryWorker/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/TestDiscoveryWorker/TestDiscoveryWorker.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/TestDiscoveryWorker/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/dotnet-format/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/DemoLogger.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/Records.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/BuildValidator.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/PEReaderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/Extensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/BuildValidatorResources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/FileNameEqualityComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/BuildValidator.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/LocalReferenceResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/Util.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/CompilationDiff.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/LocalSourceResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.de.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.fr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.ja.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.cs.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.zh-Hans.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.pl.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.ko.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.zh-Hant.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.pt-BR.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.es.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.tr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.it.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/xlf/BuildValidatorResources.ru.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/IldasmUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/BuildValidator/RebuildArtifactResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/ManifestGenerator/ManifestGenerator.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/ManifestGenerator/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/ManifestGenerator/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/Source/CompilerGeneratorTools/CompilerTools.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Tools/Source/CompilerGeneratorTools/Source/VisualBasicErrorFactsGenerator/VisualBasicErrorFactsGenerator.vbproj: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 10112 lines, excerpt: first and last 200 ...]
+
+tar: ./src/Features/Core/Portable/Completion/Providers/Scripting/AbstractDirectivePathCompletionProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Completion/CompletionService_GetCompletions.cs: Wrote only 9216 of 9750 bytes
+tar: ./src/Features/Core/Portable/Completion/Log/CompletionProvidersLogger.cs: Wrote only 4096 of 4321 bytes
+tar: ./src/Features/Core/Portable/Completion/CompletionItemFlags.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Completion/CharacterSetModificationKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Completion/FileSystemCompletionHelper.cs: Wrote only 1536 of 2850 bytes
+tar: ./src/Features/Core/Portable/Completion/EnterKeyRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Completion/ExpandedCompletionMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Completion/MatchPriority.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/MoveStaticMembers/MoveStaticMembersWithDialogCodeAction.cs: Wrote only 7680 of 10240 bytes
+tar: ./src/Features/Core/Portable/RelatedDocuments/IRelatedDocumentsService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ConvertIfToSwitch/AbstractConvertIfToSwitchCodeRefactoringProvider.Rewriting.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ConvertIfToSwitch/AbstractConvertIfToSwitchCodeRefactoringProvider.cs: Wrote only 3072 of 6807 bytes
+tar: ./src/Features/Core/Portable/AddImport/SymbolReferenceFinder.cs: Wrote only 1024 of 2622 bytes
+tar: ./src/Features/Core/Portable/AddImport/SearchScopes/SearchScope.cs: Wrote only 1024 of 1558 bytes
+tar: ./src/Features/Core/Portable/AddImport/SearchScopes/MetadataSymbolsSearchScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/AddImport/CodeActions/MetadataSymbolReferenceCodeAction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/AddImport/SymbolReferenceFinder_PackageAssemblySearch.cs: Wrote only 8192 of 8704 bytes
+tar: ./src/Features/Core/Portable/AddImport/AbstractAddImportFeatureService.cs: Wrote only 3584 of 5055 bytes
+tar: ./src/Features/Core/Portable/CodeLens/CodeLensReferencesService.cs: Wrote only 1024 of 5055 bytes
+tar: ./src/Features/Core/Portable/CodeLens/ReferenceMethodDescriptor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Structure/Syntax/BlockStructureExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Structure/Syntax/AbstractBlockStructureProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Structure/BlockStructureContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Diagnostics/Service/DocumentAnalysisExecutor.cs: Wrote only 5120 of 7272 bytes
+tar: ./src/Features/Core/Portable/Diagnostics/Service/DiagnosticAnalyzerService_ComputeDiagnosticAnalysisResults.cs: Wrote only 7168 of 7474 bytes
+tar: ./src/Features/Core/Portable/Diagnostics/Service/DiagnosticAnalyzerService_DeprioritizationCandidates.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Diagnostics/Service/DocumentAnalysisExecutor_Helpers.cs: Wrote only 4608 of 7986 bytes
+tar: ./src/Features/Core/Portable/Diagnostics/Analyzers/UnboundIdentifiersDiagnosticAnalyzerBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/TaskList/AbstractTaskListService.cs: Wrote only 512 of 2850 bytes
+tar: ./src/Features/Core/Portable/MetadataAsSource/DecompilationMetadataAsSourceFileProvider.cs: Wrote only 9728 of 10240 bytes
+tar: ./src/Features/Core/Portable/MetadataAsSource/AbstractMetadataAsSourceService.AbstractMetadataFormattingRule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ConvertForEachToFor/AbstractConvertForEachToForCodeRefactoringProvider.cs: Wrote only 3584 of 4763 bytes
+tar: ./src/Features/Core/Portable/StackTraceExplorer/StackTraceExplorerService.cs: Wrote only 512 of 789 bytes
+tar: ./src/Features/Core/Portable/StackTraceExplorer/ParsedFrame.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/StackTraceExplorer/DefaultStackParser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/AddFileBanner/AddFileBannerHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/AddFileBanner/AbstractAddFileBannerNewDocumentFormattingProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/CodeFixesAndRefactorings/AbstractFixAllCodeAction.cs: Wrote only 4096 of 6354 bytes
+tar: ./src/Features/Core/Portable/GenerateEqualsAndGetHashCodeFromMembers/GenerateEqualsAndGetHashCodeAction.cs: Wrote only 2560 of 9668 bytes
+tar: ./src/Features/Core/Portable/ChangeSignature/DelegateInvokeMethodReferenceFinder.cs: Wrote only 4096 of 5442 bytes
+tar: ./src/Features/Core/Portable/ConvertTupleToStruct/AbstractConvertTupleToStructCodeRefactoringProvider.cs: Wrote only 2560 of 4200 bytes
+tar: ./src/Features/Core/Portable/ConvertTupleToStruct/Scope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Shared/Utilities/AnnotatedSymbolMapping.cs: Wrote only 4096 of 5252 bytes
+tar: ./src/Features/Core/Portable/Shared/Utilities/SupportedPlatformData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Shared/Utilities/ExtractTypeHelpers.cs: Wrote only 3584 of 3719 bytes
+tar: ./src/Features/Core/Portable/Shared/Utilities/IUIContextActivationService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Shared/Extensions/ISymbolExtensions_2.cs: Wrote only 7168 of 10240 bytes
+tar: ./src/Features/Core/Portable/Shared/IDocumentSupportsFeatureService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/SymbolMapping/ISymbolMappingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ReplaceMethodWithProperty/AbstractReplaceMethodWithPropertyService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ReplaceMethodWithProperty/ReplaceMethodWithPropertyCodeRefactoringProvider.cs: Wrote only 3584 of 5542 bytes
+tar: ./src/Features/Core/Portable/Contracts/EditAndContinue/IManagedHotReloadService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Contracts/EditAndContinue/ActiveStatementFlags.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Contracts/EditAndContinue/RunningProjectInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Contracts/EditAndContinue/ManagedInstructionId.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/LegacySolutionEvents/UnitTestingLegacySolutionEventsListener.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/Notification/IGlobalOperationNotificationService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/API/INewUnitTestingIncrementalAnalyzerImplementation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/API/UnitTestingSearchQuery.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/API/UnitTestingDocumentSpan.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingSolutionCrawlerTimeSpan.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingWorkCoordinator.AbstractUnitTestingPriorityProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingSolutionCrawlerLogger.cs: Wrote only 1024 of 3930 bytes
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingGlobalOperationAwareIdleProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingWorkCoordinator.UnitTestingIncrementalAnalyzerProcessor.cs: Wrote only 3072 of 5540 bytes
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/AbstractUnitTestingDocumentDifferenceService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingIdleProcessor.cs: Wrote only 4096 of 5120 bytes
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingSolutionCrawlerService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingIncrementalAnalyzerProviderMetadata.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/IUnitTestingSolutionCrawlerService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingWorkCoordinator.UnitTestingSemanticChangeProcessor.cs: Wrote only 7168 of 10240 bytes
+tar: ./src/Features/Core/Portable/ExternalAccess/UnitTesting/SolutionCrawler/UnitTestingWorkCoordinator.cs: Wrote only 6656 of 10134 bytes
+tar: ./src/Features/Core/Portable/ExternalAccess/VSTypeScript/VSTypeScriptTaskListService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/Razor/Api/Extensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/ExternalAccess/Pythia/Api/PythiaDocumentationCommentFormatting.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/PreferFrameworkType/PreferFrameworkTypeConstants.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/PreferFrameworkType/PreferFrameworkTypeDiagnosticAnalyzerBase.cs: Wrote only 2048 of 3118 bytes
+tar: ./src/Features/Core/Portable/Formatting/AbstractNewDocumentFormattingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/SimplifyThisOrMe/AbstractSimplifyThisOrMeCodeFixProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/SimplifyThisOrMe/AbstractSimplifyThisOrMeDiagnosticAnalyzer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Common/GlyphExtensions.cs: Wrote only 4096 of 9216 bytes
+tar: ./src/Features/Core/Portable/AddPackage/ParentInstallPackageCodeAction.cs: Wrote only 4096 of 6491 bytes
+tar: ./src/Features/Core/Portable/AddPackage/AbstractAddPackageCodeFixProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/BraceMatching/AbstractDirectiveTriviaBraceMatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/InlineHints/InlineHintsOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/InlineHints/InlineParameterHintsOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/InlineHints/AbstractInlineHintsService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/InlineHints/InlineTypeHintsOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/UnusedReferences/ProjectAssets/ProjectAssetsReader.cs: Wrote only 4096 of 5632 bytes
+tar: ./src/Features/Core/Portable/UnusedReferences/ProjectAssets/ProjectAssetsModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.zh-Hans.xlf: Wrote only 1536 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.pl.xlf: Wrote only 4608 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.de.xlf: Wrote only 4608 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.it.xlf: Wrote only 2048 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.cs.xlf: Wrote only 9216 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.ko.xlf: Wrote only 3072 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.tr.xlf: Wrote only 8192 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.ru.xlf: Wrote only 1536 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.es.xlf: Wrote only 2048 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.ja.xlf: Wrote only 9216 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.pt-BR.xlf: Wrote only 8704 of 10240 bytes
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.fr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/xlf/FeaturesResources.zh-Hant.xlf: Wrote only 5120 of 10240 bytes
+tar: ./src/Features/Core/Portable/InitializeParameter/AbstractAddParameterCheckCodeRefactoringProvider.cs: Wrote only 6656 of 10240 bytes
+tar: ./src/Features/Core/Portable/Debugging/DebugInformationReaderProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Debugging/ILanguageDebugInfoService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Debugging/BreakpointResolutionResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/Debugging/AbstractBreakpointResolver.cs: Wrote only 8192 of 9394 bytes
+tar: ./src/Features/Core/Portable/AddDebuggerDisplay/AbstractAddDebuggerDisplayCodeRefactoringProvider.cs: Wrote only 8192 of 8214 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/Utilities/BidirectionalMap.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/ActiveStatementExceptionRegions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/ModuleUpdateStatus.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/IPdbMatchingSourceTextProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/MemberBody.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/PendingSolutionUpdate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/EditAndContinueDocumentAnalysesCache.cs: Wrote only 3072 of 10240 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/AbstractEditAndContinueAnalyzer.cs: Wrote only 2560 of 10240 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/ModuleUpdate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/EditAndContinueDiagnosticDescriptors.cs: Wrote only 7680 of 10240 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/ProjectAnalysisSummary.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/EmitSolutionUpdateResults.cs: Wrote only 5632 of 10240 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/ActiveStatementLineSpan.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/IEditAndContinueService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/EditAndContinueMethodDebugInfoReader.cs: Wrote only 512 of 7242 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/ActiveStatementsMap.cs: Wrote only 6144 of 8475 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/SolutionUpdate.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/EditSession.cs: Wrote only 2048 of 6559 bytes
+tar: ./src/Features/Core/Portable/EditAndContinue/IActiveStatementSpanFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/AbstractSimpleMemberBody.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/EditAndContinue/DebuggingSession.cs: Wrote only 6144 of 8828 bytes
+tar: ./src/Features/Core/Portable/QuickInfo/CommonSemanticQuickInfoProvider.ErrorVisitor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/QuickInfo/Presentation/QuickInfoOnTheFlyDocsElement.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Features/Core/Portable/QuickInfo/Presentation/TaggedTextExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T23:24:08+01:00 exit 125

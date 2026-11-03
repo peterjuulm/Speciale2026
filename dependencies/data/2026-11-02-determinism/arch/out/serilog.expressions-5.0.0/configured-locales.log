@@ -1,0 +1,31 @@
+start 2026-11-02T22:51:29+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Serilog.Expressions/Serilog.Expressions.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1718243972 && dotnet pack src/Serilog.Expressions/Serilog.Expressions.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1718243972; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Serilog.Expressions -> /tmp/reprotest.I9Cwtt/const_build_path/src/Serilog.Expressions/bin/Release/net8.0/Serilog.Expressions.dll
+  Serilog.Expressions -> /tmp/reprotest.I9Cwtt/const_build_path/src/Serilog.Expressions/bin/Release/net6.0/Serilog.Expressions.dll
+  Serilog.Expressions -> /tmp/reprotest.I9Cwtt/const_build_path/src/Serilog.Expressions/bin/Release/netstandard2.0/Serilog.Expressions.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:12.36
+  Successfully created package '/tmp/reprotest.I9Cwtt/const_build_path/out/Serilog.Expressions.5.0.0.nupkg'.
+  Serilog.Expressions -> /tmp/reprotest.I9Cwtt/const_build_path/src/Serilog.Expressions/bin/Release/net8.0/Serilog.Expressions.dll
+  Serilog.Expressions -> /tmp/reprotest.I9Cwtt/const_build_path/src/Serilog.Expressions/bin/Release/net6.0/Serilog.Expressions.dll
+  Serilog.Expressions -> /tmp/reprotest.I9Cwtt/const_build_path/src/Serilog.Expressions/bin/Release/netstandard2.0/Serilog.Expressions.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:13.39
+  Successfully created package '/tmp/reprotest.I9Cwtt/const_build_path/out/Serilog.Expressions.5.0.0.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+0533dbd66d21b7127f8b2d9bfac3b23d50bd36d5b40f40e40833ff9010618f3e  ./out/Serilog.Expressions.5.0.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T22:52:00+01:00 exit 0

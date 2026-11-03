@@ -1,0 +1,1251 @@
+start 2026-11-02T23:06:03+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/ShimSkiaSharp/ShimSkiaSharp.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1781520780 && dotnet pack src/ShimSkiaSharp/ShimSkiaSharp.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1781520780; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  ShimSkiaSharp -> /tmp/reprotest.gXfRC7/const_build_path/src/ShimSkiaSharp/bin/Release/netstandard2.0/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /tmp/reprotest.gXfRC7/const_build_path/src/ShimSkiaSharp/bin/Release/net461/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /tmp/reprotest.gXfRC7/const_build_path/src/ShimSkiaSharp/bin/Release/net6.0/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /tmp/reprotest.gXfRC7/const_build_path/src/ShimSkiaSharp/bin/Release/net8.0/ShimSkiaSharp.dll
+  ShimSkiaSharp -> /tmp/reprotest.gXfRC7/const_build_path/src/ShimSkiaSharp/bin/Release/net10.0/ShimSkiaSharp.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:17.39
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/tmp/reprotest.gXfRC7/const_build_path/src/ShimSkiaSharp/ShimSkiaSharp.csproj]
+  The package ShimSkiaSharp.5.1.1 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.gXfRC7/const_build_path/out/ShimSkiaSharp.5.1.1.nupkg'.
+tar: ./.git/objects/pack/pack-74695762295acbb1b947391659a2779ab614a1ce.pack: Wrote only 5632 of 10240 bytes
+tar: ./.git/objects/pack/pack-74695762295acbb1b947391659a2779ab614a1ce.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/objects/pack/pack-e844eb6168f667512ccc9e908ba6337bc1bd8963.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/objects/pack/pack-e844eb6168f667512ccc9e908ba6337bc1bd8963.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/objects/pack/pack-e844eb6168f667512ccc9e908ba6337bc1bd8963.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/logs/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/resvg/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/objects/pack/pack-70d349784ba1db093bb716e8da63de0fa7b9a65c.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/objects/pack/pack-70d349784ba1db093bb716e8da63de0fa7b9a65c.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/objects/pack/pack-70d349784ba1db093bb716e8da63de0fa7b9a65c.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/W3C_SVG_11_TestSuite/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/objects/pack/pack-e1b7364e773f46997bda726a790a0a6c7d865306.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/objects/pack/pack-e1b7364e773f46997bda726a790a0a6c7d865306.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/objects/pack/pack-e1b7364e773f46997bda726a790a0a6c7d865306.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/logs/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/modules/externals/SVG/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.TXT: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./serve-docs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./AGENTS.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/stale.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/release.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/docs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/dependabot.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/FUNDING.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./icon/SvgToPng.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./icon/SvgToPng.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./icon/SvgToPng.ico: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitmodules: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/Svg.Controls.Skia.Uno.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/Svg.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/SvgSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/SvgSourceTypeConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/StretchDirection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/SvgRenderLayout.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Uno/SvgCacheKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/ISvgSceneFilterSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneResourceKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneHitTestService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextLayoutEngine.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneCompiler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneFilterContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSharedTextLayoutEngine.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextPathLayoutPlanner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextLayoutResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgCssShapeImageSampler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneResource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgElementAddressKeyCache.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextLayoutPlanner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextBaselineResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneMutationResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextLayoutPrimitives.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextBidiResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextLineBreakPlanner.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneNode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneFilterSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgFontTextRenderer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/Svg.SceneGraph.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneCompilationStrategy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneDocument.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneNodeKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneTextCompiler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextBoundaryResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneClipCompiler.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneTextCompiler.Benchmarks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneFilterResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneNodeBoundsService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneFilterPrimitiveContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgScenePaintingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneTextCompiler.TextDom.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneTextCompiler.LineBreaking.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneRenderer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneTextCompiler.SharedLayout.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgTextLineAreaProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SceneGraph/SvgSceneTextCompiler.PreparedText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKTypeface.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPaint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKFontStyleWidth.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKTextEncoding.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKFontMetrics.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/PathClip.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKMatrix.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPathArcSize.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKBlendMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/IDeepCloneable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/ShimSkiaSharp.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPointI.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKImage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPathEffect.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPaintStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/CloneHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/Editing/SKPictureEditingExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/Editing/SKPaintEditingExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/Editing/CanvasCommandVisitorExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/Editing/SKPathEditingExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/Editing/EditMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKDrawable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/ICanvasCommandVisitor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPictureRecorder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKFilterQuality.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKSizeI.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKColorSpace.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKFontStyleSlant.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPathFillType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKColorFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKShaderTileMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPoint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKCanvas.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKClipOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKColor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKFont.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKColorF.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKSize.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPathDirection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKImageFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKFontStyleWeight.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKShader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/ClipPath.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKTextBlob.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPathBoundsHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKTextAlign.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKColorChannel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKRect.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPicture.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKSamplingOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPath.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKStrokeCap.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/obj/ShimSkiaSharp.csproj.nuget.g.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/obj/ShimSkiaSharp.csproj.nuget.g.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/obj/ShimSkiaSharp.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/IsExternalInit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPoint3.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKStrokeJoin.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/ShimSkiaSharp/SKPathOp.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SkiaModel.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKPictureExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SkiaModel.Caching.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SkiaSvgAssetLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvg.Model.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SkiaSvgAssetLoader.Caching.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvgSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvg.ViewerRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvg.NativeComposition.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SkiaSvgAssetLoader.DocumentFonts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvgDrawEventArgs.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/Svg.Skia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/Interaction/SvgInteractionDispatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvgJavaScriptRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/TypefaceProviders/CustomTypefaceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/TypefaceProviders/SharedTypefaceCache.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/TypefaceProviders/DefaultTypefaceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/TypefaceProviders/ITypefaceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/TypefaceProviders/FontManagerTypefaceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/TypefaceProviders/DocumentFontTypefaceProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvg.Interaction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SkiaModel.TextShaping.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvg.HitTest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvg.AnimationLayers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia/SKSvg.SceneGraph.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKPathControl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKPictureControl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKPathImage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKPictureImage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKBitmapImage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKCanvasControl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/Skia.Controls.Avalonia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKBitmapDrawOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKCanvasDrawOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKCanvasEventArgs.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKPictureDrawOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKPathDrawOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Skia.Controls.Avalonia/SKBitmapControl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/DrawAttributes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/ISvgAssetLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/System/Runtime/CompilerServices/IsExternalInit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/SvgParameters.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/SvgFilterPrimitiveContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Editing/SvgDocumentEditingExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Svg.Model.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/MaskType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/SvgFilterResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/PaintingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/VectorDrawableConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/PathingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/SvgGeometryService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/MaskingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/GradientMeshService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/SvgPatternPaintStateResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/FilterEffectsService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/SvgService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/TransformsService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/Services/GeometryHitTestService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Model/GradientMesh.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/AvaloniaPicture.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/AvaloniaSvgAssetLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Svg.Controls.Avalonia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/SvgImage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/SvgImageExtension.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Svg.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/ServiceProviderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/AvaloniaModelExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/SvgResourceExtension.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/SvgSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/SvgSourceTypeConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/GeometryClipDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/RestoreDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/SaveLayerDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/RectangleDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/LineDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/DrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/PushTransformDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/GeometryDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/ImageDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/TextDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/SaveDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Avalonia/Commands/ClipDrawCommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia.JavaScript/SKSvgJavaScriptRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Skia.JavaScript/Svg.Skia.JavaScript.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/SvgImage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/SvgImageExtension.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/Svg.Controls.Skia.Avalonia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/Svg.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/ServiceProviderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/SvgResourceExtension.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/SvgSourceCustomDrawOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/SvgSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/SvgSourceTypeConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/Composition/SvgCompositionVisualScene.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/SvgCustomDrawOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Avalonia/IsExternalInit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SourceGenerator.Skia/SvgSourceGenerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SourceGenerator.Skia/Svg.SourceGenerator.Skia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SourceGenerator.Skia/Svg.SourceGenerator.Skia.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.SourceGenerator.Skia/SkiaGeneratorSvgAssetLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/SvgElementInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/SvgEditorSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/SvgEditorSession.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/ArtboardInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/SvgEditorToolKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/ClipboardSnapshot.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/ISvgEditorSession.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/SvgNode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Core/Svg.Editor.Core.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Svg.JavaScript.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptTextNode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptPathDom.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptDocument.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptGeometry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptInstances.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptWindow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptConsole.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptEventInput.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptEvent.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptElement.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptStyleDeclaration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptAnimatedValues.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptEventResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptInteractionHost.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptDom.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.JavaScript/Scripting/SvgJavaScriptRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.SelfWeaver/SvgMLAssemblyRewriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.SelfWeaver/SvgML.SelfWeaver.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.SelfWeaver/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia.Avalonia/SvgEditorSurface.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia.Avalonia/Svg.Editor.Skia.Avalonia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia.Avalonia/SvgEditorWorkspace.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia.Avalonia/SvgEditorWorkspace.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/SvgML.Avalonia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feComposite/feComposite.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feComposite/feComposite.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDiffuseLighting/feDiffuseLighting.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDiffuseLighting/feDiffuseLighting.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/filter-primitive.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncR/feFuncR.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncR/feFuncR.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feMorphology/feMorphology.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feMorphology/feMorphology.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/fePointLight/fePointLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/fePointLight/fePointLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feTile/feTile.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feTile/feTile.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/filter.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncG/feFuncG.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncG/feFuncG.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feConvolveMatrix/feConvolveMatrix.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feConvolveMatrix/feConvolveMatrix.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feTurbulence/feTurbulence.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feTurbulence/feTurbulence.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feGaussianBlur/feGaussianBlur.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feGaussianBlur/feGaussianBlur.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feSpecularLighting/feSpecularLighting.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feSpecularLighting/feSpecularLighting.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFlood/feFlood.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFlood/feFlood.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/filter-primitive.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncA/feFuncA.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncA/feFuncA.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDropShadow/feDropShadow.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDropShadow/feDropShadow.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feSpotLight/feSpotLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feSpotLight/feSpotLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDistantLight/feDistantLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDistantLight/feDistantLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feComponentTransfer/feComponentTransfer.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feComponentTransfer/component-transfer-function.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feComponentTransfer/feComponentTransfer.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feComponentTransfer/component-transfer-function.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feColorMatrix/feColorMatrix.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feColorMatrix/feColorMatrix.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncB/feFuncB.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feFuncB/feFuncB.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feMerge/feMerge.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feMerge/feMergeNode.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feMerge/feMergeNode.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feMerge/feMerge.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDisplacementMap/feDisplacementMap.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feDisplacementMap/feDisplacementMap.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/filter.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feBlend/feBlend.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feBlend/feBlend.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feImage/feImage.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feImage/feImage.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feOffset/feOffset.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Filter Effects/feOffset/feOffset.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/SvgEnumSupport.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animateTransform.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/set.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animate.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animation-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animateMotion.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animateColor.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animateTransform.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animateMotion.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animation-attribute-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animation-value-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animation-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animate.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animation-attribute-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/mpath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animateColor.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/set.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/animation-value-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Animation/mpath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Linking/a.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Linking/a.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Metadata/metadata.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Metadata/metadata.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/rect.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/visual.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/rect.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/polyline.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/path-based.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/polygon.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/marker-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/line.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/circle.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/polyline.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/ellipse.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/path-based.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/circle.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/ellipse.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/visual.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/marker-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/polygon.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Basic Shapes/line.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/defs.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/title.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/title.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/switch.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/use.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/svg.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/desc.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/symbol.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/g.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/desc.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/svg.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/defs.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/image.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/use.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/g.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/switch.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/image.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Document Structure/symbol.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/paint.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/linearGradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/marker.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/gradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/radialGradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/marker.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/stop.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/pattern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/paint.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/radialGradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/gradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/stop.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/linearGradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Painting/pattern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Scripting/script.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Scripting/script.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Paths/path.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Paths/path.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font-face-uri.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/glyph.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/vkern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/textPath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font-face-uri.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/vkern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/kern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font-face-src.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/hkern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/text.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font-face.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/text-base.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/glyph.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font-face-src.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/hkern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/font-face.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/textPath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/tref.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/tspan.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/kern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/missing-glyph.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/tref.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/tspan.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/text.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/missing-glyph.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Text/text-base.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Extensibility/foreignObject.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Extensibility/foreignObject.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Clipping and Masking/clipPath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Clipping and Masking/mask.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Clipping and Masking/mask.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Generated/Clipping and Masking/clipPath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/element.Animation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/element.Bounds.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/SvgUnitNullableAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/IntAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/IntNullableAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/SvgNumberCollectionAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/SvgUnitAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/numbersNullableAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/FloatNullableAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/numbersAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/SvgNumberCollectionNullableAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Animators/FloatAnimator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/element.Invalidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/content.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/HitTesting/SvgHitTester.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/element.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Document Structure/svg.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Document Structure/svg.Control.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Document Structure/svg.HostedControls.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Extensibility/foreignObject.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Avalonia/Draw/SKPictureCustomDrawOperation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Filter Effects/feComposite/operator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Filter Effects/feComponentTransfer/type_component_transfer_function.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Filter Effects/feBlend/blend_mode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Filter Effects/feColourMatrix/type_feColorMatrix.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/numbers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/element.Mapping.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/content.Writer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/content.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/elements.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Hosting/HostedControlElement.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Document Structure/svg.Writer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Document Structure/svg.Loading.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Painting/fill_rule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/element.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/element.Writer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Avalonia/Manual/Extensibility/foreignObject.Writer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/SvgML.Uno.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feComposite/feComposite.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feComposite/feComposite.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDiffuseLighting/feDiffuseLighting.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDiffuseLighting/feDiffuseLighting.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/filter-primitive.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncR/feFuncR.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncR/feFuncR.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feMorphology/feMorphology.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feMorphology/feMorphology.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/fePointLight/fePointLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/fePointLight/fePointLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feTile/feTile.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feTile/feTile.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/filter.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncG/feFuncG.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncG/feFuncG.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feConvolveMatrix/feConvolveMatrix.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feConvolveMatrix/feConvolveMatrix.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feTurbulence/feTurbulence.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feTurbulence/feTurbulence.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feGaussianBlur/feGaussianBlur.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feGaussianBlur/feGaussianBlur.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feSpecularLighting/feSpecularLighting.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feSpecularLighting/feSpecularLighting.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFlood/feFlood.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFlood/feFlood.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/filter-primitive.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncA/feFuncA.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncA/feFuncA.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDropShadow/feDropShadow.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDropShadow/feDropShadow.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feSpotLight/feSpotLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feSpotLight/feSpotLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDistantLight/feDistantLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDistantLight/feDistantLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feComponentTransfer/feComponentTransfer.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feComponentTransfer/component-transfer-function.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feComponentTransfer/feComponentTransfer.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feComponentTransfer/component-transfer-function.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feColorMatrix/feColorMatrix.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feColorMatrix/feColorMatrix.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncB/feFuncB.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feFuncB/feFuncB.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feMerge/feMerge.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feMerge/feMergeNode.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feMerge/feMergeNode.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feMerge/feMerge.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDisplacementMap/feDisplacementMap.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feDisplacementMap/feDisplacementMap.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/filter.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feBlend/feBlend.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feBlend/feBlend.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feImage/feImage.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feImage/feImage.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feOffset/feOffset.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Filter Effects/feOffset/feOffset.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/SvgEnumSupport.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animateTransform.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/set.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animate.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animation-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animateMotion.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animateColor.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animateTransform.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animateMotion.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animation-attribute-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animation-value-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animation-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animate.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animation-attribute-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/mpath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animateColor.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/set.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/animation-value-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Animation/mpath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Linking/a.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Linking/a.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Metadata/metadata.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Metadata/metadata.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/rect.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/visual.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/rect.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/polyline.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/path-based.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/polygon.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/marker-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/line.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/circle.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/polyline.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/ellipse.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/path-based.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/circle.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/ellipse.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/visual.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/marker-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/polygon.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Basic Shapes/line.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/defs.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/title.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/title.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/switch.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/use.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/svg.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/desc.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/symbol.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/g.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/desc.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/svg.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/defs.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/image.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/use.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/g.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/switch.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/image.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Document Structure/symbol.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/paint.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/linearGradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/marker.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/gradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/radialGradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/marker.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/stop.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/pattern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/paint.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/radialGradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/gradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/stop.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/linearGradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Painting/pattern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Scripting/script.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Scripting/script.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Paths/path.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Paths/path.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font-face-uri.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/glyph.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/vkern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/textPath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font-face-uri.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/vkern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/kern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font-face-src.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/hkern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/text.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font-face.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/text-base.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/glyph.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font-face-src.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/hkern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/font-face.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/textPath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/tref.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/tspan.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/kern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/missing-glyph.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/tref.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/tspan.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/text.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/missing-glyph.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Text/text-base.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Extensibility/foreignObject.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Extensibility/foreignObject.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Clipping and Masking/clipPath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Clipping and Masking/mask.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Clipping and Masking/mask.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Generated/Clipping and Masking/clipPath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/element.Bounds.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/element.Invalidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/content.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/StretchDirection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/element.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/SvgRenderLayout.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Document Structure/svg.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Document Structure/svg.Control.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Document Structure/svg.HostedControls.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Text/text_base.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Text/tspan.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Text/text_base.Writer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Text/textPath.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Uno/Uno/Extensibility/foreignObject.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgAnimationParser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgPointerEventType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgNativeCompositionScene.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgAnimationTimingEventType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgAnimationController.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgAnimationClock.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgAnimationFrameState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgAnimationHostBackend.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Animation/SvgAnimationSpline.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/SvgAnimationInvalidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Animation/Svg.Animation.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/SvgML.Maui.slnx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Platforms/Tizen/PlatformClass1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Platforms/Windows/PlatformClass1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/global.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feComposite/feComposite.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feComposite/feComposite.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDiffuseLighting/feDiffuseLighting.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDiffuseLighting/feDiffuseLighting.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/filter-primitive.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncR/feFuncR.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncR/feFuncR.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feMorphology/feMorphology.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feMorphology/feMorphology.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/fePointLight/fePointLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/fePointLight/fePointLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feTile/feTile.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feTile/feTile.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/filter.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncG/feFuncG.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncG/feFuncG.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feConvolveMatrix/feConvolveMatrix.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feConvolveMatrix/feConvolveMatrix.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feTurbulence/feTurbulence.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feTurbulence/feTurbulence.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feGaussianBlur/feGaussianBlur.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feGaussianBlur/feGaussianBlur.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feSpecularLighting/feSpecularLighting.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feSpecularLighting/feSpecularLighting.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFlood/feFlood.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFlood/feFlood.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/filter-primitive.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncA/feFuncA.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncA/feFuncA.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDropShadow/feDropShadow.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDropShadow/feDropShadow.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feSpotLight/feSpotLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feSpotLight/feSpotLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDistantLight/feDistantLight.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDistantLight/feDistantLight.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feComponentTransfer/feComponentTransfer.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feComponentTransfer/component-transfer-function.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feComponentTransfer/feComponentTransfer.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feComponentTransfer/component-transfer-function.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feColorMatrix/feColorMatrix.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feColorMatrix/feColorMatrix.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncB/feFuncB.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feFuncB/feFuncB.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feMerge/feMerge.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feMerge/feMergeNode.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feMerge/feMergeNode.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feMerge/feMerge.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDisplacementMap/feDisplacementMap.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feDisplacementMap/feDisplacementMap.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/filter.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feBlend/feBlend.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feBlend/feBlend.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feImage/feImage.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feImage/feImage.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feOffset/feOffset.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Filter Effects/feOffset/feOffset.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/SvgEnumSupport.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animateTransform.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/set.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animate.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animation-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animateMotion.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animateColor.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animateTransform.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animateMotion.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animation-attribute-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animation-value-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animation-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animate.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animation-attribute-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/mpath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animateColor.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/set.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/animation-value-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Animation/mpath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Linking/a.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Linking/a.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Metadata/metadata.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Metadata/metadata.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/rect.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/visual.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/rect.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/polyline.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/path-based.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/polygon.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/marker-element.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/line.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/circle.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/polyline.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/ellipse.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/path-based.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/circle.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/ellipse.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/visual.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/marker-element.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/polygon.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Basic Shapes/line.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/defs.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/title.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/title.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/switch.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/use.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/svg.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/desc.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/symbol.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/g.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/desc.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/svg.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/defs.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/image.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/use.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/g.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/switch.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/image.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Document Structure/symbol.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/paint.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/linearGradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/marker.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/gradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/radialGradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/marker.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/stop.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/pattern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/paint.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/radialGradient.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/gradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/stop.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/linearGradient.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Painting/pattern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Scripting/script.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Scripting/script.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Paths/path.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Paths/path.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font-face-uri.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/glyph.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/vkern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/textPath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font-face-uri.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/vkern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/kern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font-face-src.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/hkern.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/text.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font-face.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/text-base.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/glyph.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font-face-src.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/hkern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/font-face.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/textPath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/tref.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/tspan.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/kern.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/missing-glyph.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/tref.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/tspan.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/text.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/missing-glyph.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Text/text-base.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Extensibility/foreignObject.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Extensibility/foreignObject.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Clipping and Masking/clipPath.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Clipping and Masking/mask.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Clipping and Masking/mask.Properties.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Generated/Clipping and Masking/clipPath.Writer.g.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/SvgML.Maui.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/element.Animation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/element.Bounds.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/AppHostBuilderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/element.Invalidation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/content.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/elements.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/element.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/SvgRenderLayout.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/Document Structure/svg.Loading.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/Document Structure/svg.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/Document Structure/svg.Control.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/Document Structure/svg.HostedControls.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.Maui/Maui/Extensibility/foreignObject.Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/Svg.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/Svg.Controls.Skia.Maui.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/SvgSource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/SvgSourceTypeConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/StretchDirection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/SvgRenderLayout.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Controls.Skia.Maui/SvgCacheKey.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Model/PropertyDef.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Model/TypeDef.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Generators/MauiGenerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Generators/GeneratorSettings.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Generators/AvaloniaGenerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Generators/Generator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Generators/UnoGenerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/CodeGenerator.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Definitions/SvgTypeDefs.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SvgML.CodeGenerator/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.CodeGen.Skia/Svg.CodeGen.Skia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.CodeGen.Skia/SkiaCSharpModelExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.CodeGen.Skia/SkiaCSharpCodeGen.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.CodeGen.Skia/SkiaCSharpCodeGenCounter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/SelectionVisualInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/Svg.Editor.Skia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/SvgEditorOverlayRenderer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/RenderingService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/SelectionService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/SvgEditorInteractionController.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/PathService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/AlignService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/PathPoint.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Skia/BoundsInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Svg.Custom.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Transforms/SvgTransform2Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Filter Effects/feDropShadow/SvgDropShadow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/SvgAttributeCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Animation/SvgDocument.Animation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Animation/SvgSemicolonNumberCollectionConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Animation/SvgElement.AnimationRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Animation/SvgAnimationTypes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Animation/SvgAnimationElement.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Interaction/SvgPointerEvents.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/SceneGraph/SvgElement.SceneGraphRuntime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/SceneGraph/SvgElementAddress.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Basic Shapes/SvgPathBasedElement.Svg2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Basic Shapes/SvgMarkerElement.Marker.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/ExCssQuery.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgElement.JavaScriptDomState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgElement.DynamicStyles.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgDocumentCompatibilityLoader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/ExSvgElementOps.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgCssDeclarationPriority.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgComputedStyle.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgCssVariableResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgElementFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgStyleAttributeNames.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgDocument.DynamicStyles.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgCssPaintDeclarationValidator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgElement.CascadeStyles.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgInlineStyleAttributeParser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgDocument.ReferenceResolution.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Compatibility/SvgCssCompatibilityProcessor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/LICENSE.TXT: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Document Structure/SvgSymbol.Svg2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgGradientStop.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgContextPaintServer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgCompositingProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgStopInheritanceResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgPaintOrder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgDeferredPaintServer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgGradientServer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgSystemColorProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgPaintServerFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgVectorEffect.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Painting/SvgPatternServer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Svg2/SvgProcessingMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Svg2/SvgDocumentLoadOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Svg2/SvgDocument.Svg2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Svg2/SvgExternalResourcePolicy.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Svg2/SvgElementHrefExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Svg2/SvgExternalResourceResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Paths/SvgPathBuilder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Text/SvgText2Properties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Custom/Text/SvgWhiteSpaceTrim.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/StrokeProfileEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/PatternEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SvgEditorFileDialogService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Svg.Editor.Avalonia.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SettingsEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/PropertyInspectorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/StatusBarView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/DocumentOutlineView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/ToolPaletteView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/DocumentOutlineView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/StatusBarView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/ToolPaletteView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/ResourceBrowserView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/PropertyInspectorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/PropertyEditorTemplateFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Controls/ResourceBrowserView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SwatchEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/PathSegmentsEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/InsertElementPickerView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SymbolPickerView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SymbolNameEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/PatternEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/StrokeProfileEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/GradientStopsEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/GradientEditorWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/InsertElementWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/GradientMeshEditorWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/PathEditorWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/InsertElementWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/PathEditorWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/PatternEditorWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SettingsWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SwatchEditorWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SymbolSelectWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/StrokeProfileEditorWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SymbolNameWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/TextEditorWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/GradientMeshEditorWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/StrokeProfileEditorWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/GradientEditorWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SettingsWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SymbolSelectWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SymbolNameWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/SwatchEditorWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/TextEditorWindow.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Editors/PatternEditorWindow.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/PathSegmentsEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SvgEditorDialogService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/TextEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/GradientStopsEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/ISvgEditorFileDialogService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SettingsEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/TextEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Models/DialogResults.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/ISvgEditorDialogService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Converters/BooleanStringConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Converters/ColorStringConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/Converters/EyeIconConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SwatchEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/GradientMeshEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/InsertElementPickerView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/GradientMeshEditorView.axaml.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SvgEditorDialogViewBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SymbolNameEditorView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Avalonia/SymbolPickerView.axaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/SvgDocumentService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/PropertiesService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/LayerService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/ToolService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/BrushService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/SymbolService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/PatternService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/AppearanceLayer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/SwatchEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/StrokeProfileEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/ColorText.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/StrokeProfile.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/LayerEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/PropertyEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/PatternEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/GradientEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/StyleEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/SymbolEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/GradientMeshEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Models/BrushEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/Svg.Editor.Svg.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Svg.Editor.Svg/AppearanceService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Svg.Skia.slnx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./check-docs.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./serve-docs.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/SkiaSharp.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/SvgML.Weaving.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/ReferenceAssemblies.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/ReactiveUI.Avalonia.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/SourceLink.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Svg.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/System.CommandLine.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/SkiaSharp.Native.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Avalonia.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Avalonia.Desktop.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/SignAssembly.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Avalonia.Skia.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/SkiaSharp.Avalonia.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Newtonsoft.Json.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Avalonia.Diagnostics.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Avalonia.Web.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/Avalonia.Themes.Fluent.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/svg.skia.public.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/XUnit.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/build/_build.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/build/Build.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/SixLabors.ImageSharp.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build/XUnit.v3.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T23:06:27+01:00 exit 125

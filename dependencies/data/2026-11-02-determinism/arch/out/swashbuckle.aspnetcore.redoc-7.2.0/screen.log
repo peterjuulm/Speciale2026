@@ -1,0 +1,59 @@
+start 2026-11-01T12:20:54+01:00
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj (in 565 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+  
+  added 228 packages, and audited 229 packages in 3s
+  
+  92 packages are looking for funding
+    run `npm fund` for details
+  
+  13 vulnerabilities (4 moderate, 9 high)
+  
+  To address issues that do not require attention, run:
+    npm audit fix
+  
+  To address all issues, run:
+    npm audit fix --force
+  
+  Run `npm audit` for details.
+  npm warn install-scripts 1 package had install scripts blocked because they are not covered by allowScripts:
+  npm warn install-scripts   core-js@3.39.0 (postinstall: node -e "try{require('./postinstall')}catch(e){}")
+  npm warn install-scripts
+  npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+  Swashbuckle.AspNetCore.ReDoc -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.ReDoc/release_net9.0/Swashbuckle.AspNetCore.ReDoc.dll
+  Swashbuckle.AspNetCore.ReDoc -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.ReDoc/release_net8.0/Swashbuckle.AspNetCore.ReDoc.dll
+  Swashbuckle.AspNetCore.ReDoc -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.ReDoc/release_net6.0/Swashbuckle.AspNetCore.ReDoc.dll
+  Swashbuckle.AspNetCore.ReDoc -> /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/artifacts/bin/Swashbuckle.AspNetCore.ReDoc/release_netstandard2.0/Swashbuckle.AspNetCore.ReDoc.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.39
+  Successfully created package '/private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/out/Swashbuckle.AspNetCore.ReDoc.7.2.0.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/out/Swashbuckle.AspNetCore.ReDoc.7.2.0.snupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T12:21:14+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0 checkout -q -- .
+$ dotnet restore src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/swashbuckle.aspnetcore.redoc-7.2.0/src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj (in 145 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

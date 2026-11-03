@@ -1,0 +1,31 @@
+start 2026-11-02T21:15:55+01:00
+$ git clone -q --no-checkout https://github.com/NuGet/NuGet.Client /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 -c advice.detachedHead=false checkout -q c92125011405028c945371a89e1a1eb0e735456d
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 submodule update --init --recursive -q
+start 2026-11-03T04:30:11+01:00
+$ git clone -q --no-checkout https://github.com/NuGet/NuGet.Client /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 -c advice.detachedHead=false checkout -q c92125011405028c945371a89e1a1eb0e735456d
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 submodule update --init --recursive -q
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5 checkout -q -- .
+$ dotnet restore src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 245 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 245 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 245 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 245 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.packaging-6.12.5/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 245 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.58
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

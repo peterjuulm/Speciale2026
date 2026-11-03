@@ -1,0 +1,75 @@
+start 2026-11-01T10:28:29+01:00
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 checkout -q -- .
+$ dotnet restore src/Humanizer/Humanizer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+  Restored /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj (in 141 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Humanizer/Humanizer.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Humanizer/Humanizer.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(3,17): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(5,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.None' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(6,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.NearestFiveMinutes' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(19,30): warning CS1572: XML comment has a param tag for 'count', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(20,30): warning CS1572: XML comment has a param tag for 'toWords', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(3,17): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(5,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.None' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(6,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.NearestFiveMinutes' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(19,30): warning CS1572: XML comment has a param tag for 'count', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(20,30): warning CS1572: XML comment has a param tag for 'toWords', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(3,17): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(5,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.None' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(6,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.NearestFiveMinutes' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(19,30): warning CS1572: XML comment has a param tag for 'count', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(20,30): warning CS1572: XML comment has a param tag for 'toWords', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+  Humanizer -> /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/bin/Release/netstandard1.0/Humanizer.dll
+  Humanizer -> /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/bin/Release/netstandard2.0/Humanizer.dll
+  Humanizer -> /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/bin/Release/net6.0/Humanizer.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(3,17): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(5,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.None' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(6,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.NearestFiveMinutes' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(19,30): warning CS1572: XML comment has a param tag for 'count', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(20,30): warning CS1572: XML comment has a param tag for 'toWords', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(3,17): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(5,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.None' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(6,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.NearestFiveMinutes' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(19,30): warning CS1572: XML comment has a param tag for 'count', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(20,30): warning CS1572: XML comment has a param tag for 'toWords', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(3,17): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(5,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.None' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/ClockNotationRounding.cs(6,9): warning CS1591: Missing XML comment for publicly visible type or member 'ClockNotationRounding.NearestFiveMinutes' [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(19,30): warning CS1572: XML comment has a param tag for 'count', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Localisation/ResourceKeys.TimeUnitSymbol.cs(20,30): warning CS1572: XML comment has a param tag for 'toWords', but there is no parameter by that name [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=net6.0]
+    16 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:21.40
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5125: The 'licenseUrl' element will be deprecated. Consider using the 'license' element instead. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj]
+  The package Humanizer.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/out/Humanizer.1.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:28:55+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 checkout -q -- .
+$ dotnet restore src/Humanizer/Humanizer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+  Restored /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj (in 143 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

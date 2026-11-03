@@ -1,0 +1,71 @@
+start 2026-11-02T18:11:03+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0 checkout -q -- .
+$ dotnet restore src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Servers/Connections.Abstractions/src/Microsoft.AspNetCore.Connections.Abstractions.csproj (in 636 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Headers/src/Microsoft.Net.Http.Headers.csproj (in 635 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 636 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj (in 637 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj (in 635 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj (in 636 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj (in 636 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/WebEncoders/src/Microsoft.Extensions.WebEncoders.csproj (in 636 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj (in 636 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Extensions/Features/src/Microsoft.Extensions.Features.csproj (in 635 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/Core/src/Microsoft.AspNetCore.Authentication.csproj (in 635 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj (in 637 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Authentication.Abstractions/src/Microsoft.AspNetCore.Authentication.Abstractions.csproj (in 637 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Authentication.Core/src/Microsoft.AspNetCore.Authentication.Core.csproj (in 637 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/OAuth/src/Microsoft.AspNetCore.Authentication.OAuth.csproj (in 636 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http/src/Microsoft.AspNetCore.Http.csproj (in 638 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj (in 35 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/Directory.Build.props(261,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/Directory.Build.props(261,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.24
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:11:13+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0 checkout -q -- .
+$ dotnet restore src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Extensions/Features/src/Microsoft.Extensions.Features.csproj (in 891 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/DataProtection/DataProtection/src/Microsoft.AspNetCore.DataProtection.csproj (in 973 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/WebUtilities/src/Microsoft.AspNetCore.WebUtilities.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Headers/src/Microsoft.Net.Http.Headers.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Authentication.Core/src/Microsoft.AspNetCore.Authentication.Core.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/DataProtection/Abstractions/src/Microsoft.AspNetCore.DataProtection.Abstractions.csproj (in 888 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http.Extensions/src/Microsoft.AspNetCore.Http.Extensions.csproj (in 894 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/WebEncoders/src/Microsoft.Extensions.WebEncoders.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/ObjectPool/src/Microsoft.Extensions.ObjectPool.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http/src/Microsoft.AspNetCore.Http.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http.Abstractions/src/Microsoft.AspNetCore.Http.Abstractions.csproj (in 891 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Http.Features/src/Microsoft.AspNetCore.Http.Features.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/DataProtection/Cryptography.Internal/src/Microsoft.AspNetCore.Cryptography.Internal.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Http/Authentication.Abstractions/src/Microsoft.AspNetCore.Authentication.Abstractions.csproj (in 893 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/Core/src/Microsoft.AspNetCore.Authentication.csproj (in 893 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/OAuth/src/Microsoft.AspNetCore.Authentication.OAuth.csproj (in 890 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Servers/Connections.Abstractions/src/Microsoft.AspNetCore.Connections.Abstractions.csproj (in 43 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.aspnetcore.authentication.openidconnect-9.0.0/src/Security/Authentication/OpenIdConnect/src/Microsoft.AspNetCore.Authentication.OpenIdConnect.csproj (in 65 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

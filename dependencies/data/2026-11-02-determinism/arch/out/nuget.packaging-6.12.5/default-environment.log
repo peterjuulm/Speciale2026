@@ -1,0 +1,60 @@
+start 2026-11-02T21:18:51+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  NuGet.Frameworks -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Configuration -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Configuration/bin/Release/netstandard2.0/NuGet.Configuration.dll
+  NuGet.Versioning -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.Packaging -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Packaging/bin/Release/netstandard2.0/NuGet.Packaging.dll
+  NuGet.Packaging -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Packaging/bin/Release/netcoreapp5.0/NuGet.Packaging.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:16.95
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 349 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 81 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 2 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 3 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 2 ms).
+  Successfully created package '/tmp/reprotest.cHOmQo/const_build_path/out/NuGet.Packaging.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.94
+
+  NuGet.Frameworks -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Configuration -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Configuration/bin/Release/netstandard2.0/NuGet.Configuration.dll
+  NuGet.Versioning -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Versioning/bin/Release/netstandard2.0/NuGet.Versioning.dll
+  NuGet.Packaging -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Packaging/bin/Release/netstandard2.0/NuGet.Packaging.dll
+  NuGet.Packaging -> /tmp/reprotest.cHOmQo/const_build_path/artifacts/NuGet.Packaging/bin/Release/netcoreapp5.0/NuGet.Packaging.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:01.14
+
+  Determining projects to restore...
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Versioning/NuGet.Versioning.csproj (in 153 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Packaging/NuGet.Packaging.csproj (in 43 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 2 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 2 ms).
+  Restored /tmp/reprotest.cHOmQo/const_build_path/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 2 ms).
+  Successfully created package '/tmp/reprotest.cHOmQo/const_build_path/out/NuGet.Packaging.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.35
+Binære filer /private/tmp/nupkg-determinism/out/nuget.packaging-6.12.5/default-environment-store/control/source-root/out/NuGet.Packaging.6.12.5-rc.32767.nupkg og /private/tmp/nupkg-determinism/out/nuget.packaging-6.12.5/default-environment-store/experiment-1/source-root/out/NuGet.Packaging.6.12.5-rc.32767.nupkg er forskellige
+end 2026-11-02T21:22:22+01:00 exit 1

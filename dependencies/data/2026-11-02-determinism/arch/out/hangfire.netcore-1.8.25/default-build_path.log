@@ -1,0 +1,58 @@
+start 2026-11-01T17:36:51+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Hangfire.NetCore/Hangfire.NetCore.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Hangfire.NetCore/Hangfire.NetCore.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/bin/Release/net451/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net451]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.NetCore/bin/Release/net451/Hangfire.NetCore.dll
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/bin/Release/net46/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net46]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.NetCore/bin/Release/net461/Hangfire.NetCore.dll
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/bin/Release/netstandard1.3/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard1.3]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.NetCore/bin/Release/netstandard1.3/Hangfire.NetCore.dll
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/bin/Release/netstandard2.0/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard2.0]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.NetCore/bin/Release/netstandard2.0/Hangfire.NetCore.dll
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.NetCore/bin/Release/netstandard2.1/Hangfire.NetCore.dll
+
+Build succeeded.
+
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net451]
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net46]
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard1.3]
+/tmp/reprotest.z9GnXp/const_build_path/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard2.0]
+    4 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:34.41
+  The package Hangfire.NetCore.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.z9GnXp/const_build_path/out/Hangfire.NetCore.1.0.0.nupkg'.
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/bin/Release/net451/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net451]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.NetCore/bin/Release/net451/Hangfire.NetCore.dll
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/bin/Release/net46/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net46]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.NetCore/bin/Release/net461/Hangfire.NetCore.dll
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/bin/Release/netstandard1.3/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard1.3]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.NetCore/bin/Release/netstandard1.3/Hangfire.NetCore.dll
+  Hangfire.Core -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/bin/Release/netstandard2.0/Hangfire.Core.dll
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard2.0]
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.NetCore/bin/Release/netstandard2.0/Hangfire.NetCore.dll
+  Hangfire.NetCore -> /tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.NetCore/bin/Release/netstandard2.1/Hangfire.NetCore.dll
+
+Build succeeded.
+
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net451]
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=net46]
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard1.3]
+/tmp/reprotest.z9GnXp/build-experiment-1/src/Hangfire.Core/Hangfire.Core.csproj(61,5): warning : Classes for Razor files (*.cshtml) weren't re-generated: couldn't find the '/../Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe' or '/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/MSBuild.exe' file [TargetFramework=netstandard2.0]
+    4 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:02:25.74
+  The package Hangfire.NetCore.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.z9GnXp/build-experiment-1/out/Hangfire.NetCore.1.0.0.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/hangfire.netcore-1.8.25/asis-build_path-store/control/source-root/out/Hangfire.NetCore.1.0.0.nupkg og /private/tmp/nupkg-determinism/out/hangfire.netcore-1.8.25/asis-build_path-store/experiment-1/source-root/out/Hangfire.NetCore.1.0.0.nupkg er forskellige
+end 2026-11-01T17:40:59+01:00 exit 1

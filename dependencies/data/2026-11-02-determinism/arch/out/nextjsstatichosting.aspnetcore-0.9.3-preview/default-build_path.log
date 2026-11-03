@@ -1,0 +1,28 @@
+start 2026-11-02T21:28:05+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NextjsStaticHosting.AspNetCore/NextjsStaticHosting.AspNetCore.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  NextjsStaticHosting.AspNetCore -> /tmp/reprotest.up59tq/const_build_path/src/NextjsStaticHosting.AspNetCore/bin/Release/net6.0/NextjsStaticHosting.AspNetCore.dll
+  NextjsStaticHosting.AspNetCore -> /tmp/reprotest.up59tq/const_build_path/src/NextjsStaticHosting.AspNetCore/bin/Release/net7.0/NextjsStaticHosting.AspNetCore.dll
+  NextjsStaticHosting.AspNetCore -> /tmp/reprotest.up59tq/const_build_path/src/NextjsStaticHosting.AspNetCore/bin/Release/net8.0/NextjsStaticHosting.AspNetCore.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.35
+  The package NextjsStaticHosting.AspNetCore.0.9.3-preview is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.up59tq/const_build_path/out/NextjsStaticHosting.AspNetCore.0.9.3-preview.nupkg'.
+  NextjsStaticHosting.AspNetCore -> /tmp/reprotest.up59tq/build-experiment-1/src/NextjsStaticHosting.AspNetCore/bin/Release/net6.0/NextjsStaticHosting.AspNetCore.dll
+  NextjsStaticHosting.AspNetCore -> /tmp/reprotest.up59tq/build-experiment-1/src/NextjsStaticHosting.AspNetCore/bin/Release/net7.0/NextjsStaticHosting.AspNetCore.dll
+  NextjsStaticHosting.AspNetCore -> /tmp/reprotest.up59tq/build-experiment-1/src/NextjsStaticHosting.AspNetCore/bin/Release/net8.0/NextjsStaticHosting.AspNetCore.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.75
+  The package NextjsStaticHosting.AspNetCore.0.9.3-preview is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.up59tq/build-experiment-1/out/NextjsStaticHosting.AspNetCore.0.9.3-preview.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/nextjsstatichosting.aspnetcore-0.9.3-preview/default-build_path-store/control/source-root/out/NextjsStaticHosting.AspNetCore.0.9.3-preview.nupkg og /private/tmp/nupkg-determinism/out/nextjsstatichosting.aspnetcore-0.9.3-preview/default-build_path-store/experiment-1/source-root/out/NextjsStaticHosting.AspNetCore.0.9.3-preview.nupkg er forskellige
+end 2026-11-02T21:28:35+01:00 exit 1

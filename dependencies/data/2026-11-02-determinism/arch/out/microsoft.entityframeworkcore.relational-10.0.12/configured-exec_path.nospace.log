@@ -1,0 +1,403 @@
+start 2026-11-02T18:36:29+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/efcore/src/EFCore.Relational/EFCore.Relational.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914 && dotnet pack src/efcore/src/EFCore.Relational/EFCore.Relational.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./SECURITY.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Wrote only 2048 of 2446 bytes
+tar: ./NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./prep-source-build.sh: Wrote only 2048 of 3283 bytes
+tar: ./CONTRIBUTING.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/init-cross-build.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/bootstrap/buildBootstrapPreviouslySB.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-validate-signing.yml: Wrote only 1024 of 1637 bytes
+tar: ./eng/pipelines/templates/steps/download-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/steps/vmr-compare.yml: Wrote only 8192 of 9216 bytes
+tar: ./eng/pipelines/templates/steps/download-vmr-artifact.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/source-build-and-validate.yml: Wrote only 512 of 3270 bytes
+tar: ./eng/pipelines/templates/stages/vmr-compare.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/templates/stages/vmr-build.yml: Wrote only 2560 of 3656 bytes
+tar: ./eng/pipelines/templates/stages/vmr-verticals.yml: Wrote only 3584 of 8663 bytes
+tar: ./eng/pipelines/pr.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/Usage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WritePackageUsageData.cs: Wrote only 8192 of 8704 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UsageReport/WriteUsageReports.cs: Wrote only 1536 of 3550 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/UpdateNuGetConfigPackageSourcesMappings.cs: Wrote only 5632 of 7842 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Config.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/RemoveInternetSourcesFromNuGetConfig.cs: Wrote only 1024 of 1708 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/PdbUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/RemoveBlockedAuditSourcesFromNuGetConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/WritePackageVersionsProps.cs: Wrote only 512 of 3973 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/GetKnownArtifactsFromAssetManifests.cs: Wrote only 3072 of 3180 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/CreateSourceArtifact.cs: Wrote only 4096 of 4151 bytes
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/Log.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/ReadRepoInfoFromSourceManifest.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.UnifiedBuild.Tasks/ReadNuGetPackageInfos.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/PoisonType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/tasks/Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/CatalogPackageEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/Pipelines.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/CreateBaselineUpdatePR/PRCreator.cs: Wrote only 3072 of 5423 bytes
+tar: ./eng/tools/CreateBaselineUpdatePR/GitClient.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/BuildComparer/SigningComparer.cs: Wrote only 3072 of 3361 bytes
+tar: ./eng/tools/BuildComparer/BuildComparer.cs: Wrote only 5120 of 10240 bytes
+tar: ./eng/tools/BuildComparer/Program.cs: Wrote only 4096 of 5009 bytes
+tar: ./eng/tools/BuildComparer/AssetComparer.cs: Wrote only 9728 of 10240 bytes
+tar: ./eng/tools/BuildComparer/AssetMapping.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/tools/ChangeValidation/Validation.cs: Wrote only 4096 of 5658 bytes
+tar: ./eng/Version.Details.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Tests.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/job.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/job/publish-build-assets.yml: Wrote only 8192 of 8704 bytes
+tar: ./eng/common/core-templates/job/source-build.yml: Wrote only 4096 of 5214 bytes
+tar: ./eng/common/core-templates/jobs/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/post-build/post-build.yml: Wrote only 8192 of 10240 bytes
+tar: ./eng/common/core-templates/steps/install-microbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-logs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/publish-build-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/retain-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/core-templates/steps/send-to-helix.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/pipeline-logging-functions.ps1: Wrote only 4608 of 4876 bytes
+tar: ./eng/common/init-tools-native.sh: Wrote only 4096 of 7326 bytes
+tar: ./eng/common/cross/tizen-build-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-rootfs.sh: Wrote only 1536 of 4142 bytes
+tar: ./eng/common/cross/x86/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/tizen/tizen.patch: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/SetupNugetSources.sh: Wrote only 1536 of 5620 bytes
+tar: ./eng/common/msbuild.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/onelocbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/publish-build-assets.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/source-index-stage1.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/jobs/codeql-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/post-build/common-variables.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/variables/pool-providers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/vmr-sync.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/enable-internal-runtimes.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/retain-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/generate-sbom.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/publish-pipeline-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/vmr-sync.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet-install.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/build.sh: Wrote only 2560 of 5804 bytes
+tar: ./eng/common/native/CommonLibrary.psm1: Wrote only 8192 of 10240 bytes
+tar: ./eng/common/native/install-tool.ps1: Wrote only 512 of 702 bytes
+tar: ./eng/common/native/init-compiler.sh: Wrote only 2048 of 2617 bytes
+tar: ./eng/common/native/common-library.sh: Wrote only 4096 of 4171 bytes
+tar: ./eng/common/sdl/init-sdl.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/trim-assets-version.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/sdl/packages.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/build.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/job/onelocbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/job/job.yml: Wrote only 3584 of 4106 bytes
+tar: ./eng/common/templates-official/job/publish-build-assets.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/job/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/jobs/jobs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/post-build/setup-maestro-vars.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/post-build/post-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/variables/pool-providers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/variables/sdl-variables.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/publish-build-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/generate-sbom.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/msbuild.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/sourcelink-validation.ps1: Wrote only 4096 of 7768 bytes
+tar: ./eng/common/post-build/nuget-verification.ps1: Wrote only 2560 of 2765 bytes
+tar: ./eng/common/post-build/symbols-validation.ps1: Wrote only 4608 of 8064 bytes
+tar: ./eng/common/post-build/check-channel-consistency.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/tools.ps1: Wrote only 1024 of 2674 bytes
+tar: ./eng/common/dotnet-install.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/GatherDrops.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/init-source-only.proj: Wrote only 4096 of 9728 bytes
+tar: ./eng/shared-source-only.targets: Wrote only 4096 of 5403 bytes
+tar: ./eng/signing-validation.proj: Wrote only 6656 of 10240 bytes
+tar: ./eng/build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/VmrLayout.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/vmr-msft-comparison-baseline.json: Wrote only 4096 of 5545 bytes
+tar: ./docs/VMR-Managing-SDK-Bands.md: Wrote only 2560 of 4923 bytes
+tar: ./docs/VMR-Controls.md: Wrote only 3584 of 4720 bytes
+tar: ./docs/images/synchronization-process.png: Wrote only 1536 of 10240 bytes
+tar: ./docs/images/continuity-conflict.png: Wrote only 3584 of 5206 bytes
+tar: ./.git/objects/pack/pack-d4fdb8b13408b804e27735cb00db1c394271d6a7.pack: Wrote only 7168 of 10240 bytes
+tar: ./src/vstest/test/Microsoft.TestPlatform.ObjectModel.UnitTests/TestCaseTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CrashingOnDebugAssertTestProject/DebugTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CrashingOnDebugAssertTestProject/CrashingOnDebugAssertTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CompatTestProject/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CompatTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/NetStandard2Library/NetStandard2Library.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/NetStandard2Library/Class1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/OutputtingTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/OutputtingTestProject/OutputtingTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/child-crash/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/child-crash/child-crash.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/XUTestProject/Class1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/XUTestProject/XUTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/TerminalLoggerTestProject/TerminalLoggerTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/TerminalLoggerTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MSTestProject1/MSTestProject1.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MSTestProject1/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/LegacySettingsUnitTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/LegacySettingsUnitTestProject/LegacySettingsUnitTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/LegacySettingsUnitTestProject/DeploymentFile.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/LegacySettingsUnitTestProject/DependencyAssembly/DependencyAssemblyForTest.dll: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/Tools/Tools.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/Tools/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/timeout/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/timeout/timeout.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ProjectFileRunSettingsTestProject/ProjectFileRunSettingsTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ProjectFileRunSettingsTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ProjectFileRunSettingsTestProject/fail.runsettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ProjectFileRunSettingsTestProject/inconclusive.runsettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ArchitectureSwitch/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ArchitectureSwitch/ArchitectureSwitch.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ConsoleRunners/ConsoleRunners.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/NewtonSoftDependency/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/NewtonSoftDependency/NewtonSoftDependency.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/NewtonSoftDependency/App.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ParametrizedTestProject/ParametrizedTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/ParametrizedTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MultitargetedNetFrameworkProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MultitargetedNetFrameworkProject/MultitargetedNetFrameworkProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MstestV1UnitTestProject/MstestV1UnitTestProjectTestSettings.testsettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MstestV1UnitTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MstestV1UnitTestProject/MstestV1UnitTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/RecursiveResourceLookupCrash/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/RecursiveResourceLookupCrash/RecursiveResourceLookupCrash.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MultiHostTestExecutionProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/MultiHostTestExecutionProject/MultiHostTestExecutionProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/crash/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/crash/crash.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/OutOfProcDataCollector/OutOfProcDataCollector.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/OutOfProcDataCollector/SampleDataCollector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SimpleTestProjectx86/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SimpleTestProjectx86/SimpleTestProjectx86.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CoverletCoverageTestProject/CoverletCoverageTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CoverletCoverageTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/PerfTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/PerfTestProject/PerfTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/UWPTestAssets/UnitTestApp8.build.appxrecipe: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/UWPTestAssets/AppxManifest.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/Microsoft.TestPlatform.Asset.NativeCPP.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/ConsoleNativeApp/ConsoleNativeApp.vcxproj.filters: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/ConsoleNativeApp/stdafx.h: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/ConsoleNativeApp/ConsoleNativeApp.cpp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/ConsoleNativeApp/stdafx.cpp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/ConsoleNativeApp/ConsoleNativeApp.vcxproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/ConsoleNativeApp/targetver.h: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/CPPSimpleProj/stdafx.h: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/CPPSimpleProj/stdafx.cpp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/CPPSimpleProj/CPPSimpleProj.vcxproj.filters: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/CPPSimpleProj/unittest1.cpp: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/CPPSimpleProj/CPPSimpleProj.vcxproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/CPPSimpleTestProject/CPPSimpleProj/targetver.h: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/AttachmentProcessorDataCollector/AttachmentProcessorDataCollector.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/AttachmentProcessorDataCollector/TestExtensionTypesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/AttachmentProcessorDataCollector/SampleDataCollector.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SimpleTestProject/SimpleTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SimpleTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SerializeTestRunTestProject/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SerializeTestRunTestProject/SerializeTestRunTestProject.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SimpleTestProjectMessedUpTargetFramework/UnitTest1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SimpleTestProjectMessedUpTargetFramework/SimpleTestProjectMessedUpTargetFramework.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/NonDll.TestAdapter/NonDll.TestAdapter.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/NonDll.TestAdapter/TestAdapter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/vstest/test/TestAssets/SimpleClassLibrary/Class1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 169756 lines, excerpt: first and last 200 ...]
+
+tar: ./src/sourcelink/src/SourceLink.Gitea/xlf/Resources.de.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Gitea/xlf/Resources.tr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Gitea/xlf/Resources.ru.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Gitea/xlf/Resources.fr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Gitea/build/Microsoft.SourceLink.Gitea.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/Utilities/TestUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/Utilities/GitUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/GitWebTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/GitLabTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/GiteeTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/AzureReposTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/TargetTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/GitUtilitiesTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/BitbucketGitTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/Microsoft.SourceLink.Git.IntegrationTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/AzureDevOpsServerTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/CloudHostedProvidersTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/THIRD-PARTY-NOTICES.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/GitHubTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Git.IntegrationTests/GiteaTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitLab.UnitTests/GetSourceLinkUrlTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitLab.UnitTests/Microsoft.SourceLink.GitLab.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitLab.UnitTests/TranslateRepositoryUrlsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitWeb.UnitTests/GetSourceLinkUrlTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitWeb.UnitTests/Microsoft.SourceLink.GitWeb.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitWeb.UnitTests/TranslateRepositoryUrlsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitHub.UnitTests/GetSourceLinkUrlTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitHub.UnitTests/TranslateRepositoryUrlsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.GitHub.UnitTests/Microsoft.SourceLink.GitHub.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/PathUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/SetsRequiredMembersAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/Names.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/ValueTuple.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/SequenceComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/UriUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/Range.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/Index.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/Hash.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/NullableAttributes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/IsExternalInit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/Utilities/RequiredMemberAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/GetSourceLinkUrlGitTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/Items.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/CommonResources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.ru.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.ko.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.fr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.pl.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.tr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.zh-Hant.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.cs.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.it.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.ja.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.pt-BR.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.zh-Hans.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.de.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/xlf/CommonResources.es.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/GitProvider/TranslateRepositoryUrlGitTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/AzureDevOps/Items.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Common/AzureDevOps/AzureDevOpsUrlParser.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git.UnitTests/GetSourceLinkUrlTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git.UnitTests/Microsoft.SourceLink.Bitbucket.Git.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git.UnitTests/TranslateRepositoryUrlsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/TranslateRepositoryUrls.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/Microsoft.SourceLink.Bitbucket.Git.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/buildMultiTargeting/Microsoft.SourceLink.Bitbucket.Git.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/buildMultiTargeting/Microsoft.SourceLink.Bitbucket.Git.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/GetSourceLinkUrl.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.ja.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.cs.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.pt-BR.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.zh-Hant.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.it.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.zh-Hans.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.ko.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.es.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.pl.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.de.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.tr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.ru.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/xlf/Resources.fr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/build/Microsoft.SourceLink.Bitbucket.Git.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.Bitbucket.Git/build/Microsoft.SourceLink.Bitbucket.Git.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.AzureRepos.Git.UnitTests/GetSourceLinkUrlTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.AzureRepos.Git.UnitTests/Microsoft.SourceLink.AzureRepos.Git.UnitTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.AzureRepos.Git.UnitTests/TranslateRepositoryUrlsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/SourceLink.AzureRepos.Git.UnitTests/AzureDevOpsUrlParserHostedTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/LocateRepository.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GetUntrackedFiles.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitOperations.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/buildTransitive/Microsoft.Build.Tasks.Git.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/buildTransitive/Microsoft.Build.Tasks.Git.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/Resources.resx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/buildMultiTargeting/Microsoft.Build.Tasks.Git.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/buildMultiTargeting/Microsoft.Build.Tasks.Git.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/Microsoft.Build.Tasks.Git.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/RepositoryTask.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitConfig.Reader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitRepository.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitEnvironment.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitIgnore.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitConfig.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/Glob.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitReferenceResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitIgnore.Matcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitSubmodule.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/PathUtils.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitRepositoryLocation.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/GitVariableName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/GitDataReader/CharUtils.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.ja.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.cs.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.pt-BR.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.zh-Hant.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.it.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.zh-Hans.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.ko.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.es.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.pl.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.de.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.tr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.ru.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/xlf/Resources.fr.xlf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/AssemblyResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/build/Microsoft.Build.Tasks.Git.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.Tasks.Git/build/Microsoft.Build.Tasks.Git.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.StandardCI/buildTransitive/Microsoft.Build.StandardCI.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.StandardCI/Microsoft.Build.StandardCI.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/src/Microsoft.Build.StandardCI/build/Microsoft.Build.StandardCI.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/sourcelink/.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:37:44+01:00 exit 125

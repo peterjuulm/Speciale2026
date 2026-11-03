@@ -1,0 +1,5 @@
+start 2026-11-02T19:58:55+01:00
+$ git clone -q --no-checkout https://github.com/microsoft/onnxruntime /private/tmp/nupkg-determinism/src/microsoft.ml.onnxruntime.managed-1.20.1
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.ml.onnxruntime.managed-1.20.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.ml.onnxruntime.managed-1.20.1 -c advice.detachedHead=false checkout -q 5c1b7ccbff7e5141c1da7a9d963d660e5741c319
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.ml.onnxruntime.managed-1.20.1 submodule update --init --recursive -q

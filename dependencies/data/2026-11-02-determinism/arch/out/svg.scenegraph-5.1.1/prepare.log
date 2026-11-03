@@ -1,0 +1,25 @@
+start 2026-11-01T12:19:03+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_wieslawsoltes_Svg.Skia.git /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 remote set-url origin https://github.com/wieslawsoltes/Svg.Skia
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 -c advice.detachedHead=false checkout -q 3261e036769d0deba1f621265c7ab7000e3ce470
+global.json: sdk-removed (pinned 10.0.100)
+start 2026-11-02T23:00:12+01:00
+$ git clone -q --no-checkout https://github.com/wieslawsoltes/Svg.Skia /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 -c advice.detachedHead=false checkout -q 3261e036769d0deba1f621265c7ab7000e3ce470
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 submodule update --init --recursive -q
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1 checkout -q -- .
+$ dotnet restore src/Svg.SceneGraph/Svg.SceneGraph.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1/externals/Svg.Generators/Svg.Generators.csproj (in 172 ms).
+  Restored /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1/src/ShimSkiaSharp/ShimSkiaSharp.csproj (in 172 ms).
+  Restored /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1/src/Svg.Custom/Svg.Custom.csproj (in 172 ms).
+  Restored /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1/src/Svg.Model/Svg.Model.csproj (in 172 ms).
+  Restored /private/tmp/nupkg-determinism/src/svg.scenegraph-5.1.1/src/Svg.SceneGraph/Svg.SceneGraph.csproj (in 172 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

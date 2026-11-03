@@ -1,0 +1,37 @@
+start 2026-11-01T14:56:39+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Serilog.Extensions.Logging/Serilog.Extensions.Logging.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1700001938 && dotnet pack src/Serilog.Extensions.Logging/Serilog.Extensions.Logging.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1700001938; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/const_build_path/src/Serilog.Extensions.Logging/bin/Release/net462/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/const_build_path/src/Serilog.Extensions.Logging/bin/Release/netstandard2.0/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/const_build_path/src/Serilog.Extensions.Logging/bin/Release/netstandard2.1/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/const_build_path/src/Serilog.Extensions.Logging/bin/Release/net6.0/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/const_build_path/src/Serilog.Extensions.Logging/bin/Release/net7.0/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/const_build_path/src/Serilog.Extensions.Logging/bin/Release/net8.0/Serilog.Extensions.Logging.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.36
+  Successfully created package '/tmp/reprotest.13MUae/const_build_path/out/Serilog.Extensions.Logging.8.0.0.nupkg'.
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/build-experiment-1/src/Serilog.Extensions.Logging/bin/Release/net462/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/build-experiment-1/src/Serilog.Extensions.Logging/bin/Release/netstandard2.0/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/build-experiment-1/src/Serilog.Extensions.Logging/bin/Release/netstandard2.1/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/build-experiment-1/src/Serilog.Extensions.Logging/bin/Release/net6.0/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/build-experiment-1/src/Serilog.Extensions.Logging/bin/Release/net7.0/Serilog.Extensions.Logging.dll
+  Serilog.Extensions.Logging -> /tmp/reprotest.13MUae/build-experiment-1/src/Serilog.Extensions.Logging/bin/Release/net8.0/Serilog.Extensions.Logging.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.58
+  Successfully created package '/tmp/reprotest.13MUae/build-experiment-1/out/Serilog.Extensions.Logging.8.0.0.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+c8e6f0418044e6e0e9a833978531db179efd60a5f0c2f43edf72d004c382934c  ./out/Serilog.Extensions.Logging.8.0.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T14:57:06+01:00 exit 0

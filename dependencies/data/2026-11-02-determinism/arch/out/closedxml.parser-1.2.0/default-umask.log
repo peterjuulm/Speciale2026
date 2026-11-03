@@ -1,0 +1,27 @@
+start 2026-11-03T00:54:07+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/ClosedXML.Parser/ClosedXML.Parser.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/ClosedXML.Parser/ClosedXML.Parser.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  ClosedXML.Parser -> /tmp/reprotest.Urnvqw/const_build_path/src/ClosedXML.Parser/bin/Release/netstandard2.0/ClosedXML.Parser.dll
+  ClosedXML.Parser -> /tmp/reprotest.Urnvqw/const_build_path/src/ClosedXML.Parser/bin/Release/netstandard2.1/ClosedXML.Parser.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.09
+  Successfully created package '/tmp/reprotest.Urnvqw/const_build_path/out/ClosedXML.Parser.1.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.Urnvqw/const_build_path/out/ClosedXML.Parser.1.2.0.snupkg'.
+  ClosedXML.Parser -> /tmp/reprotest.Urnvqw/const_build_path/src/ClosedXML.Parser/bin/Release/netstandard2.0/ClosedXML.Parser.dll
+  ClosedXML.Parser -> /tmp/reprotest.Urnvqw/const_build_path/src/ClosedXML.Parser/bin/Release/netstandard2.1/ClosedXML.Parser.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.13
+  Successfully created package '/tmp/reprotest.Urnvqw/const_build_path/out/ClosedXML.Parser.1.2.0.nupkg'.
+  Successfully created package '/tmp/reprotest.Urnvqw/const_build_path/out/ClosedXML.Parser.1.2.0.snupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/closedxml.parser-1.2.0/default-umask-store/control/source-root/out/ClosedXML.Parser.1.2.0.nupkg og /private/tmp/nupkg-determinism/out/closedxml.parser-1.2.0/default-umask-store/experiment-1/source-root/out/ClosedXML.Parser.1.2.0.nupkg er forskellige
+Binære filer /private/tmp/nupkg-determinism/out/closedxml.parser-1.2.0/default-umask-store/control/source-root/out/ClosedXML.Parser.1.2.0.snupkg og /private/tmp/nupkg-determinism/out/closedxml.parser-1.2.0/default-umask-store/experiment-1/source-root/out/ClosedXML.Parser.1.2.0.snupkg er forskellige
+end 2026-11-03T00:54:19+01:00 exit 1

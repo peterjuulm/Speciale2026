@@ -1,0 +1,37 @@
+start 2026-11-01T12:11:07+01:00
+$ git clone -q --mirror https://github.com/ScottPlot/ScottPlot /private/tmp/nupkg-determinism/mirrors/https_github.com_ScottPlot_ScottPlot.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_ScottPlot_ScottPlot.git /private/tmp/nupkg-determinism/src/scottplot-5.1.57
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 remote set-url origin https://github.com/ScottPlot/ScottPlot
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 -c advice.detachedHead=false checkout -q 1d442a85aa71a7b01e642b506113a8a1d7e339b0
+global.json: none
+start 2026-11-01T16:13:58+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_ScottPlot_ScottPlot.git /private/tmp/nupkg-determinism/src/scottplot-5.1.57
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 remote set-url origin https://github.com/ScottPlot/ScottPlot
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 -c advice.detachedHead=false checkout -q 1d442a85aa71a7b01e642b506113a8a1d7e339b0
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 checkout -q -- .
+$ dotnet restore src/ScottPlot5/ScottPlot5/ScottPlot.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/ScottPlot.csproj (in 205 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T22:35:51+01:00
+$ git clone -q --no-checkout https://github.com/ScottPlot/ScottPlot /private/tmp/nupkg-determinism/src/scottplot-5.1.57
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 -c advice.detachedHead=false checkout -q 1d442a85aa71a7b01e642b506113a8a1d7e339b0
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/scottplot-5.1.57 checkout -q -- .
+$ dotnet restore src/ScottPlot5/ScottPlot5/ScottPlot.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/scottplot-5.1.57/src/ScottPlot5/ScottPlot5/ScottPlot.csproj (in 213 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

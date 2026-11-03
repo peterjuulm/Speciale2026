@@ -1,0 +1,50 @@
+start 2026-11-01T10:07:57+01:00
+$ git -C /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1 checkout -q -- .
+$ dotnet restore sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj (in 132 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.1/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.1' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget/azure.communication.email/1.0.0/lib/netstandard2.0/Azure.Communication.Email.dll using assemblies from /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/artifacts/obj/Azure.Communication.Email/Release/netstandard2.0/
+  InheritDocTask replaced 24 of 24 inheritdoc tags and removed 6 private member docs in /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/artifacts/obj/Azure.Communication.Email/Release/netstandard2.0/Azure.Communication.Email.xml
+  Azure.Communication.Email -> /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/artifacts/bin/Azure.Communication.Email/Release/netstandard2.0/Azure.Communication.Email.dll
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/nuget/microsoft.codeanalysis.netanalyzers/7.0.1/build/Microsoft.CodeAnalysis.NetAnalyzers.targets(593,5): warning : The .NET SDK has newer analyzers with version '10.0.403' than what version '7.0.1' of 'Microsoft.CodeAnalysis.NetAnalyzers' package provides. Update or remove this package reference. [/private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj::TargetFramework=netstandard2.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.52
+  Found the following change log entry for version '1.0.1' in [/private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/sdk/communication/Azure.Communication.Email/CHANGELOG.md].
+  -----
+  ## 1.0.1 (2023-08-17)
+  
+  ### Other Changes
+  - Improve memory management for attachment handling
+   
+  -----
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/out/Azure.Communication.Email.1.0.1-alpha.20261101.1.nupkg'.
+  Successfully created package '/private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/out/Azure.Communication.Email.1.0.1-alpha.20261101.1.symbols.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T10:08:08+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1 checkout -q -- .
+$ dotnet restore sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/azure.communication.email-1.0.1/sdk/communication/Azure.Communication.Email/src/Azure.Communication.Email.csproj (in 126 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

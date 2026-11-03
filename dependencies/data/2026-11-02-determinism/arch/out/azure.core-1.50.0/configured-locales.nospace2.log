@@ -1,0 +1,78 @@
+start 2026-11-03T00:16:41+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762446670 && dotnet pack sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762446670; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/netstandard2.0/Azure.Core.dll using assemblies from /tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/net8.0/
+  InheritDocTask replaced 199 of 199 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/net8.0/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.aWFVoZ/const_build_path/artifacts/bin/Azure.Core/Release/net8.0/Azure.Core.dll
+CSC : error CS1569: Error writing to XML documentation file: No space left on device : '/tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/netstandard2.0/Azure.Core.xml' [/tmp/reprotest.aWFVoZ/const_build_path/sdk/core/Azure.Core/src/Azure.Core.csproj::TargetFramework=netstandard2.0]
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/net462/Azure.Core.dll using assemblies from /tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/net462/
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/net462/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.aWFVoZ/const_build_path/artifacts/bin/Azure.Core/Release/net462/Azure.Core.dll
+  Ran ApiCompat against /private/tmp/nupkg-determinism/nuget//azure.core/1.49.0/lib/net472/Azure.Core.dll using assemblies from /tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/net472/
+  InheritDocTask replaced 198 of 198 inheritdoc tags and removed 33 private member docs in /tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/net472/Azure.Core.xml
+  Azure.Core -> /tmp/reprotest.aWFVoZ/const_build_path/artifacts/bin/Azure.Core/Release/net472/Azure.Core.dll
+
+Build FAILED.
+
+CSC : error CS1569: Error writing to XML documentation file: No space left on device : '/tmp/reprotest.aWFVoZ/const_build_path/artifacts/obj/Azure.Core/Release/netstandard2.0/Azure.Core.xml' [/tmp/reprotest.aWFVoZ/const_build_path/sdk/core/Azure.Core/src/Azure.Core.csproj::TargetFramework=netstandard2.0]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:45.82
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.aWFVoZ/build-control-aux && \
+    mv /tmp/reprotest.aWFVoZ/build-control/ /tmp/reprotest.aWFVoZ/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.aWFVoZ/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762446670 && dotnet pack sdk/core/Azure.Core/src/Azure.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1762446670; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.aWFVoZ/const_build_path /tmp/reprotest.aWFVoZ/build-control/ || __c=$?; \
+    rm -rf /tmp/reprotest.aWFVoZ/build-control-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-11-03T00:17:58+01:00 exit 125

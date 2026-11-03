@@ -1,0 +1,42 @@
+start 2026-11-01T08:43:29+01:00
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 checkout -q -- .
+$ dotnet restore src/GuardClauses/GuardClauses.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj (in 254 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/GuardClauses/GuardClauses.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/GuardClauses/GuardClauses.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardAgainstNullExtensions.cs(217,48): warning CS8604: Possible null reference argument for parameter 'x' in 'bool EqualityComparer<T>.Equals(T x, T y)'. [/private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj::TargetFramework=netstandard2.1]
+  GuardClauses -> /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/bin/Release/netstandard2.1/Ardalis.GuardClauses.dll
+  GuardClauses -> /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/bin/Release/net8.0/Ardalis.GuardClauses.dll
+  GuardClauses -> /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/bin/Release/netstandard2.0/Ardalis.GuardClauses.dll
+  Successfully created package '/private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/bin/Release/Ardalis.GuardClauses.5.0.0.nupkg'.
+
+Build succeeded.
+
+/private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardAgainstNullExtensions.cs(217,48): warning CS8604: Possible null reference argument for parameter 'x' in 'bool EqualityComparer<T>.Equals(T x, T y)'. [/private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj::TargetFramework=netstandard2.1]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.55
+  Successfully created package '/private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/out/Ardalis.GuardClauses.5.0.0.nupkg'.
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-01T08:43:40+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0 checkout -q -- .
+$ dotnet restore src/GuardClauses/GuardClauses.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/ardalis.guardclauses-5.0.0/src/GuardClauses/GuardClauses.csproj (in 126 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

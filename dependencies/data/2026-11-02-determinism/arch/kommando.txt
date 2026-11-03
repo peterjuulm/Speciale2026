@@ -1,0 +1,22 @@
+# 1 November 2026, lab /private/tmp/nupkg-determinism, driver experiments/nupkg/determinism.py, recipes recipes/determinism/2026-11-01-determinism (157), plan notes/2026-10-28-determinism-plan.md
+python3 -I install-sdk.py 10.0.403 /private/tmp/nupkg-determinism/sdk
+python3 -I determinism.py environment /private/tmp/nupkg-determinism
+# pilot (3 recipes in recipes/determinism/2026-11-01-pilot), 08:45 to 10:05: screen, asis-all, asis-each, configured-each
+# full run, started 2026-11-01T09:23:02+01:00:
+for step in screen asis-all asis-each configured-each; do python3 -I determinism.py batch recipes/determinism/2026-11-01-determinism /private/tmp/nupkg-determinism $step; done
+python3 -I determinism.py classify /private/tmp/nupkg-determinism results.tsv
+# restarted 2026-11-01T09:56:00+01:00 after fixing global.json re-checkout, mirrors env, and adding excluded.tsv (53 of batch 3's 55 known failures excluded up front, 2 re-screened as samples)
+# restarted 2026-11-01T10:06:15+01:00: pwsh 7.6.9 added to the lab (dotnet tool, LAB/tools) after the Azure SDK gate failed on a missing pwsh; the pwsh-failed rows deleted and run again
+# restarted 2026-11-01T10:24:56+01:00: NUGET_PACKAGES now ends with a slash (ExCSS failed the SourceRoot check); excss row deleted and run again
+# restarted 2026-11-01T11:05:17+01:00 after the disk filled (106 GB of full clones): clones now share the mirror's objects and are dropped after each package; steps are pass-a (screen + all axes at once) then pass-b (per axis, configured for what differed)
+for step in pass-a pass-b; do python3 -I determinism.py batch recipes/determinism/2026-11-01-determinism /private/tmp/nupkg-determinism $step; done
+# restarted 2026-11-01T11:08:15+01:00: shared clones now set origin to the real repository URL (Arcade needs RepositoryUrl); rows screened after 11:05 with the mirror path as origin run again
+# 2026-11-01T12:02:34+01:00: nodatime-3.2.0 pass-a run by hand after the mirror fetched its commit on request (the commit is on no branch or tag)
+# 2026-11-01T12:18:15+01:00: clones now initialise submodules (SixLabors.Fonts failed on a missing submodule); its row deleted, screened again in pass B
+# 2026-11-01T14:42:35+01:00: pass B as four workers over disjoint sets (lab/workers/w1..w4; w1 = Roslyn, EF Core, msbuild, symreader); configured runs limited to content differences plus the time axis
+for w in 1 2 3 4; do python3 -I determinism.py batch /private/tmp/nupkg-determinism/workers/w$w /private/tmp/nupkg-determinism pass-b & done
+# 2026-11-02T06:57:45+01:00: worker w1 pass-b DONE (last: the four heavy Roslyn packages); 06:58 finalize.sh: recompare, classify -> results.tsv (1103 rows), determinism-summary.py -> summary.md/packages.tsv, text-only copy of out/ (2604 files, 32 MB, no binaries)
+# 2026-11-02T17:43:38+01:00: night run started, clean build-and-compare.py (dotnet-rebuild-experiments) over population.tsv (224 ok rows), four slices + roslyn tails; 47 excluded and workspaces.msbuild retired to LAB/retired
+# 2026-11-03T00:06:45+01:00: /tmp had been 98 % full all night (29 GB scratch clones from the 11:40 population check, deleted now); 448 runs and 5 screens had failed on ENOSPC. Failed runs removed from state (old logs kept as *.nospace.log), the 5 screens moved to retired/*-nospace, 8 states outside population.tsv retired; rerun as four slices rerun-1..4.tsv, logs rerun-w1..4.log
+# 2026-11-03T06:49:57+01:00: 38 runs (14 packages) failed on ENOSPC again, four reprotest copies of the Roslyn/EF Core trees at once exceed the 31 GB tmpfs; those runs removed from state (logs kept as *.nospace2.log) and rerun with TMPDIR=/private/tmp/nupkg-determinism/tmp (reprotest's build copies on disk), slices rerun2-1..4.tsv, logs rerun2-w1..4.log
+# 2026-11-03T07:55:15+01:00: two runs left failed in the third run (Azure.Core configured:environment, a reprotest copydown timeout under four workers; KeyVault.Certificates configured:umask, removed from state after its worker had passed it); removed from state (logs *.nospace3.log) and run as rerun3.tsv on one worker

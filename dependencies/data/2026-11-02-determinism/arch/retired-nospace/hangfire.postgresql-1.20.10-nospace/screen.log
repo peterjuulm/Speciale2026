@@ -1,0 +1,61 @@
+start 2026-11-02T17:56:12+01:00
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10 checkout -q -- .
+$ dotnet restore src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj (in 2,18 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003: The specified task executable "sh" could not be run. System.IO.IOException: No space left on device : '/tmp/MSBuildTempCDJNVf/tmpde555a4f17de4e74ba731e1bd18a6756.exec.cmd' [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.RandomAccess.WriteAtOffset(SafeFileHandle handle, ReadOnlySpan`1 buffer, Int64 fileOffset) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Strategies.OSFileStreamStrategy.Write(ReadOnlySpan`1 buffer) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Strategies.BufferedFileStreamStrategy.Flush(Boolean flushToDisk) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Strategies.BufferedFileStreamStrategy.Dispose(Boolean disposing) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Stream.Close() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.StreamWriter.CloseStreamFromDispose(Boolean disposing) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.StreamWriter.Dispose(Boolean disposing) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.TextWriter.Dispose() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Tasks.Exec.CreateTemporaryBatchFile() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Tasks.Exec.AddCommandLineCommands(CommandLineBuilderExtension commandLine) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Tasks.ToolTaskExtension.GenerateCommandLineCommands() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Utilities.ToolTask.Execute() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003: The specified task executable "sh" could not be run. System.IO.IOException: No space left on device : '/tmp/MSBuildTempCDJNVf/tmpde555a4f17de4e74ba731e1bd18a6756.exec.cmd' [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.RandomAccess.WriteAtOffset(SafeFileHandle handle, ReadOnlySpan`1 buffer, Int64 fileOffset) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Strategies.OSFileStreamStrategy.Write(ReadOnlySpan`1 buffer) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Strategies.BufferedFileStreamStrategy.Flush(Boolean flushToDisk) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Strategies.BufferedFileStreamStrategy.Dispose(Boolean disposing) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.Stream.Close() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.StreamWriter.CloseStreamFromDispose(Boolean disposing) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.StreamWriter.Dispose(Boolean disposing) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at System.IO.TextWriter.Dispose() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Tasks.Exec.CreateTemporaryBatchFile() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Tasks.Exec.AddCommandLineCommands(CommandLineBuilderExtension commandLine) [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Tasks.ToolTaskExtension.GenerateCommandLineCommands() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+/private/tmp/nupkg-determinism/nuget/gitversion.msbuild/5.11.1/tools/GitVersion.MsBuild.targets(9,9): error MSB6003:    at Microsoft.Build.Utilities.ToolTask.Execute() [/private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.55
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T17:56:18+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10 checkout -q -- .
+$ dotnet restore src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/hangfire.postgresql-1.20.10/src/Hangfire.PostgreSql/Hangfire.PostgreSql.csproj (in 152 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

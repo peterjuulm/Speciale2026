@@ -1,0 +1,35 @@
+start 2026-11-01T15:09:55+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/efcore/src/EFCore.InMemory/EFCore.InMemory.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  EFCore.Abstractions -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore.Abstractions/Release/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+  EFCore.Analyzers -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore.Analyzers/Release/netstandard2.0/Microsoft.EntityFrameworkCore.Analyzers.dll
+  EFCore -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore/Release/net10.0/Microsoft.EntityFrameworkCore.dll
+  EFCore.InMemory -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore.InMemory/Release/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:09.43
+
+  Successfully created package '/tmp/reprotest.wLr2TA/const_build_path/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.nupkg'.
+  Successfully created package '/tmp/reprotest.wLr2TA/const_build_path/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.symbols.nupkg'.
+
+  EFCore.Abstractions -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore.Abstractions/Release/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+  EFCore.Analyzers -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore.Analyzers/Release/netstandard2.0/Microsoft.EntityFrameworkCore.Analyzers.dll
+  EFCore -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore/Release/net10.0/Microsoft.EntityFrameworkCore.dll
+  EFCore.InMemory -> /tmp/reprotest.wLr2TA/const_build_path/src/efcore/artifacts/bin/EFCore.InMemory/Release/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:24.96
+
+  Successfully created package '/tmp/reprotest.wLr2TA/const_build_path/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.nupkg'.
+  Successfully created package '/tmp/reprotest.wLr2TA/const_build_path/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.symbols.nupkg'.
+Binære filer /private/tmp/nupkg-determinism/out/microsoft.entityframeworkcore.inmemory-10.0.12/asis-environment-store/control/source-root/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.nupkg og /private/tmp/nupkg-determinism/out/microsoft.entityframeworkcore.inmemory-10.0.12/asis-environment-store/experiment-1/source-root/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.nupkg er forskellige
+Binære filer /private/tmp/nupkg-determinism/out/microsoft.entityframeworkcore.inmemory-10.0.12/asis-environment-store/control/source-root/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.symbols.nupkg og /private/tmp/nupkg-determinism/out/microsoft.entityframeworkcore.inmemory-10.0.12/asis-environment-store/experiment-1/source-root/out/Microsoft.EntityFrameworkCore.InMemory.10.0.12-dev.symbols.nupkg er forskellige
+end 2026-11-01T15:13:14+01:00 exit 1

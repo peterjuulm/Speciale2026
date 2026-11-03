@@ -1,0 +1,33 @@
+start 2026-11-02T19:45:25+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Microsoft.FeatureManagement/Microsoft.FeatureManagement.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1776927064 && dotnet pack src/Microsoft.FeatureManagement/Microsoft.FeatureManagement.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1776927064; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.FeatureManagement -> /tmp/reprotest.z9gESa/const_build_path/src/Microsoft.FeatureManagement/bin/Release/netstandard2.0/Microsoft.FeatureManagement.dll
+  Microsoft.FeatureManagement -> /tmp/reprotest.z9gESa/const_build_path/src/Microsoft.FeatureManagement/bin/Release/netstandard2.1/Microsoft.FeatureManagement.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:11.60
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/tmp/reprotest.z9gESa/const_build_path/src/Microsoft.FeatureManagement/Microsoft.FeatureManagement.csproj]
+  The package Microsoft.FeatureManagement.4.9999.9999 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.z9gESa/const_build_path/out/Microsoft.FeatureManagement.4.9999.9999.nupkg'.
+  Microsoft.FeatureManagement -> /tmp/reprotest.z9gESa/const_build_path/src/Microsoft.FeatureManagement/bin/Release/netstandard2.0/Microsoft.FeatureManagement.dll
+  Microsoft.FeatureManagement -> /tmp/reprotest.z9gESa/const_build_path/src/Microsoft.FeatureManagement/bin/Release/netstandard2.1/Microsoft.FeatureManagement.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:17.64
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/NuGet.Build.Tasks.Pack.targets(226,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [/tmp/reprotest.z9gESa/const_build_path/src/Microsoft.FeatureManagement/Microsoft.FeatureManagement.csproj]
+  The package Microsoft.FeatureManagement.4.9999.9999 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.z9gESa/const_build_path/out/Microsoft.FeatureManagement.4.9999.9999.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+0c78cdebbf905704fce5a0d8c0c5ca1f33aa116b70e4250a9637954741bb41fd  ./out/Microsoft.FeatureManagement.4.9999.9999.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T19:46:01+01:00 exit 0

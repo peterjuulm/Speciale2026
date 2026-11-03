@@ -1,0 +1,20 @@
+start 2026-11-02T21:39:33+01:00
+$ git clone -q --no-checkout https://github.com/JamesNK/Newtonsoft.Json /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4
+$ git -C /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4 -c advice.detachedHead=false checkout -q 4e13299d4b0ec96bd4df9954ef646bd2d1b5bf2a
+start 2026-11-03T05:58:23+01:00
+$ git clone -q --no-checkout https://github.com/JamesNK/Newtonsoft.Json /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4
+$ git -C /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4 -c advice.detachedHead=false checkout -q 4e13299d4b0ec96bd4df9954ef646bd2d1b5bf2a
+$ git -C /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4 checkout -q -- .
+$ dotnet restore Src/Newtonsoft.Json/Newtonsoft.Json.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4/Src/Newtonsoft.Json/Newtonsoft.Json.csproj::TargetFramework=netstandard1.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4/Src/Newtonsoft.Json/Newtonsoft.Json.csproj::TargetFramework=netstandard1.3]
+  Restored /private/tmp/nupkg-determinism/src/newtonsoft.json-13.0.4/Src/Newtonsoft.Json/Newtonsoft.Json.csproj (in 314 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

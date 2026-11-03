@@ -1,0 +1,403 @@
+start 2026-11-02T18:10:00+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/libraries/Microsoft.Bcl.AsyncInterfaces/src/Microsoft.Bcl.AsyncInterfaces.csproj -c Release --no-build -o out -p:UseSharedCompilation=false; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./CONTRIBUTING.md: Wrote only 5120 of 7512 bytes
+tar: ./artifacts/obj/LibraryImportGenerator/project.assets.json: Wrote only 2560 of 6851 bytes
+tar: ./artifacts/obj/LibraryImportGenerator/project.nuget.cache: Wrote only 1536 of 2272 bytes
+tar: ./artifacts/obj/Microsoft.Interop.SourceGeneration/project.assets.json: Wrote only 2048 of 10240 bytes
+tar: ./artifacts/obj/Microsoft.Interop.SourceGeneration/project.nuget.cache: Wrote only 1536 of 2711 bytes
+tar: ./artifacts/obj/Microsoft.Bcl.AsyncInterfaces/project.assets.json: Wrote only 2048 of 2749 bytes
+tar: ./eng/pipelines/official/jobs/prepare-signed-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/global-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/common/evaluate-changed-paths.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/common/evaluate-default-paths.yml: Wrote only 8192 of 9216 bytes
+tar: ./eng/pipelines/common/templates/disable-vsupdate-or-failfast.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/common/templates/runtimes/run-test-job.yml: Wrote only 4096 of 7356 bytes
+tar: ./eng/pipelines/common/entitlements.plist: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/common/platform-matrix.yml: Wrote only 7680 of 10240 bytes
+tar: ./eng/pipelines/coreclr/exploratory.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/coreclr/r2r-extra.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/coreclr/crossgen2-composite.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/coreclr/superpmi-diffs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/coreclr/templates/build-perf-sample-apps.yml: Wrote only 1024 of 5006 bytes
+tar: ./eng/pipelines/coreclr/templates/run-scenarios-job.yml: Wrote only 4608 of 8251 bytes
+tar: ./eng/pipelines/coreclr/templates/build-perf-bdn-app.yml: Wrote only 7680 of 8794 bytes
+tar: ./eng/pipelines/coreclr/jitrollingbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/coreclr/libraries-jitstress2-jitstressregs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/coreclr/jitstress2-jitstressregs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/installer/jobs/steps/build-linux-package.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/get-changed-darc-deps.py: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/runtime-wasm-non-libtests.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/libraries/stress/http.yml: Wrote only 2048 of 2333 bytes
+tar: ./eng/pipelines/mono/templates/generate-offsets.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/mono/templates/xplat-pipeline-job.yml: Wrote only 4096 of 4772 bytes
+tar: ./eng/CodeAnalysis.test.globalconfig: Wrote only 7680 of 10240 bytes
+tar: ./eng/TraversalSdk.AfterTargets.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Version.Details.xml: Wrote only 2048 of 7521 bytes
+tar: ./eng/testing/RunnerTemplate.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/testing/runtimeConfiguration.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/testing/tests.targets: Wrote only 512 of 2549 bytes
+tar: ./eng/testing/WasiRunnerTemplate.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/testing/gen-debug-dump-docs.py: Wrote only 4096 of 4181 bytes
+tar: ./eng/testing/helix-extension-example.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/testing/tests.ioslike.targets: Wrote only 2048 of 2534 bytes
+tar: ./eng/testing/linker/trimmingTests.targets: Wrote only 1024 of 8582 bytes
+tar: ./eng/testing/linker/SupportFiles/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/testing/scenarios/BuildWasmAppsJobsList.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/testing/workloads-testing.targets: Wrote only 512 of 3269 bytes
+tar: ./eng/testing/AppleRunnerTemplate.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/testing/performance/microbenchmarks.proj: Wrote only 2560 of 5162 bytes
+tar: ./eng/testing/performance/crossgen_perf.proj: Wrote only 1024 of 1829 bytes
+tar: ./eng/Subsets.props: Wrote only 5120 of 8425 bytes
+tar: ./eng/install-native-dependencies.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cibuild.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-android-rootfs.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/armel/sources.list.jessie: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/build-rootfs.sh: Wrote only 2048 of 2607 bytes
+tar: ./eng/common/cross/x86/sources.list.jammy: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm/sources.list.jammy: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/ppc64le/sources.list.bionic: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.focal: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/cross/arm64/sources.list.buster: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/init-tools-native.ps1: Wrote only 1024 of 4881 bytes
+tar: ./eng/common/SetupNugetSources.sh: Wrote only 2048 of 5621 bytes
+tar: ./eng/common/templates/job/execute-sdl.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/post-build/common-variables.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/execute-sdl.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/run-script-ifequalelse.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/telemetry-start.yml: Wrote only 4096 of 6144 bytes
+tar: ./eng/common/dotnet-install.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/loc/P22DotNetHtmlLocalization.lss: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/install-tool.ps1: Wrote only 4096 of 4286 bytes
+tar: ./eng/common/sdl/execute-all-sdl-tools.ps1: Wrote only 1024 of 4953 bytes
+tar: ./eng/common/sdl/trim-assets-version.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/add-build-to-channel.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/post-build/nuget-validation.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/CIBuild.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/tools.ps1: Wrote only 3072 of 3340 bytes
+tar: ./eng/native/functions.cmake: Wrote only 512 of 3033 bytes
+tar: ./eng/native/init-distro-rid.sh: Wrote only 4096 of 4405 bytes
+tar: ./eng/native/version/_version.h: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/codeOptimization.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/codecov.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/tools/illink/error-codes.md: Wrote only 2560 of 5326 bytes
+tar: ./docs/tools/illink/custom-steps.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/issue-mappings/corefx.mapping.txt: Wrote only 7168 of 10240 bytes
+tar: ./docs/issue-mappings/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/issue-mappings/coreclr.mapping.txt: Wrote only 4096 of 8552 bytes
+tar: ./docs/area-owners.md: Wrote only 4096 of 7887 bytes
+tar: ./docs/project/profiling-api-status.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/project/list-of-diagnostics.md: Wrote only 7680 of 7895 bytes
+tar: ./docs/project/issue-guide.md: Wrote only 3584 of 6763 bytes
+tar: ./docs/project/pcl-targets-dialog-net46-aspnetcore10.png: Wrote only 4608 of 7452 bytes
+tar: ./docs/design/tools/illink/trimmed-assemblies.md: Wrote only 512 of 10240 bytes
+tar: ./docs/design/tools/illink/compiler-generated-code-handling.md: Wrote only 2048 of 6043 bytes
+tar: ./docs/design/coreclr/botr/guide-for-porting.md: Wrote only 7168 of 9748 bytes
+tar: ./docs/design/coreclr/botr/images/profiling-exception-callback-sequence.png: Wrote only 3584 of 10240 bytes
+tar: ./docs/design/coreclr/botr/images/stack.png: Wrote only 7168 of 10240 bytes
+tar: ./docs/design/coreclr/botr/images/profiling-overview.png: Wrote only 512 of 2643 bytes
+tar: ./docs/design/coreclr/botr/profilability.md: Wrote only 8192 of 10240 bytes
+tar: ./docs/design/coreclr/botr/mixed-mode.md: Wrote only 3072 of 3128 bytes
+tar: ./docs/design/coreclr/botr/method-descriptor.md: Wrote only 8704 of 10240 bytes
+tar: ./docs/design/coreclr/botr/type-loader.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/design/coreclr/botr/clr-abi.md: Wrote only 9216 of 10240 bytes
+tar: ./docs/design/coreclr/botr/readytorun-format.md: Wrote only 8192 of 9654 bytes
+tar: ./docs/design/coreclr/jit/object-stack-allocation.md: Wrote only 3072 of 10240 bytes
+tar: ./docs/design/coreclr/jit/images/ryujit-initial-phases.png: Wrote only 512 of 526 bytes
+tar: ./docs/design/coreclr/jit/images/TwoClassesInterface.JPG: Wrote only 3584 of 6697 bytes
+tar: ./docs/design/coreclr/jit/images/ryujit-high-level-overview.png: Wrote only 1024 of 10240 bytes
+tar: ./docs/design/coreclr/jit/images/ThreeClassesDevirtFull.JPG: Wrote only 5632 of 10240 bytes
+tar: ./docs/design/coreclr/jit/images/ThreeClassesInterface.JPG: Wrote only 4608 of 5926 bytes
+tar: ./docs/design/coreclr/jit/images/TwoClassesDevirt.JPG: Wrote only 6656 of 9009 bytes
+tar: ./docs/design/coreclr/jit/images/ryujit-lir.png: Wrote only 3072 of 10240 bytes
+tar: ./docs/design/coreclr/jit/images/GreenNode_WriteTo_CallGraph.png: Wrote only 1536 of 5475 bytes
+tar: ./docs/design/coreclr/jit/images/ThreeClassesDevirt.JPG: Wrote only 4096 of 4528 bytes
+tar: ./docs/design/coreclr/jit/ryujit-tutorial.md: Wrote only 5120 of 6352 bytes
+tar: ./docs/design/coreclr/jit/variabletracking.md: Wrote only 9216 of 10240 bytes
+tar: ./docs/design/coreclr/jit/JitOptimizerPlanningGuide.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/design/coreclr/jit/inline-size-estimates.md: Wrote only 8192 of 8266 bytes
+tar: ./docs/design/coreclr/jit/multi-reg-call-nodes.md: Wrote only 5120 of 8431 bytes
+tar: ./docs/design/coreclr/jit/hot-cold-splitting.md: Wrote only 5632 of 6203 bytes
+tar: ./docs/design/coreclr/jit/JitOptimizerTodoAssessment.md: Wrote only 4096 of 5632 bytes
+tar: ./docs/design/libraries/LibraryImportGenerator/SpanMarshallers.md: Wrote only 512 of 2566 bytes
+tar: ./docs/design/libraries/LibraryImportGenerator/StructMarshalling.md: Wrote only 5632 of 10240 bytes
+tar: ./docs/design/libraries/LibraryImportGenerator/UserTypeMarshallingV2.md: Wrote only 4096 of 10240 bytes
+tar: ./docs/design/libraries/ComInterfaceGenerator/VTableStubs.md: Wrote only 9728 of 10240 bytes
+tar: ./docs/design/mono/components.md: Wrote only 4096 of 8024 bytes
+tar: ./docs/design/mono/webcil.md: Wrote only 2560 of 5071 bytes
+tar: ./docs/design/mono/mono-thread-state-machine.md: Wrote only 7680 of 10240 bytes
+tar: ./docs/design/mono/jiterpreter.md: Wrote only 2048 of 5096 bytes
+tar: ./docs/design/mono/wasm-aot.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/design/mono/diagnostics-tracing.md: Wrote only 1024 of 2246 bytes
+tar: ./docs/issue-cleanup.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/coding-guidelines/breaking-change-definitions.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/coding-guidelines/framework-design-guidelines-digest.md: Wrote only 7680 of 7903 bytes
+tar: ./docs/coding-guidelines/code-formatting-tools.md: Wrote only 4096 of 5533 bytes
+tar: ./docs/coding-guidelines/project-guidelines.md: Wrote only 2048 of 4855 bytes
+tar: ./docs/coding-guidelines/api-guidelines/nullability.md: Wrote only 6144 of 7186 bytes
+tar: ./docs/coding-guidelines/clr-jit-coding-conventions.md: Wrote only 2560 of 10240 bytes
+tar: ./docs/coding-guidelines/coding-style.md: Wrote only 4096 of 6144 bytes
+tar: ./docs/coding-guidelines/mono-code-guide.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/coding-guidelines/vectorization-guidelines.md: Wrote only 8192 of 10240 bytes
+tar: ./docs/coding-guidelines/vs-cpp-formatting.png: Wrote only 1536 of 7495 bytes
+tar: ./.git/objects/pack/pack-043f0458671a895d552eb6999da1961a36119c19.rev: Wrote only 3072 of 10240 bytes
+tar: ./.git/objects/pack/pack-043f0458671a895d552eb6999da1961a36119c19.pack: Wrote only 2048 of 10240 bytes
+tar: ./.git/objects/pack/pack-043f0458671a895d552eb6999da1961a36119c19.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.TXT: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./THIRD-PARTY-NOTICES.TXT: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Solution.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Build.proj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/02_api_proposal.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/05_blank_issue.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/03_performance_issue.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/04_ci_known_issue.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/01_bug_report.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/move.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/markdownlint-problem-matcher.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/check-service-labels.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/backport.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/aspnetcore-sync-checkdiff.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/markdownlint.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/aspnetcore-sync.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/CODEOWNERS: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/PULL_REQUEST_TEMPLATE/servicing_pull_request_template.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/fabricbot.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/scripts/onCreateCommand.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/scripts/postCreateCommand.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/libraries/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/libraries/Dockerfile: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/wasm/devcontainer.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.devcontainer/wasm/Dockerfile: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CODE-OF-CONDUCT.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./dotnet.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/tools/illink/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+
+[... 56293 lines, excerpt: first and last 200 ...]
+
+tar: ./src/mono/wasm/runtime/pthreads/shared/emscripten-replacements.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/shared/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/worker/events.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/worker/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/worker/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pthreads/browser/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/v8.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/internal.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/export-types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/consts.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/emscripten.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/node.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/types/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/tsconfig.worker.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-opcodes.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/cancelable-promise.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports-linker.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports-internal.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/satelliteAssemblies.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/http.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/cwraps.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-support.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/collations.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/helpers.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/calendar.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/culture-info.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/change-case.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/hybrid-globalization/locales.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/diagnostic-server.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/create-session.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/shared/controller-commands.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/streaming-session.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/protocol-client-commands.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/protocol-socket.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/socket-connection.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/common-socket.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/mock-remote.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/stream-queue.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/base-parser.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/parser.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/base-serializer.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/magic.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/server_pthread/ipc-protocol/serializer.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/environment.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/tsconfig.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/export-types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/mock/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics/browser/controller.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/dotnet.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/snapshot.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports-binding.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/.eslintignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/package-lock.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/wasm-config.h.in: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-interp-entry.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/memory.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/corebindings.c: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/diagnostics-mock.d.ts.sha256: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/CMakeLists.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/queue.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/pinvoke.c: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/lazyLoading.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/marshal-to-js.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/invoke-cs.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/gc-lock.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/gc-common.h: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/globals.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/exit.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/icu.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/assets.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/logging.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/polyfills.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/run.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/config.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/promise-controller.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/worker.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/libraryInitializers.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/assetsCache.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/index.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/loader/globals.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/startup.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/strings.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/managed-exports.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/jiterpreter-feature-detect.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/es6/dotnet.es6.pre.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/es6/dotnet.es6.extpost.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/es6/dotnet.es6.lib.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/dotnet-legacy.d.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/.eslintrc.cjs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/export-api.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/exports.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/method-calls.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/corebindings.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/buffers.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/exports-legacy.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/export-types.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/method-binding.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/cs-to-js.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/js-to-cs.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/globals.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/runtime/net6-legacy/strings.ts: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/WasmSymbolicator.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/SymbolicatorWrapperForXHarness.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/WasmSymbolicator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/symbolicator/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/memory-snapshot.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.LocalBuild.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/ILLink.Substitutions.NoWasmIntrinsics.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/EmSdkRepo.Defaults.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/ILLink.Substitutions.LegacyJsInterop.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.Native.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/ILLink.Substitutions.WasmIntrinsics.xml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.LocalBuild.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.InTree.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/build/WasmApp.InTree.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/mono/wasm/wasm.code-workspace: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.clang-format: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:10:09+01:00 exit 125

@@ -1,0 +1,191 @@
+start 2026-11-02T18:08:23+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1726632417 && dotnet pack src/Hangfire.InMemory/Hangfire.InMemory.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1726632417; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./COPYING.LESSER: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./COPYING: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE_ROYALTYFREE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/StringKeyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/GlobalConfigurationExtensionsFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/packages.lock.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/InMemoryConnectionFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/State/DispatcherFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/Entities/ExpirableEntryComparerFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/Entities/LockEntryFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/Entities/JobStateCreatedAtComparerFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/Entities/SortedSetItemComparerFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/InMemoryDispatcherBaseFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/Hangfire.InMemory.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/InMemoryMonitoringApiFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/InMemoryTransactionFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/TestInMemoryDispatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/InMemoryFetchedJobFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/ITestServices.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/InMemoryStorageFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Hangfire.InMemory.Tests/MonotonicTimeFacts.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./tests/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/HarnessHostedService.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/Startup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/Properties/launchSettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/packages.lock.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/ConsoleSample.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./samples/ConsoleSample/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.bat: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE_STANDARD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Hangfire.InMemory.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Hangfire.InMemory.sln.DotSettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.nuget/packages.lock.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.nuget/packages.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.nuget/NuGet.exe: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-ec4ee229ce587fad84df87d92c1ab7b2137c5dc2.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-ec4ee229ce587fad84df87d92c1ab7b2137c5dc2.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-ec4ee229ce587fad84df87d92c1ab7b2137c5dc2.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/main: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./nuspecs/icon.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./nuspecs/Hangfire.InMemory.nuspec: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./psake-project.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/IKeyProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/InMemoryConnection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/packages.lock.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/Commands.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/ICommand.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/MemoryState.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/DispatcherExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/DispatcherCallback.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/Queries.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/ExtensionMethods.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/Dispatcher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/MonitoringQueries.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/DispatcherBase.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/State/MonotonicTime.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Hangfire.InMemory.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/QueueEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/HashEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/ExpirableEntryComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/LockEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/SetEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/IExpirableEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/CounterEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/JobEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/StateRecord.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/JobStateCreatedAtComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/SortedSetItemComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/ListEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/QueueWaitNode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/ServerEntry.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/Entities/SortedSetItem.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/InMemoryStorageIdType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/GlobalConfigurationExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/InMemoryStorage.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/InMemoryFetchedJob.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/InMemoryTransaction.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/InMemoryMonitoringApi.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/InMemoryStorageOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/JobStorageMonitor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/obj/Hangfire.InMemory.csproj.nuget.g.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/obj/Hangfire.InMemory.csproj.nuget.g.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Hangfire.InMemory/obj/Hangfire.InMemory.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/SharedAssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./appveyor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:08:24+01:00 exit 125

@@ -1,0 +1,37 @@
+start 2026-11-01T12:10:28+01:00
+$ git clone -q --mirror https://github.com/viceroypenguin/RBush /private/tmp/nupkg-determinism/mirrors/https_github.com_viceroypenguin_RBush.git
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_viceroypenguin_RBush.git /private/tmp/nupkg-determinism/src/rbush-4.0.0
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 remote set-url origin https://github.com/viceroypenguin/RBush
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 -c advice.detachedHead=false checkout -q b8690322abac35d835baa2fdca4a3918ed77a910
+global.json: none
+start 2026-11-01T15:17:55+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_viceroypenguin_RBush.git /private/tmp/nupkg-determinism/src/rbush-4.0.0
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 remote set-url origin https://github.com/viceroypenguin/RBush
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 -c advice.detachedHead=false checkout -q b8690322abac35d835baa2fdca4a3918ed77a910
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 checkout -q -- .
+$ dotnet restore RBush/RBush.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/rbush-4.0.0/RBush/RBush.csproj (in 154 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T21:58:21+01:00
+$ git clone -q --no-checkout https://github.com/viceroypenguin/RBush /private/tmp/nupkg-determinism/src/rbush-4.0.0
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 -c advice.detachedHead=false checkout -q b8690322abac35d835baa2fdca4a3918ed77a910
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/rbush-4.0.0 checkout -q -- .
+$ dotnet restore RBush/RBush.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/rbush-4.0.0/RBush/RBush.csproj (in 182 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

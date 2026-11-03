@@ -1,0 +1,39 @@
+start 2026-11-02T18:13:42+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24 checkout -q -- .
+$ dotnet restore src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/src/Razor/Microsoft.AspNetCore.Razor.Language/src/Microsoft.AspNetCore.Razor.Language.csproj (in 314 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj (in 7,18 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/Directory.Build.props(239,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/Directory.Build.props(239,3): error MSB4019: The imported project "/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/artifacts/bin/GenerateFiles/Directory.Build.props" was not found. Confirm that the expression in the Import declaration "artifacts/bin/GenerateFiles/Directory.Build.props", which evaluated to "artifacts/bin/GenerateFiles/Directory.Build.props", is correct, and that the file exists on disk. [/private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.21
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:13:52+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24 checkout -q -- .
+$ dotnet restore src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/src/Razor/Microsoft.CodeAnalysis.Razor/src/Microsoft.CodeAnalysis.Razor.csproj (in 266 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.codeanalysis.razor-6.0.24/src/Razor/Microsoft.AspNetCore.Razor.Language/src/Microsoft.AspNetCore.Razor.Language.csproj (in 266 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

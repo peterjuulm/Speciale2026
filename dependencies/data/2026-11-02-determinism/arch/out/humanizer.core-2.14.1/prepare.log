@@ -1,0 +1,73 @@
+start 2026-11-01T10:28:25+01:00
+$ git init -q /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 remote add origin https://github.com/Humanizr/Humanizer
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 config core.autocrlf false
+$ git clone -q --mirror https://github.com/Humanizr/Humanizer /private/tmp/nupkg-determinism/mirrors/https_github.com_Humanizr_Humanizer.git
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 fetch -q --tags /private/tmp/nupkg-determinism/mirrors/https_github.com_Humanizr_Humanizer.git +refs/heads/*:refs/remotes/origin/*
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 fetch -q /private/tmp/nupkg-determinism/mirrors/https_github.com_Humanizr_Humanizer.git 3ebc38de585fc641a04b0e78ed69468453b0f8a1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 -c advice.detachedHead=false checkout -q 3ebc38de585fc641a04b0e78ed69468453b0f8a1
+global.json: none
+start 2026-11-01T13:02:21+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_Humanizr_Humanizer.git /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 remote set-url origin https://github.com/Humanizr/Humanizer
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 -c advice.detachedHead=false checkout -q 3ebc38de585fc641a04b0e78ed69468453b0f8a1
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 checkout -q -- .
+$ dotnet restore src/Humanizer/Humanizer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+  Restored /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj (in 144 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-01T18:44:38+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_Humanizr_Humanizer.git /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 remote set-url origin https://github.com/Humanizr/Humanizer
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 -c advice.detachedHead=false checkout -q 3ebc38de585fc641a04b0e78ed69468453b0f8a1
+global.json: none
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 checkout -q -- .
+$ dotnet restore src/Humanizer/Humanizer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+  Restored /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj (in 200 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T17:56:19+01:00
+$ git clone -q --no-checkout https://github.com/Humanizr/Humanizer /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 -c advice.detachedHead=false checkout -q 3ebc38de585fc641a04b0e78ed69468453b0f8a1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 checkout -q -- .
+$ dotnet restore src/Humanizer/Humanizer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+  Restored /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj (in 184 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-03T01:07:23+01:00
+$ git clone -q --no-checkout https://github.com/Humanizr/Humanizer /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 -c advice.detachedHead=false checkout -q 3ebc38de585fc641a04b0e78ed69468453b0f8a1
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1 checkout -q -- .
+$ dotnet restore src/Humanizer/Humanizer.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets(200,5): warning NETSDK1215: Targeting .NET Standard prior to 2.0 is no longer recommended. See https://aka.ms/dotnet/dotnet-standard-guidance for more details. [/private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj::TargetFramework=netstandard1.0]
+  Restored /private/tmp/nupkg-determinism/src/humanizer.core-2.14.1/src/Humanizer/Humanizer.csproj (in 192 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

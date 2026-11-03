@@ -1,0 +1,271 @@
+start 2026-11-02T23:24:07+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733741965 && dotnet pack src/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733741965; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./Swashbuckle.AspNetCore.sln: Wrote only 4096 of 9216 bytes
+tar: ./SECURITY.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./NuGet.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CONTRIBUTING.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./package-readme.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj.nuget.dgspec.json: Wrote only 8192 of 10240 bytes
+tar: ./artifacts/obj/Swashbuckle.AspNetCore.ReDoc/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Swashbuckle.AspNetCore.ReDoc/Swashbuckle.AspNetCore.ReDoc.csproj.nuget.g.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-a76835542123a9bf00ebd14386443fe645dfdfb2.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-a76835542123a9bf00ebd14386443fe645dfdfb2.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-a76835542123a9bf00ebd14386443fe645dfdfb2.idx: Wrote only 4096 of 6656 bytes
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/10_bug_report.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/release.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/bump-version.yml: Wrote only 4096 of 6886 bytes
+tar: ./.github/dependabot.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Cli.Test/ToolTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Cli.Test/Swashbuckle.AspNetCore.Cli.Test.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/Swashbuckle.AspNetCore.IntegrationTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/TestSite.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_Without_Startup_entryPointType=WebApi.Program_swaggerRequestUri=v1.verified.txt: Wrote only 2560 of 10240 bytes
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/DocumentProviderTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_startupType=Basic.Startup_swaggerRequestUri=v1.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_DotNet6_startupType=NSwagClientExample.Startup_swaggerRequestUri=v1.verified.txt: Wrote only 2048 of 3164 bytes
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_startupType=MultipleVersions.Startup_swaggerRequestUri=2.0.verified.txt: Wrote only 2048 of 2822 bytes
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_startupType=OAuth2Integration.Startup_swaggerRequestUri=v1.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_Without_Startup_entryPointType=MinimalApp.Program_swaggerRequestUri=v1.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_Without_Startup_entryPointType=TopLevelSwaggerDoc.Program_swaggerRequestUri=.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_DotNet6_startupType=Basic.Startup_swaggerRequestUri=v1.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_startupType=NSwagClientExample.Startup_swaggerRequestUri=v1.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerUIIntegrationTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerIntegrationTests.cs: Wrote only 4096 of 4608 bytes
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.TypesAreRenderedCorrectly.verified.txt: Wrote only 7168 of 10240 bytes
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/ReDocIntegrationTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.IntegrationTests/SwaggerVerifyIntegrationTest.SwaggerEndpoint_ReturnsValidSwaggerJson_startupType=GenericControllers.Startup_swaggerRequestUri=v1.verified.txt: Wrote only 8192 of 9728 bytes
+tar: ./test/Swashbuckle.AspNetCore.Annotations.Test/AnnotationsDocumentFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Annotations.Test/Fixtures/SwaggerAnnotatedType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Annotations.Test/AnnotationsOperationFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Annotations.Test/AnnotationsParameterFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Annotations.Test/AnnotationsRequestBodyFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Annotations.Test/AnnotationsSchemaFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/XmlComments/XmlCommentsExampleHelperTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/XmlComments/XmlCommentsNodeNameHelperTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/XmlComments/XmlCommentsDocumentFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/XmlComments/XmlCommentsRequestBodyFilterTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/XmlAnnotatedSubType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/TestParameterFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/TypeWithParameterlessAndParameterizedConstructor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/JsonConverterAnnotatedEnum.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/XmlAnnotatedType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/TestMinimalApiMethod.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/JsonRequiredAnnotatedType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/TypeWithParameterizedConstructor.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/JsonExtensionDataAnnotatedType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Fixtures/JsonPropertyNameAnnotatedType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/Swashbuckle.AspNetCore.SwaggerGen.Test.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/ConfigureSwaggerGeneratorOptionsTests.cs: Wrote only 1536 of 10240 bytes
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionWithRequiredBodyParameter_action=ActionWithParameterWithRequiredAttribute.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.IllegalHeaderParameterWithOpenApiOperation_action=ActionWithAcceptFromHeaderParameter.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.IllegalHeaderParameterWithOpenApiOperation_action=ActionWithAuthorizationFromHeaderParameter.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionsWithIllegalHeaderParameters_action=ActionWithAcceptFromHeaderParameter.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionHavingFromFormAttributeButNotWithIFormFile.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.EndpointMetadataHasTags.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionHasConsumesAttribute_bindingSourceId=Body.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionsWithIllegalHeaderParameters_action=ActionWithContentTypeFromHeaderParameter.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionWithRequiredQueryParameter_action=ActionWithParameterWithRequiredAttribute.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.SortKeySelectorIsSpecified.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionWithProvidedOpenApiMetadata.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.GetSwagger_GenerateConsumesSchemas_ForProvidedOpenApiOperationWithIFormFile.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionParameterHasSwaggerIgnoreAttribute.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionParameterHasBindNeverAttribute.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ApiParameterIsBoundToPath.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.IllegalHeaderParameterWithOpenApiOperation_action=ActionWithContentTypeFromHeaderParameter.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.GetSwagger_GenerateConsumesSchemas_ForProvidedOpenApiOperationWithIFormFileCollection.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionWithReturnValueAndSupportedResponseTypes.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionWithRouteNameMetadata.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ApiParametersThatAreBoundToForm.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.GetSwagger_GenerateConsumesSchemas_ForProvidedOpenApiOperationWithSeveralFromForms.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ApiParametersThatAreNotBoundToBodyOrForm_bindingSourceId=null.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.cs: Wrote only 7168 of 10240 bytes
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.EndpointMetadataHasDescriptionAttribute.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ApiParametersThatAreNotBoundToBodyOrForm_bindingSourceId=Header.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ApiParametersThatAreNotBoundToBodyOrForm_bindingSourceId=Path.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.ActionHasProducesAttribute.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGeneratorVerifyTests/SwaggerGeneratorVerifyTests.GetSwagger_GenerateConsumesSchemas_ForProvidedOpenApiOperationWithStringFromForm.verified.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SchemaGenerator/JsonSerializerSchemaGeneratorTests.cs: Wrote only 7680 of 10240 bytes
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGenerator/SwaggerGeneratorTests.cs: Wrote only 4096 of 9728 bytes
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGenerator/OpenApiAnyFactoryTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/SwaggerGenerator/MemberInfoExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.SwaggerGen.Test/JsonSerializerTesting.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/ApiExplorer/ApiDescriptionFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/TypeWithValidationAttributesViaMetadataType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/TypeWithRestrictedProperties.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/BaseType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/SelfReferencingType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/TypeWithOverriddenProperty.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/TypeWithNullableContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/FakeControllerWithActionWithParamDefaults.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/TypeWithObsoleteAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.TestSupport/Fixtures/KeyedCollectionOfComplexType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Newtonsoft.Test/Fixtures/JsonObjectAnnotatedType.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Newtonsoft.Test/Fixtures/JsonConverterAnnotatedEnum.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Newtonsoft.Test/Fixtures/RecursiveCallSchemaFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Newtonsoft.Test/NewtonsoftSerializerTesting.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.Newtonsoft.Test/SchemaGenerator/NewtonsoftSchemaGeneratorTests.cs: Wrote only 4096 of 4608 bytes
+tar: ./test/WebSites/Basic/Controllers/DefaultValuesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/Basic/Controllers/JsonAnnotationsController.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/Basic/Swagger/ExamplesSchemaFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/Basic/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/CustomUIIndex/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/CustomUIIndex/Swagger/index.html: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/NswagClientExample/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/TestFirst/Controllers/ProductsController.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/TestFirst/Startup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/MinimalApp/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/CustomDocumentSerializer/Controllers/WeatherForecastController.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/ConfigFromFile/appsettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/ConfigFromFile/ConfigFromFile.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/CustomUIConfig/CustomUIConfig.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/CustomUIConfig/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/OAuth2Integration/Startup.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/TestFirst.IntegrationTests/TestFirst.IntegrationTests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/WebApi/Properties/launchSettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/MultipleVersions/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/MultipleVersions/MultipleVersions.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/MultipleVersions/ConfigureSwaggerGenOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/WebApi.Aot/Properties/launchSettings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/WebApi.Aot/WebApi.Aot.http: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/WebApi.Aot/appsettings.Development.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/WebSites/GenericControllers/Controllers/GenericResourceController.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.ApiTesting.Test/RequestValidatorTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Swashbuckle.AspNetCore.ApiTesting.Test/JsonValidatorTests.cs: Wrote only 4096 of 6144 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/PublicAPI/PublicAPI.Unshipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/PublicAPI/PublicAPI.Shipped.txt: Wrote only 4096 of 10240 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SchemaGenerator/TypeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SchemaGenerator/OpenApiSchemaExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SchemaGenerator/JsonSerializerDataContractResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SchemaGenerator/SchemaGenerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SchemaGenerator/PropertyInfoExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SchemaGenerator/ISerializerDataContractResolver.cs: Wrote only 4096 of 6189 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/IFileResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/SwaggerGeneratorOptions.cs: Wrote only 4096 of 5386 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/SwaggerGeneratorException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/SwaggerGenerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/ApiResponseTypeExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/IDictionary.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/IParameterFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/ApiDescriptionExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ReDoc/ResourceHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ReDoc/ReDocOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ReDoc/index.html: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ReDoc/package-lock.json: Wrote only 3072 of 10240 bytes
+tar: ./src/Swashbuckle.AspNetCore.ReDoc/ReDocMiddleware.cs: Wrote only 4096 of 6890 bytes
+tar: ./src/Swashbuckle.AspNetCore.ReDoc/index.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Swagger/Swashbuckle.AspNetCore.Swagger.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Swagger/DependencyInjection/SwaggerOptionsExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/package.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/Swashbuckle.AspNetCore.SwaggerUI.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/SwaggerUIOptions.cs: Wrote only 3072 of 3547 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/SwaggerUIOptionsExtensions.cs: Wrote only 5120 of 10240 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/index.html: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/PublicAPI/PublicAPI.Shipped.txt: Wrote only 2560 of 9956 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/JavascriptStringEnumConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/SwaggerUIMiddleware.cs: Wrote only 4096 of 7568 bytes
+tar: ./src/Swashbuckle.AspNetCore.SwaggerUI/index.js: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Cli/Swashbuckle.AspNetCore.Cli.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Cli/HostFactoryResolver.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/RequestValidator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/HttpHeadersExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/OpenApiDocumentExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/PublicAPI/PublicAPI.Shipped.txt: Wrote only 4096 of 5632 bytes
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/JsonValidation/JsonNullValidator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/JsonValidation/IJsonValidator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/JsonValidation/JsonAllOfValidator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.ApiTesting/JsonValidation/JsonStringValidator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerResponseAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerSchemaAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/PublicAPI/PublicAPI.Shipped.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerDiscriminatorAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerSubTypeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerOperationFilterAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerSubTypesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/Swashbuckle.AspNetCore.Annotations.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/AnnotationsOperationFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/AnnotationsDocumentFilter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerSchemaFilterAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Annotations/SwaggerParameterAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Newtonsoft/Swashbuckle.AspNetCore.Newtonsoft.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Newtonsoft/DependencyInjection/NewtonsoftServiceCollectionExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Swashbuckle.AspNetCore.Newtonsoft/Swashbuckle.AspNetCore.Newtonsoft.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T23:24:07+01:00 exit 125

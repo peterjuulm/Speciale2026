@@ -1,0 +1,48 @@
+start 2026-11-02T23:07:22+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/ReverseProxy/Yarp.ReverseProxy.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1700217496 && dotnet pack src/ReverseProxy/Yarp.ReverseProxy.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1700217496; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net6.0]
+  Yarp.ReverseProxy -> /tmp/reprotest.dly6xo/const_build_path/artifacts/bin/Yarp.ReverseProxy/Release/net6.0/Yarp.ReverseProxy.dll
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net7.0]
+  Yarp.ReverseProxy -> /tmp/reprotest.dly6xo/const_build_path/artifacts/bin/Yarp.ReverseProxy/Release/net7.0/Yarp.ReverseProxy.dll
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net8.0]
+  Yarp.ReverseProxy -> /tmp/reprotest.dly6xo/const_build_path/artifacts/bin/Yarp.ReverseProxy/Release/net8.0/Yarp.ReverseProxy.dll
+
+Build succeeded.
+
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net6.0]
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net7.0]
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net8.0]
+    3 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:34.18
+  Successfully created package '/tmp/reprotest.dly6xo/const_build_path/out/Yarp.ReverseProxy.2.1.0.nupkg'.
+  Successfully created package '/tmp/reprotest.dly6xo/const_build_path/out/Yarp.ReverseProxy.2.1.0.symbols.nupkg'.
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net6.0]
+  Yarp.ReverseProxy -> /tmp/reprotest.dly6xo/const_build_path/artifacts/bin/Yarp.ReverseProxy/Release/net6.0/Yarp.ReverseProxy.dll
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net7.0]
+  Yarp.ReverseProxy -> /tmp/reprotest.dly6xo/const_build_path/artifacts/bin/Yarp.ReverseProxy/Release/net7.0/Yarp.ReverseProxy.dll
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net8.0]
+  Yarp.ReverseProxy -> /tmp/reprotest.dly6xo/const_build_path/artifacts/bin/Yarp.ReverseProxy/Release/net8.0/Yarp.ReverseProxy.dll
+
+Build succeeded.
+
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net6.0]
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net7.0]
+/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Forwarder/HttpForwarder.cs(757,78): warning CS8604: Possible null reference argument for parameter 'exception' in 'ForwarderError ReportResult(HttpContext context, bool request, StreamCopyResult result, Exception exception, ActivityCancellationTokenSource activityCancellationTokenSource)'. [/tmp/reprotest.dly6xo/const_build_path/src/ReverseProxy/Yarp.ReverseProxy.csproj::TargetFramework=net8.0]
+    3 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:36.93
+  Successfully created package '/tmp/reprotest.dly6xo/const_build_path/out/Yarp.ReverseProxy.2.1.0.nupkg'.
+  Successfully created package '/tmp/reprotest.dly6xo/const_build_path/out/Yarp.ReverseProxy.2.1.0.symbols.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+a21d17e998c1aa54a995c1a4deecb469b8ec59914372099cc80f076c0b52df77  ./out/Yarp.ReverseProxy.2.1.0.symbols.nupkg
+a21d17e998c1aa54a995c1a4deecb469b8ec59914372099cc80f076c0b52df77  ./out/Yarp.ReverseProxy.2.1.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T23:08:43+01:00 exit 0

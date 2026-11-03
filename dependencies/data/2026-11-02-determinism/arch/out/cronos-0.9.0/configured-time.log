@@ -1,0 +1,37 @@
+start 2026-11-01T15:07:46+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Cronos/Cronos.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733724369 && dotnet pack src/Cronos/Cronos.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1733724369; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/net40/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/net45/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/netstandard1.0/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/netstandard2.0/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/net6.0/Cronos.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:09.01
+  The package Cronos.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.DqZMxP/const_build_path/out/Cronos.1.0.0.nupkg'.
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/net40/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/net45/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/netstandard1.0/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/netstandard2.0/Cronos.dll
+  Cronos -> /tmp/reprotest.DqZMxP/const_build_path/src/Cronos/bin/Release/net6.0/Cronos.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.60
+  The package Cronos.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.DqZMxP/const_build_path/out/Cronos.1.0.0.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+2075483c66924e2acdffe7097e7576c51f5237b393a018539d220f0a20072c4b  ./out/Cronos.1.0.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T15:08:09+01:00 exit 0

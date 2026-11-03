@@ -1,0 +1,209 @@
+start 2026-11-02T18:07:02+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/CsvHelper/CsvHelper.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1748744190 && dotnet pack src/CsvHelper/CsvHelper.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1748744190; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.git/objects/pack/pack-780cc9059deeab823e8119a23e4873554a7de531.pack: Wrote only 4096 of 10240 bytes
+tar: ./.git/logs/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/master: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Wrote only 2048 of 2563 bytes
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Wrote only 4096 of 4898 bytes
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/bug_report.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/documentation.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/workflows/publish.yaml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE.txt: Wrote only 4096 of 6656 bytes
+tar: ./src/CsvHelper/IWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/IWriterRow.cs: Wrote only 1024 of 1667 bytes
+tar: ./src/CsvHelper/Configuration/InjectionOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/ConfigurationFunctions.cs: Wrote only 4096 of 8704 bytes
+tar: ./src/CsvHelper/Configuration/ClassMapBuilder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/MemberMapCollection.cs: Wrote only 4096 of 6656 bytes
+tar: ./src/CsvHelper/Configuration/CsvConfiguration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/IWriterConfiguration.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/ClassMap.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/IndexAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/EscapeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/DefaultAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/BooleanFalseValuesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/IncludePrivateMembersAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/IClassMapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/QuoteAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/IgnoreBlankLinesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/CacheFieldsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/EncodingAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/ModeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/InjectionEscapeCharacterAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/HeaderPrefixAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/TypeConverterAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/IParameterReferenceMapper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/ProcessFieldBufferSizeAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/IgnoreReferencesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/AllowCommentsAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/Attributes/DetectColumnCountChangesAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/ClassMap`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/ClassMapCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/MemberMap`1.cs: Wrote only 4096 of 9324 bytes
+tar: ./src/CsvHelper/Configuration/ParameterMapTypeConverterOption.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/MemberMapTypeConverterOption.cs: Wrote only 4096 of 4608 bytes
+tar: ./src/CsvHelper/Configuration/ParameterReferenceMapData.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/DefaultClassMap`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/MemberMapComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Configuration/IParserConfiguration.cs: Wrote only 3072 of 4236 bytes
+tar: ./src/CsvHelper/Configuration/MemberMap.cs: Wrote only 4096 of 8555 bytes
+tar: ./src/CsvHelper/InvalidHeader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/CsvHelper.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/RecordTypeInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/CsvContext.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/CsvHelper.net47.v3.ncrunchproject: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Delegates/GetDynamicPropertyName.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Delegates/ConvertFromString.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Delegates/HeaderValidated.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Delegates/ReadingExceptionOccurred.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/ArrayHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/FieldValidationException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/ObjectResolver.cs: Wrote only 4096 of 4846 bytes
+tar: ./src/CsvHelper/IReaderRow.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/TypeConverterCache.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/ByteArrayConverterOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/NotSupportedTypeConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/SingleConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/Int16Converter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/CollectionConverterFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/TimeSpanConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/ByteArrayConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/TimeOnlyConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/UInt64Converter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/TypeConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/TypeConverterException.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/SByteConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/IEnumerableConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/TypeConversion/UriConverter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/IReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/CsvMode.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/ObjectCreator.cs: Wrote only 2048 of 4069 bytes
+tar: ./src/CsvHelper/CsvParser.cs: Wrote only 2560 of 10240 bytes
+tar: ./src/CsvHelper/CsvReader.cs: Wrote only 8192 of 8704 bytes
+tar: ./src/CsvHelper/Expressions/RecordWriterFactory.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Expressions/RecordHydrator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Expressions/ExpressionManager.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Expressions/PrimitiveRecordCreator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/Expressions/ObjectRecordCreator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/CsvWriter.cs: Wrote only 2560 of 10240 bytes
+tar: ./src/CsvHelper/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/migration/v6/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/migration/v3/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/migration/v2/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/migration/v4/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/migration/v28/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/migration/v25/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/getting-started/_index.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/change-log/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/apple-icon-60x60.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/apple-icon-180x180.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/apple-icon-76x76.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/ms-icon-310x310.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/apple-icon-72x72.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/apple-icon.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/favicon.ico: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/favicon-16x16.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/favicons/apple-icon-precomposed.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/Shared/_Layout.cshtml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/styles/sidebar.scss: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/styles/content.scss: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/Index.cshtml: Wrote only 4096 of 5632 bytes
+tar: ./src/CsvHelper.Website/input/examples/csvdatareader/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/_directory.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/reading/get-anonymous-type-records/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/type-conversion/custom-type-converter/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/type-conversion/type-converter-options/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/configuration/class-maps/mapping-by-alternate-names/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/configuration/class-maps/mapping-duplicate-names/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/configuration/class-maps/ignoring-properties/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/configuration/class-maps/constant-value/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/configuration/class-maps/inline-type-conversion/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/prerequisites/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/input/examples/prerequisites/using-and-dispose/index.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/CsvHelper.Website/lib/bulma/bulma.css: Wrote only 1536 of 10240 bytes
+tar: ./src/CsvHelper.Website/lib/bulma/bulma-rtl.css.map: Wrote only 4096 of 10240 bytes
+tar: ./src/CsvHelper.Website/lib/bulma/bulma.css.map: Wrote only 2560 of 10240 bytes
+tar: ./src/CsvHelper.Website/lib/bulma/bulma.min.css: Wrote only 5120 of 10240 bytes
+tar: ./src/CsvHelper.Website/lib/bulma/bulma-rtl.min.css: Wrote only 9216 of 10240 bytes
+tar: ./src/CsvHelper.Website/lib/bulma/bulma-rtl.css: Wrote only 7168 of 10240 bytes
+tar: ./performance/CsvHelper.Benchmarks/CsvHelper.Benchmarks.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./GitVersion.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T18:07:02+01:00 exit 125

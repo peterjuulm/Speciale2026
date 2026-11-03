@@ -1,0 +1,169 @@
+start 2026-11-02T23:20:17+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1719096142 && dotnet pack src/Serilog.Sinks.File/Serilog.Sinks.File.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1719096142; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./.gitignore: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.travis.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./CHANGES.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/Serilog.svg: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/Serilog.snk: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./assets/serilog-sink-nuget.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Build.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/index: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/packed-refs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/info/exclude: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-94dc9e2bba8125aed1c10d6e2f202af9315b85e3.rev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-94dc9e2bba8125aed1c10d6e2f202af9315b85e3.pack: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/objects/pack/pack-94dc9e2bba8125aed1c10d6e2f202af9315b85e3.idx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/heads/dev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/logs/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/heads/dev: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/refs/remotes/origin/HEAD: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/fsmonitor-watchman.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-applypatch.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-push.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/applypatch-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/prepare-commit-msg.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-rebase.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/post-update.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-receive.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/pre-merge-commit.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/sendemail-validate.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/hooks/push-to-checkout.sample: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/description: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git/config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.gitattributes: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./serilog-sinks-file.sln: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/bug_report.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/feature_request.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.github/ISSUE_TEMPLATE/config.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/RollingIntervalExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/app.config: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/DelegateDisposable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/DelegatingSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/ThrowingLogEventFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/Extensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/ArchiveOldLogsHook.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/DelegatingEnricher.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/CollectingSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/DisposeTrackingSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/GZipHooks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/FixedOutputFormatter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/TempFolder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/TruncateFileHook.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/Some.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/FileHeaderWriter.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Support/CaptureFilePathHook.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/SharedFileSinkTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/WriteCountingStreamTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/Serilog.Sinks.File.Tests.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/FileLoggerConfigurationExtensionsTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/FileSinkTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/RollingFileSinkTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./test/Serilog.Sinks.File.Tests/TemplatedPathRollerTests.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/SharedFileSink.AtomicAppend.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/PeriodicFlushToDiskSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/RollingLogFile.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/IOErrors.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/Clock.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/NullSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/RollingIntervalExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/FileLifeCycleHookChain.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/FileLifecycleHooks.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/RollingFileSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/IFlushableFileSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/SharedFileSink.OSMutex.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/FileSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/IFileSink.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/PathRoller.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Sinks/File/WriteCountingStream.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/FileLoggerConfigurationExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Properties/AssemblyInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/Serilog.Sinks.File.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/RollingInterval.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/obj/project.assets.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/obj/project.nuget.cache: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/obj/Serilog.Sinks.File.csproj.nuget.g.targets: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/obj/Serilog.Sinks.File.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Serilog.Sinks.File/obj/Serilog.Sinks.File.csproj.nuget.g.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./LICENSE: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./appveyor.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./serilog-sinks-file.sln.DotSettings: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./example/Sample/Program.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./example/Sample/Sample.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T23:20:17+01:00 exit 125

@@ -1,0 +1,131 @@
+start 2026-11-02T18:17:25+01:00
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2 checkout -q -- .
+$ dotnet restore src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Failed to download package 'Microsoft.DotNet.XliffTasks.10.0.0-beta.25609.109' from 'https://pkgs.dev.azure.com/dnceng/9ee6d478-d288-47f7-aacc-f6e6d082ae6d/_packaging/1a5f89f6-d8da-4080-b15f-242650c914a8/nuget/v3/flat2/microsoft.dotnet.xlifftasks/10.0.0-beta.25609.109/microsoft.dotnet.xlifftasks.10.0.0-beta.25609.109.nupkg'.
+  The SSL connection could not be established, see inner exception.
+    Unable to read data from the transport connection: Connection reset by peer.
+    Connection reset by peer
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections/src/System.Collections.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections/ref/System.Collections.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/coreclr/System.Private.CoreLib/System.Private.CoreLib.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Numerics/ref/System.Runtime.Numerics.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Text.Encoding.Extensions/ref/System.Text.Encoding.Extensions.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Diagnostics.Tracing/src/System.Diagnostics.Tracing.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Private.CoreLib/ref/System.Private.CoreLib.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections.Concurrent/ref/System.Collections.Concurrent.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Numerics.Vectors/ref/System.Numerics.Vectors.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Intrinsics/ref/System.Runtime.Intrinsics.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Diagnostics.Tracing/ref/System.Diagnostics.Tracing.csproj (in 7,66 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 7,71 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 7,71 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj (in 7,69 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Text.Encoding.Extensions/src/System.Text.Encoding.Extensions.csproj (in 8 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Memory/ref/System.Memory.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Private.Uri/src/System.Private.Uri.csproj (in 14 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Memory/src/System.Memory.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections.Concurrent/src/System.Collections.Concurrent.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/src/System.Runtime.InteropServices.csproj (in 10 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime/src/System.Runtime.csproj (in 16 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Intrinsics/src/System.Runtime.Intrinsics.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Numerics/src/System.Runtime.Numerics.csproj (in 9 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Threading/src/System.Threading.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Threading/ref/System.Threading.csproj (in 11 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Private.CoreLib/gen/System.Private.CoreLib.Generators.csproj (in 43 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/DownlevelLibraryImportGenerator/DownlevelLibraryImportGenerator.csproj (in 41 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 27 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj (in 7,74 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 69 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 109 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj (in 674 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 1,59 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/linker/Mono.Linker.csproj (in 1,6 sec).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 1,65 sec).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  ILLink.RoslynAnalyzer -> /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/artifacts/bin/ILLink.RoslynAnalyzer/Release/netstandard2.0/ILLink.RoslynAnalyzer.dll
+  ILLink.CodeFixProvider -> /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/artifacts/bin/ILLink.CodeFixProvider/Release/netstandard2.0/ILLink.CodeFixProvider.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/artifacts/bin/Mono.Linker/ref/Release/net10.0/illink.dll
+  Mono.Linker -> /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/artifacts/bin/Mono.Linker/Release/net10.0/illink.dll
+  ILLink.Tasks -> /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/artifacts/bin/ILLink.Tasks/Release/net/ILLink.Tasks.dll
+/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/eng/targetingpacks.targets(106,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj::TargetFramework=net10.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error : No space left on device : '/tmp/MSBuildTempOcxoJ5/tmp346a6675cba34382ac4386858fcecfc5.rsp' [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error : No space left on device : '/tmp/MSBuildTempOcxoJ5/tmp1a8275aadd3b4a30a3b236cefdf25d8e.rsp' [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj::TargetFramework=net8.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/eng/targetingpacks.targets(106,5): error : The shared framework must be built before the local targeting pack can be consumed. [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj::TargetFramework=net10.0]
+MSBUILD : error : SDK version  is below the minimum required version of 10. The .NET Runtime Task Host is supported only when using .NET SDK 10.0.100-rc1 or later. [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj::TargetFramework=net9.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error : No space left on device : '/tmp/MSBuildTempOcxoJ5/tmp346a6675cba34382ac4386858fcecfc5.rsp' [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error MSB3883: Unexpected exception:  [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/nuget/microsoft.net.compilers.toolset/5.0.0-2.25609.109/tasks/netcore/Microsoft.CSharp.Core.targets(84,5): error : No space left on device : '/tmp/MSBuildTempOcxoJ5/tmp1a8275aadd3b4a30a3b236cefdf25d8e.rsp' [/private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj::TargetFramework=net8.0]
+    0 Warning(s)
+    6 Error(s)
+
+Time Elapsed 00:01:00.51
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T18:18:54+01:00 pack failed (exit 1)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2 checkout -q -- .
+$ dotnet restore src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/ILLink.CodeFix/ILLink.CodeFixProvider.csproj (in 255 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections/src/System.Collections.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Diagnostics.Tracing/src/System.Diagnostics.Tracing.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Text.Encoding.Extensions/ref/System.Text.Encoding.Extensions.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Threading/ref/System.Threading.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/LibraryImportGenerator/LibraryImportGenerator.csproj (in 254 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/ILLink.RoslynAnalyzer/ILLink.RoslynAnalyzer.csproj (in 263 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Numerics.Vectors/ref/System.Numerics.Vectors.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Diagnostics.Tracing/ref/System.Diagnostics.Tracing.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/ref/System.Formats.Asn1.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Threading/src/System.Threading.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections/ref/System.Collections.csproj (in 251 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Text.Encoding.Extensions/src/System.Text.Encoding.Extensions.csproj (in 251 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Formats.Asn1/src/System.Formats.Asn1.csproj (in 253 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/Microsoft.Interop.SourceGeneration/Microsoft.Interop.SourceGeneration.csproj (in 254 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime/ref/System.Runtime.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Numerics/ref/System.Runtime.Numerics.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections.Concurrent/ref/System.Collections.Concurrent.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Memory/ref/System.Memory.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/coreclr/System.Private.CoreLib/System.Private.CoreLib.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Numerics/src/System.Runtime.Numerics.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Memory/src/System.Memory.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Collections.Concurrent/src/System.Collections.Concurrent.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime/src/System.Runtime.csproj (in 7 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Private.CoreLib/gen/System.Private.CoreLib.Generators.csproj (in 6 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/DownlevelLibraryImportGenerator/DownlevelLibraryImportGenerator.csproj (in 4 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/src/System.Runtime.InteropServices.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/linker/ref/Mono.Linker.csproj (in 13 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.InteropServices/gen/ComInterfaceGenerator/ComInterfaceGenerator.csproj (in 5 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/linker/Mono.Linker.csproj (in 17 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Intrinsics/src/System.Runtime.Intrinsics.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Private.Uri/src/System.Private.Uri.csproj (in 3 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Runtime.Intrinsics/ref/System.Runtime.Intrinsics.csproj (in 2 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/Microsoft.Bcl.Cryptography/src/Microsoft.Bcl.Cryptography.csproj (in 24 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/libraries/System.Private.CoreLib/ref/System.Private.CoreLib.csproj (in 1 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.bcl.cryptography-10.0.2/src/runtime/src/tools/illink/src/ILLink.Tasks/ILLink.Tasks.csproj (in 25 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

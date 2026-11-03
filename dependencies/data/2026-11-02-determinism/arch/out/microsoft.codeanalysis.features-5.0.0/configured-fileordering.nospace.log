@@ -1,0 +1,403 @@
+start 2026-11-02T23:56:46+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Features/Core/Portable/Microsoft.CodeAnalysis.Features.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763419468 && dotnet pack src/Features/Core/Portable/Microsoft.CodeAnalysis.Features.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1763419468; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+tar: ./scripts/PublicApi/mark-shipped.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./scripts/all-ci-times.xlsx: Wrote only 2048 of 10240 bytes
+tar: ./scripts/UploadAzureZip/UploadPerfProject.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Roslyn.sln: Wrote only 6656 of 10240 bytes
+tar: ./azure-pipelines.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.git-blame-ignore-revs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./azure-pipelines-integration-dartlab.yml: Wrote only 4096 of 8048 bytes
+tar: ./azure-pipelines-pr-validation.yml: Wrote only 512 of 10240 bytes
+tar: ./CONTRIBUTING.md: Wrote only 512 of 5252 bytes
+tar: ./Restore.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./artifacts/obj/Microsoft.CodeAnalysis.Features/Microsoft.CodeAnalysis.Features.csproj.nuget.dgspec.json: Wrote only 9728 of 10240 bytes
+tar: ./artifacts/obj/Microsoft.CodeAnalysis.Features/project.assets.json: Wrote only 2048 of 10240 bytes
+tar: ./artifacts/obj/Microsoft.CodeAnalysis.Features/Microsoft.CodeAnalysis.Features.csproj.nuget.g.props: Wrote only 2048 of 8733 bytes
+tar: ./artifacts/obj/Microsoft.CodeAnalysis.Workspaces/project.assets.json: Wrote only 5120 of 10240 bytes
+tar: ./artifacts/obj/Microsoft.CodeAnalysis/Microsoft.CodeAnalysis.csproj.nuget.dgspec.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/pipelines/test-windows-job.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/tools.sh: Wrote only 8704 of 10240 bytes
+tar: ./eng/common/generate-sbom-prep.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/msbuild.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/onelocbuild.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/job/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/post-build/post-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/vmr-sync.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/enable-internal-runtimes.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/publish-logs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/retain-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/source-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates/steps/get-federated-access-token.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/vmr-sync.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/darc-init.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/install-dependencies.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/native/common-library.sh: Wrote only 2560 of 2635 bytes
+tar: ./eng/common/generate-locproject.ps1: Wrote only 1536 of 3432 bytes
+tar: ./eng/common/sdl/execute-all-sdl-tools.ps1: Wrote only 4096 of 8025 bytes
+tar: ./eng/common/sdl/run-sdl.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/jobs/jobs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/post-build/setup-maestro-vars.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/post-build/post-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/variables/pool-providers.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/publish-logs.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/retain-build.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/send-to-helix.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/enable-internal-sources.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/get-federated-access-token.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/templates-official/steps/publish-pipeline-artifacts.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/internal-feed-operations.ps1: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/tools.ps1: Wrote only 5120 of 5864 bytes
+tar: ./eng/common/sdk-task.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/common/dotnet-install.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/build.sh: Wrote only 6144 of 9630 bytes
+tar: ./eng/validate-rules-missing-documentation.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/config/globalconfigs/NonShipping.globalconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/config/SourcePackage.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/config/OptProf.json: Wrote only 2048 of 2333 bytes
+tar: ./eng/InternalTools.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/build.ps1: Wrote only 8192 of 10240 bytes
+tar: ./eng/generate-compiler-code.cs: Wrote only 4096 of 8192 bytes
+tar: ./eng/test-determinism.cmd: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./eng/Signing.props: Wrote only 4096 of 5120 bytes
+tar: ./eng/SymbolPublishingExclusionsFile.txt: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./build.sh: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.vscode/dnceng-schema.json: Wrote only 5632 of 10240 bytes
+tar: ./.vscode/settings.json: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/Getting-Started-C#-Syntax-Transformation.md: Wrote only 5632 of 6483 bytes
+tar: ./docs/wiki/Walkthroughs.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/documents/csharp-syntax.docx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/documents/vb-syntax.docx: Wrote only 512 of 10240 bytes
+tar: ./docs/wiki/documents/csharp-diag.docx: Wrote only 7680 of 10240 bytes
+tar: ./docs/wiki/documents/vb-diag.pdf: Wrote only 2560 of 10240 bytes
+tar: ./docs/wiki/documents/vb-syntax.pdf: Wrote only 8192 of 10240 bytes
+tar: ./docs/wiki/documents/vb-diag.docx: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/documents/vb-syntax-transform.docx: Wrote only 4608 of 10240 bytes
+tar: ./docs/wiki/documents/csharp-semantic.pdf: Wrote only 512 of 10240 bytes
+tar: ./docs/wiki/documents/csharp-syntax-transform.docx: Wrote only 6656 of 10240 bytes
+tar: ./docs/wiki/documents/csharp-diag.pdf: Wrote only 4096 of 10240 bytes
+tar: ./docs/wiki/documents/csharp-semantic.docx: Wrote only 8192 of 10240 bytes
+tar: ./docs/wiki/documents/vb-semantic.pdf: Wrote only 1536 of 10240 bytes
+tar: ./docs/wiki/documents/vb-semantic.docx: Wrote only 2560 of 3283 bytes
+tar: ./docs/wiki/documents/vb-syntax-transform.pdf: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/documents/csharp-syntax.pdf: Wrote only 9216 of 10240 bytes
+tar: ./docs/wiki/documents/csharp-syntax-transform.pdf: Wrote only 512 of 10240 bytes
+tar: ./docs/wiki/Getting-Started-Writing-a-Custom-Analyzer-&-Code-Fix.md: Wrote only 3584 of 4006 bytes
+tar: ./docs/wiki/images/walkthrough-vb-syntax-figure1.png: Wrote only 1024 of 10240 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-servicehub-log-artifacts.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure9.png: Wrote only 4608 of 10240 bytes
+tar: ./docs/wiki/images/workspace-obj-relations.png: Wrote only 2048 of 10240 bytes
+tar: ./docs/wiki/images/fig9.png: Wrote only 1024 of 10240 bytes
+tar: ./docs/wiki/images/fig11.png: Wrote only 9216 of 10240 bytes
+tar: ./docs/wiki/images/design-time-build-errors/run-developer-command-prompt.png: Wrote only 1024 of 4198 bytes
+tar: ./docs/wiki/images/design-time-build-errors/miscellaneous-files.png: Wrote only 4096 of 5120 bytes
+tar: ./docs/wiki/images/design-time-build-errors/ide0006.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure10.png: Wrote only 5632 of 6492 bytes
+tar: ./docs/wiki/images/how-to-write-a-visual-basic-analyzer-and-code-fix-figure3.png: Wrote only 1024 of 5502 bytes
+tar: ./docs/wiki/images/compiler-pipeline-lang-svc.png: Wrote only 6144 of 10240 bytes
+tar: ./docs/wiki/images/fig7.png: Wrote only 1024 of 10240 bytes
+tar: ./docs/wiki/images/fig19.png: Wrote only 2560 of 10240 bytes
+tar: ./docs/wiki/images/how-to-write-a-visual-basic-analyzer-and-code-fix-figure5.png: Wrote only 8192 of 10240 bytes
+tar: ./docs/wiki/images/fig20.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure2.png: Wrote only 9216 of 10240 bytes
+tar: ./docs/wiki/images/walkthrough-vb-syntax-transformation-figure1.png: Wrote only 3584 of 8199 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure5.png: Wrote only 3072 of 6705 bytes
+tar: ./docs/wiki/images/compiler-pipeline-api.png: Wrote only 3584 of 10240 bytes
+tar: ./docs/wiki/images/fig18.png: Wrote only 3072 of 8040 bytes
+tar: ./docs/wiki/images/fig12.png: Wrote only 5632 of 10240 bytes
+tar: ./docs/wiki/images/fig4.png: Wrote only 1024 of 10240 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure11.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/images/fig16.png: Wrote only 1536 of 5007 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure1.png: Wrote only 512 of 2737 bytes
+tar: ./docs/wiki/images/walkthrough-csharp-syntax-figure1.png: Wrote only 1536 of 10240 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure6.png: Wrote only 4096 of 5030 bytes
+tar: ./docs/wiki/images/how-to-write-a-csharp-analyzer-and-code-fix-figure2.png: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/images/fig14.png: Wrote only 3584 of 8263 bytes
+tar: ./docs/wiki/images/alex-api-layers.png: Wrote only 3072 of 10240 bytes
+tar: ./docs/wiki/images/fig13.png: Wrote only 5632 of 9917 bytes
+tar: ./docs/wiki/images/fig10.png: Wrote only 512 of 10240 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure7.png: Wrote only 4096 of 5799 bytes
+tar: ./docs/wiki/images/fig15.png: Wrote only 3584 of 7267 bytes
+tar: ./docs/wiki/images/walkthrough-csharp-syntax-transformation-figure1.png: Wrote only 4096 of 6635 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure8.png: Wrote only 7168 of 10240 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure4.png: Wrote only 1024 of 2480 bytes
+tar: ./docs/wiki/images/fig1.png: Wrote only 5120 of 10240 bytes
+tar: ./docs/wiki/images/fig6.png: Wrote only 8192 of 10240 bytes
+tar: ./docs/wiki/images/how-to-write-a-csharp-analyzer-and-code-fix-figure6.png: Wrote only 6656 of 9709 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure13.png: Wrote only 2048 of 2774 bytes
+tar: ./docs/wiki/images/how-to-write-a-visual-basic-analyzer-and-code-fix-figure1.png: Wrote only 5632 of 10240 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-servicehub-failure-infobar.png: Wrote only 4096 of 4889 bytes
+tar: ./docs/wiki/images/how-to-write-a-csharp-analyzer-and-code-fix-figure1.png: Wrote only 9216 of 10240 bytes
+tar: ./docs/wiki/images/fig3.png: Wrote only 512 of 8472 bytes
+tar: ./docs/wiki/images/compiler-pipeline.png: Wrote only 1024 of 4013 bytes
+tar: ./docs/wiki/images/fig8.png: Wrote only 2560 of 10240 bytes
+tar: ./docs/wiki/images/how-to-investigate-ci-test-failures-figure12.png: Wrote only 1536 of 10240 bytes
+tar: ./docs/wiki/Reporting-Visual-Studio-crashes-and-performance-issues.md: Wrote only 4096 of 4680 bytes
+tar: ./docs/wiki/Runtime-code-generation-using-Roslyn-compilations-in-.NET-Core-App.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/Getting-Started-C#-Semantic-Analysis.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/Performance-considerations-for-large-solutions.md: Wrote only 3584 of 4729 bytes
+tar: ./docs/wiki/Scripting-API-Samples.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/New-Language-Features-in-VB-14.md: Wrote only 1024 of 8234 bytes
+tar: ./docs/wiki/FAQ.md: Wrote only 8192 of 10240 bytes
+tar: ./docs/wiki/How-To-Write-a-Visual-Basic-Analyzer-and-Code-Fix.md: Wrote only 512 of 742 bytes
+tar: ./docs/wiki/VS-2015-CTP-6-API-Changes.md: Wrote only 1536 of 10041 bytes
+tar: ./docs/wiki/Roslyn-Overview.md: Wrote only 7680 of 10240 bytes
+tar: ./docs/wiki/Manual-Testing.md: Wrote only 9728 of 10240 bytes
+tar: ./docs/wiki/NuGet-packages.md: Wrote only 512 of 3134 bytes
+tar: ./docs/wiki/Getting-Started-C#-Syntax-Analysis.md: Wrote only 6144 of 10240 bytes
+tar: ./docs/wiki/VS-2015-RC-API-Changes.md: Wrote only 2560 of 10240 bytes
+tar: ./docs/wiki/Branch-Cleanup.md: Wrote only 4096 of 6600 bytes
+tar: ./docs/wiki/New-Language-Features-in-C#-6.md: Wrote only 2560 of 3194 bytes
+tar: ./docs/wiki/Getting-Started-VB-Syntax-Transformation.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/Getting-Started-VB-Syntax-Analysis.md: Wrote only 3072 of 7146 bytes
+tar: ./docs/wiki/Performance-Investigations.md: Wrote only 4096 of 6182 bytes
+tar: ./docs/wiki/Samples-and-Walkthroughs.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/wiki/Labels-used-for-issues.md: Wrote only 6144 of 8030 bytes
+tar: ./docs/analyzers/Using Additional Files.md: Wrote only 4608 of 5556 bytes
+tar: ./docs/contributing/target-framework-strategy.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/contributing/Building, Debugging, and Testing on Windows.md: Wrote only 6144 of 9287 bytes
+tar: ./docs/contributing/API Review Process.md: Wrote only 4096 of 6600 bytes
+tar: ./docs/contributing/Developing a Language Feature.md: Wrote only 3072 of 7989 bytes
+tar: ./docs/contributing/Documentation for IDE CodeStyle analyzers.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/contributing/Building, Debugging, and Testing on Unix.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/specs/CSharp 6/Better Betterness.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/infrastructure/cross-platform.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/roslyn-analyzers/rules/RS1038.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/ide/api-designs/Workspace and Source Generated Documents.md: Wrote only 1536 of 5451 bytes
+tar: ./docs/ide/README.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/ide/specs/semantic_snippets.md: Wrote only 5120 of 6682 bytes
+tar: ./docs/features/task-types.md: Wrote only 2560 of 3238 bytes
+tar: ./docs/features/interceptors.md: Wrote only 5632 of 6923 bytes
+tar: ./docs/features/nullable-reference-types.md: Wrote only 3584 of 10240 bytes
+tar: ./docs/features/refout.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/features/local-functions.work.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/features/pdb-compilation-options.md: Wrote only 1536 of 3708 bytes
+tar: ./docs/features/TopLevelStatements.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/features/async-main.test.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/features/utf8-string-literals.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/features/records.work.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/features/patterns.md: Wrote only 2048 of 3427 bytes
+tar: ./docs/features/string-literals-data-section.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/features/deconstruction.md: Wrote only 512 of 1994 bytes
+tar: ./docs/features/incremental-generators.md: Wrote only 2048 of 9168 bytes
+tar: ./docs/features/enhanced-using.md: Wrote only 7680 of 10240 bytes
+tar: ./docs/compilers/Visual Basic/Compiler Breaking Changes - VS2019.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/Visual Basic/Compiler Breaking Changes - VS2015.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/Visual Basic/Overflow In Embedded Runtime.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/Error Log Format.md: Wrote only 4096 of 6938 bytes
+tar: ./docs/compilers/images/bootstrap-logs.png: Wrote only 9216 of 10240 bytes
+tar: ./docs/compilers/Design/Unexpected Conditions.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/Design/Bound Node Design.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/terrapin.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/Co-located core types.md: Wrote only 4096 of 4353 bytes
+tar: ./docs/compilers/analyzer-config.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/Extension Methods in Aliased Assemblies.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/API Notes/10-29-19.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/CSharp/Definite Assignment And Dynamic.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/CSharp/Compiler Breaking Changes - post DotNet 5.md: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./docs/compilers/CSharp/Runtime Async Design.md: Wrote only 3584 of 7675 bytes
+tar: ./docs/compilers/CSharp/Nullability Public API Design Notes.md: Wrote only 4096 of 4255 bytes
+
+[... 18480 lines, excerpt: first and last 200 ...]
+
+tar: ./src/Dependencies/Collections/Internal/ThrowHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/HashHelpers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/IEnumerableCalls`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/ArraySortHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/BitHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/SR.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/ICollectionCalls`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/InsertionBehavior.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/IEnumerableCalls.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/IDictionaryCalls.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/ICollectionDebugView`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/SegmentedArrayHelper.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/IListCalls.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/SegmentedArraySegment`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Internal/SegmentedHashSetEqualityComparer`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/TemporaryArray`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/KeyValuePair.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Microsoft.CodeAnalysis.Collections.projitems: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/TemporaryArrayExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+PrivateMarshal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedHashSet`1+Enumerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedList`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedArray.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedDictionary`2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedArray`1+PrivateMarshal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedHashSet`1+Builder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+ValueBuilder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedList`1+Builder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedCollectionsMarshal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedHashSet.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedHashSet`1+ValueBuilder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedList`1+PrivateMarshal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+Builder+PrivateMarshal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+Builder+ValueCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedHashSet`1+PrivateMarshal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedDictionary`2+PrivateMarshal.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedList.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+Enumerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+ValueCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+KeyCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+ValueCollection+Enumerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedList`1+ValueBuilder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+KeyCollection+Enumerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedList`1+Enumerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedList`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedArray`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+Builder+KeyCollection.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedHashSet`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedDictionary`2+Builder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/ImmutableSegmentedListExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Collections/Segmented/SegmentedHashSet`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/ArrayBuilder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/PooledDisposer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/PooledStringBuilder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/Microsoft.CodeAnalysis.PooledObjects.projitems: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/PooledHashSet.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/Microsoft.CodeAnalysis.PooledObjects.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/ArrayBuilder.Enumerator.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/IPooled.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/PooledDelegates.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/ObjectPool`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/PooledDictionary.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/Microsoft.CodeAnalysis.PooledObjects.shproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/PooledObjects/ArrayBuilderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/IReadOnlySet.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/CollectionBuilderAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/NonDefaultableAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/EnumExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/Microsoft.CodeAnalysis.Contracts.shproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/Microsoft.CodeAnalysis.Contracts.projitems: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/InterpolatedStringHandlerArgumentAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/Contract.InterpolatedStringHandlers.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/Microsoft.CodeAnalysis.Contracts.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/SetsRequiredMembersAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/NonCopyableAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/ValueTaskExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/ReferenceEqualityComparer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/InterpolatedStringHandlerAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/ErrorReporting/FatalError.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/ErrorReporting/FailFast.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/ExceptionUtilities.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/Range.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/Index.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/NullableAttributes.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/ExperimentalAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/CompilerFeatureRequiredAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/EqualityComparerExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/Contract.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/IsExternalInit.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Contracts/RequiredMemberAttribute.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/CustomDebugInfoKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/CustomDebugInfoRecord.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/DynamicLocalInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/VBImportScopeKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/TupleElementNamesInfo.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/CustomDebugInfoEncoder.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/CustomDebugInfoReader.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/Microsoft.CodeAnalysis.Debugging.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/Microsoft.CodeAnalysis.Debugging.shproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/StateMachineHoistedLocalScope.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/ImportTargetKind.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/CustomDebugInfoConstants.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/PortableCustomDebugInfoKinds.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/CodeAnalysis.Debugging/Microsoft.CodeAnalysis.Debugging.projitems: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/ParallelExtensions.NetFramework.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/TestHooks/IAsynchronousOperationListenerProvider.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/TestHooks/IAsynchronousOperationListener.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/TestHooks/IAsyncToken.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/TestHooks/IExpeditableDelaySource.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/IAsyncEnumerableExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/ConfiguredYieldAwaitable.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/VoidResult.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/TaskExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/Microsoft.CodeAnalysis.Threading.Package.csproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/CancellationSeries.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/AsyncBatchingWorkQueue`2.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/Microsoft.CodeAnalysis.Threading.shproj: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/ProducerConsumer.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/ChannelReaderExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/ValueTaskExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/ParallelExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/AsyncBatchingWorkQueue`0.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/Microsoft.CodeAnalysis.Threading.projitems: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/AsyncBatchingWorkQueue`1.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/YieldAwaitableExtensions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./src/Dependencies/Threading/ProducerConsumerOptions.cs: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./SpellingExclusions.dic: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./azure-pipelines-official.yml: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./Directory.Build.props: Funktionen write fejlede: Ikke mere plads på enheden
+tar: ./.editorconfig: Funktionen write fejlede: Ikke mere plads på enheden
+tar: Afslutter med fejlstatus på grund af tidligere fejl
+<VirtSubproc>: failure: copydown destination failed, status 2
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 89, in start_testbed
+    yield testbed
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 338, in corun_builds
+    bctx.copydown(testbed)
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 187, in copydown
+    testbed.command('copydown', (os.path.join(self.local_src, ''), self.testbed_src))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 435, in command
+    ll = self.expect('ok', nresults)
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 403, in expect
+    self.bomb('unexpected eof from the testbed')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: unexpected eof from the testbed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 393, in send
+    self.sp.stdin.flush()
+    ~~~~~~~~~~~~~~~~~~~^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 377, in check
+    local_dists = [proc.send(("control", build_variations[0]))]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 322, in corun_builds
+    with start_testbed(virtual_server_args, temp_dir, no_clean_on_error,
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       host_distro=host_distro) as testbed:
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 99, in start_testbed
+    testbed.stop()
+    ~~~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 147, in stop
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 282, in close
+    self.command('close')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 434, in command
+    self.send(' '.join(al))
+    ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/lib/adt_testbed.py", line 397, in send
+    self.bomb('cannot send to testbed: %s' % traceback.
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              format_exception_only(type, value))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.TestbedFailure: cannot send to testbed: ['BrokenPipeError: [Errno 32] Broken pipe\n']
+end 2026-11-02T23:56:50+01:00 exit 125

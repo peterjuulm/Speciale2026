@@ -1,0 +1,34 @@
+start 2026-11-01T14:46:20+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1742978045 && dotnet pack src/Microsoft.Identity.Web.Certificateless/Microsoft.Identity.Web.Certificateless.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1742978045; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.Identity.Web.Certificateless -> /tmp/reprotest.Ze8yvD/const_build_path/src/Microsoft.Identity.Web.Certificateless/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.06
+  Successfully created package '/tmp/reprotest.Ze8yvD/const_build_path/out/Microsoft.Identity.Web.Certificateless.3.8.2.nupkg'.
+  Successfully created package '/tmp/reprotest.Ze8yvD/const_build_path/out/Microsoft.Identity.Web.Certificateless.3.8.2.snupkg'.
+  Could not resolve reference 'Azure.Core.dll' directly or transitively referenced by 'lib/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll' (/private/tmp/nupkg-determinism/nuget/microsoft.identity.web.certificateless/2.7.0/microsoft.identity.web.certificateless.2.7.0.nupkg) in any of the provided search directories.
+  Could not resolve reference 'Azure.Identity.dll' directly or transitively referenced by 'lib/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll' (/private/tmp/nupkg-determinism/nuget/microsoft.identity.web.certificateless/2.7.0/microsoft.identity.web.certificateless.2.7.0.nupkg) in any of the provided search directories.
+  Microsoft.Identity.Web.Certificateless -> /tmp/reprotest.Ze8yvD/const_build_path/src/Microsoft.Identity.Web.Certificateless/bin/Release/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.16
+  Successfully created package '/tmp/reprotest.Ze8yvD/const_build_path/out/Microsoft.Identity.Web.Certificateless.3.8.2.nupkg'.
+  Successfully created package '/tmp/reprotest.Ze8yvD/const_build_path/out/Microsoft.Identity.Web.Certificateless.3.8.2.snupkg'.
+  Could not resolve reference 'Azure.Core.dll' directly or transitively referenced by 'lib/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll' (/private/tmp/nupkg-determinism/nuget/microsoft.identity.web.certificateless/2.7.0/microsoft.identity.web.certificateless.2.7.0.nupkg) in any of the provided search directories.
+  Could not resolve reference 'Azure.Identity.dll' directly or transitively referenced by 'lib/netstandard2.0/Microsoft.Identity.Web.Certificateless.dll' (/private/tmp/nupkg-determinism/nuget/microsoft.identity.web.certificateless/2.7.0/microsoft.identity.web.certificateless.2.7.0.nupkg) in any of the provided search directories.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+45111914b88c8a19f591671f0aecec70ac92a19e4d609c64b0263c17a18769da  ./out/Microsoft.Identity.Web.Certificateless.3.8.2.nupkg
+cbe661f8690c95ec6b07fea74c62f5cf30b0b1420a2a5270f856a2a6a5a1b3fb  ./out/Microsoft.Identity.Web.Certificateless.3.8.2.snupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-01T14:46:39+01:00 exit 0

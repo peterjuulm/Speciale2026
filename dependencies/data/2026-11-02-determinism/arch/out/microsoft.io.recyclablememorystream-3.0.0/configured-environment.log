@@ -1,0 +1,31 @@
+start 2026-11-02T19:57:01+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/Microsoft.IO.RecyclableMemoryStream.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1702328536 && dotnet pack src/Microsoft.IO.RecyclableMemoryStream.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1702328536; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+  Microsoft.IO.RecyclableMemoryStream -> /tmp/reprotest.yvctul/const_build_path/src/bin/Release/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.dll
+  Microsoft.IO.RecyclableMemoryStream -> /tmp/reprotest.yvctul/const_build_path/src/bin/Release/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.dll
+  Microsoft.IO.RecyclableMemoryStream -> /tmp/reprotest.yvctul/const_build_path/src/bin/Release/net6.0/Microsoft.IO.RecyclableMemoryStream.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.73
+  Successfully created package '/tmp/reprotest.yvctul/const_build_path/out/Microsoft.IO.RecyclableMemoryStream.3.0.0.nupkg'.
+  Microsoft.IO.RecyclableMemoryStream -> /tmp/reprotest.yvctul/const_build_path/src/bin/Release/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.dll
+  Microsoft.IO.RecyclableMemoryStream -> /tmp/reprotest.yvctul/const_build_path/src/bin/Release/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.dll
+  Microsoft.IO.RecyclableMemoryStream -> /tmp/reprotest.yvctul/const_build_path/src/bin/Release/net6.0/Microsoft.IO.RecyclableMemoryStream.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.01
+  Successfully created package '/tmp/reprotest.yvctul/const_build_path/out/Microsoft.IO.RecyclableMemoryStream.3.0.0.nupkg'.
+=======================
+Reproduction successful
+=======================
+No differences in ./out
+4afeaac45d1708c1582ea8c602566999f85f901b925371bb5c9095498691e63d  ./out/Microsoft.IO.RecyclableMemoryStream.3.0.0.nupkg
+However, other factors may still make the build unreproducible; try re-running with --vary=+all.
+end 2026-11-02T19:57:18+01:00 exit 0

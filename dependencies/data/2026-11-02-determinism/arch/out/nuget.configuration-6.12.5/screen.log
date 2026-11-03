@@ -1,0 +1,66 @@
+start 2026-11-02T20:59:57+01:00
+$ git -C /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5 checkout -q -- .
+$ dotnet restore src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 2,33 sec).
+  Restored /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 2,33 sec).
+  Restored /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 2,33 sec).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.19
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+$ bash -c dotnet build src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj -c Release --no-restore -p:UseSharedCompilation=false && dotnet pack src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj -c Release --no-build -o out -p:UseSharedCompilation=false
+
+  NuGet.Frameworks -> /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/artifacts/NuGet.Frameworks/bin/Release/netstandard2.0/NuGet.Frameworks.dll
+  NuGet.Common -> /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/artifacts/NuGet.Common/bin/Release/netstandard2.0/NuGet.Common.dll
+  NuGet.Configuration -> /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/artifacts/NuGet.Configuration/bin/Release/netstandard2.0/NuGet.Configuration.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.27
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Successfully created package '/private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/out/NuGet.Configuration.6.12.5-rc.32767.nupkg'.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.03
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+end 2026-11-02T21:00:13+01:00 built
+$ git -C /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5 checkout -q -- .
+$ dotnet restore src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj -p:UseSharedCompilation=false
+
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/src/NuGet.Core/NuGet.Configuration/NuGet.Configuration.csproj (in 148 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/src/NuGet.Core/NuGet.Common/NuGet.Common.csproj (in 148 ms).
+  Restored /private/tmp/nupkg-determinism/src/nuget.configuration-6.12.5/src/NuGet.Core/NuGet.Frameworks/NuGet.Frameworks.csproj (in 148 ms).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.99
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.

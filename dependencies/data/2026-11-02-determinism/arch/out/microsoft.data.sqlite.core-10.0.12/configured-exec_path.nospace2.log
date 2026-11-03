@@ -1,0 +1,99 @@
+start 2026-11-03T03:00:55+01:00
+$ export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914 && dotnet pack src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc
+WARNING:reprotest:The control build runs on 1 CPU by default, give --min-cpus to increase this.
+which: no dpkg-query in (/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:/home/leos/.dotnet/tools:/home/leos/.local/share/gem/ruby/3.4.0/bin:/home/leos/.local/bin:/home/leos/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/.local/bin:/home/leos/go/bin:/home/leos/bin)
+
+  Microsoft.Data.Sqlite.Core -> /tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.dll
+  Microsoft.Data.Sqlite.Core -> /tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/bin/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.59
+
+  The package Microsoft.Data.Sqlite.Core.10.0.12-ci is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package '/tmp/reprotest.w2bUFT/const_build_path/out/Microsoft.Data.Sqlite.Core.10.0.12-ci.nupkg'.
+  Successfully created package '/tmp/reprotest.w2bUFT/const_build_path/out/Microsoft.Data.Sqlite.Core.10.0.12-ci.symbols.nupkg'.
+
+  Unable to use package assets cache due to I/O error. This can occur when the same project is built more than once in parallel. Performance may be degraded, but the build result will not be impacted.
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(2453,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): error MSB3554: Cannot write to the output file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Properties.Resources.resources". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Properties.Resources.resources' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(6062,5): error MSB3491: Could not write lines to file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.FileListAbsolute.txt". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/haq2q1c5.egh~'  [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+  Unable to use package assets cache due to I/O error. This can occur when the same project is built more than once in parallel. Performance may be degraded, but the build result will not be impacted.
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(2453,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): error MSB3554: Cannot write to the output file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Properties.Resources.resources". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Properties.Resources.resources' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(6062,5): error MSB3491: Could not write lines to file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.FileListAbsolute.txt". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/cexwh4ar.kv1~'  [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+
+Build FAILED.
+
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(2453,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(2453,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.AssemblyReference.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): warning MSB3101: Could not write state file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.GenerateResource.cache' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): error MSB3554: Cannot write to the output file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Properties.Resources.resources". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Properties.Resources.resources' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(6062,5): error MSB3491: Could not write lines to file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/Microsoft.Data.Sqlite.Core.csproj.FileListAbsolute.txt". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/net8.0/haq2q1c5.egh~'  [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=net8.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(3458,5): error MSB3554: Cannot write to the output file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Properties.Resources.resources". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Properties.Resources.resources' [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+/private/tmp/nupkg-determinism/sdk/sdk/10.0.403/Microsoft.Common.CurrentVersion.targets(6062,5): error MSB3491: Could not write lines to file "/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/Microsoft.Data.Sqlite.Core.csproj.FileListAbsolute.txt". No space left on device : '/tmp/reprotest.w2bUFT/const_build_path/src/efcore/artifacts/obj/Microsoft.Data.Sqlite.Core/Release/netstandard2.0/cexwh4ar.kv1~'  [/tmp/reprotest.w2bUFT/const_build_path/src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj::TargetFramework=netstandard2.0]
+    4 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:01.14
+Traceback (most recent call last):
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 862, in run
+    return 0 if check_func(*check_args) else 1
+                ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 379, in check
+    local_dists += [proc.send(nv) for nv in zip(bnames[1:], build_variations[1:])]
+                    ~~~~~~~~~^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 339, in corun_builds
+    bctx.run_build(testbed, build, os.environ, artifact_pattern, testbed_build_pre, no_clean_on_error)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 218, in run_build
+    testbed.check_exec2(build_argv,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        xenv=['-i'] + ['%s=%s' % (k, v) for k, v in build.env.items()],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        kind='build')
+        ^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 63, in check_exec2
+    self.bomb('"%s" failed with status %i' % (' '.join(argv), code),
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              adtlog.AutopkgtestError)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/leos/.local/share/pipx/venvs/reprotest/lib/python3.14/site-packages/reprotest/__init__.py", line 70, in bomb
+    raise _type(m)
+reprotest.lib.adtlog.AutopkgtestError: "sh -ec run_build() {
+    mkdir -p /tmp/reprotest.w2bUFT/build-experiment-1-aux && \
+    mv /tmp/reprotest.w2bUFT/build-experiment-1/ /tmp/reprotest.w2bUFT/const_build_path && \
+    SETARCH_OPTS="$SETARCH_OPTS -R" && \
+    CPU_MAX=$(nproc) && \
+    CPU_MIN=$({ echo $CPU_MAX; echo 1; } | sort -n | head -n1) && \
+    CPU_NUM=$CPU_MIN && \
+    export CPU_LIST="$(echo $(shuf -i0-$((CPU_MAX - 1)) -n$CPU_NUM) | tr ' ' ,)" && \
+    umask 0022 && \
+    export REPROTEST_BUILD_PATH=/tmp/reprotest.w2bUFT/const_build_path/ && \
+    export REPROTEST_UMASK=$(umask) && \
+    taskset -a -c $CPU_LIST \
+    sh -ec 'cd "$REPROTEST_BUILD_PATH"; unset REPROTEST_BUILD_PATH; umask "$REPROTEST_UMASK"; unset REPROTEST_UMASK; export PATH=/private/tmp/nupkg-determinism/sdk:/private/tmp/nupkg-determinism/tools:$PATH DOTNET_ROOT=/private/tmp/nupkg-determinism/sdk DOTNET_CLI_HOME=/private/tmp/nupkg-determinism/clihome NUGET_PACKAGES=/private/tmp/nupkg-determinism/nuget/ DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 NuGetAudit=false && rm -rf out && dotnet build src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -c Release --no-restore -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914 && dotnet pack src/efcore/src/Microsoft.Data.Sqlite.Core/Microsoft.Data.Sqlite.Core.csproj -c Release --no-build -o out -p:UseSharedCompilation=false -p:ContinuousIntegrationBuild=true -p:Deterministic=true -p:DeterministicTimestamp=1787396914; rc=$?; dotnet build-server shutdown >/dev/null 2>&1; exit $rc'
+}
+
+cleanup() {
+    __c=0; \
+    mv /tmp/reprotest.w2bUFT/const_build_path /tmp/reprotest.w2bUFT/build-experiment-1/ || __c=$?; \
+    rm -rf /tmp/reprotest.w2bUFT/build-experiment-1-aux || __c=$?; \
+    exit $__c
+}
+
+trap '( cleanup )' HUP INT QUIT ABRT TERM PIPE # FIXME doesn't quite work reliably yet
+
+if ( run_build ); then ( cleanup ); else
+    __x=$?; # save the exit code of run_build
+    if ( ! false ); then
+        if ( cleanup ); then :; else echo >&2 "cleanup failed with exit code $?"; fi;
+    fi
+    exit $__x
+fi" failed with status 1
+end 2026-11-03T03:01:57+01:00 exit 125

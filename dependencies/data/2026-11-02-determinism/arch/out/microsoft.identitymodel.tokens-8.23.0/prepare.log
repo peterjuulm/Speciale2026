@@ -1,0 +1,40 @@
+start 2026-11-01T11:51:56+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_AzureAD_azure-activedirectory-identitymodel-extensions-for-dotnet.git /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 remote set-url origin https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 -c advice.detachedHead=false checkout -q 8b16f418b3d587416d293e9ba34c5d310781cdb3
+global.json: sdk-removed (pinned 10.0.100)
+start 2026-11-01T19:29:12+01:00
+$ git clone -q --shared --no-checkout /private/tmp/nupkg-determinism/mirrors/https_github.com_AzureAD_azure-activedirectory-identitymodel-extensions-for-dotnet.git /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 remote set-url origin https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 -c advice.detachedHead=false checkout -q 8b16f418b3d587416d293e9ba34c5d310781cdb3
+global.json: sdk-removed (pinned 10.0.100)
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 checkout -q -- .
+$ dotnet restore src/Microsoft.IdentityModel.Tokens/Microsoft.IdentityModel.Tokens.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0/src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj (in 193 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0/src/Microsoft.IdentityModel.Logging/Microsoft.IdentityModel.Logging.csproj (in 193 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0/src/Microsoft.IdentityModel.Tokens/Microsoft.IdentityModel.Tokens.csproj (in 193 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
+start 2026-11-02T21:13:00+01:00
+$ git clone -q --no-checkout https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 config core.autocrlf false
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 -c advice.detachedHead=false checkout -q 8b16f418b3d587416d293e9ba34c5d310781cdb3
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 clean -xdfq
+$ git -C /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0 checkout -q -- .
+$ dotnet restore src/Microsoft.IdentityModel.Tokens/Microsoft.IdentityModel.Tokens.csproj -p:UseSharedCompilation=false
+  Determining projects to restore...
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0/src/Microsoft.IdentityModel.Logging/Microsoft.IdentityModel.Logging.csproj (in 213 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0/src/Microsoft.IdentityModel.Abstractions/Microsoft.IdentityModel.Abstractions.csproj (in 213 ms).
+  Restored /private/tmp/nupkg-determinism/src/microsoft.identitymodel.tokens-8.23.0/src/Microsoft.IdentityModel.Tokens/Microsoft.IdentityModel.Tokens.csproj (in 213 ms).
+$ dotnet build-server shutdown
+Shutting down MSBuild server...
+Shutting down VB/C# compiler server...
+VB/C# compiler server shut down successfully.
+MSBuild server shut down successfully.
