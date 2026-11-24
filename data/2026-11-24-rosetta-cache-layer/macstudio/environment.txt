@@ -1,0 +1,25 @@
+# rosetta-cache-layer, macstudio, 24 November 2026
+date: 2026-11-24T09:50:43+0100
+uname: Darwin 25.4.0 arm64
+macOS: 26.4.1 (25E253)
+machine: Apple M2 Max, 32 GB
+umask: 022
+locale: LANG=unset LC_ALL=unset
+colima: colima version v0.10.3
+limactl: limactl version 2.3.0
+docker: 29.10.0 client, 29.5.2 server
+buildx: github.com/docker/buildx v0.38.0 0dbe87f36ed472fe36b6796c3f70b4210a731fc5
+VM: Linux 6.8.0-117-generic aarch64
+VM binfmt x86-64: rosetta enabled, qemu-x86_64 disabled
+rosetta: 274949f8d4d6d4273e5bb1b1f55a26a5b09f33b47c8aeac55910f6584359ca19  /mnt/lima-rosetta/rosetta
+rb1          docker-container                        
+ \_ rb10      \_ colima         running   v0.33.1    linux/arm64, linux/386
+rb1q         docker-container                        
+ \_ rb1q0     \_ colima         running   v0.33.1    linux/arm64, linux/386
+BuildKit image of rb1 and rb1q: moby/buildkit:v0.33.1@sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea
+rb1:  buildkit-qemu-x86_64.off  (QEMU moved aside: Rosetta runs x86-64 steps)
+rb1q: buildkit-qemu-x86_64
+qemu-x86_64 version 10.2.3 (v10.2.3)
+source: WS.Phoenix thesis/reproducible-builds at 30b5c745d944d06bc017f051e36079547252ea32 (commit time 1795445958),
+        fetched shallow from GitHub into the lab; tag v0.0.0-thesis.6 at be5fc56e76c5fc7b01e9f25cdc4117ce5783dce0 (1791961346)
+SOURCE_DATE_EPOCH: the commit time of what was built; outputs type=oci with rewrite-timestamp=true

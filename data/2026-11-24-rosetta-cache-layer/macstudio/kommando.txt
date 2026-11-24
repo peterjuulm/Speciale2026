@@ -1,0 +1,97 @@
+# rosetta-cache-layer, macstudio, 24 November 2026. Run by Claude at the
+# writing session's request, from zsh. Verbatim, with L for the lab
+# /private/tmp/rb1-rc, D for the Docker lab /private/tmp/rb1-ms-docker of
+# 23/11 and V for ~/Dev/Speciale2026/experiments/rosetta-cache/variants.sh.
+# Every docker and colima command ran with
+# PATH=$D/bin:/usr/bin:/bin:/usr/sbin:/sbin DOCKER_CONFIG=$D/config.
+# The home folder is written ~. Leo's WS.Phoenix clone was not used.
+
+# The source, 09:03-09:05: the branch tip from GitHub into a bare
+# repository in the lab, exported, and checked file by file:
+mkdir -p $L/src $L/out $L/logs && git init -q --bare $L/git
+git -C $L/git -c credential.helper= -c 'credential.helper=!gh auth git-credential' ls-remote https://github.com/Weel-Sandvig/WS.Phoenix.git refs/heads/thesis/reproducible-builds
+#   30b5c745d944d06bc017f051e36079547252ea32	refs/heads/thesis/reproducible-builds
+C=30b5c745d944d06bc017f051e36079547252ea32; git -C $L/git -c credential.helper= -c 'credential.helper=!gh auth git-credential' fetch -q --depth 1 https://github.com/Weel-Sandvig/WS.Phoenix.git $C
+git -C $L/git log -1 --format='%H %ct %cI' $C
+#   30b5c745d944d06bc017f051e36079547252ea32 1795445958 2026-11-23T15:59:18+01:00
+git -C $L/git archive $C -- . ':(exclude).claude' | tar -x -C $L/src
+# every regular file's blob id against the tree (two symbolic links aside):
+git -C $L/git ls-tree -r $C | grep -v '	\.claude/' | grep -v '^120000' | awk -F'\t' '{split($1,a," "); print a[3]"\t"$2}' | LC_ALL=C sort -k2 > $L/tree.txt
+cd $L/src && cut -f2 $L/tree.txt | git --git-dir=$L/git hash-object --no-filters --stdin-paths > $L/hashed.txt; paste <(cut -f1 $L/tree.txt) $L/hashed.txt | awk '$1!=$2' | wc -l
+#   0 (6715 files exported, 6713 regular files compared)
+
+# The tag, for the link to GHCR: exported from the images job's clone of
+# 23/11 (a shallow clone of the tag in /private/tmp, not Leo's):
+mkdir -p $L/src-tag && git -C /private/tmp/rb1-ci/images archive be5fc56e76c5fc7b01e9f25cdc4117ce5783dce0 -- . ':(exclude).claude' | tar -x -C $L/src-tag
+#   5767 files, as many as the tree's regular files; commit time 1791961346
+
+# Which images the release builds, and their RUN steps (read in
+# .github/workflows/03-release.yml and the five Dockerfiles; the lines
+# are in results.txt):
+grep -n -i 'dockerfile\|file:\|context:\|target:' .github/workflows/03-release.yml
+grep -rn 'migrations/Dockerfile\|deployment/migrations' .github/workflows/
+#   only 01-pr-validation.yml names deployment/migrations/Dockerfile (a
+#   list of files that must exist); no workflow builds it
+
+# Rosetta's binary in the VM: what it reads and where it writes:
+colima start
+colima ssh -- sh -c 'sha256sum /mnt/lima-rosetta/rosetta /mnt/lima-rosetta/rosettad; grep -aoE "[[:print:]]{4,}" /mnt/lima-rosetta/rosetta | grep -iE "cache|HOME|XDG|ROSETTA_|\.sock|getpw" | sort -u | head -40; echo ---; ps -eo pid,args | grep -i rosettad | grep -v grep'
+docker exec buildx_buildkit_rb10 sh -c 'ls /usr/bin | grep qemu-x86'    # buildkit-qemu-x86_64.off (rb1: Rosetta)
+docker exec buildx_buildkit_rb1q0 sh -c 'ls /usr/bin | grep qemu-x86'   # buildkit-qemu-x86_64    (rb1q: QEMU)
+colima ssh -- sh -c 'for f in rosetta qemu-x86_64; do echo "== $f"; head -3 /proc/sys/fs/binfmt_misc/$f; done'
+
+# The base stages, 09:06-09:08. variants.sh writes each variant's
+# Dockerfile next to its output, outside the context, and builds it with
+# rb1 (Rosetta) and rb1q (QEMU). Line 8 of the tip's WebAPI Dockerfile and
+# line 6 of the tag's are the base stage's RUN; line 6 of the tip's
+# BackgroundJobExecutor Dockerfile is its base stage's RUN:
+cd /private/tmp && $V $L/src src/WebAPI/Dockerfile base $L/out/tip-base 1795445958 8 v0 cache home shm > $L/logs/tip-base.log 2>&1
+$V $L/src-tag src/WebAPI/Dockerfile base $L/out/tag-base 1791961346 6 v0 cache home >> $L/logs/tip-base.log 2>&1
+$V $L/src src/BackgroundJobExecutor/Dockerfile base $L/out/jw-base 1795445958 6 v0 cache > $L/logs/jw-base.log 2>&1
+# each output's layers and the RUN layer's entries:
+/usr/bin/python3 -I ~/Dev/Speciale2026/experiments/phoenix-rt/oci-layers.py $L/out/<set>/<variant>-<builder>.oci.tar 2
+
+# The whole images, 09:09-, four at once: the three MCP images with and
+# without the change on every RUN of their runtime stage, under both
+# builders; ws-pems under Rosetta only (.NET crashes under QEMU, 23/11),
+# with the change on the base stage's RUN (line 8) and the final stage's
+# (line 100):
+cd /private/tmp && ( $V $L/src/mcp Dockerfile - $L/out/mcp-server 1795445958 84,126 v0 cache > $L/logs/mcp-server.log 2>&1 & $V $L/src/mcp chat-server/Dockerfile - $L/out/chat-server 1795445958 69,100 v0 cache > $L/logs/chat-server.log 2>&1 & $V $L/src/mcp/auth-broker Dockerfile - $L/out/auth-broker 1795445958 47,72 v0 cache > $L/logs/auth-broker.log 2>&1 & BUILDERS=rb1 $V $L/src src/WebAPI/Dockerfile - $L/out/ws-pems 1795445958 8,100 v0 cache > $L/logs/ws-pems.log 2>&1 & wait )
+#   09:08-09:46; ws-pems under Rosetta 09:08-09:17, the MCP images'
+#   QEMU builds (the node build stages, tests included) 2-17 minutes each.
+
+# The whole job worker under Rosetta, 09:18-09:25:
+cd /private/tmp && BUILDERS=rb1 $V $L/src src/BackgroundJobExecutor/Dockerfile - $L/out/job-worker 1795445958 6 v0 cache > $L/logs/job-worker.log 2>&1
+# (variants.sh got its NOCACHE option at 09:18, by writing a new file and
+# renaming it over the old, so the scripts still running kept reading theirs)
+
+# The .NET images under QEMU with the publish stage from rb1's cache,
+# 09:32-09:35. First QEMU back into rb1 and a probe of what runs a step
+# (probe Dockerfile: the aspnet base by digest, RUN sleep 6; ls -d /root/.cache/rosetta):
+docker exec buildx_buildkit_rb10 sh -c 'mv /usr/bin/buildkit-qemu-x86_64.off /usr/bin/buildkit-qemu-x86_64; ls /usr/bin | grep qemu-x86; sha256sum /usr/bin/buildkit-qemu-x86_64'
+#   5e3eb921f26f576b3722207bbf5a192ba099032924eb7d0f4104bb1b536e5f51 (as on 23/11)
+(docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain /private/tmp/rb1-ms/emutest > $L/logs/emutest-qemu.log 2>&1 &); sleep 4; colima ssh -- sh -c 'ps -eo pid,args | grep -E "sleep 8" | grep -v grep'
+#   .buildkit_qemu_emulator -0 sleep /bin/sleep 8
+cd /private/tmp && BUILDERS=rb1 NOCACHE=--no-cache-filter=base,final $V $L/src src/WebAPI/Dockerfile - $L/out/ws-pems-q 1795445958 8,100 v0 cache > $L/logs/ws-pems-q.log 2>&1
+BUILDERS=rb1 NOCACHE=--no-cache-filter=base,final $V $L/src src/BackgroundJobExecutor/Dockerfile - $L/out/job-worker-q 1795445958 6 v0 cache >> $L/logs/ws-pems-q.log 2>&1
+#   job-worker-q is not valid: its final stage's WORKDIR came from the cache (results.txt)
+for i in 1 2; do (docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain $L/probe > $L/logs/probe-$i.log 2>&1 &); sleep 4; colima ssh -- sh -c 'ps -eo pid,args | grep -E "sleep 6" | grep -v grep'; sleep 6; grep -E 'rosetta|No such' $L/logs/probe-$i.log | grep -v RUN | tail -2; done
+# rb1 back to Rosetta, 09:38, as it was left on 23/11, and the probe again:
+docker exec buildx_buildkit_rb10 sh -c 'mv /usr/bin/buildkit-qemu-x86_64 /usr/bin/buildkit-qemu-x86_64.off; ls /usr/bin | grep qemu-x86'
+(docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain $L/probe > $L/logs/probe-3.log 2>&1 &); sleep 4; colima ssh -- sh -c 'ps -eo pid,args | grep -E "sleep 6" | grep -v grep'
+# Rosetta and HOME (probe-home: ARG HOME=/dev/shm, then RUN ls -d /dev/shm/.cache/rosetta /root/.cache/rosetta),
+# and Rosetta and a tmpfs (probe-tmpfs: RUN --mount=type=tmpfs,target=/root/.cache, then ls and mount):
+docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain $L/probe-home > $L/logs/probe-home.log 2>&1
+docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain --output type=oci,dest=$L/probe-tmpfs/out.oci.tar $L/probe-tmpfs > $L/logs/probe-tmpfs.log 2>&1
+
+# ws-pems with the change on the base stage's RUN only, under Rosetta, 09:49:
+cd /private/tmp && BUILDERS=rb1 NOCACHE=--no-cache-filter=base,final $V $L/src src/WebAPI/Dockerfile - $L/out/ws-pems-8only 1795445958 8 cache > $L/logs/ws-pems-8only.log 2>&1
+
+# The summaries in results.txt: experiments/phoenix-rt/oci-layers.py on
+# each output (manifest, config, layer digests, entries of chosen layers),
+# filtered to the entries under root/ and counted (a lab script, summ.sh).
+
+# Afterwards, 09:53: the whole-image OCI files removed from the lab (the Mac had 9 GB free;
+# the base-stage ones, the logs and the variant Dockerfiles stay in $L), and the VM stopped:
+rm -f $L/out/{ws-pems,ws-pems-q,ws-pems-8only,job-worker,job-worker-q,mcp-server,chat-server,auth-broker}/*.oci.tar
+colima stop

@@ -1,0 +1,193 @@
+# rosetta-cache-layer, macstudio, 24 November 2026. Outputs of the commands in kommando.txt.
+# Digests are sha256, shortened to 16 hex digits where marked; full ones are given where a
+# digest is cited in the note. 'rb1' = builder running x86-64 steps under Rosetta,
+# 'rb1q' = builder running them under BuildKit's bundled QEMU 10.2.3.
+
+## Rosetta in the VM (Lima's mount, 23/11 and today the same files)
+274949f8d4d6d4273e5bb1b1f55a26a5b09f33b47c8aeac55910f6584359ca19  /mnt/lima-rosetta/rosetta
+099820430d9931c76f9c4882ae839379638f368454ca4479448ac73e291925a4  /mnt/lima-rosetta/rosettad
+# strings in rosetta naming the cache: '%s/.cache', '%s/.cache/rosetta', '%s/.cache/rosetta/%s.flu', 'HOME='
+# (no XDG_CACHE_HOME, no ROSETTA_ variable for the cache). rosettad runs in the VM as
+# '/mnt/lima-rosetta/rosettad daemon /var/cache/rosettad', outside the build containers.
+
+## Probes on rb1 (aspnet 10.0.12 base by digest; probe Dockerfiles in the lab, not WS source)
+# rb1 with QEMU put back (09:36), RUN sleep 6; ls -d /root/.cache/rosetta:
+#   ps: /dev/.buildkit_qemu_emulator /bin/sh -c ... ; .buildkit_qemu_emulator -0 sleep /usr/bin/sleep 6
+#   #5 6.101 ls: cannot access '/root/.cache/rosetta': No such file or directory
+# rb1 with QEMU moved aside again (09:38), the same probe:
+#   ps: /mnt/lima-rosetta/rosetta /bin/sh -c ... ; /mnt/lima-rosetta/rosetta /usr/bin/sleep 6
+#   #5 6.088 /root/.cache/rosetta
+# ARG HOME=/dev/shm, then RUN ls -d /dev/shm/.cache/rosetta /root/.cache/rosetta (Rosetta):
+#   #5 0.048 HOME=/dev/shm
+#   #5 0.065 /usr/bin/ls: cannot access '/root/.cache/rosetta': No such file or directory
+#   #5 0.067 /dev/shm/.cache/rosetta
+# RUN --mount=type=tmpfs,target=/root/.cache, HOME as BuildKit sets it (Rosetta):
+#   #5 0.047 HOME=/root
+#   #5 0.064 /root/.cache/rosetta
+#   #5 0.094 tmpfs on /root/.cache type tmpfs (rw,nosuid,relatime,inode64)
+#   the step's layer: sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 (32 bytes, the empty layer)
+
+## Base stage of the WebAPI Dockerfile at the tip 30b5c745d (--target base, RUN on line 8)
+# variants: v0 unchanged; cache = --mount=type=tmpfs,target=/root/.cache; home = --mount=type=tmpfs,target=/root;
+# shm = a line ARG HOME=/dev/shm before the RUN. Per output: manifest, config, the RUN layer
+# (layer 8), its entries under root/, and how many other entries it holds.
+cache-rb1    manifest 17758551b6da8f9d  config 5ff588ca9cc85faf  layers 8
+             layer  8 6aaac3e3e2cb3d00    216  root: none  other entries: 6
+cache-rb1q   manifest 17758551b6da8f9d  config 5ff588ca9cc85faf  layers 8
+             layer  8 6aaac3e3e2cb3d00    216  root: none  other entries: 6
+home-rb1     manifest 17758551b6da8f9d  config 5ff588ca9cc85faf  layers 8
+             layer  8 6aaac3e3e2cb3d00    216  root: none  other entries: 6
+home-rb1q    manifest 17758551b6da8f9d  config 5ff588ca9cc85faf  layers 8
+             layer  8 6aaac3e3e2cb3d00    216  root: none  other entries: 6
+shm-rb1      manifest 3ee8c9a7c9227b95  config 04044fe1a06c5863  layers 8
+             layer  8 6aaac3e3e2cb3d00    216  root: none  other entries: 6
+shm-rb1q     manifest 3ee8c9a7c9227b95  config 04044fe1a06c5863  layers 8
+             layer  8 6aaac3e3e2cb3d00    216  root: none  other entries: 6
+v0-rb1       manifest 33a2cd86bd612bdf  config 71557691971fc089  layers 8
+             layer  8 e1b77a078594cb70    269  root: root root/.cache root/.cache/rosetta  other entries: 6
+v0-rb1q      manifest 17758551b6da8f9d  config 5ff588ca9cc85faf  layers 8
+             layer  8 6aaac3e3e2cb3d00    216  root: none  other entries: 6
+
+## The same at the tag v0.0.0-thesis.6 (be5fc56e, RUN on line 6). GHCR's layer is 67cb4685 (23/11)
+cache-rb1    manifest 9e746e652ecad0b8  config 48414f37bf9beb35  layers 8
+             layer  8 67cb46851c2e9345    183  root: none  other entries: 4
+cache-rb1q   manifest 9e746e652ecad0b8  config 48414f37bf9beb35  layers 8
+             layer  8 67cb46851c2e9345    183  root: none  other entries: 4
+home-rb1     manifest 9e746e652ecad0b8  config 48414f37bf9beb35  layers 8
+             layer  8 67cb46851c2e9345    183  root: none  other entries: 4
+home-rb1q    manifest 9e746e652ecad0b8  config 48414f37bf9beb35  layers 8
+             layer  8 67cb46851c2e9345    183  root: none  other entries: 4
+v0-rb1       manifest a15b51dfd441ad21  config ca9e58e831241a26  layers 8
+             layer  8 e9ec63f8c9309e78    235  root: root root/.cache root/.cache/rosetta  other entries: 4
+v0-rb1q      manifest 9e746e652ecad0b8  config 48414f37bf9beb35  layers 8
+             layer  8 67cb46851c2e9345    183  root: none  other entries: 4
+# full: 67cb46851c2e93454193f391be023076ce93aa8178ad98fe10cc65f35670810f (GHCR's thesis.6 ws-pems layer)
+
+## Base stage of the BackgroundJobExecutor Dockerfile at the tip (--target base, RUN on line 6; new since the tag)
+cache-rb1    manifest 7ebd1eb2882981ee  config 2761cf2074102087  layers 8
+             layer  7 3199a1db36b88d54    123  root: none  other entries: 2
+cache-rb1q   manifest 7ebd1eb2882981ee  config 2761cf2074102087  layers 8
+             layer  7 3199a1db36b88d54    123  root: none  other entries: 2
+v0-rb1       manifest 81c5fb6bc6b7c029  config fe303172f85de196  layers 8
+             layer  7 116b6a098ca210cc    178  root: root root/.cache root/.cache/rosetta  other entries: 2
+v0-rb1q      manifest 7ebd1eb2882981ee  config 2761cf2074102087  layers 8
+             layer  7 3199a1db36b88d54    123  root: none  other entries: 2
+
+## The whole images at the tip, every RUN of the stages an image keeps changed (variant cache)
+# or not (v0). RUN lines changed: WebAPI 8 (base) and 100 (final); BackgroundJobExecutor 6 (base);
+# mcp/Dockerfile 84 (apt-get) and 126 (mkdir, chown, an npm script, then removing /root/.npm);
+# mcp/chat-server/Dockerfile 69 (apt-get) and 100 (an npm script, then removing /root/.npm);
+# mcp/auth-broker/Dockerfile 47 (apt-get) and 72 (npm ci, then removing /root/.npm). All run as
+# root, before the stage's USER line. Layer digests shortened to 8 hex digits.
+ws-pems     v0    rb1  manifest 20af858fe3e81c78
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:12af4033 8:e1b77a07 9:4f4fb700 10:6bc36803 11:7bfc57bf
+             root/ entries above the base image layer: L8:root L8:root/.cache L8:root/.cache/rosetta
+ws-pems     cache rb1  manifest cfa1dac5f3eaad5d
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:12af4033 8:6aaac3e3 9:4f4fb700 10:6bc36803 11:7bfc57bf
+             root/ entries above the base image layer: none
+job-worker  v0    rb1  manifest fbf070e2214adca5
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:116b6a09 8:4f4fb700 9:4f4fb700 10:d015301d
+             root/ entries above the base image layer: L7:root L7:root/.cache L7:root/.cache/rosetta
+job-worker  cache rb1  manifest a39c40eeedfafbaf
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:3199a1db 8:4f4fb700 9:4f4fb700 10:d015301d
+             root/ entries above the base image layer: none
+mcp-server  v0    rb1  manifest 44ae93bf3743a9e2
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:12fd0792 7:12af4033 8:5fa6efb9 9:800d4e4d 10:5941bc15 11:8932a2ad 12:ff8b4aea 13:28b92671 14:4f4fb700 15:eb11baa5
+             root/ entries above the base image layer: L6:root L6:root/.cache L6:root/.cache/rosetta
+mcp-server  v0    rb1q manifest 856c0da492d9801e
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:3891c1db 7:12af4033 8:5fa6efb9 9:800d4e4d 10:5941bc15 11:8932a2ad 12:ff8b4aea 13:28b92671 14:4f4fb700 15:eb11baa5
+             root/ entries above the base image layer: none
+mcp-server  cache rb1  manifest 856c0da492d9801e
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:3891c1db 7:12af4033 8:5fa6efb9 9:800d4e4d 10:5941bc15 11:8932a2ad 12:ff8b4aea 13:28b92671 14:4f4fb700 15:eb11baa5
+             root/ entries above the base image layer: none
+mcp-server  cache rb1q manifest 856c0da492d9801e
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:3891c1db 7:12af4033 8:5fa6efb9 9:800d4e4d 10:5941bc15 11:8932a2ad 12:ff8b4aea 13:28b92671 14:4f4fb700 15:eb11baa5
+             root/ entries above the base image layer: none
+chat-server v0    rb1  manifest 1bece3917892e095
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:f95a6df0 7:12af4033 8:6978cec2 9:611fff04 10:3f703a8c 11:c0198c02 12:4f4fb700
+             root/ entries above the base image layer: L6:root L6:root/.cache L6:root/.cache/rosetta
+chat-server v0    rb1q manifest 6885cc5f0519d6c4
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:8b339150 7:12af4033 8:6978cec2 9:611fff04 10:3f703a8c 11:c0198c02 12:4f4fb700
+             root/ entries above the base image layer: none
+chat-server cache rb1  manifest 6885cc5f0519d6c4
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:8b339150 7:12af4033 8:6978cec2 9:611fff04 10:3f703a8c 11:c0198c02 12:4f4fb700
+             root/ entries above the base image layer: none
+chat-server cache rb1q manifest 6885cc5f0519d6c4
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:8b339150 7:12af4033 8:6978cec2 9:611fff04 10:3f703a8c 11:c0198c02 12:4f4fb700
+             root/ entries above the base image layer: none
+auth-broker v0    rb1  manifest c9a13136c5b43c75
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:f95a6df0 7:12af4033 8:02f03bc7 9:31fc962e 10:253ee907 11:27353e68
+             root/ entries above the base image layer: L6:root L6:root/.cache L6:root/.cache/rosetta
+auth-broker v0    rb1q manifest 43c884398e4e2a36
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:8b339150 7:12af4033 8:02f03bc7 9:31fc962e 10:253ee907 11:27353e68
+             root/ entries above the base image layer: none
+auth-broker cache rb1  manifest 43c884398e4e2a36
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:8b339150 7:12af4033 8:02f03bc7 9:31fc962e 10:253ee907 11:27353e68
+             root/ entries above the base image layer: none
+auth-broker cache rb1q manifest 43c884398e4e2a36
+             layers 1:abe1fea3 2:5e98ba22 3:f6ce3834 4:0d4168ab 5:f42e85dd 6:8b339150 7:12af4033 8:02f03bc7 9:31fc962e 10:253ee907 11:27353e68
+             root/ entries above the base image layer: none
+# ws-pems and job-worker were not built whole under QEMU: .NET crashes there (23/11).
+
+## ws-pems under QEMU with the publish stage from rb1's cache (09:33-09:35)
+# rb1 with QEMU put back; NOCACHE=--no-cache-filter=base,final: the publish stage (dotnet restore
+# and publish, run under Rosetta at 09:08-09:17) came from the cache; the base stage's RUN, the
+# final stage's WORKDIR, COPY and RUN ran again under QEMU (each 'DONE', not 'CACHED', in the log).
+ws-pems-q   v0    rb1  manifest cfa1dac5f3eaad5d
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:12af4033 8:6aaac3e3 9:4f4fb700 10:6bc36803 11:7bfc57bf
+             root/ entries above the base image layer: none
+ws-pems-q   cache rb1  manifest cfa1dac5f3eaad5d
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:12af4033 8:6aaac3e3 9:4f4fb700 10:6bc36803 11:7bfc57bf
+             root/ entries above the base image layer: none
+
+## job-worker under QEMU the same way: NOT a valid reference
+# The base stage's RUN ran again under QEMU ('DONE 0.2s'), but the final stage's first step,
+# WORKDIR /app, came from the cache ('CACHED') despite the filter, so the image was assembled on
+# the earlier Rosetta build's chain: v0 gave the Rosetta manifest with its folders.
+job-worker-q v0    rb1  manifest fbf070e2214adca5
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:116b6a09 8:4f4fb700 9:4f4fb700 10:d015301d
+             root/ entries above the base image layer: L7:root L7:root/.cache L7:root/.cache/rosetta
+job-worker-q cache rb1  manifest a39c40eeedfafbaf
+             layers 1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:3199a1db 8:4f4fb700 9:4f4fb700 10:d015301d
+             root/ entries above the base image layer: none
+# The job worker's x86-64 evidence is therefore its base stage alone (above, built with --no-cache
+# on both builders), whose layers 1-8 equal layers 1-8 of the whole image with the change:
+jw-base/v0-rb1q        1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:3199a1db 8:4f4fb700 
+job-worker/cache-rb1   1:f2b4ef06 2:cc5f7534 3:37120294 4:1cd530f6 5:ac6f2962 6:e3ea09d2 7:3199a1db 8:4f4fb700 9:4f4fb700 10:d015301d 
+
+## Full digests cited in the note
+tip-base/v0-rb1        manifest sha256:33a2cd86bd612bdfe17da0afb6a582e750d1dd629a2a9038ba7d519d46b4f6c4
+tip-base/v0-rb1q       manifest sha256:17758551b6da8f9dc4edcb71fe5509fd5f539eead22754673865ef3ecf72eed7
+tip-base/cache-rb1     manifest sha256:17758551b6da8f9dc4edcb71fe5509fd5f539eead22754673865ef3ecf72eed7
+jw-base/v0-rb1         manifest sha256:81c5fb6bc6b7c029d920f2eecea06e38fda2e106a10b768e5f8f738b6a3e0011
+jw-base/cache-rb1      manifest sha256:7ebd1eb2882981ee13ab1e70644f6ee7a1e7a69752f47026c70dcbe394b40189
+ws-pems/cache-rb1      manifest sha256:cfa1dac5f3eaad5d6d54b57b7233fe3d80f030a5a8912bf211723c3e36d5a49e
+ws-pems-q/v0-rb1       manifest sha256:cfa1dac5f3eaad5d6d54b57b7233fe3d80f030a5a8912bf211723c3e36d5a49e
+mcp-server/cache-rb1   manifest sha256:856c0da492d9801e9808a02b12ad900c0f726aaeaa46348509bbb3b54721f421
+mcp-server/v0-rb1q     manifest sha256:856c0da492d9801e9808a02b12ad900c0f726aaeaa46348509bbb3b54721f421
+chat-server/cache-rb1  manifest sha256:6885cc5f0519d6c4e11e2869b7fb41ffd21b084b083fc38e78a90b1931b8dd72
+chat-server/v0-rb1q    manifest sha256:6885cc5f0519d6c4e11e2869b7fb41ffd21b084b083fc38e78a90b1931b8dd72
+auth-broker/cache-rb1  manifest sha256:43c884398e4e2a36c97c9980915efa474cb6de3facd31a0af44f41419665966c
+auth-broker/v0-rb1q    manifest sha256:43c884398e4e2a36c97c9980915efa474cb6de3facd31a0af44f41419665966c
+
+## Every RUN in the Dockerfiles of the release's five images, and the migrations image (tip)
+# Read from the files (line: stage, user). "kept" = the stage the image is made from (or its
+# parent stage); "build" = a stage the image only copies files out of, whose layers no image keeps.
+# src/WebAPI/Dockerfile (ws-pems)           8: base, root, kept   44 62 69 92: publish, root, build   100: final, root, kept
+# src/BackgroundJobExecutor/Dockerfile      6: base, root, kept   33 39: publish, root, build         (final stage: no RUN)
+# mcp/Dockerfile (wspems-mcp-server)        46 63: build, root, build                                84 126: runtime, root, kept
+# mcp/chat-server/Dockerfile                31 36 49: build, root, build                             69 100: runtime, root, kept
+# mcp/auth-broker/Dockerfile                28 32: build, root, build                                47 72: runtime, root, kept
+# deployment/migrations/Dockerfile          35: build, root, build                                   52: final, root, kept
+#   No RUN in a kept stage runs as another user: each runs before the stage's USER line.
+#   03-release.yml builds the first five (docker/build-push-action, linux/amd64); no workflow
+#   builds deployment/migrations/Dockerfile (01-pr-validation.yml only requires that it exists).
+#   At the tag, the BackgroundJobExecutor base stage had no RUN, and the job worker matched GHCR
+#   from the Mac on 23/11; at the tip it has one (line 6), so without the change it would not.
+#   In a stage that inherits another (final FROM base), a later root RUN finds Rosetta's folder
+#   already made by the earlier one and adds nothing: ws-pems v0 layer 11 has no root/ entries.
+#   With the change on line 8 alone, line 100 makes the folders in layer 11 instead (measured
+#   09:49, rb1 back on Rosetta, publish stage from the cache, base and final run again):
+#   ws-pems-8only cache rb1 manifest 3e275511cb8923d5c86b4230bab0d645940ff2b90f75dde22ab0281aa932c5d3
+#     layers 1:f2b4ef06 ... 8:6aaac3e3 9:4f4fb700 10:6bc36803 11:2a5b8c7e
+#     root/ entries above the base image layer: L11:root L11:root/.cache L11:root/.cache/rosetta
