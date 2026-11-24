@@ -1,0 +1,22 @@
+# phoenix-npm-pin, macstudio, 23 November 2026: results
+
+## Lock (compare-locks.py)
+2cd85fd01 lock -> 765ea6aa2 lock: entries 1407 = 1407, version/resolved/integrity changed: none, +libc 36; +108/-0 lines
+second npm 11.21.2 pass (install --package-lock-only), full npm install: byte-identical
+npm 10.9.9 full npm install over it: -libc 36, +0/-108 lines
+
+## npm ci as linux-x64 (--os/--cpu/--libc), offline from one cache
+E1-npm10-head-glibc: 1343 packages, 109884 files, files list sha256 d95138890c341087
+E2-npm11-head-glibc: 1341 packages, 109860 files, files list sha256 a3f41a0fbcf8acab
+E3-npm11-new-glibc: 1336 packages, 109839 files, files list sha256 7a9837384dd5038c
+E4-npm10-new-glibc: 1338 packages, 109863 files, files list sha256 e9d8e4255c9f17ac
+E5-npm11-new-glibc-again: 1336 packages, 109839 files, files list sha256 7a9837384dd5038c
+E6-npm11-new-musl: 1336 packages, 109839 files, files list sha256 c95508d2b0081cb8
+E1 minus E3 (packages): @img/sharp-libvips-linuxmusl-x64@1.3.3 @img/sharp-linuxmusl-x64@0.35.4 @img/sharp-wasm32@0.35.4 @emnapi/runtime@1.11.3 @next/swc-linux-x64-musl@15.5.25 @parcel/watcher-linux-x64-musl@2.6.0 @unrs/resolver-binding-linux-x64-musl@1.12.2 
+E3 minus E1: 0
+
+## Frontend export, stage 3 build.sh (sha256 04ea8b35...)
+B0-2cd85fd01-npm10: 995 files, list sha256 887db5f9e85dc06483b9a602e4a3e0264558657ba5953ade6e0e5c86aadae80f
+B1-765ea6aa2-npm11: 995 files, list sha256 887db5f9e85dc06483b9a602e4a3e0264558657ba5953ade6e0e5c86aadae80f
+B2-765ea6aa2-npm11: 995 files, list sha256 887db5f9e85dc06483b9a602e4a3e0264558657ba5953ade6e0e5c86aadae80f
+B3-765ea6aa2-npm11-otherpath: 995 files, list sha256 887db5f9e85dc06483b9a602e4a3e0264558657ba5953ade6e0e5c86aadae80f

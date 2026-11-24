@@ -1,0 +1,46 @@
+manifest differ: sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5 / sha256:d0cd19bb4472689edd64b05ed4286b93ec727607625e0cdc042fc625c0bea5db
+config differ: rootfs.diff_ids[5]
+layers 12: same [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11], differ [5]
+index.json differs
+  index manifests[0].annotations: None / {'org.opencontainers.image.created': '2026-10-14T07:02:26Z'}
+  index manifests[0].digest: sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5 / sha256:d0cd19bb4472689edd64b05ed4286b93ec727607625e0cdc042fc625c0bea5db
+  config rootfs.diff_ids[5]: sha256:4b499cdffd7457c35b07d8a8d72e37dcf89d0d13e615e27af9ef933e62e5450a / sha256:535a061d3ca0cfeb4925d5a10c4ce3b0d7a64d021530a86d2ce48d6e9b30f379
+layer 5: sha256:c86e4319cc3d6caf2610a0b06e280c41368e78c7da3198668b0d4eea12ce4ff7 / sha256:117fa3d123d9e38ce073c31636ac629426ca6c2c251d122eab50f58522206193, uncompressed differs, size 3517905 / 3516317
+  553 / 547 entries, only in A 6, only in B 0, order same
+    only in A: etc/ssl/certs/14bc7599.0
+    only in A: etc/ssl/certs/Comodo_AAA_Services_root.pem
+    only in A: etc/ssl/certs/ee64a828.0
+    only in A: etc/ssl/certs/emSign_ECC_Root_CA_-_G3.pem
+    only in A: usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt
+    only in A: usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_G3.crt
+  177 entries differ in mtime
+    etc/ca-certificates/update.d: mtime 1784278229 / 1791961346
+    etc/ssl/openssl.cnf: mtime 1790135537 / 1791961346
+    etc/ssl/private: mtime 1790135537 / 1791961346
+    usr/bin/c_rehash: mtime 1790135537 / 1791961346
+    usr/bin/openssl: mtime 1790135537 / 1791961346
+    usr/lib/ssl/cert.pem: mtime 1790135537 / 1791961346
+    usr/lib/ssl/certs: mtime 1790135537 / 1791961346
+    usr/lib/ssl/misc/CA.pl: mtime 1790135537 / 1791961346
+    usr/lib/ssl/misc/tsget: mtime 1790135537 / 1791961346
+    usr/lib/ssl/misc/tsget.pl: mtime 1790135537 / 1791961346
+  8 entries differ in mtime, content
+    usr/lib/x86_64-linux-gnu/engines-3/afalg.so: mtime 1790135537 / 1791961346; content 0ba69d7ca4afe08b / 12c33419df04c5c2
+    usr/lib/x86_64-linux-gnu/engines-3/loader_attic.so: mtime 1790135537 / 1791961346; content 14705e40f83cf96b / d30418229d0fb81d
+    usr/lib/x86_64-linux-gnu/engines-3/padlock.so: mtime 1790135537 / 1791961346; content 2e03ddcfa19c504f / ff52e58f77ee075c
+    usr/lib/x86_64-linux-gnu/libcrypto.so.3: mtime 1790135537 / 1791961346; content 76dd3d93e5ee4895 / aa01e614af634bc7
+    usr/lib/x86_64-linux-gnu/libssl.so.3: mtime 1790135537 / 1791961346; content df53c8f504722cac / cab3f5b0a1febd4a
+    usr/lib/x86_64-linux-gnu/ossl-modules/legacy.so: mtime 1790135537 / 1791961346; content f5bae55ac9fd0d01 / 90c1165f332b20ef
+    var/lib/dpkg/info/libssl3:amd64.md5sums: mtime 1790135537 / 1791961346; content e41b3413c6f09aa8 / 458103356970f510
+    var/lib/dpkg/info/openssl.md5sums: mtime 1790135537 / 1791961346; content af79e89c54fee1c7 / a28b4103cb35acb7
+  4 entries differ in size, content
+    etc/ca-certificates.conf: size 6422 / 6349; content ab7339d40969fb10 / 0a40ba8d99c9b4f3
+    etc/ssl/certs/ca-certificates.crt: size 224449 / 222073; content 714d457d580922db / e9c7b63ee2623386
+    var/cache/debconf/config.dat: size 17031 / 16881; content 5ab93279798c3c16 / d5ea5d8135a7ab8a
+    var/lib/dpkg/info/ca-certificates.list: size 11720 / 11593; content 2721824ed7955731 / bdd1af44b389e8ec
+  2 entries differ in mtime, size, content
+    var/lib/dpkg/info/ca-certificates.config: mtime 1784278229 / 1791961346; size 10193 / 10118; content 3f2d6cca404f5120 / 6d34a25b8f7e6ff6
+    var/lib/dpkg/info/ca-certificates.md5sums: mtime 1784278229 / 1791961346; size 16664 / 16471; content d80ec6227b9e63c3 / ef040f6734e7bddc
+  2 entries differ in content
+    var/lib/dpkg/status: content 2f8db0d2e5de3d21 / 2f8b58388b3450e1
+    var/lib/dpkg/status-old: content af3982c24d53e3b1 / 0fe34643ef1280ab

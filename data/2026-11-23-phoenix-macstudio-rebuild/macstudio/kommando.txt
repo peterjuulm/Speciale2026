@@ -1,0 +1,227 @@
+# phoenix-macstudio-rebuild, macstudio, 23 November 2026. Run by Claude at
+# Leo's request, from zsh (scripts in /bin/bash 3.2). Verbatim, with
+# P for dotnet-rebuild-experiments/1-ws-pems/scripts/5-release/local-vs-github-comparison
+# (at d991fc5), N for the run's private folder /private/tmp/rb1-ms, D for
+# the Docker lab /private/tmp/rb1-ms-docker, R for Leo's WS.Phoenix clone
+# ~/Dev/Weel-Sandvig/WS.Phoenix (read only), and DD for this folder.
+# Every docker command ran with PATH=$D/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# DOCKER_CONFIG=$D/config. The home folder is written ~ or $HOME, and IP
+# addresses are left out.
+
+# The tag, 16:00:
+git -C $R rev-parse 'v0.0.0-thesis.6^{commit}'
+#   be5fc56e76c5fc7b01e9f25cdc4117ce5783dce0
+
+# The published release, 16:00-16:1x:
+gh release view v0.0.0-thesis.6 -R Weel-Sandvig/WS.Phoenix --json name,isPrerelease,publishedAt,assets --jq '.publishedAt, .isPrerelease, (.assets[] | "\(.name)\t\(.size)\t\(.digest)")'
+cd $N/release && gh release download v0.0.0-thesis.6 -R Weel-Sandvig/WS.Phoenix
+
+# GHCR, first try, 16:01: 403, the token has no read:packages:
+cd /private/tmp && GH_TOKEN=$(gh auth token) python3 -I $P/ghcr-manifests.py weel-sandvig/ws-pems v0.0.0-thesis.6
+
+# SDK 10.0.401 with the tag's installer, 16:01. First with /usr/bin/python3
+# (3.9.6): "refusing .: outside the target", exit 1 (W70). Then with uv's
+# CPython 3.12.16, which has tarfile's data filter:
+git -C $R show 'v0.0.0-thesis.6:scripts/install-dotnet-sdk.py' > $N/tagfiles/install-dotnet-sdk.py && git -C $R show 'v0.0.0-thesis.6:global.json' > $N/tagfiles/global.json
+cd $N/tagfiles && python3 -I install-dotnet-sdk.py --global-json global.json /private/tmp/rb1-ms-dotnet
+cd $N/tagfiles && ~/.local/share/uv/python/cpython-3.12.16-macos-aarch64-none/bin/python3 -I install-dotnet-sdk.py --global-json global.json /private/tmp/rb1-ms-dotnet
+
+# Docker without Homebrew or sudo, 16:02-16:06: colima, Lima, buildx and the
+# Docker CLI, each checked against its publisher's checksum where one exists
+# (hashes in environment.txt):
+cd $D/dl && curl -fsSLO https://github.com/abiosoft/colima/releases/download/v0.10.3/colima-Darwin-arm64 && curl -fsSLO https://github.com/abiosoft/colima/releases/download/v0.10.3/colima-Darwin-arm64.sha256sum
+curl -fsSLO https://github.com/lima-vm/lima/releases/download/v2.3.0/lima-2.3.0-Darwin-arm64.tar.gz && curl -fsSLO https://github.com/lima-vm/lima/releases/download/v2.3.0/SHA256SUMS
+curl -fsSLO https://github.com/docker/buildx/releases/download/v0.38.0/buildx-v0.38.0.darwin-arm64
+curl -fsSLO https://download.docker.com/mac/static/stable/aarch64/docker-29.10.0.tgz
+gh api repos/docker/buildx/releases/tags/v0.38.0 --jq '.assets[] | select(.name|test("darwin-arm64$")) | "\(.name) \(.digest)"'
+cd $D && tar -xzf dl/lima-2.3.0-Darwin-arm64.tar.gz -C $D && install -m 755 dl/colima-Darwin-arm64 bin/colima && tar -xzf dl/docker-29.10.0.tgz -C $D/dl && install -m 755 dl/docker/docker bin/docker && mkdir -p config/cli-plugins && install -m 755 dl/buildx-v0.38.0.darwin-arm64 config/cli-plugins/docker-buildx
+colima start --vm-type vz --vz-rosetta --arch aarch64 --cpu 8 --memory 20 --disk 120 --runtime docker
+
+# Node 22.23.3 (the tag's .nvmrc), 16:04:
+cd $N/node-dl && curl -fsSL https://nodejs.org/dist/v22.23.3/SHASUMS256.txt -o SHASUMS256.txt && grep ' node-v22.23.3-darwin-arm64.tar.gz$' SHASUMS256.txt && curl -fsSLO https://nodejs.org/dist/v22.23.3/node-v22.23.3-darwin-arm64.tar.gz && shasum -a 256 node-v22.23.3-darwin-arm64.tar.gz && tar -xzf node-v22.23.3-darwin-arm64.tar.gz -C /private/tmp/rb1-ms-node22 --strip-components 1
+
+# /private/tmp/rb1-tools for pack-release-zip.sh, 16:04: two Python shims,
+# realpath ([-m] [--] PATH: os.path.realpath) and touch (-h -d @N FILE...:
+# os.utime, links not followed), as on 21/10, plus chmod -> /bin/chmod and
+# rm -> /bin/rm. Their text is in DD/rb1-tools-shims.txt.
+
+# Whether Debian's archive moved since 14/10, before the run, 16:05:
+for a in debian debian-security; do s=$([ $a = debian ] && echo bookworm || echo bookworm-security); for ts in 20261123T120000Z 20261014T090000Z; do printf "%s %s %s " $a $s $ts; curl -s -o /dev/null -m 30 -w '%{http_code} %{redirect_url}\n' -I "http://snapshot.debian.org/archive/$a/$ts/dists/$s/InRelease"; done; done
+#   bookworm: both dates -> file/736a99b8b096598d48c438eb356bd074fecfbf23
+#   bookworm-security: 23/11 -> file/b0a1cf2a5f5f89f30c057f8cb5e5cdef675e4c6e, 14/10 -> file/5377dcc5d4bf1c75698c20136b60e316ac3782d4
+
+# The note's expectation written, 16:05-16:10.
+
+# rebuild.sh, copied with the npm cache moved (the old path holds another
+# session's cache on this Mac), 16:06:
+sed 's#npm_config_cache=/private/tmp/rb1-npm#npm_config_cache=/private/tmp/rb1-ms-npm#' $P/rebuild.sh > $N/scripts/rebuild.sh
+
+# The empty npm cache filled from the registry in a scratch clone, 16:06:
+git clone -q --depth 1 --branch v0.0.0-thesis.6 file://$HOME/Dev/Weel-Sandvig/WS.Phoenix $N/scratch/npm-fill
+cd $N/scratch/npm-fill/src/WebAPI/ClientApp && env -i HOME=$N/scratch/npm-home PATH=/private/tmp/rb1-ms-node22/bin:/usr/bin:/bin npm_config_cache=/private/tmp/rb1-ms-npm npm_config_update_notifier=false npm ci --ignore-scripts --no-audit --no-fund
+#   added 1339 packages in 36s; 211 MB; @next/swc-darwin-arm64
+
+# The environment, 16:07 (DD/environment.txt).
+
+# The rebuild, first try, 16:07:25 (five jobs; the images later):
+cd /private/tmp && OUT=/private/tmp/rb1-ms REPO=~/Dev/Weel-Sandvig/WS.Phoenix DOTNET_DIR=/private/tmp/rb1-ms-dotnet NODE_DIR=/private/tmp/rb1-ms-node22 $N/scripts/rebuild.sh v0.0.0-thesis.6 "frontend linux windows migrator sql" > $N/rebuild.log 2>&1
+#   frontend exit 1: "next[@]: unbound variable"; sql exit 1: "home[@]:
+#   unbound variable". macOS's /bin/bash is 3.2, where "${a[@]}" of an empty
+#   array fails under set -u. linux and windows exit 1 (no export to copy);
+#   migrator exit 0 at 16:10:26, after the locked restore filled the empty
+#   NuGet cache from nuget.org (4.1 GB).
+
+# The builder, 16:08: BuildKit v0.33.1 by digest, the index CI's
+# buildx-stable-1 had on 14/10:
+docker buildx imagetools inspect moby/buildkit:v0.33.1
+docker buildx create --name rb1 --driver docker-container --driver-opt image=moby/buildkit:v0.33.1@sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea --bootstrap
+docker buildx inspect rb1
+#   Platforms: linux/arm64, linux/386 (no linux/amd64)
+colima ssh -- sh -c 'for f in rosetta qemu-x86_64; do echo "== $f"; cat /proc/sys/fs/binfmt_misc/$f; done'
+#   rosetta enabled, qemu-x86_64 disabled
+
+# Which emulator runs an amd64 RUN step, 16:09 (a busybox Dockerfile with RUN sleep 8):
+docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain $N/emutest
+colima ssh -- sh -c 'ps -eo pid,args | grep -E "sleep 8|qemu|rosetta" | grep -v grep'
+#   2611 .buildkit_qemu_emulator -0 sleep /bin/sleep 8
+#   BuildKit did not see amd64 as supported, so it ran the step under its
+#   own QEMU, not Rosetta. Its x86-64 emulator taken out of the builder
+#   container (not the image):
+docker exec buildx_buildkit_rb10 sh -c 'sha256sum /usr/bin/buildkit-qemu-x86_64; mv /usr/bin/buildkit-qemu-x86_64 /usr/bin/buildkit-qemu-x86_64.off'
+#   5e3eb921f26f576b3722207bbf5a192ba099032924eb7d0f4104bb1b536e5f51
+docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain $N/emutest
+colima ssh -- sh -c 'ps -eo pid,args | grep -E "sleep 8|qemu" | grep -v grep'
+#   2714 /mnt/lima-rosetta/rosetta /bin/sleep 8
+
+# rebuild.sh's empty arrays made safe for bash 3.2, 16:10; the same
+# commands (diff against P/rebuild.sh in DD/rebuild-sh.diff):
+sed -i '' -e 's/"\${next\[@\]}"/${next[@]+"${next[@]}"}/g' -e 's/"\${home\[@\]}"/${home[@]+"${home[@]}"}/g' -e 's/"\${extra\[@\]}"/${extra[@]+"${extra[@]}"}/g' $N/scripts/rebuild.sh
+
+# The rebuild, second try, 16:10:57 (the first try's logs moved to N/try1):
+cd /private/tmp && OUT=/private/tmp/rb1-ms REPO=~/Dev/Weel-Sandvig/WS.Phoenix DOTNET_DIR=/private/tmp/rb1-ms-dotnet NODE_DIR=/private/tmp/rb1-ms-node22 $N/scripts/rebuild.sh v0.0.0-thesis.6 "frontend linux windows migrator sql" > $N/rebuild.log 2>&1
+
+# The signing image for the paste, from the tag, arm64, 16:11:
+docker build -t ws-signing:rb-ms $N/scratch/npm-fill/deployment/signing
+#   sha256:7d992ef0bc2752057262d8078ea1a254bc9f3515cbe4b11c9ea963f979599ac8, osslsigncode 2.13-1
+#   frontend exit 0 16:12:34, linux exit 0 16:13:48, windows exit 0 16:14:58,
+#   migrator exit 0 16:15:29, sql exit 0 16:17:29; rebuild exit 0
+
+# The images, first try, 16:13:08, in parallel with the .NET jobs:
+cd /private/tmp && DOCKER_DEFAULT_PLATFORM=linux/amd64 OUT=/private/tmp/rb1-ms REPO=~/Dev/Weel-Sandvig/WS.Phoenix DOTNET_DIR=/private/tmp/rb1-ms-dotnet NODE_DIR=/private/tmp/rb1-ms-node22 $N/scripts/rebuild.sh v0.0.0-thesis.6 images > $N/rebuild-images.log 2>&1
+#   ws-pems's dotnet restore (under Rosetta) stalled: NuGet's downloads
+#   "timed out because no data was received for 60000ms", 57 timeouts and
+#   retries in 3 minutes, load 0.02 in the VM. The VM fetched 3.6 MB in 15 s
+#   where the host fetched 32.5 MB (the same nupkg, the same moment):
+colima ssh -- sh -c 'curl -s -m 15 -o /dev/null -w "vm: %{http_code} %{size_download} bytes in %{time_total}s\n" https://api.nuget.org/v3-flatcontainer/libtorch-cpu-linux-x64/2.10.0/libtorch-cpu-linux-x64.2.10.0.nupkg'
+curl -s -m 15 -o /dev/null -w "host: %{http_code} %{size_download} bytes in %{time_total}s\n" https://api.nuget.org/v3-flatcontainer/libtorch-cpu-linux-x64/2.10.0/libtorch-cpu-linux-x64.2.10.0.nupkg
+#   The host's gh release download failed meanwhile on the Linux migrator:
+#   "read tcp ...: read: can't assign requested address", exit 1.
+#   The images try stopped (TaskStop, pkill) 16:19; its log in N/images-try1.
+
+# The Linux migrator downloaded again, alone, 16:19:
+cd $N/release && rm -f ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6 && gh release download v0.0.0-thesis.6 -R Weel-Sandvig/WS.Phoenix -p ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+
+# colima restarted, 16:19-16:20 (--network-preferred-route took no effect:
+# no address, the default route unchanged):
+colima stop
+colima start --vm-type vz --vz-rosetta --arch aarch64 --cpu 8 --memory 20 --disk 120 --runtime docker --network-preferred-route
+colima ssh -- sh -c 'ip route | head -3; curl -s -m 15 -o /dev/null -w "vm: %{size_download} bytes in %{time_total}s\n" https://api.nuget.org/v3-flatcontainer/libtorch-cpu-linux-x64/2.10.0/libtorch-cpu-linux-x64.2.10.0.nupkg'
+#   vm: 72412982 bytes in 15 s
+docker buildx inspect rb1 --bootstrap; docker exec buildx_buildkit_rb10 sh -c 'ls /usr/bin | grep qemu-x86'
+#   BuildKit v0.33.1, buildkit-qemu-x86_64.off: the builder container kept the change
+
+# The images, second try, 16:21:
+cd /private/tmp && DOCKER_DEFAULT_PLATFORM=linux/amd64 OUT=/private/tmp/rb1-ms REPO=~/Dev/Weel-Sandvig/WS.Phoenix DOTNET_DIR=/private/tmp/rb1-ms-dotnet NODE_DIR=/private/tmp/rb1-ms-node22 $N/scripts/rebuild.sh v0.0.0-thesis.6 images > $N/rebuild-images.log 2>&1
+
+# GHCR, after Leo added read:packages to the gh token, 16:16 (N/ghcr-before.txt):
+cd /private/tmp && for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do for t in v0.0.0-thesis.6 v0.0.0-thesis.6-build; do GH_TOKEN=$(gh auth token) /usr/bin/python3 -I $P/ghcr-manifests.py weel-sandvig/$n $t; done; done
+
+# The frontend export against the release's wwwroot/, 16:14 (as on 21/10):
+w=$N/release-unz/ws-pems-linux-x64/ws-pems-linux-x64/wwwroot; C=$N/compare-export
+mkdir -p $N/release-unz/ws-pems-linux-x64 && cd $N/release-unz/ws-pems-linux-x64 && unzip -q $N/release/ws-pems-linux-x64-v0.0.0-thesis.6.zip
+( cd $N/local/frontend-out && find . -type f -print0 | LC_ALL=C sort -z | xargs -0 shasum -a 256 ) > $C/export-local.sha256
+( cd $w && sed 's/^[0-9a-f]*  //' $C/export-local.sha256 | tr '\n' '\0' | xargs -0 shasum -a 256 ) > $C/export-release.sha256 2> $C/export-missing.txt
+cmp -s $C/export-release.sha256 $C/export-local.sha256 && echo same
+( cd $w && find . -type f | LC_ALL=C sort ) > $C/wwwroot-all.txt; sed 's/^[0-9a-f]*  //' $C/export-local.sha256 | LC_ALL=C sort > $C/export-paths.txt; LC_ALL=C comm -23 $C/wwwroot-all.txt $C/export-paths.txt > $C/wwwroot-other.txt
+
+# The release's assets laid out as compare.sh reads a run's artifacts, 16:14:
+# links to N/release in N/ci/{release-zips-linux,release-zips-windows,
+# db-migration-bundles-linux,db-migration-bundles-windows,sha256sums}, and
+# N/ci/frontend-export the release's wwwroot/ files at the export's paths:
+( cd $w && sed 's/^[0-9a-f]*  //' $N/compare-export/export-paths.txt | tr '\n' '\0' | xargs -0 -I{} rsync -R {} $N/ci/frontend-export/ )
+# compare.sh runs in a folder under the home folder, the only one colima
+# shares with the VM, for the paste's docker run -v:
+mkdir -p ~/rb1-ms-compare && ln -sfn $N/ci ~/rb1-ms-compare/ci && ln -sfn $N/local ~/rb1-ms-compare/local
+
+# The release files against the release, 16:21-16:25 (DD/results.txt):
+cd /private/tmp && SIGNED=azure CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-ms $P/compare.sh ~/rb1-ms-compare v0.0.0-thesis.6 > $N/compare.txt 2>&1
+cmp /private/tmp/rb1-ms/release/upgrade.sh /private/tmp/rb1-ci/windows/scripts/upgrade.sh && echo "same  upgrade.sh"
+# Then, for disk space (16 GB free): the compare folder's unpacked Windows
+# trees and the finished jobs' clones removed, after SHA256SUMS and
+# paste.log were copied to N.
+
+# ws-pems against GHCR, 16:26: DIFF. GHCR's image as an OCI file, each layer
+# taken from the local file when it holds that digest, else from GHCR
+# ($N/tools/ghcr-oci.py, written for this run), then oci-diff.py:
+cd /private/tmp && GH_TOKEN=$(gh auth token) /usr/bin/python3 -I $P/ghcr-manifests.py weel-sandvig/ws-pems v0.0.0-thesis.6 $N/local/images/ws-pems.oci.tar
+cd $N && GH_TOKEN=$(gh auth token) /usr/bin/python3 -I tools/ghcr-oci.py weel-sandvig/ws-pems v0.0.0-thesis.6 local/images/ws-pems.oci.tar ghcr-ws-pems.oci.tar
+cd $N && /usr/bin/python3 -I ~/Dev/Speciale2026/experiments/phoenix-rt/oci-diff.py ghcr-ws-pems.oci.tar local/images/ws-pems.oci.tar > ws-pems-vs-ghcr.txt
+
+# The control, 16:30: the WebAPI Dockerfile's base stage alone, under
+# Rosetta (rb1) and under BuildKit's own QEMU (rb1q, a second builder of the
+# same BuildKit image, left as the image has it):
+docker buildx create --name rb1q --driver docker-container --driver-opt image=moby/buildkit:v0.33.1@sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea --bootstrap
+E=$(git -C /private/tmp/rb1-ci/images log -1 --format=%ct); for b in rb1 rb1q; do env SOURCE_DATE_EPOCH=$E docker buildx build --builder $b --platform linux/amd64 --no-cache --provenance=false --target base -f /private/tmp/rb1-ci/images/src/WebAPI/Dockerfile --build-arg APP_VERSION=v0.0.0-thesis.6 --build-arg SKIP_SPA_BUILD=true --output "type=oci,dest=$N/control/base-$b.oci.tar,rewrite-timestamp=true" /private/tmp/rb1-ci/images > $N/control/base-$b.log 2>&1; done
+#   the last layer of each (python3 reading index.json and the manifest):
+#   rb1  (Rosetta) sha256:e9ec63f8c9309e7832568d032e0f61c41e82499503447b2a285b6978099c3e3d 235 bytes
+#   rb1q (QEMU)    sha256:67cb46851c2e93454193f391be023076ce93aa8178ad98fe10cc65f35670810f 183 bytes, GHCR's layer 7
+
+# ws-pems-job-worker against GHCR, 16:31: same (no RUN step in its final stage):
+cd /private/tmp && GH_TOKEN=$(gh auth token) /usr/bin/python3 -I $P/ghcr-manifests.py weel-sandvig/ws-pems-job-worker v0.0.0-thesis.6 $N/local/images/ws-pems-job-worker.oci.tar
+
+# ws-pems under QEMU, the whole image, in parallel with the Rosetta pass, 16:31:51
+# (the script's build command for webapi, with --builder rb1q, from the
+# images job's clone):
+env DOCKER_DEFAULT_PLATFORM=linux/amd64 SOURCE_DATE_EPOCH="$(git -C /private/tmp/rb1-ci/images log -1 --format=%ct)" docker buildx build --builder rb1q --no-cache --provenance=false -f /private/tmp/rb1-ci/images/src/WebAPI/Dockerfile --build-arg APP_VERSION=v0.0.0-thesis.6 --build-arg SKIP_SPA_BUILD=true --output "type=oci,dest=/private/tmp/rb1-ms-qemu/images/ws-pems.oci.tar,rewrite-timestamp=true" /private/tmp/rb1-ci/images > /private/tmp/rb1-ms-qemu/images/ws-pems.log 2>&1
+#   #18 4.399 qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+#   in dotnet restore; then one process at 2% CPU for five minutes:
+colima ssh -- sh -c 'ps -eo pid,etime,pcpu,stat,args | grep -E "qemu_emulator" | grep -v grep'
+#   12157 05:09 2.0 Ssl .buildkit_qemu_emulator -0 dotnet /usr/bin/dotnet restore src/WebAPI/WebAPI.csproj --locked-mode
+#   stopped 16:39 (TaskStop, pkill): #18 CANCELED
+
+# The MCP images against GHCR, 16:36-16:41, for each n of wspems-mcp-server,
+# wspems-chat-server, wspems-mcp-auth-broker:
+cd $N && GH_TOKEN=$(gh auth token) /usr/bin/python3 -I $P/ghcr-manifests.py weel-sandvig/$n v0.0.0-thesis.6 local/images/$n.oci.tar
+cd $N && GH_TOKEN=$(gh auth token) /usr/bin/python3 -I tools/ghcr-oci.py weel-sandvig/$n v0.0.0-thesis.6 local/images/$n.oci.tar ghcr-$n.oci.tar
+cd $N && /usr/bin/python3 -I ~/Dev/Speciale2026/experiments/phoenix-rt/oci-diff.py ghcr-$n.oci.tar local/images/$n.oci.tar > $n-vs-ghcr.txt
+# The differing layer's packages and entries (tools written for this run, in N/tools):
+cd $N && /usr/bin/python3 -I tools/dpkg-diff.py ghcr-wspems-mcp-server.oci.tar a0e129d870a1a16f27ea2125815e4c8bbffa2454072697fc8d1928a2e0aa8272 local/images/wspems-mcp-server.oci.tar e71db1cb4d96f6229d3b7a5e795d3f0fa6259d24ce6eeb22b1d2741fc4ce39dd
+cd $N && /usr/bin/python3 -I tools/dpkg-diff.py ghcr-wspems-chat-server.oci.tar c86e4319cc3d6caf2610a0b06e280c41368e78c7da3198668b0d4eea12ce4ff7 local/images/wspems-chat-server.oci.tar fdc0c8dbda10a05908b7e42db8ca13f90702efac0e4f198db5d22b04bbb18585
+cd $N && /usr/bin/python3 -I tools/layer-owners.py (the same arguments, both images)
+# When the new versions reached the archive:
+for pv in openssl/3.0.22-1~deb12u2 ca-certificates/20250419~deb12u2 brotli/1.0.9-2+deb12u1 expat/2.5.0-1+deb12u5; do p=${pv%%/*}; v=${pv#*/}; vv=$(/usr/bin/python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$v"); printf "%s %s: " $p $v; curl -s -m 30 "http://snapshot.debian.org/mr/package/$p/$vv/srcfiles?fileinfo=1" | /usr/bin/python3 -I -c 'import json,sys
+d=json.load(sys.stdin); fi=d.get("fileinfo",{})
+seen=sorted({(x["archive_name"], x["first_seen"]) for v in fi.values() for x in v})
+print(seen[:4])'; done
+# The three tools written for this run (ghcr-oci.py, dpkg-diff.py, layer-owners.py) are kept in Speciale2026/experiments/phoenix-rt.
+
+# GHCR again, 16:42: the broker's two tags (the first read, 16:16, was cut
+# off after the chat server), then every live digest against the records of
+# 14/10 and 20/10 (python3 matching "index sha256:… image sha256:…" per tag):
+cd /private/tmp && for t in v0.0.0-thesis.6 v0.0.0-thesis.6-build; do GH_TOKEN=$(gh auth token) /usr/bin/python3 -I $P/ghcr-manifests.py weel-sandvig/wspems-mcp-auth-broker $t; done >> $N/ghcr-before.txt
+#   all ten tags: the index and image digests of 14/10 and 20/10
+
+# ws-pems again without Rosetta, 16:43-17:14: the VM's own QEMU (qemu-x86_64
+# 7.0.0; BuildKit's bundled one, 10.2.3, crashed at 16:31) as the kernel's
+# x86-64 handler, through rb1 (whose bundled QEMU is moved aside):
+colima start
+colima ssh -- sh -c '/usr/bin/qemu-x86_64 --version | head -1'
+colima ssh -- sudo sh -c 'echo 0 > /proc/sys/fs/binfmt_misc/rosetta; echo 1 > /proc/sys/fs/binfmt_misc/qemu-x86_64'
+docker buildx build --builder rb1 --platform linux/amd64 --no-cache --progress plain $N/emutest   # ps: /usr/bin/qemu-x86_64 /bin/sleep sleep 8
+env DOCKER_DEFAULT_PLATFORM=linux/amd64 SOURCE_DATE_EPOCH="$(git -C /private/tmp/rb1-ci/images log -1 --format=%ct)" docker buildx build --builder rb1 --no-cache --provenance=false -f /private/tmp/rb1-ci/images/src/WebAPI/Dockerfile --build-arg APP_VERSION=v0.0.0-thesis.6 --build-arg SKIP_SPA_BUILD=true --output "type=oci,dest=/private/tmp/rb1-ms-qemu7/images/ws-pems.oci.tar,rewrite-timestamp=true" /private/tmp/rb1-ci/images > /private/tmp/rb1-ms-qemu7/images/ws-pems.log 2>&1
+#   #18 2.912 Fatal error.
+#   #18 2.912 System.AccessViolationException: Attempted to read or write protected memory. ...
+#   then load 0.00 and one qemu-x86_64 dotnet restore process for 30
+#   minutes; stopped 17:14 (TaskStop, pkill): #18 CANCELED
+colima ssh -- sudo sh -c 'echo 0 > /proc/sys/fs/binfmt_misc/qemu-x86_64; echo 1 > /proc/sys/fs/binfmt_misc/rosetta'
+colima stop

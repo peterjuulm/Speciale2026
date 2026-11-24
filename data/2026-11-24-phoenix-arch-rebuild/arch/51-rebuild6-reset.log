@@ -1,0 +1,38 @@
+-- 1. the guard /tmp/claude-1000/ws-mem-run.sh (tmpfs, gone after the reboot), restored from the last
+      version the Arch setup session wrote (its transcript 3b788f37, 20/11; two writes, equal, no edits)
+/private/tmp/rb1-lab/ws-mem-run.sh.restored: OK
+-rwxr-xr-x 1 leos leos 1434 24 nov 08:48 /tmp/claude-1000/ws-mem-run.sh
+db14855a86ef98d149e9026e334621646b6b1e08705fdfaacdde130e53ccc480  /tmp/claude-1000/ws-mem-run.sh
+-- 2. the interrupted run of 23/11 set aside
+/private/tmp/rb1-rebuild6:
+assets
+ci
+
+/private/tmp/rb1-rebuild6-interrupted-2026-11-23:
+environment.txt
+local
+rebuild.log
+frontend start 17:07:14
+frontend exit 0 17:13:38
+linux start 17:13:38
+-- 3. NuGet: /private/tmp/rb1-dch, which the interrupted linux job had partly filled, emptied; /tmp/dch points to it
+5,2G	/private/tmp/rb1-dch
+lrwxrwxrwx 1 leos leos 20 24 nov 08:48 /tmp/dch -> /private/tmp/rb1-dch
+-- 4. npm: the cache filled on 23/11 set aside, and filled again online from the tag's lock with the tag's npm (10.9.9)
+
+added 1343 packages in 39s
+npm 10.9.9; cache 274M
+what the fill left in /tmp/dch: (0 entries)
+-- 5. the published assets, again against SHA256SUMS
+all 7 named files ok
+d2dc8463efe5f3e9077703d1b37ca4252eea894293f3d893e15128d5ba3fde56  /private/tmp/rb1-rebuild6/assets/SHA256SUMS
+3116d1203464ddccd100741aba580b4f2994f7f6e3741b348e7730dc4c3fb0ca  /private/tmp/rb1-rebuild6/assets/upgrade.sh
+/private/tmp/rb1-rebuild6/ci/db-migration-bundles-linux/bootstrap-postgresql-v0.0.0-thesis.6.sql
+/private/tmp/rb1-rebuild6/ci/db-migration-bundles-linux/ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+/private/tmp/rb1-rebuild6/ci/db-migration-bundles-windows/ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe
+/private/tmp/rb1-rebuild6/ci/release-zips-linux/ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+/private/tmp/rb1-rebuild6/ci/release-zips-linux/ws-pems-linux-x64-v0.0.0-thesis.6.zip
+/private/tmp/rb1-rebuild6/ci/release-zips-windows/ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip
+/private/tmp/rb1-rebuild6/ci/release-zips-windows/ws-pems-win-x64-v0.0.0-thesis.6.zip
+/private/tmp/rb1-rebuild6/ci/sha256sums/SHA256SUMS
+MemAvailable:   57400236 kB

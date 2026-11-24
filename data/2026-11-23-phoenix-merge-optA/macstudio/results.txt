@@ -1,0 +1,67 @@
+# phoenix-merge-optA, macstudio, 23 November 2026: results
+# the merge tested as 81b0e8450 (= 8f4227eb2's tree)
+
+## merge-checks.sh
+dotnet 10.0.401
+HEAD 765ea6aa2e98b9d78eb15405f8092ce84d765097
+changed paths:     2468
+C1 exit 0 (c1-restore.log)
+C1b exit 0 (c1b-restore-opcdaprobe.log)
+C2 exit 0 (c2-build.log)
+  C2: /Users/leo/rb1-phoenix-merge/tests/UnitTests/ApplicationCore/ReportingAPI/ComposedReporting/CompositionValidationErrorMappingTests.cs(50,28): warning xUnit1051: Calls to methods which accept CancellationToken should use TestContext.Current.CancellationToken to allow test cancellation to be more responsive. (https://xunit.net/xunit.analyzers/rules/xUnit1051) [/Users/leo/rb1-phoenix-merge/tests/tests.csproj]
+  C2:     8576 Warning(s)
+  C2:     0 Error(s)
+C3 200 names in src/Infrastructure/obj/Release/net10.0/PostgresMigrations.g.cs, in ordinal order of the files
+C4a exit 0 (c4a-tool-restore.log)
+C4b exit 0 (c4b-nuget-check.log)
+  C4: ok  dotnet-ef 10.0.12 (tool)
+  C4: ok  dotnet-format 5.1.250801 (tool)
+C5 exit 0 (c5-model-check.log)
+  C5: /Users/leo/rb1-phoenix-merge/src/Infrastructure.Migrations/Infrastructure.Migrations.csproj : warning NU1903: Package 'System.Security.Cryptography.Xml' 9.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-w3x6-4m5h-cxqf
+  C5: No changes have been made to the model since the last migration.
+C6 migrations exit 0 (c6-list-migrations.log)
+  C6 migrations: 200 migrations, last 20261120161834_FrequentAutovacuumForFirstLevelData; Using DbContext factory 'DatabaseContextDesignTimeFactory'
+C6 dbmigrator exit 0 (c6-list-dbmigrator.log)
+  C6 dbmigrator: 200 migrations, last 20261120161834_FrequentAutovacuumForFirstLevelData; Using DbContext factory 'MigratorContextFactory'
+C6 sqlserver exit 0 (c6-list-sqlserver.log)
+  C6 sqlserver: 5 migrations, last 20260829130647_AddAutoStartBatchRunOnLostConnectionSqlServer; Using DbContext factory 'SqlServerDatabaseContextFactory'
+C7 exit 0 (c7-unit.log)
+  C7: Passed!  - Failed:     0, Passed:  6443, Skipped:    34, Total:  6477, Duration: 28 s - tests.dll (net10.0)
+
+## publish-twice.sh 81b0e8450
+rb1-pub-a-restore.log: exit 0, peak RSS 0.2 GB
+rb1-pub-a-migrator-linux.log: exit 0, peak RSS 0.9 GB
+rb1-pub-a-migrator-win.log: exit 0, peak RSS 0.7 GB
+rb1-pub-a-webapi.log: exit 0, peak RSS 0.2 GB
+rb1-pub-a-worker.log: exit 0, peak RSS 0.2 GB
+rb1-pub-a: 1153 files
+rb1-pub-b-other-restore.log: exit 0, peak RSS 0.2 GB
+rb1-pub-b-other-migrator-linux.log: exit 0, peak RSS 0.9 GB
+rb1-pub-b-other-migrator-win.log: exit 0, peak RSS 0.7 GB
+rb1-pub-b-other-webapi.log: exit 0, peak RSS 0.3 GB
+rb1-pub-b-other-worker.log: exit 0, peak RSS 0.2 GB
+rb1-pub-b-other: 1153 files
+identical: every file of the two exports
+  e395bfcae785ebf5388ce2538af88e7fe8ce8571acf1c0162033e8586150b71b  publish/migrator/ws-pems-db-migrator
+  7fe57b841249baff38137bc9f9252a5171b8fdb3e40ebbbeaf5cd8125a106a1e  publish/migrator-win/ws-pems-db-migrator.exe
+  17b618f4dccd534683302a12beee11be5d70b6f9c5df8094cdb43cd2a1fe5c42  release/ws-pems-job-worker-linux-x64/Infrastructure.dll
+  17b618f4dccd534683302a12beee11be5d70b6f9c5df8094cdb43cd2a1fe5c42  release/ws-pems-linux-x64/Infrastructure.dll
+Infrastructure.Migrations.dll in the WebAPI or job worker folders: 0
+list sha256 fd8c4cfcb3961aeee7efd5eea0880d59b633adf69590aba688f5939fcc2cc8bb (1153 lines)
+
+## release SQL (dotnet ef migrations script --idempotent, the release's command, Release, startup Infrastructure.Migrations)
+b5cf64e6e63fb21dbdb8655c9a4318e73937446e165f9f73d4b70f2b03673946  bootstrap-postgresql-v1.0.60.sql
+0e1a4807a2e431f1e8e9953df0a6127e0c2f4c164052a14932c35df5222d9515  merge-81b0e8450.sql
+d46aeeb1ddc016e48d9141d30c253c86a42ff866ab41aed812645a8be5417313  merge-81b0e8450-invariant.sql
+v1.0.60's file checked against v1.0.60's SHA256SUMS: OK
+compare-release-sql.py v1.0.60 vs merge, invariant culture (DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1):
+  published: 199 history rows, 0 transaction breaks
+  ours:      200 history rows, 199 transaction breaks; 5 blocks of 20261118093436_AlarmRepeatCounter taken out
+  identical after that: True
+compare-release-sql.py v1.0.60 vs merge, the Mac's region (en_US@rg=dkzzzz):
+  published: 199 history rows, 0 transaction breaks
+  ours:      200 history rows, 199 transaction breaks; 5 blocks of 20261118093436_AlarmRepeatCounter taken out
+  identical after that: False
+  the only difference: the two ALTER TABLE statements of migration 20261120161834 (Npgsql storage
+  parameters), where the decimal separator of the three autovacuum scale factors is a comma (0,01)
+  instead of a point. The SQL lines themselves are build output and are not kept here.

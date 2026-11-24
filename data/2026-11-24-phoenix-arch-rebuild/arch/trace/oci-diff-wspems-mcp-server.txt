@@ -1,0 +1,51 @@
+manifest differ: sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4 / sha256:932bf82c118959a5da8fd94db669fd75d6670ee64ed5e99a88c3ae6b6f18e63d
+config differ: rootfs.diff_ids[5]
+layers 15: same [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14], differ [5]
+index.json differs
+  index manifests[0].annotations: None / {'org.opencontainers.image.created': '2026-10-14T07:02:26Z'}
+  index manifests[0].digest: sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4 / sha256:932bf82c118959a5da8fd94db669fd75d6670ee64ed5e99a88c3ae6b6f18e63d
+  config rootfs.diff_ids[5]: sha256:1be6aa4da732ba035f975cca935c2e0b8a41817ce05b67bd1ace72b7c073c5be / sha256:b6cf2ded92e7aec4a86f9367f5ff3f54b018666b41bf92c98c7e713b29d405d2
+layer 5: sha256:a0e129d870a1a16f27ea2125815e4c8bbffa2454072697fc8d1928a2e0aa8272 / sha256:7647407d49f57159313bf4a86f15684aa3e34efd1bb9f9f9b0c3c6e4a069286d, uncompressed differs, size 33086228 / 33095273
+  2235 / 2229 entries, only in A 6, only in B 0, order same
+    only in A: etc/ssl/certs/14bc7599.0
+    only in A: etc/ssl/certs/Comodo_AAA_Services_root.pem
+    only in A: etc/ssl/certs/ee64a828.0
+    only in A: etc/ssl/certs/emSign_ECC_Root_CA_-_G3.pem
+    only in A: usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt
+    only in A: usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_G3.crt
+  187 entries differ in mtime
+    etc/ca-certificates/update.d: mtime 1784278229 / 1791961346
+    etc/ssl/openssl.cnf: mtime 1790135537 / 1791961346
+    etc/ssl/private: mtime 1790135537 / 1791961346
+    usr/bin/c_rehash: mtime 1790135537 / 1791961346
+    usr/bin/openssl: mtime 1790135537 / 1791961346
+    usr/lib/ssl/cert.pem: mtime 1790135537 / 1791961346
+    usr/lib/ssl/certs: mtime 1790135537 / 1791961346
+    usr/lib/ssl/misc/CA.pl: mtime 1790135537 / 1791961346
+    usr/lib/ssl/misc/tsget: mtime 1790135537 / 1791961346
+    usr/lib/ssl/misc/tsget.pl: mtime 1790135537 / 1791961346
+  13 entries differ in mtime, content
+    usr/lib/x86_64-linux-gnu/engines-3/afalg.so: mtime 1790135537 / 1791961346; content 0ba69d7ca4afe08b / 12c33419df04c5c2
+    usr/lib/x86_64-linux-gnu/engines-3/loader_attic.so: mtime 1790135537 / 1791961346; content 14705e40f83cf96b / d30418229d0fb81d
+    usr/lib/x86_64-linux-gnu/engines-3/padlock.so: mtime 1790135537 / 1791961346; content 2e03ddcfa19c504f / ff52e58f77ee075c
+    usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1.0.9: mtime 1675174388 / 1791961346; content d0dd623a89c3cd7c / 7a22eb878ad6033f
+    usr/lib/x86_64-linux-gnu/libbrotlidec.so.1.0.9: mtime 1675174388 / 1791961346; content 928b2613f2d3d73f / 0ed56000cc214627
+    usr/lib/x86_64-linux-gnu/libbrotlienc.so.1.0.9: mtime 1675174388 / 1791961346; content d7bbf3903f31428b / b87ba40f39630cf3
+    usr/lib/x86_64-linux-gnu/libcrypto.so.3: mtime 1790135537 / 1791961346; content 76dd3d93e5ee4895 / aa01e614af634bc7
+    usr/lib/x86_64-linux-gnu/libssl.so.3: mtime 1790135537 / 1791961346; content df53c8f504722cac / cab3f5b0a1febd4a
+    usr/lib/x86_64-linux-gnu/ossl-modules/legacy.so: mtime 1790135537 / 1791961346; content f5bae55ac9fd0d01 / 90c1165f332b20ef
+    var/lib/dpkg/info/libexpat1:amd64.md5sums: mtime 1790537899 / 1791961346; content a5aa53ae5e7b38fb / 31496b35fc07198b
+  7 entries differ in size, content
+    etc/ca-certificates.conf: size 6422 / 6349; content ab7339d40969fb10 / 0a40ba8d99c9b4f3
+    etc/ssl/certs/ca-certificates.crt: size 224449 / 222073; content 714d457d580922db / e9c7b63ee2623386
+    var/cache/debconf/config.dat: size 17475 / 17325; content d1fd5b3382e2bca2 / a89c3abe06668502
+    var/lib/dpkg/info/ca-certificates.list: size 11720 / 11593; content 2721824ed7955731 / bdd1af44b389e8ec
+    var/lib/dpkg/info/libbrotli1:amd64.list: size 599 / 547; content 0c6506eb7b28b175 / de4c9609dad432ba
+    var/lib/dpkg/status: size 118407 / 118402; content bcbcd7588f5c1851 / 8f3168061a9fcae9
+    var/lib/dpkg/status-old: size 118079 / 118074; content 733463b737436bdd / f6fcb5d8764c92f8
+  5 entries differ in mtime, size, content
+    usr/lib/x86_64-linux-gnu/libexpat.so.1.8.10: mtime 1790537899 / 1791961346; size 178280 / 186472; content 453732cb225bc46f / b342d94f6a71df59
+    usr/lib/x86_64-linux-gnu/libexpatw.so.1.8.10: mtime 1790537899 / 1791961346; size 178272 / 186464; content 80fb4e2ba80566a0 / 6f7215c077f0d180
+    var/lib/dpkg/info/ca-certificates.config: mtime 1784278229 / 1791961346; size 10193 / 10118; content 3f2d6cca404f5120 / 6d34a25b8f7e6ff6
+    var/lib/dpkg/info/ca-certificates.md5sums: mtime 1784278229 / 1791961346; size 16664 / 16471; content d80ec6227b9e63c3 / ef040f6734e7bddc
+    var/lib/dpkg/info/libbrotli1:amd64.md5sums: mtime 1675174388 / 1791961346; size 552 / 467; content 2ffbe537ca7b5c48 / b637aa26d0805b83

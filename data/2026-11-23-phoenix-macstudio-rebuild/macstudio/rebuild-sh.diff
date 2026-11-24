@@ -1,0 +1,16 @@
+96c96
+<       -f "$ci/images/$file" "${extra[@]}" \
+---
+>       -f "$ci/images/$file" ${extra[@]+"${extra[@]}"} \
+117c117
+<           npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1 APP_VERSION="$TAG" "${next[@]}" \
+---
+>           npm_config_cache=/private/tmp/rb1-ms-npm npm_config_update_notifier=false NEXT_TELEMETRY_DISABLED=1 APP_VERSION="$TAG" ${next[@]+"${next[@]}"} \
+146,148c146,148
+<         && "${net[@]}" "${home[@]}" LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
+<         && "${net[@]}" "${home[@]}" LC_ALL=C.UTF-8 dotnet tool restore && check $flag \
+<         && "${net[@]}" "${home[@]}" LC_ALL=C.UTF-8 dotnet ef migrations script --idempotent --configuration Release --context DatabaseContext \
+---
+>         && "${net[@]}" ${home[@]+"${home[@]}"} LC_ALL=C.UTF-8 dotnet restore ./WS.Phoenix.sln \
+>         && "${net[@]}" ${home[@]+"${home[@]}"} LC_ALL=C.UTF-8 dotnet tool restore && check $flag \
+>         && "${net[@]}" ${home[@]+"${home[@]}"} LC_ALL=C.UTF-8 dotnet ef migrations script --idempotent --configuration Release --context DatabaseContext \

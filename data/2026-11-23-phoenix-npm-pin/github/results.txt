@@ -1,0 +1,20 @@
+# phoenix-npm-pin, GitHub, 23 November 2026: results
+# A temporary workflow on thesis/reproducible-builds, zz-thesis-npm-pin-test.yml,
+# added in e653d2767, changed in 041a13ea4, removed in a50671fd1 (tree =
+# 765ea6aa2's). It ran only on a push changing it; read-only; it pushed,
+# published and deployed nothing. No other workflow triggers on the branch.
+
+Run 1: https://github.com/Weel-Sandvig/WS.Phoenix/actions/runs/45190675131 (e653d2767)
+  ci-hosted (00-reusable-frontend-build.yml, ubuntu-24.04, lint + jest, app-version v0.0.0-thesis): success
+  ci-office (the same, runner ws-office = vars.CI_RUNNER_RELEASE, as the release calls it): success
+  action-negative: wrong hash, other version with this hash, no field -> each step failure; committed pin -> success, npm 11.21.2
+  image-hosted: WebAPI image SKIP_SPA_BUILD=false: "npm-11.21.2.tgz: OK", npm 11.21.2; wwwroot: the 995 export files, same SHA-256, + 63 Identity UI files; wrong hash -> "FAILED", build stopped
+  lint: actionlint 1.7.12 + shellcheck (runner's) on all workflows -> notes only, on unchanged lines (01-pr-validation.yml:147, 03-release.yml:318,548,758,790,809; SC2086, SC2035, SC2129); shellcheck on install-node's 3 scripts: none; hadolint 2.15.1 (warning threshold): src/WebAPI/Dockerfile:42 and :65 DL3003
+  compare: ci-hosted export 995 files, list sha256 887db5f9e85dc064... = macstudio; ci-office export 995 files, 887db5f9... = macstudio
+  twice-hosted: failed at fetching build.sh (dotnet-rebuild-experiments was private then: 404)
+
+Run 2: https://github.com/Weel-Sandvig/WS.Phoenix/actions/runs/45193962026 (041a13ea4)
+  twice-hosted: linux x64 glibc 2.39; node v22.23.3, npm 11.21.2 (install-node); build.sh embedded, sha256 04ea8b35... OK
+    npm ci online: 1336 packages, 109839 files under node_modules; package list and every file (path, SHA-256) = macstudio's E3
+    build.sh in /private/tmp/rb1-ws-pems and -alt: 995 files each, list sha256 887db5f9... both, = macstudio
+  lint: actionlint 1.7.12 on 00-reusable-frontend-build.yml and the test workflow: no findings

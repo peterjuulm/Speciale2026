@@ -1,0 +1,15 @@
+# phoenix-merge-optA, GitHub, 23 November 2026: results
+# The merge pushed to thesis/reproducible-builds (30b5c745d, a fast-forward of
+# a50671fd1) at Leo's go-ahead, after it passed on arch. Nothing triggers on
+# the push. Then 04-manual-checks.yml (read-only: contents: read; it uploads
+# only the secrets scan's report) dispatched on the branch, check-type=all:
+#   gh workflow run 04-manual-checks.yml -R Weel-Sandvig/WS.Phoenix --ref thesis/reproducible-builds -f check-type=all
+Run: https://github.com/Weel-Sandvig/WS.Phoenix/actions/runs/45217454796 (30b5c745d): success
+  backend-build / build (linux, ws-office): success
+  backend-test / build (linux, ws-office): success
+    unit:        Total tests 6477, Passed 6449
+    integration: Total tests 985,  Passed 966
+    functional:  Total tests 387,  Passed 386
+    verify-nuget-downloads.py: the five packs ok; tools ok or not restored, as CI's build job runs it (no --tools)
+  frontend-build, frontend-lint, frontend-test (the reusable frontend job, npm 11.21.2 by hash): success
+  security-scan (Trivy), secrets-history-scan: success

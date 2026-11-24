@@ -1,0 +1,193 @@
+# phoenix-macstudio-rebuild, macstudio, results, 23 November 2026
+# The release files: compare.sh against the release's assets downloaded today (N/compare.txt), 16:21-16:25
+same  frontend export (     994 /      994 files)
+same  ws-pems-linux-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+paste-signatures.sh, CI's signatures onto the local build: exit 0, The rebuild with the release's signatures equals the release: 2130 file(s), 114 folder(s)
+same  ws-pems-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+same  ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe
+same  bootstrap-postgresql-v0.0.0-thesis.6.sql
+same  SHA256SUMS (       8 lines)
+not in this run  image ws-pems as an OCI artifact
+not in this run  image ws-pems-job-worker as an OCI artifact
+not in this run  image wspems-mcp-server as an OCI artifact
+not in this run  image wspems-chat-server as an OCI artifact
+not in this run  image wspems-mcp-auth-broker as an OCI artifact
+summary: 0 differ or failed, 5 not in this run
+compare.sh exit 0
+
+# paste-signatures.sh (N/paste.log):
+Pasted 177 signature(s); 0 failed
+The rebuild with the release's signatures equals the release: 2130 file(s), 114 folder(s)
+
+# upgrade.sh against the asset, and the frontend export against the release's wwwroot/ (as on 21/10):
+same  upgrade.sh (cmp of the asset with scripts/upgrade.sh in the windows job's clone of the tag, 16:26; also line 8 of the SHA256SUMS above)
+same  frontend export against the release's wwwroot/ (994 files; wwwroot/ has 1057: the 994 at the export's paths, and 63 under Identity/ from the backend's publish)
+
+# The rebuilt files' sha256 (= GitHub's asset digests and the published SHA256SUMS):
+202f5b5dc722702fcfa5bc25bc82845505037b7f70eb336748aeb34ef0cda5dd  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+4c0d636231aa89d886fe7e71c24844786f30cc3801f88876fa5787f3bbe74fee  ws-pems-linux-x64-v0.0.0-thesis.6.zip
+6b20119144ab02d9a0ca656f542ce0f43977a2e0d7aca6979b53a92a9614686f  bootstrap-postgresql-v0.0.0-thesis.6.sql
+596a26c4d4ec8b71c3382aa9751ba46535b43a76215b3d4afaffa24d8f0a955f  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+SHA256SUMS made from the rebuilt files (with the signatures pasted onto the Windows files):
+202f5b5dc722702fcfa5bc25bc82845505037b7f70eb336748aeb34ef0cda5dd  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+29853a0fad8684e85f8251393dece7a681b3d09301402cf797a7feafbbc6c482  ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip
+4c0d636231aa89d886fe7e71c24844786f30cc3801f88876fa5787f3bbe74fee  ws-pems-linux-x64-v0.0.0-thesis.6.zip
+d74e54ad334a8e22287fddbf7838333bd719f15e5652451f350fdd065424cd90  ws-pems-win-x64-v0.0.0-thesis.6.zip
+6b20119144ab02d9a0ca656f542ce0f43977a2e0d7aca6979b53a92a9614686f  db/bootstrap-postgresql-v0.0.0-thesis.6.sql
+596a26c4d4ec8b71c3382aa9751ba46535b43a76215b3d4afaffa24d8f0a955f  db/ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+cb9629fb82f413506a57c511c626efd231670d21ed8d3f28b9f0f09464eb16fa  db/ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe
+3116d1203464ddccd100741aba580b4f2994f7f6e3741b348e7730dc4c3fb0ca  upgrade.sh
+
+# The jobs (N/rebuild.log, second try):
+frontend start 16:10:57
+frontend exit 0 16:12:34
+linux start 16:12:34
+linux exit 0 16:13:48
+windows start 16:13:48
+windows exit 0 16:14:58
+migrator start 16:14:58
+migrator exit 0 16:15:29
+sql start 16:15:29
+sql exit 0 16:17:29
+rebuild exit 0
+# NuGet cache after the run: 4.3G, filled from nuget.org in the first try's migrator job
+# compiler and runtime in the WebAPI PDB:
+compiler-version
+5.9.0-1.26423.113+e34a38d2ae1fc26406a317517196e55c68ff83ab
+--
+runtime-version
+10.0.12-servicing.26422.108+95017c711e6afc1085133d440e42b4bd78155701
+
+# ===================== The images =====================
+# Built 16:20:38-16:38:06 under Rosetta (rebuild.sh images, second try, exit 0), builder rb1 (BuildKit v0.33.1, its x86-64 QEMU moved aside):
+images start 16:20:38
+images exit 0 16:38:06
+rebuild exit 0
+
+# GHCR read live today with read:packages (ghcr-manifests.py, 16:16; the broker's two tags read again at 16:42, as the first
+# read was cut off; N/ghcr-before.txt). All ten tags (five images, each with its -build tag) give the index and linux/amd64 image
+# digests recorded on 14/10 (data/2026-10-14-phoenix-reference-release/arch/results.txt) and 20/10
+# (data/2026-10-20-phoenix-delayed-rebuild/arch/results.txt, lines 37-46), each compared digest by digest:
+weel-sandvig/ws-pems:v0.0.0-thesis.6  index sha256:e638c82a20d4bc444e092b6836f868f468b5bdc3994d9ac67c61c9998b782023  image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e
+weel-sandvig/ws-pems:v0.0.0-thesis.6-build  index sha256:e638c82a20d4bc444e092b6836f868f468b5bdc3994d9ac67c61c9998b782023  image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e
+weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.6  index sha256:38e75e43540dbf1c91636bddb9539def749f5e1b2d5b6d6604d66b2737c19d83  image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b
+weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.6-build  index sha256:38e75e43540dbf1c91636bddb9539def749f5e1b2d5b6d6604d66b2737c19d83  image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b
+weel-sandvig/wspems-mcp-server:v0.0.0-thesis.6  index sha256:5b95393e9637b8bc06e96b99abff5d7753c7a323811bf00ce5bff35923f7acf0  image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4
+weel-sandvig/wspems-mcp-server:v0.0.0-thesis.6-build  index sha256:5b95393e9637b8bc06e96b99abff5d7753c7a323811bf00ce5bff35923f7acf0  image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4
+weel-sandvig/wspems-chat-server:v0.0.0-thesis.6  index sha256:dbeda2cba720e7a57f3a0830714529c2a2256938d1724030ce8d75a1f22bf77e  image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5
+weel-sandvig/wspems-chat-server:v0.0.0-thesis.6-build  index sha256:dbeda2cba720e7a57f3a0830714529c2a2256938d1724030ce8d75a1f22bf77e  image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5
+weel-sandvig/wspems-mcp-auth-broker:v0.0.0-thesis.6  index sha256:93cf5a774a5df28628a493587a51a28d08a5bd803811aff0f38c7c895849c930  image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1
+weel-sandvig/wspems-mcp-auth-broker:v0.0.0-thesis.6-build  index sha256:93cf5a774a5df28628a493587a51a28d08a5bd803811aff0f38c7c895849c930  image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1
+
+# Each local image's linux/amd64 manifest against GHCR's (ghcr-manifests.py with the local file):
+weel-sandvig/ws-pems:v0.0.0-thesis.6  GHCR image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e
+  local image sha256:08b930c42ee991ae3cbf69ef487fce5da5b7a945f7afd9018dbfeafa61870da1  DIFF
+weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.6  GHCR image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b
+  local image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  same
+weel-sandvig/wspems-mcp-server:v0.0.0-thesis.6  GHCR image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4
+  local image sha256:bbb81d71e2e965d33750bad7ba13323abdc27fa095c2cef603b285dd5aeb8f2b  DIFF
+weel-sandvig/wspems-chat-server:v0.0.0-thesis.6  GHCR image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5
+  local image sha256:0e574b51ac580add56461871c35ba615276006693764de04b58334204e06c347  DIFF
+weel-sandvig/wspems-mcp-auth-broker:v0.0.0-thesis.6  GHCR image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1
+  local image sha256:e4d199b09c6da9bf4c520e3010cec972fb0d358be13842772029d7d4f0d60b0f  DIFF
+
+# Where they differ: oci-diff.py, GHCR's image (ghcr-oci.py) against the rebuild. The first three lines of each:
+## ws-pems
+manifest differ: sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e / sha256:08b930c42ee991ae3cbf69ef487fce5da5b7a945f7afd9018dbfeafa61870da1
+config differ: rootfs.diff_ids[7]
+layers 10: same [0, 1, 2, 3, 4, 5, 6, 8, 9], differ [7]
+layer 7: sha256:67cb46851c2e93454193f391be023076ce93aa8178ad98fe10cc65f35670810f / sha256:e9ec63f8c9309e7832568d032e0f61c41e82499503447b2a285b6978099c3e3d, uncompressed differs, size 183 / 235
+  4 / 7 entries, only in A 0, only in B 3, order same
+    only in B: root
+    only in B: root/.cache
+    only in B: root/.cache/rosetta
+## wspems-mcp-server
+manifest differ: sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4 / sha256:bbb81d71e2e965d33750bad7ba13323abdc27fa095c2cef603b285dd5aeb8f2b
+config differ: rootfs.diff_ids[5]
+layers 15: same [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14], differ [5]
+layer 5: sha256:a0e129d870a1a16f27ea2125815e4c8bbffa2454072697fc8d1928a2e0aa8272 / sha256:e71db1cb4d96f6229d3b7a5e795d3f0fa6259d24ce6eeb22b1d2741fc4ce39dd, uncompressed differs, size 33086228 / 330957
+  2235 / 2232 entries, only in A 6, only in B 3, order same
+    only in A: etc/ssl/certs/14bc7599.0
+    only in A: etc/ssl/certs/Comodo_AAA_Services_root.pem
+    only in A: etc/ssl/certs/ee64a828.0
+    only in A: etc/ssl/certs/emSign_ECC_Root_CA_-_G3.pem
+    only in A: usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt
+    only in A: usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_G3.crt
+    only in B: root
+    only in B: root/.cache
+    only in B: root/.cache/rosetta
+## wspems-chat-server
+manifest differ: sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5 / sha256:0e574b51ac580add56461871c35ba615276006693764de04b58334204e06c347
+config differ: rootfs.diff_ids[5]
+layers 12: same [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11], differ [5]
+layer 5: sha256:c86e4319cc3d6caf2610a0b06e280c41368e78c7da3198668b0d4eea12ce4ff7 / sha256:fdc0c8dbda10a05908b7e42db8ca13f90702efac0e4f198db5d22b04bbb18585, uncompressed differs, size 3517905 / 3516383
+  553 / 550 entries, only in A 6, only in B 3, order same
+    only in A: etc/ssl/certs/14bc7599.0
+    only in A: etc/ssl/certs/Comodo_AAA_Services_root.pem
+    only in A: etc/ssl/certs/ee64a828.0
+    only in A: etc/ssl/certs/emSign_ECC_Root_CA_-_G3.pem
+    only in A: usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt
+    only in A: usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_G3.crt
+    only in B: root
+    only in B: root/.cache
+    only in B: root/.cache/rosetta
+## wspems-mcp-auth-broker
+manifest differ: sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1 / sha256:e4d199b09c6da9bf4c520e3010cec972fb0d358be13842772029d7d4f0d60b0f
+config differ: rootfs.diff_ids[5]
+layers 11: same [0, 1, 2, 3, 4, 6, 7, 8, 9, 10], differ [5]
+layer 5: sha256:c86e4319cc3d6caf2610a0b06e280c41368e78c7da3198668b0d4eea12ce4ff7 / sha256:fdc0c8dbda10a05908b7e42db8ca13f90702efac0e4f198db5d22b04bbb18585, uncompressed differs, size 3517905 / 3516383
+  553 / 550 entries, only in A 6, only in B 3, order same
+    only in A: etc/ssl/certs/14bc7599.0
+    only in A: etc/ssl/certs/Comodo_AAA_Services_root.pem
+    only in A: etc/ssl/certs/ee64a828.0
+    only in A: etc/ssl/certs/emSign_ECC_Root_CA_-_G3.pem
+    only in A: usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt
+    only in A: usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_G3.crt
+    only in B: root
+    only in B: root/.cache
+    only in B: root/.cache/rosetta
+
+# The differing layer's packages (dpkg-diff.py on var/lib/dpkg/status), GHCR -> rebuild:
+## wspems-mcp-server, layer 5 (the runtime stage's apt-get install):
+packages: A 135, B 135
+  ca-certificates:all: 20250419~deb12u1 -> 20250419~deb12u2
+  libbrotli1:amd64: 1.0.9-2+b6 -> 1.0.9-2+deb12u1
+  libexpat1:amd64: 2.5.0-1+deb12u4 -> 2.5.0-1+deb12u5
+  libssl3:amd64: 3.0.22-1~deb12u1 -> 3.0.22-1~deb12u2
+  openssl:amd64: 3.0.22-1~deb12u1 -> 3.0.22-1~deb12u2
+## wspems-chat-server and wspems-mcp-auth-broker, layer 5 (one layer, the same digest in both images on each side):
+packages: A 91, B 91
+  ca-certificates:all: 20250419~deb12u1 -> 20250419~deb12u2
+  libssl3:amd64: 3.0.22-1~deb12u1 -> 3.0.22-1~deb12u2
+  openssl:amd64: 3.0.22-1~deb12u1 -> 3.0.22-1~deb12u2
+
+# Every differing entry of that layer by owning package (layer-owners.py):
+## wspems-mcp-server
+entries: A 2235, B 2232; differing 221
+   156  ca-certificates
+     5  ca-certificates (generated by update-ca-certificates)
+    25  dpkg/debconf bookkeeping
+     7  libbrotli1:amd64
+     2  libexpat1:amd64
+     7  libssl3:amd64
+    13  openssl
+     6  no package: ['etc/ca-certificates.conf', 'root', 'root/.cache', 'root/.cache/rosetta', 'usr/lib/x86_64-linux-gnu/libexpat.so.1', 'usr/lib/x86_64-linux-gnu/libexpat.so.1.8.10']
+## wspems-chat-server (= wspems-mcp-auth-broker)
+entries: A 553, B 550; differing 202
+   156  ca-certificates
+     5  ca-certificates (generated by update-ca-certificates)
+    17  dpkg/debconf bookkeeping
+     7  libssl3:amd64
+    13  openssl
+     4  no package: ['etc/ca-certificates.conf', 'root', 'root/.cache', 'root/.cache/rosetta']
+# (etc/ca-certificates.conf is written by ca-certificates' maintainer script; libexpat.so.1 and libexpat.so.1.8.10 are libexpat1's library and its link, by name)
+
+# When the new versions reached the archive: snapshot.debian.org's first_seen for each version's source files in debian-security (the newest date is the version's own files):
+openssl 3.0.22-1~deb12u2: 2026-10-26T03:24:58Z; ca-certificates 20250419~deb12u2: 2026-10-20T21:13:10Z; brotli 1.0.9-2+deb12u1: 2026-10-23T20:03:00Z; expat 2.5.0-1+deb12u5: 2026-10-22T07:22:46Z
+
+# The control, the WebAPI Dockerfile's base stage alone (--target base), last layer:
+rb1  (Rosetta)                        sha256:e9ec63f8c9309e7832568d032e0f61c41e82499503447b2a285b6978099c3e3d  235 bytes  (with root/, root/.cache/, root/.cache/rosetta/)
+rb1q (BuildKit's QEMU, stock builder) sha256:67cb46851c2e93454193f391be023076ce93aa8178ad98fe10cc65f35670810f  183 bytes  = GHCR's ws-pems layer 7

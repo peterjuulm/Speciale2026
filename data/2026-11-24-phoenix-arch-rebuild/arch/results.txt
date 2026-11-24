@@ -1,0 +1,87 @@
+v0.0.0-thesis.6 (be5fc56e) rebuilt on arch, 24 November 2026, against what
+GitHub's release workflow published on 14 October 2026.
+Sources: compare.txt, images-ghcr.txt, rebuild.log, environment.txt, the
+lab logs here, and trace/. The rebuild's files stay on arch in
+/private/tmp/rb1-rebuild6 (not in git).
+
+## Jobs (rebuild.log)
+
+frontend  08:49:52-08:52:28  exit 0  (npm cache filled online at 08:48, installed offline)
+linux     08:52:28-09:10:45  exit 1  restore failed: NU1301, "The HTTP request to
+          'GET https://api.nuget.org/v3/index.json' has timed out after 100000ms",
+          7 times, 6 projects "Failed to restore" after 16.9-18.2 min. No build ran.
+windows   09:10:45-09:13:43  exit 0  (its restore from nuget.org went through)
+migrator  09:13:43-09:14:19  exit 0
+sql       09:14:19-09:15:42  exit 0
+images    09:15:42-09:25:23  exit 0  (five images, BuildKit v0.33.1, --no-cache)
+linux     09:28:27-09:32:16  exit 0  step 32: alone, from an empty NuGet folder again
+          (the 5.3 GB the windows, migrator and sql jobs had filled was set aside);
+          nuget.org's index answered 200 in 0.19-0.22 s just before; 0 NU1301 lines.
+
+## Files against the release's assets (compare.txt, step 32)
+
+same  ws-pems-linux-x64-v0.0.0-thesis.6.zip            4c0d6362... (published SHA256SUMS)
+same  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip 202f5b5d...
+same  ws-pems-win-x64-v0.0.0-thesis.6.zip              with the release's signatures pasted:
+same  ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip   2130 files, 114 folders, paste exit 0
+same  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6    596a26c4...
+same  ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe  cb9629fb... (signatures pasted)
+same  bootstrap-postgresql-v0.0.0-thesis.6.sql         6b201191...
+same  SHA256SUMS made from the rebuilt files: all 8 lines equal the published file (d2dc8463...)
+same  upgrade.sh                                       3116d120... (cmp against the tag's file)
+export: 994 files rebuilt; 994 with the same path and SHA-256 in the published Linux zip's
+        wwwroot; 0 not; the zip's wwwroot has 63 more (the backend's, under Identity/)
+compare.sh's own "DIFF frontend export (0 / 994 files)" is the run's artifact, which expired
+after 1-5 days and is not in the download; its 19 diff lines (export file names and
+hashes) are left out of compare.txt here.
+
+## Images, linux/amd64 manifest against GHCR read live (images-ghcr.txt)
+
+ws-pems                 e097c1aa...  same
+ws-pems-job-worker      a0d51db3...  same
+wspems-mcp-server       GHCR 7cd72eec...  arch 932bf82c...  DIFF
+wspems-chat-server      GHCR 0ad474bb...  arch d0cd19bb...  DIFF
+wspems-mcp-auth-broker  GHCR 31793f8a...  arch f85aa0f6...  DIFF
+The GHCR index digests (e638c82a..., 38e75e43..., 5b95393e..., dbeda2cb..., 93cf5a77...)
+are those recorded on 14/10 and 20/10 and by macstudio on 23/11: the tags have not moved.
+
+## The three MCP images traced (33-trace-mcp.log, trace/)
+
+In each, one layer of the image differs, the runtime stage's apt-get install
+(index 5 from 0: layer 6 of 15, 12 and 11). The config differs only in that
+layer's rootfs.diff_ids entry. Every other layer is GHCR's.
+
+wspems-mcp-server   GHCR a0e129d8...  arch 7647407d...
+  packages (dpkg status, GHCR -> arch), 135 on each side:
+    ca-certificates:all  20250419~deb12u1 -> 20250419~deb12u2
+    libbrotli1:amd64     1.0.9-2+b6       -> 1.0.9-2+deb12u1
+    libexpat1:amd64      2.5.0-1+deb12u4  -> 2.5.0-1+deb12u5
+    libssl3:amd64        3.0.22-1~deb12u1 -> 3.0.22-1~deb12u2
+    openssl:amd64        3.0.22-1~deb12u1 -> 3.0.22-1~deb12u2
+  entries 2235 / 2229, 218 differ: ca-certificates 156, its generated links 5,
+  dpkg/debconf bookkeeping 25, libbrotli1 7, libexpat1 2, libssl3 7, openssl 13,
+  no package 3 (etc/ca-certificates.conf, usr/lib/x86_64-linux-gnu/libexpat.so.1
+  and libexpat.so.1.8.10: no .list file in the layer names these paths)
+wspems-chat-server and wspems-mcp-auth-broker: the same layer on each side
+  (GHCR c86e4319..., arch 117fa3d1...), 91 packages on each side:
+    ca-certificates, libssl3, openssl, the same versions as above
+  entries 553 / 547, 199 differ: ca-certificates 156, generated links 5,
+  dpkg/debconf 17, libssl3 7, openssl 13, etc/ca-certificates.conf 1
+The six entries only in GHCR's layers: the two roots the new ca-certificates
+drops (Comodo AAA Services, emSign ECC Root CA - G3) with their hash links.
+Times: the new packages' files carry 2026-10-14T07:02:26Z (1791961346), the
+commit time, which rewrite-timestamp gives to anything newer; GHCR's carry
+their packages' own dates (openssl and libssl3 2026-09-23, libexpat1 2026-09-27).
+
+## arch against macstudio (23/11), the same apt layers (layer-pair.py, on the Mac)
+
+wspems-mcp-server   arch 7647407d... (2229 entries)  macstudio e71db1cb... (2232)
+wspems-chat-server  arch 117fa3d1... (547 entries)   macstudio fdc0c8db... (550)
+In both: the only entries that differ are three only in macstudio's layer,
+root/ (0700), root/.cache/ and root/.cache/rosetta/, empty folders dated
+1791961346. Every other entry is equal in type, mode, owner, time, size and
+content, and in the same order.
+
+## Memory
+
+MemAvailable 55-57 GB throughout (environment.txt; 50-after-reboot.log).

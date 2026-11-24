@@ -1,0 +1,48 @@
+-- the network: nuget.org's service index
+150.171.109.197 0.221783s  (x200)
+2603:1061:14:c5::1 0.187725s  (x200)
+2603:1061:14:c5::1 0.216376s  (x200)
+-- the NuGet folder of the other jobs set aside, an empty one made
+5,3G	/private/tmp/rb1-dch
+/tmp/dch -> /private/tmp/rb1-dch: 0 entries
+
+== linux job 09:28:27
+linux start 09:28:27
+linux exit 0 09:32:16
+linux exit 0  09:32:16
+NU1301 lines: 0
+
+== compare with the published release 09:32:16
+/private/tmp/rb1-dre/1-ws-pems/scripts/5-release/local-vs-github-comparison/compare.sh: linje 59: cd: /private/tmp/rb1-rebuild6/ci/frontend-export: Ingen sådan fil eller filkatalog
+DIFF  frontend export (0 / 994 files)
+0a1,994
+> [a file of the export and its SHA-256: left out]  (x19)
+same  ws-pems-linux-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-linux-x64-v0.0.0-thesis.6.zip
+paste-signatures.sh, CI's signatures onto the local build: exit 0, The rebuild with the release's signatures equals the release: 2130 file(s), 114 folder(s)
+same  ws-pems-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-job-worker-win-x64-v0.0.0-thesis.6.zip
+same  ws-pems-db-migrator-linux-x64-v0.0.0-thesis.6
+same  ws-pems-db-migrator-win-x64-v0.0.0-thesis.6.exe
+same  bootstrap-postgresql-v0.0.0-thesis.6.sql
+same  SHA256SUMS (8 lines)
+not in this run  image ws-pems as an OCI artifact
+not in this run  image ws-pems-job-worker as an OCI artifact
+not in this run  image wspems-mcp-server as an OCI artifact
+not in this run  image wspems-chat-server as an OCI artifact
+not in this run  image wspems-mcp-auth-broker as an OCI artifact
+summary: 1 differ or failed, 5 not in this run
+compare exit 1
+
+== the images, again against GHCR 09:34:38
+weel-sandvig/ws-pems:v0.0.0-thesis.6  index sha256:e638c82a20d4bc444e092b6836f868f468b5bdc3994d9ac67c61c9998b782023  image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e  attestation sha256:f70bb2443f69eb9cbdedcebf325192c3eebb7021c556e11968620ce7688c9846
+  local image sha256:e097c1aaa88e60773ea15d4b7df5135aa924ace0dff0e85cbcef82577e730b4e  same
+weel-sandvig/ws-pems-job-worker:v0.0.0-thesis.6  index sha256:38e75e43540dbf1c91636bddb9539def749f5e1b2d5b6d6604d66b2737c19d83  image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  attestation sha256:1f68742b792fe4a8978d38e96e4cdee1569abe971551a03ebafbaa451212c9d1
+  local image sha256:a0d51db366b3ebfea00d5e51d7e9824bfc6c0fe2fe52893c53bb342a70c1902b  same
+weel-sandvig/wspems-mcp-server:v0.0.0-thesis.6  index sha256:5b95393e9637b8bc06e96b99abff5d7753c7a323811bf00ce5bff35923f7acf0  image sha256:7cd72eec8e934178c41d6d25c492f0e24d236be3173bbb58625719149a29e4e4  attestation sha256:51bb2bceea29bda38bd9fb66ad312731e9a8cca5f013a938383a12bdc2ace3d7
+  local image sha256:932bf82c118959a5da8fd94db669fd75d6670ee64ed5e99a88c3ae6b6f18e63d  DIFF
+weel-sandvig/wspems-chat-server:v0.0.0-thesis.6  index sha256:dbeda2cba720e7a57f3a0830714529c2a2256938d1724030ce8d75a1f22bf77e  image sha256:0ad474bb184a4e5a610450d80be8179cb33e7cd2774a2a171901e009de0bf7b5  attestation sha256:bd70131282d4bd011697705aa8cbe930ea486cd62e9cddc27e2528ce3f2d6cf3
+  local image sha256:d0cd19bb4472689edd64b05ed4286b93ec727607625e0cdc042fc625c0bea5db  DIFF
+weel-sandvig/wspems-mcp-auth-broker:v0.0.0-thesis.6  index sha256:93cf5a774a5df28628a493587a51a28d08a5bd803811aff0f38c7c895849c930  image sha256:31793f8a257bba3ea31cb70b4797cbb2178f09d143f8f0e233645056f06dd9b1  attestation sha256:eac799318ec1f0bb83baacf68524539459782392354fd93e13336a808517c163
+  local image sha256:f85aa0f60612291bbb52194c164e6d8f6c27c58c0836043e2906943846749b05  DIFF
+== done 09:34:42

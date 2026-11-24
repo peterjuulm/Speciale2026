@@ -1,0 +1,18 @@
+#!/usr/bin/python3 -I
+# GNU realpath's "[-m] [--] PATH" for pack-release-zip.sh on macOS: the
+# canonical path, whether or not it exists (os.path.realpath, non-strict).
+import os, sys
+args = [a for a in sys.argv[1:] if a not in ("-m", "--")]
+if len(args) != 1:
+    sys.exit("realpath shim: usage: realpath [-m] [--] PATH")
+print(os.path.realpath(args[0]))
+#!/usr/bin/python3 -I
+# GNU touch's "-h -d @SECONDS FILE..." for pack-release-zip.sh on macOS:
+# access and modification time set to SECONDS, links not followed.
+import os, sys
+a = sys.argv[1:]
+if len(a) < 4 or a[0] != "-h" or a[1] != "-d" or not a[2].startswith("@"):
+    sys.exit("touch shim: usage: touch -h -d @SECONDS FILE...")
+t = int(a[2][1:])
+for f in a[3:]:
+    os.utime(f, (t, t), follow_symlinks=False)

@@ -1,0 +1,97 @@
+# phoenix-merge-optA, arch, 23 November 2026: results (the merge as thesis-merge, 30b5c745d)
+
+## 02-sdk
+SDK 10.0.401 (linux-x64, runtime 10.0.12) in /home/leos/rb1-dotnet-10.0.401
+sha512 51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b
+10.0.401 [/home/leos/rb1-dotnet-10.0.401/sdk]
+Microsoft.NETCore.App 10.0.12 [/home/leos/rb1-dotnet-10.0.401/shared/Microsoft.NETCore.App]
+
+## 03-stop-old-sessions (Leo's choice, to free memory)
+MemAvailable:   12762036 kB
+-- to stop (12):
+-- still running after 30 s:
+(none listed = all stopped)
+
+## 10-optA-ci (D1)
+commit 30b5c745d944d06bc017f051e36079547252ea32
+== C1 locked restore  16:10:32
+  Restored /private/tmp/rb1-optA-ci/src/ApplicationCore/ApplicationCore.csproj (in 1.68 min).
+  Restored /private/tmp/rb1-optA-ci/src/Infrastructure/Infrastructure.csproj (in 1.79 min).
+  Restored /private/tmp/rb1-optA-ci/src/Infrastructure.Migrations/Infrastructure.Migrations.csproj (in 1.79 min).
+  Restored /private/tmp/rb1-optA-ci/tests/tests.csproj (in 1.91 min).
+  Restored /private/tmp/rb1-optA-ci/src/BackgroundJobExecutor/BackgroundJobExecutor.csproj (in 2.03 min).
+  Restored /private/tmp/rb1-optA-ci/src/DbMigrator/DbMigrator.csproj (in 2.03 min).
+  Restored /private/tmp/rb1-optA-ci/src/WebAPI/WebAPI.csproj (in 2.03 min).
+== C2 build  16:12:39
+Time Elapsed 00:04:27.75
+== C3 tool restore  16:17:07
+== C4 nuget check  16:17:08
+== C5 model check  16:17:08
+== C6 UnitTests  16:17:23
+Passed!  - Failed:     0, Passed:  6449, Skipped:    28, Total:  6477, Duration: 1 m 26 s - tests.dll (net10.0)
+== C6 IntegrationTests  16:19:06
+Passed!  - Failed:     0, Passed:   966, Skipped:    19, Total:   985, Duration: 11 m 24 s - tests.dll (net10.0)
+== C6 FunctionalTests  16:30:45
+Passed!  - Failed:     0, Passed:   386, Skipped:     1, Total:   387, Duration: 3 m 54 s - tests.dll (net10.0)
+== done 16:36:37
+(the 'exit 1' after each step in the log is the memory helper's bug, fixed in 11)
+
+## 11-optA-ci-fix
+== C2b build (incremental)
+Build succeeded.
+    144 Warning(s)
+    0 Error(s)
+memory.peak 488 MiB
+C2b exit 0
+== C4a NuGet check, as CI's build job
+ok  Microsoft.NETCore.App.Runtime.win-x64 10.0.12
+not restored  csharpier 0.29.2
+not restored  dotnet-ef 10.0.12
+not restored  dotnet-format 5.1.250801
+C4a exit 0
+== C4b NuGet check, as the release's migration job
+Restore was successful.
+ok  Microsoft.NETCore.App.Runtime.win-x64 10.0.12
+ok  csharpier 0.29.2 (tool)
+ok  dotnet-ef 10.0.12 (tool)
+ok  dotnet-format 5.1.250801 (tool)
+C4b exit 0
+== C5 model check
+No changes have been made to the model since the last migration.
+memory.peak 179 MiB
+C5 exit 0
+
+## 12-optA-publish (D2)
+== rb1-optA-pub-a 16:49:34
+memory.peak 488 MiB
+memory.peak 9629 MiB
+memory.peak 2230 MiB
+memory.peak 1829 MiB
+memory.peak 1655 MiB
+rb1-optA-pub-a: 1153 files
+== rb1-optA-pub-b-other 16:53:35
+memory.peak 479 MiB
+memory.peak 8869 MiB
+memory.peak 2189 MiB
+memory.peak 1821 MiB
+memory.peak 1656 MiB
+rb1-optA-pub-b-other: 1153 files
+a = b-other: identical
+arch = macstudio: identical (1153 files)
+Infrastructure.Migrations.dll in the WebAPI or job worker folders: 0
+
+## 13-optA-memory (D3)
+== merge (thesis-merge), dotnet 10.0.401
+memory.peak 5214 MiB
+memory.peak 2038 MiB
+Infrastructure.Migrations.dll in the publish: 0
+== main (8ed4010dacabf1c60fd6e98e43eb7c6e73f37252), dotnet 9.0.123
+memory.peak 4898 MiB
+memory.peak 1946 MiB
+Infrastructure.Migrations.dll in the publish: 0
+(the first memory.peak of each side is the restore, the second the publish)
+
+## 14-optA-image (D4, first attempt)
+invalid argument "rb1-optA-migrations:test" for "-t, --tag" flag: invalid reference format: repository name (library/rb1-optA-migrations) must be lowercase
+build exit 125
+Error response from daemon: invalid reference format: repository name (library/rb1-optA-migrations) must be lowercase

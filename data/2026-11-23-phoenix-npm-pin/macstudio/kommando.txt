@@ -1,0 +1,39 @@
+# phoenix-npm-pin, macstudio, 23 November 2026. Run by Claude in a side
+# session, in bash (the Bash tool, zsh-hosted). E is Speciale2026/experiments/
+# phoenix-npm-pin; W the WS worktree; the labs are in /private/tmp.
+
+# Tools: Node 22.23.3 darwin-arm64 from nodejs.org, its SHA-256 against
+# SHASUMS256.txt (environment.txt); npm 11.21.2 from the registry tarball,
+# its SHA-512 against the registry's dist.integrity, installed over a copy:
+cp -R /private/tmp/rb1-node22 /private/tmp/rb1-node22-npm11
+PATH=/private/tmp/rb1-node22-npm11/bin:/usr/bin:/bin npm install -g --ignore-scripts --no-audit --no-fund /private/tmp/rb1-npm11-dl/npm-11.21.2.tgz
+
+# Installs as linux-x64 (the release's runner), offline from one cache filled
+# online once: ci-as.sh NODE_DIR APP OUT [LIBC]
+ONLINE=1 bash $E/ci-as.sh /private/tmp/rb1-node22 <export of 2cd85fd01>/src/WebAPI/ClientApp results/fill-npm10-head-glibc
+bash $E/ci-as.sh /private/tmp/rb1-node22       <2cd85fd01> results/E1-npm10-head-glibc
+bash $E/ci-as.sh /private/tmp/rb1-node22-npm11 <2cd85fd01> results/E2-npm11-head-glibc
+
+# The lock rewritten by npm 11.21.2: the 68 platform entries dropped and
+# resolved again, then compared:
+python3 -I $E/drop-platform-entries.py package-lock.json
+env -i HOME=$HOME PATH=/private/tmp/rb1-node22-npm11/bin:/usr/bin:/bin npm_config_cache=/private/tmp/rb1-npm npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+python3 -I $E/compare-locks.py <2cd85fd01's lock> package-lock.json
+# again (fixed point), and full installs with each npm:
+npm install --package-lock-only --ignore-scripts --no-audit --no-fund --offline   # npm 11.21.2: identical
+npm ci --ignore-scripts --offline --no-audit --no-fund; npm install --ignore-scripts --offline --no-audit --no-fund   # npm 11.21.2: identical
+npm install --ignore-scripts --offline --no-audit --no-fund                       # npm 10.9.9: -libc 36
+
+bash $E/ci-as.sh /private/tmp/rb1-node22-npm11 <new lock> results/E3-npm11-new-glibc
+bash $E/ci-as.sh /private/tmp/rb1-node22       <new lock> results/E4-npm10-new-glibc
+bash $E/ci-as.sh /private/tmp/rb1-node22-npm11 <new lock> results/E5-npm11-new-glibc-again
+ONLINE=1 bash $E/ci-as.sh /private/tmp/rb1-node22-npm11 <new lock> results/E6-npm11-new-musl musl
+
+# The commit (W): 765ea6aa2, "Write and read the frontend lock with one pinned npm".
+
+# Stage 3, build.sh of dotnet-rebuild-experiments (sha256 04ea8b35...), each
+# in a fresh git archive lab, under env -i: fe-build.sh COMMIT NODE_DIR LAB OUT
+bash $E/fe-build.sh 2cd85fd01 /private/tmp/rb1-node22       /private/tmp/rb1-ws-pems     builds/B0-2cd85fd01-npm10
+bash $E/fe-build.sh 765ea6aa2 /private/tmp/rb1-node22-npm11 /private/tmp/rb1-ws-pems     builds/B1-765ea6aa2-npm11
+bash $E/fe-build.sh 765ea6aa2 /private/tmp/rb1-node22-npm11 /private/tmp/rb1-ws-pems     builds/B2-765ea6aa2-npm11
+bash $E/fe-build.sh 765ea6aa2 /private/tmp/rb1-node22-npm11 /private/tmp/rb1-ws-pems-alt builds/B3-765ea6aa2-npm11-otherpath

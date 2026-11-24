@@ -1,0 +1,242 @@
+# v0.0.0-thesis.6 rebuilt on arch, 24 November 2026: the commands, verbatim.
+#
+# Each script ran on arch in the tmux session lab (Leo watched), sent by
+# experiments/phoenix-merge-optA/lab.sh from the Mac:
+#   lab.sh STEP SCRIPT  ->  bash /private/tmp/rb1-lab/scripts/STEP.sh 2>&1 | tee ~/lab-logs/STEP.log
+# Steps 20 and 21 ran on 23/11 (Node, and the published assets, which stay
+# valid; 21 checks them against SHA256SUMS). Step 30, the first attempt of
+# 23/11, was interrupted when arch went off the network; step 31 is the
+# same script with two more lines in environment.txt. On 24/11, after the
+# restart: 51, 31, then 32 (the linux job again, alone, after its NU1301
+# failure in 31) and 33 (the MCP images traced, in the window lab:probe).
+# Last, on the Mac: arch's apt layers against macstudio's of 23/11.
+
+########## 20-rebuild6-prep.sh
+# Preparation for rebuilding v0.0.0-thesis.6 (be5fc56e) on arch: empty
+# caches, a fresh Node, and what GitHub published. Nothing heavy.
+set -euo pipefail
+N=/private/tmp/rb1-rebuild6
+echo "-- 1. NuGet: rebuild.sh's folder /tmp/dch (tmpfs) moved aside; /tmp/dch now points to an empty folder on disk"
+if [ -d /tmp/dch ] && [ ! -L /tmp/dch ]; then du -sh /tmp/dch; mv /tmp/dch /private/tmp/rb1-dch-before-2026-11-23; fi
+rm -rf /private/tmp/rb1-dch && mkdir /private/tmp/rb1-dch && ln -sfn /private/tmp/rb1-dch /tmp/dch && ls -la /tmp/dch
+echo "-- 2. npm: the cache /private/tmp/rb1-npm moved aside"
+if [ -d /private/tmp/rb1-npm ] && [ ! -e /private/tmp/rb1-npm-before-2026-11-23 ]; then mv /private/tmp/rb1-npm /private/tmp/rb1-npm-before-2026-11-23; fi
+ls -d /private/tmp/rb1-npm 2>/dev/null || echo "no /private/tmp/rb1-npm: starts empty"
+echo "-- 3. Node 22.23.3 from nodejs.org, checked against node.sha256's line"
+d=/private/tmp/rb1-rebuild6-dl; rm -rf "$d" /private/tmp/rb1-rebuild6-node; mkdir -p "$d" /private/tmp/rb1-rebuild6-node
+f=node-v22.23.3-linux-x64.tar.gz
+curl -fsSL -o "$d/$f" "https://nodejs.org/dist/v22.23.3/$f"
+(cd "$d" && echo "1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af  $f" | sha256sum -c --strict -)
+tar -xzf "$d/$f" -C /private/tmp/rb1-rebuild6-node --strip-components=1 --no-same-owner
+echo "node $(/private/tmp/rb1-rebuild6-node/bin/node --version), npm $(PATH=/private/tmp/rb1-rebuild6-node/bin:/usr/bin:/bin npm --version)"
+echo "-- 4. the npm cache filled online from the tag's lock, with the tag's npm"
+fill=/private/tmp/rb1-rebuild6-fill; rm -rf "$fill"; mkdir -p "$fill"
+git -C /private/tmp/rb1-merge-src archive v0.0.0-thesis.6 src/WebAPI/ClientApp | tar -x -C "$fill"
+(cd "$fill/src/WebAPI/ClientApp" && env -i HOME=/tmp/dch PATH=/private/tmp/rb1-rebuild6-node/bin:/usr/bin:/bin \
+  npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false npm ci --ignore-scripts --no-audit --no-fund 2>&1 | grep -v deprecated | tail -2)
+du -sh /private/tmp/rb1-npm
+echo "-- 5. what GitHub published: the release's assets, laid out as compare.sh reads a run's artifacts"
+rm -rf "$N"; mkdir -p "$N/assets"
+gh release download v0.0.0-thesis.6 -R Weel-Sandvig/WS.Phoenix -D "$N/assets"
+ls -la "$N/assets"
+(cd "$N/assets" && sha256sum -c SHA256SUMS 2>&1 | sed 's/^/  /'; sha256sum upgrade.sh SHA256SUMS)
+c=$N/ci; mkdir -p $c/release-zips-linux $c/release-zips-windows $c/db-migration-bundles-linux $c/db-migration-bundles-windows $c/sha256sums
+a=$N/assets t=v0.0.0-thesis.6
+ln $a/ws-pems-linux-x64-$t.zip $a/ws-pems-job-worker-linux-x64-$t.zip $c/release-zips-linux/
+ln $a/ws-pems-win-x64-$t.zip $a/ws-pems-job-worker-win-x64-$t.zip $c/release-zips-windows/
+ln $a/ws-pems-db-migrator-linux-x64-$t $a/bootstrap-postgresql-$t.sql $c/db-migration-bundles-linux/
+ln $a/ws-pems-db-migrator-win-x64-$t.exe $c/db-migration-bundles-windows/
+ln $a/SHA256SUMS $c/sha256sums/
+find $c -type f | sort
+grep MemAvailable /proc/meminfo
+
+########## 21-rebuild6-layout.sh
+# The release's assets against its SHA256SUMS (which names the migrators and
+# the SQL script under db/, the layout before 28371c9e), then laid out as
+# compare.sh reads a run's artifacts.
+set -euo pipefail
+N=/private/tmp/rb1-rebuild6 t=v0.0.0-thesis.6
+a=$N/assets c=$N/ci
+mkdir -p $a/db
+for f in ws-pems-db-migrator-linux-x64-$t ws-pems-db-migrator-win-x64-$t.exe bootstrap-postgresql-$t.sql; do ln -f $a/$f $a/db/$f; done
+(cd $a && sha256sum -c --strict SHA256SUMS)
+sha256sum $a/SHA256SUMS $a/upgrade.sh
+rm -rf $c; mkdir -p $c/release-zips-linux $c/release-zips-windows $c/db-migration-bundles-linux $c/db-migration-bundles-windows $c/sha256sums
+ln $a/ws-pems-linux-x64-$t.zip $a/ws-pems-job-worker-linux-x64-$t.zip $c/release-zips-linux/
+ln $a/ws-pems-win-x64-$t.zip $a/ws-pems-job-worker-win-x64-$t.zip $c/release-zips-windows/
+ln $a/ws-pems-db-migrator-linux-x64-$t $a/bootstrap-postgresql-$t.sql $c/db-migration-bundles-linux/
+ln $a/ws-pems-db-migrator-win-x64-$t.exe $c/db-migration-bundles-windows/
+ln $a/SHA256SUMS $c/sha256sums/
+find $c -type f | sort
+
+########## 51-rebuild6-reset.sh
+# Before the v0.0.0-thesis.6 rebuild on 24 November, after arch's reboot:
+# restore the shared memory guard, set aside the interrupted run of 23/11,
+# and start again from an empty NuGet folder and a newly filled npm cache.
+set -euo pipefail
+N=/private/tmp/rb1-rebuild6 t=v0.0.0-thesis.6
+echo "-- 1. the guard /tmp/claude-1000/ws-mem-run.sh (tmpfs, gone after the reboot), restored from the last"
+echo "      version the Arch setup session wrote (its transcript 3b788f37, 20/11; two writes, equal, no edits)"
+echo "db14855a86ef98d149e9026e334621646b6b1e08705fdfaacdde130e53ccc480  /private/tmp/rb1-lab/ws-mem-run.sh.restored" | sha256sum -c --strict -
+install -m 755 /private/tmp/rb1-lab/ws-mem-run.sh.restored /tmp/claude-1000/ws-mem-run.sh
+ls -l /tmp/claude-1000/ws-mem-run.sh; sha256sum /tmp/claude-1000/ws-mem-run.sh
+echo "-- 2. the interrupted run of 23/11 set aside"
+I=/private/tmp/rb1-rebuild6-interrupted-2026-11-23
+if [ ! -e "$I" ]; then mkdir "$I"; mv "$N/local" "$N/rebuild.log" "$N/environment.txt" "$I/"; fi
+ls "$N" "$I"; tail -n 5 "$I/rebuild.log"
+echo "-- 3. NuGet: /private/tmp/rb1-dch, which the interrupted linux job had partly filled, emptied; /tmp/dch points to it"
+du -sh /private/tmp/rb1-dch
+rm -rf /private/tmp/rb1-dch && mkdir /private/tmp/rb1-dch && ln -sfn /private/tmp/rb1-dch /tmp/dch && ls -la /tmp/dch
+echo "-- 4. npm: the cache filled on 23/11 set aside, and filled again online from the tag's lock with the tag's npm (10.9.9)"
+[ -e /private/tmp/rb1-npm-filled-2026-11-23 ] || mv /private/tmp/rb1-npm /private/tmp/rb1-npm-filled-2026-11-23
+rm -rf /private/tmp/rb1-npm
+fill=/private/tmp/rb1-rebuild6-fill; rm -rf "$fill"; mkdir -p "$fill"
+git -C /private/tmp/rb1-merge-src archive $t src/WebAPI/ClientApp | tar -x -C "$fill"
+(cd "$fill/src/WebAPI/ClientApp" && env -i HOME=/tmp/dch PATH=/private/tmp/rb1-rebuild6-node/bin:/usr/bin:/bin \
+  npm_config_cache=/private/tmp/rb1-npm npm_config_update_notifier=false npm ci --ignore-scripts --no-audit --no-fund 2>&1 | grep -v deprecated | tail -2)
+echo "npm $(PATH=/private/tmp/rb1-rebuild6-node/bin:/usr/bin:/bin npm --version); cache $(du -sh /private/tmp/rb1-npm | cut -f1)"
+echo "what the fill left in /tmp/dch: $(find /tmp/dch/ -mindepth 1 | head -5 | tr '\n' ' ')($(find /tmp/dch/ -mindepth 1 | wc -l) entries)"
+echo "-- 5. the published assets, again against SHA256SUMS"
+(cd "$N/assets" && sha256sum -c --strict --quiet SHA256SUMS && echo "all 7 named files ok"); sha256sum "$N/assets/SHA256SUMS" "$N/assets/upgrade.sh"
+find "$N/ci" -type f | sort
+grep MemAvailable /proc/meminfo
+
+########## 31-rebuild6.sh
+# v0.0.0-thesis.6 (be5fc56e) rebuilt on arch on 24 November, about six weeks
+# after GitHub published it (14 October), from an empty NuGet folder and an
+# npm cache filled that morning, with rebuild.sh, compare.sh and
+# ghcr-manifests.py of dotnet-rebuild-experiments at d991fc5. The rebuild runs
+# as one job under arch's memory guard (cap 14 GB; csc for the tag's
+# Infrastructure peaks near 11 GB); its images run in BuildKit, under the guard's lock.
+set -uo pipefail
+N=/private/tmp/rb1-rebuild6 T=v0.0.0-thesis.6
+R=/private/tmp/rb1-dre E=$R/1-ws-pems/scripts/5-release/local-vs-github-comparison
+rm -rf "$R"; git clone -q https://github.com/leosakharoff/dotnet-rebuild-experiments.git "$R" && git -C "$R" checkout -q d991fc501e4e1bd241eeee801dd5b8903d37b2fd
+git -C "$R" log -1 --format='scripts: dotnet-rebuild-experiments %H'; sha256sum "$E/rebuild.sh" "$E/compare.sh" "$E/ghcr-manifests.py"
+export DOCKER_CONFIG=/private/tmp/rb1-docker
+{
+  echo "arch $(uname -n) $(uname -r), $(ldd --version | sed -n 1p)"; date -Is
+  echo "sdk $($HOME/rb1-dotnet-10.0.401/dotnet --version), $($HOME/rb1-dotnet-10.0.401/dotnet --list-runtimes | grep NETCore.App)"
+  echo "node $(/private/tmp/rb1-rebuild6-node/bin/node --version), npm $(PATH=/private/tmp/rb1-rebuild6-node/bin:/usr/bin:/bin npm --version)"
+  echo "zip $(sha256sum /private/tmp/rb1-tools/zip | cut -d' ' -f1)"
+  docker version --format 'docker {{.Server.Version}}'; docker buildx inspect rb1 | grep -E 'BuildKit version'
+  docker inspect buildx_buildkit_rb10 --format 'buildkit image {{.Config.Image}} {{.Image}}'
+  docker image inspect ws-signing:rb-ref6 --format 'signing image {{.Id}}'
+  echo "NuGet folder /tmp/dch -> $(readlink /tmp/dch): $(find /tmp/dch/ -mindepth 1 | wc -l) entries"
+  echo "npm cache /private/tmp/rb1-npm: $(du -sh /private/tmp/rb1-npm | cut -f1), filled this morning"
+  echo "repo $(git -C /private/tmp/rb1-merge-src rev-parse $T^{commit}) ($T)"
+  echo "guard $(sha256sum /tmp/claude-1000/ws-mem-run.sh | cut -d" " -f1), restored after the reboot"
+  grep MemAvailable /proc/meminfo
+} | tee "$N/environment.txt"
+
+echo; echo "== rebuild $(date +%H:%M:%S)"
+OUT=$N DOTNET_DIR=$HOME/rb1-dotnet-10.0.401 NODE_DIR=/private/tmp/rb1-rebuild6-node REPO=/private/tmp/rb1-merge-src \
+  /tmp/claude-1000/ws-mem-run.sh 14 bash "$E/rebuild.sh" $T 2>&1 | tee "$N/rebuild.log"
+echo "rebuild exit ${PIPESTATUS[0]}  $(date +%H:%M:%S)"
+
+echo; echo "== compare with the published release $(date +%H:%M:%S)"
+(cd /private/tmp && SIGNED=azure CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-ref6 bash "$E/compare.sh" "$N" $T) 2>&1 | tee "$N/compare.txt"
+echo "compare exit ${PIPESTATUS[0]}"
+
+echo; echo "== upgrade.sh and the export against the published files"
+cmp "$N/assets/upgrade.sh" /private/tmp/rb1-ci/windows/scripts/upgrade.sh && echo "same  upgrade.sh"
+rm -rf "$N/pub-linux"; mkdir -p "$N/pub-linux"; unzip -q "$N/ci/release-zips-linux/ws-pems-linux-x64-$T.zip" -d "$N/pub-linux"
+w=$(find "$N/pub-linux" -maxdepth 2 -type d -name wwwroot | head -1)
+python3 - "$N/local/frontend-out" "$w" <<'PY'
+import hashlib, os, sys
+def tree(root):
+    out = {}
+    for d, _, fs in os.walk(root):
+        for f in fs:
+            p = os.path.join(d, f)
+            out[os.path.relpath(p, root)] = hashlib.sha256(open(p, 'rb').read()).hexdigest()
+    return out
+local, pub = tree(sys.argv[1]), tree(sys.argv[2])
+same = sum(1 for k, v in local.items() if pub.get(k) == v)
+print(f"export: {len(local)} files rebuilt; {same} with the same path and SHA-256 in the published Linux zip's wwwroot; {len(local)-same} not; the zip's wwwroot has {len(pub)-len(local)} more (not from the export)")
+PY
+
+echo; echo "== images against GHCR (linux/amd64 manifest) $(date +%H:%M:%S)"
+for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do
+  GH_TOKEN=$(gh auth token) timeout 120 python3 "$E/ghcr-manifests.py" weel-sandvig/$n $T "$N/local/images/$n.oci.tar"
+done 2>&1 | tee "$N/images-ghcr.txt"
+echo; echo "== done $(date +%H:%M:%S)"
+
+########## 32-rebuild6-linux.sh
+# The linux job of the v0.0.0-thesis.6 rebuild again, alone, on 24 November:
+# its first run (08:52-09:10) failed in restore, NU1301, nuget.org's service
+# index timing out after 100 s for 17 minutes. The NuGet folder the windows,
+# migrator and sql jobs filled after it is set aside, so this job too starts
+# from an empty one. Then compare.sh and the GHCR check again, in full.
+set -uo pipefail
+N=/private/tmp/rb1-rebuild6 T=v0.0.0-thesis.6
+R=/private/tmp/rb1-dre E=$R/1-ws-pems/scripts/5-release/local-vs-github-comparison
+export DOCKER_CONFIG=/private/tmp/rb1-docker
+echo "-- the network: nuget.org's service index"
+for i in 1 2 3; do curl -sS -o /dev/null -w "  %{http_code} %{remote_ip} %{time_total}s\n" --max-time 30 https://api.nuget.org/v3/index.json; done
+echo "-- the NuGet folder of the other jobs set aside, an empty one made"
+du -sh /private/tmp/rb1-dch
+mv /private/tmp/rb1-dch /private/tmp/rb1-dch-rebuild6-other-jobs
+mkdir /private/tmp/rb1-dch && ln -sfn /private/tmp/rb1-dch /tmp/dch && echo "/tmp/dch -> $(readlink /tmp/dch): $(find /tmp/dch/ -mindepth 1 | wc -l) entries"
+mv "$N/local/linux.log" "$N/local/linux-first-run-NU1301.log"
+echo; echo "== linux job $(date +%H:%M:%S)"
+OUT=$N DOTNET_DIR=$HOME/rb1-dotnet-10.0.401 NODE_DIR=/private/tmp/rb1-rebuild6-node REPO=/private/tmp/rb1-merge-src \
+  /tmp/claude-1000/ws-mem-run.sh 14 bash "$E/rebuild.sh" $T linux 2>&1 | tee "$N/rebuild-linux.log"
+echo "linux exit ${PIPESTATUS[0]}  $(date +%H:%M:%S)"
+grep -c NU1301 "$N/local/linux.log" | sed 's/^/NU1301 lines: /'
+echo; echo "== compare with the published release $(date +%H:%M:%S)"
+(cd /private/tmp && SIGNED=azure CLONE=/private/tmp/rb1-ci/windows SIGNING_IMAGE=ws-signing:rb-ref6 bash "$E/compare.sh" "$N" $T) 2>&1 | tee "$N/compare.txt"
+echo "compare exit ${PIPESTATUS[0]}"
+echo; echo "== the images, again against GHCR $(date +%H:%M:%S)"
+for n in ws-pems ws-pems-job-worker wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do
+  GH_TOKEN=$(gh auth token) timeout 120 python3 "$E/ghcr-manifests.py" weel-sandvig/$n $T "$N/local/images/$n.oci.tar"
+done 2>&1 | tee "$N/images-ghcr.txt"
+echo "== done $(date +%H:%M:%S)"
+
+########## 33-trace-mcp.sh
+# The three MCP images of the v0.0.0-thesis.6 rebuild on arch against GHCR:
+# which layers differ, the Debian package versions in them, and who owns each
+# differing entry. With the Mac Studio session's tools of 23/11
+# (Speciale2026/experiments/phoenix-rt: ghcr-oci.py, dpkg-diff.py,
+# layer-owners.py), and oci-diff.py of dotnet-rebuild-experiments at d991fc5.
+# Reads files only; runs beside the linux job.
+set -uo pipefail
+N=/private/tmp/rb1-rebuild6 T=v0.0.0-thesis.6 X=/private/tmp/rb1-lab R=/private/tmp/rb1-dre
+O=$N/trace; mkdir -p $O
+for n in wspems-mcp-server wspems-chat-server wspems-mcp-auth-broker; do
+  echo; echo "=== $n"
+  GH_TOKEN=$(gh auth token) python3 -I $X/ghcr-oci.py weel-sandvig/$n $T $N/local/images/$n.oci.tar $O/ghcr-$n.oci.tar 2>&1 | tail -n 12
+  python3 -I $R/1-ws-pems/scripts/6-images/oci-diff.py $O/ghcr-$n.oci.tar $N/local/images/$n.oci.tar > $O/oci-diff-$n.txt 2>&1
+  head -n 3 $O/oci-diff-$n.txt
+  python3 -I - $O/ghcr-$n.oci.tar $N/local/images/$n.oci.tar > $O/layers-$n.txt <<'PY'
+import json, sys, tarfile
+def layers(p):
+    t = tarfile.open(p); idx = json.load(t.extractfile("index.json"))
+    m = idx["manifests"][0]["digest"].split(":")[1]
+    man = json.load(t.extractfile("blobs/sha256/" + m))
+    if "manifests" in man:
+        m = [x for x in man["manifests"] if x.get("platform", {}).get("architecture") == "amd64"][0]["digest"].split(":")[1]
+        man = json.load(t.extractfile("blobs/sha256/" + m))
+    return [l["digest"].split(":")[1] for l in man["layers"]]
+a, b = layers(sys.argv[1]), layers(sys.argv[2])
+print(len(a), len(b))
+for i, (x, y) in enumerate(zip(a, b), 1):
+    if x != y: print(i, x, y)
+PY
+  cat $O/layers-$n.txt
+  tail -n +2 $O/layers-$n.txt | while read i a b; do
+    echo "-- layer $i: packages (GHCR -> arch)"; python3 -I $X/dpkg-diff.py $O/ghcr-$n.oci.tar $a $N/local/images/$n.oci.tar $b 2>&1
+    echo "-- layer $i: differing entries by owner"; python3 -I $X/layer-owners.py $O/ghcr-$n.oci.tar $a $N/local/images/$n.oci.tar $b 2>&1 | head -n 30
+  done
+done
+echo "== done $(date +%H:%M:%S)"
+
+########## on the Mac: arch's apt layers against macstudio's (rebuild of 23/11 in /private/tmp/rb1-ms)
+D=<scratch folder>
+ssh leos@192.168.9.124 "tar -xOf /private/tmp/rb1-rebuild6/local/images/wspems-mcp-server.oci.tar blobs/sha256/7647407d49f57159313bf4a86f15684aa3e34efd1bb9f9f9b0c3c6e4a069286d" > $D/arch-mcp-server.layer
+ssh leos@192.168.9.124 "tar -xOf /private/tmp/rb1-rebuild6/local/images/wspems-chat-server.oci.tar blobs/sha256/117fa3d123d9e38ce073c31636ac629426ca6c2c251d122eab50f58522206193" > $D/arch-chat-server.layer
+tar -xOf /private/tmp/rb1-ms/local/images/wspems-mcp-server.oci.tar blobs/sha256/e71db1cb4d96f6229d3b7a5e795d3f0fa6259d24ce6eeb22b1d2741fc4ce39dd > $D/mac-mcp-server.layer
+tar -xOf /private/tmp/rb1-ms/local/images/wspems-chat-server.oci.tar blobs/sha256/fdc0c8dbda10a05908b7e42db8ca13f90702efac0e4f198db5d22b04bbb18585 > $D/mac-chat-server.layer
+shasum -a 256 $D/*.layer
+python3 -I experiments/phoenix-rt/layer-pair.py $D/arch-mcp-server.layer $D/mac-mcp-server.layer
+python3 -I experiments/phoenix-rt/layer-pair.py $D/arch-chat-server.layer $D/mac-chat-server.layer

@@ -1,0 +1,22 @@
+# phoenix-merge-optA, arch, 23 November 2026. Run by Claude from macstudio
+# over SSH, in the tmux session `lab` that Leo watched (bash), each step a
+# script shown and run by lab.sh, its output in ~/lab-logs/<step>.log and
+# its exit code in ~/lab-logs/<step>.rc. E is Speciale2026/experiments/
+# phoenix-merge-optA. The source, prepared over SSH before the lab steps:
+git bundle create /private/tmp/rb1-merge.bundle thesis/reproducible-builds --not 2cd85fd01 8ed4010da   # on macstudio
+git clone -q --shared --no-checkout ~/Dev/Weel-Sandvig/WS.Phoenix /private/tmp/rb1-merge-src             # on arch
+git -C /private/tmp/rb1-merge-src fetch -q /private/tmp/rb1-merge.bundle refs/heads/thesis/reproducible-builds:refs/heads/thesis-merge
+
+# The migrator against PostgreSQL 17, before the lab steps (over SSH, not in lab):
+bash $E/arch-migrator.sh   # M1-M5; and main's v1.0.60 migrator under C and da_DK.UTF-8 (see the note)
+
+# The lab steps, in order:
+bash $E/lab.sh 02-sdk               $E/lab/02-sdk.sh                # SDK 10.0.401 into ~/rb1-dotnet-10.0.401
+bash $E/lab.sh 03-stop-old-sessions $E/lab/03-stop-old-sessions.sh  # Leo's choice: the 12 Claude/Codex processes 2+ days old
+bash $E/lab.sh 10-optA-ci           $E/lab/10-optA-ci.sh            # D1
+bash $E/lab.sh 11-optA-ci-fix       $E/lab/11-optA-ci-fix.sh        # D1's lost exit codes
+bash $E/lab.sh 12-optA-publish      $E/lab/12-optA-publish.sh       # D2
+bash $E/lab.sh 13-optA-memory       $E/lab/13-optA-memory.sh        # D3
+bash $E/lab.sh 14-optA-image        $E/lab/14-optA-image.sh         # D4, failed on an upper-case image tag
+TARGET=lab:probe bash $E/lab.sh 15-optA-image $E/lab/15-optA-image.sh   # D4 again
+bash $E/lab.sh 40-merge-twice       $E/lab/40-merge-twice.sh        # D5

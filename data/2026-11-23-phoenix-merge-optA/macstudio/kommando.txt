@@ -1,0 +1,34 @@
+# phoenix-merge-optA, macstudio, 23 November 2026. Run by Claude in a side
+# session, in bash. E is Speciale2026/experiments/phoenix-merge-optA; W the
+# merge worktree ~/rb1-phoenix-merge (thesis/reproducible-builds); WS the
+# WS clone ~/Dev/Weel-Sandvig/WS.Phoenix.
+
+# The SDK, with the branch's installer (W at the merge):
+/usr/bin/python3 -I scripts/install-dotnet-sdk.py --global-json global.json --cache ~/rb1-dotnet-cache ~/rb1-dotnet-10.0.401
+
+# The lock files regenerated (local restore, not locked), then the checks:
+DOTNET_ROOT=~/rb1-dotnet-10.0.401 dotnet restore WS.Phoenix.sln; dotnet restore tools/OpcDaProbe/OpcDaProbe.csproj
+bash $E/merge-checks.sh            # C1-C7, in W; logs in /private/tmp/rb1-merge-checks
+
+# The merge committed (81b0e8450), then the release's publishes twice from two exports:
+bash $E/publish-twice.sh 81b0e8450 # T6; logs in /private/tmp/rb1-pub-results
+
+# The release SQL, in the export /private/tmp/rb1-pub-a, with the release's command:
+dotnet tool restore
+dotnet ef migrations script --idempotent --configuration Release --context DatabaseContext -p src/Infrastructure.Migrations/Infrastructure.Migrations.csproj -s src/Infrastructure.Migrations/Infrastructure.Migrations.csproj -o merge-81b0e8450.sql
+DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 dotnet ef migrations script --idempotent --configuration Release --no-build --context DatabaseContext -p src/Infrastructure.Migrations/Infrastructure.Migrations.csproj -s src/Infrastructure.Migrations/Infrastructure.Migrations.csproj -o merge-81b0e8450-invariant.sql
+gh release download v1.0.60 -R Weel-Sandvig/WS.Phoenix -p 'bootstrap-postgresql-v1.0.60.sql' -p SHA256SUMS; grep 'bootstrap-postgresql-v1.0.60.sql' SHA256SUMS | shasum -a 256 -c -
+python3 -I $E/compare-release-sql.py bootstrap-postgresql-v1.0.60.sql merge-81b0e8450-invariant.sql 20261118093436_AlarmRepeatCounter
+python3 -I $E/compare-release-sql.py bootstrap-postgresql-v1.0.60.sql merge-81b0e8450.sql 20261118093436_AlarmRepeatCounter
+
+# The migrator for arch's database tests: linux-x64 from the export (above), and
+# the "as merged" one: the export with src/DbMigrator at 765ea6aa2 (4 files):
+for f in DbMigrator.csproj Program.cs MigratorContextFactory.cs packages.lock.json; do git -C WS show 765ea6aa2:src/DbMigrator/$f > /private/tmp/rb1-pub-neg/src/DbMigrator/$f; done
+dotnet restore src/DbMigrator/DbMigrator.csproj && dotnet publish ./src/DbMigrator/DbMigrator.csproj -c Release -o ./publish/migrator -r linux-x64 --self-contained true --no-restore
+bash $E/arch-migrator.sh           # M1-M5 on arch (see arch/kommando.txt)
+
+# main's released v1.0.60 migrator for the culture check on arch:
+gh release download v1.0.60 -R Weel-Sandvig/WS.Phoenix -p 'ws-pems-db-migrator-linux-x64-v1.0.60' -p SHA256SUMS; grep ' ws-pems-db-migrator-linux-x64-v1.0.60$' SHA256SUMS | shasum -a 256 -c -
+
+# hadolint 2.15.1 (macOS arm64 release binary, SHA-256 against the release's checksums and GitHub's digest):
+hadolint --config .hadolint.yaml --failure-threshold warning src/WebAPI/Dockerfile   # before and after 30b5c745d
