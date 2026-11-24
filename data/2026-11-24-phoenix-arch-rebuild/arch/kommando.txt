@@ -232,6 +232,8 @@ done
 echo "== done $(date +%H:%M:%S)"
 
 ########## on the Mac: arch's apt layers against macstudio's (rebuild of 23/11 in /private/tmp/rb1-ms)
+# (/private/tmp/rb1-ms was removed from the Mac between 10:00 and 10:27 on 24/11, by the writing session with Leo's approval (disk 97 % full);
+#  the blobs below can no longer be read from it. Their digests are in results.txt.)
 D=<scratch folder>
 ssh leos@192.168.9.124 "tar -xOf /private/tmp/rb1-rebuild6/local/images/wspems-mcp-server.oci.tar blobs/sha256/7647407d49f57159313bf4a86f15684aa3e34efd1bb9f9f9b0c3c6e4a069286d" > $D/arch-mcp-server.layer
 ssh leos@192.168.9.124 "tar -xOf /private/tmp/rb1-rebuild6/local/images/wspems-chat-server.oci.tar blobs/sha256/117fa3d123d9e38ce073c31636ac629426ca6c2c251d122eab50f58522206193" > $D/arch-chat-server.layer

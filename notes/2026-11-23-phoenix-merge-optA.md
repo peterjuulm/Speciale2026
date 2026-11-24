@@ -142,8 +142,19 @@ Verbatim in `data/2026-11-23-phoenix-merge-optA/<machine>/kommando.txt`.
 | 2 | M4, the smoke test with that migrator | the count check fails it, exit 1 |
 | 3 | D2: the publishes twice, from two paths | 1153 files identical between the two paths, **and identical to `macstudio`'s 1153**: DbMigrator linux-x64 and win-x64, the WebAPI and the job worker. Built on macOS arm64 and on Linux x86-64. No `Infrastructure.Migrations.dll` in the WebAPI or job worker. DbMigrator linux-x64's publish peaked at 9629 MiB and 8869 MiB (it compiles Infrastructure.Migrations) |
 | 5 | D3: peak memory of `dotnet publish src/WebAPI`, from a fresh export | merge (SDK 10.0.401): 2038 MiB. main `8ed4010da` (SDK 9.0.123): 1946 MiB, so the merge is 4.7 % above. Neither publish compiles or ships the migrations (0 `Infrastructure.Migrations.dll`). The restores before them peaked at 5214 MiB and 4898 MiB |
-| 6 | D4: the migrations image | not yet: the first attempt stopped on an upper-case image tag, and `arch` went off the network before the second ran (Caveats) |
-| 7 | D5: the whole release twice | not run: `arch` went off the network during the v0.0.0-thesis.6 rebuild that ran before it |
+| 6 | D4: the migrations image, run 24/11 | builds and migrates: the image applied 200 migrations, newest `20261120161834_FrequentAutovacuumForFirstLevelData`, and a second run applied none (exit 0 both). The first attempt on 23/11 stopped on an upper-case image tag, and `arch` went off the network before the second ran |
+| 6b | D4: the migrations image twice by BuildKit, run 24/11 | **the same manifest**, `0c0565db…`, from clones at two paths: config and all nine layers equal. The final stage's `RUN chmod` gives the empty layer (`4f4fb700…`) |
+| 7 | D5: the whole release twice, run 24/11 | **identical**: all 1041 files (the frontend export's 1034, both Linux and both Windows zips, both migrators, the SQL script), and the `linux/amd64` manifest of all five images (`ws-pems` `c6d39f32…`, job worker `8544035d…`, `wspems-mcp-server` `856c0da4…`, `wspems-chat-server` `6885cc5f…`, `wspems-mcp-auth-broker` `43c88439…`). All six jobs passed in both runs (09:53-10:09 and 10:10-10:25). On 23/11 it did not run: `arch` went off the network during the v0.0.0-thesis.6 rebuild before it |
+| 8 | D5's release SQL against `macstudio`'s | the same file, `d46aeeb1…`: Linux under `LC_ALL=C.UTF-8` and macOS under the invariant culture |
+
+D4 and D5 ran on 24 November, after `arch`'s restart. The memory guard
+in `/tmp` had to be put back by then, and its hash is the same as on
+23/11 (`environment.txt`). The three MCP manifests of D5 are the ones
+`macstudio` got for the same tree that morning: with QEMU, and with
+Rosetta once the tmpfs fix was added
+([rosetta-cache-layer](2026-11-24-rosetta-cache-layer.md)). `ws-pems` and
+the job worker cannot be compared that way, because the Mac built them
+with another `APP_VERSION`.
 
 D1's first pass printed exit 1 after every step: its helper for the
 scope's peak memory read a two-line `/proc/self/cgroup`. The test lines
@@ -167,6 +178,12 @@ on the office runner `ws-office`. All seven jobs passed:
 - Trivy;
 - the secrets history scan.
 
+On 24/11 the branch moved on by one commit, `688822389`, which adds a tmpfs on
+`/root/.cache` to ten `RUN` steps (the Rosetta fix). Its manual checks,
+[run 45360625913](https://github.com/Weel-Sandvig/WS.Phoenix/actions/runs/45360625913),
+passed all seven jobs too. Its check on x86-64 is
+[phoenix-rosetta-fix-x86](2026-11-24-phoenix-rosetta-fix-x86.md).
+
 ### A culture bug in main's newest migration
 
 - M5, `arch`: the merged migrator under `LANG=da_DK.UTF-8` (no `LC_ALL`)
@@ -180,6 +197,76 @@ on the office runner `ws-office`. All seven jobs passed:
 
 ## Interpretation
 
+**Option A works, and the merge kept what the branch had made
+reproducible.** `[V]`
+
+- CI's .NET job passes on both machines and on GitHub's office runner.
+- The migrator migrates a database fully, from the release's binary and
+  from the migrations image.
+- These are identical:
+  - the publishes, across two paths and across macOS arm64 and Linux
+    x86-64 (D2);
+  - the whole release built twice on `arch`, every file and every image
+    (D5);
+  - the migrations image built twice (D4);
+  - the release SQL between Linux and macOS (8). It equals main's
+    published v1.0.60 apart from what EF 10 writes differently and
+    main's newer migration (4).
+
+**The dangerous merge was the one that compiled.** `[V]` Resolved the
+way git offered, the branch's migrator built, passed every test tier,
+and on a fresh database applied nothing and exited 0 (M3). The
+migrations had moved to an assembly it no longer named. Nothing in CI
+noticed. The release's smoke test checked only that the migrator exited
+0 with a connection string, and failed without one.
+
+The count check added to the smoke test (the history table's rows
+against the migration files) fails that migrator (M4). `[I]` A moved
+assembly is a semantic conflict: no line conflicts, and every check
+that asks "does it build, do the tests pass" says yes.
+
+**Memory is not a reason against the merge.** `[V]` The WebAPI's
+publish peaks 4.7 % above main's. Neither compiles the migrations.
+`[I]` The difference is more likely SDK 10 against main's SDK 9 than
+anything the merge did, but that was not separated.
+
+**main's newest migration depends on the culture of the process that
+runs it.** `[V]` Under a Danish locale it fails at `20261120161834`,
+with main's own v1.0.60 migrator too. CI, the release and the
+containers run under C or the invariant culture, so the release's
+outputs are unaffected (4, 8). `[I]` Someone who runs the migrator by
+hand on a Danish machine would hit it. It is main's bug, reported here,
+not fixed on the branch.
+
 ## Caveats
 
+- D5 ran twice on one machine, in the same folders
+  (`/private/tmp/rb1-ci/<job>`). Path independence is shown for the
+  .NET publishes (D2), not again for the zips and images.
+- D5's second run used the NuGet folder the first run left, and both
+  used one npm cache, filled online once.
+- D5's Windows zips and migrator are unsigned. The signatures are pasted
+  only in the comparisons with a published release (the thesis.6
+  rebuild).
+- D4's migration test ran the image from Docker's legacy builder (the
+  default on `arch` outside `rb1`). The images compared byte for byte
+  are BuildKit's.
+- The clones in D4 sit at two host paths, but the build runs in `/src`
+  inside the container either way. So D4's two paths test less than
+  D2's.
+- The trees tested on 23/11 (`81b0e8450`, `f88ddf722`) are the trees of
+  `8f4227eb2` and `30b5c745d`, not those commits. D4 and D5 built
+  `30b5c745d` itself.
+- The release workflow did not run on the merge. Its smoke test ran
+  locally, verbatim (M1), and its build commands through `rebuild.sh`
+  (D5).
+
 ## Not tested
+
+- The release workflow on GitHub, and Main CI, whose `test-node-services`
+  job the manual checks do not include. The release runs Main CI itself
+  when a commit has no green run.
+- The Windows smoke test of the release (`windows-smoke`).
+- The merged migrator on a database already at main's v1.0.60: only
+  empty databases, and a second run on the migrated one (M2).
+- The merge's images against a published release: there is none yet.

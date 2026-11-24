@@ -1,0 +1,67 @@
+# phoenix-rosetta-fix-x86, arch, 24 November 2026: the commands, verbatim.
+#
+# On the Mac, in the WS branch's worktree ~/rb1-phoenix-merge (thesis/reproducible-builds):
+#   the ten RUN lines edited by a short Python script (the flag inserted after "RUN ",
+#   a comment above each), hadolint 2.15.1 on the six Dockerfiles before and after
+#   (the same findings), then:
+git -c user.name="Leo Sakharoff" -c user.email=<Leo's> commit   # 688822389, "Keep Rosetta's cache folder out of the image layers"
+git push origin thesis/reproducible-builds                       # 30b5c745d..688822389, Leo: "Ja, læg den på"
+gh workflow run 04-manual-checks.yml -R Weel-Sandvig/WS.Phoenix --ref thesis/reproducible-builds -f check-type=all   # run 45360625913
+git bundle create /private/tmp/rb1-fix.bundle thesis/reproducible-builds ^30b5c745d944d06bc017f051e36079547252ea32
+scp /private/tmp/rb1-fix.bundle leos@192.168.9.124:/private/tmp/rb1-lab/rb1-fix.bundle
+#
+# On arch, in the tmux session lab, by lab.sh (experiments/phoenix-merge-optA/lab.sh):
+#   bash lab.sh 42-fix-x86 experiments/phoenix-merge-optA/lab/42-fix-x86.sh
+# The references were built that morning: D5's run 1 (lab/41-merge-twice.sh) and
+# D4's build a (lab/16-optA-image.sh). 42-fix-x86.sh:
+
+# The Rosetta fix (688822389: a tmpfs on /root/.cache on ten RUN steps) on
+# x86-64, 24 November: does the flag change any image built on arch? The six
+# images (the release's five and the migrations image) are built from the
+# fix's tree exactly as D5 and D4 built them from 30b5c745d: BuildKit v0.33.1
+# (rb1), --no-cache, no provenance, APP_VERSION=v0.0.0-merge-optA.1, the
+# webapi with D5 run 1's frontend export, OCI output with rewrite-timestamp,
+# and SOURCE_DATE_EPOCH set to 30b5c745d's time (1795445958), so the commit
+# date is not a difference. Then each against D5 run 1's image (D4's
+# migrations-a for the migrations image). Every build under the guard's lock.
+set -uo pipefail
+src=/private/tmp/rb1-merge-src R=/private/tmp/rb1-dre url=https://github.com/Weel-Sandvig/WS.Phoenix
+c=/private/tmp/rb1-fix-ci out=/private/tmp/rb1-fix-images epoch=1795445958 v=v0.0.0-merge-optA.1
+ref5=/private/tmp/rb1-merge-twice/run1/local ref4=/private/tmp/rb1-optA-image-oci/migrations-a.oci.tar
+export DOCKER_CONFIG=/private/tmp/rb1-docker
+git -C "$src" fetch -q /private/tmp/rb1-lab/rb1-fix.bundle refs/heads/thesis/reproducible-builds:refs/heads/thesis-fix
+echo "thesis-fix $(git -C "$src" rev-parse thesis-fix); its own time $(git -C "$src" log -1 --format=%ct thesis-fix), 30b5c745d's $(git -C "$src" log -1 --format=%ct 30b5c745d)"
+git -C "$src" diff --stat 30b5c745d thesis-fix | tail -1
+rm -rf "$c" "$out"; mkdir -p "$out"
+git clone -q --depth 1 --branch thesis-fix "file://$src" "$c" && git -C "$c" remote set-url origin "$url"
+rm -rf "$c/src/WebAPI/ClientApp/out" && cp -r "$ref5/frontend-out" "$c/src/WebAPI/ClientApp/out"
+echo "MemAvailable before: $(awk '/MemAvailable/ {printf "%d GB", $2/1048576}' /proc/meminfo)"
+for img in webapi worker mcp chat broker migrations; do
+  ctx=$c extra=(--build-arg "APP_VERSION=$v")
+  case $img in
+    webapi) file=src/WebAPI/Dockerfile; extra+=(--build-arg SKIP_SPA_BUILD=true); name=ws-pems ;;
+    worker) file=src/BackgroundJobExecutor/Dockerfile; name=ws-pems-job-worker ;;
+    mcp) file=mcp/Dockerfile; ctx=$c/mcp; extra=(); name=wspems-mcp-server ;;
+    chat) file=mcp/chat-server/Dockerfile; ctx=$c/mcp; extra=(); name=wspems-chat-server ;;
+    broker) file=mcp/auth-broker/Dockerfile; ctx=$c/mcp/auth-broker; extra=(); name=wspems-mcp-auth-broker ;;
+    migrations) file=deployment/migrations/Dockerfile; name=migrations ;;
+  esac
+  printf '== %-24s %s  ' $name "$(date +%H:%M:%S)"
+  flock /tmp/claude-1000/phoenix-dotnet.lock env SOURCE_DATE_EPOCH=$epoch docker buildx build --builder rb1 --no-cache --provenance=false \
+    -f "$c/$file" "${extra[@]}" --output "type=oci,dest=$out/$name.oci.tar,rewrite-timestamp=true" "$ctx" > "$out/$name.log" 2>&1
+  echo "exit $?  $(date +%H:%M:%S)"
+  ref=$ref5/images/$name.oci.tar; [ $img = migrations ] && ref=$ref4
+  python3 -I "$R/1-ws-pems/scripts/6-images/oci-diff.py" "$ref" "$out/$name.oci.tar" 2>&1 | head -n 3 | sed 's/^/   /'
+done
+echo "-- the text type=tmpfs in each image's config (should be 0):"
+for f in "$out"/*.oci.tar; do
+  printf '   %s: ' "$(basename "$f")"
+  python3 -I - "$f" <<'PY'
+import json, sys, tarfile
+t = tarfile.open(sys.argv[1]); idx = json.load(t.extractfile("index.json"))
+man = json.load(t.extractfile("blobs/sha256/" + idx["manifests"][0]["digest"].split(":")[1]))
+cfg = t.extractfile("blobs/sha256/" + man["config"]["digest"].split(":")[1]).read().decode()
+print(cfg.count("type=tmpfs"))
+PY
+done
+echo "== done $(date +%H:%M:%S)"

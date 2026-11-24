@@ -1,0 +1,33 @@
+The Rosetta fix (688822389) on x86-64, arch, 24 November 2026, 10:26-10:37.
+Sources: 42-fix-x86.log (the lab step's output), and the
+build logs on arch in /private/tmp/rb1-fix-images (not in git).
+
+thesis-fix 688822389468b3872d06a9d7ec538cdd81e0051e (its own time 1795510627); built with
+SOURCE_DATE_EPOCH=1795445958, the time of 30b5c745d; 6 files changed, 44 insertions, 10 deletions.
+MemAvailable before: 53 GB.
+
+Each image with the flag (688822389) against the same image without it (30b5c745d, D5 run 1;
+the migrations image D4 build a), oci-diff.py:
+
+ws-pems                 10:27:21-10:30:05  manifest same c6d39f328bf6df370371804eb998b11d4ba7930dd1c21df78a3432c65ec019c7; config same; 11 layers same
+ws-pems-job-worker      10:30:05-10:32:07  manifest same 8544035d26b961833d9eff7c8f1e89020ea5a8737710095cbc58bdb8f4d83350; config same; 10 layers same
+wspems-mcp-server       10:32:07-10:33:57  manifest same 856c0da492d9801e9808a02b12ad900c0f726aaeaa46348509bbb3b54721f421; config same; 15 layers same
+wspems-chat-server      10:33:57-10:34:23  manifest same 6885cc5f0519d6c4e11e2869b7fb41ffd21b084b083fc38e78a90b1931b8dd72; config same; 12 layers same
+wspems-mcp-auth-broker  10:34:23-10:34:33  manifest same 43c884398e4e2a36c97c9980915efa474cb6de3facd31a0af44f41419665966c; config same; 11 layers same
+migrations              10:34:34-10:37:25  manifest same 0c0565dbac375d30a2a5cd3cf6ed580af100b3e1dea5c0ae5cedb8d25f3fe8f1; config same; 9 layers same
+
+"type=tmpfs" in each image's config: 0 in all six.
+
+--no-cache held: in the build logs only these steps are reported CACHED, the base images'
+FROM (each image), WORKDIR /src (the job worker's publish stage) and WORKDIR /app/server
+(mcp-server's build stage). Every RUN step ran ("DONE"), among them the ten with the flag,
+e.g. step #7 of the broker's runtime stage, "RUN --mount=type=tmpfs,target=/root/.cache ...",
+in its log. The chat server and the broker took 26 s and 10 s: small images, apt
+from the pinned snapshot, and npm's cache mount (--mount=type=cache, kept across builds).
+
+The manual checks on GitHub at 688822389, run 45360625913 (workflow_dispatch, check-type=all,
+office runner): completed, success, all seven jobs.
+  backend-build 08:57:23-09:00:12Z, secrets-history-scan 09:00:33-09:08:28Z,
+  security-scan 08:57:23-09:05:08Z, frontend-lint 09:05:28-09:11:01Z,
+  frontend-test 09:08:51-09:14:20Z, frontend-build 09:11:28-09:16:46Z,
+  backend-test 09:14:51-09:24:56Z

@@ -1,0 +1,4 @@
+#!/bin/bash
+# The isolated environment every dotnet call in this lab runs in.
+LAB=/private/tmp/rb2-g1
+exec env -i HOME=$LAB/home PATH=$LAB/sdk-report:/usr/bin:/bin DOTNET_ROOT=$LAB/sdk-report NUGET_PACKAGES=$LAB/nuget DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1 LANG=C.UTF-8 TMPDIR=$LAB/tmp "$@"

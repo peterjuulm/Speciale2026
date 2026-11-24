@@ -18,6 +18,7 @@ rebuild (21/10) covered the frontend and the Linux zips only.
 
 ## Setup
 
+- Lab removed: on 24 November 2026 the Mac's lab folders under `/private/tmp` (`rb1-*`, `dch`) and the colima VM in `~/.colima` were deleted to free disk space. The commands, logs and hashes this note relies on are in its `data/` folder; only the Docker tools in `/private/tmp/rb1-ms-docker` were kept.
 - `macstudio`: Leo's Mac Studio, Apple M2 Max (12 cores, 32 GB), macOS
   26.4.1 on arm64. A new machine name in these notes; it is not Peter's
   `mac`.
@@ -114,8 +115,8 @@ Verbatim in `data/2026-11-23-phoenix-macstudio-rebuild/macstudio/kommando.txt`.
 ## Result
 
 `[V]` (`results.txt` and `environment.txt` in the data folder; the
-rebuild, its logs, the downloaded release and the image files in
-`/private/tmp/rb1-ms`, not in git).
+rebuild, its logs, the downloaded release and the image files were in
+`/private/tmp/rb1-ms`, not in git, and were deleted on 24 November; see Setup).
 
 Three things went wrong on the way, none of them in the build:
 

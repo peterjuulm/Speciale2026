@@ -1,0 +1,49 @@
+# rq2b-g1-stripsign, macstudio, 24 November 2026 (CET). The commands as run, in order; bash.
+# Note written first (10:54:12), lab created 10:54:19; artifacts downloaded 10:54, nuget.org 10:55, stripsign 10:56.
+
+LAB=/private/tmp/rb2-g1
+mkdir -p $LAB/{scripts,artifacts,nugetorg,dll,sdk-report,ss,ss-full}
+cd $LAB && git rev-parse --show-toplevel          # fatal: not a git repository
+# runs.tsv: label, run id, shipped DLL, batch (copy in scripts/runs.tsv)
+
+# 1. The rebuilt packages: the 27 October Windows-runner builds (and Cronos's 3 November rerun), as artifacts
+while IFS=$'\t' read n run ships b; do gh run download $run -R peterjuulm/Speciale2026 -D $LAB/artifacts/$n; done < $LAB/runs.tsv
+
+# 2. The published packages, fresh from nuget.org
+for n in Cronos/0.9.0 Hangfire.InMemory/1.0.0 NodaTime/3.2.0 Microsoft.Identity.Abstractions/9.0.0 Microsoft.Identity.Web.Certificateless/3.8.2 Microsoft.Identity.Web.Diagnostics/3.8.2 Microsoft.Identity.Web.TokenCache/3.8.2 Microsoft.OpenApi/1.6.22; do id=${n%/*}; v=${n#*/}; l=$(echo $id | tr A-Z a-z); url=https://api.nuget.org/v3-flatcontainer/$l/$v/$l.$v.nupkg; curl -sSfL -o nugetorg/$l.$v.nupkg $url; echo "$url"; done > nugetorg/urls.txt
+date -u '+%Y-%m-%dT%H:%M:%SZ' > nugetorg/downloaded-at.txt
+
+# 3. The report SDK, alone, by hash (lab copy of install-sdk.py for osx-arm64; scripts/install-sdk-osx.diff)
+cp ~/Dev/leosakharoff/dotnet-rebuild-experiments/2-dependencies/shared/install-sdk.py scripts/install-sdk-osx.py
+sed -i '' "s/name = f'{kind}-win-x64.zip' if os.name == 'nt' else f'{kind}-linux-x64.tar.gz'/name = f'{kind}-osx-arm64.tar.gz'  # lab copy: osx-arm64 for the Mac/" scripts/install-sdk-osx.py
+rmdir sdk-report && /usr/bin/python3 -I scripts/install-sdk-osx.py 10.0.403 sdk-report | tee sdk-report.txt
+
+# 4. stripsign.cs as a net10.0 console project, unchanged; and a copy printing full hashes
+#    (scripts/denv = env -i with the lab's HOME, PATH, DOTNET_ROOT, NUGET_PACKAGES, TMPDIR; see that file.
+#     A first try without TMPDIR failed in 'dotnet new': NuGet-Migrations mutex, lstat("") ENOENT.)
+rmdir ss ss-full
+S=~/Dev/leosakharoff/dotnet-rebuild-experiments/2-dependencies/shared/stripsign.cs
+scripts/denv dotnet new console -o ss --framework net10.0 > /dev/null
+cp $S ss/Program.cs; cmp ss/Program.cs $S && echo "ss/Program.cs identical to stripsign.cs"
+cp -R ss ss-full; sed -i "" "s/ha\[\.\.16\]/ha/; s/hc\[\.\.16\]/hc/" ss-full/Program.cs
+diff ss/Program.cs ss-full/Program.cs > scripts/stripsign-full.diff
+scripts/denv dotnet build ss -c Release
+scripts/denv dotnet build ss-full -c Release
+
+# 5. Extract, hash, check against the stored reports at f127442, compare (scripts/compare.sh)
+bash scripts/compare.sh
+#    -> sha256.tsv, stored-check.tsv, stripsign.txt, stripsign-full.txt
+#    per package, inside compare.sh:
+#    unzip -p A/*.nupkg $ships > A.dll; ... nuget.org/<id>.<v>.nupkg ... > nugetorg.dll
+#    scripts/denv dotnet ss/bin/Release/net10.0/ss.dll $LAB/dll/<pkg>/nugetorg.dll $LAB/dll/<pkg>/A.dll
+
+# 6. Controls on Microsoft.Identity.Web.Diagnostics: one byte flipped in A (scripts/control.py)
+P=Microsoft.Identity.Web.Diagnostics-3.8.2
+for r in rsrc text-mid snsig; do printf '%s\t' "$r"; python3 -I scripts/control.py dll/$P/A.dll control/A-$r.dll $r | tr '\n' '\t'; scripts/denv dotnet ss/bin/Release/net10.0/ss.dll $PWD/dll/$P/nugetorg.dll $PWD/control/A-$r.dll; done
+printf 'A-vs-A\t\t'; scripts/denv dotnet ss/bin/Release/net10.0/ss.dll $PWD/dll/$P/A.dll $PWD/dll/$P/A.dll
+#    -> controls.txt
+
+# 7. Where A and nuget.org differ before stripping: the inline Python run as python3 -I -, saved as scripts/raw-diff.py
+#    -> raw-diff.txt
+# 8. Artifact recipe.toml and summary.txt against the stored copies at f127442 -> artifact-vs-stored.txt
+# 9. Package hashes: (cd nugetorg && shasum -a 256 *.nupkg); find artifacts -name '*.nupkg' | sort | xargs shasum -a 256 -> nupkg-sha256.txt

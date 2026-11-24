@@ -1,0 +1,4 @@
+31c31
+< Console.WriteLine($"{(ha == hc ? "equal " : "differ")} shipped {a.Length} bytes {ha[..16]}  ours {c.Length} bytes {hc[..16]}" + (ha == hc ? "" : $"  first difference at 0x{(first < 0 ? Math.Min(a.Length, c.Length) : first):X}"));
+---
+> Console.WriteLine($"{(ha == hc ? "equal " : "differ")} shipped {a.Length} bytes {ha}  ours {c.Length} bytes {hc}" + (ha == hc ? "" : $"  first difference at 0x{(first < 0 ? Math.Min(a.Length, c.Length) : first):X}"));

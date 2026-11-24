@@ -248,6 +248,12 @@ timeout with 17 minutes of retries is what a flaky network costs.
   identical too.
 - The memory guard was put back by hand after the restart, from the Arch
   setup session's transcript. Its hash is in `environment.txt`.
+- The comparison with the Mac's apt layers read the Mac Studio's files
+  in `/private/tmp/rb1-ms`. Between 10:00 and 10:27 that morning, the
+  writing session removed the Mac's `/private/tmp/rb1*` labs, with Leo's
+  approval, because the disk was 97 % full. The comparison can no longer
+  be rerun from those files. Both sides' layer digests are recorded
+  (`results.txt`).
 - The BuildKit builder `rb1` was the October container (v0.33.1, digest
   `cec9f139…`). It started again after the restart. The builds ran with
   `--no-cache`.

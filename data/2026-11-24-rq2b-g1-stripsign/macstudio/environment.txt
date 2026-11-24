@@ -1,0 +1,13 @@
+# rq2b-g1-stripsign, macstudio, environment read 2026-11-24T10:58:24+0100
+uname: Darwin Mac 25.4.0 Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:17 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T6020 arm64
+machine: Apple M2 Max, 12 CPUs, 32 GB; ProductName:		macOS ProductVersion:		26.4.1 BuildVersion:		25E253 
+lab: /private/tmp/rb2-g1 (outside any git repository: git rev-parse there says 'not a git repository')
+report SDK (runs stripsign.cs only): .NET SDK 10.0.403 osx-arm64, host 10.0.14, installed alone into /private/tmp/rb2-g1/sdk-report by a lab copy of 2-dependencies/shared/install-sdk.py with the archive name changed to osx-arm64 (scripts/install-sdk-osx.diff); see report-sdk.txt for URL and SHA-512
+dotnet calls run under scripts/denv: env -i with HOME, PATH (lab SDK, /usr/bin, /bin), DOTNET_ROOT, NUGET_PACKAGES, TMPDIR in the lab, DOTNET_CLI_TELEMETRY_OPTOUT=1, DOTNET_NOLOGO=1, LANG=C.UTF-8
+stripsign.cs: dotnet-rebuild-experiments 2-dependencies/shared/stripsign.cs, sha256 d6264c2672fc4efaf49c1987feadaa4c8930b139bc28f620650b37f580a65882, at dotnet-rebuild-experiments 0c24439; differs from Speciale2026 f127442:dependencies/experiments/nupkg/stripsign.cs in three comment lines only (scripts/stripsign-f127442-vs-shared.diff)
+  built as a net10.0 console project (scripts/ss.csproj, from 'dotnet new console --framework net10.0'), Program.cs = stripsign.cs byte for byte; ss-full = the same with the output line printing full SHA-256 (scripts/stripsign-full.diff)
+tools: gh version 2.103.3 (2026-10-26); git version 2.50.1 (Apple Git-155); curl 8.7.1; Python 3.9.6 (/usr/bin/python3); unzip 6.00; shasum 6.02
+rebuilt DLLs: not built here. The A builds of the 27 October 2026 run (and Cronos's rerun of 3 November), downloaded as GitHub Actions artifacts from peterjuulm/Speciale2026 with 'gh run download'; run ids, workflow commit, artifact ids, digests and expiry in runs-provenance.tsv
+  their host: GitHub-hosted windows-2022, image 20261022.344.1 for the 27 October run (2b-rebuild/results/environment.txt, release-build.tsv), 20261026.347.1 for Cronos's rerun of 3 November (2b-rebuild/README.md); SDKs per recipe (8.0.400, 9.0.100, 9.0.202 win-x64) installed by install-sdk.py with SHA-512 checked, as each artifact's sdk.txt records
+published DLLs: the .nupkg from nuget.org's flat container (nugetorg-urls.txt), downloaded 2026-11-24T09:55:04Z
+Speciale2026 at the time of the run: HEAD 324c859; stored reports read from f127442 with git show

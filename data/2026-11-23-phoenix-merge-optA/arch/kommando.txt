@@ -18,5 +18,11 @@ bash $E/lab.sh 11-optA-ci-fix       $E/lab/11-optA-ci-fix.sh        # D1's lost 
 bash $E/lab.sh 12-optA-publish      $E/lab/12-optA-publish.sh       # D2
 bash $E/lab.sh 13-optA-memory       $E/lab/13-optA-memory.sh        # D3
 bash $E/lab.sh 14-optA-image        $E/lab/14-optA-image.sh         # D4, failed on an upper-case image tag
-TARGET=lab:probe bash $E/lab.sh 15-optA-image $E/lab/15-optA-image.sh   # D4 again
-bash $E/lab.sh 40-merge-twice       $E/lab/40-merge-twice.sh        # D5
+TARGET=lab:probe bash $E/lab.sh 15-optA-image $E/lab/15-optA-image.sh   # D4 again: queued, never ran (arch went off the network)
+bash $E/lab.sh 40-merge-twice       $E/lab/40-merge-twice.sh        # D5: not run on 23/11
+
+# 24 November 2026, after arch's restart (the guard restored and the caches
+# emptied in the thesis.6 rebuild's steps 50 and 51; see
+# data/2026-11-24-phoenix-arch-rebuild/arch/kommando.txt):
+bash $E/lab.sh 16-optA-image        $E/lab/16-optA-image.sh         # D4: the image twice by BuildKit, then a migration
+bash $E/lab.sh 41-merge-twice       $E/lab/41-merge-twice.sh        # D5: 40 with cap 14, an environment block, the SQL check

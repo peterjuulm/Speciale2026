@@ -1,0 +1,35 @@
+thesis-fix 688822389468b3872d06a9d7ec538cdd81e0051e; its own time 1795510627, 30b5c745d's 1795445958
+ 6 files changed, 44 insertions(+), 10 deletions(-)
+MemAvailable before: 53 GB
+== ws-pems                  10:27:21  exit 0  10:30:05
+   manifest same: sha256:c6d39f328bf6df370371804eb998b11d4ba7930dd1c21df78a3432c65ec019c7
+   config same
+   layers 11: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], differ []
+== ws-pems-job-worker       10:30:05  exit 0  10:32:07
+   manifest same: sha256:8544035d26b961833d9eff7c8f1e89020ea5a8737710095cbc58bdb8f4d83350
+   config same
+   layers 10: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], differ []
+== wspems-mcp-server        10:32:07  exit 0  10:33:57
+   manifest same: sha256:856c0da492d9801e9808a02b12ad900c0f726aaeaa46348509bbb3b54721f421
+   config same
+   layers 15: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], differ []
+== wspems-chat-server       10:33:57  exit 0  10:34:23
+   manifest same: sha256:6885cc5f0519d6c4e11e2869b7fb41ffd21b084b083fc38e78a90b1931b8dd72
+   config same
+   layers 12: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], differ []
+== wspems-mcp-auth-broker   10:34:23  exit 0  10:34:33
+   manifest same: sha256:43c884398e4e2a36c97c9980915efa474cb6de3facd31a0af44f41419665966c
+   config same
+   layers 11: same [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], differ []
+== migrations               10:34:34  exit 0  10:37:25
+   manifest same: sha256:0c0565dbac375d30a2a5cd3cf6ed580af100b3e1dea5c0ae5cedb8d25f3fe8f1
+   config same
+   layers 9: same [0, 1, 2, 3, 4, 5, 6, 7, 8], differ []
+-- the text type=tmpfs in each image's config (should be 0):
+   migrations.oci.tar: 0
+   wspems-chat-server.oci.tar: 0
+   ws-pems-job-worker.oci.tar: 0
+   wspems-mcp-auth-broker.oci.tar: 0
+   wspems-mcp-server.oci.tar: 0
+   ws-pems.oci.tar: 0
+== done 10:37:25

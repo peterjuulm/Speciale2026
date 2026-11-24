@@ -28,6 +28,7 @@ the same change?
 
 ## Setup
 
+- Lab removed: on 24 November 2026 the Mac's lab folders under `/private/tmp` (`rb1-*`, `dch`) and the colima VM in `~/.colima` were deleted to free disk space. The commands, logs and hashes this note relies on are in its `data/` folder; only the Docker tools in `/private/tmp/rb1-ms-docker` were kept.
 - The Mac Studio as on 23/11: colima 0.10.3 and Lima 2.3.0, a `vz` VM
   (aarch64) with Rosetta registered for x86-64, Docker CLI 29.10.0,
   buildx 0.38.0, and BuildKit v0.33.1 pinned by digest. Two builders of

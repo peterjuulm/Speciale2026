@@ -100,6 +100,8 @@ Eight reprotest axes, one at a time, each against its own control build
 Benedetti's set (their Table I); `kernel`, `user_group` and `domain_host`
 stay out as in their study (decided 28 October, 15:50).
 
+> Correction, 24 November 2026: not exactly Benedetti's set. Their replication package (OSF; Table I in its `external_resources.pdf`) varies `environment`, `fileordering`, `kernel`, `locales`, `exec_path`, `time`, `timezone` and `umask`, with the build path held constant. 2a adds `build_path` and leaves out `kernel`, which they did vary.
+
 Three comparison boundaries, computed from the two output folders of
 every (package, axis) pair with `compare.py`:
 
