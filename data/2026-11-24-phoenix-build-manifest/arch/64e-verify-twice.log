@@ -1,0 +1,69 @@
+verifier source: 0ce1a3c06bba3dc41ff8b560ed326f232ea0476b rebuild.sh: give the Windows rebuild the zips' modes before pasting
+the run's commit: 9a7ff1fc575ee3ee45dcf335d5b586ec6ed43fa2
+== the run's files 13:21:09
+bootstrap-postgresql-v0.0.0-dryrun.4.sql
+build-manifest.json
+SHA256SUMS
+upgrade.sh
+wspems-chat-server-v0.0.0-dryrun.4.provenance.json
+wspems-chat-server-v0.0.0-dryrun.4.spdx.json
+ws-pems-db-migrator-linux-x64-v0.0.0-dryrun.4
+ws-pems-db-migrator-win-x64-v0.0.0-dryrun.4.exe
+ws-pems-job-worker-linux-x64-v0.0.0-dryrun.4.zip
+ws-pems-job-worker-v0.0.0-dryrun.4.provenance.json
+ws-pems-job-worker-v0.0.0-dryrun.4.spdx.json
+ws-pems-job-worker-win-x64-v0.0.0-dryrun.4.zip
+ws-pems-linux-x64-v0.0.0-dryrun.4.zip
+wspems-mcp-auth-broker-v0.0.0-dryrun.4.provenance.json
+wspems-mcp-auth-broker-v0.0.0-dryrun.4.spdx.json
+wspems-mcp-server-v0.0.0-dryrun.4.provenance.json
+wspems-mcp-server-v0.0.0-dryrun.4.spdx.json
+ws-pems-v0.0.0-dryrun.4.provenance.json
+ws-pems-v0.0.0-dryrun.4.spdx.json
+ws-pems-win-x64-v0.0.0-dryrun.4.zip
+20 files
+== the run's provenance files: GitHub context, e-mail addresses, names?
+wspems-chat-server-v0.0.0-dryrun.4.provenance.json: 81216 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile', 'node']
+ws-pems-job-worker-v0.0.0-dryrun.4.provenance.json: 103699 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile']
+wspems-mcp-auth-broker-v0.0.0-dryrun.4.provenance.json: 97818 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile', 'node']
+wspems-mcp-server-v0.0.0-dryrun.4.provenance.json: 93156 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile', 'node']
+ws-pems-v0.0.0-dryrun.4.provenance.json: 143602 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile']
+
+== rebuild 1 13:28:21
+rebuild 1 exit 1  13:38:03
+== 1. the release's files  (13:28:21)
+== 2. the source  (13:28:21)
+== 3. the SDK, Node and npm  (13:28:25)
+== 4. the jobs  (13:28:58)
+== 5. the published signatures, pasted  (13:37:19)
+
+== rebuild 2 13:38:03
+rebuild 2 exit 1  13:56:21
+== 1. the release's files  (13:46:36)
+== 2. the source  (13:46:36)
+== 3. the SDK, Node and npm  (13:46:40)
+== 4. the jobs  (13:47:12)
+== 5. the published signatures, pasted  (13:55:26)
+
+== rebuild 1 against rebuild 2
+/private/tmp/rb1-lab/scripts/64e-verify-twice.sh: linje 46: cd: /private/tmp/rb1-verify/work1/release: Ingen sådan fil eller filkatalog
+/private/tmp/rb1-lab/scripts/64e-verify-twice.sh: linje 46: cd: /private/tmp/rb1-verify/work2/release: Ingen sådan fil eller filkatalog
+release files: identical (0)
+ws-pems: Traceback (most recent call last):
+ws-pems-job-worker: Traceback (most recent call last):
+wspems-mcp-server: Traceback (most recent call last):
+wspems-chat-server: Traceback (most recent call last):
+wspems-mcp-auth-broker: Traceback (most recent call last):
+cmp: /private/tmp/rb1-verify/work1/build-manifest.json: Ingen sådan fil eller filkatalog
+== the SBOMs: the run's against rebuild 1 and 2
+wspems-chat-server-v0.0.0-dryrun.4.spdx.json rebuild 1: DIFFERENT
+wspems-chat-server-v0.0.0-dryrun.4.spdx.json rebuild 2: DIFFERENT
+ws-pems-job-worker-v0.0.0-dryrun.4.spdx.json rebuild 1: DIFFERENT
+ws-pems-job-worker-v0.0.0-dryrun.4.spdx.json rebuild 2: DIFFERENT
+wspems-mcp-auth-broker-v0.0.0-dryrun.4.spdx.json rebuild 1: DIFFERENT
+wspems-mcp-auth-broker-v0.0.0-dryrun.4.spdx.json rebuild 2: DIFFERENT
+wspems-mcp-server-v0.0.0-dryrun.4.spdx.json rebuild 1: DIFFERENT
+wspems-mcp-server-v0.0.0-dryrun.4.spdx.json rebuild 2: DIFFERENT
+ws-pems-v0.0.0-dryrun.4.spdx.json rebuild 1: DIFFERENT
+ws-pems-v0.0.0-dryrun.4.spdx.json rebuild 2: DIFFERENT
+== done 13:56:22

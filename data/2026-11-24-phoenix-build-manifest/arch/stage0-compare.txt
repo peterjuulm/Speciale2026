@@ -1,0 +1,56 @@
+clone 30a2d3264e2d932bf88e74999c6af5beda791c86 (v0.0.0-dryrun.1)
+== the run's artifacts 11:18:53
+  release-frontend-export        1034 files
+  release-zips-linux             2 files
+  release-zips-windows           2 files
+  db-migration-bundles-linux     2 files
+  db-migration-bundles-windows   1 files
+  release-checksums              1 files
+  thesis-test-ca                 1 files
+  dry-run-release                11 files
+  image-ws-pems                  1 files
+  image-ws-pems-job-worker       1 files
+  image-wspems-mcp-server        1 files
+  image-wspems-chat-server       1 files
+  image-wspems-mcp-auth-broker   1 files
+
+== compare.sh 11:44:01
+same  frontend export (1034 / 1034 files)
+same  ws-pems-linux-x64-v0.0.0-dryrun.1.zip
+same  ws-pems-job-worker-linux-x64-v0.0.0-dryrun.1.zip
+paste-signatures.sh, CI's signatures onto the local build: exit 0, The rebuild with the release's signatures equals the release: 2180 file(s), 115 folder(s)
+same  ws-pems-win-x64-v0.0.0-dryrun.1.zip
+same  ws-pems-job-worker-win-x64-v0.0.0-dryrun.1.zip
+same  ws-pems-db-migrator-linux-x64-v0.0.0-dryrun.1
+same  ws-pems-db-migrator-win-x64-v0.0.0-dryrun.1.exe
+same  bootstrap-postgresql-v0.0.0-dryrun.1.sql
+same  SHA256SUMS (8 lines)
+image ws-pems: manifest same: sha256:f5ba7502fa3ab81438a10f7506239b0c8dd60d8222b6d8057e2ed8c2bf584480
+image ws-pems-job-worker: manifest same: sha256:64a9e15c2009f48494f228eec9dbc6e025be67579323ccd5326ce536c2153f68
+image wspems-mcp-server: manifest same: sha256:61e042203b6b3915a92c344681990eaf40cbd1cc31fdc557daa9e65fb5913f1d
+image wspems-chat-server: manifest same: sha256:7135522b7af00d0641b64bde9e5436729d202178be4d73e4c4ff5bb1fe102d8d
+image wspems-mcp-auth-broker: manifest same: sha256:510330fbc186f59dec11851e32a50367d6e36a3d6a03ecd5973b4c5529992071
+summary: 0 differ or failed, 0 not in this run
+compare exit 0
+
+== the run's release folder against the rebuilt one (compare/sums)
+same  SHA256SUMS
+same  bootstrap-postgresql-v0.0.0-dryrun.1.sql
+same  upgrade.sh
+same  ws-pems-db-migrator-linux-x64-v0.0.0-dryrun.1
+same  ws-pems-db-migrator-win-x64-v0.0.0-dryrun.1.exe
+same  ws-pems-job-worker-linux-x64-v0.0.0-dryrun.1.zip
+same  ws-pems-job-worker-win-x64-v0.0.0-dryrun.1.zip
+same  ws-pems-linux-x64-v0.0.0-dryrun.1.zip
+same  ws-pems-win-x64-v0.0.0-dryrun.1.zip
+SHA256SUMS: 8 lines; names build-manifest.json: 0
+
+== build-manifest.json regenerated from the rebuild 11:45:33
+generator exit 0
+31645a1ac87af1b13f151cf9dfe97f1f42c77838565d14c4729992b66bb584f4  /private/tmp/rb1-dry1/ci-raw/dry-run-release/release/build-manifest.json
+31645a1ac87af1b13f151cf9dfe97f1f42c77838565d14c4729992b66bb584f4  /private/tmp/rb1-dry1/build-manifest-rebuilt.json
+cmp: IDENTICAL
+subjects: 14 files 9 images 5
+resolvedDependencies: 5 ['dotnet-sdk-10.0.401-linux-x64.tar.gz', 'node-v22.23.3-linux-x64.tar.gz', 'npm-11.21.2.tgz', 'buildkit@v0.33.1', 'buildkit-syft-scanner@1.12.0']
+source: 30a2d3264e2d932bf88e74999c6af5beda791c86 env: {'APP_VERSION': 'v0.0.0-dryrun.1', 'SOURCE_DATE_EPOCH': '1795514037'}
+== done 11:45:34
