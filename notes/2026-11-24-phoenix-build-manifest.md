@@ -367,4 +367,23 @@ the Windows tree the modes packing gives it.
 
 ## Caveats
 
+- The `*.log.gz` build logs are not in this public repository (they hold WS source paths and names); they are kept privately with Leo.
+- The dry runs had no tag and no secrets. They signed with a throwaway CA,
+  skipped `windows-smoke`, and pushed no images. Those parts were first
+  run by the real `v0.0.0-thesis.7` release
+  ([phoenix-thesis7-release](2026-11-24-phoenix-thesis7-release.md)).
+- The manifest is not signed. It says what to rebuild and compare, not
+  who built the release.
+- "Nothing from the run" holds for the fields the generator writes. The
+  provenance files, which do hold the run's times and IDs, are kept out
+  of the subjects. From thesis.8 they are out of the release too
+  ([phoenix-sbom-zip](2026-11-24-phoenix-sbom-zip.md)).
+- The verifier's two fixes found this afternoon (`--global-json`, the
+  modes before the paste) and the telemetry finding came from running it.
+  An earlier review of the script alone missed them.
+
 ## Not tested
+
+- The verifier as tagged, unpatched, on any host but Linux x86-64. On the
+  Mac Studio it ran with two local patches (see the thesis.7 note).
+- A verifier outside WS: the source and the releases are private.

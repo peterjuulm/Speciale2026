@@ -1,0 +1,54 @@
+Note: switching to '7d5c05eb0ea4920a73ca17019f4a50f53dba2e9f'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+registry: sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373
+== push 17:35:08
+push exit 0
+ws-pems sha256:6d95470e434de268fbba488cde7faac81112091bd8bab7a740301e0be876b3ff
+ws-pems sbom 6e1ffb72dca64ddd64a904aa29b8e8181f6e6007bc1b05042140b0d4559e7af8
+ws-pems-job-worker sha256:1445418877019063a525b774e3d9fb9a0d870e39f946475562903217c6433fbc
+ws-pems-job-worker sbom 1fcf8d6bc622671e0d905a88937486645aee97d94f4cce4717c9de1d4e4c721e
+wspems-mcp-server sha256:da7359c2c9237fbf2d0a036922913f66782d132c0e4f17608ecde433f7f2b91e
+wspems-mcp-server sbom 1e91448f3e25e24d7794226e47618f63ef65521cb213b4fb2b72d79fe5e496b8
+wspems-chat-server sha256:685217d58e241de4dab82e650a71cb01d19d9cfb25c0036cec10dac49a9d70bf
+wspems-chat-server sbom 4d839dd5e8cb1919102a3b127e68143d8cffa122700591d28e613abdbfacb7fe
+wspems-mcp-auth-broker sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb
+wspems-mcp-auth-broker sbom dc21c1d986cf679fbb904155b2cc2314abc7a7a4adc9f98c70e72a8bde93437b
+== tag, as the release job does
+ws-pems: pushed application/vnd.oci.image.manifest.v1+json sha256:6d95470e434de268fbba488cde7faac81112091bd8bab7a740301e0be876b3ff; create exit 0; tag sha256:6d95470e434de268fbba488cde7faac81112091bd8bab7a740301e0be876b3ff: SAME
+ws-pems-job-worker: pushed application/vnd.oci.image.manifest.v1+json sha256:1445418877019063a525b774e3d9fb9a0d870e39f946475562903217c6433fbc; create exit 0; tag sha256:1445418877019063a525b774e3d9fb9a0d870e39f946475562903217c6433fbc: SAME
+wspems-mcp-server: pushed application/vnd.oci.image.manifest.v1+json sha256:da7359c2c9237fbf2d0a036922913f66782d132c0e4f17608ecde433f7f2b91e; create exit 0; tag sha256:da7359c2c9237fbf2d0a036922913f66782d132c0e4f17608ecde433f7f2b91e: SAME
+wspems-chat-server: pushed application/vnd.oci.image.manifest.v1+json sha256:685217d58e241de4dab82e650a71cb01d19d9cfb25c0036cec10dac49a9d70bf; create exit 0; tag sha256:685217d58e241de4dab82e650a71cb01d19d9cfb25c0036cec10dac49a9d70bf: SAME
+wspems-mcp-auth-broker: pushed application/vnd.oci.image.manifest.v1+json sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb; create exit 0; tag sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb: SAME
+== without --prefer-index=false (the default), for ws-pems-mcp-auth-broker
+default: tag sha256:b373f6c1a13b3e410dc7693a7b1421f51807ceaec0ef275eabd242aa7aedcfe2 (application/vnd.oci.image.index.v1+json); manifest sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb
+== the tag against build-manifest.json: rebuild 1's manifest lists each linux/amd64 manifest
+ws-pems: tag = build-manifest.json's sha256:6d95470e434de268fbba488cde7faac81112091bd8bab7a740301e0be876b3ff
+ws-pems-job-worker: tag = build-manifest.json's sha256:1445418877019063a525b774e3d9fb9a0d870e39f946475562903217c6433fbc
+wspems-mcp-server: tag = build-manifest.json's sha256:da7359c2c9237fbf2d0a036922913f66782d132c0e4f17608ecde433f7f2b91e
+wspems-chat-server: tag = build-manifest.json's sha256:685217d58e241de4dab82e650a71cb01d19d9cfb25c0036cec10dac49a9d70bf
+wspems-mcp-auth-broker: tag = build-manifest.json's sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb
+== the pushed manifests against the OCI files of rebuild 1
+ws-pems: same as rebuild 1's OCI file
+ws-pems-job-worker: same as rebuild 1's OCI file
+wspems-mcp-server: same as rebuild 1's OCI file
+wspems-chat-server: same as rebuild 1's OCI file
+wspems-mcp-auth-broker: same as rebuild 1's OCI file
+ws-pems SBOM: same as rebuild 1's
+wspems-chat-server SBOM: same as rebuild 1's
+rb1-reg removed
+registry and builder removed

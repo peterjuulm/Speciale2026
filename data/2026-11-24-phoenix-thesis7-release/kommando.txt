@@ -1,0 +1,28 @@
+# v0.0.0-thesis.7, 24 November 2026. Note: notes/2026-11-24-phoenix-thesis7-release.md
+# Run from the Mac Studio; arch steps through experiments/phoenix-merge-optA/lab.sh (tmux "lab").
+
+# Gates
+gh run view 45413447893 -R Weel-Sandvig/WS.Phoenix --json jobs        # Main CI on 96e2990a6, attempt 1: BatchQuery_VsIndividualQueries
+gh run rerun 45413447893 -R Weel-Sandvig/WS.Phoenix --failed           # attempt 2: green
+git ls-tree -r --name-only 96e2990a6 .github/workflows | grep zz       # prints nothing
+git diff --quiet 8491a0d63 96e2990a6 -- scripts/release/docker-images.sh .github/workflows/03-release.yml
+bash lab.sh 65-tag-digest lab/65-tag-digest.sh                         # tagging held; built the wrong commit (7d5c05eb0)
+bash lab.sh 65b-tag-digest lab/65b-tag-digest.sh                       # on 8491a0d63: all SAME
+# logs: ../2026-11-24-phoenix-build-manifest/arch/{64g,65,65b}-*
+
+# The tag (in the worktree ~/rb1-phoenix-stages)
+git -c user.name="Leo Sakharoff" -c user.email=<Leo's> tag -a v0.0.0-thesis.7 96e2990a6128eed919eb216a3779f3d0613ce6cc -m "v0.0.0-thesis.7"
+git push origin refs/tags/v0.0.0-thesis.7                              # 17:56:48; release run 45442984125
+
+# The published release
+gh release view v0.0.0-thesis.7 -R Weel-Sandvig/WS.Phoenix --json isPrerelease,assets,body
+gh release download v0.0.0-thesis.7 -R Weel-Sandvig/WS.Phoenix -D published
+cd published && shasum -a 256 -c SHA256SUMS                            # 8 OK
+# subjects against the files and the GHCR tags: python3 -I, in the note's session transcript; result in the note
+gh api "/orgs/Weel-Sandvig/packages/container/<image>/versions?per_page=30" \
+  --jq '.[]|select(.metadata.container.tags|index("v0.0.0-thesis.7"))|.name'   # github/ghcr-tags.txt
+
+# Rebuilds
+bash lab.sh 71-t7-arch-twice lab/71-t7-arch-twice.sh                  # arch: rebuild.sh twice
+REUSE=1 PUBLISHED=1 PATCH=1 NAME=t7 T=v0.0.0-thesis.7 TIP=96e2990a6 bash lab/70-mac-verify.sh   # Mac Studio
+# PATCH=1: lab/mac-verifier/patch-rebuild.sh on the verifier's clone (platform passthrough; BuildKit's QEMU aside)

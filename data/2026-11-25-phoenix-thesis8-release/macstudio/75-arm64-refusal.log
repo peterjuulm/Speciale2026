@@ -1,0 +1,5 @@
+
+== 1. the release's files  (10:26:07)
+commit 96e2990a6128eed919eb216a3779f3d0613ce6cc, APP_VERSION v0.0.0-thesis.7, SOURCE_DATE_EPOCH 1795530171
+BuildKit moby/buildkit:v0.33.1@sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea
+rebuild.sh: Docker runs on aarch64, and its kernel runs x86-64 programs only under QEMU or not at all; dotnet aborts under QEMU. On an Apple Silicon Mac, use a Docker VM with Rosetta (colima start --vm-type vz --vz-rosetta). Linux on arm64 is not supported.

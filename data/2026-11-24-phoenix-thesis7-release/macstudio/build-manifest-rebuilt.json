@@ -1,0 +1,217 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://github.com/Weel-Sandvig/WS.Phoenix/blob/main/docs/release/build-manifest.md#v1",
+      "externalParameters": {
+        "env": {
+          "APP_VERSION": "v0.0.0-thesis.7",
+          "SOURCE_DATE_EPOCH": "1795530171"
+        },
+        "source": {
+          "digest": {
+            "gitCommit": "96e2990a6128eed919eb216a3779f3d0613ce6cc"
+          },
+          "path": ".",
+          "uri": "git+https://github.com/Weel-Sandvig/WS.Phoenix@refs/tags/v0.0.0-thesis.7"
+        },
+        "workflow": {
+          "jobs": {
+            "checksums": [
+              "SHA256SUMS"
+            ],
+            "docker-images": [
+              "pkg:docker/ghcr.io/weel-sandvig/ws-pems-job-worker@v0.0.0-thesis.7?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/ws-pems@v0.0.0-thesis.7?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/wspems-chat-server@v0.0.0-thesis.7?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-auth-broker@v0.0.0-thesis.7?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-server@v0.0.0-thesis.7?platform=linux%2Famd64",
+              "ws-pems-job-worker-v0.0.0-thesis.7.spdx.json",
+              "ws-pems-v0.0.0-thesis.7.spdx.json",
+              "wspems-chat-server-v0.0.0-thesis.7.spdx.json",
+              "wspems-mcp-auth-broker-v0.0.0-thesis.7.spdx.json",
+              "wspems-mcp-server-v0.0.0-thesis.7.spdx.json"
+            ],
+            "frontend-build": [
+              "the static export, inside the WebAPI zips"
+            ],
+            "migration-bundles": [
+              "bootstrap-postgresql-v0.0.0-thesis.7.sql",
+              "ws-pems-db-migrator-linux-x64-v0.0.0-thesis.7"
+            ],
+            "publish-linux": [
+              "ws-pems-job-worker-linux-x64-v0.0.0-thesis.7.zip",
+              "ws-pems-linux-x64-v0.0.0-thesis.7.zip"
+            ],
+            "publish-windows": [
+              "ws-pems-db-migrator-win-x64-v0.0.0-thesis.7.exe",
+              "ws-pems-job-worker-win-x64-v0.0.0-thesis.7.zip",
+              "ws-pems-win-x64-v0.0.0-thesis.7.zip"
+            ],
+            "release": [
+              "upgrade.sh"
+            ]
+          },
+          "path": ".github/workflows/03-release.yml"
+        }
+      },
+      "resolvedDependencies": [
+        {
+          "annotations": {
+            "runtime": "10.0.12",
+            "sdk": "10.0.401"
+          },
+          "digest": {
+            "sha512": "51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b"
+          },
+          "uri": "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz"
+        },
+        {
+          "digest": {
+            "sha256": "1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af"
+          },
+          "uri": "https://nodejs.org/dist/v22.23.3/node-v22.23.3-linux-x64.tar.gz"
+        },
+        {
+          "digest": {
+            "sha512": "ec73c0a64f807e53146af4ac78bd4f9ba0a762a3081e4e77c7e2a6ba1aa64c3a8f9233cc8312294cf713aac13dd4428dc3880504957d7e75e249d1a6d435eaf4"
+          },
+          "uri": "https://registry.npmjs.org/npm/-/npm-11.21.2.tgz"
+        },
+        {
+          "digest": {
+            "sha256": "cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea"
+          },
+          "uri": "pkg:docker/moby/buildkit@v0.33.1"
+        },
+        {
+          "digest": {
+            "sha256": "ae4f3b554449e7e25548e7d8ccc029d17357348e30c6e3df01b92bc93654d6a9"
+          },
+          "uri": "pkg:docker/docker/buildkit-syft-scanner@1.12.0"
+        }
+      ]
+    },
+    "compare": {
+      "images": "the linux/amd64 image manifest, which the version tag names directly",
+      "windows": "the unsigned rebuild with the published files' signatures pasted on, deployment/signing/paste-signatures.sh"
+    }
+  },
+  "predicateType": "https://github.com/Weel-Sandvig/WS.Phoenix/blob/main/docs/release/build-manifest.md#v1",
+  "subject": [
+    {
+      "digest": {
+        "sha256": "11660ac20722c48846aaa68a5d468d22a02edb046df390317f51cf05ea949cb6"
+      },
+      "name": "SHA256SUMS"
+    },
+    {
+      "digest": {
+        "sha256": "d46aeeb1ddc016e48d9141d30c253c86a42ff866ab41aed812645a8be5417313"
+      },
+      "name": "bootstrap-postgresql-v0.0.0-thesis.7.sql"
+    },
+    {
+      "digest": {
+        "sha256": "944d87e970054e50bb069e6ba9ca8accc132060441d317e66d75c332ffe5511a"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/ws-pems-job-worker@v0.0.0-thesis.7?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "d26fc7deadc08e7f360c916de533047f9364f13fe3bb9dc15100d6fc08628b9c"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/ws-pems@v0.0.0-thesis.7?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "7df546936e6269693edc2d493c266df643dd3581ec0939c5d0f2ce8fd9d6fed1"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/wspems-chat-server@v0.0.0-thesis.7?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "3d425c8edc13522d1934aa3c7df86cd76e67b38a60bfa3c1eba658a80a7185ec"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-auth-broker@v0.0.0-thesis.7?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "fe96f9a559a79145e1511857d0315725a3331a432e9d9d2fcce75e023df7f772"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-server@v0.0.0-thesis.7?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "3116d1203464ddccd100741aba580b4f2994f7f6e3741b348e7730dc4c3fb0ca"
+      },
+      "name": "upgrade.sh"
+    },
+    {
+      "digest": {
+        "sha256": "ccc09e85d3bba14842dd834481982e867c1065654005eb278f83121f1da6c204"
+      },
+      "name": "ws-pems-db-migrator-linux-x64-v0.0.0-thesis.7"
+    },
+    {
+      "digest": {
+        "sha256": "98468d04a24fd6aa53dd1db45cff5ad5bcf85de4afea9b199b1df3839aaa9c4f"
+      },
+      "name": "ws-pems-db-migrator-win-x64-v0.0.0-thesis.7.exe"
+    },
+    {
+      "digest": {
+        "sha256": "0c195901668a97520b90a6b2d3907e9b568aceeea2d5d64c2c7b6ee474a6905c"
+      },
+      "name": "ws-pems-job-worker-linux-x64-v0.0.0-thesis.7.zip"
+    },
+    {
+      "digest": {
+        "sha256": "30a7d909cc8748a3d9d526f0fb3ba45a8e3159f548868d7ff6e83cc7df265e03"
+      },
+      "name": "ws-pems-job-worker-v0.0.0-thesis.7.spdx.json"
+    },
+    {
+      "digest": {
+        "sha256": "207d62c40d6e22305accbf8b8a76423e786de1a4022ff9aba7f0432c2063aba1"
+      },
+      "name": "ws-pems-job-worker-win-x64-v0.0.0-thesis.7.zip"
+    },
+    {
+      "digest": {
+        "sha256": "8b8504fbf1785bd926d0bb8e6aa067c28225f93e5c6b6a01026d83f12f59b95e"
+      },
+      "name": "ws-pems-linux-x64-v0.0.0-thesis.7.zip"
+    },
+    {
+      "digest": {
+        "sha256": "64312f6aa73339c8f9e1044a20ba3d23b5175924a6db89e7dce40eb4851e5a35"
+      },
+      "name": "ws-pems-v0.0.0-thesis.7.spdx.json"
+    },
+    {
+      "digest": {
+        "sha256": "6f82363fa9f60029ee6e78d6d4f944581162b9aef854a393c7ae58060c9936cf"
+      },
+      "name": "ws-pems-win-x64-v0.0.0-thesis.7.zip"
+    },
+    {
+      "digest": {
+        "sha256": "3a9dfd1eddeee5ddcb24c4aa60fe4285942e4c9e84f29b705e4a22fda538a8ca"
+      },
+      "name": "wspems-chat-server-v0.0.0-thesis.7.spdx.json"
+    },
+    {
+      "digest": {
+        "sha256": "32e89628b488f4e9e5cd4bf42b44dcbb812ac1c5de0051510b71aea1f97e6d1c"
+      },
+      "name": "wspems-mcp-auth-broker-v0.0.0-thesis.7.spdx.json"
+    },
+    {
+      "digest": {
+        "sha256": "226b5f1a28e35928cc5118505fd81269c12a7aff49db83aa45ed73780c5ce696"
+      },
+      "name": "wspems-mcp-server-v0.0.0-thesis.7.spdx.json"
+    }
+  ]
+}

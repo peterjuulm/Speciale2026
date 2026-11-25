@@ -1,0 +1,191 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://github.com/Weel-Sandvig/WS.Phoenix/blob/main/docs/release/build-manifest.md#v1",
+      "externalParameters": {
+        "env": {
+          "APP_VERSION": "v0.0.0-dryrun.6",
+          "SOURCE_DATE_EPOCH": "1795554076"
+        },
+        "source": {
+          "digest": {
+            "gitCommit": "c6c6227312aeb52a1fc6b9ba5a8f78e3a73b8149"
+          },
+          "path": ".",
+          "uri": "git+https://github.com/Weel-Sandvig/WS.Phoenix@refs/tags/v0.0.0-dryrun.6"
+        },
+        "workflow": {
+          "jobs": {
+            "checksums": [
+              "SHA256SUMS"
+            ],
+            "docker-images": [
+              "pkg:docker/ghcr.io/weel-sandvig/ws-pems-job-worker@v0.0.0-dryrun.6?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/ws-pems@v0.0.0-dryrun.6?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/wspems-chat-server@v0.0.0-dryrun.6?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-auth-broker@v0.0.0-dryrun.6?platform=linux%2Famd64",
+              "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-server@v0.0.0-dryrun.6?platform=linux%2Famd64"
+            ],
+            "frontend-build": [
+              "the static export, inside the WebAPI zips"
+            ],
+            "migration-bundles": [
+              "bootstrap-postgresql-v0.0.0-dryrun.6.sql",
+              "ws-pems-db-migrator-linux-x64-v0.0.0-dryrun.6"
+            ],
+            "publish-linux": [
+              "ws-pems-job-worker-linux-x64-v0.0.0-dryrun.6.zip",
+              "ws-pems-linux-x64-v0.0.0-dryrun.6.zip"
+            ],
+            "publish-windows": [
+              "ws-pems-db-migrator-win-x64-v0.0.0-dryrun.6.exe",
+              "ws-pems-job-worker-win-x64-v0.0.0-dryrun.6.zip",
+              "ws-pems-win-x64-v0.0.0-dryrun.6.zip"
+            ],
+            "release": [
+              "upgrade.sh"
+            ],
+            "sboms": [
+              "ws-pems-sbom-v0.0.0-dryrun.6.zip"
+            ]
+          },
+          "path": ".github/workflows/03-release.yml"
+        }
+      },
+      "resolvedDependencies": [
+        {
+          "annotations": {
+            "runtime": "10.0.12",
+            "sdk": "10.0.401"
+          },
+          "digest": {
+            "sha512": "51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b"
+          },
+          "uri": "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz"
+        },
+        {
+          "digest": {
+            "sha256": "1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af"
+          },
+          "uri": "https://nodejs.org/dist/v22.23.3/node-v22.23.3-linux-x64.tar.gz"
+        },
+        {
+          "digest": {
+            "sha512": "ec73c0a64f807e53146af4ac78bd4f9ba0a762a3081e4e77c7e2a6ba1aa64c3a8f9233cc8312294cf713aac13dd4428dc3880504957d7e75e249d1a6d435eaf4"
+          },
+          "uri": "https://registry.npmjs.org/npm/-/npm-11.21.2.tgz"
+        },
+        {
+          "digest": {
+            "sha256": "cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea"
+          },
+          "uri": "pkg:docker/moby/buildkit@v0.33.1"
+        },
+        {
+          "digest": {
+            "sha256": "ae4f3b554449e7e25548e7d8ccc029d17357348e30c6e3df01b92bc93654d6a9"
+          },
+          "uri": "pkg:docker/docker/buildkit-syft-scanner@1.12.0"
+        }
+      ]
+    },
+    "compare": {
+      "images": "the linux/amd64 image manifest, which the version tag names directly",
+      "windows": "the unsigned rebuild with the published files' signatures pasted on, deployment/signing/paste-signatures.sh"
+    }
+  },
+  "predicateType": "https://github.com/Weel-Sandvig/WS.Phoenix/blob/main/docs/release/build-manifest.md#v1",
+  "subject": [
+    {
+      "digest": {
+        "sha256": "3d65a9db1cb60973640b9121a939cda410ece35e1accf9bd3394392d8ee05595"
+      },
+      "name": "SHA256SUMS"
+    },
+    {
+      "digest": {
+        "sha256": "d46aeeb1ddc016e48d9141d30c253c86a42ff866ab41aed812645a8be5417313"
+      },
+      "name": "bootstrap-postgresql-v0.0.0-dryrun.6.sql"
+    },
+    {
+      "digest": {
+        "sha256": "96c5812796f208f12563ab8edbfae5b5ca724b58a95b6615ff6e8c70ba9c40d3"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/ws-pems-job-worker@v0.0.0-dryrun.6?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "70809cf6e5c819a04036aa667f3cb1b7e22ef296b9af9709fad3dbe843689615"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/ws-pems@v0.0.0-dryrun.6?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "f115589db9765a6e1e331abb4d470763f6e1f402bf464a069dab8d2d0f6868c2"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/wspems-chat-server@v0.0.0-dryrun.6?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "c4f24eba9d3d47de76b0a56a4b9f5ec0fdb7537f18f5b2c5cee46da2cc6f11f0"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-auth-broker@v0.0.0-dryrun.6?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "1af0524d2f013afd1bcde653ed6a591009d3a237d58d473a3b6cbd45a5ab7d55"
+      },
+      "name": "pkg:docker/ghcr.io/weel-sandvig/wspems-mcp-server@v0.0.0-dryrun.6?platform=linux%2Famd64"
+    },
+    {
+      "digest": {
+        "sha256": "3116d1203464ddccd100741aba580b4f2994f7f6e3741b348e7730dc4c3fb0ca"
+      },
+      "name": "upgrade.sh"
+    },
+    {
+      "digest": {
+        "sha256": "cda71d0c5163e8b0800e9cc1e3ed7001846e2cddb4de304387ea24251cd6ab03"
+      },
+      "name": "ws-pems-db-migrator-linux-x64-v0.0.0-dryrun.6"
+    },
+    {
+      "digest": {
+        "sha256": "a74e31b08325da5269cf70dfb5cf4f5bce03cfbe95559d2641b249efebd7a066"
+      },
+      "name": "ws-pems-db-migrator-win-x64-v0.0.0-dryrun.6.exe"
+    },
+    {
+      "digest": {
+        "sha256": "5e1ec99eb7362d8e74da4d257a2aac5dc3e635020319925d4d33492f175115ee"
+      },
+      "name": "ws-pems-job-worker-linux-x64-v0.0.0-dryrun.6.zip"
+    },
+    {
+      "digest": {
+        "sha256": "0b927a302f25fbfbed40c7d7c76281ae3e42f17c13ea388e76ba697508ce9dec"
+      },
+      "name": "ws-pems-job-worker-win-x64-v0.0.0-dryrun.6.zip"
+    },
+    {
+      "digest": {
+        "sha256": "560967cafcad83bf75d2ea491cfa509b6b8587e1bec52abda8e59fda51591720"
+      },
+      "name": "ws-pems-linux-x64-v0.0.0-dryrun.6.zip"
+    },
+    {
+      "digest": {
+        "sha256": "68926ca84698eb3e22272cc7accc01235f022bf12f75a153e4c1898f8645e5c3"
+      },
+      "name": "ws-pems-sbom-v0.0.0-dryrun.6.zip"
+    },
+    {
+      "digest": {
+        "sha256": "9c7c2e63d0409bb106b8949aedc7f8c846632f71430fa2ba34d2d0057bc6db76"
+      },
+      "name": "ws-pems-win-x64-v0.0.0-dryrun.6.zip"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+# 25 November 2026. WS.Phoenix commands from ~/rb1-phoenix-stages (branch thesis-stages-local),
+# lab steps from Speciale2026/experiments/phoenix-merge-optA.
+
+# The refusal (macstudio/75-arm64-refusal.log): a colima profile without Rosetta, rebuild.sh of
+# 1c90ad428 on the macOS host against that profile, with only the published thesis.7 manifest.
+colima start -p norosetta --vm-type vz --cpu 2 --memory 4 --disk 20
+PATH=/private/tmp/rb1-ms-docker/bin:$PATH DOCKER_CONFIG=/private/tmp/rb1-ms-docker/config \
+  DOCKER_HOST=unix:///Users/leo/.colima/norosetta/docker.sock ASSETS=<folder with build-manifest.json> \
+  bash scripts/release/rebuild.sh v0.0.0-thesis.7 <scratch>/refuse      # exit 1 in step 1
+colima delete -p norosetta --data -f
+
+# The push and the tag
+git push origin thesis-stages-local:thesis/reproducible-builds          # b66bdce95..1c90ad428
+git -c user.name="Leo Sakharoff" -c user.email=... tag -a v0.0.0-thesis.8 -m v0.0.0-thesis.8 1c90ad428
+git push origin refs/tags/v0.0.0-thesis.8                                # 10:28:47
+
+# The readable rebuild.sh: local commit 378f113d9, to arch as a bundle
+git bundle create readable-rebuild.bundle thesis-stages-local ^1c90ad428
+# on arch, in the lab clone:
+git -C /private/tmp/rb1-merge-src fetch <bundle> thesis-stages-local:readable-rebuild
+
+# Its proofs on arch (lab 78), REL = the release:
+REL=v0.0.0-thesis.7 bash lab.sh 78-readable-t7 <78-readable-arch.sh with REL set>
+# against thesis.8: not run (thesis.8 held back to December)
+
+# The release run was cancelled at Leo's decision:
+gh run cancel 45585787137 -R Weel-Sandvig/WS.Phoenix      # 11:22:45; no release published
+# The published thesis.8 on arch (lab 77) and the Mac (lab 76): not run.

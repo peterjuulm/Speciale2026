@@ -1,9 +1,11 @@
 # Stage 2's tag check, without GHCR: a throwaway registry on localhost:5000
 # and a builder of the pinned BuildKit on the host network. docker-images.sh
-# push (stage 2's script, at c9e9022d0) pushes the five images by digest; then
+# push (stage 2's script; dry run 5's source, 8491a0d63, whose
+# docker-images.sh is the one at 96e2990a6, the commit to be tagged) pushes the five images by digest; then
 # the release job's own tagging, imagetools create --prefer-index=false, and
 # its check that the tag's digest is the manifest's. Also the old way
 # (without --prefer-index=false) on one image, to see what it would make.
+# First run 24/11 evening, after 64g; buildx 0.38 has no create -q.
 set -uo pipefail
 V=/private/tmp/rb1-verify S=$V/src R=localhost:5000/weel-sandvig T=v0.0.0-dryrun.5 B=rb1-reg
 export DOCKER_CONFIG=/private/tmp/rb1-docker
@@ -14,7 +16,7 @@ docker run -d --name rb1-registry -p 127.0.0.1:5000:5000 registry:2 > /dev/null 
 printf '[registry."localhost:5000"]\n  http = true\n  insecure = true\n' > "$V/buildkitd.toml"
 docker buildx rm "$B" > /dev/null 2>&1
 bk=$(sed -n 's/^  BUILDKIT_IMAGE: //p' "$c/.github/workflows/03-release.yml")
-docker buildx create -q --name "$B" --driver docker-container --driver-opt "image=$bk" --driver-opt network=host --buildkitd-config "$V/buildkitd.toml" --bootstrap > /dev/null
+docker buildx create --name "$B" --driver docker-container --driver-opt "image=$bk" --driver-opt network=host --buildkitd-config "$V/buildkitd.toml" --bootstrap > /dev/null 2>&1 || { echo "builder failed"; exit 1; }
 echo "== push $(date +%H:%M:%S)"
 (cd "$c" && APP_VERSION=$T BUILDX_BUILDER=$B flock /tmp/claude-1000/phoenix-dotnet.lock scripts/release/docker-images.sh push "$R" "$V/pushed") > "$V/push.log" 2>&1
 echo "push exit $?"; grep -E "^[a-z-]+ (sha256|sbom)" "$V/push.log"

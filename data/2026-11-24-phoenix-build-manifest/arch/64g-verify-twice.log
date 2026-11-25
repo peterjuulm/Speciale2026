@@ -1,0 +1,83 @@
+verifier source: 7d5c05eb0ea4920a73ca17019f4a50f53dba2e9f rebuild.sh: no -q on buildx create; the jobs keep the caller's Docker settings
+the run's commit: 8491a0d63ca5e82877fae68262c5bafcd7fc18ef
+== the run's files 15:14:44
+bootstrap-postgresql-v0.0.0-dryrun.5.sql
+build-manifest.json
+SHA256SUMS
+upgrade.sh
+wspems-chat-server-v0.0.0-dryrun.5.provenance.json
+wspems-chat-server-v0.0.0-dryrun.5.spdx.json
+ws-pems-db-migrator-linux-x64-v0.0.0-dryrun.5
+ws-pems-db-migrator-win-x64-v0.0.0-dryrun.5.exe
+ws-pems-job-worker-linux-x64-v0.0.0-dryrun.5.zip
+ws-pems-job-worker-v0.0.0-dryrun.5.provenance.json
+ws-pems-job-worker-v0.0.0-dryrun.5.spdx.json
+ws-pems-job-worker-win-x64-v0.0.0-dryrun.5.zip
+ws-pems-linux-x64-v0.0.0-dryrun.5.zip
+wspems-mcp-auth-broker-v0.0.0-dryrun.5.provenance.json
+wspems-mcp-auth-broker-v0.0.0-dryrun.5.spdx.json
+wspems-mcp-server-v0.0.0-dryrun.5.provenance.json
+wspems-mcp-server-v0.0.0-dryrun.5.spdx.json
+ws-pems-v0.0.0-dryrun.5.provenance.json
+ws-pems-v0.0.0-dryrun.5.spdx.json
+ws-pems-win-x64-v0.0.0-dryrun.5.zip
+20 files
+== the run's provenance files: GitHub context, e-mail addresses, names?
+wspems-chat-server-v0.0.0-dryrun.5.provenance.json: 77226 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile', 'node']
+ws-pems-job-worker-v0.0.0-dryrun.5.provenance.json: 118453 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile']
+wspems-mcp-auth-broker-v0.0.0-dryrun.5.provenance.json: 93471 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile', 'node']
+wspems-mcp-server-v0.0.0-dryrun.5.provenance.json: 91189 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile', 'node']
+ws-pems-v0.0.0-dryrun.5.provenance.json: 139407 bytes; top ['buildConfig', 'buildType', 'builder', 'invocation', 'materials', 'metadata']; github_ keys []; e-mail []; name fields ['context', 'dockerfile']
+
+== rebuild 1 15:29:39
+rebuild 1 exit 0  16:15:29
+== 1. the release's files  (15:29:39)
+== 2. the source  (15:29:39)
+== 3. the SDK, Node and npm  (15:29:45)
+== 4. the jobs  (15:32:41)
+== 5. the published signatures, pasted  (15:48:27)
+== 6. the images  (15:50:59)
+== ws-pems
+== ws-pems-job-worker
+== wspems-mcp-server
+== wspems-chat-server
+== wspems-mcp-auth-broker
+== 7. build-manifest.json, regenerated and compared  (16:15:14)
+SAME: /private/tmp/rb1-verify/work1/build-manifest.json is the published build-manifest.json, byte for byte.
+
+== rebuild 2 16:15:29
+rebuild 2 exit 0  17:06:11
+== 1. the release's files  (16:15:29)
+== 2. the source  (16:15:29)
+== 3. the SDK, Node and npm  (16:15:35)
+== 4. the jobs  (16:21:21)
+== 5. the published signatures, pasted  (16:35:33)
+== 6. the images  (16:39:16)
+== ws-pems
+== ws-pems-job-worker
+== wspems-mcp-server
+== wspems-chat-server
+== wspems-mcp-auth-broker
+== 7. build-manifest.json, regenerated and compared  (17:05:58)
+SAME: /private/tmp/rb1-verify/work2/build-manifest.json is the published build-manifest.json, byte for byte.
+
+== rebuild 1 against rebuild 2
+release files: identical (14)
+ws-pems: manifest same: sha256:6d95470e434de268fbba488cde7faac81112091bd8bab7a740301e0be876b3ff
+ws-pems-job-worker: manifest same: sha256:1445418877019063a525b774e3d9fb9a0d870e39f946475562903217c6433fbc
+wspems-mcp-server: manifest same: sha256:da7359c2c9237fbf2d0a036922913f66782d132c0e4f17608ecde433f7f2b91e
+wspems-chat-server: manifest same: sha256:685217d58e241de4dab82e650a71cb01d19d9cfb25c0036cec10dac49a9d70bf
+wspems-mcp-auth-broker: manifest same: sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb
+the two rebuilt manifests: identical
+== the SBOMs: the run's against rebuild 1 and 2
+wspems-chat-server-v0.0.0-dryrun.5.spdx.json rebuild 1: same
+wspems-chat-server-v0.0.0-dryrun.5.spdx.json rebuild 2: same
+ws-pems-job-worker-v0.0.0-dryrun.5.spdx.json rebuild 1: same
+ws-pems-job-worker-v0.0.0-dryrun.5.spdx.json rebuild 2: same
+wspems-mcp-auth-broker-v0.0.0-dryrun.5.spdx.json rebuild 1: same
+wspems-mcp-auth-broker-v0.0.0-dryrun.5.spdx.json rebuild 2: same
+wspems-mcp-server-v0.0.0-dryrun.5.spdx.json rebuild 1: same
+wspems-mcp-server-v0.0.0-dryrun.5.spdx.json rebuild 2: same
+ws-pems-v0.0.0-dryrun.5.spdx.json rebuild 1: same
+ws-pems-v0.0.0-dryrun.5.spdx.json rebuild 2: same
+== done 17:06:17

@@ -13,10 +13,12 @@ release yet.
   makes `03-release.yml` mark the GitHub Release as a pre-release, and it
   never moves `:latest`.
 - **Commit:** the tip of `thesis/reproducible-builds` once dry run 5's
-  temporary workflows are removed:
-  `c9e9022d088ea951d87b4499c068fd6bc470ec47` (`c9e9022d0`), pushed
-  24/11. If the branch moves, re-check everything below for the new
-  commit.
+  temporary workflows are removed. Written for `c9e9022d0`; the branch
+  then moved twice (`7d5c05eb0`, a rebuild.sh fix; `96e2990a6`, the SQL
+  in the invariant culture), and the tag went on
+  `96e2990a6128eed919eb216a3779f3d0613ce6cc` (`96e2990a6`) at 17:56 on
+  24/11. The outcome is in
+  [phoenix-thesis7-release](2026-11-24-phoenix-thesis7-release.md).
   No `zz-*` file may be in its tree:
 
   ```bash

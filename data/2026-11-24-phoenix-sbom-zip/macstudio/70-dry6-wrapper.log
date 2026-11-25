@@ -1,0 +1,22 @@
+assets:       11 files
+== rebuild.sh in the x86-64 container 22:54:00
+verifier: 48c5b3cba Remove the thesis dry run 6 workflows
+-    ${DOCKER_CONFIG:+DOCKER_CONFIG="$DOCKER_CONFIG"} ${DOCKER_HOST:+DOCKER_HOST="$DOCKER_HOST"} ${BUILDX_BUILDER:+BUILDX_BUILDER="$BUILDX_BUILDER"} \
++    ${DOCKER_CONFIG:+DOCKER_CONFIG="$DOCKER_CONFIG"} ${DOCKER_DEFAULT_PLATFORM:+DOCKER_DEFAULT_PLATFORM="$DOCKER_DEFAULT_PLATFORM"} ${DOCKER_HOST:+DOCKER_HOST="$DOCKER_HOST"} ${BUILDX_BUILDER:+BUILDX_BUILDER="$BUILDX_BUILDER"} \
+x86_64
+rebuild exit 1
+== ws-pems
+== ws-pems-job-worker
+== wspems-mcp-server
+== wspems-chat-server
+== wspems-mcp-auth-broker
+== 7. build-manifest.json, regenerated and compared  (22:30:32)
+== ws-pems-job-worker-linux-x64-v0.0.0-dryrun.6.zip
+== ws-pems-job-worker-win-x64-v0.0.0-dryrun.6.zip
+== ws-pems-linux-x64-v0.0.0-dryrun.6.zip
+== ws-pems-win-x64-v0.0.0-dryrun.6.zip
+== ws-pems-db-migrator-linux-x64-v0.0.0-dryrun.6
+== ws-pems-db-migrator-win-x64-v0.0.0-dryrun.6.exe
+DIFFERENT: the rebuilt build-manifest.json is not the published one.
+  ws-pems-sbom-v0.0.0-dryrun.6.zip: published {'sha256': '68926ca84698eb3e22272cc7accc01235f022bf12f75a153e4c1898f8645e5c3'}, rebuilt {'sha256': '73df8614c0855ccf770883a9069f0d51ade3ed3f3b52f67e041a5ce9ad567a0f'}
+== done 23:34:50

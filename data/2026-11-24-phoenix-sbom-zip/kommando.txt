@@ -1,0 +1,14 @@
+# The thesis.8 layout, 24-25 November 2026. Note: notes/2026-11-24-phoenix-sbom-zip.md
+# Branch commits (WS.Phoenix thesis/reproducible-builds, worktree ~/rb1-phoenix-stages on the Mac Studio):
+#   aafae131e provenance out; 758cd3f06 SBOM zip; c6c622731/48c5b3cba dry run 6 in/out;
+#   37fef01d4 mode fix; e14a60d9d/b66bdce95 dry run 7 in/out.
+python3 <private>/dryrun-edit-8.py .   # dry run 6 workflows (private: quotes WS's workflows); -9 for dry run 7
+git push origin thesis-stages-local:thesis/reproducible-builds   # each commit, after checking origin's tip
+gh run view 45486782488 --log | grep 'Make the SBOM zip'          # dry run 6: github/dryrun6-sboms-jobs.txt
+gh run view 45509439098 --log | grep 'Make the SBOM zip'          # dry run 7: github/dryrun7-sboms-jobs.txt
+bash lab/72-mac-sboms-twice.sh                                    # local trial on thesis.7's files
+RUN=45486782488 T=v0.0.0-dryrun.6 TIP=48c5b3cba NAME=dry6 PATCH=1 bash lab/70-mac-verify.sh   # 70: DIFFERENT (zip)
+SB=$HOME/rb1-phoenix-stages/scripts/release/sboms.sh bash lab/73-mac-sboms-dry6.sh            # 73: zip = runners'
+REUSE=1 RUN=45486782488 T=v0.0.0-dryrun.6 TIP=37fef01d4 NAME=dry6 PATCH=1 bash lab/70-mac-verify.sh   # 70b: DIFFERENT, as designed
+RUN=45509439098 T=v0.0.0-dryrun.7 TIP=b66bdce95 NAME=dry7 PATCH=1 bash lab/70-mac-verify.sh   # 70c: SAME
+gh workflow run 02-main-ci.yml --ref thesis/reproducible-builds   # Main CI is dispatched by hand on this branch

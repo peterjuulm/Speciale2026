@@ -1,0 +1,75 @@
+Note: switching to '7d5c05eb0ea4920a73ca17019f4a50f53dba2e9f'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Unable to find image 'registry:2' locally
+2: Pulling from library/registry
+6d464ea18732: Pulling fs layer
+44cf07d57ee4: Pulling fs layer
+3493bf46cdec: Pulling fs layer
+8e82f80af0de: Pulling fs layer
+bbbdd6c6894b: Pulling fs layer
+3493bf46cdec: Download complete
+6d464ea18732: Download complete
+bbbdd6c6894b: Download complete
+b537bf6d1146: Download complete
+32a76c78501f: Download complete
+8e82f80af0de: Download complete
+44cf07d57ee4: Download complete
+44cf07d57ee4: Pull complete
+bbbdd6c6894b: Pull complete
+3493bf46cdec: Pull complete
+6d464ea18732: Pull complete
+8e82f80af0de: Pull complete
+Digest: sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373
+Status: Downloaded newer image for registry:2
+registry: sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373
+== push 17:07:12
+push exit 0
+ws-pems sha256:efb5766ab944703edf7f36556fc4eabd64ff6107e67c5d1b0083b5face3c18ee
+ws-pems sbom 4c3efab6f8999c2c08f34b71e62d092c506b8cb40d129b626f6fa47fb90ba012
+ws-pems-job-worker sha256:4a432b31300f82746097e42584cf892f6c630a435fa8a68692f74fcc1bb4c583
+ws-pems-job-worker sbom 011b2d02abe3a669102da7ca2416fe038078e5259e39dc2c18c104b3b7d5cec5
+wspems-mcp-server sha256:f5b88eafca667d7de6b14ddb2aab6fd38d89547d413c1865d4896743913ff1c3
+wspems-mcp-server sbom 190c01de2effcd9a6a8c0ece3ba67787ded5fed66ce24a8da8a54ff5ececd34d
+wspems-chat-server sha256:334dea573df57f587fb6e3b1d50f8035c6bd7b2d38ecf74baec0df485a6b1b11
+wspems-chat-server sbom 52fc877c294d5b9900bcf65fa851d16a2afb6a71d0ee9fdf124681c5605bbdab
+wspems-mcp-auth-broker sha256:387d867872f50cfb4d52b28799f3e8f620a1711afa5641c1047e8923c4aca09f
+wspems-mcp-auth-broker sbom ee3077d72a8563254e9cbe250f3d33969d925649b35d061ccc403d0c44f78bf5
+== tag, as the release job does
+ws-pems: pushed application/vnd.oci.image.manifest.v1+json sha256:efb5766ab944703edf7f36556fc4eabd64ff6107e67c5d1b0083b5face3c18ee; create exit 0; tag sha256:efb5766ab944703edf7f36556fc4eabd64ff6107e67c5d1b0083b5face3c18ee: SAME
+ws-pems-job-worker: pushed application/vnd.oci.image.manifest.v1+json sha256:4a432b31300f82746097e42584cf892f6c630a435fa8a68692f74fcc1bb4c583; create exit 0; tag sha256:4a432b31300f82746097e42584cf892f6c630a435fa8a68692f74fcc1bb4c583: SAME
+wspems-mcp-server: pushed application/vnd.oci.image.manifest.v1+json sha256:f5b88eafca667d7de6b14ddb2aab6fd38d89547d413c1865d4896743913ff1c3; create exit 0; tag sha256:f5b88eafca667d7de6b14ddb2aab6fd38d89547d413c1865d4896743913ff1c3: SAME
+wspems-chat-server: pushed application/vnd.oci.image.manifest.v1+json sha256:334dea573df57f587fb6e3b1d50f8035c6bd7b2d38ecf74baec0df485a6b1b11; create exit 0; tag sha256:334dea573df57f587fb6e3b1d50f8035c6bd7b2d38ecf74baec0df485a6b1b11: SAME
+wspems-mcp-auth-broker: pushed application/vnd.oci.image.manifest.v1+json sha256:387d867872f50cfb4d52b28799f3e8f620a1711afa5641c1047e8923c4aca09f; create exit 0; tag sha256:387d867872f50cfb4d52b28799f3e8f620a1711afa5641c1047e8923c4aca09f: SAME
+== without --prefer-index=false (the default), for ws-pems-mcp-auth-broker
+default: tag sha256:9050f583a33b3798e75cf28da1df545cd6095a76c3ec8a5e0f1eac146644cdab (application/vnd.oci.image.index.v1+json); manifest sha256:387d867872f50cfb4d52b28799f3e8f620a1711afa5641c1047e8923c4aca09f
+== the tag against build-manifest.json: rebuild 1's manifest lists each linux/amd64 manifest
+ws-pems: tag sha256:efb5766ab944703edf7f36556fc4eabd64ff6107e67c5d1b0083b5face3c18ee, build-manifest.json sha256:6d95470e434de268fbba488cde7faac81112091bd8bab7a740301e0be876b3ff: DIFFERENT
+ws-pems-job-worker: tag sha256:4a432b31300f82746097e42584cf892f6c630a435fa8a68692f74fcc1bb4c583, build-manifest.json sha256:1445418877019063a525b774e3d9fb9a0d870e39f946475562903217c6433fbc: DIFFERENT
+wspems-mcp-server: tag sha256:f5b88eafca667d7de6b14ddb2aab6fd38d89547d413c1865d4896743913ff1c3, build-manifest.json sha256:da7359c2c9237fbf2d0a036922913f66782d132c0e4f17608ecde433f7f2b91e: DIFFERENT
+wspems-chat-server: tag sha256:334dea573df57f587fb6e3b1d50f8035c6bd7b2d38ecf74baec0df485a6b1b11, build-manifest.json sha256:685217d58e241de4dab82e650a71cb01d19d9cfb25c0036cec10dac49a9d70bf: DIFFERENT
+wspems-mcp-auth-broker: tag sha256:387d867872f50cfb4d52b28799f3e8f620a1711afa5641c1047e8923c4aca09f, build-manifest.json sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb: DIFFERENT
+== the pushed manifests against the OCI files of rebuild 1
+ws-pems: DIFFERENT from rebuild 1's OCI file (sha256:6d95470e434de268fbba488cde7faac81112091bd8bab7a740301e0be876b3ff)
+ws-pems-job-worker: DIFFERENT from rebuild 1's OCI file (sha256:1445418877019063a525b774e3d9fb9a0d870e39f946475562903217c6433fbc)
+wspems-mcp-server: DIFFERENT from rebuild 1's OCI file (sha256:da7359c2c9237fbf2d0a036922913f66782d132c0e4f17608ecde433f7f2b91e)
+wspems-chat-server: DIFFERENT from rebuild 1's OCI file (sha256:685217d58e241de4dab82e650a71cb01d19d9cfb25c0036cec10dac49a9d70bf)
+wspems-mcp-auth-broker: DIFFERENT from rebuild 1's OCI file (sha256:aeba7a7ae999e9b3c05b93eb733812e8ab2034458dfec91e7d47b08e594670fb)
+ws-pems SBOM: DIFFERENT
+wspems-chat-server SBOM: DIFFERENT
+rb1-reg removed
+registry and builder removed
