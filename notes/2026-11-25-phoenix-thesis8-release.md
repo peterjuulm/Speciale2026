@@ -83,7 +83,7 @@ once. The changes are the lab patch's two (with which the Mac rebuilt thesis.7 a
   internal docs image show the thesis branch's docs. That is Leo's to undo. Neither run is ours
   to rerun.
 
-## The readable rebuild.sh (commit `378f113d9`, not pushed)
+## The readable rebuild.sh (commit `378f113d9`, on the branch as `6b5d6b5b3`)
 
 `378f113d9` on top of `1c90ad428` changes `scripts/release/rebuild.sh` only (347 lines in, 178
 out):
@@ -129,7 +129,10 @@ for both before the commit goes on the branch.
 
 - **thesis.8: not run.** thesis.8 was not published.
 
-So `378f113d9` is not pushed. It waits for December, proven against thesis.7 only.
+It was first kept unpushed for December. At about 11:25, Leo decided to close the branch by
+committing what is finished ("Lad os lige starte med at få lukket vores thesis branch ned ved
+at committe og pushe til den"). It went on the branch as `6b5d6b5b3`: `378f113d9`'s tree, with
+the commit message saying it was proven against thesis.7 and not against thesis.8.
 
 ## State at the end of the day
 
@@ -138,24 +141,30 @@ So `378f113d9` is not pushed. It waits for December, proven against thesis.7 onl
   is deleted first.
 - **No thesis.8 release.** The run was cancelled before its release job, so nothing was
   published.
-- **`thesis/reproducible-builds` on GitHub** is at `1c90ad428`: the Mac fixes and the host
-  table. No new commit went on it.
-- **The readable `rebuild.sh`, `378f113d9`**, is unpushed. It is kept in two places:
-  - on the Mac Studio, as branch `thesis-stages-local` in `~/rb1-phoenix-stages`, a worktree
-    of Leo's WS.Phoenix;
-  - on `arch`, as the bundle `/private/tmp/rb1-lab/readable/readable-rebuild.bundle` and as
-    branch `readable-rebuild` in the lab clone `/private/tmp/rb1-merge-src`.
+- **`thesis/reproducible-builds` on GitHub** went from `1c90ad428` to `85334ffda`, pushed
+  10:25:47Z `[V]`, in two commits:
+  - **`6b5d6b5b3`**: the readable `rebuild.sh`, proven `SAME` against the published thesis.7,
+    not against thesis.8.
+  - **`85334ffda`**: Codex's shorter docs and comments.
+    - 25 files: the patches in Leo's `notes/drafts/2026-11-25-codex-branch-text/`, all except
+      `tools/dependency-graph/summary.md`, which is generated.
+    - All applied with `git apply`. Text only `[V]`: the 10 shell scripts are the same without
+      comment lines and pass `bash -n`; the 5 Python files have the same AST without
+      docstrings; the release tests pass (6); `03-release.yml` parses (PyYAML and Ruby) to the
+      same YAML apart from one comment line inside the `run` block of the release job's step
+      13.
+    - The docs keep the host table.
 
-  To take it into a WS.Phoenix clone:
-  `git fetch <bundle> thesis-stages-local:readable-rebuild`. The base, `1c90ad428`, is on
-  GitHub.
+  The push started no workflow run, and the branch has no PR `[V]`. The thesis.8 tag stays on
+  `1c90ad428`, so it does not have these two commits.
+- The bundle on `arch` (`/private/tmp/rb1-lab/readable/`) and the lab clone's branch
+  `readable-rebuild` hold the earlier hash `378f113d9`, with the same tree. They are no longer
+  needed.
 - **Not run:** the rebuilds of thesis.8 on `arch` and the Mac (lab 77 and 76 are written and
   ready), and the readable script against thesis.8.
 
 Parked for December, by Leo's decision. Not touched today:
 - whether to tag thesis.8 again (or keep this tag) and publish it;
-- the readable `rebuild.sh`;
-- the Codex text patches for the branch;
 - the arm64 build of `mcp/Dockerfile`;
 - thesis.7's five provenance files;
 - the office runner's RAM (4 GB);
